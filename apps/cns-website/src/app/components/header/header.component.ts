@@ -21,6 +21,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { filter } from 'rxjs';
+import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { MegaMenuComponent } from './mega-menu/mega-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { MENUS } from './static-data/parsed';
@@ -66,8 +67,6 @@ export class HeaderEventsService {
 export class HeaderComponent {
   /** Navigation options to display on the header */
   readonly menuOptions = input(MENUS);
-  /** Whether to show the filter menu icon */
-  readonly enableFilterMenu = input(false);
 
   readonly headerEvents = inject(HeaderEventsService);
 
@@ -75,6 +74,9 @@ export class HeaderComponent {
   protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);
   /** Reference to this component's html element */
   private readonly elementRef = inject<ElementRef<Element>>(ElementRef);
+
+  /** Sidebar store for managing sidebar state */
+  protected readonly sidebarStore = inject(SidebarStore);
 
   /** Overlay positions for the mobile menu */
   protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;

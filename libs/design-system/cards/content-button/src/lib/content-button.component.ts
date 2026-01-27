@@ -18,7 +18,7 @@ export class ContentButtonComponent {
   /** Image url */
   readonly imageSrc = input.required<string>();
   /** Date to display on card */
-  readonly date = input.required<string>();
+  readonly date = input.required<string | Date>();
   /** Card tagline (less than 2 lines or truncated) */
   readonly tagline = input.required<string>();
   /** Tags to display on bottom of card */

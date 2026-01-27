@@ -3,6 +3,7 @@
 :host {
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 3.5rem);
 
   @media (min-width: 640px) {
     flex-direction: row;

@@ -18,6 +18,8 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   options: T[];
   /** Selected filter options */
   selected?: T[];
+  /** Whether search should be disabled for this filter */
+  disableSearch?: boolean;
 }
 
 /** Position of the filter menu overlay */
@@ -82,6 +84,14 @@ export class FilterMenuComponent<T extends SearchListOption> {
   updateFilterSelection(category: FilterOptionCategory<T>, selected: T[] = []) {
     const updated = { ...category, selected };
     this.filters.update((filters) => filters.map((filter) => (filter.id === category.id ? updated : filter)));
+  }
+
+  /**
+   * Toggles filter menu open/close
+   * @param category Filter category to toggle
+   */
+  toggleFilterMenu(category?: FilterOptionCategory<T>): void {
+    this.activeFilter.update((current) => (current === category ? undefined : category));
   }
 
   /**

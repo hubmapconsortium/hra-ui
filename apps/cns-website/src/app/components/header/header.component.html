@@ -1,15 +1,17 @@
 <header hraFeature="header" class="header" cdkOverlayOrigin data-testid="header" #mobileMenuOrigin="cdkOverlayOrigin">
   <div hraFeature="navigation" class="header-content" #desktopMenuOrigin>
-    <button mat-icon-button (click)="headerEvents.toggle()">
-      <mat-icon>tune</mat-icon>
-    </button>
-
+    @if (sidebarStore.hasSidebar()) {
+      <button mat-icon-button aria-label="Toggle sidebar menu" (click)="sidebarStore.toggle()">
+        <mat-icon>tune</mat-icon>
+      </button>
+    }
     <a
       class="logo"
       hraFeature="logo"
       hraClickEvent
       aria-label="Visit CNS"
       hraLink="https://cns.iu.edu/"
+      aria-label="Visit CNS home page"
       [inlineSVG]="'assets/logo/cns_header_logo.svg' | assetUrl"
     >
     </a>

@@ -4,9 +4,11 @@ import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { ContentPageComponent } from './components/content-page/content-page.component';
+import { CurrentTeamComponent } from './pages/current-team/current-team.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
 import { ResearchPageComponent } from './pages/research-page/research-page.component';
+import { currentTeamResolver } from './resolvers/current-team/current-team.resolver';
 import { createFeaturedContentResolver } from './resolvers/featured-content/featured-content.resolver';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
 import {
@@ -52,11 +54,24 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'people/:slug',
-    component: PeopleProfileComponent,
-    resolve: {
-      data: createPeopleProfileResolver(),
-    },
+    path: 'people',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: CurrentTeamComponent,
+        resolve: {
+          data: currentTeamResolver,
+        },
+      },
+      {
+        path: ':slug',
+        component: PeopleProfileComponent,
+        resolve: {
+          data: createPeopleProfileResolver(),
+        },
+      },
+    ],
   },
   {
     path: 'privacy-policy',
