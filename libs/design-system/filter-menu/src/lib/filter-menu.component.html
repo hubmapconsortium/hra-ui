@@ -62,6 +62,7 @@
         <hra-search-list
           [options]="filter.options"
           [selected]="filter.selected ?? []"
+          [counts]="counts()?.[$index]"
           [disableSearch]="filter.disableSearch ?? false"
           (selectedChange)="updateFilterSelection(filter, $event)"
         />

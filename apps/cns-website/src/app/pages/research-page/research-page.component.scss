@@ -1,0 +1,89 @@
+@use 'utils';
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+  height: calc(100vh - 3.5rem);
+  width: 100%;
+
+  .container {
+    height: 100%;
+
+    @include mat.sidenav-overrides(
+      (
+        container-background-color: vars.$surface-container-low,
+        container-divider-color: vars.$outline-variant,
+        container-shape: vars.$corner-none,
+        container-width: 20rem,
+        content-background-color: vars.$on-primary,
+      )
+    );
+  }
+
+  mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 3.5rem);
+    align-items: center;
+  }
+
+  hra-search-filter {
+    padding: 2rem 2.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    max-width: 100rem;
+    margin: 0 auto;
+    background-color: vars.$on-primary;
+
+    @media (max-width: 639px) {
+      padding: 2rem 1.25rem;
+    }
+  }
+
+  ng-scrollbar {
+    width: 100%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+
+    @media (max-width: 639px) {
+      padding: 0 1.25rem;
+    }
+
+    &:has(.gallery-group) {
+      gap: 3rem;
+    }
+
+    section {
+      width: 100%;
+    }
+
+    .page-end {
+      width: 100%;
+      padding-bottom: 2.5rem;
+
+      mat-divider {
+        margin-top: 2rem;
+        margin-bottom: 2.5rem;
+      }
+
+      cns-footer {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    hra-end-of-results-indicator {
+      padding: 0;
+      flex-direction: row;
+    }
+  }
+}

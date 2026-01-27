@@ -717,7 +717,7 @@
             "$ref": "#/$defs/TableRow"
           }
         },
-        "style": {
+        "variant": {
           "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {

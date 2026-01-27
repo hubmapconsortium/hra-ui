@@ -37,4 +37,7 @@ export class SearchFilterComponent {
 
   /** Number of currently visible/filtered options */
   readonly viewingCount = input.required({ transform: numberAttribute });
+
+  /** Separator for results indicator */
+  readonly separator = input<string>('of');
 }

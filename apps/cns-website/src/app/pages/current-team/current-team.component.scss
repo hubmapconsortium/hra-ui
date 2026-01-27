@@ -54,10 +54,18 @@
         z-index: 10;
         padding: 2rem 2.5rem;
         background-color: vars.$on-primary;
+
+        @media (max-width: 639px) {
+          padding: 2rem 1.25rem;
+        }
       }
 
       .profile-list {
         margin: 2.5rem;
+
+        @media (max-width: 639px) {
+          margin: 2rem 1.25rem;
+        }
 
         .section {
           .title {

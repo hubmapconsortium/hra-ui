@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { PeopleIdSchema } from './people.schema';
 import { TagIdSchema } from './tags.schema';
 
 /** Type for research identifiers */
@@ -39,9 +40,9 @@ export const ResearchItemSchema = z
     /** Link associated with the research */
     link: z.string().optional(),
     /** People associated with the research */
-    people: z.array(z.string()),
+    people: z.array(PeopleIdSchema),
     /** Tags for categorizing the research */
-    tags: z.array(TagIdSchema),
+    tags: z.array(TagIdSchema).transform((tags) => uniqueValues(tags)),
   })
   .meta({ id: 'Research' });
 
@@ -50,3 +51,13 @@ export type ResearchData = z.infer<typeof ResearchDataSchema>;
 
 /** Research data schema - array of research items */
 export const ResearchDataSchema = z.array(ResearchItemSchema).meta({ id: 'ResearchData' });
+
+/**
+ * Remove duplicate items from an array
+ *
+ * @param items Array of items
+ * @returns Array with unique items
+ */
+function uniqueValues<T>(items: T[]): T[] {
+  return Array.from(new Set(items));
+}

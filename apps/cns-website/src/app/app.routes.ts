@@ -7,9 +7,15 @@ import { ContentPageComponent } from './components/content-page/content-page.com
 import { CurrentTeamComponent } from './pages/current-team/current-team.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
+import { ResearchPageComponent } from './pages/research-page/research-page.component';
 import { currentTeamResolver } from './resolvers/current-team/current-team.resolver';
 import { createFeaturedContentResolver } from './resolvers/featured-content/featured-content.resolver';
 import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
+import {
+  createPeopleResolver,
+  createPublicationTypesResolver,
+  createResearchDataResolver,
+} from './resolvers/research/research.resolver';
 import { createTagsResolver } from './resolvers/tags/tags.resolver';
 
 /** Application routes */
@@ -72,6 +78,15 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
+    path: 'research',
+    component: ResearchPageComponent,
+    resolve: {
+      data: createResearchDataResolver(),
+      peopleData: createPeopleResolver(),
+      pubTypes: createPublicationTypesResolver(),
     },
   },
   {

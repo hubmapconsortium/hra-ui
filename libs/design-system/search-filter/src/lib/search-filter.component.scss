@@ -7,12 +7,12 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 8px;
+  gap: 0.5rem;
 
   .search-field {
     flex: 1;
-    min-width: 160px;
-    max-width: 580px;
+    min-width: 10rem;
+    max-width: 36.25rem;
 
     .clear-search {
       margin-right: 0.875rem;
