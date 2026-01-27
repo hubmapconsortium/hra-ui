@@ -24,6 +24,11 @@ import { withOrdering } from './with-ordering.feature';
 import { withResearch } from './with-research.feature';
 import { withView } from './with-view.feature';
 
+/**
+ * Creates a writable signal slice from a readonly signal and setter function.
+ * @param stateSignal Source readonly signal
+ * @param set Setter used to update the state
+ */
 function createWritableStateSlice<T>(stateSignal: Signal<T>, set: (value: T) => void): WritableSignal<T> {
   const signal = computed(() => stateSignal()) as WritableSignal<T>;
   signal.set = set;
@@ -32,6 +37,10 @@ function createWritableStateSlice<T>(stateSignal: Signal<T>, set: (value: T) => 
   return signal;
 }
 
+/**
+ * Research page state store combining data, filters, view, and ordering.
+ * Keeps state in sync with URL query parameters for sharing and navigation.
+ */
 export const ResearchStore = signalStore(
   withResearch(),
   withView(),
@@ -39,6 +48,7 @@ export const ResearchStore = signalStore(
   withOrdering(),
   withHooks({
     onInit(store) {
+      /** Writable signal slices for linkedQueryParam compatibility */
       const view = createWritableStateSlice(store.view, store.setView);
       const categories = createWritableStateSlice(store.categories, store.setCategories);
       const events = createWritableStateSlice(store.events, store.setEvents);
@@ -51,6 +61,7 @@ export const ResearchStore = signalStore(
       const groupBy = createWritableStateSlice(store.groupBy, store.setGroupBy);
       const commonOptions = { replaceUrl: true, preserveFragment: true };
 
+      /** Preserve initial state values to prevent query param defaults from overwriting them */
       const initialView = store.view();
       const initialSortBy = store.sortBy();
 

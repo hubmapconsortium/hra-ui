@@ -21,6 +21,10 @@ import { PeopleResearchItem, PublicationTypes, ResearchPageData } from '../../sc
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { ResearchStore } from './state/research.store';
 
+/**
+ * Research page with filtering, sorting, and dual view modes.
+ * Displays research outputs with multi-faceted filtering and query parameter sync.
+ */
 @Component({
   selector: 'cns-research-page',
   imports: [
@@ -49,17 +53,24 @@ import { ResearchStore } from './state/research.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResearchPageComponent {
+  /** Research page data containing all research items */
   readonly data = input.required<ResearchPageData>();
+  /** People data for filtering and display */
   readonly peopleData = input.required<PeopleResearchItem[]>();
+  /** Publication type definitions */
   readonly pubTypes = input.required<PublicationTypes>();
 
+  /** Research store for state management */
   protected readonly store = inject(ResearchStore);
+  /** Activated route for query parameter access */
   protected readonly route = inject(ActivatedRoute);
-  /** Sidebar store for managing sidebar state */
+  /** Sidebar store for managing sidebar visibility */
   protected readonly sidebarStore = inject(SidebarStore);
 
-  /** Reference to the sidebar component */
+  /** Sidebar component reference */
   private readonly sidebar = viewChild.required(MatSidenav);
+
+  /** Initializes store with data and registers sidebar */
   constructor() {
     this.store.setResearchItems(this.data);
     this.store.setPeopleItems(this.peopleData);

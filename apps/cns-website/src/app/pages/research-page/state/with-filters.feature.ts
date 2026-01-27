@@ -21,46 +21,77 @@ import {
 } from '../../../schemas/research/research.schema';
 import { ResearchState } from './with-research.feature';
 
+/** Generic search list option with a typed id */
 type TypedSearchListOption<T extends string> = SearchListOption & { id: T };
 
+/** Filter option for research categories */
 export type CategoryOption = TypedSearchListOption<ResearchCategory>;
 
+/** Filter option for research events */
 export type EventOption = TypedSearchListOption<ResearchEventType>;
 
+/** Filter option for research funding */
 export type FundingOption = TypedSearchListOption<ResearchFundingType>;
 
+/** Filter option for research publications */
 export type PublicationOption = TypedSearchListOption<ResearchPublicationType>;
 
+/** Filter option for people */
 export type PeopleOption = TypedSearchListOption<ResearchPersonType>;
 
+/** Year option with numeric year value */
 export interface YearOption extends SearchListOption {
+  /** Year value */
   year: number;
 }
 
+/** Signals exposed by the filters feature */
 export interface FilterProps {
+  /** Selected people options */
   people: Signal<PeopleOption[]>;
+  /** Available filters with selected options */
   filters: Signal<FilterOptionCategory<SearchListOption>[]>;
+  /** Items after all filters applied */
   filteredItems: Signal<ResearchItem[]>;
+  /** Count of filtered items */
   numFilteredItems: Signal<number>;
+  /** Counts by category */
   countsByCategory: Signal<Record<string, number>>;
+  /** Counts by type */
   countsByType: Signal<Record<string, number>>;
+  /** Counts by people */
   countsByPeople: Signal<Record<string, number>>;
+  /** Counts by year */
   countsByYear: Signal<Record<string, number>>;
+  /** Aggregate counts array */
   counts: Signal<Record<string, number>[]>;
 }
 
+/** Internal filter state backing the signals */
 type InternalProps = { [key: `_${string}`]: unknown };
 
+/** Selected filter values for the research page */
 interface FilterState {
+  /** Selected categories */
   categories: CategoryOption[] | null;
+  /** Selected events */
   events: EventOption[] | null;
+  /** Selected funding options */
   funding: FundingOption[] | null;
+  /** Selected publication IDs */
   publicationIds: string[] | null;
+  /** Selected people IDs */
   peopleIds: string[] | null;
+  /** Selected years */
   years: YearOption[] | null;
+  /** Search text */
   search: string | null;
 }
 
+/**
+ * Builds a descending list of years starting at startYear.
+ * @param startYear Inclusive starting year
+ */
 function createYearList(startYear: number): number[] {
   const currentYear = new Date().getFullYear();
   const years: number[] = [];
@@ -71,6 +102,7 @@ function createYearList(startYear: number): number[] {
   return years;
 }
 
+/** Category filter options */
 export const CATEGORY_OPTIONS: CategoryOption[] = [
   { id: 'data-tool', label: 'Data & tools' },
   { id: 'event', label: 'Events' },
@@ -85,24 +117,28 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
   { id: 'visualization', label: 'Visualizations' },
 ];
 
+/** Event filter options */
 export const EVENT_OPTIONS: EventOption[] = [
   { id: '24-hour' as ResearchEventType, label: '24-hour' },
   { id: 'amatria' as ResearchEventType, label: 'Amatria' },
   { id: 'workshop' as ResearchEventType, label: 'Workshops' },
 ];
 
+/** Funding filter options */
 export const FUNDING_OPTIONS: FundingOption[] = [
   { id: 'research-funding' as ResearchFundingType, label: 'Research funding' },
   { id: 'teaching-funding' as ResearchFundingType, label: 'Teaching funding' },
   { id: 'workshop-funding' as ResearchFundingType, label: 'Workshop funding' },
 ];
 
+/** Year filter options from 1991 to current year */
 export const YEAR_OPTIONS: YearOption[] = createYearList(1991).map((year) => ({
   id: year.toString(),
   label: year.toString(),
   year,
 }));
 
+/** Category filter configuration */
 const CATEGORIES_FILTER: FilterOptionCategory<CategoryOption> = {
   id: 'category',
   label: 'Category',
@@ -110,6 +146,7 @@ const CATEGORIES_FILTER: FilterOptionCategory<CategoryOption> = {
   selected: [],
 };
 
+/** Event filter configuration */
 const EVENTS_FILTER: FilterOptionCategory<EventOption> = {
   id: 'event-type',
   label: 'Event type',
@@ -117,6 +154,7 @@ const EVENTS_FILTER: FilterOptionCategory<EventOption> = {
   selected: [],
 };
 
+/** Funding filter configuration */
 const FUNDING_FILTER: FilterOptionCategory<FundingOption> = {
   id: 'funding-type',
   label: 'Funding type',
@@ -124,6 +162,7 @@ const FUNDING_FILTER: FilterOptionCategory<FundingOption> = {
   selected: [],
 };
 
+/** Publication filter configuration */
 const PUBLICATIONS_FILTER: FilterOptionCategory<PublicationOption> = {
   id: 'publication-type',
   label: 'Publication type',
@@ -131,6 +170,7 @@ const PUBLICATIONS_FILTER: FilterOptionCategory<PublicationOption> = {
   selected: [],
 };
 
+/** People filter configuration */
 const PEOPLE_FILTER: FilterOptionCategory<PeopleOption> = {
   id: 'people',
   label: 'People',
@@ -138,6 +178,7 @@ const PEOPLE_FILTER: FilterOptionCategory<PeopleOption> = {
   selected: [],
 };
 
+/** Year filter configuration */
 const YEARS_FILTER: FilterOptionCategory<YearOption> = {
   id: 'year',
   label: 'Year',
@@ -145,6 +186,7 @@ const YEARS_FILTER: FilterOptionCategory<YearOption> = {
   selected: [],
 };
 
+/** Initial filter state with no selections */
 const initialState: FilterState = {
   categories: null,
   events: null,
@@ -155,6 +197,12 @@ const initialState: FilterState = {
   search: null,
 };
 
+/**
+ * Merges base filter config with current selection and options.
+ * @param base Base filter definition
+ * @param selected Current selected options accessor
+ * @param options Optional dynamic options accessor
+ */
 function optionsToFilter<Opt extends SearchListOption>(
   base: FilterOptionCategory<Opt>,
   selected: () => Opt[] | null,
@@ -163,10 +211,20 @@ function optionsToFilter<Opt extends SearchListOption>(
   return computed(() => ({ ...base, options: options?.() ?? base.options, selected: selected() ?? [] }));
 }
 
+/**
+ * Builds a set of selected option IDs across multiple selections.
+ * @param options Accessors returning selected option arrays
+ */
 function optionsToSet<Opt extends string>(...options: (() => TypedSearchListOption<Opt>[] | null)[]): Signal<Set<Opt>> {
   return computed(() => new Set<Opt>(options.flatMap((opts) => opts()?.map((option) => option.id) ?? [])));
 }
 
+/**
+ * Filters items by selected options using a provided predicate.
+ * @param items Accessor for all items
+ * @param options Accessor for selected option IDs
+ * @param filterFn Predicate that checks item against selected options
+ */
 function createFilteredBy<T, Opt>(
   items: () => T[],
   options: () => Set<Opt>,
@@ -183,6 +241,10 @@ function createFilteredBy<T, Opt>(
   });
 }
 
+/**
+ * Normalizes search text for case/diacritic-insensitive matching.
+ * @param str Raw input string
+ */
 function normalizeSearchString(str: string): string {
   return str
     .trim()
@@ -192,10 +254,19 @@ function normalizeSearchString(str: string): string {
     .replace(/\s{2,}/, ' ');
 }
 
+/**
+ * Converts a string to sentence case.
+ * @param str Raw input string
+ */
 function toSentenceCase(str: string): string {
   return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+/**
+ * Counts occurrences of keys derived from items.
+ * @param items Accessor for items to count
+ * @param keyFn Key selector returning one or many keys per item
+ */
 function countsByKey(
   items: () => ResearchItem[],
   keyFn: (item: ResearchItem) => string | string[],
@@ -213,6 +284,10 @@ function countsByKey(
   });
 }
 
+/**
+ * Adds filtering capabilities for research items.
+ * Provides filtered item lists, counts, and filter option signals.
+ */
 export function withFilters() {
   return signalStoreFeature(
     { state: type<ResearchState>() },
@@ -329,16 +404,37 @@ export function withFilters() {
       } satisfies FilterProps & InternalProps;
     }),
     withMethods((store) => ({
+      /** Sets selected categories */
       setCategories: signalMethod((categories: CategoryOption[] | null) => patchState(store, { categories })),
+      /** Sets selected events */
       setEvents: signalMethod((events: EventOption[] | null) => patchState(store, { events })),
+      /** Sets selected funding options */
       setFunding: signalMethod((funding: FundingOption[] | null) => patchState(store, { funding })),
+      /** Sets selected publication IDs */
       setPublicationIds: signalMethod((publicationIds: string[] | null) => patchState(store, { publicationIds })),
+      /** Sets selected people IDs */
       setPeopleIds: signalMethod((peopleIds: string[] | null) => patchState(store, { peopleIds })),
+      /**
+       * Sets selected people options.
+       * @param people Selected people options
+       */
       setPeople: signalMethod((people: PeopleOption[] | null) =>
         patchState(store, { peopleIds: people?.map((p) => p.id) ?? null }),
       ),
+      /**
+       * Sets selected years.
+       * @param years Selected year options
+       */
       setYears: signalMethod((years: YearOption[] | null) => patchState(store, { years })),
+      /**
+       * Sets search text.
+       * @param search Search string
+       */
       setSearch: signalMethod((search: string | null) => patchState(store, { search })),
+      /**
+       * Updates all filters from filter menu selections.
+       * @param filters Filter menu categories with selections
+       */
       updateFilters: signalMethod((filters: FilterOptionCategory<SearchListOption>[]) => {
         const categories = filters[0]?.selected as CategoryOption[];
         const events = filters[1]?.selected as EventOption[];
@@ -356,6 +452,7 @@ export function withFilters() {
           years: years.length > 0 ? years : null,
         });
       }),
+      /** Resets all filters to defaults */
       resetFilters: () => patchState(store, initialState),
     })),
   );
