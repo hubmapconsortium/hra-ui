@@ -160,6 +160,9 @@
                             <a href="#BRAND_MARKS" title="/home/workflows/workspace/libs/design-system/brand/mark/src/lib/brand-marks.ts" ><b>BRAND_MARKS</b>&nbsp;&nbsp;&nbsp;(/.../brand-marks.ts)</a>
                         </li>
                         <li>
+                            <a href="#BreadcrumbItemSchema" title="/home/workflows/workspace/libs/design-system/buttons/breadcrumbs/src/lib/breadcrumbs.schema.ts" ><b>BreadcrumbItemSchema</b>&nbsp;&nbsp;&nbsp;(/.../breadcrumbs.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ButtonDef" title="/home/workflows/workspace/libs/design-system/buttons/button/src/lib/types/button.definition.ts" ><b>ButtonDef</b>&nbsp;&nbsp;&nbsp;(/.../button.definition.ts)</a>
                         </li>
                         <li>
@@ -167,6 +170,12 @@
                         </li>
                         <li>
                             <a href="#CATEGORY_DEFS" title="/home/workflows/workspace/libs/design-system/privacy/privacy-preferences/src/lib/categories/category-defs.ts" ><b>CATEGORY_DEFS</b>&nbsp;&nbsp;&nbsp;(/.../category-defs.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CNS_SOCIAL_IDS" title="/home/workflows/workspace/libs/design-system/buttons/social-media-button/src/lib/static-data/parsed.ts" ><b>CNS_SOCIAL_IDS</b>&nbsp;&nbsp;&nbsp;(/.../parsed.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CNS_SOCIALS" title="/home/workflows/workspace/libs/design-system/buttons/social-media-button/src/lib/static-data/parsed.ts" ><b>CNS_SOCIALS</b>&nbsp;&nbsp;&nbsp;(/.../parsed.ts)</a>
                         </li>
                         <li>
                             <a href="#CodeBlockDef" title="/home/workflows/workspace/libs/design-system/code-block/src/lib/code-block.definition.ts" ><b>CodeBlockDef</b>&nbsp;&nbsp;&nbsp;(/.../code-block.definition.ts)</a>
@@ -263,6 +272,9 @@
                         </li>
                         <li>
                             <a href="#FundersSchema" title="/home/workflows/workspace/libs/design-system/navigation/footer/src/lib/types/funders.schema.ts" ><b>FundersSchema</b>&nbsp;&nbsp;&nbsp;(/.../funders.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GalleryCardItemSchema" title="/home/workflows/workspace/libs/design-system/cards/gallery-card/src/lib/gallery-card.schema.ts" ><b>GalleryCardItemSchema</b>&nbsp;&nbsp;&nbsp;(/.../gallery-card.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#GoogleMapsDef" title="/home/workflows/workspace/libs/design-system/content-templates/google-maps/src/lib/google-maps.definition.ts" ><b>GoogleMapsDef</b>&nbsp;&nbsp;&nbsp;(/.../google-maps.definition.ts)</a>
@@ -1169,6 +1181,46 @@
         </tbody>
     </table>
 </section>
+    <h3>/home/workflows/workspace/libs/design-system/buttons/breadcrumbs/src/lib/breadcrumbs.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BreadcrumbItemSchema"></a>
+                    <span class="name">
+                        <span ><b>BreadcrumbItemSchema</b></span>
+                        <a href="#BreadcrumbItemSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    name: z.string(),
+    route: z.string().optional(),
+  })
+  .meta({ id: &#x27;BreadcrumbItem&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Breadcrumb Item Schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>/home/workflows/workspace/libs/design-system/buttons/button/src/lib/types/button.definition.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -1313,6 +1365,137 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Definitions for each category</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>/home/workflows/workspace/libs/design-system/buttons/social-media-button/src/lib/static-data/parsed.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CNS_SOCIAL_IDS"></a>
+                    <span class="name">
+                        <span ><b>CNS_SOCIAL_IDS</b></span>
+                        <a href="#CNS_SOCIAL_IDS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>CNS_SOCIALS.map(({ id }) &#x3D;&gt; id)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All available CNS social ids</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CNS_SOCIALS"></a>
+                    <span class="name">
+                        <span ><b>CNS_SOCIALS</b></span>
+                        <a href="#CNS_SOCIALS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SocialsSchema.parse(RAW_CNS_SOCIALS).socials</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parsed CNS social media items</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOCIAL_IDS"></a>
+                    <span class="name">
+                        <span ><b>SOCIAL_IDS</b></span>
+                        <a href="#SOCIAL_IDS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SOCIALS.map(({ id }) &#x3D;&gt; id)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All available social ids</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOCIALS"></a>
+                    <span class="name">
+                        <span ><b>SOCIALS</b></span>
+                        <a href="#SOCIALS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SocialsSchema.parse(RAW_SOCIALS).socials</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parsed social media items</p>
 </div>
                 </td>
             </tr>
@@ -1668,6 +1851,7 @@
     title: z.string(),
     subtitle: z.string(),
     icons: IconListSchema.optional(),
+    breadcrumbs: z.array(BreadcrumbItemSchema).optional(),
     action: z
       .object({
         label: z.string(),
@@ -2802,6 +2986,48 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Schema for multiple funders</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>/home/workflows/workspace/libs/design-system/cards/gallery-card/src/lib/gallery-card.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GalleryCardItemSchema"></a>
+                    <span class="name">
+                        <span ><b>GalleryCardItemSchema</b></span>
+                        <a href="#GalleryCardItemSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  name: z.string(),
+  imageSrc: z.string(),
+  date: z.string(),
+  link: z.string(),
+  external: z.boolean(),
+  tags: z.string().array(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>News page data item schema</p>
 </div>
                 </td>
             </tr>
@@ -4488,6 +4714,7 @@
   level: z.number().int().gte(1).lte(6).optional(),
   icons: IconListSchema.optional(),
   anchor: z.string().optional(),
+  breadcrumbs: z.array(BreadcrumbItemSchema).optional(),
   content: ProjectedContentTemplateSchema,
 }).meta({ id: &#x27;PageSection&#x27; })</code>
                     </td>
@@ -4987,73 +5214,6 @@ to provide the function.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Interval between scroll timeline availability checks.
 Primarily used to simplify testing.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>/home/workflows/workspace/libs/design-system/buttons/social-media-button/src/lib/static-data/parsed.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="SOCIAL_IDS"></a>
-                    <span class="name">
-                        <span ><b>SOCIAL_IDS</b></span>
-                        <a href="#SOCIAL_IDS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>SOCIALS.map(({ id }) &#x3D;&gt; id)</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>All available social ids</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="SOCIALS"></a>
-                    <span class="name">
-                        <span ><b>SOCIALS</b></span>
-                        <a href="#SOCIALS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>SocialsSchema.parse(RAW_SOCIALS).socials</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Parsed social media items</p>
 </div>
                 </td>
             </tr>

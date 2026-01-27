@@ -173,18 +173,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/CardsModule.html" data-type="entity-link" >CardsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' : 'data-bs-target="#xs-components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' }>
+                                            'data-bs-target="#components-links-module-CardsModule-d54685af8ba9b11bdd67cddde70f9212dacf37c3b0271ef5eb1b7324b6ddce66490d79e94f1212ae987ad32c2a7d6cfb666fa0e24c97760f8ad94585a8d6e711"' : 'data-bs-target="#xs-components-links-module-CardsModule-d54685af8ba9b11bdd67cddde70f9212dacf37c3b0271ef5eb1b7324b6ddce66490d79e94f1212ae987ad32c2a7d6cfb666fa0e24c97760f8ad94585a8d6e711"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' :
-                                            'id="xs-components-links-module-CardsModule-4d80efd92e196fbf630b69257667d8c4d08ba28a9d668525a7618597c7631206c85e06c4888e19c4c6179f0bf3842d883072d96840d760c3e64319fd4fe60bb5"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CardsModule-d54685af8ba9b11bdd67cddde70f9212dacf37c3b0271ef5eb1b7324b6ddce66490d79e94f1212ae987ad32c2a7d6cfb666fa0e24c97760f8ad94585a8d6e711"' :
+                                            'id="xs-components-links-module-CardsModule-d54685af8ba9b11bdd67cddde70f9212dacf37c3b0271ef5eb1b7324b6ddce66490d79e94f1212ae987ad32c2a7d6cfb666fa0e24c97760f8ad94585a8d6e711"' }>
                                             <li class="link">
                                                 <a href="components/ActionCardActionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ActionCardActionComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/ActionCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ActionCardComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/ContentButtonComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContentButtonComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/GalleryCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GalleryCardComponent</a>
@@ -1002,9 +1005,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/DensityDirective.html" data-type="entity-link" >DensityDirective</a>
-                                </li>
-                                <li class="link">
-                                    <a href="directives/FullscreenDirective.html" data-type="entity-link" >FullscreenDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/GalleryGridItemDirective.html" data-type="entity-link" >GalleryGridItemDirective</a>
