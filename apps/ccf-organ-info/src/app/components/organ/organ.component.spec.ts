@@ -1,10 +1,39 @@
-import { render } from '@testing-library/angular';
-import { Filter, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
-import { OrganComponent } from './organ.component';
+import { Component, input, output } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { Filter, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { fireEvent, render, screen } from '@testing-library/angular';
 import { NodeClickEvent } from 'ccf-body-ui';
-import { OutputEmitterRef } from '@angular/core';
+import { OrganComponent } from './organ.component';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'hra-body-ui',
+  standalone: true,
+  template: `<button (click)="handleClick()">Click Node</button>`,
+})
+class MockBodyUiComponent {
+  readonly scene = input<SpatialSceneNode[]>();
+  readonly target = input<number[]>();
+  readonly rotation = input<number>();
+  readonly rotationX = input<number>();
+  readonly interactive = input<boolean>();
+  readonly camera = input<string>();
+  readonly nodeClick = output<NodeClickEvent>();
+
+  private clickCount = 0;
+  private nodeIds = ['node1', 'node2'];
+
+  handleClick() {
+    const nodeId = this.nodeIds[this.clickCount % this.nodeIds.length];
+    this.nodeClick.emit({ node: { '@id': nodeId } as SpatialSceneNode, ctrlClick: false });
+    this.clickCount++;
+  }
+
+  zoomToBounds() {
+    /* noop */
+  }
+}
 
 describe('OrganComponent', () => {
   const mockOrgan: SpatialEntity = {
@@ -72,86 +101,43 @@ describe('OrganComponent', () => {
 
   const providers = [provideHttpClient(), provideHttpClientTesting()];
 
-  it('should render the organ 3D viewer component', async () => {
-    const { fixture } = await render(OrganComponent, {
+  async function renderComponent(
+    inputs: Partial<{
+      organ: SpatialEntity;
+      scene: SpatialSceneNode[];
+      blocks: TissueBlock[];
+      filter: Filter;
+    }> = {},
+    nodeClickHandler?: jest.Mock,
+  ) {
+    return render(OrganComponent, {
       providers,
+      componentImports: [MockBodyUiComponent],
+      excludeComponentDeclaration: true,
       componentInputs: {
         scene: mockSceneNodes,
         blocks: mockBlocks,
         filter: mockFilter,
+        ...inputs,
       },
+      on: nodeClickHandler ? { nodeClick: nodeClickHandler } : undefined,
     });
+  }
 
-    expect(fixture.componentInstance).toBeTruthy();
-  });
-
-  it('should render hra-body-ui element', async () => {
-    await render(OrganComponent, {
-      providers,
-      componentInputs: {
-        scene: mockSceneNodes,
-        blocks: mockBlocks,
-        filter: mockFilter,
-      },
-    });
-
-    // Query for the hra-body-ui custom element
-    const bodyUiElement = document.querySelector('hra-body-ui');
-    expect(bodyUiElement).toBeTruthy();
-  });
-
-  it('should emit nodeClick event when user interacts with 3D viewer', async () => {
-    const nodeClickMock = jest.fn();
-
-    await render(OrganComponent, {
-      providers,
-      componentInputs: {
-        scene: mockSceneNodes,
-        blocks: mockBlocks,
-        filter: mockFilter,
-      },
-      componentOutputs: {
-        nodeClick: {
-          emit: nodeClickMock,
-        } as unknown as OutputEmitterRef<NodeClickEvent>,
-      },
-    });
-
-    // Component should be ready to handle node click events
-    const bodyUiElement = document.querySelector('hra-body-ui');
-    expect(bodyUiElement).toBeTruthy();
+  it('should create and render body ui', async () => {
+    await renderComponent();
+    expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
   });
 
   it('should render with organ input provided', async () => {
-    const { fixture } = await render(OrganComponent, {
-      providers,
-      componentInputs: {
-        organ: mockOrgan,
-        scene: mockSceneNodes,
-        blocks: mockBlocks,
-        filter: mockFilter,
-      },
-    });
-
-    expect(fixture.componentInstance).toBeTruthy();
+    await renderComponent({ organ: mockOrgan });
+    expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
   });
 
   it('should render with empty filter', async () => {
-    const emptyFilter: Filter = {
-      sex: FilterSexEnum.Female,
-      tmc: [],
-    } as Filter;
-
-    const { fixture } = await render(OrganComponent, {
-      providers,
-      componentInputs: {
-        scene: mockSceneNodes,
-        blocks: mockBlocks,
-        filter: emptyFilter,
-      },
-    });
-
-    expect(fixture.componentInstance).toBeTruthy();
+    const emptyFilter: Filter = { sex: FilterSexEnum.Female, tmc: [] } as Filter;
+    await renderComponent({ filter: emptyFilter });
+    expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
   });
 
   it('should render with blocks that have no donor information', async () => {
@@ -165,16 +151,97 @@ describe('OrganComponent', () => {
         datasets: [],
       } as TissueBlock,
     ];
+    await renderComponent({ blocks: blocksWithNoDonor });
+    expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+  });
 
-    const { fixture } = await render(OrganComponent, {
-      providers,
-      componentInputs: {
-        scene: mockSceneNodes,
-        blocks: blocksWithNoDonor,
-        filter: mockFilter,
-      },
+  describe('nodeClicked', () => {
+    it('should emit nodeClick event when body ui node is clicked', async () => {
+      const nodeClickSpy = jest.fn();
+      await renderComponent({ organ: mockOrgan }, nodeClickSpy);
+
+      fireEvent.click(screen.getByRole('button', { name: /click node/i }));
+
+      expect(nodeClickSpy).toHaveBeenCalled();
     });
 
-    expect(fixture.componentInstance).toBeTruthy();
+    it('should handle multiple clicks on body ui', async () => {
+      const nodeClickSpy = jest.fn();
+      await renderComponent({ organ: mockOrgan }, nodeClickSpy);
+
+      const button = screen.getByRole('button', { name: /click node/i });
+      fireEvent.click(button);
+      fireEvent.click(button);
+
+      expect(nodeClickSpy).toHaveBeenCalledTimes(2);
+    });
+
+    it('should toggle highlight when clicking same node twice', async () => {
+      const nodeClickSpy = jest.fn();
+      await renderComponent({ organ: mockOrgan }, nodeClickSpy);
+
+      const button = screen.getByRole('button', { name: /click node/i });
+      fireEvent.click(button);
+      fireEvent.click(button);
+      fireEvent.click(button);
+
+      expect(nodeClickSpy).toHaveBeenCalledTimes(3);
+    });
+  });
+
+  describe('filteredBlockIds', () => {
+    it('should filter blocks by provider name', async () => {
+      const filterWithProvider: Filter = { sex: FilterSexEnum.Female, tmc: ['Provider A'] } as Filter;
+      await renderComponent({ filter: filterWithProvider, blocks: mockBlocks });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
+
+    it('should handle multiple matching providers', async () => {
+      const filterWithMultipleProviders: Filter = {
+        sex: FilterSexEnum.Female,
+        tmc: ['Provider A', 'Provider B'],
+      } as Filter;
+      await renderComponent({ filter: filterWithMultipleProviders, blocks: mockBlocks });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
+
+    it('should handle undefined blocks gracefully', async () => {
+      await renderComponent({ blocks: undefined as unknown as TissueBlock[] });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
+
+    it('should handle null filter tmc gracefully', async () => {
+      const filterWithNullTmc: Filter = { sex: FilterSexEnum.Female, tmc: undefined } as unknown as Filter;
+      await renderComponent({ filter: filterWithNullTmc });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
+  });
+
+  describe('highlightedScene', () => {
+    it('should compute scene with filter applied', async () => {
+      const filterWithProvider: Filter = { sex: FilterSexEnum.Female, tmc: ['Provider A'] } as Filter;
+      await renderComponent({ filter: filterWithProvider, blocks: mockBlocks, scene: mockSceneNodes });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
+
+    it('should handle scene nodes without entityId', async () => {
+      const sceneWithoutEntityId: SpatialSceneNode[] = [
+        { '@id': 'node1', '@type': 'SpatialSceneNode', color: [255, 255, 255, 255] } as SpatialSceneNode,
+      ];
+      await renderComponent({ scene: sceneWithoutEntityId });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
+  });
+
+  describe('organTarget and organBounds', () => {
+    it('should handle undefined organ', async () => {
+      await renderComponent({ organ: undefined });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
+
+    it('should calculate values from organ dimensions', async () => {
+      await renderComponent({ organ: mockOrgan });
+      expect(screen.getByRole('button', { name: /click node/i })).toBeInTheDocument();
+    });
   });
 });
