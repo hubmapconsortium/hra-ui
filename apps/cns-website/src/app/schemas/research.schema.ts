@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { PeopleIdSchema } from './people.schema';
 import { TagIdSchema } from './tags.schema';
 
 /** Type for research identifiers */
@@ -39,7 +40,7 @@ export const ResearchItemSchema = z
     /** Link associated with the research */
     link: z.string().optional(),
     /** People associated with the research */
-    people: z.array(z.string()),
+    people: z.array(PeopleIdSchema),
     /** Tags for categorizing the research */
     tags: z.array(TagIdSchema).transform((tags) => uniqueValues(tags)),
   })

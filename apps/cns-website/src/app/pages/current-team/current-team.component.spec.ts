@@ -278,7 +278,7 @@ describe('CurrentTeamComponent', () => {
     await renderComponent();
 
     // Results indicator shows "X of Y" format - use function matcher for flexibility
-    expect(screen.getByText((content) => content.includes('4') && content.includes('of'))).toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('4') && content.includes('/'))).toBeInTheDocument();
   });
 
   it('should update results counter when filtering', async () => {
@@ -346,7 +346,7 @@ describe('CurrentTeamComponent', () => {
     await renderComponent([]);
 
     // With empty data, should show "0 of 0" in results indicator
-    expect(screen.getByText((content) => content.includes('0') && content.includes('of'))).toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('0') && content.includes('/'))).toBeInTheDocument();
   });
 
   it('should filter out members with no roles', async () => {

@@ -4,6 +4,7 @@
 :host {
   min-width: 17rem;
   max-width: 28rem;
+  width: 100%;
 
   .image {
     width: 100%;
@@ -15,9 +16,7 @@
   .content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     padding-top: 1rem;
-    min-height: 6.875rem;
 
     .date {
       @include utils.use-font(label, medium);
@@ -28,12 +27,18 @@
       color: vars.$tertiary;
       text-decoration: underline;
       cursor: pointer;
-      @include utils.use-font(title, medium);
+      margin-top: 0.5rem;
+      @include utils.use-font(label, large);
       @include utils.line-clamp(2);
     }
 
     .tags {
       padding-top: 1.25rem;
     }
+  }
+
+  mat-chip {
+    margin: 0;
+    margin-left: 0.5rem;
   }
 }

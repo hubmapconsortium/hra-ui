@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "HeaderMenus",
+  "id": "CnsHeaderMenus",
   "type": "object",
   "properties": {
     "$schema": {
@@ -11,10 +11,10 @@
       "items": {
         "anyOf": [
           {
-            "$ref": "#/$defs/HeaderMenu"
+            "$ref": "#/$defs/CnsHeaderMenu"
           },
           {
-            "$ref": "#/$defs/HeaderMenuItem"
+            "$ref": "#/$defs/CnsHeaderMenuItem"
           }
         ]
       }
@@ -26,8 +26,8 @@
   ],
   "additionalProperties": false,
   "$defs": {
-    "HeaderMenu": {
-      "id": "HeaderMenu",
+    "CnsHeaderMenu": {
+      "id": "CnsHeaderMenu",
       "type": "object",
       "properties": {
         "type": {
@@ -43,11 +43,11 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/HeaderMenuGroup"
+            "$ref": "#/$defs/CnsHeaderMenuGroup"
           }
         },
         "featured": {
-          "$ref": "#/$defs/HeaderMenuItem"
+          "$ref": "#/$defs/CnsHeaderMenuItem"
         }
       },
       "required": [
@@ -57,8 +57,8 @@
       ],
       "additionalProperties": false
     },
-    "HeaderMenuGroup": {
-      "id": "HeaderMenuGroup",
+    "CnsHeaderMenuGroup": {
+      "id": "CnsHeaderMenuGroup",
       "type": "object",
       "properties": {
         "type": {
@@ -80,7 +80,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/HeaderMenuItem"
+            "$ref": "#/$defs/CnsHeaderMenuItem"
           }
         }
       },
@@ -91,8 +91,8 @@
       ],
       "additionalProperties": false
     },
-    "HeaderMenuItem": {
-      "id": "HeaderMenuItem",
+    "CnsHeaderMenuItem": {
+      "id": "CnsHeaderMenuItem",
       "type": "object",
       "properties": {
         "type": {
