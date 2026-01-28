@@ -138,13 +138,11 @@ export class StudiesGridComponent {
       tags.push({ icon: 'check_circle', text: 'HRA registered' });
     }
 
-    const thumbnailFilename = study.thumbnail?.split('/').pop() ?? '';
-    const image = `assets/data/gallery/thumbnails/${thumbnailFilename}`;
+    const image = `assets/data/gallery/${study.thumbnail}`;
 
     const rawPublications = study.publication ?? study.publications ?? [];
     const publications = rawPublications
-      .map((u) => (typeof u === 'string' ? u.trim() : u))
-      .filter(Boolean)
+      .map((pub) => pub.trim())
       .map((url, idx) => ({
         url: url as string,
         label: study.citations?.[idx],
