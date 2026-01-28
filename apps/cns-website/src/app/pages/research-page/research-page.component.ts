@@ -20,6 +20,7 @@ import { PeopleData } from '../../schemas/people.schema';
 import { PublicationTypesData } from '../../schemas/publication-types.schema';
 import { ResearchData } from '../../schemas/research.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
+import { getImageUrl } from '../../utils/research-item-images';
 import { ResearchStore } from './state/research.store';
 
 /**
@@ -73,6 +74,9 @@ export class ResearchPageComponent {
 
   /** Combined research items from news and publications */
   private readonly researchItems = computed(() => [...this.news(), ...this.publications()]);
+
+  /** Utility to get image URL for a research item */
+  protected readonly getImageUrl = getImageUrl;
 
   /** Initializes store with data and registers sidebar */
   constructor() {

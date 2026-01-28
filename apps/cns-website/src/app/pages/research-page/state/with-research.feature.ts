@@ -2,7 +2,7 @@ import { computed } from '@angular/core';
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
 import { PeopleItem } from '../../../schemas/people.schema';
 import { PublicationTypeItem } from '../../../schemas/publication-types.schema';
-import { ResearchItem } from '../../../schemas/research.schema';
+import { ResearchItem, ResearchTypeId } from '../../../schemas/research.schema';
 
 /** Core research page state containing all research data */
 export interface ResearchState {
@@ -36,11 +36,20 @@ export function withResearch() {
     }),
     withMethods((store) => ({
       /** Sets research items */
-      setResearchItems: signalMethod((researchItems: ResearchItem[]) => patchState(store, { researchItems })),
+      setResearchItems: signalMethod((researchItems: ResearchItem[]) =>
+        patchState(store, {
+          researchItems: researchItems.map((item) => ({
+            ...item,
+            type: (item.type !== '' ? item.type : 'unknown') as ResearchTypeId,
+          })),
+        }),
+      ),
       /** Sets people items */
       setPeopleItems: signalMethod((peopleItems: PeopleItem[]) => patchState(store, { peopleItems })),
       /** Sets publication types */
-      setPublicationTypes: signalMethod((pubTypes: PublicationTypeItem[]) => patchState(store, { pubTypes })),
+      setPublicationTypes: signalMethod((pubTypes: PublicationTypeItem[]) =>
+        patchState(store, { pubTypes: [...pubTypes, { label: 'Unknown', value: 'unknown' as ResearchTypeId }] }),
+      ),
     })),
   );
 }
