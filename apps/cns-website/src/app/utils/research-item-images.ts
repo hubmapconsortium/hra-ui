@@ -2,7 +2,7 @@ import { ResearchItem } from '../schemas/research.schema';
 
 /**
  * Gets image url and uses the appropriate placeholder if none is provided.
- * @param item
+ * @param item Research item
  * @returns image url
  */
 export function getImageUrl(item: ResearchItem): string {
