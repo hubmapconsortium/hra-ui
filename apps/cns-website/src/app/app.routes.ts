@@ -87,6 +87,7 @@ export const appRoutes: Route[] = [
       data: createResearchDataResolver(),
       peopleData: createPeopleResolver(),
       pubTypes: createPublicationTypesResolver(),
+      tags: createTagsResolver(),
     },
   },
   {

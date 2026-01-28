@@ -19,6 +19,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { PublicationTypesData } from '../../schemas/publication-types.schema';
 import { ResearchData } from '../../schemas/research.schema';
+import { TagId, TagsData } from '../../schemas/tags.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { ResearchStore } from './state/research.store';
 
@@ -60,6 +61,8 @@ export class ResearchPageComponent {
   readonly peopleData = input.required<PeopleData>();
   /** Publication type definitions */
   readonly pubTypes = input.required<PublicationTypesData>();
+  /** Tags data from resolver */
+  readonly tags = input.required<TagsData>();
 
   /** Research store for state management */
   protected readonly store = inject(ResearchStore);
@@ -79,5 +82,16 @@ export class ResearchPageComponent {
       this.sidebarStore.setSidebar(this.sidebar());
       onCleanup(() => this.sidebarStore.clearSidebar());
     });
+  }
+
+  /** Gets tags map for given list of tag slugs */
+  getTagsMap(slugs: TagId[]): Map<TagId, { name: string; description: string }> {
+    const allTags = new Map(this.tags().map((tag) => [tag.slug, { name: tag.name, description: tag.description }]));
+    return new Map(
+      slugs.map((slug) => {
+        const tag = allTags.get(slug) ?? { name: slug, description: '' };
+        return [slug, tag];
+      }),
+    );
   }
 }

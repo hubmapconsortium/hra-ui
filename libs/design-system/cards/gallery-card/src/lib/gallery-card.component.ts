@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { AssetUrlPipe } from '@hra-ui/common/url';
@@ -27,5 +27,10 @@ export class GalleryCardComponent {
   /** Whether the link opens in new tab */
   readonly external = input<boolean>(false);
   /** Tags to display */
-  readonly tags = input<string[]>([]);
+  readonly tags = input.required<Map<string, { name: string; description: string }>>();
+
+  /** List of tags for iteration in template */
+  readonly tagsList = computed<{ name: string; description: string }[]>(() => {
+    return Array.from(this.tags().values());
+  });
 }

@@ -23,7 +23,10 @@ describe('GalleryCardComponent', () => {
         date: 'January 15, 2025',
         link: 'https://example.com',
         external: true,
-        tags: ['Research', 'HRA'],
+        tags: new Map([
+          ['research', { name: 'Research', description: 'Items related to research activities' }],
+          ['hra', { name: 'HRA', description: 'Content about the Human Reference Atlas' }],
+        ]),
       },
     });
 

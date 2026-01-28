@@ -80,7 +80,7 @@
                   [date]="(item.dateStart | date) ?? ''"
                   [link]="item.link || ''"
                   [external]="true"
-                  [tags]="item.tags"
+                  [tags]="getTagsMap(item.tags)"
                 />
               </hra-gallery-grid>
             </section>
