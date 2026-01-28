@@ -1,0 +1,172 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { JsonLd } from 'jsonld/jsonld-spec';
+import { Observable, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { GraphData, ResponseData, Row, Sheet, SheetInfo, Structure } from '../../models/sheet.model';
+import { URL, getAssetsURL } from '../../static/url';
+
+type SheetFetchOutput = 'graph' | 'jsonld' | 'owl';
+type SheetFetchResponse = ResponseData | GraphData | JsonLd | string;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SheetService {
+  private readonly http = inject(HttpClient);
+  /**
+   * Service to fetch the data for a sheet from CSV file or Google sheet using the api
+   * @param sheetId id of the sheet
+   * @param gid gid of the sheet
+   * @param csvFileUrl is the optional parameter that contains the value to the csv file url of the sheet
+   */
+  fetchSheetData(
+    sheetId: string,
+    gid: string,
+    csvFileUrl?: string,
+    formData?: FormData,
+    output?: SheetFetchOutput,
+    cache = false,
+  ): Observable<SheetFetchResponse> {
+    if (csvFileUrl) {
+      const params = {
+        csvUrl: csvFileUrl,
+        output: output ? output : 'json',
+      };
+
+      if (output === 'graph') {
+        return this.http.get<GraphData>(`${URL}/v2/csv`, { params });
+      }
+      if (output === 'jsonld') {
+        return this.http.get<JsonLd>(`${URL}/v2/csv`, { params });
+      }
+      if (output === 'owl') {
+        return this.http
+          .get(`${URL}/v2/csv`, {
+            observe: 'response',
+            responseType: 'text',
+            params,
+          })
+          .pipe(map((response) => response.body ?? ''));
+      }
+      return this.http.get<ResponseData>(`${URL}/v2/csv`, { params });
+    } else if (formData) {
+      return this.http.post<ResponseData>(`${URL}/v2/csv`, formData);
+    }
+    if (output === 'graph') {
+      return this.http.get<GraphData>(`${URL}/v2/${sheetId}/${gid}/graph`);
+    } else if (output === 'jsonld') {
+      return this.http.get<JsonLd>(`${URL}/v2/csv`, {
+        params: {
+          csvUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`,
+          output: output ? output : 'jsonld',
+        },
+      });
+    }
+    return this.http.get<ResponseData>(`${URL}/v2/${sheetId}/${gid}`, {
+      params: {
+        cache,
+      },
+    });
+  }
+
+  /**
+   * Service to get data of a particular version
+   *
+   * Note: Currently depricated
+   * @param dataVersion version of the data
+   * @param currentSheet current sheet
+   */
+  fetchDataFromAssets(dataVersion: string, currentSheet: Sheet): Observable<string> {
+    return this.http.get(getAssetsURL(dataVersion, currentSheet), {
+      responseType: 'text',
+    });
+  }
+
+  /**
+   * Service to get the data about an entity for an exteral API
+   * by passing the UBERON, CL, or HNGC id. It determins which API to call and maps the
+   * response to a normalized BottomSheetInfo format.
+   * @param id ontologyid
+   * @param name: structure name
+   */
+  fetchBottomSheetData(id: string, name: string): Observable<SheetInfo> {
+    // Normalize FMA ids. Takes care of the formats: fma12345, FMA:12456, FMAID:12345
+    if (id.toLowerCase().startsWith('fma')) {
+      id = id.substring(3);
+      if (id.includes(':')) {
+        id = id.split(':')[1];
+      }
+      id = 'FMA:' + id;
+    }
+
+    const ontologyCode = id.split(':')[0] ?? '';
+    const termId = id.split(':')[1] ?? '';
+
+    if (ontologyCode === '' || termId === '') {
+      return throwError('Invalid ID format');
+    }
+
+    return this.http.get(`${URL}/lookup/${ontologyCode}/${termId}`).pipe(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      map((res: any) => {
+        return {
+          name,
+          ontologyId: id,
+          ontologyCode,
+          desc: res.description,
+          iri: res.link,
+          extraLinks: res.extraLinks,
+          label: res.label,
+          hasError: false,
+          msg: '',
+          status: 0,
+        } as SheetInfo;
+      }),
+    );
+  }
+
+  /**
+   * Fetching initial playground data
+   */
+  fetchPlaygroundData(): Observable<ResponseData> {
+    return this.http.get<ResponseData>(`${URL}/v2/playground`);
+  }
+
+  /**
+   * Send updated data to render on the playground
+   * after editing on the table
+   *
+   * @param data updated tabular data
+   */
+  updatePlaygroundData(data: string[][]): Observable<ResponseData> {
+    return this.http.post<ResponseData>(`${URL}/v2/playground`, { data });
+  }
+
+  /**
+   * Service to add body for each AS to the data
+   * @param data is the parsed ASCTB data from the csv file of the sheet
+   */
+  getDataWithBody(data: Row[], organName: string): Row[] {
+    const organ: Structure = {
+      name: 'Body',
+      id: 'UBERON:0013702',
+      rdfs_label: 'body proper',
+    };
+    data.forEach((row) => {
+      row.anatomical_structures.unshift(organ);
+      row.organName = organName;
+    });
+    return data;
+  }
+
+  /**
+   * Translate the sheet ID and GID to the google sheet URL
+   *
+   * @param sheetID id of the sheet
+   * @param gID of the sheet
+   */
+  formURL(sheetID: string, gID: string): string {
+    return `https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv&gid=${gID}`;
+  }
+}
