@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, viewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -55,12 +55,14 @@ import { ResearchStore } from './state/research.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResearchPageComponent {
-  /** Research page data containing all research items */
-  readonly data = input.required<ResearchData>();
+  /** News research data */
+  readonly news = input.required<ResearchData>();
+  /** Publications research data */
+  readonly publications = input.required<ResearchData>();
   /** People data for filtering and display */
-  readonly peopleData = input.required<PeopleData>();
+  readonly people = input.required<PeopleData>();
   /** Publication type definitions */
-  readonly pubTypes = input.required<PublicationTypesData>();
+  readonly publicationTypes = input.required<PublicationTypesData>();
   /** Tags data from resolver */
   readonly tags = input.required<TagsData>();
 
@@ -72,11 +74,14 @@ export class ResearchPageComponent {
   /** Sidebar component reference */
   private readonly sidebar = viewChild.required(MatSidenav);
 
+  /** Combined research items from news and publications */
+  private readonly researchItems = computed(() => [...this.news(), ...this.publications()]);
+
   /** Initializes store with data and registers sidebar */
   constructor() {
-    this.store.setResearchItems(this.data);
-    this.store.setPeopleItems(this.peopleData);
-    this.store.setPublicationTypes(this.pubTypes);
+    this.store.setResearchItems(this.researchItems);
+    this.store.setPeopleItems(this.people);
+    this.store.setPublicationTypes(this.publicationTypes);
 
     effect((onCleanup) => {
       this.sidebarStore.setSidebar(this.sidebar());

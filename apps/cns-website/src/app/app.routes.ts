@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
-import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
+import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { ContentPageComponent } from './components/content-page/content-page.component';
@@ -8,15 +8,27 @@ import { CurrentTeamComponent } from './pages/current-team/current-team.componen
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
 import { ResearchPageComponent } from './pages/research-page/research-page.component';
-import { currentTeamResolver } from './resolvers/current-team/current-team.resolver';
-import { createFeaturedContentResolver } from './resolvers/featured-content/featured-content.resolver';
-import { createPeopleProfileResolver } from './resolvers/people-profile/people-profile.resolver';
-import {
-  createPeopleResolver,
-  createPublicationTypesResolver,
-  createResearchDataResolver,
-} from './resolvers/research/research.resolver';
-import { createTagsResolver } from './resolvers/tags/tags.resolver';
+import { createPersonResolver } from './resolvers/person.resolver';
+import { FeaturedDataSchema } from './schemas/featured.schema';
+import { PeopleDataSchema } from './schemas/people.schema';
+import { PublicationTypesDataSchema } from './schemas/publication-types.schema';
+import { ResearchDataSchema } from './schemas/research.schema';
+import { TagsDataSchema } from './schemas/tags.schema';
+
+/** People index URL */
+const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
+/** Featured content index URL */
+const FEATURED_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-featured.json';
+/** News content index URL */
+const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-news.json';
+/** Publications content index URL */
+const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
+/** Publication types content index URL */
+const PUBLICATION_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publication-types.json';
+/** Tags content index URL */
+const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-tags.json';
+/** Base URL for person content */
+const PERSON_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -25,8 +37,8 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
-      featuredContent: createFeaturedContentResolver(),
-      tags: createTagsResolver(),
+      featuredContent: createJsonSpecResolver(FEATURED_INDEX_URL, FeaturedDataSchema),
+      tags: createJsonSpecResolver(TAGS_INDEX_URL, TagsDataSchema),
     },
   },
 
@@ -61,14 +73,14 @@ export const appRoutes: Route[] = [
         pathMatch: 'full',
         component: CurrentTeamComponent,
         resolve: {
-          data: currentTeamResolver,
+          data: createJsonSpecResolver(PEOPLE_INDEX_URL, PeopleDataSchema),
         },
       },
       {
         path: ':slug',
         component: PeopleProfileComponent,
         resolve: {
-          data: createPeopleProfileResolver(),
+          data: createPersonResolver(PERSON_BASE_URL),
         },
       },
     ],
@@ -84,10 +96,11 @@ export const appRoutes: Route[] = [
     path: 'research',
     component: ResearchPageComponent,
     resolve: {
-      data: createResearchDataResolver(),
-      peopleData: createPeopleResolver(),
-      pubTypes: createPublicationTypesResolver(),
-      tags: createTagsResolver(),
+      news: createJsonSpecResolver(NEWS_INDEX_URL, ResearchDataSchema),
+      publications: createJsonSpecResolver(PUBLICATIONS_INDEX_URL, ResearchDataSchema),
+      people: createJsonSpecResolver(PEOPLE_INDEX_URL, PeopleDataSchema),
+      publicationTypes: createJsonSpecResolver(PUBLICATION_TYPES_INDEX_URL, PublicationTypesDataSchema),
+      tags: createJsonSpecResolver(TAGS_INDEX_URL, TagsDataSchema),
     },
   },
   {

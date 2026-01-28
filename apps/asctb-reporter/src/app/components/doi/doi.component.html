@@ -10,28 +10,32 @@
     </div>
   </div>
   <div>
-    <div *ngIf="!error.hasError" class="py-3 px-2 doi">
-      <div *ngFor="let item of data; index as i">
-        <label><strong>DOI: </strong></label>
-        <span>
-          {{ item.doi }}
-        </span>
+    @if (!error.hasError) {
+      <div class="py-3 px-2 doi">
+        @for (item of displayData; track item.id) {
+          <div>
+            <label><strong>DOI: </strong></label>
+            <span>
+              {{ item.doi }}
+            </span>
 
-        <div class="pt-1"></div>
+            <div class="pt-1"></div>
 
-        <label><strong>Id: </strong></label>
-        <span>
-          {{ item.id }}
-        </span>
+            <label><strong>Id: </strong></label>
+            <span>
+              {{ item.id }}
+            </span>
 
-        <div class="pt-1"></div>
+            <div class="pt-1"></div>
 
-        <label><strong>Notes: </strong></label>
-        <span>
-          {{ item.notes }}
-        </span>
-        <hr />
+            <label><strong>Notes: </strong></label>
+            <span>
+              {{ item.notes }}
+            </span>
+            <hr />
+          </div>
+        }
       </div>
-    </div>
+    }
   </div>
 </div>
