@@ -1474,6 +1474,7 @@
   icons: IconListSchema.optional(),
   chips: z.array(z.string()).optional(),
   content: ProjectedContentTemplateSchema.optional(),
+  additionalInfo: z.record(z.string(), z.string()).optional(),
   actionsLeft: ProjectedContentTemplateSchema.optional(),
   actionsRight: ProjectedContentTemplateSchema.optional(),
 }).meta({ id: &#x27;CollectionCard&#x27; })</code>

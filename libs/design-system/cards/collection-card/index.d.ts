@@ -109,6 +109,7 @@ declare const CollectionCardSchema: z.ZodObject<{
             id: string;
         }[] | undefined;
     }, unknown>>>]>>;
+    additionalInfo: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     actionsLeft: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
