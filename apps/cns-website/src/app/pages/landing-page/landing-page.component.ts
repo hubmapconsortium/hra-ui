@@ -53,7 +53,7 @@ function mapToContentCard(item: ResearchItem, tagsMap: Map<string, string>): Lan
   }
 
   return {
-    imageSrc: 'assets/ui-images/placeholder.png',
+    imageSrc: getPlaceholderImageUrl(item),
     date: item.dateStart,
     tagline: item.title,
     tags: displayTags,
@@ -73,6 +73,19 @@ function capitalizeFirstLetter(str: string): string {
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+}
+
+/**
+ * Gets placeholder image url
+ * @param item
+ * @returns placeholder image url
+ */
+function getPlaceholderImageUrl(item: ResearchItem): string {
+  const url = `assets/ui-images/placeholder-${item.category}`;
+  if (item.category === 'publication') {
+    return `${url}-${item.type}.png`;
+  }
+  return `${url}.png`;
 }
 
 /**
