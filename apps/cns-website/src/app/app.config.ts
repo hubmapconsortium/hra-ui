@@ -33,20 +33,24 @@ export const appConfig: ApplicationConfig = {
       version: '1.0.0',
       url: 'https://cns.iu.edu/',
     }),
-    provideBrandLogos([
-      {
-        size: 'regular',
-        src: 'assets/brand/logo/cns-regular.svg',
-        width: 140,
-        height: 47,
-      },
-      {
-        size: 'small',
-        src: 'assets/brand/logo/cns-small.svg',
-        width: 84,
-        height: 28,
-      },
-    ]),
+    provideBrandLogos({
+      label: 'CNS Website',
+      url: 'https://cns.iu.edu',
+      logos: [
+        {
+          size: 'regular',
+          src: 'assets/brand/logo/cns-regular.svg',
+          width: 140,
+          height: 47,
+        },
+        {
+          size: 'small',
+          src: 'assets/brand/logo/cns-small.svg',
+          width: 84,
+          height: 28,
+        },
+      ],
+    }),
     provideContentTemplateDefs([
       ActionCardDef,
       ApiCommandDef,
