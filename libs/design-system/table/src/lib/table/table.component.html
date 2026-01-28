@@ -20,7 +20,7 @@
           [matSortDisabled]="!enableSort()"
           [class.vertical-divider]="verticalDividers()"
         >
-          @let templates = { text, numeric, markdown, link, icon, menu };
+          @let templates = { text, numeric, markdown, link, icon, menu, buttonIcon };
 
           <!-- Selection Column (if enabled) -->
           @if (enableRowSelection()) {
@@ -184,4 +184,50 @@
       </a>
     }
   </ng-template>
+
+  <ng-template
+    let-column="column"
+    let-element="element"
+    hraFeature="button-icon-cell"
+    hraButtonIconRowElement
+    #buttonIcon
+  >
+    @let imageUrlValue = column.type.imageUrlColumn ? element[column.type.imageUrlColumn] : '';
+    @let imageUrl = imageUrlValue && imageUrlValue !== '' ? `${imageUrlValue}` : '';
+    @let imageAltValue = column.type.imageAltColumn ? element[column.type.imageAltColumn] : '';
+    @let imageAlt = imageAltValue && imageAltValue !== '' ? `${imageAltValue}` : '';
+    @let titleValue = column.type.titleColumn ? element[column.type.titleColumn] : '';
+    @let title = titleValue && titleValue !== '' ? `${titleValue}` : '';
+    <div class="button-icon-cell">
+      @if (column.type.buttonLabel) {
+        <button hraClickEvent mat-flat-button color="primary" hraFeature="explore-button" class="explore-button">
+          {{ column.type.buttonLabel }}
+        </button>
+      }
+      @if (column.type.previewIcon && imageUrl) {
+        <button
+          hraClickEvent
+          mat-icon-button
+          hraFeature="preview-icon"
+          class="preview-icon"
+          hraPlainTooltip="Preview image"
+          (click)="openImageModal(imageUrl, title, imageAlt)"
+        >
+          <hra-icon [fontIcon]="column.type.previewIcon" />
+        </button>
+      }
+    </div>
+  </ng-template>
+
+  <!-- Image Preview Modal -->
+  @if (showImageModal()) {
+    <div class="modal-backdrop">
+      <hra-image-modal
+        [modalTitle]="modalImageTitle()"
+        [imageUrl]="modalImageUrl()"
+        [altText]="modalImageAlt()"
+        (close)="closeImageModal()"
+      />
+    </div>
+  }
 </ng-container>

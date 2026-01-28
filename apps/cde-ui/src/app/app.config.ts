@@ -8,6 +8,7 @@ import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideIcons } from '@hra-ui/design-system/icons';
+import { provideMarkdown } from 'ngx-markdown';
 import { ROUTES } from './app.routes';
 
 /**
@@ -36,5 +37,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideIcons(),
     provideDesignSystem(),
+    provideMarkdown(),
   ],
 };

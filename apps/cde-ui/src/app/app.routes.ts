@@ -13,6 +13,7 @@ import {
 import { exampleDataResolver } from './shared/resolvers/example-data/example-data.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
 import { organsResolver } from './shared/resolvers/organs/organs.resolver';
+import { StudyPageComponent } from './pages/study-page/study-page.component';
 
 /** Landing page cards json file url token */
 const LANDING_PAGE_CARDS_URL = new InjectionToken('LANDING_PAGE_CARDS_URL', {
@@ -69,6 +70,17 @@ export const ROUTES: Routes = [
     },
     resolve: {
       data: exampleDataResolver(EXAMPLE_DATA_INDEX_URL),
+    },
+  },
+  {
+    path: 'gallery/:studyName',
+    component: StudyPageComponent,
+    data: {
+      crumbs: [
+        { name: 'Apps', route: 'https://apps.humanatlas.io' },
+        { name: 'Cell Distance Explorer', route: '/' },
+        { name: 'Spatial Omics Gallery' },
+      ] satisfies BreadcrumbItem[],
     },
   },
   {
