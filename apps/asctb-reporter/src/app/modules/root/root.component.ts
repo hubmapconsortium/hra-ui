@@ -1,16 +1,10 @@
-import { Component, EventEmitter, OnDestroy, Output, ViewChild, inject } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, ViewChild, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { StateReset } from 'ngxs-reset-plugin';
 import { Observable } from 'rxjs';
-import { View } from 'vega';
-import { ConfigService } from '../../app-config.service';
-import { IndentedListService } from '../../components/indented-list/indented-list.service';
-import { ReportService } from '../../components/report/report.service';
 import { BimodalData } from '../../models/bimodal.model';
 import { Error } from '../../models/response.model';
-import { Row, Sheet } from '../../models/sheet.model';
+import { Row } from '../../models/sheet.model';
 import { SearchStructure, TNode } from '../../models/tree.model';
 import { UIState } from '../../store/ui.state';
 import { TreeComponent } from '../tree/tree.component';
@@ -24,39 +18,11 @@ import { TreeState } from './../../store/tree.state';
   styleUrl: './root.component.scss',
 })
 export class RootComponent implements OnDestroy {
-  readonly configService = inject(ConfigService);
   readonly store = inject(Store);
-
-  readonly dialog = inject(MatDialog);
-  readonly indent = inject(IndentedListService);
-  readonly report = inject(ReportService);
-  readonly router = inject(Router);
-
-  /** Organ sheet data */
-  data: Row[] = [];
-
-  /** Denotes if loading */
-  loading = true;
-
-  /** Vega view */
-  view!: View;
-
-  /** Selected sheet */
-  sheet!: Sheet;
-
-  /** Denotesthe error state */
-  hasError = false;
-
-  /** Dnotes of sidebar control pane is open */
-  isControlPaneOpen = false;
-
-  /** Mode of the application. Playground or visualiization Default is vis */
-  mode = 'vis';
 
   // The container used for vertical scrolling of the viz is different than the one used for horizontal scrolling
   // Here we get references to both values.
   @ViewChild(TreeComponent) verticalScrollEntity!: TreeComponent;
-  @Output() readonly export = new EventEmitter<unknown>();
 
   // Sheet Observables
   readonly compareData$: Observable<Row[]> = this.store.select(SheetState.getCompareData);

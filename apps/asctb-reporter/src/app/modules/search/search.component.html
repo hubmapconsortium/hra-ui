@@ -3,20 +3,27 @@
   hraClickEvent
   class="search-field"
   subscriptSizing="dynamic"
+  data-testid="search-trigger"
   (click)="openSearchList()"
 >
   <mat-label>Search Structures</mat-label>
   <mat-icon matPrefix>search</mat-icon>
-  <input matInput readonly [value]="selectionLabel()" [disabled]="searchOpen() || disabled()" />
+  <input
+    matInput
+    readonly
+    data-testid="search-trigger-input"
+    [value]="selectionLabel()"
+    [disabled]="searchOpen() || disabled()"
+  />
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
 </mat-form-field>
 
-<div *ngIf="searchOpen() && !disabled()" class="search-modal" hraFeature="search-modal">
+<div *ngIf="searchOpen() && !disabled()" class="search-modal" hraFeature="search-modal" data-testid="search-modal">
   <div class="search-controls">
     <mat-form-field cdkTrapFocus subscriptSizing="dynamic" [cdkTrapFocusAutoCapture]="true">
       <mat-icon matPrefix>search</mat-icon>
       <mat-label>Search Structures</mat-label>
-      <input cdkFocusInitial matInput [(ngModel)]="searchValue" #searchField />
+      <input cdkFocusInitial matInput data-testid="search-input" [(ngModel)]="searchValue" #searchField />
       <button
         matSuffix
         mat-icon-button
@@ -24,6 +31,7 @@
         matTooltip="Clear search"
         hraFeature="clear-search"
         hraClickEvent
+        data-testid="clear-search-button"
         (click)="searchValue.set('')"
       >
         <mat-icon>close</mat-icon>
@@ -35,6 +43,7 @@
         matTooltip="Close"
         hraFeature="close-search"
         hraClickEvent
+        data-testid="close-search-button"
         (click)="closeSearchList()"
       >
         <mat-icon>arrow_drop_up</mat-icon>
@@ -79,6 +88,7 @@
           aria-label="Select All"
           hraFeature="select-all"
           hraClickEvent
+          data-testid="select-all-button"
           (click)="selectAllOptions()"
         >
           Select All
@@ -90,6 +100,7 @@
           aria-label="Deselect All"
           hraFeature="deselect-all"
           hraClickEvent
+          data-testid="deselect-all-button"
           (click)="deselectAllOptions()"
         >
           Deselect All
@@ -114,6 +125,7 @@
       [hraClickEvent]="{ structure: structure.name }"
       [value]="structure"
       [selected]="selectionSet().has(structure)"
+      [attr.data-testid]="`structure-option-${structure.id}`"
     >
       <div class="structure-group">
         <div class="structure-name">
