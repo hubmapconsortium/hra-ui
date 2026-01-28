@@ -18,8 +18,9 @@ import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { PublicationTypesData } from '../../schemas/publication-types.schema';
-import { ResearchData, ResearchItem } from '../../schemas/research.schema';
+import { ResearchData } from '../../schemas/research.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
+import { getImageUrl } from '../../utils/utils';
 import { ResearchStore } from './state/research.store';
 
 /**
@@ -69,6 +70,9 @@ export class ResearchPageComponent {
   /** Sidebar component reference */
   private readonly sidebar = viewChild.required(MatSidenav);
 
+  /** Utility to get image URL for a research item */
+  readonly getImageUrl = getImageUrl;
+
   /** Initializes store with data and registers sidebar */
   constructor() {
     this.store.setResearchItems(this.data);
@@ -79,18 +83,5 @@ export class ResearchPageComponent {
       this.sidebarStore.setSidebar(this.sidebar());
       onCleanup(() => this.sidebarStore.clearSidebar());
     });
-  }
-
-  /**
-   * Gets placeholder image url
-   * @param item
-   * @returns placeholder image url
-   */
-  getPlaceholderImageUrl(item: ResearchItem): string {
-    const url = `assets/ui-images/placeholder-${item.category}`;
-    if (item.category === 'publication') {
-      return `${url}-${item.type}.png`;
-    }
-    return `${url}.png`;
   }
 }

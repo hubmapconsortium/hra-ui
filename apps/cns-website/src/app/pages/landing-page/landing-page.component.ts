@@ -8,6 +8,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { FeaturedData } from '../../schemas/featured.schema';
 import { ResearchItem } from '../../schemas/research.schema';
 import { TagsData } from '../../schemas/tags.schema';
+import { getImageUrl } from '../../utils/utils';
 
 /** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
@@ -53,7 +54,7 @@ function mapToContentCard(item: ResearchItem, tagsMap: Map<string, string>): Lan
   }
 
   return {
-    imageSrc: getPlaceholderImageUrl(item),
+    imageSrc: getImageUrl(item),
     date: item.dateStart,
     tagline: item.title,
     tags: displayTags,
@@ -73,19 +74,6 @@ function capitalizeFirstLetter(str: string): string {
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
-}
-
-/**
- * Gets placeholder image url
- * @param item
- * @returns placeholder image url
- */
-function getPlaceholderImageUrl(item: ResearchItem): string {
-  const url = `assets/ui-images/placeholder-${item.category}`;
-  if (item.category === 'publication') {
-    return `${url}-${item.type}.png`;
-  }
-  return `${url}.png`;
 }
 
 /**
