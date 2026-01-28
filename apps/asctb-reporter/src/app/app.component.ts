@@ -70,7 +70,7 @@ import { LinksASCTBData } from './models/tree.model';
 import { Logs, OpenBottomSheetData, Snackbar } from './models/ui.model';
 import { BimodalService } from './modules/tree/bimodal.service';
 import { TreeService } from './modules/tree/tree.service';
-import { SheetService } from './services/sheet.service';
+import { SheetService } from './services/sheet/sheet.service';
 import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
 import { TreeState } from './store/tree.state';

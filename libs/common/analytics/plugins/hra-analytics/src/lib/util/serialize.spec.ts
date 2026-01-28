@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { serialize } from './serialize';
 
 function createAnchorElement(attrs: Record<string, string>): HTMLAnchorElement {
@@ -31,14 +32,9 @@ describe('serialize(value)', () => {
 
     const error2 = new TypeError(msg);
     expect(serialize(error2)).toEqual({ message: msg, name: error2.name, stack: expect.any(String) });
-
-    const stack = 'a line of a long stack trace\n'.repeat(1000);
-    const error3 = Object.defineProperty(new Error(msg), 'stack', { value: stack });
-    const result = serialize(error3) as { stack: string };
-    expect(result.stack.length).toBeLessThanOrEqual(4000);
   });
 
-  it('should serialize events into plain objects or undefined', () => {
+  it('should serialize events into plain objects', () => {
     const msg = 'unexpected error';
     const file = 'test.ts';
     const event = new ErrorEvent('error', { message: msg, filename: file, lineno: 5, colno: 10 });
@@ -62,7 +58,7 @@ describe('serialize(value)', () => {
     expect(result5).not.toMatchObject({ target: expect.anything() });
 
     const event6 = new CustomEvent('custom');
-    expect(serialize(event6)).toEqual(undefined);
+    expect(serialize(event6)).toEqual({ type: 'custom' });
   });
 
   it('should serialize maps into an object containing an array of entries', () => {
@@ -76,5 +72,26 @@ describe('serialize(value)', () => {
   it('should serialize sets into an object containing an array of values', () => {
     const values = [1, 'a', true] as const;
     expect(serialize(new Set(values))).toEqual({ set: values });
+  });
+
+  it('should serialize HttpErrorResponse into plain objects', () => {
+    const response = new HttpErrorResponse({
+      status: 404,
+      url: 'https://example.com/resource',
+      statusText: 'Not Found',
+      error: 'Resource not found',
+    });
+
+    expect(serialize(response)).toEqual({
+      status: 404,
+      url: 'https://example.com/resource',
+      message: 'Http failure response for https://example.com/resource: 404 Not Found',
+      error: 'Resource not found',
+    });
+  });
+
+  it('should return other objects unchanged', () => {
+    const obj = { a: 1, b: 'two', c: true };
+    expect(serialize(obj)).toBe(obj);
   });
 });

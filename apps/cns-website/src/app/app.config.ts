@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withNavigationErrorHandler,
+} from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
@@ -23,6 +28,7 @@ import { IconDef } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
+import { handleNavigationError } from './utils/navigation-error-handler';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -69,6 +75,7 @@ export const appConfig: ApplicationConfig = {
       appRoutes,
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+      withNavigationErrorHandler(handleNavigationError),
     ),
     provideRouterExt(),
     provideZonelessChangeDetection(),

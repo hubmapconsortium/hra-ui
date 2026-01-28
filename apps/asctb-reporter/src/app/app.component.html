@@ -45,7 +45,7 @@
       <app-compare
         *ngIf="c$ | async"
         class="compare-sidenav"
-        [compareSheets]="compareSheets$"
+        [compareSheets]="(compareSheets$ | async) ?? []"
         (closeCompare)="rightDrawer.close()"
         (compareData)="compareData($event)"
       />

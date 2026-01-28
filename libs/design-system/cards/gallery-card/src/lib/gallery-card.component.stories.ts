@@ -12,7 +12,7 @@ const meta: Meta<GalleryCardComponent> = {
   },
   args: {
     tagline: 'Exploring the Human Reference Atlas: A Comprehensive Guide.',
-    imageSrc: 'assets/ui-images/placeholder.png',
+    imageSrc: 'assets/ui-images/placeholder-publication-article-journal.png',
     date: 'March 15, 2024',
     link: 'https://humanatlas.io',
     external: true,

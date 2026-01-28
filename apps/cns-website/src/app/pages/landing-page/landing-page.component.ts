@@ -8,6 +8,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { FeaturedData } from '../../schemas/featured.schema';
 import { ResearchItem } from '../../schemas/research.schema';
 import { TagsData } from '../../schemas/tags.schema';
+import { getImageUrl } from '../../utils/research-item-images';
 
 /** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
@@ -53,7 +54,7 @@ function mapToContentCard(item: ResearchItem, tagsMap: Map<string, string>): Lan
   }
 
   return {
-    imageSrc: 'assets/ui-images/placeholder.png',
+    imageSrc: getImageUrl(item),
     date: item.dateStart,
     tagline: item.title,
     tags: displayTags,

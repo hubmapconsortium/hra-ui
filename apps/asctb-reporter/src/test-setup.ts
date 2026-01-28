@@ -5,3 +5,12 @@ setupZoneTestEnv({
   errorOnUnknownElements: true,
   errorOnUnknownProperties: true,
 });
+
+// Simple Vega mocks
+jest.mock('vega', () => ({
+  parse: jest.fn(),
+  View: jest.fn(),
+  Spec: {},
+}));
+
+jest.mock('vega-tooltip', () => jest.fn());
