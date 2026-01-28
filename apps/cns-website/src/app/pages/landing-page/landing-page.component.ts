@@ -8,7 +8,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { FeaturedData } from '../../schemas/featured.schema';
 import { ResearchItem } from '../../schemas/research.schema';
 import { TagsData } from '../../schemas/tags.schema';
-import { getImageUrl } from '../../utils/utils';
+import { getImageUrl } from '../../utils/research-item-images';
 
 /** Content Types Array */
 const ContentTypes = ['Featured', 'Publications', 'News'] as const;
