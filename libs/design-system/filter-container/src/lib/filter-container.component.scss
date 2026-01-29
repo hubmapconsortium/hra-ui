@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use '../../../styles/vars';
+@use '../../../styles/utils';
 
 :host {
   display: block;
@@ -23,6 +24,7 @@
     .category-button {
       flex: 0 1 auto;
       min-width: fit-content;
+      width: 100%;
       justify-content: flex-start;
 
       @include mat.button-overrides(
@@ -67,5 +69,19 @@
 
   mat-divider {
     margin: 0.25rem 0;
+  }
+}
+
+.top-row .category-button {
+  ::ng-deep .mdc-button__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .count {
+    color: vars.$primary;
+    @include utils.use-font(label, small);
   }
 }

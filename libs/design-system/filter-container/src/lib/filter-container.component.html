@@ -16,7 +16,12 @@
       color="primary"
       (click)="actionClick.emit()"
     >
-      {{ action() }}
+      <div class="label">
+        {{ action() }}
+      </div>
+      <div class="count" hraPlainTooltip="Number of unique items per filter category">
+        {{ filterTotalCount()?.toLocaleString() }}
+      </div>
     </button>
   </div>
 
