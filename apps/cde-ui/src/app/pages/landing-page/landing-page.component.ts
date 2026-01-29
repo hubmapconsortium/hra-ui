@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
@@ -9,6 +10,7 @@ import {
   CollectionCardComponent,
 } from '@hra-ui/design-system/cards/collection-card';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 /**
  * Landing Page Component
  */
@@ -22,6 +24,7 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
     LinkDirective,
     CollectionCardComponent,
     CollectionCardActionComponent,
+    CdkCopyToClipboard,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
@@ -30,4 +33,12 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
 export class LandingPageComponent {
   /** Visual cards to display on the landing page */
   readonly cards = input<CollectionCard[]>([]);
+
+  /** Snackbar service */
+  private readonly snackbar = inject(SnackbarService);
+
+  /** Trigerred when user clicks on the Copy button */
+  openCopiedSnackbar() {
+    this.snackbar.open('Copied to clipboard', '', false, 'start', { duration: 5000 });
+  }
 }

@@ -38,6 +38,22 @@
     flex-grow: 1;
     padding: 1rem;
     padding-bottom: 0.5rem;
+
+    .label {
+      @include utils.use-font(label, large);
+    }
+
+    .supporting-text {
+      @include utils.use-font(body, medium);
+      color: vars.$on-surface-variant;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      gap: 0.4375rem;
+      align-items: center;
+    }
   }
 
   .actions {

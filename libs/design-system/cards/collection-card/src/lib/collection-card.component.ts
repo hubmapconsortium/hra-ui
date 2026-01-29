@@ -33,6 +33,15 @@ export class CollectionCardComponent {
   /** Icons shown for collection cards */
   readonly icons = input([], { transform: coerceIconList });
 
-  /** Chips/tags shown for collection cards */
-  readonly chips = input<string[]>([]);
+  /** Tagline chips shown in the top portion of collection card */
+  readonly taglineChips = input<string[]>([]);
+
+  /** Label shown in the card */
+  readonly label = input<string>();
+
+  /** Supporting text shown in the card */
+  readonly supportingText = input<string>();
+
+  /** Tags that are show the description portion of the collection card */
+  readonly tags = input<{ icon: string; text: string }[]>([]);
 }
