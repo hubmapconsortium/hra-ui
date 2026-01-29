@@ -27,7 +27,7 @@ export class GalleryCardComponent {
   /** Whether the link opens in new tab */
   readonly external = input<boolean>(false);
   /** Tags to display */
-  readonly tags = input.required<Map<string, { name: string; description: string }>>();
+  readonly tags = input<Map<string, { name: string; description: string }>>(new Map());
 
   /** List of tags for iteration in template */
   readonly tagsList = computed<{ name: string; description: string }[]>(() => {
