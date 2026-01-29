@@ -75,7 +75,7 @@
               <hra-gallery-grid [dataSource]="group.items">
                 <hra-gallery-card
                   *hraGalleryGridItem="let item"
-                  imageSrc=""
+                  [imageSrc]="getImageUrl(item)"
                   [tagline]="item.title"
                   [date]="(item.dateStart | date) ?? ''"
                   [link]="item.link || ''"

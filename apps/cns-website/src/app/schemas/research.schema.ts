@@ -43,6 +43,8 @@ export const ResearchItemSchema = z
     people: z.array(PeopleIdSchema),
     /** Tags for categorizing the research */
     tags: z.array(TagIdSchema).transform((tags) => uniqueValues(tags)),
+    /** Image source URL */
+    image: z.string().optional(),
   })
   .meta({ id: 'Research' });
 
