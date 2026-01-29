@@ -706,6 +706,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/CopyableUrlContainerComponent.html" data-type="entity-link" >CopyableUrlContainerComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/CopyEmailButtonComponent.html" data-type="entity-link" >CopyEmailButtonComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/CountCardComponent.html" data-type="entity-link" >CountCardComponent</a>
                             </li>
                             <li class="link">

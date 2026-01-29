@@ -59,6 +59,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/LandingPageComponent.html" data-type="entity-link" >LandingPageComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/StudiesGridComponent.html" data-type="entity-link" >StudiesGridComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/VisualCardComponent.html" data-type="entity-link" >VisualCardComponent</a>
                             </li>
                             <li class="link">
@@ -111,6 +114,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/MissingKeyError.html" data-type="entity-link" >MissingKeyError</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/PublicationLink.html" data-type="entity-link" >PublicationLink</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StudyCard.html" data-type="entity-link" >StudyCard</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/VisualCard.html" data-type="entity-link" >VisualCard</a>

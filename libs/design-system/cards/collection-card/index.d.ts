@@ -39,10 +39,19 @@ declare class CollectionCardComponent {
         fontSet?: string | undefined;
         inline?: boolean | undefined;
     })[] | undefined>;
-    /** Chips/tags shown for collection cards */
-    readonly chips: _angular_core.InputSignal<string[]>;
+    /** Tagline chips shown in the top portion of collection card */
+    readonly taglineChips: _angular_core.InputSignal<string[]>;
+    /** Label shown in the card */
+    readonly label: _angular_core.InputSignal<string | undefined>;
+    /** Supporting text shown in the card */
+    readonly supportingText: _angular_core.InputSignal<string | undefined>;
+    /** Tags that are show the description portion of the collection card */
+    readonly tags: _angular_core.InputSignal<{
+        icon: string;
+        text: string;
+    }[]>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<CollectionCardComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<CollectionCardComponent, "hra-collection-card", never, { "tagline": { "alias": "tagline"; "required": true; "isSignal": true; }; "image": { "alias": "image"; "required": false; "isSignal": true; }; "icons": { "alias": "icons"; "required": false; "isSignal": true; }; "chips": { "alias": "chips"; "required": false; "isSignal": true; }; }, {}, never, ["*", "hra-collection-card-action:not([alignment='right'])", "hra-collection-card-action[alignment='right']"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<CollectionCardComponent, "hra-collection-card", never, { "tagline": { "alias": "tagline"; "required": true; "isSignal": true; }; "image": { "alias": "image"; "required": false; "isSignal": true; }; "icons": { "alias": "icons"; "required": false; "isSignal": true; }; "taglineChips": { "alias": "taglineChips"; "required": false; "isSignal": true; }; "label": { "alias": "label"; "required": false; "isSignal": true; }; "supportingText": { "alias": "supportingText"; "required": false; "isSignal": true; }; "tags": { "alias": "tags"; "required": false; "isSignal": true; }; }, {}, never, ["hra-collection-card-action:not([alignment='right'])", "hra-collection-card-action[alignment='right']"], true, never>;
 }
 
 /** Content template definition for collection card */
@@ -59,6 +68,7 @@ declare const CollectionCardSchema: z.ZodObject<{
     }, z.core.$loose>>>;
     component: z.ZodLiteral<"CollectionCard">;
     tagline: z.ZodString;
+    taglineChips: z.ZodOptional<z.ZodArray<z.ZodString>>;
     image: z.ZodOptional<z.ZodString>;
     icons: z.ZodOptional<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
         svgIcon: z.ZodOptional<z.ZodString>;
@@ -71,45 +81,10 @@ declare const CollectionCardSchema: z.ZodObject<{
         fontSet: z.ZodOptional<z.ZodString>;
         inline: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>]>>]>>;
-    chips: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    content: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
-        [x: string]: unknown;
-        component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
-        styles?: string | Record<string, any> | undefined;
-        controllers?: {
-            [x: string]: unknown;
-            id: string;
-        }[] | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        [x: string]: unknown;
-        component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
-        styles?: string | Record<string, any> | undefined;
-        controllers?: {
-            [x: string]: unknown;
-            id: string;
-        }[] | undefined;
-    }, unknown>>, z.ZodArray<z.ZodType<{
-        [x: string]: unknown;
-        component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
-        styles?: string | Record<string, any> | undefined;
-        controllers?: {
-            [x: string]: unknown;
-            id: string;
-        }[] | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        [x: string]: unknown;
-        component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
-        styles?: string | Record<string, any> | undefined;
-        controllers?: {
-            [x: string]: unknown;
-            id: string;
-        }[] | undefined;
-    }, unknown>>>]>>;
-    additionalInfo: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+    tags: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodString>>>;
+    label: z.ZodOptional<z.ZodString>;
+    supportingText: z.ZodOptional<z.ZodString>;
+    actionsInfo: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     actionsLeft: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;

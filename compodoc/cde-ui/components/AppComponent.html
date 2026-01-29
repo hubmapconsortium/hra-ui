@@ -312,7 +312,7 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
-    if (this.data()[&#x27;data&#x27;]) {
+    if (this.data()[&#x27;data&#x27;] &amp;&amp; this.data()[&#x27;data&#x27;].metadata) {
       return this.data()[&#x27;crumbs&#x27;].concat([{ name: this.data()[&#x27;data&#x27;].metadata.sourceFileName }]);
     }
     return this.data()[&#x27;crumbs&#x27;];
@@ -422,7 +422,7 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Breadcrumbs data (computed from above signal). */
   protected readonly crumbs &#x3D; computed(() &#x3D;&gt; {
-    if (this.data()[&#x27;data&#x27;]) {
+    if (this.data()[&#x27;data&#x27;] &amp;&amp; this.data()[&#x27;data&#x27;].metadata) {
       return this.data()[&#x27;crumbs&#x27;].concat([{ name: this.data()[&#x27;data&#x27;].metadata.sourceFileName }]);
     }
     return this.data()[&#x27;crumbs&#x27;];
@@ -507,7 +507,7 @@ export class AppComponent extends BaseApplicationComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="cde-ui">  @if (header() !== false) {    <hra-header hraFeature="header" [breadcrumbs]="crumbs()">      <a        mat-icon-button        rel="noopener noreferrer"        hraPlainTooltip="Explore sample data"        hraFeature="explore-menu"        hraClickEvent        [matMenuTriggerFor]="exploreMenu"      >        <mat-icon>explore</mat-icon>      </a>      <a mat-icon-button routerLink="/create" hraPlainTooltip="Upload data" hraFeature="upload-data" hraClickEvent>        <mat-icon>upload</mat-icon>      </a>      <hra-help-button action="https://humanatlas.io/user-story/5" />      <!-- Explore sample data Menu -->      <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>        <a mat-menu-item routerLink="/example/0" target="_blank" hraFeature="2d-intestine-data" hraClickEvent>          <div class="title">2D intestine data</div>          <div class="description">CyCIF colorectal cancer data from Peter Sorger Lab</div>        </a>        <mat-divider />        <a mat-menu-item routerLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>          <div class="title">3D skin data</div>          <div class="description">Cell DIVE skin data from GE Healthcare</div>        </a>      </mat-menu>    </hra-header>  }  <router-outlet />  <hra-footer /></ng-container></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>
