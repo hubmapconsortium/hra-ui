@@ -35,13 +35,13 @@
     }
   </hra-table-of-contents-layout-header>
 
-  <hra-page-section hraFeature="overview" tagline="Overview">
+  <hra-page-section hraFeature="overview" tagline="Overview" anchor="overview" [level]="2">
     @if (studyData()?.description) {
       <p>{{ studyData()!.description }}</p>
     }
   </hra-page-section>
 
-  <hra-page-section hraFeature="source-data" tagline="Source data">
+  <hra-page-section hraFeature="source-data" tagline="Source data" anchor="source-data" [level]="2">
     @if (studyData()?.publications && studyData()!.publications.length > 0) {
       <ul class="citations-list">
         @for (pub of studyData()!.publications; track pub.url) {
@@ -55,16 +55,30 @@
     }
   </hra-page-section>
 
-  <hra-page-section hraFeature="datasets" tagline="Datasets">
+  <hra-page-section hraFeature="datasets" tagline="Datasets" anchor="datasets" [level]="2">
     @if (studyData()?.datasets && studyData()!.datasets.length > 0) {
-      <hra-table [columns]="datasetColumns()" [rows]="datasetRows()" [enableSort]="true" />
+      <div class="datasets-toolbar">
+        <hra-search-filter
+          label="Search"
+          [totalCount]="studyData()?.datasets?.length ?? 0"
+          [viewingCount]="datasetRows().length"
+          [(search)]="searchQuery"
+        />
+        <mat-icon class="download-icon" (click)="onDownloadCSVButtonClicked()">download</mat-icon>
+      </div>
+      <hra-table [columns]="datasetColumns" [rows]="datasetRows()" [enableSort]="true" />
     } @else {
       <p>No datasets available</p>
     }
   </hra-page-section>
 
   @if (studyData()?.euiUrl) {
-    <hra-page-section hraFeature="eui-view" tagline="View in the Exploration User Interface">
+    <hra-page-section
+      hraFeature="eui-view"
+      tagline="View in the Exploration User Interface"
+      anchor="eui-view"
+      [level]="2"
+    >
       This data has been registered spatially into the Human Reference Atlas.
 
       <hra-text-hyperlink
@@ -72,6 +86,7 @@
         target="_blank"
         rel="noopener"
         text="Use app"
+        icon="arrow_right_alt"
         [url]="studyData()?.euiUrl ?? ''"
       />
     </hra-page-section>

@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { assetUrl } from '@hra-ui/common/url';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { VisualCard } from './components/visual-card/visual-card.component';
@@ -81,6 +81,11 @@ export const ROUTES: Routes = [
         { name: 'Cell Distance Explorer', route: '/' },
         { name: 'Spatial Omics Gallery' },
       ] satisfies BreadcrumbItem[],
+    },
+    resolve: {
+      data: (route: ActivatedRouteSnapshot) => ({
+        metadata: { sourceFileName: route.paramMap.get('studyName') ?? '' },
+      }),
     },
   },
   {
