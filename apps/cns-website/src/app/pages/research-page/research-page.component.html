@@ -69,7 +69,7 @@
           @for (group of store.sortedGroupedItems(); track group.label) {
             <section class="gallery-group">
               @if (group.label) {
-                <h3 hra-section-link underlined class="group-title">{{ group.label }}</h3>
+                <h3 hra-section-link underlined class="title">{{ group.label }}</h3>
               }
 
               <hra-gallery-grid [dataSource]="group.items">
@@ -80,7 +80,7 @@
                   [date]="(item.dateStart | date) ?? ''"
                   [link]="item.link || ''"
                   [external]="true"
-                  [tags]="item.tags"
+                  [tags]="getTagItems(item.tags)"
                 />
               </hra-gallery-grid>
             </section>

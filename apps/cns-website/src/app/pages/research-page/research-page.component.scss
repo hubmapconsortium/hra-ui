@@ -13,10 +13,31 @@
     @include mat.sidenav-overrides(
       (
         container-background-color: vars.$surface-container-low,
-        container-divider-color: vars.$outline-variant,
+        container-divider-color: vars.$outline,
         container-shape: vars.$corner-none,
         container-width: 20rem,
         content-background-color: vars.$on-primary,
+      )
+    );
+  }
+
+  mat-form-field {
+    @include mat.form-field-overrides(
+      (
+        filled-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
+        filled-label-text-color: vars.$primary,
+        leading-icon-color: vars.$primary,
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-weight: vars.$label-medium-weight,
+        filled-label-text-tracking: vars.$label-medium-tracking,
+      )
+    );
+
+    @include mat.select-overrides(
+      (
+        enabled-trigger-text-color: vars.$secondary,
       )
     );
   }
@@ -28,12 +49,16 @@
     align-items: center;
   }
 
+  hra-search-filter,
+  .content {
+    max-width: 95rem;
+  }
+
   hra-search-filter {
     padding: 2rem 2.5rem;
     position: sticky;
     top: 0;
     z-index: 10;
-    max-width: 100rem;
     margin: 0 auto;
     background-color: vars.$on-primary;
 
@@ -50,7 +75,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 100rem;
     margin: 0 auto;
     padding: 0 2.5rem;
 
@@ -62,8 +86,18 @@
       gap: 3rem;
     }
 
-    section {
+    .gallery-group {
       width: 100%;
+
+      .title {
+        margin-bottom: 2rem;
+
+        @include mat.divider-overrides(
+          (
+            color: vars.$outline,
+          )
+        );
+      }
     }
 
     .page-end {

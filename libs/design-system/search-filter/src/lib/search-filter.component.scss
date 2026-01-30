@@ -14,6 +14,19 @@
     min-width: 10rem;
     max-width: 36.25rem;
 
+    @include mat.form-field-overrides(
+      (
+        filled-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
+        filled-label-text-color: vars.$primary,
+        leading-icon-color: vars.$primary,
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-weight: vars.$label-medium-weight,
+        filled-label-text-tracking: vars.$label-medium-tracking,
+      )
+    );
+
     .clear-search {
       margin-right: 0.875rem;
 

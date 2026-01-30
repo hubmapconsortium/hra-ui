@@ -19,6 +19,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { PublicationTypesData } from '../../schemas/publication-types.schema';
 import { ResearchData } from '../../schemas/research.schema';
+import { TagId, TagItem, TagsData } from '../../schemas/tags.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { getImageUrl } from '../../utils/research-item-images';
 import { ResearchStore } from './state/research.store';
@@ -63,6 +64,8 @@ export class ResearchPageComponent {
   readonly people = input.required<PeopleData>();
   /** Publication type definitions */
   readonly publicationTypes = input.required<PublicationTypesData>();
+  /** Tags data from resolver */
+  readonly tags = input.required<TagsData>();
 
   /** Research store for state management */
   protected readonly store = inject(ResearchStore);
@@ -83,10 +86,23 @@ export class ResearchPageComponent {
     this.store.setResearchItems(this.researchItems);
     this.store.setPeopleItems(this.people);
     this.store.setPublicationTypes(this.publicationTypes);
+    this.store.setTags(this.tags);
 
     effect((onCleanup) => {
       this.sidebarStore.setSidebar(this.sidebar());
       onCleanup(() => this.sidebarStore.clearSidebar());
+    });
+  }
+
+  /**
+   * Gets tag items from array of tag ids using the store's tags map
+   * @param ids tag ids
+   * @returns tag items
+   */
+  getTagItems(ids: TagId[]): TagItem[] {
+    return ids.map((id) => {
+      const tag = this.store.tagsMap().get(id);
+      return tag ? { slug: id, name: tag.name, description: tag.description } : { slug: id, name: id, description: '' };
     });
   }
 }

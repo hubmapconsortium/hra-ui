@@ -13,7 +13,7 @@
     @include mat.sidenav-overrides(
       (
         container-background-color: vars.$surface-container-low,
-        container-divider-color: vars.$outline-variant,
+        container-divider-color: vars.$outline,
         container-shape: vars.$corner-none,
         container-width: 20rem,
         content-background-color: vars.$on-primary,
@@ -35,6 +35,25 @@
         .sort-by,
         .group-by {
           width: 100%;
+
+          @include mat.form-field-overrides(
+            (
+              filled-active-indicator-color: vars.$primary,
+              filled-focus-active-indicator-color: vars.$primary,
+              filled-label-text-color: vars.$primary,
+              leading-icon-color: vars.$primary,
+              filled-label-text-font: vars.$label-medium-font,
+              filled-label-text-size: vars.$label-medium-size,
+              filled-label-text-weight: vars.$label-medium-weight,
+              filled-label-text-tracking: vars.$label-medium-tracking,
+            )
+          );
+
+          @include mat.select-overrides(
+            (
+              enabled-trigger-text-color: vars.$secondary,
+            )
+          );
         }
       }
     }
@@ -69,7 +88,13 @@
 
         .section {
           .title {
-            margin-bottom: 40px;
+            margin-bottom: 2.5rem;
+
+            @include mat.divider-overrides(
+              (
+                color: vars.$outline,
+              )
+            );
           }
 
           .gallery {

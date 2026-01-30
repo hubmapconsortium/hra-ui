@@ -100,6 +100,7 @@ export const appRoutes: Route[] = [
       publications: createJsonSpecResolver(PUBLICATIONS_INDEX_URL, ResearchDataSchema),
       people: createJsonSpecResolver(PEOPLE_INDEX_URL, PeopleDataSchema),
       publicationTypes: createJsonSpecResolver(PUBLICATION_TYPES_INDEX_URL, PublicationTypesDataSchema),
+      tags: createJsonSpecResolver(TAGS_INDEX_URL, TagsDataSchema),
     },
   },
   {

@@ -2,8 +2,16 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { AssetUrlPipe } from '@hra-ui/common/url';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+
+/** Tag item interface for gallery card tags */
+export interface TagItem {
+  /** Tag name */
+  name: string;
+  /** Tag description */
+  description: string;
+}
 
 /**
  * Gallery card component for displaying content with images, dates, and tags
@@ -27,5 +35,5 @@ export class GalleryCardComponent {
   /** Whether the link opens in new tab */
   readonly external = input<boolean>(false);
   /** Tags to display */
-  readonly tags = input<string[]>([]);
+  readonly tags = input<TagItem[]>([]);
 }
