@@ -46,7 +46,7 @@
       <ul class="citations-list">
         @for (pub of studyData()!.publications; track pub.url) {
           <li>
-            <markdown [data]="`[${pub.label || pub.url}](${pub.url})`" />
+            <a hraHyperlink [attr.href]="pub.url">{{ pub.label || pub.url }}</a>
           </li>
         }
       </ul>
@@ -88,8 +88,6 @@
 
       <hra-text-hyperlink
         hraFeature="eui-link"
-        target="_blank"
-        rel="noopener"
         text="Use app"
         icon="arrow_right_alt"
         [url]="studyData()?.euiUrl ?? ''"
@@ -97,3 +95,4 @@
     </hra-page-section>
   }
 </hra-table-of-contents-layout>
+<hra-footer />

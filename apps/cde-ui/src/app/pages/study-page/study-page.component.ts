@@ -13,6 +13,7 @@ import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
 import { RawStudy, StudyDataType } from '../../schemas/study.schema';
+import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 
 /** Publication link with optional label */
 interface PublicationLink {
@@ -114,6 +115,7 @@ const CSV_HEADERS = [
     ButtonsModule,
     TextHyperlinkComponent,
     MarkdownModule,
+    FooterComponent,
   ],
   templateUrl: './study-page.component.html',
   styleUrl: './study-page.component.scss',
