@@ -78,7 +78,7 @@
     "ngx-mat-select-search": "^8.0.4",
     "ngx-scrollbar": "^18.0.0",
     "ngxs-reset-plugin": "^4.0.0",
-    "ngxtension": "^5.2.0",
+    "ngxtension": "^7.0.2",
     "normalize.css": "^8.0.1",
     "papaparse": "^5.5.3",
     "qs": "^6.14.0",
