@@ -475,7 +475,7 @@
     "@angular/platform-browser": "^20.2.1",
     "ngx-highlightjs": "^14.0.0",
     "highlight.js": "^11.11.1",
-    "ngxtension": "^5.1.0",
+    "ngxtension": "^7.0.2",
     "@hra-ui/common": "1.1.0",
     "ngx-markdown": "^20.0.0",
     "js-yaml": "^4.1.0",
