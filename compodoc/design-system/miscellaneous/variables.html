@@ -163,6 +163,9 @@
                             <a href="#ButtonDef" title="buttons/button/src/lib/types/button.definition.ts" ><b>ButtonDef</b>&nbsp;&nbsp;&nbsp;(buttons/.../button.definition.ts)</a>
                         </li>
                         <li>
+                            <a href="#ButtonIconColumnTypeSchema" title="table/src/lib/types/page-table.schema.ts" ><b>ButtonIconColumnTypeSchema</b>&nbsp;&nbsp;&nbsp;(table/.../page-table.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ButtonSchema" title="buttons/button/src/lib/types/button.schema.ts" ><b>ButtonSchema</b>&nbsp;&nbsp;&nbsp;(buttons/.../button.schema.ts)</a>
                         </li>
                         <li>
@@ -437,6 +440,9 @@
                         </li>
                         <li>
                             <a href="#REEXPORTS" title="buttons/src/lib/buttons.module.ts" ><b>REEXPORTS</b>&nbsp;&nbsp;&nbsp;(buttons/.../buttons.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#REEXPORTS" title="modal/src/lib/modal.module.ts" ><b>REEXPORTS</b>&nbsp;&nbsp;&nbsp;(modal/.../modal.module.ts)</a>
                         </li>
                         <li>
                             <a href="#REEXPORTS" title="navigation/src/lib/navigation.module.ts" ><b>REEXPORTS</b>&nbsp;&nbsp;&nbsp;(navigation/.../navigation.module.ts)</a>
@@ -1212,6 +1218,539 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Content template definition for DataViewerComponent</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>table/src/lib/types/page-table.schema.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ButtonIconColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>ButtonIconColumnTypeSchema</b></span>
+                        <a href="#ButtonIconColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;buttonIcon&#x27;),
+    buttonLabel: z.string().optional(),
+    previewIcon: z.string().optional(),
+    imageUrlColumn: z.string().optional(),
+    imageAltColumn: z.string().optional(),
+    titleColumn: z.string().optional(),
+  })
+  .meta({ id: &#x27;ButtonIconColumnType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for ButtonIcon Column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IconColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>IconColumnTypeSchema</b></span>
+                        <a href="#IconColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;icon&#x27;),
+    icon: z.string(),
+    tooltip: z.string().optional(),
+  })
+  .meta({ id: &#x27;IconColumnType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Icon Column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LinkColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>LinkColumnTypeSchema</b></span>
+                        <a href="#LinkColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;link&#x27;),
+    urlColumn: z.string(),
+    internal: z.boolean().optional(),
+  })
+  .meta({ id: &#x27;LinkColumnType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Link Column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MarkdownColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>MarkdownColumnTypeSchema</b></span>
+                        <a href="#MarkdownColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;markdown&#x27;),
+  })
+  .meta({ id: &#x27;MarkdownColumnType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Markdown Column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MenuButtonColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>MenuButtonColumnTypeSchema</b></span>
+                        <a href="#MenuButtonColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;menu&#x27;),
+    icon: z.string(),
+    options: z.string(),
+    tooltip: z.string().optional(),
+  })
+  .meta({ id: &#x27;MenuButtonColumnType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for MenuButton Column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MenuOptionsTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>MenuOptionsTypeSchema</b></span>
+                        <a href="#MenuOptionsTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    icon: z.string(),
+    description: z.string().optional(),
+    url: z.string().url().optional(),
+  })
+  .meta({ id: &#x27;MenuOptionsType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for MenuOptions Column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NumericColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>NumericColumnTypeSchema</b></span>
+                        <a href="#NumericColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;numeric&#x27;),
+    computeTotal: z.boolean().optional(),
+    // TODO add format
+  })
+  .meta({ id: &#x27;NumericColumnType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Numeric Column</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PageTableSchema"></a>
+                    <span class="name">
+                        <span ><b>PageTableSchema</b></span>
+                        <a href="#PageTableSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ContentTemplateSchema.extend({
+  component: z.literal(&#x27;PageTable&#x27;),
+  csvUrl: z.string().optional(),
+  columns: TableColumnSchema.array().optional(),
+  rows: z.array(TableRowSchema).optional(),
+  variant: TableVariantSchema.optional(),
+  enableSort: z.boolean().optional(),
+  verticalDividers: z.boolean().optional(),
+  enableSelection: z.boolean().optional(),
+}).meta({ id: &#x27;Table&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for page table component</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SimpleTableColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>SimpleTableColumnTypeSchema</b></span>
+                        <a href="#SimpleTableColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.union([
+  TextColumnTypeSchema.shape.type,
+  NumericColumnTypeSchema.shape.type,
+  MarkdownColumnTypeSchema.shape.type,
+  IconColumnTypeSchema.shape.type,
+  MenuButtonColumnTypeSchema.shape.type,
+  ButtonIconColumnTypeSchema.shape.type,
+])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Union of Schema Types for Simple Columns</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TableColumnSchema"></a>
+                    <span class="name">
+                        <span ><b>TableColumnSchema</b></span>
+                        <a href="#TableColumnSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    column: z.string(),
+    label: z.string(),
+    type: z.union([SimpleTableColumnTypeSchema, TableColumnTypeSchema]).default(&#x27;text&#x27;),
+  })
+  .meta({ id: &#x27;TableColumn&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for table columns</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TableColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>TableColumnTypeSchema</b></span>
+                        <a href="#TableColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.union([
+  TextColumnTypeSchema,
+  NumericColumnTypeSchema,
+  MarkdownColumnTypeSchema,
+  LinkColumnTypeSchema,
+  IconColumnTypeSchema,
+  MenuButtonColumnTypeSchema,
+  ButtonIconColumnTypeSchema,
+])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Union of Schema Types for Table Columns</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TableRowSchema"></a>
+                    <span class="name">
+                        <span ><b>TableRowSchema</b></span>
+                        <a href="#TableRowSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]))
+  .meta({ id: &#x27;TableRow&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for a single table row</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TableVariantSchema"></a>
+                    <span class="name">
+                        <span ><b>TableVariantSchema</b></span>
+                        <a href="#TableVariantSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.enum([&#x27;alternating&#x27;, &#x27;divider&#x27;, &#x27;basic&#x27;]).meta({ id: &#x27;TableVariant&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for table variant</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TextColumnTypeSchema"></a>
+                    <span class="name">
+                        <span ><b>TextColumnTypeSchema</b></span>
+                        <a href="#TextColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    type: z.literal(&#x27;text&#x27;),
+  })
+  .meta({ id: &#x27;TextColumnType&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schema for Text Column</p>
 </div>
                 </td>
             </tr>
@@ -3419,496 +3958,6 @@
         </tbody>
     </table>
 </section>
-    <h3>table/src/lib/types/page-table.schema.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="IconColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>IconColumnTypeSchema</b></span>
-                        <a href="#IconColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    type: z.literal(&#x27;icon&#x27;),
-    icon: z.string(),
-    tooltip: z.string().optional(),
-  })
-  .meta({ id: &#x27;IconColumnType&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for Icon Column</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="LinkColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>LinkColumnTypeSchema</b></span>
-                        <a href="#LinkColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    type: z.literal(&#x27;link&#x27;),
-    urlColumn: z.string(),
-    internal: z.boolean().optional(),
-  })
-  .meta({ id: &#x27;LinkColumnType&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for Link Column</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="MarkdownColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>MarkdownColumnTypeSchema</b></span>
-                        <a href="#MarkdownColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    type: z.literal(&#x27;markdown&#x27;),
-  })
-  .meta({ id: &#x27;MarkdownColumnType&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for Markdown Column</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="MenuButtonColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>MenuButtonColumnTypeSchema</b></span>
-                        <a href="#MenuButtonColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    type: z.literal(&#x27;menu&#x27;),
-    icon: z.string(),
-    options: z.string(),
-    tooltip: z.string().optional(),
-  })
-  .meta({ id: &#x27;MenuButtonColumnType&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for MenuButton Column</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="MenuOptionsTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>MenuOptionsTypeSchema</b></span>
-                        <a href="#MenuOptionsTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    id: z.string(),
-    name: z.string(),
-    icon: z.string(),
-    description: z.string().optional(),
-    url: z.string().url().optional(),
-  })
-  .meta({ id: &#x27;MenuOptionsType&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for MenuOptions Column</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="NumericColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>NumericColumnTypeSchema</b></span>
-                        <a href="#NumericColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    type: z.literal(&#x27;numeric&#x27;),
-    computeTotal: z.boolean().optional(),
-    // TODO add format
-  })
-  .meta({ id: &#x27;NumericColumnType&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for Numeric Column</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="PageTableSchema"></a>
-                    <span class="name">
-                        <span ><b>PageTableSchema</b></span>
-                        <a href="#PageTableSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>ContentTemplateSchema.extend({
-  component: z.literal(&#x27;PageTable&#x27;),
-  csvUrl: z.string().optional(),
-  columns: TableColumnSchema.array().optional(),
-  rows: z.array(TableRowSchema).optional(),
-  variant: TableVariantSchema.optional(),
-  enableSort: z.boolean().optional(),
-  verticalDividers: z.boolean().optional(),
-  enableSelection: z.boolean().optional(),
-}).meta({ id: &#x27;Table&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for page table component</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="SimpleTableColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>SimpleTableColumnTypeSchema</b></span>
-                        <a href="#SimpleTableColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z.union([
-  TextColumnTypeSchema.shape.type,
-  NumericColumnTypeSchema.shape.type,
-  MarkdownColumnTypeSchema.shape.type,
-  IconColumnTypeSchema.shape.type,
-  MenuButtonColumnTypeSchema.shape.type,
-])</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Union of Schema Types for Simple Columns</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TableColumnSchema"></a>
-                    <span class="name">
-                        <span ><b>TableColumnSchema</b></span>
-                        <a href="#TableColumnSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    column: z.string(),
-    label: z.string(),
-    type: z.union([SimpleTableColumnTypeSchema, TableColumnTypeSchema]).default(&#x27;text&#x27;),
-  })
-  .meta({ id: &#x27;TableColumn&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for table columns</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TableColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>TableColumnTypeSchema</b></span>
-                        <a href="#TableColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z.union([
-  TextColumnTypeSchema,
-  NumericColumnTypeSchema,
-  MarkdownColumnTypeSchema,
-  LinkColumnTypeSchema,
-  IconColumnTypeSchema,
-  MenuButtonColumnTypeSchema,
-])</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Union of Schema Types for Table Columns</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TableRowSchema"></a>
-                    <span class="name">
-                        <span ><b>TableRowSchema</b></span>
-                        <a href="#TableRowSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]))
-  .meta({ id: &#x27;TableRow&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for a single table row</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TableVariantSchema"></a>
-                    <span class="name">
-                        <span ><b>TableVariantSchema</b></span>
-                        <a href="#TableVariantSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z.enum([&#x27;alternating&#x27;, &#x27;divider&#x27;, &#x27;basic&#x27;]).meta({ id: &#x27;TableVariant&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for table variant</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TextColumnTypeSchema"></a>
-                    <span class="name">
-                        <span ><b>TextColumnTypeSchema</b></span>
-                        <a href="#TextColumnTypeSchema"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({
-    type: z.literal(&#x27;text&#x27;),
-  })
-  .meta({ id: &#x27;TextColumnType&#x27; })</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Schema for Text Column</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
     <h3>icons/src/lib/types/icon.schema.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -4999,6 +5048,41 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>All re-exported modules, components, directives, etc.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>modal/src/lib/modal.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REEXPORTS"></a>
+                    <span class="name">
+                        <span ><b>REEXPORTS</b></span>
+                        <a href="#REEXPORTS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[InfoModalComponent, ImageModalComponent]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All sub library components, module, etc.</p>
 </div>
                 </td>
             </tr>

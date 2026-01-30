@@ -186,6 +186,7 @@
                             <code>MatIconModule</code>
                             <code>MatMenuModule</code>
                             <code>PlainTooltipDirective</code>
+                            <code>RouterLink</code>
                 </td>
             </tr>
 
@@ -279,7 +280,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/studies-grid/studies-grid.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/components/studies-grid/studies-grid.component.ts:97</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -325,7 +326,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/components/studies-grid/studies-grid.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/components/studies-grid/studies-grid.component.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -348,6 +349,7 @@
 import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
 import { AnalyticsModule } from &#x27;@hra-ui/common/analytics&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { CollectionCardActionComponent, CollectionCardComponent } from &#x27;@hra-ui/design-system/cards/collection-card&#x27;;
@@ -395,6 +397,8 @@ interface PublicationLink {
  * Fields are prepared for direct binding into the UI card component.
  */
 interface StudyCard {
+  /** Study slug used for navigation */
+  slug: string;
   /** Primary tagline shown on the card (for example, &quot;Organ, Technology&quot;) */
   tagline: string;
   /** Secondary chips shown under the tagline (e.g., dataset count, cell count) */
@@ -429,6 +433,7 @@ interface StudyCard {
     MatIconModule,
     MatMenuModule,
     PlainTooltipDirective,
+    RouterLink,
   ],
   templateUrl: &#x27;./studies-grid.component.html&#x27;,
   styleUrl: &#x27;./studies-grid.component.scss&#x27;,
@@ -495,6 +500,7 @@ export class StudiesGridComponent {
       }));
 
     return {
+      slug: study.slug,
       tagline: &#x60;${study.organName}, ${study.technology}&#x60;,
       taglineChips,
       image,
@@ -525,9 +531,15 @@ export class StudiesGridComponent {
     &gt;
       &lt;hra-collection-card-action&gt;
         &lt;div class&#x3D;&quot;left-actions&quot;&gt;
-          &lt;button hraFeature&#x3D;&quot;view-datasets&quot; hraClickEvent mat-flat-button hraButtonSize&#x3D;&quot;medium&quot;&gt;
+          &lt;a
+            hraFeature&#x3D;&quot;view-datasets&quot;
+            hraClickEvent
+            mat-flat-button
+            hraButtonSize&#x3D;&quot;medium&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/gallery&#x27;, study.slug]&quot;
+          &gt;
             {{ study.viewButtonText }}
-          &lt;/button&gt;
+          &lt;/a&gt;
           @if (study.isHraRegistered) {
             &lt;button
               hraFeature&#x3D;&quot;more-options&quot;
@@ -635,8 +647,8 @@ export class StudiesGridComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-grid-container itemMinWidth="312px">  @for (study of studies(); track study.tagline) {    <hra-collection-card      hraFeature="spatial-omics-gallery.featured-study"      [tagline]="study.tagline"      [image]="study.image"      [taglineChips]="study.taglineChips"      [label]="study.label"      [supportingText]="study.supportingText"      [tags]="study.tags"    >      <hra-collection-card-action>        <div class="left-actions">          <button hraFeature="view-datasets" hraClickEvent mat-flat-button hraButtonSize="medium">            {{ study.viewButtonText }}          </button>          @if (study.isHraRegistered) {            <button              hraFeature="more-options"              hraClickEvent              mat-icon-button              hraIconButtonSize="large"              hraIconButtonVariant="dark"              hraPlainTooltip="More"              aria-label="More options"              [matMenuTriggerFor]="moreMenu"            >              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #moreMenu>              @if (study.euiUrl) {                <a                  hraClickEvent                  hraFeature="view-datasets-in-eui"                  mat-menu-item                  target="_blank"                  rel="noopener noreferrer"                  [href]="study.euiUrl"                >                  <mat-icon>open_in_new</mat-icon>                  View datasets in the Exploration User Interface                </a>              }            </mat-menu>          }        </div>      </hra-collection-card-action>      <hra-collection-card-action alignment="right">        @if (study.publications.length === 1) {          <a            hraFeature="source-data"            hraClickEvent            mat-button            hraButtonSize="medium"            target="_blank"            rel="noopener noreferrer"            [href]="study.publications[0].url"            [attr.title]="study.publications[0].label ?? null"          >            Source data          </a>        } @else if (study.publications.length > 1) {          <button            hraFeature="source-data"            hraClickEvent            mat-button            hraButtonSize="medium"            [matMenuTriggerFor]="publicationMenu"          >            Source data          </button>          <mat-menu #publicationMenu>            @for (publication of study.publications; track publication; let idx = $index) {              <a                hraClickEvent                mat-menu-item                target="_blank"                rel="noopener noreferrer"                class="publication-menu-item"                [hraFeature]="`source-data-${idx + 1}`"                [href]="publication.url"              >                <mat-icon>open_in_new</mat-icon>                <div class="publication-label" [attr.title]="publication.label ?? null">                  {{ publication.label ?? `Publication ${idx + 1}` }}                </div>              </a>            }          </mat-menu>        }      </hra-collection-card-action>    </hra-collection-card>  }</hra-grid-container></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+        var COMPONENT_TEMPLATE = '<div><hra-grid-container itemMinWidth="312px">  @for (study of studies(); track study.tagline) {    <hra-collection-card      hraFeature="spatial-omics-gallery.featured-study"      [tagline]="study.tagline"      [image]="study.image"      [taglineChips]="study.taglineChips"      [label]="study.label"      [supportingText]="study.supportingText"      [tags]="study.tags"    >      <hra-collection-card-action>        <div class="left-actions">          <a            hraFeature="view-datasets"            hraClickEvent            mat-flat-button            hraButtonSize="medium"            [routerLink]="[\'/gallery\', study.slug]"          >            {{ study.viewButtonText }}          </a>          @if (study.isHraRegistered) {            <button              hraFeature="more-options"              hraClickEvent              mat-icon-button              hraIconButtonSize="large"              hraIconButtonVariant="dark"              hraPlainTooltip="More"              aria-label="More options"              [matMenuTriggerFor]="moreMenu"            >              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #moreMenu>              @if (study.euiUrl) {                <a                  hraClickEvent                  hraFeature="view-datasets-in-eui"                  mat-menu-item                  target="_blank"                  rel="noopener noreferrer"                  [href]="study.euiUrl"                >                  <mat-icon>open_in_new</mat-icon>                  View datasets in the Exploration User Interface                </a>              }            </mat-menu>          }        </div>      </hra-collection-card-action>      <hra-collection-card-action alignment="right">        @if (study.publications.length === 1) {          <a            hraFeature="source-data"            hraClickEvent            mat-button            hraButtonSize="medium"            target="_blank"            rel="noopener noreferrer"            [href]="study.publications[0].url"            [attr.title]="study.publications[0].label ?? null"          >            Source data          </a>        } @else if (study.publications.length > 1) {          <button            hraFeature="source-data"            hraClickEvent            mat-button            hraButtonSize="medium"            [matMenuTriggerFor]="publicationMenu"          >            Source data          </button>          <mat-menu #publicationMenu>            @for (publication of study.publications; track publication; let idx = $index) {              <a                hraClickEvent                mat-menu-item                target="_blank"                rel="noopener noreferrer"                class="publication-menu-item"                [hraFeature]="`source-data-${idx + 1}`"                [href]="publication.url"              >                <mat-icon>open_in_new</mat-icon>                <div class="publication-label" [attr.title]="publication.label ?? null">                  {{ publication.label ?? `Publication ${idx + 1}` }}                </div>              </a>            }          </mat-menu>        }      </hra-collection-card-action>    </hra-collection-card>  }</hra-grid-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'StudiesGridComponent'};
 </script>

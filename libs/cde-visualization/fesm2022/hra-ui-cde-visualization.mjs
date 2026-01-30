@@ -46,7 +46,7 @@ import embed from 'vega-embed';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { unparse } from 'papaparse';
 import * as i6$1 from '@hra-ui/design-system/buttons/text-hyperlink';
-import { InfoModalComponent } from '@hra-ui/design-system/info-modal';
+import { InfoModalComponent } from '@hra-ui/design-system/modal/info-modal';
 import * as i3$1 from '@angular/material/button-toggle';
 import * as i5$2 from '@hra-ui/design-system/buttons/button-toggle';
 import { JsonFileLoaderService, CsvFileLoaderService } from '@hra-ui/common/fs';

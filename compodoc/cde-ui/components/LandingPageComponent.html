@@ -226,6 +226,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#collapseSpaces" >collapseSpaces</a>
+                            </li>
+                            <li>
                                 <a href="#openCopiedSnackbar" >openCopiedSnackbar</a>
                             </li>
                         </ul>
@@ -302,6 +305,81 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="collapseSpaces"></a>
+                    <span class="name">
+                        <span ><b>collapseSpaces</b></span>
+                        <a href="#collapseSpaces"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>collapseSpaces(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/pages/landing-page/landing-page.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Collapse multiple spaces into a single space</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>text</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Text to collapse consecutive spaces in</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Collapsed text</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="openCopiedSnackbar"></a>
                     <span class="name">
                         <span ><b>openCopiedSnackbar</b></span>
@@ -326,7 +404,7 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Trigerred when user clicks on the Copy button</p>
+                        <div class="io-description"><p>Triggered when user clicks on the Copy button</p>
 </div>
 
                         <div class="io-description">
@@ -382,9 +460,19 @@ export class LandingPageComponent {
   /** Snackbar service */
   private readonly snackbar &#x3D; inject(SnackbarService);
 
-  /** Trigerred when user clicks on the Copy button */
-  openCopiedSnackbar() {
+  /** Triggered when user clicks on the Copy button */
+  openCopiedSnackbar(): void {
     this.snackbar.open(&#x27;Copied to clipboard&#x27;, &#x27;&#x27;, false, &#x27;start&#x27;, { duration: 5000 });
+  }
+
+  /**
+   * Collapse multiple spaces into a single space
+   *
+   * @param text Text to collapse consecutive spaces in
+   * @returns Collapsed text
+   */
+  collapseSpaces(text: string): string {
+    return text.replace(/\s+/g, &#x27; &#x27;);
   }
 }
 </code></pre>
@@ -397,13 +485,12 @@ export class LandingPageComponent {
     &lt;div class&#x3D;&quot;cards-container&quot;&gt;
       &lt;div class&#x3D;&quot;cards&quot; hraFeature&#x3D;&quot;cde-cards&quot;&gt;
         @for (card of cards(); track card.tagline) {
-          @let taglineChips &#x3D; card.taglineChips ?? [];
           @let actionsInfo &#x3D; card.actionsInfo ?? {};
 
           &lt;hra-collection-card
             [tagline]&#x3D;&quot;card.tagline&quot;
             [image]&#x3D;&quot;card.image&quot;
-            [taglineChips]&#x3D;&quot;taglineChips&quot;
+            [taglineChips]&#x3D;&quot;card.taglineChips ?? []&quot;
             [label]&#x3D;&quot;card.label&quot;
             [supportingText]&#x3D;&quot;card.supportingText&quot;
           &gt;
@@ -413,11 +500,11 @@ export class LandingPageComponent {
                   hraFeature&#x3D;&quot;left-action&quot;
                   mat-flat-button
                   hraButtonSize&#x3D;&quot;medium&quot;
-                  disabled&#x3D;&quot;false&quot;
                   [hraClickEvent]&#x3D;&quot;{ url: actionsInfo[&#x27;leftActionUrl&#x27;] }&quot;
                   [hraLink]&#x3D;&quot;actionsInfo[&#x27;leftActionUrl&#x27;]&quot;
-                  &gt;{{ actionsInfo[&#x27;leftActionText&#x27;] }}&lt;/a
                 &gt;
+                  {{ actionsInfo[&#x27;leftActionText&#x27;] }}
+                &lt;/a&gt;
               &lt;/hra-collection-card-action&gt;
             }
             @if (actionsInfo[&#x27;rightActionText&#x27;] &amp;&amp; actionsInfo[&#x27;rightActionUrl&#x27;]) {
@@ -426,11 +513,11 @@ export class LandingPageComponent {
                   hraFeature&#x3D;&quot;right-action&quot;
                   mat-button
                   hraButtonSize&#x3D;&quot;medium&quot;
-                  disabled&#x3D;&quot;false&quot;
                   [hraClickEvent]&#x3D;&quot;{ url: actionsInfo[&#x27;rightActionUrl&#x27;] }&quot;
                   [hraLink]&#x3D;&quot;actionsInfo[&#x27;rightActionUrl&#x27;]&quot;
-                  &gt;{{ actionsInfo[&#x27;rightActionText&#x27;] }}&lt;/a
                 &gt;
+                  {{ actionsInfo[&#x27;rightActionText&#x27;] }}
+                &lt;/a&gt;
               &lt;/hra-collection-card-action&gt;
             }
           &lt;/hra-collection-card&gt;
@@ -438,31 +525,27 @@ export class LandingPageComponent {
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/section&gt;
+
   &lt;section class&#x3D;&quot;cite&quot;&gt;
     &lt;div class&#x3D;&quot;content-container&quot;&gt;
       &lt;div class&#x3D;&quot;content&quot;&gt;
         &lt;div class&#x3D;&quot;title&quot;&gt;How to cite the Cell Distance Explorer&lt;/div&gt;
-        &lt;div class&#x3D;&quot;description&quot;&gt;
+        &lt;div class&#x3D;&quot;description&quot; #citationText&gt;
           Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,
           Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,
           Monte, E. M., Purkerson, J. M., Jehrio, M., &amp; Misra, R. S. (2025).
-          &lt;a hraFeature&#x3D;&quot;citation-link&quot; hraHyperlink hraLink&#x3D;&quot;https://doi.org/10.1101/2025.09.23.678129&quot;
-            &gt;Exploring endothelial cell environments across organs in spatially resolved omics data.&lt;/a
-          &gt;
+          &lt;a hraFeature&#x3D;&quot;citation-link&quot; hraHyperlink href&#x3D;&quot;https://doi.org/10.1101/2025.09.23.678129&quot;&gt;
+            Exploring endothelial cell environments across organs in spatially resolved omics data.
+          &lt;/a&gt;
           BioRxiv. https://doi.org/10.1101/2025.09.23.678129
         &lt;/div&gt;
         &lt;button
           hraFeature&#x3D;&quot;copy-citation&quot;
           hraClickEvent
-          hraButtonSize&#x3D;&quot;medium&quot;
           mat-flat-button
-          disabled&#x3D;&quot;false&quot;
+          hraButtonSize&#x3D;&quot;medium&quot;
           class&#x3D;&quot;copy-citation&quot;
-          cdkCopyToClipboard&#x3D;&quot;Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,
-          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,
-          Monte, E. M., Purkerson, J. M., Jehrio, M., &amp; Misra, R. S. (2025).
-          Exploring endothelial cell environments across organs in spatially resolved omics data.
-          BioRxiv. https://doi.org/10.1101/2025.09.23.678129&quot;
+          [cdkCopyToClipboard]&#x3D;&quot;collapseSpaces(citationText.textContent)&quot;
           (cdkCopyToClipboardCopied)&#x3D;&quot;openCopiedSnackbar()&quot;
         &gt;
           Copy citation
@@ -471,8 +554,9 @@ export class LandingPageComponent {
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/section&gt;
+
+  &lt;hra-footer /&gt;
 &lt;/ng-container&gt;
-&lt;hra-footer /&gt;
 </code></pre>
     </div>
 
@@ -502,8 +586,8 @@ export class LandingPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <section hraFeature="visualize" class="visualize">    <div class="title">Visualize and quantify distances</div>    <div class="cards-container">      <div class="cards" hraFeature="cde-cards">        @for (card of cards(); track card.tagline) {          @let taglineChips = card.taglineChips ?? [];          @let actionsInfo = card.actionsInfo ?? {};          <hra-collection-card            [tagline]="card.tagline"            [image]="card.image"            [taglineChips]="taglineChips"            [label]="card.label"            [supportingText]="card.supportingText"          >            @if (actionsInfo[\'leftActionText\'] && actionsInfo[\'leftActionUrl\']) {              <hra-collection-card-action>                <a                  hraFeature="left-action"                  mat-flat-button                  hraButtonSize="medium"                  disabled="false"                  [hraClickEvent]="{ url: actionsInfo[\'leftActionUrl\'] }"                  [hraLink]="actionsInfo[\'leftActionUrl\']"                  >{{ actionsInfo[\'leftActionText\'] }}</a                >              </hra-collection-card-action>            }            @if (actionsInfo[\'rightActionText\'] && actionsInfo[\'rightActionUrl\']) {              <hra-collection-card-action alignment="right">                <a                  hraFeature="right-action"                  mat-button                  hraButtonSize="medium"                  disabled="false"                  [hraClickEvent]="{ url: actionsInfo[\'rightActionUrl\'] }"                  [hraLink]="actionsInfo[\'rightActionUrl\']"                  >{{ actionsInfo[\'rightActionText\'] }}</a                >              </hra-collection-card-action>            }          </hra-collection-card>        }      </div>    </div>  </section>  <section class="cite">    <div class="content-container">      <div class="content">        <div class="title">How to cite the Cell Distance Explorer</div>        <div class="description">          Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,          Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025).          <a hraFeature="citation-link" hraHyperlink hraLink="https://doi.org/10.1101/2025.09.23.678129"            >Exploring endothelial cell environments across organs in spatially resolved omics data.</a          >          BioRxiv. https://doi.org/10.1101/2025.09.23.678129        </div>        <button          hraFeature="copy-citation"          hraClickEvent          hraButtonSize="medium"          mat-flat-button          disabled="false"          class="copy-citation"          cdkCopyToClipboard="Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,          Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025).          Exploring endothelial cell environments across organs in spatially resolved omics data.          BioRxiv. https://doi.org/10.1101/2025.09.23.678129"          (cdkCopyToClipboardCopied)="openCopiedSnackbar()"        >          Copy citation          <mat-icon>content_copy</mat-icon>        </button>      </div>    </div>  </section></ng-container><hra-footer /></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <section hraFeature="visualize" class="visualize">    <div class="title">Visualize and quantify distances</div>    <div class="cards-container">      <div class="cards" hraFeature="cde-cards">        @for (card of cards(); track card.tagline) {          @let actionsInfo = card.actionsInfo ?? {};          <hra-collection-card            [tagline]="card.tagline"            [image]="card.image"            [taglineChips]="card.taglineChips ?? []"            [label]="card.label"            [supportingText]="card.supportingText"          >            @if (actionsInfo[\'leftActionText\'] && actionsInfo[\'leftActionUrl\']) {              <hra-collection-card-action>                <a                  hraFeature="left-action"                  mat-flat-button                  hraButtonSize="medium"                  [hraClickEvent]="{ url: actionsInfo[\'leftActionUrl\'] }"                  [hraLink]="actionsInfo[\'leftActionUrl\']"                >                  {{ actionsInfo[\'leftActionText\'] }}                </a>              </hra-collection-card-action>            }            @if (actionsInfo[\'rightActionText\'] && actionsInfo[\'rightActionUrl\']) {              <hra-collection-card-action alignment="right">                <a                  hraFeature="right-action"                  mat-button                  hraButtonSize="medium"                  [hraClickEvent]="{ url: actionsInfo[\'rightActionUrl\'] }"                  [hraLink]="actionsInfo[\'rightActionUrl\']"                >                  {{ actionsInfo[\'rightActionText\'] }}                </a>              </hra-collection-card-action>            }          </hra-collection-card>        }      </div>    </div>  </section>  <section class="cite">    <div class="content-container">      <div class="content">        <div class="title">How to cite the Cell Distance Explorer</div>        <div class="description" #citationText>          Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,          Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025).          <a hraFeature="citation-link" hraHyperlink href="https://doi.org/10.1101/2025.09.23.678129">            Exploring endothelial cell environments across organs in spatially resolved omics data.          </a>          BioRxiv. https://doi.org/10.1101/2025.09.23.678129        </div>        <button          hraFeature="copy-citation"          hraClickEvent          mat-flat-button          hraButtonSize="medium"          class="copy-citation"          [cdkCopyToClipboard]="collapseSpaces(citationText.textContent)"          (cdkCopyToClipboardCopied)="openCopiedSnackbar()"        >          Copy citation          <mat-icon>content_copy</mat-icon>        </button>      </div>    </div>  </section>  <hra-footer /></ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'LandingPageComponent'};
 </script>

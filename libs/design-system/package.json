@@ -342,10 +342,6 @@
       "types": "./indicators/step-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-step-indicator.mjs"
     },
-    "./info-modal": {
-      "types": "./info-modal/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-info-modal.mjs"
-    },
     "./layouts": {
       "types": "./layouts/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-layouts.mjs"
@@ -357,6 +353,18 @@
     "./menu": {
       "types": "./menu/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-menu.mjs"
+    },
+    "./modal": {
+      "types": "./modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-modal.mjs"
+    },
+    "./modal/image-modal": {
+      "types": "./modal/image-modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-modal-image-modal.mjs"
+    },
+    "./modal/info-modal": {
+      "types": "./modal/info-modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-modal-info-modal.mjs"
     },
     "./nav-header-buttons": {
       "types": "./nav-header-buttons/index.d.ts",

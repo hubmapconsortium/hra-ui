@@ -281,6 +281,7 @@
 import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
 import { AnalyticsModule } from &#x27;@hra-ui/common/analytics&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { CollectionCardActionComponent, CollectionCardComponent } from &#x27;@hra-ui/design-system/cards/collection-card&#x27;;
@@ -328,6 +329,8 @@ interface PublicationLink {
  * Fields are prepared for direct binding into the UI card component.
  */
 interface StudyCard {
+  /** Study slug used for navigation */
+  slug: string;
   /** Primary tagline shown on the card (for example, &quot;Organ, Technology&quot;) */
   tagline: string;
   /** Secondary chips shown under the tagline (e.g., dataset count, cell count) */
@@ -362,6 +365,7 @@ interface StudyCard {
     MatIconModule,
     MatMenuModule,
     PlainTooltipDirective,
+    RouterLink,
   ],
   templateUrl: &#x27;./studies-grid.component.html&#x27;,
   styleUrl: &#x27;./studies-grid.component.scss&#x27;,
@@ -428,6 +432,7 @@ export class StudiesGridComponent {
       }));
 
     return {
+      slug: study.slug,
       tagline: &#x60;${study.organName}, ${study.technology}&#x60;,
       taglineChips,
       image,

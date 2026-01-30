@@ -33,4 +33,4 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
  */
 
 export { InfoModalComponent };
-//# sourceMappingURL=hra-ui-design-system-info-modal.mjs.map
+//# sourceMappingURL=hra-ui-design-system-modal-info-modal.mjs.map
