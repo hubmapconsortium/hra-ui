@@ -19,7 +19,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { PublicationTypesData } from '../../schemas/publication-types.schema';
 import { ResearchData } from '../../schemas/research.schema';
-import { TagId, TagsData } from '../../schemas/tags.schema';
+import { TagId, TagItem, TagsData } from '../../schemas/tags.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { getImageUrl } from '../../utils/research-item-images';
 import { ResearchStore } from './state/research.store';
@@ -86,6 +86,7 @@ export class ResearchPageComponent {
     this.store.setResearchItems(this.researchItems);
     this.store.setPeopleItems(this.people);
     this.store.setPublicationTypes(this.publicationTypes);
+    this.store.setTags(this.tags);
 
     effect((onCleanup) => {
       this.sidebarStore.setSidebar(this.sidebar());
@@ -93,14 +94,15 @@ export class ResearchPageComponent {
     });
   }
 
-  /** Gets tags map for given list of tag slugs */
-  getTagsMap(slugs: TagId[]): Map<TagId, { name: string; description: string }> {
-    const allTags = new Map(this.tags().map((tag) => [tag.slug, { name: tag.name, description: tag.description }]));
-    return new Map(
-      slugs.map((slug) => {
-        const tag = allTags.get(slug) ?? { name: slug, description: '' };
-        return [slug, tag];
-      }),
-    );
+  /**
+   * Gets tag items from array of tag ids using the store's tags map
+   * @param ids tag ids
+   * @returns tag items
+   */
+  getTagItems(ids: TagId[]): TagItem[] {
+    return ids.map((id) => {
+      const tag = this.store.tagsMap().get(id);
+      return tag ? { slug: id, name: tag.name, description: tag.description } : { slug: id, name: id, description: '' };
+    });
   }
 }

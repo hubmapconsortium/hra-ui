@@ -10,7 +10,7 @@ import {
   ResearchItem,
   ResearchTypeId,
 } from '../../schemas/research.schema';
-import { TagId, TagsData } from '../../schemas/tags.schema';
+import { TagId, TagItem, TagsData } from '../../schemas/tags.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { ResearchPageComponent } from './research-page.component';
 
@@ -280,8 +280,8 @@ describe('ResearchPageComponent', () => {
       const { fixture } = await renderComponent();
       const component = fixture.componentInstance as Any;
 
-      const tagsMap = component.getTagsMap(['method-computational' as TagId]);
-      const tag = tagsMap.get('method-computational' as TagId);
+      const tagItems = component.getTagItems(['method-computational' as TagId]);
+      const tag = tagItems[0];
 
       expect(tag?.name).toBe('Computational Method');
       expect(tag?.description).toBe('Methods involving computation');
@@ -291,23 +291,23 @@ describe('ResearchPageComponent', () => {
       const { fixture } = await renderComponent();
       const component = fixture.componentInstance as Any;
 
-      const tagsMap = component.getTagsMap(['unknown-tag' as TagId]);
-      const tag = tagsMap.get('unknown-tag' as TagId);
+      const tagItems = component.getTagItems(['unknown-tag' as TagId]);
+      const tag = tagItems[0];
 
       expect(tag?.name).toBe('unknown-tag');
       expect(tag?.description).toBe('');
     });
 
-    it('should return map containing all provided tag slugs', async () => {
+    it('should return array containing all provided tag slugs', async () => {
       const { fixture } = await renderComponent();
       const component = fixture.componentInstance as Any;
 
       const slugs = ['method-computational' as TagId, 'organ-brain' as TagId];
-      const tagsMap = component.getTagsMap(slugs);
+      const tagItems = component.getTagItems(slugs);
 
-      expect(tagsMap.size).toBe(2);
-      expect(tagsMap.has('method-computational' as TagId)).toBe(true);
-      expect(tagsMap.has('organ-brain' as TagId)).toBe(true);
+      expect(tagItems.length).toBe(2);
+      expect(tagItems.some((t: TagItem) => t.slug === 'method-computational')).toBe(true);
+      expect(tagItems.some((t: TagItem) => t.slug === 'organ-brain')).toBe(true);
     });
 
     it('should handle mixed known and unknown tags', async () => {
@@ -315,11 +315,11 @@ describe('ResearchPageComponent', () => {
       const component = fixture.componentInstance as Any;
 
       const slugs = ['method-computational' as TagId, 'unknown-tag' as TagId];
-      const tagsMap = component.getTagsMap(slugs);
+      const tagItems = component.getTagItems(slugs);
 
-      expect(tagsMap.size).toBe(2);
-      expect(tagsMap.get('method-computational' as TagId)?.name).toBe('Computational Method');
-      expect(tagsMap.get('unknown-tag' as TagId)?.name).toBe('unknown-tag');
+      expect(tagItems.length).toBe(2);
+      expect(tagItems.find((t: TagItem) => t.slug === 'method-computational')?.name).toBe('Computational Method');
+      expect(tagItems.find((t: TagItem) => t.slug === 'unknown-tag')?.name).toBe('unknown-tag');
     });
   });
 

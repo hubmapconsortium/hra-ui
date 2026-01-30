@@ -4,9 +4,9 @@
   <a class="tagline-link" hraHyperlink [hraLink]="link()" [hraLinkExternal]="external()" [hraPlainTooltip]="tagline()">
     {{ tagline() }}
   </a>
-  @if (tagsList().length > 0) {
+  @if (tags().length > 0) {
     <mat-chip-set class="tags">
-      @for (tag of tagsList(); track tag.name) {
+      @for (tag of tags(); track tag.name) {
         <mat-chip [hraPlainTooltip]="tag.description">{{ tag.name }}</mat-chip>
       }
     </mat-chip-set>

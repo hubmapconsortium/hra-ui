@@ -16,10 +16,10 @@ const meta: Meta<GalleryCardComponent> = {
     date: 'March 15, 2024',
     link: 'https://humanatlas.io',
     external: true,
-    tags: new Map([
-      ['research', { name: 'Research', description: 'Items related to research activities' }],
-      ['hra', { name: 'HRA', description: 'Content about the Human Reference Atlas' }],
-    ]),
+    tags: [
+      { name: 'Research', description: 'Items related to research activities' },
+      { name: 'HRA', description: 'Content about the Human Reference Atlas' },
+    ],
   },
 };
 export default meta;

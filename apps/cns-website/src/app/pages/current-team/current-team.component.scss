@@ -42,6 +42,10 @@
               filled-focus-active-indicator-color: vars.$primary,
               filled-label-text-color: vars.$primary,
               leading-icon-color: vars.$primary,
+              filled-label-text-font: vars.$label-medium-font,
+              filled-label-text-size: vars.$label-medium-size,
+              filled-label-text-weight: vars.$label-medium-weight,
+              filled-label-text-tracking: vars.$label-medium-tracking,
             )
           );
 
@@ -50,10 +54,6 @@
               enabled-trigger-text-color: vars.$secondary,
             )
           );
-
-          mat-label {
-            font: vars.$label-medium;
-          }
         }
       }
     }
@@ -90,9 +90,11 @@
           .title {
             margin-bottom: 2.5rem;
 
-            ::ng-deep mat-divider {
-              border-top-color: vars.$outline;
-            }
+            @include mat.divider-overrides(
+              (
+                color: vars.$outline,
+              )
+            );
           }
 
           .gallery {

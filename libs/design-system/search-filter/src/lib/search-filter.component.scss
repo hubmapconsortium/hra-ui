@@ -18,15 +18,14 @@
       (
         filled-active-indicator-color: vars.$primary,
         filled-focus-active-indicator-color: vars.$primary,
-        filled-input-text-color: vars.$primary,
         filled-label-text-color: vars.$primary,
         leading-icon-color: vars.$primary,
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-weight: vars.$label-medium-weight,
+        filled-label-text-tracking: vars.$label-medium-tracking,
       )
     );
-
-    mat-label {
-      font: vars.$label-medium;
-    }
 
     .clear-search {
       margin-right: 0.875rem;
