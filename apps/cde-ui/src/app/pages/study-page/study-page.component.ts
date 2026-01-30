@@ -1,42 +1,18 @@
-import { httpResource } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import saveAs from 'file-saver';
-import { load } from 'js-yaml';
 import { MarkdownModule } from 'ngx-markdown';
-import * as z from 'zod';
 
 import { HraCommonModule } from '@hra-ui/common';
-import { injectAssetUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { TableColumn, TableComponent } from '@hra-ui/design-system/table';
-
-/** Zod schema for raw study data from YAML */
-const RawStudySchema = z.object({
-  slug: z.string(),
-  organName: z.string(),
-  technology: z.string(),
-  authors: z.string(),
-  affiliations: z.string(),
-  consortium: z.string().optional(),
-  thumbnail: z.string().optional(),
-  cellCount: z.number().optional(),
-  description: z.string().optional(),
-  datasets: z.array(z.record(z.string(), z.unknown())).optional(),
-  euiUrl: z.string().optional(),
-  publication: z.array(z.string()).optional(),
-  publications: z.array(z.string()).optional(),
-  citation: z.string().optional(),
-  citations: z.array(z.string()).optional(),
-});
-
-type RawStudy = z.infer<typeof RawStudySchema>;
+import { RawStudy, StudyDataType } from '../../schemas/study.schema';
 
 /** Publication link with optional label */
 interface PublicationLink {
@@ -103,7 +79,7 @@ const CSV_HEADERS = [
   '#level 1 cell types',
 ];
 
-/** Component for displaying a study page in the Cell Distance Explorer*/
+/** Component for displaying a study page in the Cell Distance Explorer */
 @Component({
   selector: 'cde-study-page',
   imports: [
@@ -123,8 +99,13 @@ const CSV_HEADERS = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudyPageComponent {
-  private readonly assetUrlResolver = injectAssetUrlResolver();
-  private readonly route = inject(ActivatedRoute);
+  /** Resolved gallery data from parent route */
+  readonly galleryData = input.required<StudyDataType>();
+
+  /** Study name from route param */
+  readonly studyName = input.required<string>();
+
+  private readonly router = inject(Router);
 
   /** Search query for filtering datasets */
   readonly searchQuery = signal('');
@@ -132,26 +113,11 @@ export class StudyPageComponent {
   /** Table columns configuration */
   readonly datasetColumns = DATASET_COLUMNS;
 
-  /** Study slug from route params */
-  private readonly selectedStudySlug = computed(() => this.route.snapshot.paramMap.get('studyName'));
-
-  /** Fetch and parse YAML data */
-  private readonly studiesResource = httpResource.text<StudyData[]>(
-    () => this.assetUrlResolver('assets/data/gallery/data.yaml'),
-    {
-      parse: (yamlText: string) => this.parseGalleryYaml(yamlText).map((study) => this.transformStudy(study)),
-      defaultValue: [],
-    },
-  );
-
-  /** Currently selected study data */
+  /** Currently selected study data (transformed for display) */
   readonly studyData = computed(() => {
-    const slug = this.selectedStudySlug();
-    const studies = this.studiesResource.value();
-    if (!slug || studies.length === 0) {
-      return undefined;
-    }
-    return studies.find((s) => s.slug === slug);
+    const studies = this.galleryData()?.studies ?? [];
+    const study = studies.find((s) => s.slug === this.studyName());
+    return study ? this.transformStudy(study) : undefined;
   });
 
   /** All dataset rows (unfiltered) */
@@ -179,6 +145,14 @@ export class StudyPageComponent {
     return rows.filter((row) => row.slug.toLowerCase().includes(query));
   });
 
+  /** Navigate to dataset visualization */
+  onExploreDataset(datasetId: string): void {
+    const studySlug = this.studyName();
+    if (studySlug && datasetId) {
+      this.router.navigate(['/gallery', studySlug, datasetId]);
+    }
+  }
+
   /** Download datasets as CSV */
   onDownloadCSVButtonClicked(): void {
     const rows = this.datasetRows();
@@ -191,6 +165,7 @@ export class StudyPageComponent {
     saveAs(blob, `${this.studyData()?.slug ?? 'datasets'}.csv`);
   }
 
+  /** Converts dataset rows to CSV format */
   private convertToCSV(rows: DatasetRow[]): string {
     const dataRows = rows.map((row) =>
       [
@@ -205,19 +180,7 @@ export class StudyPageComponent {
     return [CSV_HEADERS.join(','), ...dataRows].join('\n');
   }
 
-  private parseGalleryYaml(yamlText: string): RawStudy[] {
-    try {
-      const parsedYaml = load(yamlText) as { studies?: unknown[] };
-      const studies = Array.isArray(parsedYaml.studies) ? parsedYaml.studies : [];
-      return studies.map((study) => RawStudySchema.parse(study));
-    } catch {
-      return [];
-    }
-  }
-
-  /**
-   * Transforms raw study data into StudyData format for display
-   */
+  /** Transforms raw study data into StudyData format for display */
   private transformStudy(study: RawStudy): StudyData {
     const datasetCount = study.datasets?.length ?? 0;
     const taglineChips = [`${datasetCount} dataset${datasetCount !== 1 ? 's' : ''}`];

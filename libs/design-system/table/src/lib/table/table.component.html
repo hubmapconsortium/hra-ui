@@ -200,7 +200,14 @@
     @let title = titleValue && titleValue !== '' ? `${titleValue}` : '';
     <div class="button-icon-cell">
       @if (column.type.buttonLabel) {
-        <button hraClickEvent mat-flat-button color="primary" hraFeature="explore-button" class="explore-button">
+        <button
+          hraClickEvent
+          mat-flat-button
+          color="primary"
+          hraFeature="explore-button"
+          class="explore-button"
+          (click)="routeClick(title)"
+        >
           {{ column.type.buttonLabel }}
         </button>
       }
