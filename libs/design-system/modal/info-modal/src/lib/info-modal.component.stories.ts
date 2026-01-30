@@ -5,7 +5,7 @@ import { InfoModalComponent } from './info-modal.component';
 
 const meta: Meta = {
   component: InfoModalComponent,
-  title: 'InfoModalComponent',
+  title: 'Design System/Modal/InfoModalComponent',
   parameters: {
     design: {
       type: 'figma',

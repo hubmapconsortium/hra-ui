@@ -2,6 +2,7 @@ import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterLink } from '@angular/router';
 import { AnalyticsModule } from '@hra-ui/common/analytics';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CollectionCardActionComponent, CollectionCardComponent } from '@hra-ui/design-system/cards/collection-card';
@@ -49,6 +50,8 @@ interface PublicationLink {
  * Fields are prepared for direct binding into the UI card component.
  */
 interface StudyCard {
+  /** Study slug used for navigation */
+  slug: string;
   /** Primary tagline shown on the card (for example, "Organ, Technology") */
   tagline: string;
   /** Secondary chips shown under the tagline (e.g., dataset count, cell count) */
@@ -83,6 +86,7 @@ interface StudyCard {
     MatIconModule,
     MatMenuModule,
     PlainTooltipDirective,
+    RouterLink,
   ],
   templateUrl: './studies-grid.component.html',
   styleUrl: './studies-grid.component.scss',
@@ -149,6 +153,7 @@ export class StudiesGridComponent {
       }));
 
     return {
+      slug: study.slug,
       tagline: `${study.organName}, ${study.technology}`,
       taglineChips,
       image,

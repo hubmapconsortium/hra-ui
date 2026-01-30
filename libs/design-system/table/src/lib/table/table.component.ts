@@ -1,6 +1,18 @@
 import { SelectionModel } from '@angular/cdk/collections';
+import { DOCUMENT } from '@angular/common';
 import { httpResource } from '@angular/common/http';
-import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
+import {
+  Component,
+  computed,
+  Directive,
+  effect,
+  ErrorHandler,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -10,6 +22,7 @@ import { injectAssetUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
+import { ImageModalComponent } from '@hra-ui/design-system/modal/image-modal';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -18,6 +31,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
 import {
+  ButtonIconColumnType,
   IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
@@ -119,6 +133,22 @@ export class MenuButtonRowElementDirective {
   }
 }
 
+/** Directive for typing the context of ButtonIcon Row Element */
+@Directive({
+  selector: 'ng-template[hraButtonIconRowElement]',
+})
+export class ButtonIconRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of ButtonIcon Row Element */
+  static ngTemplateContextGuard(
+    _dir: ButtonIconRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext<string, ButtonIconColumnType> {
+    return true;
+  }
+}
+
 /** Directive for typing the context of Numeric Row Element */
 @Directive({
   selector: 'ng-template[hraNumericRowElement]',
@@ -142,6 +172,7 @@ export class NumericRowElementDirective {
   selector: 'hra-table',
   imports: [
     HraCommonModule,
+    ImageModalComponent,
     MarkdownModule,
     MatMenuModule,
     MatSortModule,
@@ -153,6 +184,7 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     MenuButtonRowElementDirective,
+    ButtonIconRowElementDirective,
     NumericRowElementDirective,
     PlainTooltipDirective,
     IconsModule,
@@ -200,6 +232,18 @@ export class TableComponent<T = TableRow> {
   /** Emits download object id on download button hover */
   readonly downloadHovered = output<string>();
 
+  /** Modal state for image preview */
+  readonly showImageModal = signal<boolean>(false);
+
+  /** Image modal data */
+  readonly modalImageUrl = signal<string>('');
+
+  /** Image modal title */
+  readonly modalImageTitle = signal<string>('');
+
+  /** Image modal alt text */
+  readonly modalImageAlt = signal<string>('');
+
   /** Scrollbar ref */
   readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
 
@@ -211,6 +255,9 @@ export class TableComponent<T = TableRow> {
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
+
+  /** Document reference for managing body overflow */
+  private readonly document = inject(DOCUMENT);
 
   /** Resolver for asset urls */
   private readonly resolveAssetUrl = injectAssetUrlResolver();
@@ -366,5 +413,30 @@ export class TableComponent<T = TableRow> {
   /** Scrolls to top of the table */
   scrollToTop(): void {
     this.scrollbar().scrollTo({ top: 0, duration: 0 });
+  }
+
+  /**
+   * Opens the image preview modal
+   * @param imageUrl URL of the image to preview
+   * @param title Title for the modal
+   * @param alt Alt text for the image
+   */
+  openImageModal(imageUrl: string, title = '', alt = ''): void {
+    this.modalImageUrl.set(imageUrl);
+    this.modalImageTitle.set(title);
+    this.modalImageAlt.set(alt);
+    this.showImageModal.set(true);
+    this.document.body.style.overflow = 'hidden';
+  }
+
+  /**
+   * Closes the image preview modal
+   */
+  closeImageModal(): void {
+    this.showImageModal.set(false);
+    this.modalImageUrl.set('');
+    this.modalImageTitle.set('');
+    this.modalImageAlt.set('');
+    this.document.body.style.overflow = '';
   }
 }
