@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { provideMarkdown } from 'ngx-markdown';
@@ -13,7 +14,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     const result = await render(HomeComponent, {
-      providers: [provideHttpClient(), provideMarkdown()],
+      providers: [provideHttpClient(), provideMarkdown(), provideIcons()],
     });
     component = result.fixture.componentInstance;
   });

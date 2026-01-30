@@ -1,7 +1,8 @@
 import { InjectionToken } from '@angular/core';
-import { ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { assetUrl } from '@hra-ui/common/url';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { VisualCard } from './components/visual-card/visual-card.component';
 import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
@@ -63,6 +64,20 @@ export const ROUTES: Routes = [
     },
   },
   {
+    path: 'gallery',
+    component: ContentPageComponent,
+    data: {
+      crumbs: [
+        { name: 'Apps', route: 'https://apps.humanatlas.io' },
+        { name: 'Cell Distance Explorer', route: '/' },
+        { name: 'Gallery' },
+      ] satisfies BreadcrumbItem[],
+    },
+    resolve: {
+      data: createYamlSpecResolver('assets/content/gallery/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'example/:index',
     component: VisualizationPageComponent,
     data: {
@@ -117,6 +132,7 @@ export const ROUTES: Routes = [
       data: visualizationDataResolver(),
     },
   },
+
   {
     path: '**',
     redirectTo: '/',

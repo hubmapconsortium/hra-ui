@@ -1,5 +1,8 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { NgxsModule, Store } from '@ngxs/store';
 import { render, screen, waitFor } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
@@ -94,13 +97,16 @@ describe('NavbarComponent', () => {
     const result = await render(NavbarComponent, {
       imports: [NgxsModule.forRoot([])],
       providers: [
+        provideIcons(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
         { provide: Store, useValue: store },
         { provide: Router, useValue: router },
         { provide: MatDialog, useValue: dialog },
         { provide: ConfigService, useValue: configService },
         { provide: SheetService, useValue: {} },
       ],
-      componentInputs: { cache: true },
+      inputs: { cache: true },
     });
     return { ...result, user };
   }
