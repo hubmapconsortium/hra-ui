@@ -7,11 +7,11 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 0.5rem;
+  gap: 1rem;
 
   .search-field {
     flex: 1;
-    min-width: 10rem;
+    min-width: 11rem;
     max-width: 36.25rem;
 
     @include mat.form-field-overrides(
@@ -42,6 +42,6 @@
   .results-counter {
     min-width: 5.25rem;
     max-width: 7.5rem;
-    white-space: nowrap;
+    // white-space: nowrap;
   }
 }

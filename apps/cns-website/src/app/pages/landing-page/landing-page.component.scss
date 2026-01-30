@@ -41,6 +41,7 @@
     @include mat.button-toggle-overrides(
       (
         background-color: vars.$on-primary,
+        text-color: vars.$secondary,
       )
     );
   }

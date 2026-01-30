@@ -1,7 +1,16 @@
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
 :host {
   display: block;
 
   .action {
     width: fit-content;
   }
+
+  @include mat.divider-overrides(
+    (
+      color: vars.$outline,
+    )
+  );
 }

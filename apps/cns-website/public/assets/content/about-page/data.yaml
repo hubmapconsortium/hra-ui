@@ -4,7 +4,7 @@ subtitle: Celebrating 20+ years of data visualization research at Indiana Univer
 breadcrumbs:
   - name: Home
     route: /
-  - name: About
+  - name: About the Cyberinfrastructure for Network Science Center
 content:
   - component: PageSection
     tagline: Our mission
@@ -67,23 +67,22 @@ content:
     content:
       - component: Markdown
         data: |
-          Primary contact: Traci Smith, Center Assistant
-
+          Contact: Traci Smith, Center Assistant
+          <br>
           E-mail: cnscntr@iu.edu
-
+          <br>
           Phone: 812-856-4402
-
-
-
+          <br><br>
           Mailing address:
+          <br>
           Cyberinfrastructure for Network Science (CNS) Center
-
+          <br>
           Department of Intelligent Systems Engineering
-
+          <br>
           Luddy School of Informatics, Computing, and Engineering
-
+          <br>
           Indiana University at Bloomington
-
+          <br>
           700 N. Woodlawn Ave. Luddy Hall, Suite 4018
-
+          <br>
           Bloomington, IN 47408
