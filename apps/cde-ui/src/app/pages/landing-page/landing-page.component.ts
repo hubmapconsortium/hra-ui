@@ -37,8 +37,18 @@ export class LandingPageComponent {
   /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
 
-  /** Trigerred when user clicks on the Copy button */
-  openCopiedSnackbar() {
+  /** Triggered when user clicks on the Copy button */
+  openCopiedSnackbar(): void {
     this.snackbar.open('Copied to clipboard', '', false, 'start', { duration: 5000 });
+  }
+
+  /**
+   * Collapse multiple spaces into a single space
+   *
+   * @param text Text to collapse consecutive spaces in
+   * @returns Collapsed text
+   */
+  collapseSpaces(text: string): string {
+    return text.replace(/\s+/g, ' ');
   }
 }
