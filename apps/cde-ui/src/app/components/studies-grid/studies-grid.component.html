@@ -11,9 +11,15 @@
     >
       <hra-collection-card-action>
         <div class="left-actions">
-          <button hraFeature="view-datasets" hraClickEvent mat-flat-button hraButtonSize="medium">
+          <a
+            hraFeature="view-datasets"
+            hraClickEvent
+            mat-flat-button
+            hraButtonSize="medium"
+            [routerLink]="['/gallery', study.slug]"
+          >
             {{ study.viewButtonText }}
-          </button>
+          </a>
           @if (study.isHraRegistered) {
             <button
               hraFeature="more-options"
