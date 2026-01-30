@@ -16,34 +16,55 @@ import { RawStudy, StudyDataType } from '../../schemas/study.schema';
 
 /** Publication link with optional label */
 interface PublicationLink {
+  /** Publication URL */
   url: string;
+  /** Optional label for the publication */
   label?: string;
 }
 
 /** Parsed study data for display */
 interface StudyData {
+  /** Study slug */
   slug: string;
+  /** Study tagline */
   tagline: string;
+  /** Study tagline chips */
   taglineChips: string[];
+  /** Study image URL */
   image: string;
+  /** Study label (authors) */
   label: string;
+  /** Study supporting text (affiliations) */
   supportingText: string;
+  /** Study tags */
   tags: { icon: string; text: string }[];
+  /** Study publications */
   publications: PublicationLink[];
+  /** Whether study is HRA registered */
   isHraRegistered: boolean;
+  /** EUI URL if registered */
   euiUrl?: string;
+  /** Study description */
   description?: string;
+  /** Study datasets */
   datasets: Record<string, unknown>[];
 }
 
 /** Dataset row type for table display */
 interface DatasetRow {
+  /** Dataset slug */
   slug: string;
+  /** Dataset thumbnail URL */
   thumbnail: string;
+  /** Number of cells in dataset */
   cellCount: number;
+  /** Number of original cell types */
   originalCellTypesCount: number;
+  /** Number of level 3 cell types */
   level3CellTypesCount: number;
+  /** Number of level 2 cell types */
   level2CellTypesCount: number;
+  /** Number of level 1 cell types */
   level1CellTypesCount: number;
 }
 
@@ -105,6 +126,7 @@ export class StudyPageComponent {
   /** Study name from route param */
   readonly studyName = input.required<string>();
 
+  /** Router instance for navigation */
   private readonly router = inject(Router);
 
   /** Search query for filtering datasets */
