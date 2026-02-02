@@ -1,6 +1,15 @@
 @use 'vars';
 @use 'utils';
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 :host {
   background-color: vars.$secondary-container;
   display: block;
@@ -28,6 +37,8 @@
 
       hra-collection-card {
         max-width: 24.1875rem;
+        animation: fadeIn 0.8s ease-in-out;
+        opacity: 1;
 
         .label {
           @include utils.use-font(label, large);
