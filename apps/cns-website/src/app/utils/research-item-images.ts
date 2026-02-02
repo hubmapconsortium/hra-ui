@@ -10,7 +10,7 @@ export function getImageUrl(item: ResearchItem): string {
     return item.image;
   }
   const url = `assets/placeholder-images/placeholder-${item.category}`;
-  if (item.category === 'publication') {
+  if (item.category === 'publication' || item.category === 'event') {
     return `${url}-${item.type}.png`;
   }
   return `${url}.png`;
