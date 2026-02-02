@@ -13,6 +13,7 @@ import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { provideBrandLogos } from '@hra-ui/design-system/brand/logo';
 import { ButtonDef } from '@hra-ui/design-system/buttons/button';
+import { provideSocials } from '@hra-ui/design-system/buttons/social-media-button';
 import { TextHyperlinkDef } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { ActionCardDef } from '@hra-ui/design-system/cards/action-card';
 import { ProfileCardDef } from '@hra-ui/design-system/cards/profile-card';
@@ -28,6 +29,7 @@ import { IconDef } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
+import { CNS_SOCIALS } from './components/static-data/parsed';
 import { handleNavigationError } from './utils/navigation-error-handler';
 
 /** Application configuration */
@@ -82,6 +84,7 @@ export const appConfig: ApplicationConfig = {
       withNavigationErrorHandler(handleNavigationError),
     ),
     provideRouterExt(),
+    provideSocials(CNS_SOCIALS),
     provideZonelessChangeDetection(),
   ],
 };
