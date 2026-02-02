@@ -5,9 +5,9 @@ import { HraCommonModule } from '@hra-ui/common';
 import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
 import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { CNS_SOCIAL_IDS } from '../static-data/parsed';
 import { FundingComponent } from './funding/funding.component';
 import { FUNDER_IDS } from './static-data/parsed';
 
@@ -34,7 +34,7 @@ export class FooterComponent {
   /** List of funders to show */
   readonly funders = input(FUNDER_IDS);
   /** List of social media link to show */
-  readonly socials = input(SOCIAL_IDS);
+  readonly socials = input(CNS_SOCIAL_IDS);
   /** inject Privacy Preference Service */
   private readonly privacyPreferences = inject(PrivacyPreferencesService);
 

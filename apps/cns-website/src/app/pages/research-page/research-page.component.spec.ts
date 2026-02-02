@@ -3,14 +3,8 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { PeopleData, PeopleId } from '../../schemas/people.schema';
-import { PublicationTypesData } from '../../schemas/publication-types.schema';
-import {
-  ResearchCategoryId,
-  ResearchData,
-  ResearchId,
-  ResearchItem,
-  ResearchTypeId,
-} from '../../schemas/research.schema';
+import { ResearchTypeId, ResearchTypesData } from '../../schemas/research-type.schema';
+import { ResearchCategoryId, ResearchData, ResearchId, ResearchItem } from '../../schemas/research.schema';
 import { TagId, TagsData } from '../../schemas/tags.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { ResearchPageComponent } from './research-page.component';
@@ -41,9 +35,15 @@ const mockPeople: PeopleData = [
   },
 ];
 
-const mockPublicationTypes: PublicationTypesData = [
+const mockPublicationTypes: ResearchTypesData = [
   { label: 'Journal Article', value: 'journal-article' as ResearchTypeId },
   { label: 'Conference Paper', value: 'conference-paper' as ResearchTypeId },
+];
+
+const mockEventTypes: ResearchTypesData = [
+  { label: 'Workshop', value: 'workshop' as ResearchTypeId },
+  { label: 'Seminar', value: 'seminar' as ResearchTypeId },
+  { label: 'Conference', value: 'conference' as ResearchTypeId },
 ];
 
 const mockTags: TagsData = [
@@ -55,8 +55,10 @@ describe('ResearchPageComponent', () => {
   const renderComponent = async (overrides?: {
     news?: ResearchData;
     publications?: ResearchData;
+    events?: ResearchData;
     people?: PeopleData;
-    publicationTypes?: PublicationTypesData;
+    publicationTypes?: ResearchTypesData;
+    eventTypes?: ResearchTypesData;
     tags?: TagsData;
   }) => {
     const news = overrides?.news ?? [
@@ -85,14 +87,36 @@ describe('ResearchPageComponent', () => {
       }),
     ];
 
+    const events = overrides?.events ?? [
+      mockResearchItem({
+        slug: 'event-1' as ResearchId,
+        category: 'events' as ResearchCategoryId,
+        type: 'workshop' as ResearchTypeId,
+        title: 'Network Science Workshop',
+        dateStart: new Date('2024-03-15'),
+        dateEnd: new Date('2024-03-16'),
+        description: 'A hands-on workshop on network science techniques.',
+      }),
+      mockResearchItem({
+        slug: 'event-2' as ResearchId,
+        category: 'events' as ResearchCategoryId,
+        type: 'seminar' as ResearchTypeId,
+        title: 'Advanced Computational Methods Seminar',
+        dateStart: new Date('2024-02-20'),
+        dateEnd: new Date('2024-02-20'),
+      }),
+    ];
+
     return render(ResearchPageComponent, {
       providers: [provideMarkdown(), provideHttpClient(), provideHttpClientTesting(), SidebarStore],
       imports: [MatIconTestingModule],
       componentInputs: {
         news,
         publications,
+        events,
         people: overrides?.people ?? mockPeople,
         publicationTypes: overrides?.publicationTypes ?? mockPublicationTypes,
+        eventTypes: overrides?.eventTypes ?? mockEventTypes,
         tags: overrides?.tags ?? mockTags,
       },
     });
@@ -180,7 +204,7 @@ describe('ResearchPageComponent', () => {
   });
 
   it('should handle empty data gracefully', async () => {
-    await renderComponent({ news: [], publications: [] });
+    await renderComponent({ news: [], publications: [], events: [] });
     expect(screen.getByText((content) => content.includes('0') && content.includes('/'))).toBeInTheDocument();
   });
 });

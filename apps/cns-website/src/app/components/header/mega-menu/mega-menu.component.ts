@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { CNS_SOCIAL_IDS } from '@hra-ui/design-system/buttons/social-media-button';
+import { CNS_SOCIAL_IDS } from '../../static-data/parsed';
 import { Menu } from '../types/menus.schema';
 
 /**

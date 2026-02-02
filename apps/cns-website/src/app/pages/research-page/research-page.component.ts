@@ -6,6 +6,7 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
+import { TagItem } from '@hra-ui/design-system/cards/gallery-card';
 import { ListViewComponent } from '@hra-ui/design-system/content-templates/list-view';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { FilterMenuComponent } from '@hra-ui/design-system/filter-menu';
@@ -17,13 +18,12 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
-import { PublicationTypesData } from '../../schemas/publication-types.schema';
+import { ResearchTypesData } from '../../schemas/research-type.schema';
 import { ResearchData } from '../../schemas/research.schema';
 import { TagId, TagsData } from '../../schemas/tags.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { getImageUrl } from '../../utils/research-item-images';
 import { ResearchStore } from './state/research.store';
-import { TagItem } from '@hra-ui/design-system/cards/gallery-card';
 
 /**
  * Research page with filtering, sorting, and dual view modes.
@@ -61,10 +61,15 @@ export class ResearchPageComponent {
   readonly news = input.required<ResearchData>();
   /** Publications research data */
   readonly publications = input.required<ResearchData>();
+  /** Events research data */
+  readonly events = input.required<ResearchData>();
   /** People data for filtering and display */
   readonly people = input.required<PeopleData>();
   /** Publication type definitions */
-  readonly publicationTypes = input.required<PublicationTypesData>();
+  readonly publicationTypes = input.required<ResearchTypesData>();
+  /** Event type definitions */
+  readonly eventTypes = input.required<ResearchTypesData>();
+
   /** Tags data from resolver */
   readonly tags = input.required<TagsData>();
 
@@ -76,8 +81,8 @@ export class ResearchPageComponent {
   /** Sidebar component reference */
   private readonly sidebar = viewChild.required(MatSidenav);
 
-  /** Combined research items from news and publications */
-  private readonly researchItems = computed(() => [...this.news(), ...this.publications()]);
+  /** Combined research items from news, publications, and events */
+  private readonly researchItems = computed(() => [...this.news(), ...this.publications(), ...this.events()]);
 
   /** Utility to get image URL for a research item */
   protected readonly getImageUrl = getImageUrl;
@@ -87,6 +92,7 @@ export class ResearchPageComponent {
     this.store.setResearchItems(this.researchItems);
     this.store.setPeopleItems(this.people);
     this.store.setPublicationTypes(this.publicationTypes);
+    this.store.setEventTypes(this.eventTypes);
     this.store.setTags(this.tags);
 
     effect((onCleanup) => {

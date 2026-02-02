@@ -1,0 +1,32 @@
+<ng-container hraFeature="info-modal">
+  <h2 class="header">
+    <mat-icon class="info"> info </mat-icon>
+    <span class="card-title">{{ title() }}</span>
+    <div class="filler"></div>
+    <button mat-icon-button class="close" hraFeature="close" hraClickEvent (click)="close.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </h2>
+
+  <div class="table-container">
+    <table mat-table aria-label="info table" [dataSource]="data()">
+      <!-- Label Column -->
+      <ng-container matColumnDef="label">
+        <th *matHeaderCellDef class="sr-only" mat-header-cell>Item Label</th>
+        <td *matCellDef="let element" class="label" mat-cell>
+          {{ element.label }}
+        </td>
+      </ng-container>
+
+      <!-- Value Column -->
+      <ng-container matColumnDef="value">
+        <th *matHeaderCellDef class="sr-only" mat-header-cell>Item Value</th>
+        <td *matCellDef="let element" class="value" mat-cell>
+          {{ element.value }}
+        </td>
+      </ng-container>
+
+      <tr *matRowDef="let row; columns: ['label', 'value']" mat-row></tr>
+    </table>
+  </div>
+</ng-container>

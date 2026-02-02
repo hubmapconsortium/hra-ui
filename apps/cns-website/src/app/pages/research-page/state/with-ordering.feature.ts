@@ -9,8 +9,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { PublicationTypeItem } from '../../../schemas/publication-types.schema';
-import { ResearchItem, ResearchTypeId } from '../../../schemas/research.schema';
+import { ResearchTypeId, ResearchTypeItem } from '../../../schemas/research-type.schema';
+import { ResearchItem } from '../../../schemas/research.schema';
 import { FilterProps } from './with-filters.feature';
 import { ResearchState } from './with-research.feature';
 
@@ -94,7 +94,7 @@ function createGroupByKeyFn(groupBy: GroupBy | null): (item: ResearchItem) => Gr
  * Creates a mapping of group keys to display labels.
  * @param pubTypes Publication type definitions
  */
-function createKeyLabelsMap(pubTypes: PublicationTypeItem[]): Record<GroupByKey, string> {
+function createKeyLabelsMap(pubTypes: ResearchTypeItem[]): Record<GroupByKey, string> {
   const map: Record<GroupByKey, string> = {
     '': '',
     unknown: 'Unknown',

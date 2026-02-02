@@ -1,8 +1,6 @@
 import {
   CATEGORY_OPTIONS,
   CategoryOption,
-  EVENT_OPTIONS,
-  EventOption,
   FUNDING_OPTIONS,
   FundingOption,
   YEAR_OPTIONS,
@@ -80,8 +78,13 @@ export function parseCategories(value: unknown): CategoryOption[] | null {
  * Parses event query parameter into event options.
  * @param value Raw query value
  */
-export function parseEvents(value: unknown): EventOption[] | null {
-  return parseOptions(EVENT_OPTIONS, value);
+export function parseEventIds(value: unknown): string[] | null {
+  if (!value) {
+    return [];
+  }
+
+  const strValue = String(value).toLowerCase().trim();
+  return strValue.split(',').map((part) => part.trim());
 }
 
 /**
@@ -162,8 +165,8 @@ export function serializeCategories(options: CategoryOption[] | null): string | 
  * Serializes selected events to query parameter format.
  * @param options Selected events
  */
-export function serializeEvents(options: EventOption[] | null): string | null {
-  return serializeOptions(options);
+export function serializeEventIds(ids: string[] | null): string | null {
+  return ids?.join(',') || null;
 }
 
 /**

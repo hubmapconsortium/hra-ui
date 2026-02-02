@@ -3,7 +3,7 @@ import { signalStore, withHooks } from '@ngrx/signals';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
 import {
   parseCategories,
-  parseEvents,
+  parseEventIds,
   parseFunding,
   parseGroupBy,
   parsePeopleIds,
@@ -13,7 +13,7 @@ import {
   parseView,
   parseYears,
   serializeCategories,
-  serializeEvents,
+  serializeEventIds,
   serializeFunding,
   serializePeopleIds,
   serializePublicationIds,
@@ -51,7 +51,7 @@ export const ResearchStore = signalStore(
       /** Writable signal slices for linkedQueryParam compatibility */
       const view = createWritableStateSlice(store.view, store.setView);
       const categories = createWritableStateSlice(store.categories, store.setCategories);
-      const events = createWritableStateSlice(store.events, store.setEvents);
+      const events = createWritableStateSlice(store.eventIds, store.setEventIds);
       const funding = createWritableStateSlice(store.funding, store.setFunding);
       const publications = createWritableStateSlice(store.publicationIds, store.setPublicationIds);
       const people = createWritableStateSlice(store.peopleIds, store.setPeopleIds);
@@ -69,8 +69,8 @@ export const ResearchStore = signalStore(
       });
       linkedQueryParam('event', {
         source: events,
-        parse: parseEvents,
-        stringify: serializeEvents,
+        parse: parseEventIds,
+        stringify: serializeEventIds,
         ...commonOptions,
       });
       linkedQueryParam('funding', {

@@ -1,8 +1,8 @@
 import { computed } from '@angular/core';
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
 import { PeopleItem } from '../../../schemas/people.schema';
-import { PublicationTypeItem } from '../../../schemas/publication-types.schema';
-import { ResearchItem, ResearchTypeId } from '../../../schemas/research.schema';
+import { ResearchTypeId, ResearchTypeItem } from '../../../schemas/research-type.schema';
+import { ResearchItem } from '../../../schemas/research.schema';
 import { TagItem } from '../../../schemas/tags.schema';
 
 /** Core research page state containing all research data */
@@ -12,7 +12,9 @@ export interface ResearchState {
   /** People items associated with research */
   peopleItems: PeopleItem[];
   /** Publication type definitions */
-  pubTypes: PublicationTypeItem[];
+  pubTypes: ResearchTypeItem[];
+  /** Event type definitions */
+  eventTypes: ResearchTypeItem[];
   /** Tag items */
   tags: TagItem[];
 }
@@ -23,6 +25,7 @@ const initialState: ResearchState = {
   peopleItems: [],
   pubTypes: [],
   tags: [],
+  eventTypes: [],
 };
 
 /**
@@ -55,9 +58,10 @@ export function withResearch() {
       /** Sets people items */
       setPeopleItems: signalMethod((peopleItems: PeopleItem[]) => patchState(store, { peopleItems })),
       /** Sets publication types */
-      setPublicationTypes: signalMethod((pubTypes: PublicationTypeItem[]) =>
+      setPublicationTypes: signalMethod((pubTypes: ResearchTypeItem[]) =>
         patchState(store, { pubTypes: [...pubTypes, { label: 'Unknown', value: 'unknown' as ResearchTypeId }] }),
       ),
+      setEventTypes: signalMethod((eventTypes: ResearchTypeItem[]) => patchState(store, { eventTypes })),
       /** Sets tag items */
       setTags: signalMethod((tags: TagItem[]) => patchState(store, { tags })),
     })),
