@@ -58,6 +58,10 @@
       }
     }
 
+    ng-scrollbar {
+      --_scrollbar-content-width: 100%;
+    }
+
     .content {
       display: flex;
       flex-direction: column;

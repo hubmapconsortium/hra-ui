@@ -4,7 +4,8 @@ subtitle: 'Amatria is a living sculpture that responds to her environment throug
 breadcrumbs:
   - name: Home
     route: /
-  - name: Amatria
+  - name: |
+      Amatria: Sentient Architecture
 content:
   - component: Image
     src: assets/content/amatria/images/amatria-1.png
@@ -33,8 +34,8 @@ content:
           <br><br>
           - Birthdate: April 11, 2018
           - Resources: [Amatria Pictionary](https://cns.iu.edu/docs/handouts/Amatria_Pictionary_hi.pdf) | [Living Architecture Systems Group: Amatria](https://livingarchitecturesystems.com/project/amatria/)
-          - Matterport images: [360 degrees, 3D View of Luddy Hall 4111, Amatria's birth place](https://my.matterport.com/models/eDirQ2tqFMo?section=media&mediasection=showcase)
-          - YouTube videos: [Installation](https://youtu.be/6sMbNrPsAM0) | [DEAF 2012](https://www.youtube.com/watch?v=DGHEBdkC8AA)
+          - Pictures: [360 degrees, 3D View of Luddy Hall 4111, Amatria's birth place](https://my.matterport.com/models/eDirQ2tqFMo?section=media&mediasection=showcase)
+          - Videos: [Installation](https://youtu.be/6sMbNrPsAM0) | [DEAF 2012](https://www.youtube.com/watch?v=DGHEBdkC8AA)
           - Publications: Carolyn Beans (2018) [Science and Culture: Sentient architecture promises insight into our evolving relationship with AI](https://doi.org/10.1073/pnas.1809390115). PNAS. 115 (30) 7638-7640
 
   - component: PageSection

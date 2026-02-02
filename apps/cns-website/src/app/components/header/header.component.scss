@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'utils';
 @use 'vars';
 
@@ -46,14 +47,43 @@ $z-index: 900;
     padding: 0 0.5rem;
   }
 
+  .item-label {
+    @include mat.button-overrides(
+      (
+        text-label-text-font: vars.$label-medium-font,
+        text-label-text-size: vars.$label-medium-size,
+        text-label-text-weight: vars.$label-medium-weight,
+        text-label-text-tracking: vars.$label-medium-tracking,
+        text-horizontal-padding: 0.75rem,
+      )
+    );
+  }
+
   .navigation-menu {
+    @include mat.button-toggle-overrides(
+      (
+        label-text-font: vars.$label-medium-font,
+        label-text-size: vars.$label-medium-size,
+        label-text-weight: vars.$label-medium-weight,
+        label-text-tracking: vars.$label-medium-tracking,
+      )
+    );
+
     display: flex;
     align-items: center;
     height: 2.5rem;
 
-    ::ng-deep {
-      mat-button-toggle {
-        height: 100%;
+    ::ng-deep .mat-button-toggle-label-content {
+      padding: 0 0.75rem !important;
+
+      .text {
+        font: unset !important;
+      }
+
+      mat-icon {
+        height: 1.25rem;
+        width: 1.25rem;
+        font-size: 1.25rem;
       }
     }
   }

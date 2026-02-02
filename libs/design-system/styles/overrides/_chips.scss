@@ -8,6 +8,7 @@
     @include mat.chips-overrides(
       (
         elevated-selected-container-color: vars.$secondary,
+        elevated-container-color: vars.$surface-container-low,
         label-text-font: vars.$label-medium-font,
         label-text-line-height: vars.$label-medium-line-height,
         label-text-size: vars.$label-medium-size,
@@ -15,6 +16,7 @@
         label-text-weight: vars.$label-medium-weight,
         hover-state-layer-opacity: 0,
         focus-state-layer-opacity: 0,
+        outline-color: vars.$outline-variant,
       )
     );
 
@@ -59,6 +61,7 @@
         label-text-size: vars.$label-small-size,
         label-text-tracking: vars.$label-small-tracking,
         label-text-weight: vars.$label-small-weight,
+        container-height: 1.75rem,
       )
     );
   }

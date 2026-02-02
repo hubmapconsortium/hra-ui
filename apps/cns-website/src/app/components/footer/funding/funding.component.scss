@@ -4,18 +4,19 @@
   display: flex;
   flex-direction: column;
   color: vars.$primary;
+  width: 16rem;
 
   .title {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font: vars.$label-medium;
     letter-spacing: vars.$label-medium-tracking;
   }
 
   .funders {
     display: flex;
-    max-width: 244px;
+    max-width: 15.25rem;
     flex-wrap: wrap;
-    gap: 11px;
+    justify-content: space-between;
   }
 
   .funder {
