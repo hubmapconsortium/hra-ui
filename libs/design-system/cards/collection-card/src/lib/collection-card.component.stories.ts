@@ -35,7 +35,7 @@ export const CollectionCard: Story = {
   args: {
     tagline: 'Tagline',
     icons: ['misc:data'],
-    chips: ['Tag 1', 'Tag 2'],
+    taglineChips: ['Tag 1', 'Tag 2'],
   },
   render: (args) => ({
     props: args,

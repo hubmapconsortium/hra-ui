@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { Store } from '@ngxs/store';
 import { render, screen, waitFor, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
@@ -62,6 +63,7 @@ describe('SearchComponent', () => {
     return render(SearchComponent, {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
+        provideIcons(),
         { provide: Store, useValue: mockStore },
         { provide: Router, useValue: { events: routerEvents$ } },
       ],

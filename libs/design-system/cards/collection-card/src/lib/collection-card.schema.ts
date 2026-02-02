@@ -9,10 +9,13 @@ export type CollectionCard = z.infer<typeof CollectionCardSchema>;
 export const CollectionCardSchema = ContentTemplateSchema.extend({
   component: z.literal('CollectionCard'),
   tagline: z.string(),
+  taglineChips: z.array(z.string()).optional(),
   image: z.string().optional(),
   icons: IconListSchema.optional(),
-  chips: z.array(z.string()).optional(),
-  content: ProjectedContentTemplateSchema.optional(),
+  tags: z.array(z.record(z.string(), z.string())).optional(),
+  label: z.string().optional(),
+  supportingText: z.string().optional(),
+  actionsInfo: z.record(z.string(), z.string()).optional(),
   actionsLeft: ProjectedContentTemplateSchema.optional(),
   actionsRight: ProjectedContentTemplateSchema.optional(),
 }).meta({ id: 'CollectionCard' });

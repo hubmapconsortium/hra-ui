@@ -41,10 +41,16 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Breadcrumbs data (computed from above signal). */
   protected readonly crumbs = computed(() => {
-    if (this.data()['data']) {
-      return this.data()['crumbs'].concat([{ name: this.data()['data'].metadata.sourceFileName }]);
+    let crumbs = [...(this.data()['crumbs'] ?? [])];
+
+    if (this.data()['studyCrumb']) {
+      crumbs = crumbs.concat([{ name: this.data()['studyCrumb'] }]);
     }
-    return this.data()['crumbs'];
+
+    if (this.data()['data']?.metadata?.sourceFileName) {
+      crumbs = crumbs.concat([{ name: this.data()['data'].metadata.sourceFileName }]);
+    }
+    return crumbs;
   });
 
   /** Header visibility (whether to show header or not) */
