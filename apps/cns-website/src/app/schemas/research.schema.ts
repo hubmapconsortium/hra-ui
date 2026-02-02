@@ -1,5 +1,6 @@
 import * as z from 'zod';
 import { PeopleIdSchema } from './people.schema';
+import { ResearchTypeIdSchema } from './research-type.schema';
 import { TagIdSchema } from './tags.schema';
 
 /** Type for research identifiers */
@@ -11,11 +12,6 @@ export const ResearchIdSchema = z.string().brand('ResearchId');
 export type ResearchCategoryId = z.infer<typeof ResearchCategoryIdSchema>;
 /** Type for research category identifier */
 export const ResearchCategoryIdSchema = z.string().brand('ResearchCategoryId');
-
-/** Type for research type identifiers */
-export type ResearchTypeId = z.infer<typeof ResearchTypeIdSchema>;
-/** Branded type for research type identifiers */
-export const ResearchTypeIdSchema = z.string().brand('ResearchTypeId');
 
 /** Type for a single research item */
 export type ResearchItem = z.infer<typeof ResearchItemSchema>;

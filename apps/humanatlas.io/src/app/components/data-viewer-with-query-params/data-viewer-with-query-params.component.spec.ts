@@ -1,9 +1,10 @@
-import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { render, screen } from '@testing-library/angular';
 
-import { DataViewerWithQueryParamsComponent } from './data-viewer-with-query-params.component';
+import { provideHttpClient } from '@angular/common/http';
 import { ReleaseVersionData } from '@hra-ui/design-system/data-viewer';
+import { provideIcons } from '@hra-ui/design-system/icons';
+import { DataViewerWithQueryParamsComponent } from './data-viewer-with-query-params.component';
 
 describe('DataViewerWithQueryParamsComponent', () => {
   const mockReleaseVersionData: ReleaseVersionData[] = [
@@ -33,7 +34,7 @@ describe('DataViewerWithQueryParamsComponent', () => {
     },
   ];
 
-  const providers = [provideHttpClient(), provideRouter([])];
+  const providers = [provideIcons(), provideHttpClient(), provideRouter([])];
 
   async function setup(
     inputs = {

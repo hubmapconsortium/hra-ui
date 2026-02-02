@@ -11,7 +11,8 @@ import {
   withState,
 } from '@ngrx/signals';
 import { PeopleId } from '../../../schemas/people.schema';
-import { ResearchCategoryId, ResearchItem, ResearchTypeId } from '../../../schemas/research.schema';
+import { ResearchTypeId, ResearchTypeItem } from '../../../schemas/research-type.schema';
+import { ResearchCategoryId, ResearchItem } from '../../../schemas/research.schema';
 import { ResearchState } from './with-research.feature';
 
 /** Generic search list option with a typed id */
@@ -67,12 +68,12 @@ type InternalProps = { [key: `_${string}`]: unknown };
 interface FilterState {
   /** Selected categories */
   categories: CategoryOption[] | null;
-  /** Selected events */
-  events: EventOption[] | null;
   /** Selected funding options */
   funding: FundingOption[] | null;
   /** Selected publication IDs */
   publicationIds: string[] | null;
+  /** Selected event IDs */
+  eventIds: string[] | null;
   /** Selected people IDs */
   peopleIds: string[] | null;
   /** Selected years */
@@ -110,13 +111,6 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
   { id: 'visualization' as ResearchCategoryId, label: 'Visualizations' },
 ];
 
-/** Event filter options */
-export const EVENT_OPTIONS: EventOption[] = [
-  { id: '24-hour' as ResearchTypeId, label: '24-hour' },
-  { id: 'amatria' as ResearchTypeId, label: 'Amatria' },
-  { id: 'workshop' as ResearchTypeId, label: 'Workshops' },
-];
-
 /** Funding filter options */
 export const FUNDING_OPTIONS: FundingOption[] = [
   { id: 'research-funding' as ResearchTypeId, label: 'Research funding' },
@@ -143,7 +137,7 @@ const CATEGORIES_FILTER: FilterOptionCategory<CategoryOption> = {
 const EVENTS_FILTER: FilterOptionCategory<EventOption> = {
   id: 'event-type',
   label: 'Event type',
-  options: EVENT_OPTIONS,
+  options: [],
   selected: [],
 };
 
@@ -182,13 +176,47 @@ const YEARS_FILTER: FilterOptionCategory<YearOption> = {
 /** Initial filter state with no selections */
 const initialState: FilterState = {
   categories: null,
-  events: null,
   funding: null,
   publicationIds: null,
+  eventIds: null,
   peopleIds: null,
   years: null,
   search: null,
 };
+
+/**
+ * Converts research type definitions to typed search list options.
+ * @param researchTypes Accessor for research type definitions
+ * @return Accessor for typed search list options
+ */
+function researchTypesToOptions(
+  researchTypes: () => ResearchTypeItem[],
+): Signal<TypedSearchListOption<ResearchTypeId>[]> {
+  return computed(() =>
+    researchTypes()
+      .map((item) => ({
+        id: item.value,
+        label: toSentenceCase(item.label),
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label)),
+  );
+}
+
+/**
+ * Filters options by selected IDs.
+ * @param options Accessor for all options
+ * @param ids Accessor for selected option IDs
+ * @return Accessor for typed search list options
+ */
+function filterOptionsByIds<T extends string>(
+  options: () => TypedSearchListOption<T>[],
+  ids: () => string[] | null,
+): Signal<TypedSearchListOption<T>[]> {
+  return computed(() => {
+    const idSet = new Set(ids());
+    return options().filter((option) => idSet.has(option.id));
+  });
+}
 
 /**
  * Merges base filter config with current selection and options.
@@ -292,29 +320,16 @@ export function withFilters() {
           .map((person) => ({ id: person.slug, label: person.name }))
           .sort((a, b) => a.label.localeCompare(b.label)),
       );
-      const people = computed(() => {
-        const options = _peopleOptions();
-        const ids = new Set(store.peopleIds() ?? []);
-        return options.filter((option) => ids.has(option.id));
-      });
+      const people = filterOptionsByIds(_peopleOptions, store.peopleIds);
 
-      const _publicationOptions = computed(() =>
-        store
-          .pubTypes()
-          .map((pubType) => ({
-            id: pubType.value,
-            label: toSentenceCase(pubType.label),
-          }))
-          .sort((a, b) => a.label.localeCompare(b.label)),
-      );
-      const publications = computed(() => {
-        const options = _publicationOptions();
-        const ids = new Set(store.publicationIds() ?? []);
-        return options.filter((option) => ids.has(option.id));
-      });
+      const _publicationOptions = researchTypesToOptions(store.pubTypes);
+      const publications = filterOptionsByIds(_publicationOptions, store.publicationIds);
+
+      const _eventOptions = researchTypesToOptions(store.eventTypes);
+      const events = filterOptionsByIds(_eventOptions, store.eventIds);
 
       const _categoriesFilter = optionsToFilter(CATEGORIES_FILTER, store.categories);
-      const _eventsFilter = optionsToFilter(EVENTS_FILTER, store.events);
+      const _eventsFilter = optionsToFilter(EVENTS_FILTER, events, _eventOptions);
       const _fundingFilter = optionsToFilter(FUNDING_FILTER, store.funding);
       const _publicationsFilter = optionsToFilter(PUBLICATIONS_FILTER, publications, _publicationOptions);
       const _peopleFilter = optionsToFilter(PEOPLE_FILTER, people, _peopleOptions);
@@ -336,16 +351,12 @@ export function withFilters() {
         (item, selectedCategories) => selectedCategories.has(item.category),
       );
 
-      const _selectedTypes = optionsToSet<ResearchTypeId>(
-        store.events,
-        store.funding,
-        publications as Signal<PublicationOption[]>,
-      );
+      const _selectedTypes = optionsToSet(store.funding, publications, events);
       const _filteredByType = createFilteredBy(_filteredByCategory, _selectedTypes, (item, selectedTypes) =>
         selectedTypes.has(item.type),
       );
 
-      const _selectedPeople = optionsToSet<PeopleId>(people);
+      const _selectedPeople = optionsToSet(people);
       const _filteredByPeople = createFilteredBy(_filteredByType, _selectedPeople, (item, selectedPeople) =>
         item.people.some((person) => selectedPeople.has(person)),
       );
@@ -404,7 +415,7 @@ export function withFilters() {
       /** Sets selected categories */
       setCategories: signalMethod((categories: CategoryOption[] | null) => patchState(store, { categories })),
       /** Sets selected events */
-      setEvents: signalMethod((events: EventOption[] | null) => patchState(store, { events })),
+      setEventIds: signalMethod((eventIds: string[] | null) => patchState(store, { eventIds })),
       /** Sets selected funding options */
       setFunding: signalMethod((funding: FundingOption[] | null) => patchState(store, { funding })),
       /** Sets selected publication IDs */
@@ -442,9 +453,9 @@ export function withFilters() {
 
         patchState(store, {
           categories: categories.length > 0 ? categories : null,
-          events: events.length > 0 ? events : null,
           funding: funding.length > 0 ? funding : null,
           publicationIds: publications.length > 0 ? publications.map((p) => p.id) : null,
+          eventIds: events.length > 0 ? events.map((e) => e.id) : null,
           peopleIds: people.length > 0 ? people.map((p) => p.id) : null,
           years: years.length > 0 ? years : null,
         });

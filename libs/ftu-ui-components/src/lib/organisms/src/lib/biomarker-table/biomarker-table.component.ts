@@ -17,7 +17,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
 import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
-import { DataItem } from '@hra-ui/design-system/info-modal';
+import { DataItem } from '@hra-ui/design-system/modal/info-modal';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';

@@ -4,9 +4,9 @@
   }
   <div class="container">
     <span>{{ tagline() }}</span>
-    <mat-chip-set class="chips" aria-label="Tags">
-      @for (chip of chips(); track chip) {
-        <mat-chip hraChipSize="small">{{ chip }}</mat-chip>
+    <mat-chip-set>
+      @for (taglineChip of taglineChips(); track taglineChip) {
+        <mat-chip hraChipSize="small">{{ taglineChip }}</mat-chip>
       }
     </mat-chip-set>
   </div>
@@ -17,7 +17,16 @@
 }
 
 <div class="description">
-  <ng-content />
+  <div class="label">{{ label() }}</div>
+  <div class="supporting-text">{{ supportingText() }}</div>
+  <mat-chip-set>
+    @for (tag of tags(); track tag) {
+      <mat-chip hraChipSize="small">
+        <mat-icon>{{ tag['icon'] }} </mat-icon>
+        {{ tag['text'] }}
+      </mat-chip>
+    }
+  </mat-chip-set>
 </div>
 
 <div class="actions">
