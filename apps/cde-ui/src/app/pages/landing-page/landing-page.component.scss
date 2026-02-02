@@ -10,6 +10,8 @@
   }
 
   .visualize {
+    height: calc(100vh - 113px);
+
     .cards-container {
       display: flex;
       justify-content: center;
@@ -18,7 +20,7 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(387px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(17.75rem, 1fr));
       gap: 1.5rem;
       justify-items: center;
       max-width: 107.5rem;

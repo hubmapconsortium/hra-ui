@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
@@ -7,8 +8,8 @@
   overflow: hidden;
   flex-grow: 1;
   width: 100%;
-  min-width: 17rem;
-  max-width: 25.5rem;
+  min-width: 16.5rem;
+  max-width: 25rem;
   border: 0.0625rem solid vars.$outline;
   border-radius: 0.75rem;
   background-color: vars.$on-primary;
@@ -60,7 +61,15 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    @include utils.use-font(label, large);
+
+    @include mat.button-overrides(
+      (
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-tracking: vars.$label-medium-tracking,
+        filled-label-text-weight: vars.$label-medium-weight,
+      )
+    );
 
     .spacer {
       flex-grow: 1;
