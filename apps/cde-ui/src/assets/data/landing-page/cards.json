@@ -1,10 +1,10 @@
 [
   {
-    "tagline": "Create a Visualization",
+    "tagline": "Create a visualization",
     "taglineChips": ["Upload data", "Configure settings"],
     "image": "assets/examples/create-a-visualization.png",
     "label": "Featured app",
-    "supportingText": "Analye your data with the Cell Distance Explorer",
+    "supportingText": "Analyze your data with the Cell Distance Explorer",
     "actionsInfo": {
       "leftActionText": "Use app",
       "leftActionUrl": "/create"
@@ -41,7 +41,7 @@
     "taglineChips": ["Skin", "Cell DIVE"],
     "image": "assets/examples/3d-data-skin.png",
     "label": "Quick start",
-    "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
+    "supportingText": "Data provided by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center",
     "actionsInfo": {
       "leftActionText": "Use app",
       "leftActionUrl": "/example/1",

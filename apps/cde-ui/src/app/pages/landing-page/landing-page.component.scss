@@ -15,12 +15,14 @@
   display: block;
 
   section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 6rem 2.5rem;
+    min-height: calc(100vh - 113px);
   }
 
   .visualize {
-    height: calc(100vh - 113px);
-
     .cards-container {
       display: flex;
       justify-content: center;
@@ -59,6 +61,7 @@
 
     .title {
       @include utils.use-font(display, large);
+      color: vars.$secondary;
       margin-bottom: 3.5rem;
       text-align: center;
     }
@@ -66,9 +69,11 @@
 
   .cite {
     background-image: url(/assets/backgrounds/cde-lung-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
     .content-container {
-      margin: 0 auto;
       max-width: 90rem;
     }
 
