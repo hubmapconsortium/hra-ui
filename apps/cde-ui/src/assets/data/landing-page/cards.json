@@ -41,7 +41,7 @@
     "taglineChips": ["Skin", "Cell DIVE"],
     "image": "assets/examples/3d-data-skin.png",
     "label": "Quick start",
-    "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
+    "supportingText": "Data provided by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center",
     "actionsInfo": {
       "leftActionText": "Use app",
       "leftActionUrl": "/example/1",
