@@ -13,7 +13,7 @@ import { provideMarkdown } from 'ngx-markdown';
 
 const mockResearchItem = (overrides?: Partial<ResearchItem>): ResearchItem => ({
   slug: 'test-research-1' as ResearchId,
-  category: 'publications' as ResearchCategoryId,
+  category: 'publication' as ResearchCategoryId,
   type: 'journal-article' as ResearchTypeId,
   title: 'Test Research Item',
   description: 'A test research description',
@@ -46,6 +46,12 @@ const mockEventTypes: ResearchTypesData = [
   { label: 'Conference', value: 'conference' as ResearchTypeId },
 ];
 
+const mockFundingTypes: ResearchTypesData = [
+  { label: 'Research', value: 'research' as ResearchTypeId },
+  { label: 'Travel', value: 'travel' as ResearchTypeId },
+  { label: 'Interactive Visualization', value: 'interactive-visualization' as ResearchTypeId },
+];
+
 const mockTags: TagsData = [
   { slug: 'method-computational' as TagId, name: 'Computational Method', description: 'Methods involving computation' },
   { slug: 'organ-brain' as TagId, name: 'Brain', description: 'Research related to the brain' },
@@ -61,6 +67,7 @@ describe('ResearchPageComponent', () => {
     people?: PeopleData;
     publicationTypes?: ResearchTypesData;
     eventTypes?: ResearchTypesData;
+    fundingTypes?: ResearchTypesData;
     tags?: TagsData;
   }) => {
     const news = overrides?.news ?? [
@@ -76,12 +83,14 @@ describe('ResearchPageComponent', () => {
     const publications = overrides?.publications ?? [
       mockResearchItem({
         slug: 'pub-1' as ResearchId,
+        category: 'publication' as ResearchCategoryId,
+        type: 'journal-article' as ResearchTypeId,
         title: 'Research on Network Science',
         dateStart: new Date('2024-01-10'),
       }),
       mockResearchItem({
         slug: 'pub-2' as ResearchId,
-        category: 'publications' as ResearchCategoryId,
+        category: 'publication' as ResearchCategoryId,
         type: 'conference-paper' as ResearchTypeId,
         title: 'Another Publication',
         dateStart: new Date('2023-12-15'),
@@ -92,7 +101,7 @@ describe('ResearchPageComponent', () => {
     const events = overrides?.events ?? [
       mockResearchItem({
         slug: 'event-1' as ResearchId,
-        category: 'events' as ResearchCategoryId,
+        category: 'event' as ResearchCategoryId,
         type: 'workshop' as ResearchTypeId,
         title: 'Network Science Workshop',
         dateStart: new Date('2024-03-15'),
@@ -101,7 +110,7 @@ describe('ResearchPageComponent', () => {
       }),
       mockResearchItem({
         slug: 'event-2' as ResearchId,
-        category: 'events' as ResearchCategoryId,
+        category: 'event' as ResearchCategoryId,
         type: 'seminar' as ResearchTypeId,
         title: 'Advanced Computational Methods Seminar',
         dateStart: new Date('2024-02-20'),
@@ -113,7 +122,7 @@ describe('ResearchPageComponent', () => {
       mockResearchItem({
         slug: 'funding-1' as ResearchId,
         category: 'funding' as ResearchCategoryId,
-        type: 'research-funding' as ResearchTypeId,
+        type: 'research' as ResearchTypeId,
         title: 'CNS Research Grant Award',
         dateStart: new Date('2024-01-05'),
         dateEnd: new Date('2024-12-31'),
@@ -145,6 +154,7 @@ describe('ResearchPageComponent', () => {
         people: overrides?.people ?? mockPeople,
         publicationTypes: overrides?.publicationTypes ?? mockPublicationTypes,
         eventTypes: overrides?.eventTypes ?? mockEventTypes,
+        fundingTypes: overrides?.fundingTypes ?? mockFundingTypes,
         tags: overrides?.tags ?? mockTags,
       },
     });
