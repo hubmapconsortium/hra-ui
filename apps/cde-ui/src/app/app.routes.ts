@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { ResolveFn, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { assetUrl } from '@hra-ui/common/url';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
@@ -9,23 +9,17 @@ import { CreateVisualizationPageComponent } from './pages/create-visualization-p
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { StudyPageComponent } from './pages/study-page/study-page.component';
 import { VisualizationPageComponent } from './pages/visualization/visualization.component';
-import { StudyDataSchema, StudyDataType } from './schemas/study.schema';
+import { StudyDataSchema } from './schemas/study.schema';
 import {
   visualizationDataCanActivate,
   visualizationDataResolver,
 } from './services/visualization-data-service/visualization-data.service';
+import { createCrumbsResolver } from './shared/resolvers/crumbs/crumbs.resolver';
 import { exampleDataResolver } from './shared/resolvers/example-data/example-data.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
 import { organsResolver } from './shared/resolvers/organs/organs.resolver';
 import { studyDatasetResolver } from './shared/resolvers/study-dataset/study-dataset.resolver';
-
-/** Resolver to compute study breadcrumb from parent's galleryData */
-const studyCrumbResolver: ResolveFn<string | null> = (route) => {
-  const galleryData = route.parent?.data['galleryData'] as StudyDataType | undefined;
-  const studySlug = route.parent?.paramMap.get('studyName');
-  const study = galleryData?.studies?.find((s) => s.slug === studySlug);
-  return study ? `${study.organName}, ${study.technology}` : null;
-};
+import { getStudyCrumbs, getStudyDatasetCrumbs } from './shared/resolvers/study/study.resolver';
 
 /** Landing page cards json file url token */
 const LANDING_PAGE_CARDS_URL = new InjectionToken('LANDING_PAGE_CARDS_URL', {
@@ -45,45 +39,56 @@ const EXAMPLE_DATA_INDEX_URL = new InjectionToken('EXAMPLE_DATA_INDEX_URL', {
 export const ROUTES: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: LandingPageComponent,
     data: {
       isLanding: true,
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'Cell Distance Explorer' },
-      ] satisfies BreadcrumbItem[],
     },
     resolve: {
+      crumbs: createCrumbsResolver(),
       cards: jsonFileResolver<VisualCard[]>(LANDING_PAGE_CARDS_URL, { cache: true }),
     },
   },
   {
     path: 'create',
     component: CreateVisualizationPageComponent,
-    data: {
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'Cell Distance Explorer', route: '/' },
-        { name: 'Create Visualization' },
-      ] satisfies BreadcrumbItem[],
-    },
     resolve: {
+      crumbs: createCrumbsResolver([{ name: 'Create Visualization', route: '/create' }]),
       organs: organsResolver(),
     },
   },
   {
     path: 'gallery',
     component: ContentPageComponent,
-    data: {
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'Cell Distance Explorer', route: '/' },
-        { name: 'Spatial Omics Gallery' },
-      ] satisfies BreadcrumbItem[],
-    },
     resolve: {
+      crumbs: createCrumbsResolver([{ name: 'Spatial Omics Gallery', route: '/gallery' }]),
       data: createYamlSpecResolver('assets/content/gallery/data.yaml', ContentPageDataSchema),
     },
+  },
+  {
+    path: 'gallery/:studyId',
+    resolve: {
+      crumbs: createCrumbsResolver([{ name: 'Spatial Omics Gallery', route: '/gallery' }]),
+      data: createYamlSpecResolver('assets/data/gallery/data.yaml', StudyDataSchema),
+    },
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: StudyPageComponent,
+        resolve: {
+          crumbs: createCrumbsResolver(getStudyCrumbs),
+        },
+      },
+      {
+        path: ':datasetId',
+        component: VisualizationPageComponent,
+        resolve: {
+          crumbs: createCrumbsResolver(getStudyDatasetCrumbs),
+          data: studyDatasetResolver(),
+        },
+      },
+    ],
   },
   {
     path: 'example/:index',
@@ -96,35 +101,6 @@ export const ROUTES: Routes = [
     },
     resolve: {
       data: exampleDataResolver(EXAMPLE_DATA_INDEX_URL),
-    },
-  },
-  {
-    path: 'gallery/:studyName',
-    resolve: {
-      galleryData: createYamlSpecResolver('assets/data/gallery/data.yaml', StudyDataSchema),
-    },
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: StudyPageComponent,
-        resolve: { studyCrumb: studyCrumbResolver },
-      },
-      {
-        path: ':datasetId',
-        component: VisualizationPageComponent,
-        resolve: {
-          data: studyDatasetResolver(),
-          studyCrumb: studyCrumbResolver,
-        },
-      },
-    ],
-    data: {
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'Cell Distance Explorer', route: '/' },
-        { name: 'Spatial Omics Gallery', route: '/gallery' },
-      ] satisfies BreadcrumbItem[],
     },
   },
   {

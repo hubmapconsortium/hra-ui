@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
