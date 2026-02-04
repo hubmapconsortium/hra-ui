@@ -115,7 +115,7 @@ function cast<T>(): (data: unknown) => T {
 function rangeToMinMax(range: number[] | undefined, low: number, high: number): MinMax | undefined {
   if (range) {
     const min = range[0] > low ? range[0] : undefined;
-    const max = range[1] < high ? range[0] : undefined;
+    const max = range[1] < high ? range[1] : undefined;
     if (min !== undefined || max !== undefined) {
       return { min, max };
     }

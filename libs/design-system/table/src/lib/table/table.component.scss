@@ -195,3 +195,33 @@
     }
   }
 }
+
+.button-icon-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .explore-button {
+    min-width: 5.125rem;
+  }
+
+  .preview-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  background-color: #00000033;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}

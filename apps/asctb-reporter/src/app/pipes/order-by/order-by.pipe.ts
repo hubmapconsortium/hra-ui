@@ -5,7 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   pure: true,
 })
 export class OrderByPipe implements PipeTransform {
-  transform<T>(array: T[], key: keyof T): T[] {
+  transform<T>(array: T[] | null | undefined, key: keyof T): T[] {
+    if (!array) {
+      return [];
+    }
     return array.slice().sort((a, b) => {
       const aProp = a[key];
       const bProp = b[key];
