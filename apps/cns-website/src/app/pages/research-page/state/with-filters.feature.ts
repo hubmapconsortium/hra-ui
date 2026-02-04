@@ -51,8 +51,12 @@ export interface FilterProps {
   numFilteredItems: Signal<number>;
   /** Counts by category */
   countsByCategory: Signal<Record<string, number>>;
-  /** Counts by type */
-  countsByType: Signal<Record<string, number>>;
+  /** Counts by event type */
+  countsByEventType: Signal<Record<string, number>>;
+  /** Counts by funding type */
+  countsByFundingType: Signal<Record<string, number>>;
+  /** Counts by publication type */
+  countsByPublicationType: Signal<Record<string, number>>;
   /** Counts by people */
   countsByPeople: Signal<Record<string, number>>;
   /** Counts by year */
@@ -68,12 +72,12 @@ type InternalProps = { [key: `_${string}`]: unknown };
 interface FilterState {
   /** Selected categories */
   categories: CategoryOption[] | null;
-  /** Selected funding options */
-  funding: FundingOption[] | null;
   /** Selected publication IDs */
   publicationIds: string[] | null;
   /** Selected event IDs */
   eventIds: string[] | null;
+  /** Selected funding IDs */
+  fundingIds: string[] | null;
   /** Selected people IDs */
   peopleIds: string[] | null;
   /** Selected years */
@@ -110,13 +114,6 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
   { id: 'visualization' as ResearchCategoryId, label: 'Visualizations' },
 ];
 
-/** Funding filter options */
-export const FUNDING_OPTIONS: FundingOption[] = [
-  { id: 'research' as ResearchTypeId, label: 'Research' },
-  { id: 'teaching' as ResearchTypeId, label: 'Teaching' },
-  { id: 'workshop' as ResearchTypeId, label: 'Workshop' },
-];
-
 /** Year filter options from 1991 to current year */
 export const YEAR_OPTIONS: YearOption[] = createYearList(1991).map((year) => ({
   id: year.toString(),
@@ -144,7 +141,7 @@ const EVENTS_FILTER: FilterOptionCategory<EventOption> = {
 const FUNDING_FILTER: FilterOptionCategory<FundingOption> = {
   id: 'funding-type',
   label: 'Funding type',
-  options: FUNDING_OPTIONS,
+  options: [],
   selected: [],
 };
 
@@ -175,9 +172,9 @@ const YEARS_FILTER: FilterOptionCategory<YearOption> = {
 /** Initial filter state with no selections */
 const initialState: FilterState = {
   categories: null,
-  funding: null,
   publicationIds: null,
   eventIds: null,
+  fundingIds: null,
   peopleIds: null,
   years: null,
   search: null,
@@ -290,10 +287,15 @@ function toSentenceCase(str: string): string {
 function countsByKey(
   items: () => ResearchItem[],
   keyFn: (item: ResearchItem) => string | string[],
+  filterFn?: (item: ResearchItem) => boolean,
 ): Signal<Record<string, number>> {
   return computed(() => {
     const counts: Record<string, number> = {};
     for (const item of items()) {
+      if (filterFn?.(item) === false) {
+        continue;
+      }
+
       const keys = keyFn(item);
       for (const key of Array.isArray(keys) ? keys : [keys]) {
         counts[key] ??= 0;
@@ -327,9 +329,12 @@ export function withFilters() {
       const _eventOptions = researchTypesToOptions(store.eventTypes);
       const events = filterOptionsByIds(_eventOptions, store.eventIds);
 
+      const _fundingOptions = researchTypesToOptions(store.fundingTypes);
+      const funding = filterOptionsByIds(_fundingOptions, store.fundingIds);
+
       const _categoriesFilter = optionsToFilter(CATEGORIES_FILTER, store.categories);
       const _eventsFilter = optionsToFilter(EVENTS_FILTER, events, _eventOptions);
-      const _fundingFilter = optionsToFilter(FUNDING_FILTER, store.funding);
+      const _fundingFilter = optionsToFilter(FUNDING_FILTER, funding, _fundingOptions);
       const _publicationsFilter = optionsToFilter(PUBLICATIONS_FILTER, publications, _publicationOptions);
       const _peopleFilter = optionsToFilter(PEOPLE_FILTER, people, _peopleOptions);
       const _yearsFilter = optionsToFilter(YEARS_FILTER, store.years);
@@ -350,7 +355,7 @@ export function withFilters() {
         (item, selectedCategories) => selectedCategories.has(item.category),
       );
 
-      const _selectedTypes = optionsToSet(store.funding, publications, events);
+      const _selectedTypes = optionsToSet(funding, publications, events);
       const _filteredByType = createFilteredBy(_filteredByCategory, _selectedTypes, (item, selectedTypes) =>
         selectedTypes.has(item.type),
       );
@@ -381,15 +386,29 @@ export function withFilters() {
       });
 
       const countsByCategory = countsByKey(store.researchItems, (item) => item.category);
-      const countsByType = countsByKey(store.researchItems, (item) => item.type);
+      const countsByEventType = countsByKey(
+        store.researchItems,
+        (item) => item.type,
+        (item) => item.category === 'event',
+      );
+      const countsByFundingType = countsByKey(
+        store.researchItems,
+        (item) => item.type,
+        (item) => item.category === 'funding',
+      );
+      const countsByPublicationType = countsByKey(
+        store.researchItems,
+        (item) => item.type,
+        (item) => item.category === 'publication',
+      );
       const countsByPeople = countsByKey(store.researchItems, (item) => item.people);
       const countsByYear = countsByKey(store.researchItems, (item) => item.dateStart.getFullYear().toString());
 
       const counts = computed(() => [
         countsByCategory(),
-        countsByType(),
-        countsByType(),
-        countsByType(),
+        countsByEventType(),
+        countsByFundingType(),
+        countsByPublicationType(),
         countsByPeople(),
         countsByYear(),
       ]);
@@ -400,7 +419,9 @@ export function withFilters() {
         filteredItems: _filteredBySearch,
         numFilteredItems: computed(() => _filteredBySearch().length),
         countsByCategory,
-        countsByType,
+        countsByEventType,
+        countsByFundingType,
+        countsByPublicationType,
         countsByPeople,
         countsByYear,
         counts,
@@ -415,8 +436,8 @@ export function withFilters() {
       setCategories: signalMethod((categories: CategoryOption[] | null) => patchState(store, { categories })),
       /** Sets selected events */
       setEventIds: signalMethod((eventIds: string[] | null) => patchState(store, { eventIds })),
-      /** Sets selected funding options */
-      setFunding: signalMethod((funding: FundingOption[] | null) => patchState(store, { funding })),
+      /** Sets selected funding IDs */
+      setFundingIds: signalMethod((fundingIds: string[] | null) => patchState(store, { fundingIds })),
       /** Sets selected publication IDs */
       setPublicationIds: signalMethod((publicationIds: string[] | null) => patchState(store, { publicationIds })),
       /** Sets selected people IDs */
@@ -452,9 +473,9 @@ export function withFilters() {
 
         patchState(store, {
           categories: categories.length > 0 ? categories : null,
-          funding: funding.length > 0 ? funding : null,
           publicationIds: publications.length > 0 ? publications.map((p) => p.id) : null,
           eventIds: events.length > 0 ? events.map((e) => e.id) : null,
+          fundingIds: funding.length > 0 ? funding.map((f) => f.id) : null,
           peopleIds: people.length > 0 ? people.map((p) => p.id) : null,
           years: years.length > 0 ? years : null,
         });

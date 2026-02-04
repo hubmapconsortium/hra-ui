@@ -1,11 +1,4 @@
-import {
-  CATEGORY_OPTIONS,
-  CategoryOption,
-  FUNDING_OPTIONS,
-  FundingOption,
-  YEAR_OPTIONS,
-  YearOption,
-} from './with-filters.feature';
+import { CATEGORY_OPTIONS, CategoryOption, YEAR_OPTIONS, YearOption } from './with-filters.feature';
 import { GroupBy, SortBy } from './with-ordering.feature';
 import { View } from './with-view.feature';
 
@@ -91,8 +84,13 @@ export function parseEventIds(value: unknown): string[] | null {
  * Parses funding query parameter into funding options.
  * @param value Raw query value
  */
-export function parseFunding(value: unknown): FundingOption[] | null {
-  return parseOptions(FUNDING_OPTIONS, value);
+export function parseFundingIds(value: unknown): string[] | null {
+  if (!value) {
+    return [];
+  }
+
+  const strValue = String(value).toLowerCase().trim();
+  return strValue.split(',').map((part) => part.trim());
 }
 
 /**
@@ -163,7 +161,7 @@ export function serializeCategories(options: CategoryOption[] | null): string | 
 
 /**
  * Serializes selected events to query parameter format.
- * @param options Selected events
+ * @param ids Selected event IDs
  */
 export function serializeEventIds(ids: string[] | null): string | null {
   return ids?.join(',') || null;
@@ -171,10 +169,10 @@ export function serializeEventIds(ids: string[] | null): string | null {
 
 /**
  * Serializes selected funding options to query parameter format.
- * @param options Selected funding
+ * @param ids Selected funding IDs
  */
-export function serializeFunding(options: FundingOption[] | null): string | null {
-  return serializeOptions(options);
+export function serializeFundingIds(ids: string[] | null): string | null {
+  return ids?.join(',') || null;
 }
 
 /**

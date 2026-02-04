@@ -15,6 +15,8 @@ export interface ResearchState {
   pubTypes: ResearchTypeItem[];
   /** Event type definitions */
   eventTypes: ResearchTypeItem[];
+  /** Funding type definitions */
+  fundingTypes: ResearchTypeItem[];
   /** Tag items */
   tags: TagItem[];
 }
@@ -24,8 +26,9 @@ const initialState: ResearchState = {
   researchItems: [],
   peopleItems: [],
   pubTypes: [],
-  tags: [],
   eventTypes: [],
+  fundingTypes: [],
+  tags: [],
 };
 
 /**
@@ -62,7 +65,7 @@ export function withResearch() {
         patchState(store, { pubTypes: [...pubTypes, { label: 'Unknown', value: 'unknown' as ResearchTypeId }] }),
       ),
       setEventTypes: signalMethod((eventTypes: ResearchTypeItem[]) => patchState(store, { eventTypes })),
-      /** Sets tag items */
+      setFundingTypes: signalMethod((fundingTypes: ResearchTypeItem[]) => patchState(store, { fundingTypes })),
       setTags: signalMethod((tags: TagItem[]) => patchState(store, { tags })),
     })),
   );

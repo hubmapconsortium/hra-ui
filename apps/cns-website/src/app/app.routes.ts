@@ -11,9 +11,9 @@ import { ResearchPageComponent } from './pages/research-page/research-page.compo
 import { createPersonResolver } from './resolvers/person.resolver';
 import { FeaturedDataSchema } from './schemas/featured.schema';
 import { PeopleDataSchema } from './schemas/people.schema';
+import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
 import { TagsDataSchema } from './schemas/tags.schema';
-import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 
 /** People index URL */
 const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
@@ -31,6 +31,8 @@ const EVENT_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app
 const EVENT_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-event-types.json';
 /** Funding content index URL */
 const FUNDING_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-funding.json';
+/** Funding types content index URL */
+const FUNDING_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-funding-types.json';
 /** Visualizations content index URL */
 const VISUALIZATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-visualizations.json';
 /** Tags content index URL */
@@ -112,6 +114,7 @@ export const appRoutes: Route[] = [
       people: createJsonSpecResolver(PEOPLE_INDEX_URL, PeopleDataSchema),
       publicationTypes: createJsonSpecResolver(PUBLICATION_TYPES_INDEX_URL, ResearchTypesDataSchema),
       eventTypes: createJsonSpecResolver(EVENT_TYPES_INDEX_URL, ResearchTypesDataSchema),
+      fundingTypes: createJsonSpecResolver(FUNDING_TYPES_INDEX_URL, ResearchTypesDataSchema),
       tags: createJsonSpecResolver(TAGS_INDEX_URL, TagsDataSchema),
     },
   },

@@ -73,6 +73,8 @@ export class ResearchPageComponent {
   readonly publicationTypes = input.required<ResearchTypesData>();
   /** Event type definitions */
   readonly eventTypes = input.required<ResearchTypesData>();
+  /** Funding type definitions */
+  readonly fundingTypes = input.required<ResearchTypesData>();
 
   /** Tags data from resolver */
   readonly tags = input.required<TagsData>();
@@ -103,6 +105,7 @@ export class ResearchPageComponent {
     this.store.setPeopleItems(this.people);
     this.store.setPublicationTypes(this.publicationTypes);
     this.store.setEventTypes(this.eventTypes);
+    this.store.setFundingTypes(this.fundingTypes);
     this.store.setTags(this.tags);
 
     effect((onCleanup) => {
