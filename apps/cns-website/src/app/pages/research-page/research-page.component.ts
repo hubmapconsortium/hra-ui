@@ -63,12 +63,18 @@ export class ResearchPageComponent {
   readonly publications = input.required<ResearchData>();
   /** Events research data */
   readonly events = input.required<ResearchData>();
+  /** Funding research data */
+  readonly funding = input.required<ResearchData>();
+  /** Visualizations research data */
+  readonly visualizations = input.required<ResearchData>();
   /** People data for filtering and display */
   readonly people = input.required<PeopleData>();
   /** Publication type definitions */
   readonly publicationTypes = input.required<ResearchTypesData>();
   /** Event type definitions */
   readonly eventTypes = input.required<ResearchTypesData>();
+  /** Funding type definitions */
+  readonly fundingTypes = input.required<ResearchTypesData>();
 
   /** Tags data from resolver */
   readonly tags = input.required<TagsData>();
@@ -81,8 +87,14 @@ export class ResearchPageComponent {
   /** Sidebar component reference */
   private readonly sidebar = viewChild.required(MatSidenav);
 
-  /** Combined research items from news, publications, and events */
-  private readonly researchItems = computed(() => [...this.news(), ...this.publications(), ...this.events()]);
+  /** Combined research items from news, publications, events, funding, and visualizations */
+  private readonly researchItems = computed(() => [
+    ...this.news(),
+    ...this.publications(),
+    ...this.events(),
+    ...this.funding(),
+    ...this.visualizations(),
+  ]);
 
   /** Utility to get image URL for a research item */
   protected readonly getImageUrl = getImageUrl;
@@ -93,6 +105,7 @@ export class ResearchPageComponent {
     this.store.setPeopleItems(this.people);
     this.store.setPublicationTypes(this.publicationTypes);
     this.store.setEventTypes(this.eventTypes);
+    this.store.setFundingTypes(this.fundingTypes);
     this.store.setTags(this.tags);
 
     effect((onCleanup) => {

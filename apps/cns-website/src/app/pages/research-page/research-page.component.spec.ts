@@ -13,7 +13,7 @@ import { provideMarkdown } from 'ngx-markdown';
 
 const mockResearchItem = (overrides?: Partial<ResearchItem>): ResearchItem => ({
   slug: 'test-research-1' as ResearchId,
-  category: 'publications' as ResearchCategoryId,
+  category: 'publication' as ResearchCategoryId,
   type: 'journal-article' as ResearchTypeId,
   title: 'Test Research Item',
   description: 'A test research description',
@@ -46,6 +46,12 @@ const mockEventTypes: ResearchTypesData = [
   { label: 'Conference', value: 'conference' as ResearchTypeId },
 ];
 
+const mockFundingTypes: ResearchTypesData = [
+  { label: 'Research', value: 'research' as ResearchTypeId },
+  { label: 'Travel', value: 'travel' as ResearchTypeId },
+  { label: 'Interactive Visualization', value: 'interactive-visualization' as ResearchTypeId },
+];
+
 const mockTags: TagsData = [
   { slug: 'method-computational' as TagId, name: 'Computational Method', description: 'Methods involving computation' },
   { slug: 'organ-brain' as TagId, name: 'Brain', description: 'Research related to the brain' },
@@ -56,9 +62,12 @@ describe('ResearchPageComponent', () => {
     news?: ResearchData;
     publications?: ResearchData;
     events?: ResearchData;
+    funding?: ResearchData;
+    visualizations?: ResearchData;
     people?: PeopleData;
     publicationTypes?: ResearchTypesData;
     eventTypes?: ResearchTypesData;
+    fundingTypes?: ResearchTypesData;
     tags?: TagsData;
   }) => {
     const news = overrides?.news ?? [
@@ -74,12 +83,14 @@ describe('ResearchPageComponent', () => {
     const publications = overrides?.publications ?? [
       mockResearchItem({
         slug: 'pub-1' as ResearchId,
+        category: 'publication' as ResearchCategoryId,
+        type: 'journal-article' as ResearchTypeId,
         title: 'Research on Network Science',
         dateStart: new Date('2024-01-10'),
       }),
       mockResearchItem({
         slug: 'pub-2' as ResearchId,
-        category: 'publications' as ResearchCategoryId,
+        category: 'publication' as ResearchCategoryId,
         type: 'conference-paper' as ResearchTypeId,
         title: 'Another Publication',
         dateStart: new Date('2023-12-15'),
@@ -90,7 +101,7 @@ describe('ResearchPageComponent', () => {
     const events = overrides?.events ?? [
       mockResearchItem({
         slug: 'event-1' as ResearchId,
-        category: 'events' as ResearchCategoryId,
+        category: 'event' as ResearchCategoryId,
         type: 'workshop' as ResearchTypeId,
         title: 'Network Science Workshop',
         dateStart: new Date('2024-03-15'),
@@ -99,11 +110,35 @@ describe('ResearchPageComponent', () => {
       }),
       mockResearchItem({
         slug: 'event-2' as ResearchId,
-        category: 'events' as ResearchCategoryId,
+        category: 'event' as ResearchCategoryId,
         type: 'seminar' as ResearchTypeId,
         title: 'Advanced Computational Methods Seminar',
         dateStart: new Date('2024-02-20'),
         dateEnd: new Date('2024-02-20'),
+      }),
+    ];
+
+    const funding = overrides?.funding ?? [
+      mockResearchItem({
+        slug: 'funding-1' as ResearchId,
+        category: 'funding' as ResearchCategoryId,
+        type: 'research' as ResearchTypeId,
+        title: 'CNS Research Grant Award',
+        dateStart: new Date('2024-01-05'),
+        dateEnd: new Date('2024-12-31'),
+        description: 'Research funding for network science initiatives.',
+      }),
+    ];
+
+    const visualizations = overrides?.visualizations ?? [
+      mockResearchItem({
+        slug: 'viz-1' as ResearchId,
+        category: 'visualization' as ResearchCategoryId,
+        type: 'interactive-visualization' as ResearchTypeId,
+        title: 'Interactive Network Visualization',
+        dateStart: new Date('2023-11-10'),
+        dateEnd: new Date('2023-11-10'),
+        description: 'An interactive visualization of neural networks.',
       }),
     ];
 
@@ -114,9 +149,12 @@ describe('ResearchPageComponent', () => {
         news,
         publications,
         events,
+        funding,
+        visualizations,
         people: overrides?.people ?? mockPeople,
         publicationTypes: overrides?.publicationTypes ?? mockPublicationTypes,
         eventTypes: overrides?.eventTypes ?? mockEventTypes,
+        fundingTypes: overrides?.fundingTypes ?? mockFundingTypes,
         tags: overrides?.tags ?? mockTags,
       },
     });
@@ -204,7 +242,7 @@ describe('ResearchPageComponent', () => {
   });
 
   it('should handle empty data gracefully', async () => {
-    await renderComponent({ news: [], publications: [], events: [] });
+    await renderComponent({ news: [], publications: [], events: [], funding: [], visualizations: [] });
     expect(screen.getByText((content) => content.includes('0') && content.includes('/'))).toBeInTheDocument();
   });
 });
