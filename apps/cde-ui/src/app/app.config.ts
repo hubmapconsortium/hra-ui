@@ -1,6 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
@@ -33,22 +32,6 @@ export const appConfig: ApplicationConfig = {
       url: 'https://apps.humanatlas.io/cde/',
     }),
     provideAnalytics(withRouterEvents(), withErrorHandler()),
-    provideNothrowPlatformLocation(),
-    provideRouter(
-      ROUTES,
-      withComponentInputBinding(),
-      withInMemoryScrolling({
-        anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled',
-      }),
-      withViewTransitions(),
-    ),
-    provideRouterExt(),
-    provideAnimations(),
-    provideHttpClient(),
-    provideIcons(),
-    provideDesignSystem(),
-    provideMarkdown(),
     provideContentTemplateDefs([
       ButtonDef,
       FlexContainerDef,
@@ -62,5 +45,17 @@ export const appConfig: ApplicationConfig = {
       CopyEmailButtonDef,
       StudiesGridDef,
     ]),
+    provideDesignSystem(),
+    provideHttpClient(),
+    provideIcons(),
+    provideMarkdown(),
+    provideNothrowPlatformLocation(),
+    provideRouter(
+      ROUTES,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+    ),
+    provideRouterExt(),
+    provideZonelessChangeDetection(),
   ],
 };

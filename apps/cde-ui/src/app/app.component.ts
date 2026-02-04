@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,15 +6,24 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule, routeData } from '@hra-ui/common';
+import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+
+function stripLastRoute(crumbs: BreadcrumbItem[]): BreadcrumbItem[] {
+  if (crumbs.length === 0) {
+    return crumbs;
+  }
+  return [...crumbs.slice(0, -1), { name: crumbs[crumbs.length - 1].name }];
+}
 
 /**
  * App component for CDE
  */
 @Component({
-  selector: 'cde-root',
+  selector: 'cde-ui',
   imports: [
     RouterOutlet,
     RouterModule,
@@ -50,7 +59,7 @@ export class AppComponent extends BaseApplicationComponent {
     if (this.data()['data']?.metadata?.sourceFileName) {
       crumbs = crumbs.concat([{ name: this.data()['data'].metadata.sourceFileName }]);
     }
-    return crumbs;
+    return stripLastRoute(crumbs);
   });
 
   /** Header visibility (whether to show header or not) */
@@ -59,6 +68,11 @@ export class AppComponent extends BaseApplicationComponent {
   /** Initialize app */
   constructor() {
     super({ screenSizeNotice: { width: 1280, height: 832 } });
+
+    inject(CustomScrollService);
     inject(Router).initialNavigation();
+
+    const scroller = inject(ViewportScroller);
+    scroller.setOffset([0, 113 + 24]);
   }
 }
