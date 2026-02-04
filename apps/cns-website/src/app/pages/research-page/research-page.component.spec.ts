@@ -56,6 +56,8 @@ describe('ResearchPageComponent', () => {
     news?: ResearchData;
     publications?: ResearchData;
     events?: ResearchData;
+    funding?: ResearchData;
+    visualizations?: ResearchData;
     people?: PeopleData;
     publicationTypes?: ResearchTypesData;
     eventTypes?: ResearchTypesData;
@@ -107,6 +109,30 @@ describe('ResearchPageComponent', () => {
       }),
     ];
 
+    const funding = overrides?.funding ?? [
+      mockResearchItem({
+        slug: 'funding-1' as ResearchId,
+        category: 'funding' as ResearchCategoryId,
+        type: 'research-funding' as ResearchTypeId,
+        title: 'CNS Research Grant Award',
+        dateStart: new Date('2024-01-05'),
+        dateEnd: new Date('2024-12-31'),
+        description: 'Research funding for network science initiatives.',
+      }),
+    ];
+
+    const visualizations = overrides?.visualizations ?? [
+      mockResearchItem({
+        slug: 'viz-1' as ResearchId,
+        category: 'visualization' as ResearchCategoryId,
+        type: 'interactive-visualization' as ResearchTypeId,
+        title: 'Interactive Network Visualization',
+        dateStart: new Date('2023-11-10'),
+        dateEnd: new Date('2023-11-10'),
+        description: 'An interactive visualization of neural networks.',
+      }),
+    ];
+
     return render(ResearchPageComponent, {
       providers: [provideMarkdown(), provideHttpClient(), provideHttpClientTesting(), SidebarStore],
       imports: [MatIconTestingModule],
@@ -114,6 +140,8 @@ describe('ResearchPageComponent', () => {
         news,
         publications,
         events,
+        funding,
+        visualizations,
         people: overrides?.people ?? mockPeople,
         publicationTypes: overrides?.publicationTypes ?? mockPublicationTypes,
         eventTypes: overrides?.eventTypes ?? mockEventTypes,
@@ -204,7 +232,7 @@ describe('ResearchPageComponent', () => {
   });
 
   it('should handle empty data gracefully', async () => {
-    await renderComponent({ news: [], publications: [], events: [] });
+    await renderComponent({ news: [], publications: [], events: [], funding: [], visualizations: [] });
     expect(screen.getByText((content) => content.includes('0') && content.includes('/'))).toBeInTheDocument();
   });
 });
