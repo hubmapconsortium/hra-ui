@@ -1,4 +1,4 @@
-import { computed } from '@angular/core';
+import { computed, Signal } from '@angular/core';
 import { ListViewGroup, ListViewItem } from '@hra-ui/design-system/content-templates/list-view';
 import {
   patchState,
@@ -37,7 +37,7 @@ export interface GroupedResearchItems {
 }
 
 /** Key type for grouping research items */
-type GroupByKey = ResearchTypeId | number | '' | 'unknown';
+type GroupByKey = ResearchTypeId | number | '' | 'unknown' | 'skip';
 
 /** Ordering state for sorting and grouping */
 interface OrderingState {
@@ -52,9 +52,6 @@ const initialState: OrderingState = {
   sortBy: SortBy.Newest,
   groupBy: null,
 };
-
-/** Label for 'Other' publication types */
-const PUBLICATION_TYPE_OTHER_LABEL = 'Other';
 
 /**
  * Creates a sorting function based on the selected sort option.
@@ -82,7 +79,7 @@ function createSortByFn(sortBy: SortBy | null): ((a: ResearchItem, b: ResearchIt
 function createGroupByKeyFn(groupBy: GroupBy | null): (item: ResearchItem) => GroupByKey {
   switch (groupBy) {
     case GroupBy.PublicationType:
-      return (item) => item.type || 'unknown';
+      return (item) => (item.category === 'publication' ? item.type : 'skip');
     case GroupBy.Year:
       return (item) => item.dateStart.getFullYear();
     default:
@@ -94,15 +91,20 @@ function createGroupByKeyFn(groupBy: GroupBy | null): (item: ResearchItem) => Gr
  * Creates a mapping of group keys to display labels.
  * @param pubTypes Publication type definitions
  */
-function createKeyLabelsMap(pubTypes: ResearchTypeItem[]): Record<GroupByKey, string> {
-  const map: Record<GroupByKey, string> = {
-    '': '',
-    unknown: 'Unknown',
-  };
-  for (const pubType of pubTypes) {
-    map[pubType.value as GroupByKey] = pubType.label;
-  }
-  return map;
+function createKeyLabelsMap(types: (() => ResearchTypeItem[])[]): Signal<Record<GroupByKey, string>> {
+  return computed(() => {
+    const map: Record<GroupByKey, string> = {
+      '': '',
+      skip: '',
+      unknown: 'Unknown',
+    };
+
+    for (const item of types.flatMap((fn) => fn())) {
+      map[item.value as GroupByKey] = item.label;
+    }
+
+    return map;
+  });
 }
 
 /**
@@ -115,24 +117,7 @@ function groupByKeyToLabel(key: GroupByKey, keyLabels: Record<GroupByKey, string
     return key.toString();
   }
 
-  return keyLabels[key] ?? PUBLICATION_TYPE_OTHER_LABEL;
-}
-
-/**
- * Compares two grouped research items for sorting.
- *
- * @param a First group item
- * @param b Second group item
- * @returns Comparison result for sorting
- */
-function groupItemCompare(a: GroupedResearchItems, b: GroupedResearchItems): number {
-  if (a.label === PUBLICATION_TYPE_OTHER_LABEL) {
-    return 1;
-  } else if (b.label === PUBLICATION_TYPE_OTHER_LABEL) {
-    return -1;
-  }
-
-  return a.label.localeCompare(b.label);
+  return keyLabels[key];
 }
 
 /**
@@ -171,6 +156,10 @@ export function withOrdering() {
         const groups = new Map<GroupByKey, ResearchItem[]>();
         for (const item of items) {
           const key = groupByKeyFn(item);
+          if (key === 'skip') {
+            continue;
+          }
+
           let group = groups.get(key);
           if (!group) {
             group = [];
@@ -182,7 +171,7 @@ export function withOrdering() {
         return groups;
       });
 
-      const _keyLabels = computed(() => createKeyLabelsMap(store.pubTypes()));
+      const _keyLabels = createKeyLabelsMap([store.pubTypes, store.eventTypes, store.fundingTypes]);
       const sortedGroupedItems = computed(() => {
         const groups = Array.from(_groupedItems());
         const groupBy = store.groupBy();
@@ -193,7 +182,7 @@ export function withOrdering() {
           items,
         }));
 
-        groupedItems.sort(groupItemCompare);
+        groupedItems.sort((a, b) => a.label.localeCompare(b.label));
         if (groupBy === GroupBy.Year) {
           groupedItems.reverse();
         }
