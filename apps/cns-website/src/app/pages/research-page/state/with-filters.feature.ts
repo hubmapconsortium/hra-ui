@@ -104,7 +104,6 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
   { id: 'display' as ResearchCategoryId, label: 'Interactive displays' },
   { id: 'miscellaneous' as ResearchCategoryId, label: 'Miscellaneous' },
   { id: 'news' as ResearchCategoryId, label: 'News' },
-  { id: 'presentation' as ResearchCategoryId, label: 'Presentations' },
   { id: 'publication' as ResearchCategoryId, label: 'Publications' },
   { id: 'software' as ResearchCategoryId, label: 'Software Products' },
   { id: 'teaching' as ResearchCategoryId, label: 'Teaching' },

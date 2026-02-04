@@ -104,7 +104,7 @@
             {
               "type": "item",
               "label": "Presentations",
-              "url": "https://cns.iu.edu/research/?category=presentation&view=list&group-by=year"
+              "url": "https://cns.iu.edu/research/?category=event&event=presentation&view=list&group-by=year"
             },
             {
               "type": "item",
