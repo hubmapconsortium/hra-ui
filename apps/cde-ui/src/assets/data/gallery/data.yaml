@@ -9,7 +9,8 @@ studies:
       - >-
         Bandyopadhyay, S. et al. Mapping the cellular biogeography of human bone
         marrow niches using singlecell transcriptomics and proteomic imaging.
-        Cell 187, 3120-3140.e29 (2024).
+        Cell 187, 3120-3140.e29 https://doi.org/10.1016/j.cell.2024.04.013
+        (2024).
     thumbnail: thumbnails/bonemarrow-codex-chop.png
     authors: Tan Lab
     affiliations: Children's Hospital of Philadelphia
@@ -352,7 +353,8 @@ studies:
     citations:
       - >-
         Lin, J.-R. et al. Multiplexed 3D atlas of state transitions and immune
-        interaction in colorectal cancer. Cell 186, 363-381.e19 (2023).
+        interaction in colorectal cancer. Cell 186, 363-381.e19
+        https://doi.org/10.1016/j.cell.2022.12.028 (2023).
     thumbnail: thumbnails/colon-cycif-sorgerlab.png
     authors: Sorger Lab
     affiliations: Harvard Medical School
@@ -773,7 +775,8 @@ studies:
     citations:
       - >-
         NCI Human Tumor Atlas Network.
-        https://data.humantumoratlas.org/publications/hta10_2025_tbd_rongduo-han.
+        https://data.humantumoratlas.org/publications/hta10_2025_tbd_rongduo-han
+        (2025).
     thumbnail: thumbnails/colon-xenium-stanford.png
     authors: Snyder Lab
     affiliations: Stanford University
@@ -1257,7 +1260,8 @@ studies:
     citations:
       - >-
         Brbić, M. et al. Annotation of spatially resolved single-cell data with
-        STELLAR. Nat. Methods 19, 14111418 (2022).
+        STELLAR. Nat. Methods 19, 14111418
+        https://doi.org/10.1038/s41592-022-01651-8 (2022).
       - >-
         Hickey, J. CODEX multiplexed imaging cell datasets used for using
         STELLAR to transfer cell type annotations to other tissues and donors.
@@ -1302,7 +1306,8 @@ studies:
     citations:
       - >-
         Hickey, J. W. et al. Organization of the human intestine at single-cell
-        resolution. Nature 619, 572–584 (2023).
+        resolution. Nature 619, 572–584
+        https://doi.org/10.1038/s41586-023-05915-x (2023).
       - >-
         Hickey, J. Processed single cell data from CODEX multiplexed imaging of
         the human intestine. Dryad https://doi.org/10.5061/DRYAD.PK0P2NGRF
@@ -2353,11 +2358,12 @@ studies:
     citations:
       - >-
         Börner, K. et al. Human BioMolecular Atlas Program (HuBMAP): 3D Human
-        Reference Atlas construction and usage. Nat. Methods 22, 845–860 (2025).
+        Reference Atlas construction and usage. Nat. Methods 22, 845–860
+        https://doi.org/10.1038/s41592-024-02563-5 (2025).
       - >-
         Jain, Yashvardhan, et al. "Exploring endothelial cell environments
-        across organs in spatially resolved omics data." bioRxiv (2025):
-        2025-09.
+        across organs in spatially resolved omics data." bioRxiv
+        https://doi.org/10.1101/2025.09.23.678129 (2025): 2025-09.
     thumbnail: thumbnails/lung-codex-urmc.png
     authors: Pryhuber Research Lab
     affiliations: University of Rochester Medical Center
@@ -2533,7 +2539,8 @@ studies:
     citations:
       - >-
         Greenbaum, S. et al. A spatially resolved timeline of the human
-        maternal–fetal interface. Nature 619, 595605 (2023).
+        maternal–fetal interface. Nature 619, 595605
+        https://doi.org/10.1038/s41586-023-06298-9 (2023).
     thumbnail: thumbnails/maternalfetalinterface-mibitof-stanford.png
     authors: Angelo Lab
     affiliations: Stanford University
@@ -5901,14 +5908,15 @@ studies:
       - >-
         Easter, Q. T. et al. Single-cell and spatially resolved interactomics of
         tooth-associated keratinocytes in periodontitis. Nat. Commun. 15, 5016
-        (2024).
+        https://doi.org/10.1038/s41467-024-49037-y (2024).
       - >-
         Matuck, B. F. et al. The Immunoregulatory Architecture of the Adult Oral
         Cavity. 2024.12.01.626279 Preprint at
         https://doi.org/10.1101/2024.12.01.626279 (2024).
       - >-
         Huynh, K. L. A. et al. Deconvolution of cell types and states in spatial
-        multiomics utilizing TACIT. Nat. Commun. 16, 3747 (2025).
+        multiomics utilizing TACIT. Nat. Commun. 16, 3747
+        https://doi.org/10.1038/s41467-025-58874-4 (2025).
     thumbnail: thumbnails/oralcavity-codex-czi.png
     authors: Lab of Oral & Craniofacial Innovation
     affiliations: Viginia Commonwealth University
@@ -6190,8 +6198,8 @@ studies:
         https://doi.org/10.6084/m9.figshare.29661308.v2 (2025).
       - >-
         Jain, Yashvardhan, et al. "Exploring endothelial cell environments
-        across organs in spatially resolved omics data." bioRxiv (2025):
-        2025-09.
+        across organs in spatially resolved omics data." bioRxiv
+        https://doi.org/10.1101/2025.09.23.678129 (2025): 2025-09.
     thumbnail: thumbnails/pancreas-geomx-ufl.png
     authors: Martha L. Campbell-Thompson Lab
     affiliations: University of Florida
@@ -6407,7 +6415,7 @@ studies:
       - >-
         Ghose, S. et al. 3D reconstruction of skin and spatial mapping of immune
         cell density, vascular distance and effects of sun exposure and aging.
-        Commun. Biol. 6, 718 (2023).
+        Commun. Biol. 6, 718 https://doi.org/10.1038/s42003-023-04991-z (2023).
     thumbnail: thumbnails/skin-celldive-ge.png
     authors: Fiona Ginty Lab
     affiliations: GE HealthCare Technology and Innovation Center
@@ -6619,7 +6627,8 @@ studies:
     citations:
       - >-
         Yapp, Clarence, et al. "Highly multiplexed 3D profiling of cell states
-        and immune niches in human tumors." Nature Methods (2025): 1-14.
+        and immune niches in human tumors." Nature Methods
+        https://doi.org/10.1038/s41592-025-02824-x (2025): 1-14.
     thumbnail: thumbnails/skin-confocal-sorgerlab.png
     authors: Sorger Lab
     affiliations: Harvard Medical School
@@ -6672,7 +6681,7 @@ studies:
       - >-
         dos Santos Peixoto, R. et al. Characterizing cell-type spatial
         relationships across length scales in spatially resolved omics data.
-        Nat. Commun. 16, 350 (2025).
+        Nat. Commun. 16, 350 https://doi.org/10.1038/s41467-024-55700-1 (2025).
       - >-
         Currlin, S. et al. Immune, endothelial and neuronal network map in human
         lymph node and spleen. 2021.10.20.465151 Preprint at
@@ -6793,7 +6802,8 @@ studies:
     citations:
       - >-
         Brbić, M. et al. Annotation of spatially resolved single-cell data with
-        STELLAR. Nat. Methods 19, 14111418 (2022).
+        STELLAR. Nat. Methods 19, 14111418
+        https://doi.org/10.1038/s41592-022-01651-8 (2022).
       - >-
         Hickey, J. CODEX multiplexed imaging cell datasets used for using
         STELLAR to transfer cell type annotations to other tissues and donors.
