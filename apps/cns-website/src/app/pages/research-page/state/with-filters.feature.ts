@@ -112,9 +112,9 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
 
 /** Funding filter options */
 export const FUNDING_OPTIONS: FundingOption[] = [
-  { id: 'research-funding' as ResearchTypeId, label: 'Research funding' },
-  { id: 'teaching-funding' as ResearchTypeId, label: 'Teaching funding' },
-  { id: 'workshop-funding' as ResearchTypeId, label: 'Workshop funding' },
+  { id: 'research' as ResearchTypeId, label: 'Research' },
+  { id: 'teaching' as ResearchTypeId, label: 'Teaching' },
+  { id: 'workshop' as ResearchTypeId, label: 'Workshop' },
 ];
 
 /** Year filter options from 1991 to current year */
