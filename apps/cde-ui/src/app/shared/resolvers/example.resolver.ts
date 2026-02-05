@@ -4,9 +4,16 @@ import { getRequiredRouteData, getRequiredRouteParam } from '../utils/route-prop
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NotFoundError } from '../utils/not-found-error';
 
+/** Examples data key */
 export const EXAMPLES_DATA_KEY = 'examples';
+/** Example index route parameter */
 export const EXAMPLE_INDEX_PARAM = 'index';
 
+/**
+ * Gets the example breadcrumbs from the route
+ * @param route Activated route snapshot
+ * @returns Breadcrumb items for the example
+ */
 export function getExampleCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
   const index = getRequiredRouteParam(route, EXAMPLE_INDEX_PARAM);
   const data = getExampleData(route);
@@ -14,10 +21,19 @@ export function getExampleCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[
   return [{ name, route: `/example/${index}` }];
 }
 
+/**
+ * Creates a resolver for example visualization data
+ * @returns Resolver function for example visualization data
+ */
 export function createExampleResolver(): ResolveFn<Partial<CdeVisualizationElementProps>> {
   return (route) => normalizeData(getExampleData(route));
 }
 
+/**
+ * Gets the example data from the route
+ * @param route Activated route snapshot
+ * @returns Example data
+ */
 function getExampleData(route: ActivatedRouteSnapshot): Record<string, unknown> {
   const index = getRequiredRouteParam(route, EXAMPLE_INDEX_PARAM);
   const examples = getRequiredRouteData<Record<string, unknown>[]>(route, EXAMPLES_DATA_KEY, true);

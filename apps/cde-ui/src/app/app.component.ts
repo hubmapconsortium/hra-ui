@@ -38,8 +38,11 @@ import { getOptionalRouteData } from './shared/utils/route-properties';
   },
 })
 export class AppComponent extends BaseApplicationComponent {
+  /** Router outlet reference */
   private readonly outlet = viewChild.required(RouterOutlet);
+  /** Notifies when the content of the router outlet changes */
   protected readonly outletChanged = createNotifier();
+  /** Snapshot of currently activated route */
   private readonly activatedRouteSnapshot = computed(() => {
     const outlet = this.outlet();
     this.outletChanged.listen();
@@ -50,6 +53,7 @@ export class AppComponent extends BaseApplicationComponent {
     return outlet.activatedRoute.snapshot;
   });
 
+  /** Computed breadcrumbs for the current route */
   protected readonly crumbs = computed(() => {
     const route = this.activatedRouteSnapshot();
     if (!route) {

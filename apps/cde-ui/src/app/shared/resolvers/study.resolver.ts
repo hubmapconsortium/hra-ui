@@ -5,9 +5,16 @@ import { StudyDataType } from '../../schemas/study.schema';
 import { NotFoundError } from '../utils/not-found-error';
 import { getRequiredRouteData, getRequiredRouteParam } from '../utils/route-properties';
 
+/** Study ID route parameter */
 export const STUDY_ID_PARAM = 'studyId';
+/** Dataset ID route parameter */
 export const DATASET_ID_PARAM = 'datasetId';
 
+/**
+ * Gets the study breadcrumbs from the route
+ * @param route Activated route snapshot
+ * @returns Breadcrumb items for the study
+ */
 export function getStudyCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
   const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
   const study = getStudy(route);
@@ -20,6 +27,11 @@ export function getStudyCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] 
   ];
 }
 
+/**
+ * Gets the study dataset breadcrumbs from the route
+ * @param route Activated route snapshot
+ * @returns Breadcrumb items for the study dataset
+ */
 export function getStudyDatasetCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
   const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
   const datasetId = getRequiredRouteParam(route, DATASET_ID_PARAM);
@@ -32,6 +44,10 @@ export function getStudyDatasetCrumbs(route: ActivatedRouteSnapshot): Breadcrumb
   ];
 }
 
+/**
+ * Creates a resolver for study dataset visualization data
+ * @returns Resolver function for study dataset visualization data
+ */
 export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<CdeVisualizationElementProps>> {
   return (route: ActivatedRouteSnapshot) => {
     const study = getStudy(route);
@@ -55,6 +71,11 @@ export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<Cde
   };
 }
 
+/**
+ * Gets the study data from the route
+ * @param route Activated route snapshot
+ * @returns Study data
+ */
 function getStudy(route: ActivatedRouteSnapshot): StudyDataType['studies'][number] {
   const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
   const data = getRequiredRouteData<StudyDataType>(route, 'data', true);
