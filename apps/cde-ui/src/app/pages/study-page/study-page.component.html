@@ -41,7 +41,7 @@
     }
   </hra-page-section>
 
-  <hra-page-section hraFeature="source-data" tagline="Source data" anchor="source-data" [level]="2">
+  <hra-page-section hraFeature="publications" tagline="Publications" anchor="publications" [level]="2">
     @if (studyData()?.publications && studyData()!.publications.length > 0) {
       <ul class="citations-list">
         @for (pub of studyData()!.publications; track pub.url) {

@@ -1,6 +1,11 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import { ApplicationConfig } from '@angular/core';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withNavigationErrorHandler,
+} from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
@@ -20,6 +25,7 @@ import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { ROUTES } from './app.routes';
 import { StudiesGridDef } from './components/studies-grid';
+import { handleNavigationError } from './shared/utils/navigation-error-handler';
 
 /**
  * Set of config options available during the application bootstrap operation.
@@ -54,8 +60,8 @@ export const appConfig: ApplicationConfig = {
       ROUTES,
       withComponentInputBinding(),
       withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+      withNavigationErrorHandler(handleNavigationError),
     ),
     provideRouterExt(),
-    provideZonelessChangeDetection(),
   ],
 };

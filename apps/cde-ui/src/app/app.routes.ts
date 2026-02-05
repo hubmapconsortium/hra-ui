@@ -1,9 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { Routes } from '@angular/router';
 import { assetUrl } from '@hra-ui/common/url';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
+import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
+import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { VisualCard } from './components/visual-card/visual-card.component';
 import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -14,12 +15,22 @@ import {
   visualizationDataCanActivate,
   visualizationDataResolver,
 } from './services/visualization-data-service/visualization-data.service';
-import { createCrumbsResolver } from './shared/resolvers/crumbs/crumbs.resolver';
-import { exampleDataResolver } from './shared/resolvers/example-data/example-data.resolver';
+import { createCrumbsResolver, CRUMBS_DATA_KEY } from './shared/resolvers/crumbs.resolver';
+import {
+  createExampleResolver,
+  EXAMPLE_INDEX_PARAM,
+  EXAMPLES_DATA_KEY,
+  getExampleCrumbs,
+} from './shared/resolvers/example.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
-import { organsResolver } from './shared/resolvers/organs/organs.resolver';
-import { studyDatasetResolver } from './shared/resolvers/study-dataset/study-dataset.resolver';
-import { getStudyCrumbs, getStudyDatasetCrumbs } from './shared/resolvers/study/study.resolver';
+import { organsResolver } from './shared/resolvers/organs.resolver';
+import {
+  createStudyDatasetVisualizationResolver,
+  DATASET_ID_PARAM,
+  getStudyCrumbs,
+  getStudyDatasetCrumbs,
+  STUDY_ID_PARAM,
+} from './shared/resolvers/study.resolver';
 
 /** Landing page cards json file url token */
 const LANDING_PAGE_CARDS_URL = new InjectionToken('LANDING_PAGE_CARDS_URL', {
@@ -41,11 +52,8 @@ export const ROUTES: Routes = [
     path: '',
     pathMatch: 'full',
     component: LandingPageComponent,
-    data: {
-      isLanding: true,
-    },
     resolve: {
-      crumbs: createCrumbsResolver(),
+      [CRUMBS_DATA_KEY]: createCrumbsResolver(),
       cards: jsonFileResolver<VisualCard[]>(LANDING_PAGE_CARDS_URL, { cache: true }),
     },
   },
@@ -53,55 +61,65 @@ export const ROUTES: Routes = [
     path: 'create',
     component: CreateVisualizationPageComponent,
     resolve: {
-      crumbs: createCrumbsResolver([{ name: 'Create Visualization', route: '/create' }]),
+      [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Create Visualization', route: '/create' }]),
       organs: organsResolver(),
     },
   },
   {
     path: 'gallery',
-    component: ContentPageComponent,
     resolve: {
-      crumbs: createCrumbsResolver([{ name: 'Spatial Omics Gallery', route: '/gallery' }]),
-      data: createYamlSpecResolver('assets/content/gallery/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'gallery/:studyId',
-    resolve: {
-      crumbs: createCrumbsResolver([{ name: 'Spatial Omics Gallery', route: '/gallery' }]),
-      data: createYamlSpecResolver('assets/data/gallery/data.yaml', StudyDataSchema),
+      [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Spatial Omics Gallery', route: '/gallery' }]),
     },
     children: [
       {
         path: '',
         pathMatch: 'full',
-        component: StudyPageComponent,
+        component: ContentPageComponent,
         resolve: {
-          crumbs: createCrumbsResolver(getStudyCrumbs),
+          data: createYamlSpecResolver('assets/content/gallery/data.yaml', ContentPageDataSchema),
         },
       },
       {
-        path: ':datasetId',
-        component: VisualizationPageComponent,
+        path: `:${STUDY_ID_PARAM}`,
         resolve: {
-          crumbs: createCrumbsResolver(getStudyDatasetCrumbs),
-          data: studyDatasetResolver(),
+          data: createYamlSpecResolver('assets/data/gallery/data.yaml', StudyDataSchema),
         },
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: StudyPageComponent,
+            resolve: {
+              [CRUMBS_DATA_KEY]: createCrumbsResolver(getStudyCrumbs),
+            },
+          },
+          {
+            path: `:${DATASET_ID_PARAM}`,
+            component: VisualizationPageComponent,
+            resolve: {
+              [CRUMBS_DATA_KEY]: createCrumbsResolver(getStudyDatasetCrumbs),
+              data: createStudyDatasetVisualizationResolver(),
+            },
+          },
+        ],
       },
     ],
   },
   {
-    path: 'example/:index',
-    component: VisualizationPageComponent,
-    data: {
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'Cell Distance Explorer', route: '/' },
-      ] satisfies BreadcrumbItem[],
-    },
+    path: 'example',
     resolve: {
-      data: exampleDataResolver(EXAMPLE_DATA_INDEX_URL),
+      [EXAMPLES_DATA_KEY]: jsonFileResolver<Record<string, unknown>[]>(EXAMPLE_DATA_INDEX_URL, { cache: true }),
     },
+    children: [
+      {
+        path: `:${EXAMPLE_INDEX_PARAM}`,
+        component: VisualizationPageComponent,
+        resolve: {
+          [CRUMBS_DATA_KEY]: createCrumbsResolver(getExampleCrumbs),
+          data: createExampleResolver(),
+        },
+      },
+    ],
   },
   {
     path: 'visualize',
@@ -109,18 +127,26 @@ export const ROUTES: Routes = [
     canActivate: [visualizationDataCanActivate()],
     data: {
       isCustomVisualization: true,
-      crumbs: [
-        { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'Cell Distance Explorer', route: '/' },
-      ] satisfies BreadcrumbItem[],
     },
     resolve: {
+      [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Custom Visualization', route: '/visualize' }]),
       data: visualizationDataResolver(),
     },
   },
 
+  // Error paths
+  {
+    path: '500',
+    component: ServerErrorPageComponent,
+    data: {
+      isErrorPage: true,
+    },
+  },
   {
     path: '**',
-    redirectTo: '/',
+    component: NotFoundPageComponent,
+    data: {
+      isErrorPage: true,
+    },
   },
 ];

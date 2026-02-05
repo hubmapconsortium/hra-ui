@@ -1,35 +1,34 @@
 <ng-container hraFeature="cde-ui">
-  @if (header() !== false) {
-    <hra-header hraFeature="header" [breadcrumbs]="crumbs()">
-      <a
-        mat-icon-button
-        rel="noopener noreferrer"
-        hraPlainTooltip="Explore sample data"
-        hraFeature="explore-menu"
-        hraClickEvent
-        [matMenuTriggerFor]="exploreMenu"
-      >
-        <mat-icon>explore</mat-icon>
-      </a>
-      <a mat-icon-button routerLink="/create" hraPlainTooltip="Upload data" hraFeature="upload-data" hraClickEvent>
-        <mat-icon>upload</mat-icon>
-      </a>
+  <hra-header hraFeature="header" [breadcrumbs]="crumbs()">
+    <a
+      mat-icon-button
+      rel="noopener noreferrer"
+      hraPlainTooltip="Explore sample data"
+      hraFeature="explore-menu"
+      hraClickEvent
+      [matMenuTriggerFor]="exploreMenu"
+    >
+      <mat-icon>explore</mat-icon>
+    </a>
+    <a mat-icon-button routerLink="/create" hraPlainTooltip="Upload data" hraFeature="upload-data" hraClickEvent>
+      <mat-icon>upload</mat-icon>
+    </a>
 
-      <hra-help-button action="https://humanatlas.io/user-story/5" />
+    <hra-help-button action="https://humanatlas.io/user-story/5" />
 
-      <!-- Explore sample data Menu -->
-      <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>
-        <a mat-menu-item routerLink="/example/0" target="_blank" hraFeature="2d-intestine-data" hraClickEvent>
-          <div class="title">2D intestine data</div>
-          <div class="description">CyCIF colorectal cancer data from Peter Sorger Lab</div>
-        </a>
-        <mat-divider />
-        <a mat-menu-item routerLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>
-          <div class="title">3D skin data</div>
-          <div class="description">Cell DIVE skin data from GE Healthcare</div>
-        </a>
-      </mat-menu>
-    </hra-header>
-  }
-  <router-outlet />
+    <!-- Explore sample data Menu -->
+    <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>
+      <a mat-menu-item routerLink="/example/0" target="_blank" hraFeature="2d-intestine-data" hraClickEvent>
+        <div class="title">2D intestine data</div>
+        <div class="description">CyCIF colorectal cancer data from Peter Sorger Lab</div>
+      </a>
+      <mat-divider />
+      <a mat-menu-item routerLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>
+        <div class="title">3D skin data</div>
+        <div class="description">Cell DIVE skin data from GE Healthcare</div>
+      </a>
+    </mat-menu>
+  </hra-header>
+
+  <router-outlet (activate)="outletChanged.notify()" (attach)="outletChanged.notify()" />
 </ng-container>

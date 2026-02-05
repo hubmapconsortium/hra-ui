@@ -1,23 +1,18 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, viewChild } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BaseApplicationComponent } from '@hra-ui/application';
-import { HraCommonModule, routeData } from '@hra-ui/common';
+import { HraCommonModule } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-
-function stripLastRoute(crumbs: BreadcrumbItem[]): BreadcrumbItem[] {
-  if (crumbs.length === 0) {
-    return crumbs;
-  }
-  return [...crumbs.slice(0, -1), { name: crumbs[crumbs.length - 1].name }];
-}
+import { createNotifier } from 'ngxtension/create-notifier';
+import { CRUMBS_DATA_KEY, removeLastCrumbRoute, ROOT_CRUMBS } from './shared/resolvers/crumbs.resolver';
+import { getOptionalRouteData } from './shared/utils/route-properties';
 
 /**
  * App component for CDE
@@ -43,27 +38,32 @@ function stripLastRoute(crumbs: BreadcrumbItem[]): BreadcrumbItem[] {
   },
 })
 export class AppComponent extends BaseApplicationComponent {
-  /**
-   * Route data of app component
-   */
-  private readonly data = routeData();
-
-  /** Breadcrumbs data (computed from above signal). */
-  protected readonly crumbs = computed(() => {
-    let crumbs = [...(this.data()['crumbs'] ?? [])];
-
-    if (this.data()['studyCrumb']) {
-      crumbs = crumbs.concat([{ name: this.data()['studyCrumb'] }]);
+  private readonly outlet = viewChild.required(RouterOutlet);
+  protected readonly outletChanged = createNotifier();
+  private readonly activatedRouteSnapshot = computed(() => {
+    const outlet = this.outlet();
+    this.outletChanged.listen();
+    if (!outlet.isActivated) {
+      return undefined;
     }
 
-    if (this.data()['data']?.metadata?.sourceFileName) {
-      crumbs = crumbs.concat([{ name: this.data()['data'].metadata.sourceFileName }]);
-    }
-    return stripLastRoute(crumbs);
+    return outlet.activatedRoute.snapshot;
   });
 
-  /** Header visibility (whether to show header or not) */
-  protected readonly header = computed(() => this.data()['header'] as boolean | undefined);
+  protected readonly crumbs = computed(() => {
+    const route = this.activatedRouteSnapshot();
+    if (!route) {
+      return ROOT_CRUMBS;
+    }
+
+    const isErrorPage = getOptionalRouteData(route, 'isErrorPage', false, true);
+    if (isErrorPage) {
+      return ROOT_CRUMBS;
+    }
+
+    const crumbs = getOptionalRouteData(route, CRUMBS_DATA_KEY, ROOT_CRUMBS, true);
+    return removeLastCrumbRoute(crumbs);
+  });
 
   /** Initialize app */
   constructor() {
