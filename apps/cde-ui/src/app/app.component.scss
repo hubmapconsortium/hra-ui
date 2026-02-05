@@ -1,6 +1,3 @@
-@use '@angular/material' as mat;
-@use 'vars';
-
 :host {
   display: flex;
   flex-direction: column;
@@ -12,14 +9,4 @@
   ::ng-deep router-outlet + * {
     overflow-y: auto;
   }
-
-  // Set flat-button font globally
-  @include mat.button-overrides(
-    (
-      filled-label-text-font: vars.$label-medium-font,
-      filled-label-text-size: vars.$label-medium-size,
-      filled-label-text-tracking: vars.$label-medium-tracking,
-      filled-label-text-weight: vars.$label-medium-weight,
-    )
-  );
 }
