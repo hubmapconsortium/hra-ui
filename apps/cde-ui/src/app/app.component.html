@@ -13,8 +13,8 @@
       <a
         mat-icon-button
         routerLink="/gallery"
-        hraPlainTooltip="Spatial Omnics Gallery"
-        hraFeature="omnics-gallery"
+        hraPlainTooltip="Spatial Omics Gallery"
+        hraFeature="omics-gallery"
         hraClickEvent
       >
         <mat-icon>cards</mat-icon>
@@ -34,15 +34,26 @@
 
       <!-- Explore sample data Menu -->
       <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>
-        <a mat-menu-item routerLink="/example/0" target="_blank" hraFeature="2d-intestine-data" hraClickEvent>
-          <div class="title">Explore 2D data</div>
-          <div class="description">Large intestine CyCIF data by Sorger Lab at Harvard Medical School</div>
+        <a
+          class="option"
+          mat-menu-item
+          routerLink="/example/0"
+          target="_blank"
+          hraFeature="2d-intestine-data"
+          hraClickEvent
+        >
+          <div class="option-text">
+            <div class="option-name">Explore 2D data</div>
+            <div class="option-description">Large intestine CyCIF data by Sorger Lab at Harvard Medical School</div>
+          </div>
         </a>
         <mat-divider />
-        <a mat-menu-item routerLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>
-          <div class="title">Explore 3D data</div>
-          <div class="description">
-            Skin Cell DIVE data by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center
+        <a class="option" mat-menu-item routerLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>
+          <div class="option-text">
+            <div class="option-name">Explore 3D data</div>
+            <div class="option-description">
+              Skin Cell DIVE data by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center
+            </div>
           </div>
         </a>
       </mat-menu>
