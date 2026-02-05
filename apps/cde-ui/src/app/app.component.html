@@ -3,7 +3,7 @@
     <hra-header hraFeature="header" [breadcrumbs]="crumbs()">
       <a
         mat-icon-button
-        routerLink="/create"
+        hraLink="/create"
         hraPlainTooltip="Upload and visualize data"
         hraFeature="upload-data"
         hraClickEvent
@@ -12,7 +12,7 @@
       </a>
       <a
         mat-icon-button
-        routerLink="/gallery"
+        hraLink="/gallery"
         hraPlainTooltip="Spatial Omics Gallery"
         hraFeature="omics-gallery"
         hraClickEvent
@@ -37,7 +37,7 @@
         <a
           class="option"
           mat-menu-item
-          routerLink="/example/0"
+          hraLink="/example/0"
           target="_blank"
           hraFeature="2d-intestine-data"
           hraClickEvent
@@ -48,7 +48,7 @@
           </div>
         </a>
         <mat-divider />
-        <a class="option" mat-menu-item routerLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>
+        <a class="option" mat-menu-item hraLink="/example/1" target="_blank" hraFeature="3d-skin-data" hraClickEvent>
           <div class="option-text">
             <div class="option-name">Explore 3D data</div>
             <div class="option-description">
