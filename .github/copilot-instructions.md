@@ -29,6 +29,7 @@ Developer conventions and patterns to follow
 - Tests: Jest is used across the workspace (see root `jest.config.ts` and per-project configs). Many projects set `passWithNoTests: true` in `nx.json` so run specific project tests rather than relying on a global run.
 - Use `@testing-library/angular` for unit tests: import and use `render()` from `@testing-library/angular` and assert via DOM queries (e.g., `screen.getByText`) instead of accessing the Angular `fixture` or component internals from the rendered result. This keeps tests resilient and aligned with existing project patterns.
 - Test setup helpers: When tests require repeated, large `render(...)` blocks (lots of `providers`, `imports`, `declarations`, or common stubs), factor them into a `setup()` helper function that returns the `render` result and common helpers (for example: `{ renderResult, screen, user }`). Keep the helper in the test file to make test files concise and maintainable.
+- Zod imports: Always import zod using `import * as z from 'zod';` — this ensures zod imports are tree shakeable.
 
 Integration and external dependencies
 
