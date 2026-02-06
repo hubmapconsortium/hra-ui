@@ -95,10 +95,10 @@ const DATASET_COLUMNS: TableColumn[] = [
 const CSV_HEADERS = [
   'Dataset ID',
   '#Cells',
-  '#Original Cell types',
-  '#level 3 cell types',
-  '#level 2 cell types',
-  '#level 1 cell types',
+  '#Original cell types',
+  '#Level 3 cell types',
+  '#Level 2 cell types',
+  '#Level 1 cell types',
 ];
 
 /** Component for displaying a study page in the Cell Distance Explorer */
