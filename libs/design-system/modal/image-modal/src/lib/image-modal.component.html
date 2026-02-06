@@ -9,5 +9,5 @@
 
   <mat-divider />
 
-  <img class="preview-image" [attr.src]="imageUrl()" [attr.alt]="altText()" />
+  <img class="preview-image" [attr.src]="imageUrl() | assetUrl" [attr.alt]="altText()" />
 </ng-container>

@@ -7,7 +7,7 @@
       [routerLink]="card.route"
       [hraFeature]="card.label | slugify"
     >
-      <img [attr.src]="card.image" [alt]="card.alt" />
+      <img [attr.src]="card.image | assetUrl" [alt]="card.alt" />
       <button class="label" mat-button hraCtaButton hraSecondaryButton>
         {{ card.label }}
         <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
