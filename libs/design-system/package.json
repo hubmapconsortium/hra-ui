@@ -126,6 +126,10 @@
       "types": "./cards/action-card/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-action-card.mjs"
     },
+    "./cards/collection-card": {
+      "types": "./cards/collection-card/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-cards-collection-card.mjs"
+    },
     "./cards/content-button": {
       "types": "./cards/content-button/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-cards-content-button.mjs"
@@ -173,6 +177,10 @@
     "./content-templates/content-page": {
       "types": "./content-templates/content-page/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-content-templates-content-page.mjs"
+    },
+    "./content-templates/copy-email": {
+      "types": "./content-templates/copy-email/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-content-templates-copy-email.mjs"
     },
     "./content-templates/flex-container": {
       "types": "./content-templates/flex-container/index.d.ts",
@@ -334,10 +342,6 @@
       "types": "./indicators/step-indicator/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-indicators-step-indicator.mjs"
     },
-    "./info-modal": {
-      "types": "./info-modal/index.d.ts",
-      "default": "./fesm2022/hra-ui-design-system-info-modal.mjs"
-    },
     "./layouts": {
       "types": "./layouts/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-layouts.mjs"
@@ -349,6 +353,18 @@
     "./menu": {
       "types": "./menu/index.d.ts",
       "default": "./fesm2022/hra-ui-design-system-menu.mjs"
+    },
+    "./modal": {
+      "types": "./modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-modal.mjs"
+    },
+    "./modal/image-modal": {
+      "types": "./modal/image-modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-modal-image-modal.mjs"
+    },
+    "./modal/info-modal": {
+      "types": "./modal/info-modal/index.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-modal-info-modal.mjs"
     },
     "./nav-header-buttons": {
       "types": "./nav-header-buttons/index.d.ts",
@@ -459,7 +475,7 @@
     "@angular/platform-browser": "^20.2.1",
     "ngx-highlightjs": "^14.0.0",
     "highlight.js": "^11.11.1",
-    "ngxtension": "^5.1.0",
+    "ngxtension": "^7.0.2",
     "@hra-ui/common": "1.1.0",
     "ngx-markdown": "^20.0.0",
     "js-yaml": "^4.1.0",

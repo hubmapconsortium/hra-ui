@@ -295,6 +295,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/ProviderFeature.html" data-type="entity-link" >ProviderFeature</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/SafeTruncateOptions.html" data-type="entity-link" >SafeTruncateOptions</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/SegmentWithMatrixParams.html" data-type="entity-link" >SegmentWithMatrixParams</a>
                             </li>
                             <li class="link">

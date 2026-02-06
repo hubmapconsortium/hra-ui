@@ -15,10 +15,20 @@ interface HraAnalyticsPluginConfig {
  */
 declare function hraAnalyticsPlugin(config: HraAnalyticsPluginConfig): AnalyticsPlugin;
 
+/** Options for safely truncating a query string */
+interface SafeTruncateOptions {
+    /** Suffix to append to truncated values (URL-encoded) */
+    truncatedSuffix?: string;
+    /** Minimum length of truncated values (excluding suffix) */
+    minValueLength?: number;
+}
+
 /**
  * Telemetry service responsible for sending analytics data to the HRA analytics endpoint
  */
 declare class TelemetryService {
+    /** Default maximum query string length */
+    static readonly DEFAULT_MAX_QUERY_STRING_LENGTH = 7000;
     /** Endpoint url */
     private readonly endpoint;
     /** Parameter filters */
@@ -34,9 +44,11 @@ declare class TelemetryService {
      * Stringifies telemetry data into a query string
      *
      * @param data Arbitrary data to serialize
+     * @param maxLength Maximum length of the query string
+     * @param options Safe truncation options
      * @returns A query string parsable by `qs`
      */
-    stringify(data: unknown): string;
+    stringify(data: unknown, maxLength?: number, options?: SafeTruncateOptions): string;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<TelemetryService, never>;
     static ɵprov: _angular_core.ɵɵInjectableDeclaration<TelemetryService>;
 }

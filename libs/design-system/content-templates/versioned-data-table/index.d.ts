@@ -19,7 +19,7 @@ declare class VersionedDataTableComponent {
         columns?: {
             column: string;
             label: string;
-            type: "text" | "numeric" | "markdown" | "icon" | "menu" | {
+            type: "text" | "numeric" | "markdown" | "icon" | "menu" | "buttonIcon" | {
                 type: "text";
             } | {
                 type: "numeric";
@@ -39,6 +39,13 @@ declare class VersionedDataTableComponent {
                 icon: string;
                 options: string;
                 tooltip?: string | undefined;
+            } | {
+                type: "buttonIcon";
+                buttonLabel?: string | undefined;
+                previewIcon?: string | undefined;
+                imageUrlColumn?: string | undefined;
+                imageAltColumn?: string | undefined;
+                titleColumn?: string | undefined;
             };
         }[] | undefined;
         rows?: Record<string, string | number | boolean | any[]>[] | undefined;
@@ -52,7 +59,7 @@ declare class VersionedDataTableComponent {
     readonly columns: _angular_core.InputSignal<{
         column: string;
         label: string;
-        type: "text" | "numeric" | "markdown" | "icon" | "menu" | {
+        type: "text" | "numeric" | "markdown" | "icon" | "menu" | "buttonIcon" | {
             type: "text";
         } | {
             type: "numeric";
@@ -72,6 +79,13 @@ declare class VersionedDataTableComponent {
             icon: string;
             options: string;
             tooltip?: string | undefined;
+        } | {
+            type: "buttonIcon";
+            buttonLabel?: string | undefined;
+            previewIcon?: string | undefined;
+            imageUrlColumn?: string | undefined;
+            imageAltColumn?: string | undefined;
+            titleColumn?: string | undefined;
         };
     }[] | undefined>;
     /** The variant of the table */
@@ -90,7 +104,7 @@ declare class VersionedDataTableComponent {
         columns?: {
             column: string;
             label: string;
-            type: "text" | "numeric" | "markdown" | "icon" | "menu" | {
+            type: "text" | "numeric" | "markdown" | "icon" | "menu" | "buttonIcon" | {
                 type: "text";
             } | {
                 type: "numeric";
@@ -110,6 +124,13 @@ declare class VersionedDataTableComponent {
                 icon: string;
                 options: string;
                 tooltip?: string | undefined;
+            } | {
+                type: "buttonIcon";
+                buttonLabel?: string | undefined;
+                previewIcon?: string | undefined;
+                imageUrlColumn?: string | undefined;
+                imageAltColumn?: string | undefined;
+                titleColumn?: string | undefined;
             };
         }[] | undefined;
         rows?: Record<string, string | number | boolean | any[]>[] | undefined;
@@ -145,7 +166,7 @@ declare const VersionedDataTableSchema: z.ZodObject<{
     columns: z.ZodOptional<z.ZodArray<z.ZodObject<{
         column: z.ZodString;
         label: z.ZodString;
-        type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">]>, z.ZodUnion<readonly [z.ZodObject<{
+        type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"buttonIcon">]>, z.ZodUnion<readonly [z.ZodObject<{
             type: z.ZodLiteral<"text">;
         }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"numeric">;
@@ -165,6 +186,13 @@ declare const VersionedDataTableSchema: z.ZodObject<{
             icon: z.ZodString;
             options: z.ZodString;
             tooltip: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>, z.ZodObject<{
+            type: z.ZodLiteral<"buttonIcon">;
+            buttonLabel: z.ZodOptional<z.ZodString>;
+            previewIcon: z.ZodOptional<z.ZodString>;
+            imageUrlColumn: z.ZodOptional<z.ZodString>;
+            imageAltColumn: z.ZodOptional<z.ZodString>;
+            titleColumn: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>]>]>>;
     }, z.core.$strip>>>;
     variant: z.ZodOptional<z.ZodEnum<{
@@ -182,7 +210,7 @@ declare const VersionedDataTableSchema: z.ZodObject<{
         columns: z.ZodOptional<z.ZodArray<z.ZodObject<{
             column: z.ZodString;
             label: z.ZodString;
-            type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">]>, z.ZodUnion<readonly [z.ZodObject<{
+            type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"buttonIcon">]>, z.ZodUnion<readonly [z.ZodObject<{
                 type: z.ZodLiteral<"text">;
             }, z.core.$strip>, z.ZodObject<{
                 type: z.ZodLiteral<"numeric">;
@@ -202,6 +230,13 @@ declare const VersionedDataTableSchema: z.ZodObject<{
                 icon: z.ZodString;
                 options: z.ZodString;
                 tooltip: z.ZodOptional<z.ZodString>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"buttonIcon">;
+                buttonLabel: z.ZodOptional<z.ZodString>;
+                previewIcon: z.ZodOptional<z.ZodString>;
+                imageUrlColumn: z.ZodOptional<z.ZodString>;
+                imageAltColumn: z.ZodOptional<z.ZodString>;
+                titleColumn: z.ZodOptional<z.ZodString>;
             }, z.core.$strip>]>]>>;
         }, z.core.$strip>>>;
         rows: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodBoolean, z.ZodArray<z.ZodAny>]>>>>;

@@ -225,8 +225,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">table/src/lib/table/table.component.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -294,8 +294,20 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SelectionModel } from &#x27;@angular/cdk/collections&#x27;;
+import { DOCUMENT } from &#x27;@angular/common&#x27;;
 import { httpResource } from &#x27;@angular/common/http&#x27;;
-import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from &#x27;@angular/core&#x27;;
+import {
+  Component,
+  computed,
+  Directive,
+  effect,
+  ErrorHandler,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from &#x27;@angular/core&#x27;;
 import { MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { MatSort, MatSortModule } from &#x27;@angular/material/sort&#x27;;
@@ -305,6 +317,7 @@ import { injectAssetUrlResolver } from &#x27;@hra-ui/common/url&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { TextHyperlinkDirective } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
 import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
+import { ImageModalComponent } from &#x27;@hra-ui/design-system/modal/image-modal&#x27;;
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
 import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
 import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
@@ -313,6 +326,7 @@ import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
 import { NgScrollbar } from &#x27;ngx-scrollbar&#x27;;
 import { parse } from &#x27;papaparse&#x27;;
 import {
+  ButtonIconColumnType,
   IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
@@ -414,6 +428,22 @@ export class MenuButtonRowElementDirective {
   }
 }
 
+/** Directive for typing the context of ButtonIcon Row Element */
+@Directive({
+  selector: &#x27;ng-template[hraButtonIconRowElement]&#x27;,
+})
+export class ButtonIconRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of ButtonIcon Row Element */
+  static ngTemplateContextGuard(
+    _dir: ButtonIconRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext&lt;string, ButtonIconColumnType&gt; {
+    return true;
+  }
+}
+
 /** Directive for typing the context of Numeric Row Element */
 @Directive({
   selector: &#x27;ng-template[hraNumericRowElement]&#x27;,
@@ -437,6 +467,7 @@ export class NumericRowElementDirective {
   selector: &#x27;hra-table&#x27;,
   imports: [
     HraCommonModule,
+    ImageModalComponent,
     MarkdownModule,
     MatMenuModule,
     MatSortModule,
@@ -448,6 +479,7 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     MenuButtonRowElementDirective,
+    ButtonIconRowElementDirective,
     NumericRowElementDirective,
     PlainTooltipDirective,
     IconsModule,
@@ -495,6 +527,18 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
   /** Emits download object id on download button hover */
   readonly downloadHovered &#x3D; output&lt;string&gt;();
 
+  /** Modal state for image preview */
+  readonly showImageModal &#x3D; signal&lt;boolean&gt;(false);
+
+  /** Image modal data */
+  readonly modalImageUrl &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Image modal title */
+  readonly modalImageTitle &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Image modal alt text */
+  readonly modalImageAlt &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
   /** Scrollbar ref */
   readonly scrollbar &#x3D; viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;);
 
@@ -506,6 +550,9 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
 
   /** Error handler provider for logging errors */
   private readonly errorHandler &#x3D; inject(ErrorHandler);
+
+  /** Document reference for managing body overflow */
+  private readonly document &#x3D; inject(DOCUMENT);
 
   /** Resolver for asset urls */
   private readonly resolveAssetUrl &#x3D; injectAssetUrlResolver();
@@ -661,6 +708,31 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
   /** Scrolls to top of the table */
   scrollToTop(): void {
     this.scrollbar().scrollTo({ top: 0, duration: 0 });
+  }
+
+  /**
+   * Opens the image preview modal
+   * @param imageUrl URL of the image to preview
+   * @param title Title for the modal
+   * @param alt Alt text for the image
+   */
+  openImageModal(imageUrl: string, title &#x3D; &#x27;&#x27;, alt &#x3D; &#x27;&#x27;): void {
+    this.modalImageUrl.set(imageUrl);
+    this.modalImageTitle.set(title);
+    this.modalImageAlt.set(alt);
+    this.showImageModal.set(true);
+    this.document.body.style.overflow &#x3D; &#x27;hidden&#x27;;
+  }
+
+  /**
+   * Closes the image preview modal
+   */
+  closeImageModal(): void {
+    this.showImageModal.set(false);
+    this.modalImageUrl.set(&#x27;&#x27;);
+    this.modalImageTitle.set(&#x27;&#x27;);
+    this.modalImageAlt.set(&#x27;&#x27;);
+    this.document.body.style.overflow &#x3D; &#x27;&#x27;;
   }
 }
 </code></pre>

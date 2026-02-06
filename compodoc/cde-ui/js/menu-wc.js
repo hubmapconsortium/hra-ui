@@ -59,6 +59,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/LandingPageComponent.html" data-type="entity-link" >LandingPageComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/StudiesGridComponent.html" data-type="entity-link" >StudiesGridComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StudyPageComponent.html" data-type="entity-link" >StudyPageComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/VisualCardComponent.html" data-type="entity-link" >VisualCardComponent</a>
                             </li>
                             <li class="link">
@@ -79,6 +85,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </ul>
                         </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#classes-links"' :
+                            'data-bs-target="#xs-classes-links"' }>
+                            <span class="icon ion-ios-paper"></span>
+                            <span>Classes</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
+                            <li class="link">
+                                <a href="classes/NotFoundError.html" data-type="entity-link" >NotFoundError</a>
+                            </li>
+                        </ul>
+                    </li>
                         <li class="chapter">
                             <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#injectables-links"' :
                                 'data-bs-target="#xs-injectables-links"' }>
@@ -101,6 +120,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/DatasetRow.html" data-type="entity-link" >DatasetRow</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/FileParseError.html" data-type="entity-link" >FileParseError</a>
                             </li>
                             <li class="link">
@@ -111,6 +133,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/MissingKeyError.html" data-type="entity-link" >MissingKeyError</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/PublicationLink.html" data-type="entity-link" >PublicationLink</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/PublicationLink-1.html" data-type="entity-link" >PublicationLink</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StudyCard.html" data-type="entity-link" >StudyCard</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StudyData.html" data-type="entity-link" >StudyData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/VisualCard.html" data-type="entity-link" >VisualCard</a>

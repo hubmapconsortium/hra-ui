@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { computed, effect, input, booleanAttribute, numberAttribute, output, viewChild, inject, ErrorHandler, signal, ChangeDetectionStrategy, Component, provideZonelessChangeDetection } from '@angular/core';
+import { computed, effect, input, booleanAttribute, numberAttribute, output, viewChild, inject, ErrorHandler, signal, untracked, DestroyRef, ChangeDetectionStrategy, Component, provideZonelessChangeDetection } from '@angular/core';
 import { createCustomElement } from '@hra-ui/webcomponents';
 import { Deck, COORDINATE_SYSTEM, CompositeLayer, OrbitView } from '@deck.gl/core/typed';
 import { NodesView, loadNodes, withDataViewDefaultGenerator, loadEdges, createEdgeGenerator, EMPTY_EDGES_VIEW, loadColorMap, createColorMapGenerator, EMPTY_COLOR_MAP_VIEW, loadNodeFilter } from '@hra-ui/node-dist-vis/models';
@@ -124,23 +124,42 @@ function createNodeFilterAccessor2(accessor1, indexAccessor1, accessor2, indexAc
 }
 
 /**
- * Create a position accessor that scales position to the range [-1, 1]
+ * Applies scaling to a position value
+ *
+ * @param dest Destination position array (must have length >= 3)
+ * @param position Unscaled position
+ * @param offset Position offset
+ * @param scale Scale length
+ * @returns The `dest` array cast to a `Position` containing the scaled position
+ */
+function applyScaling(dest, position, offset, scale) {
+    dest[0] = (position[0] - offset) / scale;
+    dest[1] = 1 - (position[1] - offset) / scale;
+    dest[2] = ((position[2] ?? 0) - offset) / scale;
+    return dest;
+}
+/**
+ * Scales a position to the range [0, 1]
+ *
+ * @param position Unscaled position
+ * @param dimensions Dimensions of visualization
+ * @returns Scaled position
+ */
+function scalePosition(position, dimensions) {
+    return applyScaling([0, 0, 0], position, dimensions[0], dimensions[1] - dimensions[0]);
+}
+/**
+ * Create a position accessor that scales position to the range [0, 1]
  *
  * @param accessor Unscaled position accessor
  * @param dimensions Dimensions of visualization
  * @returns An accessor
  */
 function createScaledPositionAccessor(accessor, dimensions) {
-    const [min, max] = dimensions;
-    const diff = max - min;
-    const scale = (value) => (value - min) / diff;
     return (obj, info) => {
         const { target } = info;
         const position = accessor(obj, info);
-        target[0] = scale(position[0]);
-        target[1] = 1 - scale(position[1]);
-        target[2] = scale(position[2] ?? 0);
-        return target;
+        return applyScaling(target, position, dimensions[0], dimensions[1] - dimensions[0]);
     };
 }
 
@@ -525,8 +544,14 @@ function createSelectionLayer(mode, nodesLayer, onSelect) {
     });
 }
 
+/** Default node target */
 const DEFAULT_NODE_TARGET_SELECTOR = 'Endothelial';
+/** Default max edge distance */
 const DEFAULT_MAX_EDGE_DISTANCE = 1000;
+/** Default value for zoomToFit margin */
+const DEFAULT_ZOOM_TO_FIT_MARGIN = { x: 24, y: 24 };
+/** Default transition duration for zoomToFit during resizes */
+const DEFAULT_ZOOM_TO_FIT_ON_RESIZE_TRANSITION_DURATION = 200;
 /** Initial visualization deckgl state */
 const INITIAL_VIEW_STATE = {
     version: 0,
@@ -617,6 +642,7 @@ class NodeDistVisComponent {
         getCursor: this.getCursor.bind(this),
         onClick: this.onClick.bind(this),
         onHover: this.onHover.bind(this),
+        onInteractionStateChange: this.onInteraction.bind(this),
         onViewStateChange: ({ viewState }) => this.viewState.set(viewState),
         onError: (error) => this.errorHandler.handleError(error),
     });
@@ -628,6 +654,7 @@ class NodeDistVisComponent {
     viewStateVersion = INITIAL_VIEW_STATE.version;
     /** Current deckgl view state */
     viewState = signal(INITIAL_VIEW_STATE, ...(ngDevMode ? [{ debugName: "viewState" }] : []));
+    /** Node target selector with fallbacks applied */
     nodeTargetSelectorWithDefault = computed(() => {
         return this.nodeTargetSelector() || this.nodeTargetValue() || DEFAULT_NODE_TARGET_SELECTOR;
     }, ...(ngDevMode ? [{ debugName: "nodeTargetSelectorWithDefault" }] : []));
@@ -663,16 +690,77 @@ class NodeDistVisComponent {
             layers: this.layers(),
         };
     }, ...(ngDevMode ? [{ debugName: "props" }] : []));
+    /** Canvas resize observer */
+    resizeObserver = new ResizeObserver(this.onResize.bind(this));
+    /** Whether to call `zoomToFit` on resize events */
+    zoomToFitOnResize = signal(true, ...(ngDevMode ? [{ debugName: "zoomToFitOnResize" }] : []));
     /** Currently hovered node entry */
     activeHover = undefined;
     /** Initialize the visualization */
     constructor() {
         // Connect data to deckgl
         effect(() => this.deck().setProps(this.props()));
+        // React to node changes
+        effect(() => {
+            this.nodesView();
+            untracked(() => {
+                this.setZoomToFitOnResize(true);
+                this.zoomToFit();
+            });
+        });
+        // Watch resize events
+        effect((onCleanup) => {
+            if (this.zoomToFitOnResize()) {
+                const { resizeObserver } = this;
+                const el = untracked(this.canvas);
+                resizeObserver.observe(el);
+                onCleanup(() => resizeObserver.unobserve(el));
+            }
+        });
         // Connect outputs
         this.bindDataOutput(this.nodesView, this.nodesChange);
         this.bindDataOutput(this.edgesView, this.edgesChange);
         this.bindDataOutput(this.colorMapView, this.colorMapChange);
+        // Attach cleanup logic
+        const destroyRef = inject(DestroyRef);
+        destroyRef.onDestroy(() => this.resizeObserver.disconnect());
+    }
+    /**
+     * Zooms the visualization to fit all nodes on screen.
+     * Has no effect until the nodes have been loaded.
+     */
+    zoomToFit(options = {}) {
+        const view = this.nodesView();
+        if (view.length === 0) {
+            return;
+        }
+        const { margin: { x: marginX, y: marginY } = DEFAULT_ZOOM_TO_FIT_MARGIN, resetRotation = true, resetTarget = true, transitionDuration = 0, } = options;
+        const { width, height } = this.deck();
+        const pixelRatio = window.devicePixelRatio;
+        const target = scalePosition(view.getCenter(), view.getDimensions());
+        const scale = view.getScale();
+        const [scaleX, scaleY] = view.getScale3D();
+        const zoomX = Math.log2((scale * (width - 2 * marginX)) / (pixelRatio * scaleX));
+        const zoomY = Math.log2((scale * (height - 2 * marginY)) / (pixelRatio * scaleY));
+        const zoom = Math.min(zoomX, zoomY);
+        this.deck().setProps({
+            initialViewState: {
+                ...this.viewState(),
+                transitionDuration,
+                zoom,
+                ...(resetTarget ? { target } : {}),
+                ...(resetRotation ? { rotationX: 0, rotationOrbit: 0 } : {}),
+                version: ++this.viewStateVersion,
+            },
+        });
+    }
+    /**
+     * Enable or disable automatic `zoomToFit` calls on resize events.
+     *
+     * @param enable Whether to enable `zoomToFit`
+     */
+    setZoomToFitOnResize(enable) {
+        this.zoomToFitOnResize.set(enable);
     }
     /** Resets the view to the original location and rotation */
     resetView() {
@@ -683,6 +771,7 @@ class NodeDistVisComponent {
             },
         });
     }
+    /** Resets the rotation of the orbit view */
     resetOrbit() {
         this.deck().setProps({
             initialViewState: {
@@ -693,6 +782,7 @@ class NodeDistVisComponent {
             },
         });
     }
+    /** Clears any active selection */
     clearSelection() {
         this.selectionLayer()?.clearSelection();
     }
@@ -758,15 +848,55 @@ class NodeDistVisComponent {
             this.activeHover = undefined;
         }
     }
+    /**
+     * Handle node selection in deckgl
+     *
+     * @param infos Deckgl picking information
+     */
     onSelect(infos) {
         const events = infos.map((info) => this.pickingInfoToNodeEvent(info));
         this.nodeSelectionChange.emit(events);
     }
+    /**
+     * Handle visualization interactions in deckgl
+     *
+     * @param state Current interactions
+     */
+    onInteraction(state) {
+        // Override `inTransition` when checking for interactions
+        const values = Object.values({ ...state, inTransition: false });
+        const isInteracting = values.some((v) => v);
+        if (isInteracting) {
+            this.setZoomToFitOnResize(false);
+        }
+    }
+    /**
+     * Handle canvas resizing
+     */
+    onResize() {
+        this.zoomToFit({
+            resetRotation: false,
+            resetTarget: false,
+            transitionDuration: DEFAULT_ZOOM_TO_FIT_ON_RESIZE_TRANSITION_DURATION,
+        });
+    }
+    /**
+     * Convert deckgl picking information to a node event
+     *
+     * @param info Deckgl picking information
+     * @returns Node event data
+     */
     pickingInfoToNodeEvent(info) {
         const view = this.nodesView();
         const { index, x, y } = info;
         return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
     }
+    /**
+     * Listen to view data changes and emit the data when available
+     *
+     * @param view Data view object
+     * @param outputRef Output emitter
+     */
     bindDataOutput(view, outputRef) {
         effect(() => {
             if (view().length !== 0) {

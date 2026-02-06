@@ -24,6 +24,20 @@ function isColor(obj) {
         (obj.length === 3 || obj.length === 4));
 }
 /**
+ * Checks if a value is outside the current range and if so updates the range array inplace.
+ *
+ * @param dest Range to update inplace
+ * @param value New value
+ */
+function inplaceMinMax(dest, value) {
+    if (value < dest[0]) {
+        dest[0] = value;
+    }
+    else if (value > dest[1]) {
+        dest[1] = value;
+    }
+}
+/**
  * Caches the result of a no-argument accessor method returning the cached value on future calls.
  *
  * @param instance Instance to cache the result on
@@ -1094,23 +1108,63 @@ class NodesView extends BaseNodesView {
         return position;
     };
     /**
-     * Get the dimensions (sometimes called 'extent') of all nodes
-     * across the X, Y, and Z axes
+     * Get the dimensions of all nodes **for each** of the X, Y, and Z axes
      *
-     * @returns An array of [minimum, maximum] values
+     * @returns An array of [minimum, maximum] pairs for each axis
+     */
+    getDimensions3D = cachedAccessor(this, () => {
+        const xDims = [Number.MAX_VALUE, -Number.MAX_VALUE];
+        const yDims = [Number.MAX_VALUE, -Number.MAX_VALUE];
+        const zDims = [Number.MAX_VALUE, -Number.MAX_VALUE];
+        for (const obj of this) {
+            inplaceMinMax(xDims, this.getXFor(obj));
+            inplaceMinMax(yDims, this.getYFor(obj));
+            inplaceMinMax(zDims, this.getZFor(obj) ?? 0);
+        }
+        return [xDims, yDims, zDims];
+    });
+    /**
+     * Get the dimensions of all nodes **across** the X, Y, and Z axes
+     *
+     * @returns A [minimum, maximum] pair
      */
     getDimensions = cachedAccessor(this, () => {
-        let min = Number.MAX_VALUE;
-        let max = -Number.MAX_VALUE;
-        for (const obj of this) {
-            const x = this.getXFor(obj);
-            const y = this.getYFor(obj);
-            const z = this.getZFor(obj) ?? 0;
-            min = Math.min(min, x, y, z);
-            max = Math.max(max, x, y, z);
-        }
-        return [min, max];
+        const [[minX, maxX], [minY, maxY], [minZ, maxZ]] = this.getDimensions3D();
+        return [Math.min(minX, minY, minZ), Math.max(maxX, maxY, maxZ)];
     });
+    /**
+     * Get the scale **for each** of the X, Y, and Z axes
+     *
+     * @returns A tuple of [X-scale, Y-scale, Z-scale]
+     */
+    getScale3D = cachedAccessor(this, () => {
+        const [[minX, maxX], [minY, maxY], [minZ, maxZ]] = this.getDimensions3D();
+        return [maxX - minX, maxY - minY, maxZ - minZ];
+    });
+    /**
+     * Get the scale of all nodes **across** the X, Y, and Z axes.
+     * This can also be viewed as the radius of the bounding sphere containing all nodes.
+     *
+     * @returns The scale/radius
+     */
+    getScale = cachedAccessor(this, () => {
+        const [min, max] = this.getDimensions();
+        return max - min;
+    });
+    /**
+     * Get center of all nodes. This is the same as the center of the bounding box/sphere.
+     *
+     * @returns The center point
+     */
+    getCenter = cachedAccessor(this, () => {
+        const [[minX, maxX], [minY, maxY], [minZ, maxZ]] = this.getDimensions3D();
+        return [(minX + maxX) / 2, (minY + maxY) / 2, (minZ + maxZ) / 2];
+    });
+    /**
+     * Get node counts for each cell type.
+     *
+     * @returns A mapping from cell type to the number of nodes
+     */
     getCounts = cachedAccessor(this, () => {
         const counts = {};
         for (const obj of this) {
@@ -1120,9 +1174,22 @@ class NodesView extends BaseNodesView {
         }
         return new Map(Object.entries(counts));
     });
+    /**
+     * Create a filtering function from a filter view using node accessors from this view.
+     *
+     * @param filterView Filter view
+     * @returns A function for testing whether a node is included in the filter
+     */
     createFilter = (filterView) => {
         return (obj, index) => filterView.includes(this.getCellTypeFor(obj), index);
     };
+    /**
+     * Create a new index for nodes included in a filter.
+     * Only indices for nodes included by the filter should be used.
+     *
+     * @param filterView Filter view
+     * @returns A new index
+     */
     createReindexer = async (filterView) => {
         const BATCH_SIZE = 20000;
         const result = [];

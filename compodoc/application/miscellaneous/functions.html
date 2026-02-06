@@ -238,9 +238,6 @@
                             <a href="#joinWithSlash" title="/home/workflows/workspace/libs/common/url/src/lib/util/path.ts" ><b>joinWithSlash</b>&nbsp;&nbsp;&nbsp;(/.../path.ts)</a>
                         </li>
                         <li>
-                            <a href="#limitStackTrace" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/util/serialize.ts" ><b>limitStackTrace</b>&nbsp;&nbsp;&nbsp;(/.../serialize.ts)</a>
-                        </li>
-                        <li>
                             <a href="#monitorHeight" title="/home/workflows/workspace/libs/common/src/lib/utils/monitor-height.ts" ><b>monitorHeight</b>&nbsp;&nbsp;&nbsp;(/.../monitor-height.ts)</a>
                         </li>
                         <li>
@@ -275,6 +272,9 @@
                         </li>
                         <li>
                             <a href="#routeData" title="/home/workflows/workspace/libs/common/src/lib/utils/route-data.ts" ><b>routeData</b>&nbsp;&nbsp;&nbsp;(/.../route-data.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#safeTruncateQueryString" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/util/safe-truncate.ts" ><b>safeTruncateQueryString</b>&nbsp;&nbsp;&nbsp;(/.../safe-truncate.ts)</a>
                         </li>
                         <li>
                             <a href="#serialize" title="/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/util/serialize.ts" ><b>serialize</b>&nbsp;&nbsp;&nbsp;(/.../serialize.ts)</a>
@@ -2443,91 +2443,6 @@ The resulting injection function must be called in an injection context.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="limitStackTrace"></a>
-                    <span class="name">
-                        <span ><b>limitStackTrace</b></span>
-                        <a href="#limitStackTrace"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>limitStackTrace(stack: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, maxLength: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Truncates a stack trace to a maximum length</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>stack</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Original stack</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>maxLength</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Maximum stack length</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>A stack with a length no greater than <code>maxLength</code></p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="pick"></a>
                     <span class="name">
                         <span ><b>pick</b></span>
@@ -2722,6 +2637,7 @@ Currently handles the following objects:</p>
 <li>Events (ErrorEvent, KeyboardEvent, and MouseEvent)</li>
 <li>Maps</li>
 <li>Sets</li>
+<li>Angular&#39;s HTTP error responses</li>
 </ul>
 </div>
 
@@ -2758,7 +2674,7 @@ Currently handles the following objects:</p>
 
                         </div>
                             <div class="io-description">
-                                <p>A new value to serialize</p>
+                                <p>A replacement value to serialize</p>
 
                             </div>
                 </td>
@@ -4155,6 +4071,118 @@ Must be used along side of <code>provideRouter</code>.</p>
                         </div>
                             <div class="io-description">
                                 <p>Environment providers</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/analytics/plugins/hra-analytics/src/lib/util/safe-truncate.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="safeTruncateQueryString"></a>
+                    <span class="name">
+                        <span ><b>safeTruncateQueryString</b></span>
+                        <a href="#safeTruncateQueryString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>safeTruncateQueryString(queryString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, maxLength: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, options: <a href="../interfaces/SafeTruncateOptions.html" target="_self">SafeTruncateOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Safely truncates a query string to a maximum length by truncating individual values.
+The input query string is assumed to be URL-encoded.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>queryString</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>The original query string</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>maxLength</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>Maximum length of the query string</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SafeTruncateOptions.html" target="_self" >SafeTruncateOptions</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>Additional options for truncation</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A safely truncated query string</p>
 
                             </div>
                 </td>

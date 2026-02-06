@@ -2,7 +2,45 @@ import * as i0 from '@angular/core';
 import { isDevMode, signal, Injectable, assertInInjectionContext, inject } from '@angular/core';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { stringify } from 'qs';
+import { HttpErrorResponse } from '@angular/common/http';
 import { createInjectionToken, createNoopInjectionToken } from 'ngxtension/create-injection-token';
+
+/**
+ * Safely truncates a query string to a maximum length by truncating individual values.
+ * The input query string is assumed to be URL-encoded.
+ *
+ * @param queryString The original query string
+ * @param maxLength Maximum length of the query string
+ * @param options Additional options for truncation
+ * @returns A safely truncated query string
+ * @throws Error if the query string cannot be truncated to the desired length
+ */
+function safeTruncateQueryString(queryString, maxLength, options = {}) {
+    if (queryString.length <= maxLength) {
+        return queryString;
+    }
+    const { truncatedSuffix = encodeURIComponent('... [truncated]'), minValueLength = 100 } = options;
+    const pairs = queryString.split('&');
+    const pairsByLength = [...pairs].sort((a, b) => b.length - a.length);
+    let length = queryString.length;
+    while (length > maxLength) {
+        const current = pairsByLength.shift();
+        if (!current) {
+            throw new Error(`Unable to truncate query string to length ${maxLength}`);
+        }
+        const [key, value] = current.split('=');
+        if (value.length <= minValueLength + truncatedSuffix.length) {
+            throw new Error(`Unable to truncate any more values to minimum length ${minValueLength}`);
+        }
+        const newLength = Math.max(minValueLength, value.length - truncatedSuffix.length - (length - maxLength));
+        const newValue = value.slice(0, newLength) + truncatedSuffix;
+        const newPair = `${key}=${newValue}`;
+        const index = pairs.indexOf(current);
+        pairs[index] = newPair;
+        length -= current.length - newPair.length;
+    }
+    return pairs.join('&');
+}
 
 /**
  * Serializes complex values into simpler types.
@@ -11,9 +49,10 @@ import { createInjectionToken, createNoopInjectionToken } from 'ngxtension/creat
  * - Events (ErrorEvent, KeyboardEvent, and MouseEvent)
  * - Maps
  * - Sets
+ * - Angular's HTTP error responses
  *
  * @param value Value to serialize
- * @returns A new value to serialize
+ * @returns A replacement value to serialize
  */
 function serialize(value) {
     // Short circuit for non-objects
@@ -24,8 +63,10 @@ function serialize(value) {
         return value.toISOString();
     }
     else if (value instanceof Error) {
-        const obj = pick(value, ['name', 'message', 'stack']);
-        return { ...obj, stack: obj.stack && limitStackTrace(obj.stack, 4000) };
+        return pick(value, ['name', 'message', 'stack']);
+    }
+    else if (value instanceof HttpErrorResponse) {
+        return pick(value, ['status', 'url', 'message', 'error']);
     }
     else if (value instanceof Event) {
         if (value instanceof ErrorEvent) {
@@ -44,7 +85,7 @@ function serialize(value) {
             const targetProps = isAnchorClick ? pickAttributes(el, targetKeys) : {};
             return filterFalse({ ...props, ...targetProps });
         }
-        return undefined;
+        return pick(value, ['type']);
     }
     else if (value instanceof Map) {
         return { map: [...value] };
@@ -99,30 +140,6 @@ function filterFalse(obj) {
     }
     return result;
 }
-/**
- * Truncates a stack trace to a maximum length
- *
- * @param stack Original stack
- * @param maxLength Maximum stack length
- * @returns A stack with a length no greater than `maxLength`
- */
-function limitStackTrace(stack, maxLength) {
-    if (stack.length <= maxLength) {
-        return stack;
-    }
-    const truncatedMsg = 'Stack truncated...';
-    const lines = [];
-    let total = truncatedMsg.length + 1;
-    for (const line of stack.split('\n')) {
-        const newTotal = total + line.length + 1;
-        if (newTotal < maxLength) {
-            lines.push(line);
-            total = newTotal;
-        }
-    }
-    lines.push(truncatedMsg);
-    return lines.join('\n');
-}
 
 /** Telemetry endpoint */
 const TELEMETRY_ENDPOINT = createInjectionToken(() => {
@@ -147,6 +164,8 @@ const provideTelemetryParameterFilter = TELEMETRY_PARAMETER_FILTERS[1];
  * Telemetry service responsible for sending analytics data to the HRA analytics endpoint
  */
 class TelemetryService {
+    /** Default maximum query string length */
+    static DEFAULT_MAX_QUERY_STRING_LENGTH = 7000;
     /** Endpoint url */
     endpoint = injectTelemetryEndpoint();
     /** Parameter filters */
@@ -169,10 +188,12 @@ class TelemetryService {
      * Stringifies telemetry data into a query string
      *
      * @param data Arbitrary data to serialize
+     * @param maxLength Maximum length of the query string
+     * @param options Safe truncation options
      * @returns A query string parsable by `qs`
      */
-    stringify(data) {
-        return stringify(data, {
+    stringify(data, maxLength = TelemetryService.DEFAULT_MAX_QUERY_STRING_LENGTH, options) {
+        const queryString = stringify(data, {
             allowDots: true,
             arrayFormat: 'indices',
             skipNulls: true,
@@ -180,12 +201,13 @@ class TelemetryService {
                 for (const filter of this.filters) {
                     const result = filter(prefix, value);
                     if (result !== value) {
-                        return result;
+                        return serialize(result);
                     }
                 }
                 return serialize(value);
             },
         });
+        return safeTruncateQueryString(queryString, maxLength, options);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: TelemetryService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: TelemetryService, providedIn: 'root' });

@@ -179,11 +179,13 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                             <code>HraCommonModule</code>
-                                <code><a href="../components/VisualCardComponent.html" target="_self" >VisualCardComponent</a></code>
                             <code>MatIconModule</code>
                             <code>ButtonsModule</code>
-                            <code>HraYoutubePlayerComponent</code>
                             <code>NavigationModule</code>
+                            <code>LinkDirective</code>
+                            <code>CollectionCardComponent</code>
+                            <code>CollectionCardActionComponent</code>
+                            <code>CdkCopyToClipboard</code>
                 </td>
             </tr>
 
@@ -215,6 +217,23 @@
     <table class="table table-sm table-bordered index-table">
         <tbody>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#collapseSpaces" >collapseSpaces</a>
+                            </li>
+                            <li>
+                                <a href="#openCopiedSnackbar" >openCopiedSnackbar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -251,7 +270,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/VisualCard.html" target="_self" >VisualCard[]</a></code>
+                        <i>Type : </i>    <code>CollectionCard[]</code>
 
                     </td>
                 </tr>
@@ -262,7 +281,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/landing-page/landing-page.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/landing-page/landing-page.component.ts:35</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -277,20 +296,144 @@
 
 
 
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="collapseSpaces"></a>
+                    <span class="name">
+                        <span ><b>collapseSpaces</b></span>
+                        <a href="#collapseSpaces"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>collapseSpaces(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
 
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/pages/landing-page/landing-page.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Collapse multiple spaces into a single space</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>text</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Text to collapse consecutive spaces in</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Collapsed text</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openCopiedSnackbar"></a>
+                    <span class="name">
+                        <span ><b>openCopiedSnackbar</b></span>
+                        <a href="#openCopiedSnackbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openCopiedSnackbar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/pages/landing-page/landing-page.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Triggered when user clicks on the Copy button</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkCopyToClipboard } from &#x27;@angular/cdk/clipboard&#x27;;
+import { ChangeDetectionStrategy, Component, inject, input } from &#x27;@angular/core&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/common/router-ext&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
-import { HraYoutubePlayerComponent } from &#x27;@hra-ui/design-system/content-templates/youtube-player&#x27;;
+import {
+  CollectionCard,
+  CollectionCardActionComponent,
+  CollectionCardComponent,
+} from &#x27;@hra-ui/design-system/cards/collection-card&#x27;;
 import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
-import { VisualCard, VisualCardComponent } from &#x27;../../components/visual-card/visual-card.component&#x27;;
-
+import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
 /**
  * Landing Page Component
  */
@@ -298,11 +441,13 @@ import { VisualCard, VisualCardComponent } from &#x27;../../components/visual-ca
   selector: &#x27;cde-landing-page&#x27;,
   imports: [
     HraCommonModule,
-    VisualCardComponent,
     MatIconModule,
     ButtonsModule,
-    HraYoutubePlayerComponent,
     NavigationModule,
+    LinkDirective,
+    CollectionCardComponent,
+    CollectionCardActionComponent,
+    CdkCopyToClipboard,
   ],
   templateUrl: &#x27;./landing-page.component.html&#x27;,
   styleUrl: &#x27;./landing-page.component.scss&#x27;,
@@ -310,78 +455,106 @@ import { VisualCard, VisualCardComponent } from &#x27;../../components/visual-ca
 })
 export class LandingPageComponent {
   /** Visual cards to display on the landing page */
-  readonly cards &#x3D; input&lt;VisualCard[]&gt;([]);
+  readonly cards &#x3D; input&lt;CollectionCard[]&gt;([]);
+
+  /** Snackbar service */
+  private readonly snackbar &#x3D; inject(SnackbarService);
+
+  /** Triggered when user clicks on the Copy button */
+  openCopiedSnackbar(): void {
+    this.snackbar.open(&#x27;Copied to clipboard&#x27;, &#x27;&#x27;, false, &#x27;start&#x27;, { duration: 5000 });
+  }
+
+  /**
+   * Collapse multiple spaces into a single space
+   *
+   * @param text Text to collapse consecutive spaces in
+   * @returns Collapsed text
+   */
+  collapseSpaces(text: string): string {
+    return text.replace(/\s+/g, &#x27; &#x27;);
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;landing-page&quot;&gt;
-  &lt;section class&#x3D;&quot;create-and-explore&quot; hraFeature&#x3D;&quot;create-and-explore&quot;&gt;
-    &lt;div class&#x3D;&quot;create-explore-content&quot;&gt;
-      &lt;div class&#x3D;&quot;header&quot;&gt;
-        &lt;h1 class&#x3D;&quot;title&quot;&gt;Create and explore cell distance visualizations&lt;/h1&gt;
-        &lt;h4 class&#x3D;&quot;description&quot;&gt;
-          This website supports visualization and quantification of cells and cell-cell distance distributions in
-          processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be
-          embedded on websites.
-        &lt;/h4&gt;
-      &lt;/div&gt;
-      &lt;cde-visual-card [cardData]&#x3D;&quot;cards()&quot; /&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
-  &lt;section class&#x3D;&quot;vccf-container&quot; hraFeature&#x3D;&quot;vccf&quot;&gt;
-    &lt;div class&#x3D;&quot;vccf&quot;&gt;
-      &lt;div class&#x3D;&quot;content-container&quot;&gt;
-        &lt;h2 class&#x3D;&quot;background-header&quot;&gt;
-          Background Information: Constructing the Vasculature Common Coordinate Framework
-        &lt;/h2&gt;
-        &lt;div class&#x3D;&quot;content&quot;&gt;
-          &lt;div class&#x3D;&quot;paper&quot;&gt;
-            &lt;p class&#x3D;&quot;background-text&quot;&gt;
-              The vasculature is the human body&#x27;s delivery system. It is also a cornerstone of medicine, helping
-              surgeons guide surgeries, pathologists diagnose disease, and serving as a landmark for medical
-              practitioners of all stripes. The Vasculature Common Coordinate Framework (VCCF) taps into this organic
-              infrastructure in order to map the cells in the body based on their proximity to nearby blood vessels.
-            &lt;/p&gt;
-            &lt;div class&#x3D;&quot;links&quot;&gt;
-              &lt;a
-                class&#x3D;&quot;vccf-paper&quot;
-                mat-button
-                hraCtaButton
-                hraPrimaryButton
-                disableRipple
-                href&#x3D;&quot;https://doi.org/10.3389/fcvm.2020.00029&quot;
-                target&#x3D;&quot;_blank&quot;
-                rel&#x3D;&quot;noopener noreferrer&quot;
-                hraClickEvent
-              &gt;
-                Read VCCF Paper
-                &lt;mat-icon class&#x3D;&quot;material-symbols-rounded&quot; iconPositionEnd&gt;arrow_right_alt&lt;/mat-icon&gt;
-              &lt;/a&gt;
+  &lt;section hraFeature&#x3D;&quot;visualize&quot; class&#x3D;&quot;visualize&quot;&gt;
+    &lt;div class&#x3D;&quot;title&quot;&gt;Visualize and quantify distances&lt;/div&gt;
+    &lt;div class&#x3D;&quot;cards-container&quot;&gt;
+      &lt;div class&#x3D;&quot;cards&quot; hraFeature&#x3D;&quot;cde-cards&quot;&gt;
+        @for (card of cards(); track card.tagline) {
+          @let actionsInfo &#x3D; card.actionsInfo ?? {};
 
-              &lt;a
-                mat-button
-                hraCtaButton
-                hraSecondaryButton
-                disableRipple
-                target&#x3D;&quot;_blank&quot;
-                rel&#x3D;&quot;noopener noreferrer&quot;
-                hraClickEvent
-                [attr.href]&#x3D;&quot;&#x27;assets/VCCF_March2024.pdf&#x27; | assetUrl&quot;
-              &gt;
-                VCCF Visualization Poster
-                &lt;mat-icon class&#x3D;&quot;material-symbols-rounded&quot; iconPositionEnd&gt;arrow_right_alt&lt;/mat-icon&gt;
-              &lt;/a&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;youtube-player&quot;&gt;
-        &lt;hra-youtube-player videoId&#x3D;&quot;zQeMgxo8n_U&quot; label&#x3D;&quot;Vasculature Common Coordinate Framework&quot; hraFeature&#x3D;&quot;video&quot; /&gt;
+          &lt;hra-collection-card
+            [tagline]&#x3D;&quot;card.tagline&quot;
+            [image]&#x3D;&quot;card.image&quot;
+            [taglineChips]&#x3D;&quot;card.taglineChips ?? []&quot;
+            [label]&#x3D;&quot;card.label&quot;
+            [supportingText]&#x3D;&quot;card.supportingText&quot;
+          &gt;
+            @if (actionsInfo[&#x27;leftActionText&#x27;] &amp;&amp; actionsInfo[&#x27;leftActionUrl&#x27;]) {
+              &lt;hra-collection-card-action&gt;
+                &lt;a
+                  hraFeature&#x3D;&quot;left-action&quot;
+                  mat-flat-button
+                  hraButtonSize&#x3D;&quot;medium&quot;
+                  [hraClickEvent]&#x3D;&quot;{ url: actionsInfo[&#x27;leftActionUrl&#x27;] }&quot;
+                  [hraLink]&#x3D;&quot;actionsInfo[&#x27;leftActionUrl&#x27;]&quot;
+                &gt;
+                  {{ actionsInfo[&#x27;leftActionText&#x27;] }}
+                &lt;/a&gt;
+              &lt;/hra-collection-card-action&gt;
+            }
+            @if (actionsInfo[&#x27;rightActionText&#x27;] &amp;&amp; actionsInfo[&#x27;rightActionUrl&#x27;]) {
+              &lt;hra-collection-card-action alignment&#x3D;&quot;right&quot;&gt;
+                &lt;a
+                  hraFeature&#x3D;&quot;right-action&quot;
+                  mat-button
+                  hraButtonSize&#x3D;&quot;medium&quot;
+                  [hraClickEvent]&#x3D;&quot;{ url: actionsInfo[&#x27;rightActionUrl&#x27;] }&quot;
+                  [hraLink]&#x3D;&quot;actionsInfo[&#x27;rightActionUrl&#x27;]&quot;
+                &gt;
+                  {{ actionsInfo[&#x27;rightActionText&#x27;] }}
+                &lt;/a&gt;
+              &lt;/hra-collection-card-action&gt;
+            }
+          &lt;/hra-collection-card&gt;
+        }
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/section&gt;
+
+  &lt;section class&#x3D;&quot;cite&quot; [style.background-image]&#x3D;&quot;&#x27;assets/backgrounds/cde-lung-bg.png&#x27; | cssUrl&quot;&gt;
+    &lt;div class&#x3D;&quot;content-container&quot;&gt;
+      &lt;div class&#x3D;&quot;content&quot;&gt;
+        &lt;div class&#x3D;&quot;title&quot;&gt;How to cite the Cell Distance Explorer&lt;/div&gt;
+        &lt;div class&#x3D;&quot;description&quot; #citationText&gt;
+          Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,
+          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,
+          Monte, E. M., Purkerson, J. M., Jehrio, M., &amp; Misra, R. S. (2025).
+          &lt;a hraFeature&#x3D;&quot;citation-link&quot; hraHyperlink href&#x3D;&quot;https://doi.org/10.1101/2025.09.23.678129&quot;&gt;
+            Exploring endothelial cell environments across organs in spatially resolved omics data.
+          &lt;/a&gt;
+          BioRxiv. https://doi.org/10.1101/2025.09.23.678129
+        &lt;/div&gt;
+        &lt;button
+          hraFeature&#x3D;&quot;copy-citation&quot;
+          hraClickEvent
+          mat-flat-button
+          hraButtonSize&#x3D;&quot;medium&quot;
+          class&#x3D;&quot;copy-citation&quot;
+          [cdkCopyToClipboard]&#x3D;&quot;collapseSpaces(citationText.textContent)&quot;
+          (cdkCopyToClipboardCopied)&#x3D;&quot;openCopiedSnackbar()&quot;
+        &gt;
+          Copy citation
+          &lt;mat-icon&gt;content_copy&lt;/mat-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
   &lt;hra-footer /&gt;
 &lt;/ng-container&gt;
 </code></pre>
@@ -413,8 +586,8 @@ export class LandingPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <section class="create-and-explore" hraFeature="create-and-explore">    <div class="create-explore-content">      <div class="header">        <h1 class="title">Create and explore cell distance visualizations</h1>        <h4 class="description">          This website supports visualization and quantification of cells and cell-cell distance distributions in          processed spatial molecular data. Resulting data and visualizations can be explored, downloaded, and can be          embedded on websites.        </h4>      </div>      <cde-visual-card [cardData]="cards()" />    </div>  </section>  <section class="vccf-container" hraFeature="vccf">    <div class="vccf">      <div class="content-container">        <h2 class="background-header">          Background Information: Constructing the Vasculature Common Coordinate Framework        </h2>        <div class="content">          <div class="paper">            <p class="background-text">              The vasculature is the human body\'s delivery system. It is also a cornerstone of medicine, helping              surgeons guide surgeries, pathologists diagnose disease, and serving as a landmark for medical              practitioners of all stripes. The Vasculature Common Coordinate Framework (VCCF) taps into this organic              infrastructure in order to map the cells in the body based on their proximity to nearby blood vessels.            </p>            <div class="links">              <a                class="vccf-paper"                mat-button                hraCtaButton                hraPrimaryButton                disableRipple                href="https://doi.org/10.3389/fcvm.2020.00029"                target="_blank"                rel="noopener noreferrer"                hraClickEvent              >                Read VCCF Paper                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>              </a>              <a                mat-button                hraCtaButton                hraSecondaryButton                disableRipple                target="_blank"                rel="noopener noreferrer"                hraClickEvent                [attr.href]="\'assets/VCCF_March2024.pdf\' | assetUrl"              >                VCCF Visualization Poster                <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>              </a>            </div>          </div>        </div>      </div>      <div class="youtube-player">        <hra-youtube-player videoId="zQeMgxo8n_U" label="Vasculature Common Coordinate Framework" hraFeature="video" />      </div>    </div>  </section>  <hra-footer /></ng-container></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <section hraFeature="visualize" class="visualize">    <div class="title">Visualize and quantify distances</div>    <div class="cards-container">      <div class="cards" hraFeature="cde-cards">        @for (card of cards(); track card.tagline) {          @let actionsInfo = card.actionsInfo ?? {};          <hra-collection-card            [tagline]="card.tagline"            [image]="card.image"            [taglineChips]="card.taglineChips ?? []"            [label]="card.label"            [supportingText]="card.supportingText"          >            @if (actionsInfo[\'leftActionText\'] && actionsInfo[\'leftActionUrl\']) {              <hra-collection-card-action>                <a                  hraFeature="left-action"                  mat-flat-button                  hraButtonSize="medium"                  [hraClickEvent]="{ url: actionsInfo[\'leftActionUrl\'] }"                  [hraLink]="actionsInfo[\'leftActionUrl\']"                >                  {{ actionsInfo[\'leftActionText\'] }}                </a>              </hra-collection-card-action>            }            @if (actionsInfo[\'rightActionText\'] && actionsInfo[\'rightActionUrl\']) {              <hra-collection-card-action alignment="right">                <a                  hraFeature="right-action"                  mat-button                  hraButtonSize="medium"                  [hraClickEvent]="{ url: actionsInfo[\'rightActionUrl\'] }"                  [hraLink]="actionsInfo[\'rightActionUrl\']"                >                  {{ actionsInfo[\'rightActionText\'] }}                </a>              </hra-collection-card-action>            }          </hra-collection-card>        }      </div>    </div>  </section>  <section class="cite" [style.background-image]="\'assets/backgrounds/cde-lung-bg.png\' | cssUrl">    <div class="content-container">      <div class="content">        <div class="title">How to cite the Cell Distance Explorer</div>        <div class="description" #citationText>          Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,          Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025).          <a hraFeature="citation-link" hraHyperlink href="https://doi.org/10.1101/2025.09.23.678129">            Exploring endothelial cell environments across organs in spatially resolved omics data.          </a>          BioRxiv. https://doi.org/10.1101/2025.09.23.678129        </div>        <button          hraFeature="copy-citation"          hraClickEvent          mat-flat-button          hraButtonSize="medium"          class="copy-citation"          [cdkCopyToClipboard]="collapseSpaces(citationText.textContent)"          (cdkCopyToClipboardCopied)="openCopiedSnackbar()"        >          Copy citation          <mat-icon>content_copy</mat-icon>        </button>      </div>    </div>  </section>  <hra-footer /></ng-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'LandingPageComponent'};
 </script>
