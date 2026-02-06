@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/node-dist-vis/src/lib/node-dist-vis/node-dist-vis.component.ts"],
+  "sourcesContent": [":host { display: block; position: relative; width: 100%; height: 100%; }"],
+  "mappings": ";AAAA;AAAQ,WAAA;AAAgB,YAAA;AAAoB,SAAA;AAAa,UAAA;;",
+  "names": []
+}

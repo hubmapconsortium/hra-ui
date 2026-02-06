@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/asctb-reporter/src/app/components/nav-item/nav-item.component.scss"],
+  "sourcesContent": [".label {\n  padding-top: 10px;\n  font-size: 0.5625rem;\n}\n\n.nav-item {\n  // margin-top: 10px;\n  padding-top: 0.625rem;\n  cursor: pointer;\n  color: rgb(89, 89, 89);\n  transition: 0.2s all;\n}\n\n.nav-item:hover {\n  // background-color: #efefef;\n  color: black;\n}\n\n.nav-item:active {\n  // background-color: #d8d8d8;\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,eAAA;AACA,aAAA;;AAGF,CAAA;AAEE,eAAA;AACA,UAAA;AACA,SAAA,IAAA,EAAA,EAAA,EAAA,EAAA;AACA,cAAA,KAAA;;AAGF,CARA,QAQA;AAEE,SAAA;;",
+  "names": []
+}
