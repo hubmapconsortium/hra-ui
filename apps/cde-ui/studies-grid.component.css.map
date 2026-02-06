@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/cde-ui/src/app/components/studies-grid/studies-grid.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  .left-actions {\n    display: flex;\n    gap: 0.5rem;\n    align-items: center;\n  }\n}\n\n.publication-menu-item {\n  .publication-label {\n    display: -webkit-box;\n    -webkit-line-clamp: 2;\n    line-clamp: 2;\n    -webkit-box-orient: vertical;\n    text-wrap: wrap;\n    max-width: 100%;\n    text-overflow: ellipsis;\n    overflow: hidden;\n  }\n}\n\n::ng-deep {\n  .publication-menu-item {\n    .mat-mdc-menu-item-text {\n      overflow: hidden;\n    }\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,OAAA;AACA,eAAA;;AAKF,CAAA,sBAAA,CAAA;AACE,WAAA;AACA,sBAAA;AACA,cAAA;AACA,sBAAA;AACA,aAAA;AACA,aAAA;AACA,iBAAA;AACA,YAAA;;AAMA,UAAA,CAdF,sBAcE,CAAA;AACE,YAAA;;",
+  "names": []
+}
