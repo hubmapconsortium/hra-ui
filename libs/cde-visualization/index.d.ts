@@ -111,7 +111,7 @@ declare class CdeVisualizationComponent {
     /** Node key mapping data */
     readonly nodeKeys: _angular_core.InputSignal<NodeKeysInput>;
     /** Node target selector used when calculating edges */
-    readonly nodeTargetSelector: _angular_core.InputSignal<string>;
+    readonly nodeTargetSelector: _angular_core.InputSignal<string | undefined>;
     /**
      * Column/property of the node's 'Cell Type' values
      *
@@ -183,7 +183,7 @@ declare class CdeVisualizationComponent {
     /** Whether there are loading resources, etc. */
     protected loadingManager: LoadingManager;
     /** Sets the node target selector (uses default if not available) */
-    private readonly nodeTargetSelectorWithDefault;
+    protected readonly nodeTargetSelectorWithDefault: Signal<string>;
     /** View of the node data */
     protected readonly nodesView: Signal<_hra_ui_node_dist_vis_models.NodesView>;
     /** View of the edge data */

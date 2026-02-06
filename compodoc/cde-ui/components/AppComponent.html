@@ -267,7 +267,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/app.component.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/app.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -313,6 +313,10 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    if (this.isSmallScreen()) {
+      return [];
+    }
+
     const route &#x3D; this.activatedRouteSnapshot();
     if (!route) {
       return ROOT_CRUMBS;
@@ -330,7 +334,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/app.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/app.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -369,7 +373,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/app.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/app.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -404,6 +408,7 @@ import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain
 import { createNotifier } from &#x27;ngxtension/create-notifier&#x27;;
 import { CRUMBS_DATA_KEY, removeLastCrumbRoute, ROOT_CRUMBS } from &#x27;./shared/resolvers/crumbs.resolver&#x27;;
 import { getOptionalRouteData } from &#x27;./shared/utils/route-properties&#x27;;
+import { Breakpoints, watchBreakpoint } from &#x27;@hra-ui/cdk/breakpoints&#x27;;
 
 /**
  * App component for CDE
@@ -445,8 +450,15 @@ export class AppComponent extends BaseApplicationComponent {
     return outlet.activatedRoute.snapshot;
   });
 
+  /** Whether the screen size is considered small (mobile) */
+  private readonly isSmallScreen &#x3D; watchBreakpoint(Breakpoints.Mobile);
+
   /** Computed breadcrumbs for the current route */
   protected readonly crumbs &#x3D; computed(() &#x3D;&gt; {
+    if (this.isSmallScreen()) {
+      return [];
+    }
+
     const route &#x3D; this.activatedRouteSnapshot();
     if (!route) {
       return ROOT_CRUMBS;
