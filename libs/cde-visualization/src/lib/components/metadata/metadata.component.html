@@ -61,8 +61,8 @@
     </mat-menu>
   </hra-expansion-panel-actions>
   <div class="metadata-details" hraFeature="details">
-    <div class="metadata-row">
-      @if (isFieldVisible('title')) {
+    @if (isFieldVisible('title')) {
+      <div class="metadata-row">
         <span class="metadata-row-label"> Source publication </span>
         <span class="metadata-row-value">
           @if (metadata().sampleExtra; as extra) {
@@ -73,20 +73,22 @@
             <span class="metadata-row-value">{{ metadata().title | defaultTo: 'Unknown' }}</span>
           }
         </span>
-      }
-    </div>
-    <div class="metadata-row">
-      <span class="metadata-row-label">Source data</span>
-      <span>
-        @if (metadata().sampleExtra; as extra) {
-          <a hraHyperlink target="_blank" rel="noreferrer noopener" [attr.href]="extra.sourceDataUrl">
-            {{ metadata().sourceFileName }}
-          </a>
-        } @else {
-          <span>{{ metadata().sourceFileName | defaultTo: 'Unknown' }}</span>
-        }
-      </span>
-    </div>
+      </div>
+    }
+    @if (isFieldVisible('sourceFileName')) {
+      <div class="metadata-row">
+        <span class="metadata-row-label">Source data</span>
+        <span>
+          @if (metadata().sampleExtra; as extra) {
+            <a hraHyperlink target="_blank" rel="noreferrer noopener" [attr.href]="extra.sourceDataUrl">
+              {{ metadata().sourceFileName }}
+            </a>
+          } @else {
+            <span>{{ metadata().sourceFileName | defaultTo: 'Unknown' }}</span>
+          }
+        </span>
+      </div>
+    }
     @if (isFieldVisible('colorMapFileName')) {
       <div class="metadata-row">
         <span class="metadata-row-label">Color map</span>
@@ -129,13 +131,15 @@
         <span class="metadata-row-value">{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
       </div>
     }
-    <div class="metadata-row">
-      <span class="metadata-row-label">Creation date</span>
-      <span class="metadata-row-value">{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
-    </div>
-    <div class="metadata-row">
-      <span class="metadata-row-label">Creation time</span>
-      <span class="metadata-row-value">{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
-    </div>
+    @if (isFieldVisible('creationTimestamp')) {
+      <div class="metadata-row">
+        <span class="metadata-row-label">Creation date</span>
+        <span class="metadata-row-value">{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
+      </div>
+      <div class="metadata-row">
+        <span class="metadata-row-label">Creation time</span>
+        <span class="metadata-row-value">{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
+      </div>
+    }
   </div>
 </hra-expansion-panel>

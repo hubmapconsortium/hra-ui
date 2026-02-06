@@ -1,63 +1,55 @@
 <ng-container hraFeature="cde-ui">
-  @if (header() !== false) {
-    <hra-header hraFeature="header" [breadcrumbs]="crumbs()">
-      <a
-        mat-icon-button
-        hraLink="/create"
-        hraPlainTooltip="Upload and visualize data"
-        hraFeature="upload-data"
-        hraClickEvent
-      >
-        <mat-icon>upload</mat-icon>
-      </a>
-      <a
-        mat-icon-button
-        hraLink="/gallery"
-        hraPlainTooltip="Spatial Omics Gallery"
-        hraFeature="omics-gallery"
-        hraClickEvent
-      >
-        <mat-icon>cards</mat-icon>
-      </a>
-      <a
-        mat-icon-button
-        rel="noopener noreferrer"
-        hraPlainTooltip="Explore sample data"
-        hraFeature="explore-menu"
-        hraClickEvent
-        [matMenuTriggerFor]="exploreMenu"
-      >
-        <mat-icon>explore</mat-icon>
-      </a>
+  <hra-header hraFeature="header" [breadcrumbs]="crumbs()">
+    <a
+      mat-icon-button
+      hraLink="/create"
+      hraPlainTooltip="Upload and visualize data"
+      hraFeature="upload-data"
+      hraClickEvent
+    >
+      <mat-icon>upload</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      hraLink="/gallery"
+      hraPlainTooltip="Spatial Omics Gallery"
+      hraFeature="omics-gallery"
+      hraClickEvent
+    >
+      <mat-icon>cards</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      rel="noopener noreferrer"
+      hraPlainTooltip="Explore sample data"
+      hraFeature="explore-menu"
+      hraClickEvent
+      [matMenuTriggerFor]="exploreMenu"
+    >
+      <mat-icon>explore</mat-icon>
+    </a>
 
-      <hra-help-button action="https://humanatlas.io/user-story/5" />
+    <hra-help-button action="https://humanatlas.io/user-story/5" />
 
-      <!-- Explore sample data Menu -->
-      <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>
-        <a
-          class="option"
-          mat-menu-item
-          hraLink="/example/0"
-          hraLinkExternal
-          hraFeature="2d-intestine-data"
-          hraClickEvent
-        >
-          <div class="option-text">
-            <div class="option-name">Explore 2D data</div>
-            <div class="option-description">Large intestine CyCIF data by Sorger Lab at Harvard Medical School</div>
+    <!-- Explore sample data Menu -->
+    <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>
+      <a class="option" mat-menu-item hraLink="/example/0" hraLinkExternal hraFeature="2d-intestine-data" hraClickEvent>
+        <div class="option-text">
+          <div class="option-name">Explore 2D data</div>
+          <div class="option-description">Large intestine CyCIF data by Sorger Lab at Harvard Medical School</div>
+        </div>
+      </a>
+      <mat-divider />
+      <a class="option" mat-menu-item hraLink="/example/1" hraLinkExternal hraFeature="3d-skin-data" hraClickEvent>
+        <div class="option-text">
+          <div class="option-name">Explore 3D data</div>
+          <div class="option-description">
+            Skin Cell DIVE data by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center
           </div>
-        </a>
-        <mat-divider />
-        <a class="option" mat-menu-item hraLink="/example/1" hraLinkExternal hraFeature="3d-skin-data" hraClickEvent>
-          <div class="option-text">
-            <div class="option-name">Explore 3D data</div>
-            <div class="option-description">
-              Skin Cell DIVE data by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center
-            </div>
-          </div>
-        </a>
-      </mat-menu>
-    </hra-header>
-  }
-  <router-outlet />
+        </div>
+      </a>
+    </mat-menu>
+  </hra-header>
+
+  <router-outlet (activate)="outletChanged.notify()" (attach)="outletChanged.notify()" />
 </ng-container>

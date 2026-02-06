@@ -7,7 +7,9 @@ import userEvent from '@testing-library/user-event';
 import saveAs from 'file-saver';
 import { provideMarkdown } from 'ngx-markdown';
 
+import { RawStudy } from '../../schemas/study.schema';
 import { StudyPageComponent } from './study-page.component';
+import { provideDesignSystem } from '@hra-ui/design-system';
 
 jest.mock('file-saver', () => ({ __esModule: true, default: jest.fn() }));
 
@@ -44,12 +46,13 @@ const mockStudy = {
       level1CellTypesCount: 5,
     },
   ],
-};
+} as RawStudy;
 
 const galleryData = { studies: [mockStudy] };
 const providers = [
   provideMarkdown(),
   provideAssetHref('http://localhost/'),
+  provideDesignSystem(),
   provideHttpClient(),
   provideHttpClientTesting(),
 ];
@@ -58,7 +61,7 @@ describe('StudyPageComponent', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders study and filters datasets', async () => {
-    await render(StudyPageComponent, { providers, componentInputs: { galleryData, studyName: 'test-study' } });
+    await render(StudyPageComponent, { providers, inputs: { data: galleryData, studyId: 'test-study' } });
 
     expect(screen.getByText(/Organ,\s*Tech/i)).toBeInTheDocument();
     expect(screen.getByText('Author')).toBeInTheDocument();
@@ -74,7 +77,7 @@ describe('StudyPageComponent', () => {
     const navigate = jest.fn().mockResolvedValue(true);
     const { fixture } = await render(StudyPageComponent, {
       providers: [...providers, { provide: Router, useValue: { navigate } }],
-      componentInputs: { galleryData, studyName: 'test-study' },
+      inputs: { data: galleryData, studyId: 'test-study' },
     });
 
     fixture.componentInstance.onExploreDataset('ds-1');
@@ -85,7 +88,7 @@ describe('StudyPageComponent', () => {
   });
 
   it('shows fallback for missing study', async () => {
-    await render(StudyPageComponent, { providers, componentInputs: { galleryData, studyName: 'missing' } });
+    await render(StudyPageComponent, { providers, inputs: { data: galleryData, studyId: 'missing' } });
     expect(screen.getByText(/No datasets available/i)).toBeInTheDocument();
   });
 
@@ -93,7 +96,7 @@ describe('StudyPageComponent', () => {
     const navigate = jest.fn();
     const { fixture } = await render(StudyPageComponent, {
       providers: [...providers, { provide: Router, useValue: { navigate } }],
-      componentInputs: { galleryData, studyName: 'test-study' },
+      inputs: { data: galleryData, studyId: 'test-study' },
     });
 
     fixture.componentInstance.onExploreDataset('');
@@ -108,10 +111,10 @@ describe('StudyPageComponent', () => {
       authors: 'A',
       affiliations: 'B',
       datasets: [{ slug: 'd1' }],
-    };
+    } as RawStudy;
     await render(StudyPageComponent, {
       providers,
-      componentInputs: { galleryData: { studies: [minimalStudy] }, studyName: 'minimal' },
+      inputs: { data: { studies: [minimalStudy] }, studyId: 'minimal' },
     });
 
     expect(screen.getByText(/Organ,\s*Tech/i)).toBeInTheDocument();
@@ -121,7 +124,7 @@ describe('StudyPageComponent', () => {
   it('skips CSV download when no datasets', async () => {
     const { fixture } = await render(StudyPageComponent, {
       providers,
-      componentInputs: { galleryData, studyName: 'missing' },
+      inputs: { data: galleryData, studyId: 'missing' },
     });
     fixture.componentInstance.onDownloadCSVButtonClicked();
     expect(saveAs).not.toHaveBeenCalled();
