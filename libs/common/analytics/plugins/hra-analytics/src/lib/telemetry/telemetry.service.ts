@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { stringify } from 'qs';
+import { SafeTruncateOptions, safeTruncateQueryString } from '../util/safe-truncate';
 import { serialize } from '../util/serialize';
 import { injectTelemetryEndpoint, injectTelemetryParameterFilters } from './telemetry.tokens';
 
@@ -10,6 +11,9 @@ import { injectTelemetryEndpoint, injectTelemetryParameterFilters } from './tele
   providedIn: 'root',
 })
 export class TelemetryService {
+  /** Default maximum query string length */
+  static readonly DEFAULT_MAX_QUERY_STRING_LENGTH = 7000;
+
   /** Endpoint url */
   private readonly endpoint = injectTelemetryEndpoint();
   /** Parameter filters */
@@ -34,10 +38,16 @@ export class TelemetryService {
    * Stringifies telemetry data into a query string
    *
    * @param data Arbitrary data to serialize
+   * @param maxLength Maximum length of the query string
+   * @param options Safe truncation options
    * @returns A query string parsable by `qs`
    */
-  stringify(data: unknown): string {
-    return stringify(data, {
+  stringify(
+    data: unknown,
+    maxLength = TelemetryService.DEFAULT_MAX_QUERY_STRING_LENGTH,
+    options?: SafeTruncateOptions,
+  ): string {
+    const queryString = stringify(data, {
       allowDots: true,
       arrayFormat: 'indices',
       skipNulls: true,
@@ -45,12 +55,14 @@ export class TelemetryService {
         for (const filter of this.filters) {
           const result = filter(prefix, value);
           if (result !== value) {
-            return result;
+            return serialize(result);
           }
         }
 
         return serialize(value);
       },
     });
+
+    return safeTruncateQueryString(queryString, maxLength, options);
   }
 }

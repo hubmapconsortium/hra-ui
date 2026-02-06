@@ -7,15 +7,15 @@
 
     <mat-drawer-content>
       <div id="content" class="h-100 w-100">
-        <div *ngIf="(mode$ | async) === 'vis'" class="tree-div" #treeDiv>
+        <div *ngIf="(mode$ | async) === 'vis'" class="tree-div" data-testid="view-tree" #treeDiv>
           @if (!error.hasError) {
             <app-tree />
           } @else {
-            <app-error [error]="error" #appError />
+            <app-error data-testid="view-error" [error]="error" #appError />
           }
         </div>
 
-        <div *ngIf="(mode$ | async) === 'playground'" class="playground-dig">
+        <div *ngIf="(mode$ | async) === 'playground'" class="playground-dig" data-testid="view-playground">
           <app-playground />
         </div>
       </div>

@@ -2,6 +2,6 @@
   display: block;
   width: 100%;
   flex-grow: 1;
-  height: 0;
+  height: calc(100vh - 113px);
   overflow-y: auto;
 }

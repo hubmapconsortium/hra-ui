@@ -1,0 +1,30 @@
+:host {
+  display: block;
+
+  .left-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+
+.publication-menu-item {
+  .publication-label {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-wrap: wrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+::ng-deep {
+  .publication-menu-item {
+    .mat-mdc-menu-item-text {
+      overflow: hidden;
+    }
+  }
+}

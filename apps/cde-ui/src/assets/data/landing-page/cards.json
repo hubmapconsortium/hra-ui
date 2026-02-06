@@ -1,20 +1,52 @@
 [
   {
-    "image": "assets/examples/intestine.svg",
-    "label": "Explore 2D Intestine Data",
-    "route": "/example/0",
-    "alt": "Image for Intestine"
+    "tagline": "Create a visualization",
+    "taglineChips": ["Upload data", "Configure settings"],
+    "image": "assets/examples/create-a-visualization.png",
+    "label": "Featured app",
+    "supportingText": "Analyze your data with the Cell Distance Explorer",
+    "actionsInfo": {
+      "leftActionText": "Use app",
+      "leftActionUrl": "/create"
+    }
   },
   {
-    "image": "assets/examples/skin.svg",
-    "label": "Explore 3D Skin Data",
-    "route": "/example/1",
-    "alt": "Image for Skin"
+    "tagline": "New: Spatial Omics Gallery",
+    "taglineChips": ["14 studies", "399 datasets"],
+    "image": "assets/examples/spatial-omics-gallery.png",
+    "label": "New feature",
+    "supportingText": "Explore spatial omics datasets",
+    "actionsInfo": {
+      "leftActionText": "Use app",
+      "leftActionUrl": "/gallery",
+      "rightActionText": "Publication",
+      "rightActionUrl": "https://doi.org/10.1101/2025.09.23.678129"
+    }
   },
   {
-    "image": "assets/examples/tonsil.svg",
-    "label": "Create a Visualization",
-    "route": "/create",
-    "alt": "Image for Tonsil"
+    "tagline": "Explore 2D data",
+    "taglineChips": ["Large intestine", "CyCIF"],
+    "image": "assets/examples/2d-data-intestine.png",
+    "label": "Quick start",
+    "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
+    "actionsInfo": {
+      "leftActionText": "Use app",
+      "leftActionUrl": "/example/0",
+      "rightActionText": "Learn more",
+      "rightActionUrl": "/gallery/colon-cycif-sorgerlab"
+    }
+  },
+  {
+    "tagline": "Explore 3D data",
+    "taglineChips": ["Skin", "Cell DIVE"],
+    "image": "assets/examples/3d-data-skin.png",
+    "label": "Quick start",
+    "supportingText": "Data provided by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center",
+    "actionsInfo": {
+      "leftActionText": "Use app",
+      "leftActionUrl": "/example/1",
+      "rightActionText": "Learn more",
+      "rightActionUrl": "/gallery/skin-celldive-ge"
+    }
   }
 ]

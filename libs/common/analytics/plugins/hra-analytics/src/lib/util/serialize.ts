@@ -1,3 +1,5 @@
+import { HttpErrorResponse } from '@angular/common/http';
+
 /**
  * Serializes complex values into simpler types.
  * Currently handles the following objects:
@@ -5,9 +7,10 @@
  * - Events (ErrorEvent, KeyboardEvent, and MouseEvent)
  * - Maps
  * - Sets
+ * - Angular's HTTP error responses
  *
  * @param value Value to serialize
- * @returns A new value to serialize
+ * @returns A replacement value to serialize
  */
 export function serialize(value: unknown): unknown {
   // Short circuit for non-objects
@@ -18,8 +21,9 @@ export function serialize(value: unknown): unknown {
   if (value instanceof Date) {
     return value.toISOString();
   } else if (value instanceof Error) {
-    const obj = pick(value, ['name', 'message', 'stack']);
-    return { ...obj, stack: obj.stack && limitStackTrace(obj.stack, 4000) };
+    return pick(value, ['name', 'message', 'stack']);
+  } else if (value instanceof HttpErrorResponse) {
+    return pick(value, ['status', 'url', 'message', 'error']);
   } else if (value instanceof Event) {
     if (value instanceof ErrorEvent) {
       return pick(value, ['message', 'filename', 'lineno', 'colno']);
@@ -38,7 +42,7 @@ export function serialize(value: unknown): unknown {
       return filterFalse({ ...props, ...targetProps });
     }
 
-    return undefined;
+    return pick(value, ['type']);
   } else if (value instanceof Map) {
     return { map: [...value] };
   } else if (value instanceof Set) {
@@ -101,31 +105,4 @@ function filterFalse<T>(obj: T): Partial<T> {
   }
 
   return result;
-}
-
-/**
- * Truncates a stack trace to a maximum length
- *
- * @param stack Original stack
- * @param maxLength Maximum stack length
- * @returns A stack with a length no greater than `maxLength`
- */
-function limitStackTrace(stack: string, maxLength: number): string {
-  if (stack.length <= maxLength) {
-    return stack;
-  }
-
-  const truncatedMsg = 'Stack truncated...';
-  const lines: string[] = [];
-  let total = truncatedMsg.length + 1;
-  for (const line of stack.split('\n')) {
-    const newTotal = total + line.length + 1;
-    if (newTotal < maxLength) {
-      lines.push(line);
-      total = newTotal;
-    }
-  }
-
-  lines.push(truncatedMsg);
-  return lines.join('\n');
 }

@@ -15,28 +15,25 @@ describe('LandingPageComponent', () => {
       componentInputs: {
         cards: [
           {
+            tagline: 'Explore 2D Data',
             image: '',
-            label: 'Explore 2D Intestine Data',
-            route: '',
-            alt: '',
+            additionalInfo: {},
           },
           {
+            tagline: 'Explore 3D Data',
             image: '',
-            label: 'Explore 3D Skin Data',
-            route: '',
-            alt: '',
+            additionalInfo: {},
           },
           {
+            tagline: 'Create a Visualization',
             image: '',
-            label: 'Create a Visualization',
-            route: '',
-            alt: '',
+            additionalInfo: {},
           },
         ],
       },
     });
-    expect(screen.getByText('Explore 2D Intestine Data')).toBeInTheDocument();
-    expect(screen.getByText('Explore 3D Skin Data')).toBeInTheDocument();
+    expect(screen.getByText('Explore 2D Data')).toBeInTheDocument();
+    expect(screen.getByText('Explore 3D Data')).toBeInTheDocument();
     expect(screen.getByText('Create a Visualization')).toBeInTheDocument();
   });
 });
