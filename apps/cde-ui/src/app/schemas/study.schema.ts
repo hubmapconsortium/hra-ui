@@ -7,6 +7,7 @@ export const RawDatasetSchema = z.object({
   edges: z.string(),
   'node-target-key': z.string(),
   'node-target-value': z.string(),
+  'node-cl-id-key': z.string().optional(),
   'max-edge-distance': z.number(),
   thumbnail: z.string(),
   cellCount: z.number(),

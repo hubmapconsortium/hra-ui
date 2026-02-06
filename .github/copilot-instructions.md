@@ -24,6 +24,7 @@ Developer conventions and patterns to follow
 
 - Change detection: components are always `OnPush` and always `standalone`. Prefer isolated, pure inputs and immutable patterns using Angular signals.
 - Styles: global include paths reference `libs/design-system/styles` (see `targetDefaults` in `nx.json`). Use SCSS and the shared tokens.
+- Angular components: Do not suggest replacing `styleUrl` with `styleUrls`.
 - Libraries: follow existing naming and export patterns in `libs/`; prefer adding small reusable components to `libs/design-system` rather than app-specific copies.
 - Deprecated libraries: **Do not reference these in new code** — `libs/ccf-shared`, `libs/ftu-ui-components`, and `libs/shared/utils` are deprecated and planned for removal. If equivalent functionality is needed, prefer `libs/design-system`, create a focused `libs/<new-lib>` or ask maintainers for guidance.
 - Tests: Jest is used across the workspace (see root `jest.config.ts` and per-project configs). Many projects set `passWithNoTests: true` in `nx.json` so run specific project tests rather than relying on a global run.

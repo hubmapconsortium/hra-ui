@@ -1,55 +1,53 @@
 :host {
   display: block;
 
+  mat-chip-set {
+    ::ng-deep .mdc-evolution-chip-set__chips {
+      gap: 0.25rem;
+      margin-left: 0;
+    }
+    mat-chip {
+      margin: 0;
+    }
+  }
+
+  .study-banner {
+    margin-top: 0.5rem;
+  }
+
+  hra-page-section {
+    p:first-child {
+      margin-top: 0;
+    }
+
+    .citations-list > markdown:first-child {
+      ::ng-deep p {
+        margin-top: 0;
+      }
+    }
+  }
+
   .datasets-toolbar {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
 
     .download-icon {
       cursor: pointer;
+      height: 3rem;
+      width: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
-  .datasets-container {
-    display: grid;
-    gap: 1.5rem;
-  }
+  hra-search-filter {
+    width: calc(100% - 3.25rem);
 
-  .dataset-item {
-    border: 1px solid var(--color-border, #e0e0e0);
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: var(--color-surface, #fafafa);
-
-    h4 {
-      margin: 0 0 1rem 0;
-      font-size: 1.125rem;
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0.5rem 0;
-      font-size: 0.9375rem;
-      word-break: break-word;
-    }
-
-    .dataset-thumbnail {
-      max-width: 100%;
-      max-height: 300px;
-      border-radius: 4px;
-      margin-top: 1rem;
-    }
-  }
-
-  a {
-    color: var(--color-primary, #0066cc);
-    text-decoration: none;
-    font-weight: 500;
-
-    &:hover {
-      text-decoration: underline;
+    ::ng-deep mat-form-field {
+      min-width: 0 !important;
     }
   }
 }
