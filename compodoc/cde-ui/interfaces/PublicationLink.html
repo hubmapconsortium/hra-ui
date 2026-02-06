@@ -283,6 +283,7 @@ import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { RouterLink } from &#x27;@angular/router&#x27;;
 import { AnalyticsModule } from &#x27;@hra-ui/common/analytics&#x27;;
+import { assetUrl } from &#x27;@hra-ui/common/url&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { CollectionCardActionComponent, CollectionCardComponent } from &#x27;@hra-ui/design-system/cards/collection-card&#x27;;
 import { GridContainerComponent } from &#x27;@hra-ui/design-system/content-templates/grid-container&#x27;;
@@ -376,7 +377,7 @@ export class StudiesGridComponent {
   readonly yamlUrl &#x3D; input.required&lt;string&gt;();
 
   /** Fetch and parse YAML data reactively */
-  private readonly studiesResource &#x3D; httpResource.text&lt;StudyCard[]&gt;(() &#x3D;&gt; ({ url: this.yamlUrl() }), {
+  private readonly studiesResource &#x3D; httpResource.text&lt;StudyCard[]&gt;(assetUrl(this.yamlUrl), {
     parse: (yamlText) &#x3D;&gt; this.parseGalleryYaml(yamlText).map((study) &#x3D;&gt; this.transformStudy(study)),
     defaultValue: [],
   });

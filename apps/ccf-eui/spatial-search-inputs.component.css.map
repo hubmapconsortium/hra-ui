@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/ccf-eui/src/app/modules/spatial-search/spatial-search-inputs/spatial-search-inputs.component.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  gap: 1.5rem;\n\n  .field {\n    width: 12.125rem;\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,OAAA;;AAEA,MAAA,CAAA;AACE,SAAA;;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/cde-visualization/src/lib/components/violin/violin.component.scss"],
-  "sourcesContent": ["@use '../../../../../../libs/design-system/styles/vars' as vars;\n\n:host {\n  --mat-button-filled-container-height: 2rem;\n  display: block;\n  overflow: hidden;\n\n  ::ng-deep hra-expansion-panel {\n    height: 100%;\n\n    .header {\n      padding: 0.5rem 1rem;\n    }\n\n    .content {\n      height: calc(100% - 3.5rem);\n    }\n\n    .expansion-body {\n      height: 100%;\n    }\n\n    ng-scrollbar {\n      width: 100%;\n    }\n  }\n\n  hra-fullscreen-portal-content {\n    display: flex;\n  }\n\n  hra-fullscreen-portal {\n    height: 100%;\n  }\n}\n\n::ng-deep hra-fullscreen-portal-content {\n  display: flex;\n\n  ng-scrollbar {\n    width: 100%;\n  }\n\n  .ng-scroll-content {\n    width: 100% !important;\n    max-height: 100%;\n    min-height: 0rem !important;\n  }\n}\n\n.enableScroll {\n  ::ng-deep .ng-scroll-content {\n    max-height: unset;\n  }\n}\n\n::ng-deep .violin-container {\n  width: 100%;\n  height: 100%;\n}\n"],
-  "mappings": ";AAEA;AACE,wCAAA;AACA,WAAA;AACA,YAAA;;AAEA,MAAA,UAAA;AACE,UAAA;;AAEA,MAAA,UAAA,oBAAA,CAAA;AACE,WAAA,OAAA;;AAGF,MAAA,UAAA,oBAAA,CAAA;AACE,UAAA,KAAA,KAAA,EAAA;;AAGF,MAAA,UAAA,oBAAA,CAAA;AACE,UAAA;;AAGF,MAAA,UAAA,oBAAA;AACE,SAAA;;AAIJ,MAAA;AACE,WAAA;;AAGF,MAAA;AACE,UAAA;;AAIJ,UAAA;AACE,WAAA;;AAEA,UAAA,8BAAA;AACE,SAAA;;AAGF,UAAA,8BAAA,CAAA;AACE,SAAA;AACA,cAAA;AACA,cAAA;;AAKF,CAAA,aAAA,UAAA,CARA;AASE,cAAA;;AAIJ,UAAA,CAAA;AACE,SAAA;AACA,UAAA;;",
-  "names": []
-}
