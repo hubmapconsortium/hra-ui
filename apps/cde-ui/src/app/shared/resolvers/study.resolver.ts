@@ -60,8 +60,8 @@ export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<Cde
     return {
       nodes: dataset.nodes,
       edges: dataset.edges,
-      nodeTargetKey: dataset['node-target-key'],
-      nodeTargetValue: dataset['node-target-value'],
+      nodeKeys: { 'Cell Type': dataset['node-target-key'] },
+      nodeTargetSelector: dataset['node-target-value'],
       maxEdgeDistance: dataset['max-edge-distance'],
       metadata: {
         organ: study.organName,
