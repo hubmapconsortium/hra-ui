@@ -14,6 +14,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
 import { createNotifier } from 'ngxtension/create-notifier';
 import { CRUMBS_DATA_KEY, removeLastCrumbRoute, ROOT_CRUMBS } from './shared/resolvers/crumbs.resolver';
 import { getOptionalRouteData } from './shared/utils/route-properties';
+import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 
 /**
  * App component for CDE
@@ -55,8 +56,15 @@ export class AppComponent extends BaseApplicationComponent {
     return outlet.activatedRoute.snapshot;
   });
 
+  /** Whether the screen size is considered small (mobile) */
+  private readonly isSmallScreen = watchBreakpoint(Breakpoints.Mobile);
+
   /** Computed breadcrumbs for the current route */
   protected readonly crumbs = computed(() => {
+    if (this.isSmallScreen()) {
+      return [];
+    }
+
     const route = this.activatedRouteSnapshot();
     if (!route) {
       return ROOT_CRUMBS;

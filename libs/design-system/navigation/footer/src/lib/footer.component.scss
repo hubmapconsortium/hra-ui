@@ -11,8 +11,7 @@
 
   > * {
     width: 100%;
-    max-width: 1700px;
-    min-width: 640px;
+    max-width: 106.25rem;
   }
 
   .content-container {
@@ -31,7 +30,7 @@
     }
 
     .disclaimer {
-      flex: 1 1 560px;
+      flex: 1 1 35rem;
       min-width: 0;
     }
   }
@@ -68,11 +67,11 @@
     }
   }
 
-  @media (min-width: 320px) and (max-width: 639px) {
+  @media (max-width: 639px) {
     padding: 2.5rem 1.25rem;
 
     > * {
-      min-width: 320px;
+      min-width: 20rem;
     }
   }
 }
