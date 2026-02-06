@@ -274,10 +274,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#galleryData" >galleryData</a>
+                                <a href="#data" >data</a>
                             </li>
                             <li>
-                                <a href="#studyName" >studyName</a>
+                                <a href="#studyId" >studyId</a>
                             </li>
                         </ul>
                     </td>
@@ -297,8 +297,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="galleryData"></a>
-                        <b>galleryData</b>
+                        <a name="data"></a>
+                        <b>data</b>
                     </td>
                 </tr>
                 <tr>
@@ -329,8 +329,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="studyName"></a>
-                        <b>studyName</b>
+                        <a name="studyId"></a>
+                        <b>studyId</b>
                     </td>
                 </tr>
                 <tr>
@@ -622,8 +622,8 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
-    const studies &#x3D; this.galleryData()?.studies ?? [];
-    const study &#x3D; studies.find((s) &#x3D;&gt; s.slug &#x3D;&#x3D;&#x3D; this.studyName());
+    const studies &#x3D; this.data()?.studies ?? [];
+    const study &#x3D; studies.find((s) &#x3D;&gt; s.slug &#x3D;&#x3D;&#x3D; this.studyId());
     return study ? this.transformStudy(study) : undefined;
   })</code>
                     </td>
@@ -774,10 +774,10 @@ const CSV_HEADERS &#x3D; [
 })
 export class StudyPageComponent {
   /** Resolved gallery data from parent route */
-  readonly galleryData &#x3D; input.required&lt;StudyDataType&gt;();
+  readonly data &#x3D; input.required&lt;StudyDataType&gt;();
 
   /** Study name from route param */
-  readonly studyName &#x3D; input.required&lt;string&gt;();
+  readonly studyId &#x3D; input.required&lt;string&gt;();
 
   /** Router instance for navigation */
   private readonly router &#x3D; inject(Router);
@@ -790,8 +790,8 @@ export class StudyPageComponent {
 
   /** Currently selected study data (transformed for display) */
   readonly studyData &#x3D; computed(() &#x3D;&gt; {
-    const studies &#x3D; this.galleryData()?.studies ?? [];
-    const study &#x3D; studies.find((s) &#x3D;&gt; s.slug &#x3D;&#x3D;&#x3D; this.studyName());
+    const studies &#x3D; this.data()?.studies ?? [];
+    const study &#x3D; studies.find((s) &#x3D;&gt; s.slug &#x3D;&#x3D;&#x3D; this.studyId());
     return study ? this.transformStudy(study) : undefined;
   });
 
@@ -822,7 +822,7 @@ export class StudyPageComponent {
 
   /** Navigate to dataset visualization */
   onExploreDataset(datasetId: string): void {
-    const studySlug &#x3D; this.studyName();
+    const studySlug &#x3D; this.studyId();
     if (studySlug &amp;&amp; datasetId) {
       this.router.navigate([&#x27;/gallery&#x27;, studySlug, datasetId]);
     }
@@ -943,7 +943,7 @@ export class StudyPageComponent {
     }
   &lt;/hra-page-section&gt;
 
-  &lt;hra-page-section hraFeature&#x3D;&quot;source-data&quot; tagline&#x3D;&quot;Source data&quot; anchor&#x3D;&quot;source-data&quot; [level]&#x3D;&quot;2&quot;&gt;
+  &lt;hra-page-section hraFeature&#x3D;&quot;publications&quot; tagline&#x3D;&quot;Publications&quot; anchor&#x3D;&quot;publications&quot; [level]&#x3D;&quot;2&quot;&gt;
     @if (studyData()?.publications &amp;&amp; studyData()!.publications.length &gt; 0) {
       &lt;div class&#x3D;&quot;citations-list&quot;&gt;
         @for (pub of studyData()!.publications; track pub.url) {
@@ -1025,8 +1025,8 @@ export class StudyPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-table-of-contents-layout>  <hra-table-of-contents-layout-header>    @if (studyData(); as study) {      <hra-page-section hraFeature="study-page" [tagline]="study.tagline">        <div class="study-header">          <mat-chip-set>            <mat-chip hraChipSize="small">              {{ study.label }}            </mat-chip>            <mat-chip hraChipSize="small">              {{ study.supportingText }}            </mat-chip>            @if (study.taglineChips && study.taglineChips.length > 0) {              @for (chip of study.taglineChips; track chip) {                <mat-chip hraChipSize="small">                  {{ chip }}                </mat-chip>              }            }            @if (study.tags && study.tags.length > 0) {              @for (tag of study.tags; track tag.text) {                <mat-chip hraChipSize="small">                  <mat-icon>{{ tag.icon }}</mat-icon>                  {{ tag.text }}                </mat-chip>              }            }          </mat-chip-set>        </div>        <img class="study-banner" alt="Study Banner" [src]="study.image" />      </hra-page-section>    }  </hra-table-of-contents-layout-header>  <hra-page-section hraFeature="overview" tagline="Overview" anchor="overview" [level]="2">    @if (studyData()?.description) {      <p>{{ studyData()!.description }}</p>    }  </hra-page-section>  <hra-page-section hraFeature="source-data" tagline="Source data" anchor="source-data" [level]="2">    @if (studyData()?.publications && studyData()!.publications.length > 0) {      <div class="citations-list">        @for (pub of studyData()!.publications; track pub.url) {          <markdown [data]="pub.label" />        }      </div>    } @else {      <p>No source data available</p>    }  </hra-page-section>  <hra-page-section hraFeature="datasets" tagline="Datasets" anchor="datasets" [level]="2">    @if (studyData()?.datasets && studyData()!.datasets.length > 0) {      <div class="datasets-toolbar">        <hra-search-filter          label="Search"          [totalCount]="studyData()?.datasets?.length ?? 0"          [viewingCount]="datasetRows().length"          [(search)]="searchQuery"        />        <mat-icon class="download-icon" (click)="onDownloadCSVButtonClicked()">download</mat-icon>      </div>      <hra-table        [columns]="datasetColumns"        [rows]="datasetRows()"        [enableSort]="true"        (routeClicked)="onExploreDataset($event)"      />    } @else {      <p>No datasets available</p>    }  </hra-page-section>  @if (studyData()?.euiUrl) {    <hra-page-section      hraFeature="eui-view"      tagline="View in the Exploration User Interface"      anchor="eui-view"      [level]="2"    >      This data has been registered spatially into the Human Reference Atlas.      <hra-text-hyperlink        hraFeature="eui-link"        text="Use app"        icon="arrow_right_alt"        [url]="studyData()?.euiUrl ?? \'\'"      />    </hra-page-section>  }</hra-table-of-contents-layout><hra-footer /></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-root'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+        var COMPONENT_TEMPLATE = '<div><hra-table-of-contents-layout>  <hra-table-of-contents-layout-header>    @if (studyData(); as study) {      <hra-page-section hraFeature="study-page" [tagline]="study.tagline">        <div class="study-header">          <mat-chip-set>            <mat-chip hraChipSize="small">              {{ study.label }}            </mat-chip>            <mat-chip hraChipSize="small">              {{ study.supportingText }}            </mat-chip>            @if (study.taglineChips && study.taglineChips.length > 0) {              @for (chip of study.taglineChips; track chip) {                <mat-chip hraChipSize="small">                  {{ chip }}                </mat-chip>              }            }            @if (study.tags && study.tags.length > 0) {              @for (tag of study.tags; track tag.text) {                <mat-chip hraChipSize="small">                  <mat-icon>{{ tag.icon }}</mat-icon>                  {{ tag.text }}                </mat-chip>              }            }          </mat-chip-set>        </div>        <img class="study-banner" alt="Study Banner" [src]="study.image" />      </hra-page-section>    }  </hra-table-of-contents-layout-header>  <hra-page-section hraFeature="overview" tagline="Overview" anchor="overview" [level]="2">    @if (studyData()?.description) {      <p>{{ studyData()!.description }}</p>    }  </hra-page-section>  <hra-page-section hraFeature="publications" tagline="Publications" anchor="publications" [level]="2">    @if (studyData()?.publications && studyData()!.publications.length > 0) {      <div class="citations-list">        @for (pub of studyData()!.publications; track pub.url) {          <markdown [data]="pub.label" />        }      </div>    } @else {      <p>No source data available</p>    }  </hra-page-section>  <hra-page-section hraFeature="datasets" tagline="Datasets" anchor="datasets" [level]="2">    @if (studyData()?.datasets && studyData()!.datasets.length > 0) {      <div class="datasets-toolbar">        <hra-search-filter          label="Search"          [totalCount]="studyData()?.datasets?.length ?? 0"          [viewingCount]="datasetRows().length"          [(search)]="searchQuery"        />        <mat-icon class="download-icon" (click)="onDownloadCSVButtonClicked()">download</mat-icon>      </div>      <hra-table        [columns]="datasetColumns"        [rows]="datasetRows()"        [enableSort]="true"        (routeClicked)="onExploreDataset($event)"      />    } @else {      <p>No datasets available</p>    }  </hra-page-section>  @if (studyData()?.euiUrl) {    <hra-page-section      hraFeature="eui-view"      tagline="View in the Exploration User Interface"      anchor="eui-view"      [level]="2"    >      This data has been registered spatially into the Human Reference Atlas.      <hra-text-hyperlink        hraFeature="eui-link"        text="Use app"        icon="arrow_right_alt"        [url]="studyData()?.euiUrl ?? \'\'"      />    </hra-page-section>  }</hra-table-of-contents-layout><hra-footer /></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'StudyPageComponent'};
 </script>

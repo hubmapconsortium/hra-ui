@@ -133,16 +133,28 @@
                             <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#CRUMBS_DATA_KEY" title="src/app/shared/resolvers/crumbs.resolver.ts" ><b>CRUMBS_DATA_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../crumbs.resolver.ts)</a>
+                        </li>
+                        <li>
                             <a href="#CSV_HEADERS" title="src/app/pages/study-page/study-page.component.ts" ><b>CSV_HEADERS</b>&nbsp;&nbsp;&nbsp;(src/.../study-page.component.ts)</a>
                         </li>
                         <li>
                             <a href="#DATASET_COLUMNS" title="src/app/pages/study-page/study-page.component.ts" ><b>DATASET_COLUMNS</b>&nbsp;&nbsp;&nbsp;(src/.../study-page.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#DEFAULT_ENDPOINT" title="src/app/shared/resolvers/organs/organs.resolver.ts" ><b>DEFAULT_ENDPOINT</b>&nbsp;&nbsp;&nbsp;(src/.../organs.resolver.ts)</a>
+                            <a href="#DATASET_ID_PARAM" title="src/app/shared/resolvers/study.resolver.ts" ><b>DATASET_ID_PARAM</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_ENDPOINT" title="src/app/shared/resolvers/organs.resolver.ts" ><b>DEFAULT_ENDPOINT</b>&nbsp;&nbsp;&nbsp;(src/.../organs.resolver.ts)</a>
                         </li>
                         <li>
                             <a href="#EXAMPLE_DATA_INDEX_URL" title="src/app/app.routes.ts" ><b>EXAMPLE_DATA_INDEX_URL</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXAMPLE_INDEX_PARAM" title="src/app/shared/resolvers/example.resolver.ts" ><b>EXAMPLE_INDEX_PARAM</b>&nbsp;&nbsp;&nbsp;(src/.../example.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EXAMPLES_DATA_KEY" title="src/app/shared/resolvers/example.resolver.ts" ><b>EXAMPLES_DATA_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../example.resolver.ts)</a>
                         </li>
                         <li>
                             <a href="#GalleryDataSchema" title="src/app/components/studies-grid/studies-grid.component.ts" ><b>GalleryDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../studies-grid.component.ts)</a>
@@ -154,7 +166,10 @@
                             <a href="#LANDING_PAGE_CARDS_URL" title="src/app/app.routes.ts" ><b>LANDING_PAGE_CARDS_URL</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
                         </li>
                         <li>
-                            <a href="#ORGANS_DEF" title="src/app/shared/resolvers/organs/organs.resolver.ts" ><b>ORGANS_DEF</b>&nbsp;&nbsp;&nbsp;(src/.../organs.resolver.ts)</a>
+                            <a href="#ORGANS_DEF" title="src/app/shared/resolvers/organs.resolver.ts" ><b>ORGANS_DEF</b>&nbsp;&nbsp;&nbsp;(src/.../organs.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RawDatasetSchema" title="src/app/schemas/study.schema.ts" ><b>RawDatasetSchema</b>&nbsp;&nbsp;&nbsp;(src/.../study.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#RawStudySchema" title="src/app/schemas/study.schema.ts" ><b>RawStudySchema</b>&nbsp;&nbsp;&nbsp;(src/.../study.schema.ts)</a>
@@ -163,13 +178,16 @@
                             <a href="#RawStudySchema" title="src/app/components/studies-grid/studies-grid.component.ts" ><b>RawStudySchema</b>&nbsp;&nbsp;&nbsp;(src/.../studies-grid.component.ts)</a>
                         </li>
                         <li>
+                            <a href="#ROOT_CRUMBS" title="src/app/shared/resolvers/crumbs.resolver.ts" ><b>ROOT_CRUMBS</b>&nbsp;&nbsp;&nbsp;(src/.../crumbs.resolver.ts)</a>
+                        </li>
+                        <li>
                             <a href="#StudiesGridDef" title="src/app/components/studies-grid/studies-grid.definition.ts" ><b>StudiesGridDef</b>&nbsp;&nbsp;&nbsp;(src/.../studies-grid.definition.ts)</a>
                         </li>
                         <li>
                             <a href="#StudiesGridSchema" title="src/app/components/studies-grid/studies-grid.definition.ts" ><b>StudiesGridSchema</b>&nbsp;&nbsp;&nbsp;(src/.../studies-grid.definition.ts)</a>
                         </li>
                         <li>
-                            <a href="#studyCrumbResolver" title="src/app/app.routes.ts" ><b>studyCrumbResolver</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                            <a href="#STUDY_ID_PARAM" title="src/app/shared/resolvers/study.resolver.ts" ><b>STUDY_ID_PARAM</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
                         </li>
                         <li>
                             <a href="#StudyDataSchema" title="src/app/schemas/study.schema.ts" ><b>StudyDataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../study.schema.ts)</a>
@@ -210,22 +228,6 @@
       url: &#x27;https://apps.humanatlas.io/cde/&#x27;,
     }),
     provideAnalytics(withRouterEvents(), withErrorHandler()),
-    provideNothrowPlatformLocation(),
-    provideRouter(
-      ROUTES,
-      withComponentInputBinding(),
-      withInMemoryScrolling({
-        anchorScrolling: &#x27;enabled&#x27;,
-        scrollPositionRestoration: &#x27;enabled&#x27;,
-      }),
-      withViewTransitions(),
-    ),
-    provideRouterExt(),
-    provideAnimations(),
-    provideHttpClient(),
-    provideIcons(),
-    provideDesignSystem(),
-    provideMarkdown(),
     provideContentTemplateDefs([
       ButtonDef,
       FlexContainerDef,
@@ -239,6 +241,18 @@
       CopyEmailButtonDef,
       StudiesGridDef,
     ]),
+    provideDesignSystem(),
+    provideHttpClient(),
+    provideIcons(),
+    provideMarkdown(),
+    provideNothrowPlatformLocation(),
+    provideRouter(
+      ROUTES,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ anchorScrolling: &#x27;enabled&#x27;, scrollPositionRestoration: &#x27;enabled&#x27; }),
+      withNavigationErrorHandler(handleNavigationError),
+    ),
+    provideRouterExt(),
   ],
 }</code>
                     </td>
@@ -247,6 +261,76 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Set of config options available during the application bootstrap operation.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/resolvers/crumbs.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CRUMBS_DATA_KEY"></a>
+                    <span class="name">
+                        <span ><b>CRUMBS_DATA_KEY</b></span>
+                        <a href="#CRUMBS_DATA_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;crumbs&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Crumbs data key</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ROOT_CRUMBS"></a>
+                    <span class="name">
+                        <span ><b>ROOT_CRUMBS</b></span>
+                        <a href="#ROOT_CRUMBS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BreadcrumbItem[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { name: &#x27;Apps&#x27;, route: &#x27;https://apps.humanatlas.io&#x27; },
+  { name: &#x27;Cell Distance Explorer&#x27;, route: &#x27;/&#x27; },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Root crumbs</p>
 </div>
                 </td>
             </tr>
@@ -347,7 +431,74 @@
         </tbody>
     </table>
 </section>
-    <h3>src/app/shared/resolvers/organs/organs.resolver.ts</h3>
+    <h3>src/app/shared/resolvers/study.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DATASET_ID_PARAM"></a>
+                    <span class="name">
+                        <span ><b>DATASET_ID_PARAM</b></span>
+                        <a href="#DATASET_ID_PARAM"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;datasetId&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Dataset ID route parameter</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STUDY_ID_PARAM"></a>
+                    <span class="name">
+                        <span ><b>STUDY_ID_PARAM</b></span>
+                        <a href="#STUDY_ID_PARAM"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;studyId&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Study ID route parameter</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/resolvers/organs.resolver.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -495,37 +646,67 @@
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
+</section>
+    <h3>src/app/shared/resolvers/example.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="studyCrumbResolver"></a>
+                    <a name="EXAMPLE_INDEX_PARAM"></a>
                     <span class="name">
-                        <span ><b>studyCrumbResolver</b></span>
-                        <a href="#studyCrumbResolver"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>EXAMPLE_INDEX_PARAM</b></span>
+                        <a href="#EXAMPLE_INDEX_PARAM"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>ResolveFn&lt;string | null&gt;</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>(route) &#x3D;&gt; {
-  const galleryData &#x3D; route.parent?.data[&#x27;galleryData&#x27;] as StudyDataType | undefined;
-  const studySlug &#x3D; route.parent?.paramMap.get(&#x27;studyName&#x27;);
-  const study &#x3D; galleryData?.studies?.find((s) &#x3D;&gt; s.slug &#x3D;&#x3D;&#x3D; studySlug);
-  return study ? &#x60;${study.organName}, ${study.technology}&#x60; : null;
-}</code>
+                        <i>Default value : </i><code>&#x27;index&#x27;</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Resolver to compute study breadcrumb from parent&#39;s galleryData</p>
+                    <div class="io-description"><p>Example index route parameter</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXAMPLES_DATA_KEY"></a>
+                    <span class="name">
+                        <span ><b>EXAMPLES_DATA_KEY</b></span>
+                        <a href="#EXAMPLES_DATA_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;examples&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Examples data key</p>
 </div>
                 </td>
             </tr>
@@ -661,6 +842,51 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="RawDatasetSchema"></a>
+                    <span class="name">
+                        <span ><b>RawDatasetSchema</b></span>
+                        <a href="#RawDatasetSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z.object({
+  slug: z.string(),
+  nodes: z.string(),
+  edges: z.string(),
+  &#x27;node-target-key&#x27;: z.string(),
+  &#x27;node-target-value&#x27;: z.string(),
+  &#x27;max-edge-distance&#x27;: z.number(),
+  thumbnail: z.string(),
+  cellCount: z.number(),
+  originalCellTypesCount: z.number(),
+  level3CellTypesCount: z.number(),
+  level2CellTypesCount: z.number(),
+  level1CellTypesCount: z.number(),
+})</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zod schema for raw dataset data from YAML</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="RawStudySchema"></a>
                     <span class="name">
                         <span ><b>RawStudySchema</b></span>
@@ -686,7 +912,7 @@
   thumbnail: z.string().optional(),
   cellCount: z.number().optional(),
   description: z.string().optional(),
-  datasets: z.array(z.record(z.string(), z.unknown())).optional(),
+  datasets: z.array(RawDatasetSchema).default([]),
   euiUrl: z.string().optional(),
   publication: z.array(z.string()).optional(),
   publications: z.array(z.string()).optional(),

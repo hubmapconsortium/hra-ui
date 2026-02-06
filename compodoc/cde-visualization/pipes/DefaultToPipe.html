@@ -191,8 +191,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/lib/components/metadata/metadata.component.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/lib/components/metadata/metadata.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -266,12 +266,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
-import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
 import { TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
@@ -282,6 +282,7 @@ import { TOOLTIP_POSITION_RIGHT_SIDE } from &#x27;../../shared/tooltip-position&
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] &#x3D; [
   &#x27;title&#x27;,
+  &#x27;sourceFileName&#x27;,
   &#x27;colorMapFileName&#x27;,
   &#x27;organ&#x27;,
   &#x27;technology&#x27;,
@@ -289,6 +290,7 @@ const HIDABLE_FIELDS: (keyof Metadata)[] &#x3D; [
   &#x27;age&#x27;,
   &#x27;thickness&#x27;,
   &#x27;pixelSize&#x27;,
+  &#x27;creationTimestamp&#x27;,
 ];
 
 /** Defines a pipe that provides a default value if the input is undefined or empty */
@@ -383,6 +385,10 @@ export class MetadataComponent {
 
   /** Formats the creation timestamp using a given formatter */
   formatCreationTimestamp(format: Intl.DateTimeFormat): string | undefined {
+    if (this.metadata().creationTimestamp &#x3D;&#x3D;&#x3D; undefined) {
+      return undefined;
+    }
+
     return format.format(this.metadata().creationTimestamp);
   }
 }

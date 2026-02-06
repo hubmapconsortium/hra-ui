@@ -858,10 +858,10 @@ const CSV_HEADERS &#x3D; [
 })
 export class StudyPageComponent {
   /** Resolved gallery data from parent route */
-  readonly galleryData &#x3D; input.required&lt;StudyDataType&gt;();
+  readonly data &#x3D; input.required&lt;StudyDataType&gt;();
 
   /** Study name from route param */
-  readonly studyName &#x3D; input.required&lt;string&gt;();
+  readonly studyId &#x3D; input.required&lt;string&gt;();
 
   /** Router instance for navigation */
   private readonly router &#x3D; inject(Router);
@@ -874,8 +874,8 @@ export class StudyPageComponent {
 
   /** Currently selected study data (transformed for display) */
   readonly studyData &#x3D; computed(() &#x3D;&gt; {
-    const studies &#x3D; this.galleryData()?.studies ?? [];
-    const study &#x3D; studies.find((s) &#x3D;&gt; s.slug &#x3D;&#x3D;&#x3D; this.studyName());
+    const studies &#x3D; this.data()?.studies ?? [];
+    const study &#x3D; studies.find((s) &#x3D;&gt; s.slug &#x3D;&#x3D;&#x3D; this.studyId());
     return study ? this.transformStudy(study) : undefined;
   });
 
@@ -906,7 +906,7 @@ export class StudyPageComponent {
 
   /** Navigate to dataset visualization */
   onExploreDataset(datasetId: string): void {
-    const studySlug &#x3D; this.studyName();
+    const studySlug &#x3D; this.studyId();
     if (studySlug &amp;&amp; datasetId) {
       this.router.navigate([&#x27;/gallery&#x27;, studySlug, datasetId]);
     }
