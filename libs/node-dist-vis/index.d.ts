@@ -4,7 +4,7 @@ import { InputProps } from '@hra-ui/webcomponents';
 import * as _deck_gl_core_typed from '@deck.gl/core/typed';
 import * as _angular_core from '@angular/core';
 import { OutputEmitterRef, Signal } from '@angular/core';
-import { ViewMode, NodesInput, NodeKeysInput, EdgesInput, EdgeKeysInput, AnyData, ColorMapView, KeyMapping, ColorMapEntry, NodeFilterInput } from '@hra-ui/node-dist-vis/models';
+import { AnyDataEntry, ViewMode, NodesInput, NodeKeysInput, EdgesInput, EdgeKeysInput, AnyData, ColorMapView, KeyMapping, ColorMapEntry, NodeFilterInput } from '@hra-ui/node-dist-vis/models';
 
 /** Options for the `zoomToFit` method */
 interface ZoomToFitOptions {
@@ -30,6 +30,8 @@ interface NodeEvent {
     clientY: number;
     /** The materialized node object */
     object: object;
+    /** The raw node data entry */
+    raw: AnyDataEntry;
 }
 /** Default node target */
 declare const DEFAULT_NODE_TARGET_SELECTOR = "Endothelial";

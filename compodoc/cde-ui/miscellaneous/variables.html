@@ -362,10 +362,10 @@
                         <i>Default value : </i><code>[
   &#x27;Dataset ID&#x27;,
   &#x27;#Cells&#x27;,
-  &#x27;#Original Cell types&#x27;,
-  &#x27;#level 3 cell types&#x27;,
-  &#x27;#level 2 cell types&#x27;,
-  &#x27;#level 1 cell types&#x27;,
+  &#x27;#Original cell types&#x27;,
+  &#x27;#Level 3 cell types&#x27;,
+  &#x27;#Level 2 cell types&#x27;,
+  &#x27;#Level 1 cell types&#x27;,
 ]</code>
                     </td>
                 </tr>
@@ -863,6 +863,7 @@
   edges: z.string(),
   &#x27;node-target-key&#x27;: z.string(),
   &#x27;node-target-value&#x27;: z.string(),
+  &#x27;node-cl-id-key&#x27;: z.string().optional(),
   &#x27;max-edge-distance&#x27;: z.number(),
   thumbnail: z.string(),
   cellCount: z.number(),

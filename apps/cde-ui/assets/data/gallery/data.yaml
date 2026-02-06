@@ -31,6 +31,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM27_H10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM27_H10-vis.png
@@ -47,6 +48,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM28_H14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM28_H14-vis.png
@@ -63,6 +65,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM31_H32-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM31_H32-vis.png
@@ -79,6 +82,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM32_H37-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM32_H37-vis.png
@@ -95,6 +99,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM33_H36-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM33_H36-vis.png
@@ -111,6 +116,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM34_H38-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM34_H38-vis.png
@@ -127,6 +133,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM36_H26-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM36_H26-vis.png
@@ -143,6 +150,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM37_H35-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM37_H35-vis.png
@@ -159,6 +167,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM38_H33-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM38_H33-vis.png
@@ -175,6 +184,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM39_H41-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM39_H41-vis.png
@@ -191,6 +201,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM40_H39-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM40_H39-vis.png
@@ -207,6 +218,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM41_H27-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM41_H27-vis.png
@@ -223,6 +235,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM44_AML2_191-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM44_AML2_191-vis.png
@@ -239,6 +252,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM46_AML1_382-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM46_AML1_382-vis.png
@@ -255,6 +269,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM47_NSM3_1996-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM47_NSM3_1996-vis.png
@@ -271,6 +286,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM48_NSM1_1720-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM48_NSM1_1720-vis.png
@@ -287,6 +303,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM49_NSM2_1086-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM49_NSM2_1086-vis.png
@@ -303,6 +320,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM51_AML1_183-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM51_AML1_183-vis.png
@@ -319,6 +337,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM52_AML3_1329-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM52_AML3_1329-vis.png
@@ -335,6 +354,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM54_AML3_1443-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM54_AML3_1443-vis.png
@@ -375,6 +395,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01002-vis.png
@@ -391,6 +412,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01007-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01007-vis.png
@@ -407,6 +429,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01014-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01014-vis.png
@@ -423,6 +446,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01020-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01020-vis.png
@@ -439,6 +463,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01025-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01025-vis.png
@@ -455,6 +480,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01029-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01029-vis.png
@@ -471,6 +497,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01034-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01034-vis.png
@@ -487,6 +514,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01039-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01039-vis.png
@@ -503,6 +531,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01044-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01044-vis.png
@@ -519,6 +548,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01049-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01049-vis.png
@@ -535,6 +565,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01050-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01050-vis.png
@@ -551,6 +582,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01051-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01051-vis.png
@@ -567,6 +599,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01052-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01052-vis.png
@@ -583,6 +616,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01054-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01054-vis.png
@@ -599,6 +633,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01059-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01059-vis.png
@@ -615,6 +650,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01064-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01064-vis.png
@@ -631,6 +667,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01069-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01069-vis.png
@@ -647,6 +684,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01074-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01074-vis.png
@@ -663,6 +701,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01078-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01078-vis.png
@@ -679,6 +718,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01084-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01084-vis.png
@@ -695,6 +735,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01086-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01086-vis.png
@@ -711,6 +752,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01091-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01091-vis.png
@@ -727,6 +769,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01097-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01097-vis.png
@@ -743,6 +786,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01102-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01102-vis.png
@@ -759,6 +803,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01106-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-cycif-sorgerlab/CRC01106-vis.png
@@ -797,6 +842,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_10-vis.png
@@ -813,6 +859,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_11-vis.png
@@ -829,6 +876,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_12-vis.png
@@ -845,6 +893,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_13-vis.png
@@ -861,6 +910,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_14-vis.png
@@ -877,6 +927,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_15-vis.png
@@ -893,6 +944,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_16-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_16-vis.png
@@ -909,6 +961,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_17-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_17-vis.png
@@ -925,6 +978,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_18-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_18-vis.png
@@ -941,6 +995,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_19-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_19-vis.png
@@ -957,6 +1012,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_20-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_20-vis.png
@@ -973,6 +1029,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_21-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_21-vis.png
@@ -989,6 +1046,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_22-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_22-vis.png
@@ -1005,6 +1063,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_23-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_23-vis.png
@@ -1021,6 +1080,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_24-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_24-vis.png
@@ -1037,6 +1097,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_25-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_25-vis.png
@@ -1053,6 +1114,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_26-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_26-vis.png
@@ -1069,6 +1131,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_27-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_27-vis.png
@@ -1085,6 +1148,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_28-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_28-vis.png
@@ -1101,6 +1165,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_29-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_29-vis.png
@@ -1117,6 +1182,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_3-vis.png
@@ -1133,6 +1199,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_30-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_30-vis.png
@@ -1149,6 +1216,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_31-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_31-vis.png
@@ -1165,6 +1233,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_4-vis.png
@@ -1181,6 +1250,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_5-vis.png
@@ -1197,6 +1267,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_6-vis.png
@@ -1213,6 +1284,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_7-vis.png
@@ -1229,6 +1301,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_8-vis.png
@@ -1245,6 +1318,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/colon-xenium-stanford/layer_9-vis.png
@@ -1286,6 +1360,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/esophagus-codex-stanford/esophagus-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/esophagus-codex-stanford/esophagus-vis.png
@@ -1333,6 +1408,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Ascending-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Ascending-vis.png
@@ -1349,6 +1425,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Descending-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Descending-vis.png
@@ -1365,6 +1442,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Descending_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Descending_Sigmoid-vis.png
@@ -1381,6 +1459,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Duodenum-vis.png
@@ -1397,6 +1476,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Ileum-vis.png
@@ -1413,6 +1493,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Mid_jejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Mid_jejunum-vis.png
@@ -1429,6 +1510,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_ProximalJejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_ProximalJejunum-vis.png
@@ -1445,6 +1527,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Transverse-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B004_Transverse-vis.png
@@ -1461,6 +1544,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Ascending-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Ascending-vis.png
@@ -1477,6 +1561,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Descending-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Descending-vis.png
@@ -1493,6 +1578,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Descending_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Descending_Sigmoid-vis.png
@@ -1509,6 +1595,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Duodenum-vis.png
@@ -1525,6 +1612,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Ileum-vis.png
@@ -1541,6 +1629,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Mid_jejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Mid_jejunum-vis.png
@@ -1557,6 +1646,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_ProximalJejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_ProximalJejunum-vis.png
@@ -1573,6 +1663,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Transverse-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B005_Transverse-vis.png
@@ -1589,6 +1680,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Ascending-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Ascending-vis.png
@@ -1605,6 +1697,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Descending-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Descending-vis.png
@@ -1621,6 +1714,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Descending_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Descending_Sigmoid-vis.png
@@ -1637,6 +1731,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Duodenum-vis.png
@@ -1653,6 +1748,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Ileum-vis.png
@@ -1669,6 +1765,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Mid_jejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Mid_jejunum-vis.png
@@ -1685,6 +1782,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_ProximalJejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_ProximalJejunum-vis.png
@@ -1701,6 +1799,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Transverse-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B006_Transverse-vis.png
@@ -1717,6 +1816,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Duodenum-vis.png
@@ -1733,6 +1833,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Ileum-vis.png
@@ -1749,6 +1850,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Left-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Left-vis.png
@@ -1765,6 +1867,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Midjejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Midjejunum-vis.png
@@ -1781,6 +1884,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Proximaljejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Proximaljejunum-vis.png
@@ -1797,6 +1901,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Right-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Right-vis.png
@@ -1813,6 +1918,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Sigmoid-vis.png
@@ -1829,6 +1935,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Trans-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B008_Trans-vis.png
@@ -1845,6 +1952,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Duodenum-vis.png
@@ -1861,6 +1969,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Ileum-vis.png
@@ -1877,6 +1986,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Left-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Left-vis.png
@@ -1893,6 +2003,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Midjejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Midjejunum-vis.png
@@ -1909,6 +2020,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Proximaljejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Proximaljejunum-vis.png
@@ -1925,6 +2037,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Right-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Right-vis.png
@@ -1941,6 +2054,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Sigmoid-vis.png
@@ -1957,6 +2071,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Trans-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B009_Trans-vis.png
@@ -1973,6 +2088,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Duodenum-vis.png
@@ -1989,6 +2105,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Ileum-vis.png
@@ -2005,6 +2122,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Left-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Left-vis.png
@@ -2021,6 +2139,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Midjejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Midjejunum-vis.png
@@ -2037,6 +2156,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Proximaljejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Proximaljejunum-vis.png
@@ -2053,6 +2173,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Right-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Right-vis.png
@@ -2069,6 +2190,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Sigmoid-vis.png
@@ -2085,6 +2207,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Trans-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B010_Trans-vis.png
@@ -2101,6 +2224,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Duodenum-vis.png
@@ -2117,6 +2241,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Ileum-vis.png
@@ -2133,6 +2258,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Left-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Left-vis.png
@@ -2149,6 +2275,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Midjejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Midjejunum-vis.png
@@ -2165,6 +2292,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Proximaljejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Proximaljejunum-vis.png
@@ -2181,6 +2309,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Right-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Right-vis.png
@@ -2197,6 +2326,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Sigmoid-vis.png
@@ -2213,6 +2343,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Trans-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B011_Trans-vis.png
@@ -2229,6 +2360,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Duodenum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Duodenum-vis.png
@@ -2245,6 +2377,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Ileum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Ileum-vis.png
@@ -2261,6 +2394,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Left-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Left-vis.png
@@ -2277,6 +2411,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Midjejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Midjejunum-vis.png
@@ -2293,6 +2428,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Proximaljejunum-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Proximaljejunum-vis.png
@@ -2309,6 +2445,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Right-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Right-vis.png
@@ -2325,6 +2462,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Sigmoid-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Sigmoid-vis.png
@@ -2341,6 +2479,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Trans-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/intestine-codex-stanford/B012_Trans-vis.png
@@ -2385,6 +2524,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lung-codex-urmc/D115-RLL-10A3-40-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lung-codex-urmc/D115-RLL-10A3-40-vis.png
@@ -2401,6 +2541,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lung-codex-urmc/D265-LLL-7A7-12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lung-codex-urmc/D265-LLL-7A7-12-vis.png
@@ -2459,6 +2600,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN00560-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN00560-vis.png
@@ -2475,6 +2617,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN00837-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN00837-vis.png
@@ -2491,6 +2634,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN22921-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN22921-vis.png
@@ -2507,6 +2651,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN24336-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN24336-vis.png
@@ -2523,6 +2668,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN27766-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/lymphnode-codex-yale/LN27766-vis.png
@@ -2560,6 +2706,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31739_6_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31739_6_13-vis.png
@@ -2576,6 +2723,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31739_6_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31739_6_14-vis.png
@@ -2592,6 +2740,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31739_6_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31739_6_15-vis.png
@@ -2608,6 +2757,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31740_16_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31740_16_6-vis.png
@@ -2624,6 +2774,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31740_6_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31740_6_11-vis.png
@@ -2640,6 +2791,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31740_6_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31740_6_12-vis.png
@@ -2656,6 +2808,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31741_1_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31741_1_1-vis.png
@@ -2672,6 +2825,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31742_1_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31742_1_2-vis.png
@@ -2688,6 +2842,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31743_16_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31743_16_7-vis.png
@@ -2704,6 +2859,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31743_16_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31743_16_8-vis.png
@@ -2720,6 +2876,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31744_1_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31744_1_3-vis.png
@@ -2736,6 +2893,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_16_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_16_10-vis.png
@@ -2752,6 +2910,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_16_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_16_9-vis.png
@@ -2768,6 +2927,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_1_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_1_4-vis.png
@@ -2784,6 +2944,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_1_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_1_5-vis.png
@@ -2800,6 +2961,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_1_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31745_1_6-vis.png
@@ -2816,6 +2978,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31747_1_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/10_31747_1_7-vis.png
@@ -2832,6 +2995,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31748_1_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31748_1_8-vis.png
@@ -2848,6 +3012,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31749_16_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31749_16_11-vis.png
@@ -2864,6 +3029,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31749_1_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31749_1_9-vis.png
@@ -2880,6 +3046,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31750_16_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31750_16_12-vis.png
@@ -2896,6 +3063,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31750_1_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31750_1_10-vis.png
@@ -2912,6 +3080,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31750_1_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31750_1_11-vis.png
@@ -2928,6 +3097,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31751_1_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31751_1_12-vis.png
@@ -2944,6 +3114,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_16_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_16_13-vis.png
@@ -2960,6 +3131,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_16_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_16_14-vis.png
@@ -2976,6 +3148,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_16_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_16_15-vis.png
@@ -2992,6 +3165,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_18_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_18_2-vis.png
@@ -3008,6 +3182,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_1_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/12_31754_1_14-vis.png
@@ -3024,6 +3199,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31755_18_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31755_18_1-vis.png
@@ -3040,6 +3216,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31756_20_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31756_20_2-vis.png
@@ -3056,6 +3233,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31757_20_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31757_20_3-vis.png
@@ -3072,6 +3250,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31758_16_17-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31758_16_17-vis.png
@@ -3088,6 +3267,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31758_20_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31758_20_4-vis.png
@@ -3104,6 +3284,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31758_20_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31758_20_5-vis.png
@@ -3120,6 +3301,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31759_16_18-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31759_16_18-vis.png
@@ -3136,6 +3318,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31759_20_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31759_20_6-vis.png
@@ -3152,6 +3335,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31760_16_19-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31760_16_19-vis.png
@@ -3168,6 +3352,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31761_16_20-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31761_16_20-vis.png
@@ -3184,6 +3369,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31761_20_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/14_31761_20_7-vis.png
@@ -3200,6 +3386,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31762_16_21-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31762_16_21-vis.png
@@ -3216,6 +3403,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31762_20_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31762_20_8-vis.png
@@ -3232,6 +3420,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31762_20_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31762_20_9-vis.png
@@ -3248,6 +3437,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31763_20_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31763_20_10-vis.png
@@ -3264,6 +3454,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31765_19_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31765_19_1-vis.png
@@ -3280,6 +3471,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31765_20_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31765_20_11-vis.png
@@ -3296,6 +3488,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31765_3_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31765_3_1-vis.png
@@ -3312,6 +3505,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31766_3_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31766_3_2-vis.png
@@ -3328,6 +3522,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31767_17_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31767_17_1-vis.png
@@ -3344,6 +3539,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31767_3_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31767_3_3-vis.png
@@ -3360,6 +3556,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31767_3_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31767_3_4-vis.png
@@ -3376,6 +3573,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31768_17_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31768_17_2-vis.png
@@ -3392,6 +3590,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31768_3_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31768_3_5-vis.png
@@ -3408,6 +3607,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31768_3_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31768_3_6-vis.png
@@ -3424,6 +3624,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31769_18_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31769_18_11-vis.png
@@ -3440,6 +3641,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31769_3_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31769_3_7-vis.png
@@ -3456,6 +3658,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_14_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_14_15-vis.png
@@ -3472,6 +3675,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_14_16-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_14_16-vis.png
@@ -3488,6 +3692,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_4_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_4_1-vis.png
@@ -3504,6 +3709,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_4_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31770_4_2-vis.png
@@ -3520,6 +3726,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31771_14_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31771_14_14-vis.png
@@ -3536,6 +3743,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31771_4_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31771_4_3-vis.png
@@ -3552,6 +3760,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_4-vis.png
@@ -3568,6 +3777,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_5-vis.png
@@ -3584,6 +3794,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_6-vis.png
@@ -3600,6 +3811,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31772_4_7-vis.png
@@ -3616,6 +3828,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31773_4_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31773_4_10-vis.png
@@ -3632,6 +3845,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31773_4_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31773_4_8-vis.png
@@ -3648,6 +3862,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31773_4_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31773_4_9-vis.png
@@ -3664,6 +3879,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31774_14_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31774_14_13-vis.png
@@ -3680,6 +3896,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31774_4_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31774_4_11-vis.png
@@ -3696,6 +3913,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31774_4_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31774_4_12-vis.png
@@ -3712,6 +3930,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31775_5_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/16_31775_5_1-vis.png
@@ -3728,6 +3947,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31776_14_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31776_14_12-vis.png
@@ -3744,6 +3964,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31776_5_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31776_5_2-vis.png
@@ -3760,6 +3981,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31779_5_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31779_5_4-vis.png
@@ -3776,6 +3998,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31780_5_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31780_5_5-vis.png
@@ -3792,6 +4015,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31782_5_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31782_5_6-vis.png
@@ -3808,6 +4032,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31782_5_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31782_5_7-vis.png
@@ -3824,6 +4049,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_10-vis.png
@@ -3840,6 +4066,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_11-vis.png
@@ -3856,6 +4083,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_7-vis.png
@@ -3872,6 +4100,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_8-vis.png
@@ -3888,6 +4117,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_14_9-vis.png
@@ -3904,6 +4134,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_10-vis.png
@@ -3920,6 +4151,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_11-vis.png
@@ -3936,6 +4168,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_8-vis.png
@@ -3952,6 +4185,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31783_5_9-vis.png
@@ -3968,6 +4202,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31784_14_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31784_14_6-vis.png
@@ -3984,6 +4219,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31785_5_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31785_5_13-vis.png
@@ -4000,6 +4236,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31785_5_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31785_5_14-vis.png
@@ -4016,6 +4253,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31785_5_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/18_31785_5_15-vis.png
@@ -4032,6 +4270,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31786_14_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31786_14_5-vis.png
@@ -4048,6 +4287,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31787_14_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31787_14_3-vis.png
@@ -4064,6 +4304,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31787_14_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31787_14_4-vis.png
@@ -4080,6 +4321,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31787_5_16-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31787_5_16-vis.png
@@ -4096,6 +4338,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31788_5_17-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31788_5_17-vis.png
@@ -4112,6 +4355,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31788_5_18-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31788_5_18-vis.png
@@ -4128,6 +4372,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_14_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_14_1-vis.png
@@ -4144,6 +4389,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_14_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_14_2-vis.png
@@ -4160,6 +4406,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_5_19-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_5_19-vis.png
@@ -4176,6 +4423,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_5_20-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31789_5_20-vis.png
@@ -4192,6 +4440,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31790_13_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31790_13_14-vis.png
@@ -4208,6 +4457,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31790_18_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31790_18_12-vis.png
@@ -4224,6 +4474,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_13_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_13_11-vis.png
@@ -4240,6 +4491,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_13_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_13_12-vis.png
@@ -4256,6 +4508,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_13_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_13_13-vis.png
@@ -4272,6 +4525,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_18_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31791_18_13-vis.png
@@ -4288,6 +4542,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31792_18_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31792_18_14-vis.png
@@ -4304,6 +4559,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_13_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_13_10-vis.png
@@ -4320,6 +4576,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_13_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_13_8-vis.png
@@ -4336,6 +4593,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_13_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_13_9-vis.png
@@ -4352,6 +4610,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_6_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_6_1-vis.png
@@ -4368,6 +4627,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_6_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_6_2-vis.png
@@ -4384,6 +4644,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_6_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31793_6_3-vis.png
@@ -4400,6 +4661,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_13_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_13_6-vis.png
@@ -4416,6 +4678,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_13_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_13_7-vis.png
@@ -4432,6 +4695,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_6_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_6_4-vis.png
@@ -4448,6 +4712,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_6_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31794_6_6-vis.png
@@ -4464,6 +4729,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31795_13_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31795_13_4-vis.png
@@ -4480,6 +4746,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31795_6_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31795_6_7-vis.png
@@ -4496,6 +4763,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31797_13_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31797_13_3-vis.png
@@ -4512,6 +4780,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31797_6_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31797_6_9-vis.png
@@ -4528,6 +4797,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31798_13_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/20_31798_13_1-vis.png
@@ -4544,6 +4814,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_15_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_15_1-vis.png
@@ -4560,6 +4831,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_15_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_15_2-vis.png
@@ -4576,6 +4848,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_8_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_8_2-vis.png
@@ -4592,6 +4865,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_8_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31725_8_3-vis.png
@@ -4608,6 +4882,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_4-vis.png
@@ -4624,6 +4899,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_5-vis.png
@@ -4640,6 +4916,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_6-vis.png
@@ -4656,6 +4933,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_7-vis.png
@@ -4672,6 +4950,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31726_8_8-vis.png
@@ -4688,6 +4967,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_15_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_15_3-vis.png
@@ -4704,6 +4984,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_10-vis.png
@@ -4720,6 +5001,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_11-vis.png
@@ -4736,6 +5018,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_12-vis.png
@@ -4752,6 +5035,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31727_8_9-vis.png
@@ -4768,6 +5052,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_15_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_15_4-vis.png
@@ -4784,6 +5069,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_15_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_15_5-vis.png
@@ -4800,6 +5086,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_15_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_15_6-vis.png
@@ -4816,6 +5103,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_9_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_9_2-vis.png
@@ -4832,6 +5120,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_9_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31728_9_3-vis.png
@@ -4848,6 +5137,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_1-vis.png
@@ -4864,6 +5154,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_2-vis.png
@@ -4880,6 +5171,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_3-vis.png
@@ -4896,6 +5188,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_4-vis.png
@@ -4912,6 +5205,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_10_5-vis.png
@@ -4928,6 +5222,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_9_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31729_9_4-vis.png
@@ -4944,6 +5239,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_10-vis.png
@@ -4960,6 +5256,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_11-vis.png
@@ -4976,6 +5273,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_12-vis.png
@@ -4992,6 +5290,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_6-vis.png
@@ -5008,6 +5307,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_7-vis.png
@@ -5024,6 +5324,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_8-vis.png
@@ -5040,6 +5341,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_10_9-vis.png
@@ -5056,6 +5358,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_11_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_11_1-vis.png
@@ -5072,6 +5375,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_18_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31730_18_15-vis.png
@@ -5088,6 +5392,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_2-vis.png
@@ -5104,6 +5409,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_4-vis.png
@@ -5120,6 +5426,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_5-vis.png
@@ -5136,6 +5443,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_6-vis.png
@@ -5152,6 +5460,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_7-vis.png
@@ -5168,6 +5477,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_11_8-vis.png
@@ -5184,6 +5494,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_15_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_15_7-vis.png
@@ -5200,6 +5511,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_15_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31731_15_8-vis.png
@@ -5216,6 +5528,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_10-vis.png
@@ -5232,6 +5545,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_11-vis.png
@@ -5248,6 +5562,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_12-vis.png
@@ -5264,6 +5579,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_11_9-vis.png
@@ -5280,6 +5596,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_15_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31732_15_9-vis.png
@@ -5296,6 +5613,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_13-vis.png
@@ -5312,6 +5630,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_14-vis.png
@@ -5328,6 +5647,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_15-vis.png
@@ -5344,6 +5664,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_16-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_16-vis.png
@@ -5360,6 +5681,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_17-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_11_17-vis.png
@@ -5376,6 +5698,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_15_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_15_10-vis.png
@@ -5392,6 +5715,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_15_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_15_11-vis.png
@@ -5408,6 +5732,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_15_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/6_31733_15_12-vis.png
@@ -5424,6 +5749,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_11_18-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_11_18-vis.png
@@ -5440,6 +5766,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_1-vis.png
@@ -5456,6 +5783,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_2-vis.png
@@ -5472,6 +5800,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_3-vis.png
@@ -5488,6 +5817,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_4-vis.png
@@ -5504,6 +5834,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_12_5-vis.png
@@ -5520,6 +5851,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_16_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_16_1-vis.png
@@ -5536,6 +5868,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_16_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31734_16_2-vis.png
@@ -5552,6 +5885,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_10-vis.png
@@ -5568,6 +5902,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_11-vis.png
@@ -5584,6 +5919,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_12-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_12-vis.png
@@ -5600,6 +5936,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_13-vis.png
@@ -5616,6 +5953,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_14-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_14-vis.png
@@ -5632,6 +5970,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_6-vis.png
@@ -5648,6 +5987,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_7-vis.png
@@ -5664,6 +6004,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_8-vis.png
@@ -5680,6 +6021,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31735_12_9-vis.png
@@ -5696,6 +6038,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_15-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_15-vis.png
@@ -5712,6 +6055,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_16-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_16-vis.png
@@ -5728,6 +6072,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_17-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_17-vis.png
@@ -5744,6 +6089,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_18-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_18-vis.png
@@ -5760,6 +6106,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_19-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_12_19-vis.png
@@ -5776,6 +6123,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_16_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_16_3-vis.png
@@ -5792,6 +6140,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_16_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_16_4-vis.png
@@ -5808,6 +6157,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_16_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31736_16_5-vis.png
@@ -5824,6 +6174,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_12_20-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_12_20-vis.png
@@ -5840,6 +6191,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_12_22-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_12_22-vis.png
@@ -5856,6 +6208,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_12_23-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_12_23-vis.png
@@ -5872,6 +6225,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_6_18-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31737_6_18-vis.png
@@ -5888,6 +6242,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31738_6_17-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/maternalfetalinterface-mibitof-stanford/8_31738_6_17-vis.png
@@ -5938,6 +6293,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Buccal_Mucosa_And_Minor_Salivary_Glands_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Buccal_Mucosa_And_Minor_Salivary_Glands_1-vis.png
@@ -5954,6 +6310,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Buccal_Mucosa_And_Minor_Salivary_Glands_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Buccal_Mucosa_And_Minor_Salivary_Glands_2-vis.png
@@ -5970,6 +6327,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Gingiva_ID1_shiny-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Gingiva_ID1_shiny-vis.png
@@ -5986,6 +6344,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Gingiva_ID5_shiny-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Gingiva_ID5_shiny-vis.png
@@ -6002,6 +6361,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_1-vis.png
@@ -6018,6 +6378,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_2-vis.png
@@ -6034,6 +6395,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_3-vis.png
@@ -6050,6 +6412,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_4-vis.png
@@ -6066,6 +6429,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Submandibular_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Submandibular_1-vis.png
@@ -6082,6 +6446,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Submandibular_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Submandibular_2-vis.png
@@ -6098,6 +6463,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue_3-vis.png
@@ -6114,6 +6480,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue__1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue__1-vis.png
@@ -6130,6 +6497,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue__2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue__2-vis.png
@@ -6222,6 +6590,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-13-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-13-vis.png
@@ -6238,6 +6607,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-19-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-19-vis.png
@@ -6254,6 +6624,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-4AD-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-4AD-vis.png
@@ -6270,6 +6641,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-7A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P2-7A-vis.png
@@ -6286,6 +6658,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-13A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-13A-vis.png
@@ -6302,6 +6675,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-3A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-3A-vis.png
@@ -6318,6 +6692,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-7A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-7A-vis.png
@@ -6334,6 +6709,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-9A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P3-9A-vis.png
@@ -6350,6 +6726,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-12A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-12A-vis.png
@@ -6366,6 +6743,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-22-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-22-vis.png
@@ -6382,6 +6760,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-3A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-3A-vis.png
@@ -6398,6 +6777,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-6A-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/pancreas-geomx-ufl/P4-6A-vis.png
@@ -6436,6 +6816,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_1-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_1-vis.png
@@ -6452,6 +6833,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_10-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_10-vis.png
@@ -6468,6 +6850,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_11-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_11-vis.png
@@ -6484,6 +6867,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_2-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_2-vis.png
@@ -6500,6 +6884,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_3-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_3-vis.png
@@ -6516,6 +6901,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_4-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_4-vis.png
@@ -6532,6 +6918,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_5-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_5-vis.png
@@ -6548,6 +6935,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_6-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_6-vis.png
@@ -6564,6 +6952,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_7-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_7-vis.png
@@ -6580,6 +6969,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_8-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_8-vis.png
@@ -6596,6 +6986,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_9-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-celldive-ge/region_9-vis.png
@@ -6649,6 +7040,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-confocal-sorgerlab/phenotypes_invasive_margin-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-confocal-sorgerlab/phenotypes_invasive_margin-vis.png
@@ -6665,6 +7057,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-confocal-sorgerlab/phenotypes_melanoma_in_situ-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/skin-confocal-sorgerlab/phenotypes_melanoma_in_situ-vis.png
@@ -6707,6 +7100,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/FSLD-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/FSLD-vis.png
@@ -6723,6 +7117,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/KSFB-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/KSFB-vis.png
@@ -6739,6 +7134,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/NGPL-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/NGPL-vis.png
@@ -6755,6 +7151,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/PBVN-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/PBVN-vis.png
@@ -6771,6 +7168,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/PKHL-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/PKHL-vis.png
@@ -6787,6 +7185,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/XXCD-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/XXCD-vis.png
@@ -6828,6 +7227,7 @@ studies:
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/tonsil-codex-stanford/tonsil-edges.csv
         node-target-key: Level Three Cell Type
         node-target-value: endothelial cell
+        node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/tonsil-codex-stanford/tonsil-vis.png

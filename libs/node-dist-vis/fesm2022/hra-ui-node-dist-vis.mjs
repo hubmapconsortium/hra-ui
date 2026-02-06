@@ -889,7 +889,13 @@ class NodeDistVisComponent {
     pickingInfoToNodeEvent(info) {
         const view = this.nodesView();
         const { index, x, y } = info;
-        return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
+        return {
+            index,
+            clientX: x,
+            clientY: y,
+            object: view.materializeAt(index),
+            raw: view.at(index),
+        };
     }
     /**
      * Listen to view data changes and emit the data when available

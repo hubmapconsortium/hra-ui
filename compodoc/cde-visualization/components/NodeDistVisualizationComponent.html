@@ -902,7 +902,7 @@
 
     const nodes &#x3D; this.nodes();
     const edges &#x3D; this.edges();
-    const { index, object: node } &#x3D; info;
+    const { index, raw: node } &#x3D; info;
     const edge &#x3D; this.findClosestEdge(index);
     const type &#x3D; nodes.getCellTypeFor(node);
     const ontologyId &#x3D; nodes.getCellOntologyIDFor(node) ?? &#x27;-&#x27;;
@@ -1334,7 +1334,7 @@ export class NodeDistVisualizationComponent {
 
     const nodes &#x3D; this.nodes();
     const edges &#x3D; this.edges();
-    const { index, object: node } &#x3D; info;
+    const { index, raw: node } &#x3D; info;
     const edge &#x3D; this.findClosestEdge(index);
     const type &#x3D; nodes.getCellTypeFor(node);
     const ontologyId &#x3D; nodes.getCellOntologyIDFor(node) ?? &#x27;-&#x27;;
