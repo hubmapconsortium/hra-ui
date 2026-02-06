@@ -136,7 +136,7 @@ export class NodeDistVisualizationComponent {
 
     const nodes = this.nodes();
     const edges = this.edges();
-    const { index, object: node } = info;
+    const { index, raw: node } = info;
     const edge = this.findClosestEdge(index);
     const type = nodes.getCellTypeFor(node);
     const ontologyId = nodes.getCellOntologyIDFor(node) ?? '-';
