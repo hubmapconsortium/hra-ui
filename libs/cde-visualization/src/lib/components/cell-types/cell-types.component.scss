@@ -139,11 +139,6 @@
             }
           }
 
-          .mat-sort-header-arrow {
-            opacity: 1 !important;
-            transform: none !important;
-          }
-
           tr th:last-child > div {
             justify-content: flex-end;
             margin-right: 0.25rem;
@@ -226,7 +221,12 @@
       .mdc-data-table__cell,
       .mdc-data-table__header-cell {
         padding: 0;
-        max-width: 10.25rem;
+      }
+
+      .mdc-data-table__cell {
+        &:nth-child(2) {
+          max-width: 10rem;
+        }
       }
     }
   }
