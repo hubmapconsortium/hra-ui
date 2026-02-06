@@ -7,6 +7,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
 import { CustomScrollService } from '@hra-ui/common/custom-scroll';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -30,6 +31,7 @@ import { getOptionalRouteData } from './shared/utils/route-properties';
     MatDividerModule,
     CommonModule,
     HraCommonModule,
+    LinkDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
