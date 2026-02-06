@@ -49,6 +49,9 @@
       "options": {
         "tsConfig": "apps/cde-ui/tsconfig.app.json"
       }
+    },
+    "build-webcomponent": {
+      "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cde-ui/browser/"
     }
   }
 }
