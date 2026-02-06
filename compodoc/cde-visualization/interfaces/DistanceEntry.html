@@ -414,7 +414,7 @@ export class CdeVisualizationComponent {
   /** Node key mapping data */
   readonly nodeKeys &#x3D; input&lt;NodeKeysInput&gt;();
   /** Node target selector used when calculating edges */
-  readonly nodeTargetSelector &#x3D; input(DEFAULT_NODE_TARGET_SELECTOR);
+  readonly nodeTargetSelector &#x3D; input&lt;string&gt;();
 
   /**
    * Column/property of the node&#x27;s &#x27;Cell Type&#x27; values
@@ -517,7 +517,7 @@ export class CdeVisualizationComponent {
   protected loadingManager &#x3D; new LoadingManager();
 
   /** Sets the node target selector (uses default if not available) */
-  private readonly nodeTargetSelectorWithDefault &#x3D; computed(() &#x3D;&gt; {
+  protected readonly nodeTargetSelectorWithDefault &#x3D; computed(() &#x3D;&gt; {
     return this.nodeTargetSelector() || this.nodeTargetValue() || DEFAULT_NODE_TARGET_SELECTOR;
   });
 
