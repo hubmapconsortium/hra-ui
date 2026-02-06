@@ -30,7 +30,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM27_H10-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -47,7 +47,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM28_H14-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -64,7 +64,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM31_H32-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -81,7 +81,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM32_H37-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -98,7 +98,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM33_H36-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -115,7 +115,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM34_H38-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -132,7 +132,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM36_H26-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -149,7 +149,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM37_H35-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -166,7 +166,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM38_H33-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -183,7 +183,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM39_H41-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -200,7 +200,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM40_H39-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -217,7 +217,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM41_H27-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -234,7 +234,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM44_AML2_191-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -251,7 +251,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM46_AML1_382-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -268,7 +268,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM47_NSM3_1996-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -285,7 +285,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM48_NSM1_1720-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -302,7 +302,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM49_NSM2_1086-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -319,7 +319,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM51_AML1_183-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -336,7 +336,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM52_AML3_1329-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -353,7 +353,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/bonemarrow-codex-chop/SB67_NBM54_AML3_1443-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6292,7 +6292,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Buccal_Mucosa_And_Minor_Salivary_Glands_1-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6309,7 +6309,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Buccal_Mucosa_And_Minor_Salivary_Glands_2-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6326,7 +6326,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Gingiva_ID1_shiny-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6343,7 +6343,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Gingiva_ID5_shiny-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6360,7 +6360,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_1-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6377,7 +6377,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_2-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6394,7 +6394,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_3-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6411,7 +6411,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Parotid_4-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6428,7 +6428,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Submandibular_1-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6445,7 +6445,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Submandibular_2-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6462,7 +6462,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue_3-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6479,7 +6479,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue__1-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -6496,7 +6496,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/oralcavity-codex-czi/Tongue__2-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of vascular tree
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -7099,7 +7099,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/FSLD-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -7116,7 +7116,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/KSFB-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -7133,7 +7133,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/NGPL-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -7150,7 +7150,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/PBVN-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -7167,7 +7167,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/PKHL-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
@@ -7184,7 +7184,7 @@ studies:
         edges: >-
           https://cdn.humanatlas.io/image-store/vccf-data-cell-nodes/published/spleen-codex-ufl/XXCD-edges.csv
         node-target-key: Level Three Cell Type
-        node-target-value: endothelial cell
+        node-target-value: endothelial cell of sinusoid
         node-cl-id-key: Level Three CL ID
         max-edge-distance: 200
         thumbnail: >-
