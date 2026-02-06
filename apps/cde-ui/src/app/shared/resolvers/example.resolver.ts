@@ -16,8 +16,8 @@ export const EXAMPLE_INDEX_PARAM = 'index';
  */
 export function getExampleCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
   const index = getRequiredRouteParam(route, EXAMPLE_INDEX_PARAM);
-  const data = getExampleData(route);
-  const name = (data['metadata'] as Metadata).sourceFileName ?? `Example ${index}`;
+  const { metadata = {} } = getExampleData(route);
+  const name = (metadata as Metadata).sourceFileName ?? `Example ${index}`;
   return [{ name, route: `/example/${index}` }];
 }
 
