@@ -9,6 +9,7 @@ import { HraCommonModule, routeData } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 
 /**
  * App component for CDE
@@ -26,6 +27,7 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
     MatDividerModule,
     CommonModule,
     HraCommonModule,
+    LinkDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
