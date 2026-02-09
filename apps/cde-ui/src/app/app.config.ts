@@ -24,7 +24,7 @@ import { IconDef, provideIcons } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { ROUTES } from './app.routes';
-import { StudiesGridDef } from './components/studies-grid';
+import { StudiesGridDef } from './components/studies-grid/types/studies-grid.definition';
 import { handleNavigationError } from './shared/utils/navigation-error-handler';
 
 /**

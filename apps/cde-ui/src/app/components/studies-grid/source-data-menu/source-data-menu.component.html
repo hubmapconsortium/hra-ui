@@ -1,0 +1,36 @@
+@if (publications().length === 1) {
+  @let item = publications()[0];
+
+  <a
+    mat-button
+    hraClickEvent
+    hraLinkExternal
+    hraFeature="source-data"
+    hraButtonSize="medium"
+    [hraLink]="item.url"
+    [hraPlainTooltip]="item.label"
+  >
+    Source data
+  </a>
+} @else if (publications().length > 1) {
+  <button mat-button hraClickEvent hraFeature="source-data" hraButtonSize="medium" [matMenuTriggerFor]="menu">
+    Source data
+  </button>
+  <mat-menu #menu>
+    @for (publication of publications(); track publication.label) {
+      <a
+        mat-menu-item
+        hraClickEvent
+        hraLinkExternal
+        class="publication-menu-item"
+        [hraFeature]="`source-data-${$index + 1}`"
+        [hraLink]="publication.url"
+      >
+        <mat-icon>open_in_new</mat-icon>
+        <div class="publication-label" [hraPlainTooltip]="publication.label">
+          {{ publication.label }}
+        </div>
+      </a>
+    }
+  </mat-menu>
+}

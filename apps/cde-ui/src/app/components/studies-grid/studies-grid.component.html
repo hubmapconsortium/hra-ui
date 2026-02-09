@@ -1,26 +1,28 @@
-<hra-grid-container itemMinWidth="314px">
-  @for (study of studies(); track study.tagline) {
+<hra-grid-container hraFeature="spatial-omics-gallery" itemMinWidth="314px">
+  @for (study of store.studies(); track study.slug) {
+    @let extraProps = store.getExtraProps(study);
+
     <hra-collection-card
-      hraFeature="spatial-omics-gallery.featured-study"
-      [tagline]="study.tagline"
-      [image]="study.image"
-      [taglineChips]="study.taglineChips"
-      [label]="study.label"
-      [supportingText]="study.supportingText"
-      [tags]="study.tags"
+      hraFeature="featured-study"
+      [tagline]="extraProps.tagline"
+      [image]="extraProps.thumbnail"
+      [taglineChips]="extraProps.chips"
+      [label]="study.authors"
+      [supportingText]="study.affiliations"
+      [tags]="extraProps.tags"
     >
       <hra-collection-card-action>
         <div class="left-actions">
           <a
-            hraFeature="view-datasets"
-            hraClickEvent
             mat-flat-button
+            hraClickEvent
+            hraFeature="view-datasets"
             hraButtonSize="medium"
-            [routerLink]="['/gallery', study.slug]"
+            [hraLink]="`/gallery/${study.slug}`"
           >
-            {{ study.viewButtonText }}
+            View dataset{{ study.datasets.length === 1 ? '' : 's' }}
           </a>
-          @if (study.isHraRegistered) {
+          @if (study.euiUrl) {
             <button
               hraFeature="more-options"
               hraClickEvent
@@ -34,66 +36,17 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #moreMenu>
-              @if (study.euiUrl) {
-                <a
-                  hraClickEvent
-                  hraFeature="view-datasets-in-eui"
-                  mat-menu-item
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  [href]="study.euiUrl"
-                >
-                  <mat-icon>open_in_new</mat-icon>
-                  View datasets in the Exploration User Interface
-                </a>
-              }
+              <a mat-menu-item hraClickEvent hraLinkExternal hraFeature="view-datasets-in-eui" [hraLink]="study.euiUrl">
+                <mat-icon>open_in_new</mat-icon>
+                View datasets in the Exploration User Interface
+              </a>
             </mat-menu>
           }
         </div>
       </hra-collection-card-action>
+
       <hra-collection-card-action alignment="right">
-        @if (study.publications.length === 1) {
-          <a
-            hraFeature="source-data"
-            hraClickEvent
-            mat-button
-            hraButtonSize="medium"
-            target="_blank"
-            rel="noopener noreferrer"
-            [href]="study.publications[0].url"
-            [attr.title]="study.publications[0].label ?? null"
-          >
-            Source data
-          </a>
-        } @else if (study.publications.length > 1) {
-          <button
-            hraFeature="source-data"
-            hraClickEvent
-            mat-button
-            hraButtonSize="medium"
-            [matMenuTriggerFor]="publicationMenu"
-          >
-            Source data
-          </button>
-          <mat-menu #publicationMenu>
-            @for (publication of study.publications; track publication; let idx = $index) {
-              <a
-                hraClickEvent
-                mat-menu-item
-                target="_blank"
-                rel="noopener noreferrer"
-                class="publication-menu-item"
-                [hraFeature]="`source-data-${idx + 1}`"
-                [href]="publication.url"
-              >
-                <mat-icon>open_in_new</mat-icon>
-                <div class="publication-label" [attr.title]="publication.label ?? null">
-                  {{ publication.label ?? `Publication ${idx + 1}` }}
-                </div>
-              </a>
-            }
-          </mat-menu>
-        }
+        <cde-source-data-menu [publications]="extraProps.publications" />
       </hra-collection-card-action>
     </hra-collection-card>
   }
