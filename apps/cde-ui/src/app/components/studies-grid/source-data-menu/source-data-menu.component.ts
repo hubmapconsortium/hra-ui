@@ -4,7 +4,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
-import { PublicationItem } from '../../../state/studies/with-studies.feature';
+import { PublicationItem } from '../../../schemas/studies/utils';
 
 @Component({
   selector: 'cde-source-data-menu',

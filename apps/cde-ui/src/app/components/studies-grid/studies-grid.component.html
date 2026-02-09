@@ -1,15 +1,13 @@
 <hra-grid-container hraFeature="spatial-omics-gallery" itemMinWidth="314px">
-  @for (study of store.studies(); track study.slug) {
-    @let extraProps = store.getExtraProps(study);
-
+  @for (study of studies(); track study.slug) {
     <hra-collection-card
       hraFeature="featured-study"
-      [tagline]="extraProps.tagline"
-      [image]="extraProps.thumbnail"
-      [taglineChips]="extraProps.chips"
+      [tagline]="study.tagline"
+      [image]="study.thumbnail"
+      [taglineChips]="study.chips"
       [label]="study.authors"
       [supportingText]="study.affiliations"
-      [tags]="extraProps.tags"
+      [tags]="study.tags"
     >
       <hra-collection-card-action>
         <div class="left-actions">
@@ -46,7 +44,7 @@
       </hra-collection-card-action>
 
       <hra-collection-card-action alignment="right">
-        <cde-source-data-menu [publications]="extraProps.publications" />
+        <cde-source-data-menu [publications]="study.publicationItems" />
       </hra-collection-card-action>
     </hra-collection-card>
   }

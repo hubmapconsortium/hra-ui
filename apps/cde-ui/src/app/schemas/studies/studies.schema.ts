@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { getChips, getTags, zipCitationsAndPublications } from './utils';
 
 /** Type inferred from DatasetSchema */
 export type Dataset = z.infer<typeof DatasetSchema>;
@@ -24,11 +25,11 @@ export const DatasetSchema = z.object({
   level1CellTypesCount: z.number(),
 });
 
-/** Type inferred from StudySchema */
-export type Study = z.infer<typeof StudySchema>;
+/** Type inferred from BaseStudySchema */
+export type BaseStudy = z.infer<typeof BaseStudySchema>;
 
 /** Zod schema for study data from YAML */
-export const StudySchema = z.object({
+export const BaseStudySchema = z.object({
   slug: z.string(),
   organName: z.string(),
   description: z.string(),
@@ -43,6 +44,19 @@ export const StudySchema = z.object({
   publications: z.array(z.string()),
   datasets: z.array(DatasetSchema),
 });
+
+/** Type inferred from StudySchema */
+export type Study = z.infer<typeof StudySchema>;
+
+/** Schema for a study with additional derived properties */
+export const StudySchema = BaseStudySchema.transform((study) => ({
+  ...study,
+  tagline: `${study.organName}, ${study.technology}`,
+  thumbnail: `assets/data/gallery/${study.thumbnail}`,
+  chips: getChips(study),
+  tags: getTags(study),
+  publicationItems: zipCitationsAndPublications(study),
+}));
 
 /** Type inferred from StudiesSchema */
 export type Studies = z.infer<typeof StudiesSchema>;

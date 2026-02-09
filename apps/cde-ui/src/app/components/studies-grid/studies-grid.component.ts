@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AnalyticsModule } from '@hra-ui/common/analytics';
@@ -8,9 +8,9 @@ import { CollectionCardActionComponent, CollectionCardComponent } from '@hra-ui/
 import { GridContainerComponent } from '@hra-ui/design-system/content-templates/grid-container';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { injectRouteData } from 'ngxtension/inject-route-data';
-import { Studies } from '../../schemas/study.schema';
+import { Studies } from '../../schemas/studies/studies.schema';
+import { STUDIES_DATA_KEY } from '../../shared/resolvers/study.resolver';
 import { SourceDataMenuComponent } from './source-data-menu/source-data-menu.component';
-import { StudiesGridStore } from './state/studies-grid.store';
 
 /** Studies grid wrapper component that displays featured spatial omics studies */
 @Component({
@@ -29,17 +29,16 @@ import { StudiesGridStore } from './state/studies-grid.store';
   ],
   templateUrl: './studies-grid.component.html',
   styleUrl: './studies-grid.component.scss',
-  providers: [StudiesGridStore],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudiesGridComponent {
-  readonly dataName = input('studies');
+  readonly dataName = input(STUDIES_DATA_KEY);
 
-  protected readonly store = inject(StudiesGridStore);
+  readonly studies = computed(() => {
+    const data = this.routeData();
+    const key = this.dataName();
+    return (data?.[key] as Studies).studies ?? [];
+  });
 
-  constructor() {
-    const routeData = injectRouteData.global<Record<string, Studies>>();
-    const studies = computed((): Studies => routeData()?.[this.dataName()] ?? { studies: [] });
-    this.store.setStudies(studies);
-  }
+  private readonly routeData = injectRouteData.global<Record<string, Studies>>();
 }

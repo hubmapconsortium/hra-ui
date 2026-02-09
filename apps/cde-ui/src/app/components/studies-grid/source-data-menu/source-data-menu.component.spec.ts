@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { PublicationItem } from '../../../state/studies/with-studies.feature';
+import { PublicationItem } from '../../../schemas/studies/utils';
 import { SourceDataMenuComponent } from './source-data-menu.component';
 
 describe('SourceDataMenuComponent', () => {
