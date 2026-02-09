@@ -20,7 +20,7 @@
           [matSortDisabled]="!enableSort()"
           [class.vertical-divider]="verticalDividers()"
         >
-          @let templates = { text, numeric, markdown, link, icon, menu, buttonIcon };
+          @let templates = { text, numeric, markdown, link, icon, menu, dataExploration };
 
           <!-- Selection Column (if enabled) -->
           @if (enableRowSelection()) {
@@ -69,6 +69,7 @@
                   [hraFeature]="`header-cell.${(column.label | slugify)}`"
                   [attr.data-column-type]="type"
                   [sortActionDescription]="`Sort by ${column.label}`"
+                  [disabled]="!column.label"
                 >
                   {{ column.label }}
                 </th>
@@ -186,55 +187,52 @@
   </ng-template>
 
   <ng-template
+    let-url
     let-column="column"
     let-element="element"
-    hraFeature="button-icon-cell"
-    hraButtonIconRowElement
-    #buttonIcon
+    hraFeature="data-exploration-cell"
+    hraDataExplorationRowElement
+    #dataExploration
   >
-    @let imageUrlValue = column.type.imageUrlColumn ? element[column.type.imageUrlColumn] : '';
-    @let imageUrl = imageUrlValue && imageUrlValue !== '' ? `${imageUrlValue}` : '';
-    @let imageAltValue = column.type.imageAltColumn ? element[column.type.imageAltColumn] : '';
-    @let imageAlt = imageAltValue && imageAltValue !== '' ? `${imageAltValue}` : '';
-    @let titleValue = column.type.titleColumn ? element[column.type.titleColumn] : '';
-    @let title = titleValue && titleValue !== '' ? `${titleValue}` : '';
-    <div class="button-icon-cell">
-      @if (column.type.buttonLabel) {
+    @let titleColumn = column.type.titleColumn;
+    @let imageUrlColumn = column.type.imageUrlColumn;
+    @let title = titleColumn && `${element[titleColumn]}`;
+    @let imageUrl = imageUrlColumn && `${element[imageUrlColumn]}`;
+
+    <div class="data-exploration-cell">
+      <a
+        mat-flat-button
+        hraClickEvent
+        class="explore-button"
+        hraFeature="explore-button"
+        [hraLink]="url"
+        [hraLinkExternal]="column.type.external"
+      >
+        {{ column.type.label ?? 'Explore' }}
+      </a>
+
+      @if (title && imageUrl) {
         <button
-          hraClickEvent
-          mat-flat-button
-          color="primary"
-          hraFeature="explore-button"
-          class="explore-button"
-          (click)="routeClick(title)"
-        >
-          {{ column.type.buttonLabel }}
-        </button>
-      }
-      @if (column.type.previewIcon && imageUrl) {
-        <button
-          hraClickEvent
           mat-icon-button
-          hraFeature="preview-icon"
+          hraClickEvent
           class="preview-icon"
+          hraFeature="preview-icon"
           hraPlainTooltip="Preview image"
-          (click)="openImageModal(imageUrl, title, imageAlt)"
+          [attr.aria-label]="`Preview ${title}`"
+          (click)="openDataExplorationPreview(dataExplorationPreview, title, imageUrl)"
         >
-          <hra-icon [fontIcon]="column.type.previewIcon" />
+          <hra-icon [fontIcon]="column.type.icon ?? 'preview'" />
         </button>
       }
     </div>
   </ng-template>
 
-  <!-- Image Preview Modal -->
-  @if (showImageModal()) {
-    <div class="modal-backdrop">
-      <hra-image-modal
-        [modalTitle]="modalImageTitle()"
-        [imageUrl]="modalImageUrl()"
-        [altText]="modalImageAlt()"
-        (close)="closeImageModal()"
-      />
-    </div>
-  }
+  <ng-template let-context #dataExplorationPreview>
+    <hra-image-modal
+      [modalTitle]="context.title"
+      [imageUrl]="context.url"
+      [altText]="`Preview of ${context.title}`"
+      (close)="context.close()"
+    />
+  </ng-template>
 </ng-container>
