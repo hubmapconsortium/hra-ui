@@ -69,7 +69,7 @@ export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<Cde
     const datasetId = getRequiredRouteParam(route, DATASET_ID_PARAM);
     const dataset = study.datasets.find((d) => d.slug === datasetId);
     if (!dataset) {
-      throw new NotFoundError(`Study dataset not found: ${datasetId}`);
+      throw new NotFoundError(`Study dataset not found: ${datasetId} in study ${study.slug}`);
     }
 
     return {

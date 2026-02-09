@@ -1,51 +1,46 @@
+@let data = study();
+
 <hra-table-of-contents-layout>
   <hra-table-of-contents-layout-header>
-    @if (studyData(); as study) {
-      <hra-page-section hraFeature="study-page" [tagline]="study.tagline">
-        <div class="study-header">
-          <mat-chip-set>
+    <hra-page-section hraFeature="study-page" [tagline]="data.tagline">
+      <div class="study-header">
+        <mat-chip-set>
+          <mat-chip hraChipSize="small">
+            {{ data.authors }}
+          </mat-chip>
+          <mat-chip hraChipSize="small">
+            {{ data.affiliations }}
+          </mat-chip>
+
+          @for (chip of data.chips; track chip) {
             <mat-chip hraChipSize="small">
-              {{ study.label }}
+              {{ chip }}
             </mat-chip>
+          }
+
+          @for (tag of data.tags; track tag.text) {
             <mat-chip hraChipSize="small">
-              {{ study.supportingText }}
+              <mat-icon>{{ tag.icon }}</mat-icon>
+              {{ tag.text }}
             </mat-chip>
+          }
+        </mat-chip-set>
+      </div>
 
-            @if (study.taglineChips && study.taglineChips.length > 0) {
-              @for (chip of study.taglineChips; track chip) {
-                <mat-chip hraChipSize="small">
-                  {{ chip }}
-                </mat-chip>
-              }
-            }
-
-            @if (study.tags && study.tags.length > 0) {
-              @for (tag of study.tags; track tag.text) {
-                <mat-chip hraChipSize="small">
-                  <mat-icon>{{ tag.icon }}</mat-icon>
-                  {{ tag.text }}
-                </mat-chip>
-              }
-            }
-          </mat-chip-set>
-        </div>
-
-        <img class="study-banner" alt="Study Banner" [src]="study.image | assetUrl" />
-      </hra-page-section>
-    }
+      <img class="study-banner" alt="Study Banner" [src]="data.thumbnail | assetUrl" />
+    </hra-page-section>
   </hra-table-of-contents-layout-header>
 
   <hra-page-section hraFeature="overview" tagline="Overview" anchor="overview" [level]="2">
-    @if (studyData()?.description) {
-      <p>{{ studyData()!.description }}</p>
-    }
+    <p>{{ data.description }}</p>
   </hra-page-section>
 
   <hra-page-section hraFeature="publications" tagline="Publications" anchor="publications" [level]="2">
-    @if (studyData()?.publications && studyData()!.publications.length > 0) {
+    @let publicationItems = data.publicationItems;
+    @if (publicationItems.length > 0) {
       <div class="citations-list">
-        @for (pub of studyData()!.publications; track pub.url) {
-          <markdown [data]="pub.label" />
+        @for (pub of publicationItems; track pub.url) {
+          <hra-markdown [data]="pub.label" />
         }
       </div>
     } @else {
@@ -54,29 +49,26 @@
   </hra-page-section>
 
   <hra-page-section hraFeature="datasets" tagline="Datasets" anchor="datasets" [level]="2">
-    @if (studyData()?.datasets && studyData()!.datasets.length > 0) {
+    @let datasets = data.datasets;
+    @if (datasets.length > 0) {
       Explore datasets from this study in the Cell Distance Explorer visualization app.
       <div class="datasets-toolbar">
         <hra-search-filter
           label="Search"
-          [totalCount]="studyData()?.datasets?.length ?? 0"
-          [viewingCount]="datasetRows().length"
+          [totalCount]="datasets.length"
+          [viewingCount]="filteredDatasets().length"
           [(search)]="searchQuery"
         />
-        <mat-icon class="download-icon" (click)="onDownloadCSVButtonClicked()">download</mat-icon>
+        <mat-icon class="download-icon" (click)="downloadDatasetsAsCsv()">download</mat-icon>
       </div>
-      <hra-table
-        [columns]="datasetColumns"
-        [rows]="datasetRows()"
-        [enableSort]="true"
-        (routeClicked)="onExploreDataset($event)"
-      />
+
+      <hra-table [columns]="tableColumns" [rows]="filteredDatasets()" [enableSort]="true" />
     } @else {
       <p>No datasets available</p>
     }
   </hra-page-section>
 
-  @if (studyData()?.euiUrl) {
+  @if (data.euiUrl; as url) {
     <hra-page-section
       hraFeature="eui-view"
       tagline="View in the Exploration User Interface"
@@ -85,12 +77,7 @@
     >
       This data has been registered spatially into the Human Reference Atlas.
 
-      <hra-text-hyperlink
-        hraFeature="eui-link"
-        text="Use app"
-        icon="arrow_right_alt"
-        [url]="studyData()?.euiUrl ?? ''"
-      />
+      <hra-text-hyperlink hraFeature="eui-link" text="Use app" icon="arrow_right_alt" [url]="url" />
     </hra-page-section>
   }
 </hra-table-of-contents-layout>
