@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { StudyDataType } from '../../schemas/study.schema';
+import { Studies, Study } from '../../schemas/study.schema';
 import { NotFoundError } from '../utils/not-found-error';
 import { getRequiredRouteData, getRequiredRouteParam } from '../utils/route-properties';
 
@@ -79,9 +79,9 @@ export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<Cde
  * @param route Activated route snapshot
  * @returns Study data
  */
-function getStudy(route: ActivatedRouteSnapshot): StudyDataType['studies'][number] {
+function getStudy(route: ActivatedRouteSnapshot): Study {
   const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
-  const data = getRequiredRouteData<StudyDataType>(route, 'data', true);
+  const data = getRequiredRouteData<Studies>(route, 'data', true);
   const study = data.studies.find((s) => s.slug === studyId);
   if (!study) {
     throw new NotFoundError(`Study not found: ${studyId}`);

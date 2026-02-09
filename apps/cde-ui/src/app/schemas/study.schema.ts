@@ -1,15 +1,22 @@
 import * as z from 'zod';
 
-/** Zod schema for raw dataset data from YAML */
-export const RawDatasetSchema = z.object({
+/** Type inferred from DatasetSchema */
+export type Dataset = z.infer<typeof DatasetSchema>;
+
+/** Zod schema for dataset data from YAML */
+export const DatasetSchema = z.object({
   slug: z.string(),
+  thumbnail: z.string(),
+
+  // Visualization parameters
   nodes: z.string(),
   edges: z.string(),
   'node-target-key': z.string(),
   'node-target-value': z.string(),
-  'node-cl-id-key': z.string().optional(),
+  'node-cl-id-key': z.string(),
   'max-edge-distance': z.number(),
-  thumbnail: z.string(),
+
+  // Summary statistics
   cellCount: z.number(),
   originalCellTypesCount: z.number(),
   level3CellTypesCount: z.number(),
@@ -17,32 +24,30 @@ export const RawDatasetSchema = z.object({
   level1CellTypesCount: z.number(),
 });
 
-/** Zod schema for raw study data from YAML */
-export const RawStudySchema = z.object({
+/** Type inferred from StudySchema */
+export type Study = z.infer<typeof StudySchema>;
+
+/** Zod schema for study data from YAML */
+export const StudySchema = z.object({
   slug: z.string(),
   organName: z.string(),
-  technology: z.string(),
+  description: z.string(),
+  thumbnail: z.string(),
   authors: z.string(),
   affiliations: z.string(),
-  consortium: z.string().optional(),
-  thumbnail: z.string().optional(),
-  cellCount: z.number().optional(),
-  description: z.string().optional(),
-  datasets: z.array(RawDatasetSchema).default([]),
-  euiUrl: z.string().optional(),
-  publication: z.array(z.string()).optional(),
-  publications: z.array(z.string()).optional(),
-  citation: z.string().optional(),
-  citations: z.array(z.string()).optional(),
+  consortium: z.string(),
+  technology: z.string(),
+  euiUrl: z.string(),
+  cellCount: z.number(),
+  citations: z.array(z.string()),
+  publications: z.array(z.string()),
+  datasets: z.array(DatasetSchema),
 });
 
-/** Type inferred from RawStudySchema */
-export type RawStudy = z.infer<typeof RawStudySchema>;
+/** Type inferred from StudiesSchema */
+export type Studies = z.infer<typeof StudiesSchema>;
 
 /** Schema for the gallery YAML structure */
-export const StudyDataSchema = z.object({
-  studies: z.array(RawStudySchema),
+export const StudiesSchema = z.object({
+  studies: z.array(StudySchema),
 });
-
-/** Type inferred from StudyDataSchema */
-export type StudyDataType = z.infer<typeof StudyDataSchema>;
