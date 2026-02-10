@@ -118,7 +118,7 @@ export class MetadataPageComponent {
                 ? `[${metadata.was_derived_from.doi}](${metadata.was_derived_from.doi})`
                 : '',
             },
-            { provenance: 'HuBMAP ID', metadata: metadata.was_derived_from.hubmapId ?? '' },
+            { provenance: 'Data ID', metadata: metadata.was_derived_from.hubmapId ?? '' },
             { provenance: 'Date published', metadata: metadata.was_derived_from.creation_date ?? '' },
             { provenance: 'Date last processed', metadata: metadata.creation_date ?? '' },
           ].filter((item) => item.metadata !== ''),
@@ -201,9 +201,6 @@ export class MetadataPageComponent {
   private createMarkdownList(items?: PersonInfo[]): string {
     if (!items) {
       return '';
-    }
-    if (items.length === 1) {
-      return this.createMarkdownLink(items[0].label, items[0].id);
     }
     return items.map((item) => `\n* ${this.createMarkdownLink(item.label, item.id)}`).join(' ');
   }
