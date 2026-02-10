@@ -36,7 +36,6 @@ export const BaseStudySchema = z
     slug: z.string(),
     organName: z.string(),
     description: z.string(),
-    thumbnail: z.string(),
     authors: z.string(),
     affiliations: z.string(),
     consortium: z.string(),
@@ -56,7 +55,8 @@ export type Study = z.infer<typeof StudySchema>;
 export const StudySchema = BaseStudySchema.transform((study) => ({
   ...study,
   tagline: `${study.organName}, ${study.technology}`,
-  thumbnail: `assets/data/gallery/${study.thumbnail}`,
+  thumbnail: `assets/data/gallery/thumbnails/${study.slug}.png`,
+  image: `assets/data/gallery/images/${study.slug}.png`,
   chips: getChips(study),
   tags: getTags(study),
   publicationItems: zipCitationsAndPublications(study),
