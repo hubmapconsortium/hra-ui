@@ -59,6 +59,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/LandingPageComponent.html" data-type="entity-link" >LandingPageComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/SourceDataMenuComponent.html" data-type="entity-link" >SourceDataMenuComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/StudiesGridComponent.html" data-type="entity-link" >StudiesGridComponent</a>
                             </li>
                             <li class="link">
@@ -120,9 +123,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/DatasetRow.html" data-type="entity-link" >DatasetRow</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/FileParseError.html" data-type="entity-link" >FileParseError</a>
                             </li>
                             <li class="link">
@@ -135,16 +135,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/MissingKeyError.html" data-type="entity-link" >MissingKeyError</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/PublicationLink.html" data-type="entity-link" >PublicationLink</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/PublicationLink-1.html" data-type="entity-link" >PublicationLink</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/StudyCard.html" data-type="entity-link" >StudyCard</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/StudyData.html" data-type="entity-link" >StudyData</a>
+                                <a href="interfaces/PublicationItem.html" data-type="entity-link" >PublicationItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/VisualCard.html" data-type="entity-link" >VisualCard</a>

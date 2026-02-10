@@ -1,6 +1,7 @@
 import { ContentTemplateDef } from '@hra-ui/cdk/content-template';
 import * as node_modules__angular_material_paginator_d from 'node_modules/@angular/material/paginator.d';
 import * as _angular_core from '@angular/core';
+import { TemplateRef } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
@@ -63,16 +64,16 @@ declare const MenuButtonColumnTypeSchema: z.ZodObject<{
     options: z.ZodString;
     tooltip: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
-/** Type for ButtonIcon Column */
-type ButtonIconColumnType = z.infer<typeof ButtonIconColumnTypeSchema>;
-/** Schema for ButtonIcon Column */
-declare const ButtonIconColumnTypeSchema: z.ZodObject<{
-    type: z.ZodLiteral<"buttonIcon">;
-    buttonLabel: z.ZodOptional<z.ZodString>;
-    previewIcon: z.ZodOptional<z.ZodString>;
-    imageUrlColumn: z.ZodOptional<z.ZodString>;
-    imageAltColumn: z.ZodOptional<z.ZodString>;
+/** Type for DataExploration Column */
+type DataExplorationColumnType = z.infer<typeof DataExplorationColumnTypeSchema>;
+/** Schema for DataExploration Column */
+declare const DataExplorationColumnTypeSchema: z.ZodObject<{
+    type: z.ZodLiteral<"dataExploration">;
+    label: z.ZodOptional<z.ZodString>;
+    icon: z.ZodOptional<z.ZodString>;
+    external: z.ZodOptional<z.ZodBoolean>;
     titleColumn: z.ZodOptional<z.ZodString>;
+    imageUrlColumn: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 /** Type for MenuOptions Column */
 type MenuOptionsType = z.infer<typeof MenuOptionsTypeSchema>;
@@ -85,7 +86,7 @@ declare const MenuOptionsTypeSchema: z.ZodObject<{
     url: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 /** Union of Schema Types for Simple Columns */
-declare const SimpleTableColumnTypeSchema: z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"buttonIcon">]>;
+declare const SimpleTableColumnTypeSchema: z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"dataExploration">]>;
 /** Inferred types for Table Columns */
 type TableColumnType = z.infer<typeof TableColumnTypeSchema>;
 /** Union of Schema Types for Table Columns */
@@ -110,12 +111,12 @@ declare const TableColumnTypeSchema: z.ZodUnion<readonly [z.ZodObject<{
     options: z.ZodString;
     tooltip: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>, z.ZodObject<{
-    type: z.ZodLiteral<"buttonIcon">;
-    buttonLabel: z.ZodOptional<z.ZodString>;
-    previewIcon: z.ZodOptional<z.ZodString>;
-    imageUrlColumn: z.ZodOptional<z.ZodString>;
-    imageAltColumn: z.ZodOptional<z.ZodString>;
+    type: z.ZodLiteral<"dataExploration">;
+    label: z.ZodOptional<z.ZodString>;
+    icon: z.ZodOptional<z.ZodString>;
+    external: z.ZodOptional<z.ZodBoolean>;
     titleColumn: z.ZodOptional<z.ZodString>;
+    imageUrlColumn: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>]>;
 /** Type for table columns */
 type TableColumn = z.infer<typeof TableColumnSchema>;
@@ -127,7 +128,7 @@ type TableColumnWithType<C extends TableColumnType> = Omit<TableColumn, 'type'> 
 declare const TableColumnSchema: z.ZodObject<{
     column: z.ZodString;
     label: z.ZodString;
-    type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"buttonIcon">]>, z.ZodUnion<readonly [z.ZodObject<{
+    type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"dataExploration">]>, z.ZodUnion<readonly [z.ZodObject<{
         type: z.ZodLiteral<"text">;
     }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"numeric">;
@@ -148,12 +149,12 @@ declare const TableColumnSchema: z.ZodObject<{
         options: z.ZodString;
         tooltip: z.ZodOptional<z.ZodString>;
     }, z.core.$strip>, z.ZodObject<{
-        type: z.ZodLiteral<"buttonIcon">;
-        buttonLabel: z.ZodOptional<z.ZodString>;
-        previewIcon: z.ZodOptional<z.ZodString>;
-        imageUrlColumn: z.ZodOptional<z.ZodString>;
-        imageAltColumn: z.ZodOptional<z.ZodString>;
+        type: z.ZodLiteral<"dataExploration">;
+        label: z.ZodOptional<z.ZodString>;
+        icon: z.ZodOptional<z.ZodString>;
+        external: z.ZodOptional<z.ZodBoolean>;
         titleColumn: z.ZodOptional<z.ZodString>;
+        imageUrlColumn: z.ZodOptional<z.ZodString>;
     }, z.core.$strip>]>]>>;
 }, z.core.$strip>;
 /** Page table component data */
@@ -170,7 +171,7 @@ declare const PageTableSchema: z.ZodObject<{
     columns: z.ZodOptional<z.ZodArray<z.ZodObject<{
         column: z.ZodString;
         label: z.ZodString;
-        type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"buttonIcon">]>, z.ZodUnion<readonly [z.ZodObject<{
+        type: z.ZodDefault<z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodLiteral<"text">, z.ZodLiteral<"numeric">, z.ZodLiteral<"markdown">, z.ZodLiteral<"icon">, z.ZodLiteral<"menu">, z.ZodLiteral<"dataExploration">]>, z.ZodUnion<readonly [z.ZodObject<{
             type: z.ZodLiteral<"text">;
         }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"numeric">;
@@ -191,12 +192,12 @@ declare const PageTableSchema: z.ZodObject<{
             options: z.ZodString;
             tooltip: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>, z.ZodObject<{
-            type: z.ZodLiteral<"buttonIcon">;
-            buttonLabel: z.ZodOptional<z.ZodString>;
-            previewIcon: z.ZodOptional<z.ZodString>;
-            imageUrlColumn: z.ZodOptional<z.ZodString>;
-            imageAltColumn: z.ZodOptional<z.ZodString>;
+            type: z.ZodLiteral<"dataExploration">;
+            label: z.ZodOptional<z.ZodString>;
+            icon: z.ZodOptional<z.ZodString>;
+            external: z.ZodOptional<z.ZodBoolean>;
             titleColumn: z.ZodOptional<z.ZodString>;
+            imageUrlColumn: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>]>]>>;
     }, z.core.$strip>>>;
     rows: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodBoolean, z.ZodArray<z.ZodAny>]>>>>;
@@ -210,6 +211,15 @@ declare const PageTableSchema: z.ZodObject<{
     enableSelection: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 
+/** Type for the data exploration preview template context */
+interface DataExplorationPreviewContext {
+    /** Title of the data exploration preview */
+    title: string;
+    /** URL of the data exploration preview's image */
+    url: string;
+    /** Close callback */
+    close: () => void;
+}
 /**
  * Angular Material Table with Sort Feature
  */
@@ -240,13 +250,13 @@ declare class TableComponent<T = TableRow> {
             icon: string;
             options: string;
             tooltip?: string | undefined;
-        } | "buttonIcon" | {
-            type: "buttonIcon";
-            buttonLabel?: string | undefined;
-            previewIcon?: string | undefined;
-            imageUrlColumn?: string | undefined;
-            imageAltColumn?: string | undefined;
+        } | "dataExploration" | {
+            type: "dataExploration";
+            label?: string | undefined;
+            icon?: string | undefined;
+            external?: boolean | undefined;
             titleColumn?: string | undefined;
+            imageUrlColumn?: string | undefined;
         };
     }[] | undefined>;
     /** Unsorted data */
@@ -267,28 +277,18 @@ declare class TableComponent<T = TableRow> {
     readonly routeClicked: _angular_core.OutputEmitterRef<string>;
     /** Emits download object id on download button hover */
     readonly downloadHovered: _angular_core.OutputEmitterRef<string>;
-    /** Modal state for image preview */
-    readonly showImageModal: _angular_core.WritableSignal<boolean>;
-    /** Image modal data */
-    readonly modalImageUrl: _angular_core.WritableSignal<string>;
-    /** Image modal title */
-    readonly modalImageTitle: _angular_core.WritableSignal<string>;
-    /** Image modal alt text */
-    readonly modalImageAlt: _angular_core.WritableSignal<string>;
     /** Scrollbar ref */
-    readonly scrollbar: _angular_core.Signal<NgScrollbar>;
+    protected readonly scrollbar: _angular_core.Signal<NgScrollbar>;
     /** Mat sort element */
     private readonly sort;
-    /** Selection model for checkbox functionality */
-    readonly selection: SelectionModel<Record<string, string | number | boolean | any[]>>;
+    /** Snackbar service for download notification */
+    protected readonly snackbar: SnackbarService;
     /** Error handler provider for logging errors */
     private readonly errorHandler;
-    /** Document reference for managing body overflow */
-    private readonly document;
+    /** Material dialog service */
+    private readonly dialog;
     /** Resolver for asset urls */
     private readonly resolveAssetUrl;
-    /** Snackbar service for download notification */
-    readonly snackbar: SnackbarService;
     /** CSV resource from remote URL */
     private readonly csv;
     /** Table data rows */
@@ -317,13 +317,13 @@ declare class TableComponent<T = TableRow> {
             icon: string;
             options: string;
             tooltip?: string | undefined;
-        } | "buttonIcon" | {
-            type: "buttonIcon";
-            buttonLabel?: string | undefined;
-            previewIcon?: string | undefined;
-            imageUrlColumn?: string | undefined;
-            imageAltColumn?: string | undefined;
+        } | "dataExploration" | {
+            type: "dataExploration";
+            label?: string | undefined;
+            icon?: string | undefined;
+            external?: boolean | undefined;
             titleColumn?: string | undefined;
+            imageUrlColumn?: string | undefined;
         };
     }[]>;
     /** Table data column IDs */
@@ -352,17 +352,19 @@ declare class TableComponent<T = TableRow> {
             icon: string;
             options: string;
             tooltip?: string | undefined;
-        } | "buttonIcon" | {
-            type: "buttonIcon";
-            buttonLabel?: string | undefined;
-            previewIcon?: string | undefined;
-            imageUrlColumn?: string | undefined;
-            imageAltColumn?: string | undefined;
+        } | "dataExploration" | {
+            type: "dataExploration";
+            label?: string | undefined;
+            icon?: string | undefined;
+            external?: boolean | undefined;
             titleColumn?: string | undefined;
+            imageUrlColumn?: string | undefined;
         };
     }, number>>;
     /** Table data source */
     protected readonly dataSource: MatTableDataSource<T, node_modules__angular_material_paginator_d.MatPaginator>;
+    /** Selection model for checkbox functionality */
+    readonly selection: SelectionModel<Record<string, string | number | boolean | any[]>>;
     /** Sort data on load and set columns */
     constructor();
     /**
@@ -407,16 +409,13 @@ declare class TableComponent<T = TableRow> {
     /** Scrolls to top of the table */
     scrollToTop(): void;
     /**
-     * Opens the image preview modal
-     * @param imageUrl URL of the image to preview
-     * @param title Title for the modal
-     * @param alt Alt text for the image
+     * Opens a dialog with a data exploration preview
+     *
+     * @param template Exploration preview template reference
+     * @param title Title of the exploration preview
+     * @param url Url of the exploration preview image
      */
-    openImageModal(imageUrl: string, title?: string, alt?: string): void;
-    /**
-     * Closes the image preview modal
-     */
-    closeImageModal(): void;
+    openDataExplorationPreview(template: TemplateRef<DataExplorationPreviewContext>, title: string, url: string): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<TableComponent<any>, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<TableComponent<any>, "hra-table", never, { "csvUrl": { "alias": "csvUrl"; "required": false; "isSignal": true; }; "columns": { "alias": "columns"; "required": false; "isSignal": true; }; "rows": { "alias": "rows"; "required": false; "isSignal": true; }; "variant": { "alias": "variant"; "required": false; "isSignal": true; }; "enableSort": { "alias": "enableSort"; "required": false; "isSignal": true; }; "verticalDividers": { "alias": "verticalDividers"; "required": false; "isSignal": true; }; "enableRowSelection": { "alias": "enableRowSelection"; "required": false; "isSignal": true; }; "hideHeaders": { "alias": "hideHeaders"; "required": false; "isSignal": true; }; }, { "selectionChange": "selectionChange"; "routeClicked": "routeClicked"; "downloadHovered": "downloadHovered"; }, never, ["*"], true, never>;
 }
@@ -424,5 +423,5 @@ declare class TableComponent<T = TableRow> {
 /** Content template definition for TableComponent */
 declare const PageTableDef: ContentTemplateDef<TableComponent>;
 
-export { ButtonIconColumnTypeSchema, IconColumnTypeSchema, LinkColumnTypeSchema, MarkdownColumnTypeSchema, MenuButtonColumnTypeSchema, MenuOptionsTypeSchema, NumericColumnTypeSchema, PageTableDef, PageTableSchema, SimpleTableColumnTypeSchema, TableColumnSchema, TableColumnTypeSchema, TableComponent, TableRowSchema, TableVariantSchema, TextColumnTypeSchema };
-export type { ButtonIconColumnType, IconColumnType, LinkColumnType, MarkdownColumnType, MenuButtonColumnType, MenuOptionsType, NumericColumnType, PageTable, TableColumn, TableColumnType, TableColumnWithType, TableRow, TableVariant, TextColumnType };
+export { DataExplorationColumnTypeSchema, IconColumnTypeSchema, LinkColumnTypeSchema, MarkdownColumnTypeSchema, MenuButtonColumnTypeSchema, MenuOptionsTypeSchema, NumericColumnTypeSchema, PageTableDef, PageTableSchema, SimpleTableColumnTypeSchema, TableColumnSchema, TableColumnTypeSchema, TableComponent, TableRowSchema, TableVariantSchema, TextColumnTypeSchema };
+export type { DataExplorationColumnType, IconColumnType, LinkColumnType, MarkdownColumnType, MenuButtonColumnType, MenuOptionsType, NumericColumnType, PageTable, TableColumn, TableColumnType, TableColumnWithType, TableRow, TableVariant, TextColumnType };

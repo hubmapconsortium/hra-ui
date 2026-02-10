@@ -139,7 +139,13 @@
                             <a href="#createStudyDatasetVisualizationResolver" title="src/app/shared/resolvers/study.resolver.ts" ><b>createStudyDatasetVisualizationResolver</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
                         </li>
                         <li>
+                            <a href="#createStudyResolver" title="src/app/shared/resolvers/study.resolver.ts" ><b>createStudyResolver</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
+                        </li>
+                        <li>
                             <a href="#dedupByLabel" title="src/app/shared/resolvers/organs.resolver.ts" ><b>dedupByLabel</b>&nbsp;&nbsp;&nbsp;(src/.../organs.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getChips" title="src/app/schemas/studies/utils.ts" ><b>getChips</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
                             <a href="#getExampleCrumbs" title="src/app/shared/resolvers/example.resolver.ts" ><b>getExampleCrumbs</b>&nbsp;&nbsp;&nbsp;(src/.../example.resolver.ts)</a>
@@ -160,13 +166,13 @@
                             <a href="#getRouteProperty" title="src/app/shared/utils/route-properties.ts" ><b>getRouteProperty</b>&nbsp;&nbsp;&nbsp;(src/.../route-properties.ts)</a>
                         </li>
                         <li>
-                            <a href="#getStudy" title="src/app/shared/resolvers/study.resolver.ts" ><b>getStudy</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
-                        </li>
-                        <li>
                             <a href="#getStudyCrumbs" title="src/app/shared/resolvers/study.resolver.ts" ><b>getStudyCrumbs</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
                         </li>
                         <li>
                             <a href="#getStudyDatasetCrumbs" title="src/app/shared/resolvers/study.resolver.ts" ><b>getStudyDatasetCrumbs</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getTags" title="src/app/schemas/studies/utils.ts" ><b>getTags</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
                             <a href="#getUrlSource" title="src/app/shared/resolvers/json-file/json-file.resolver.ts" ><b>getUrlSource</b>&nbsp;&nbsp;&nbsp;(src/.../json-file.resolver.ts)</a>
@@ -196,6 +202,9 @@
                             <a href="#selectRedirectPath" title="src/app/shared/utils/navigation-error-handler.ts" ><b>selectRedirectPath</b>&nbsp;&nbsp;&nbsp;(src/.../navigation-error-handler.ts)</a>
                         </li>
                         <li>
+                            <a href="#simplePluralizeWord" title="src/app/schemas/studies/utils.ts" ><b>simplePluralizeWord</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#validateInteger" title="src/app/shared/form-validators/is-integer.ts" ><b>validateInteger</b>&nbsp;&nbsp;&nbsp;(src/.../is-integer.ts)</a>
                         </li>
                         <li>
@@ -203,6 +212,9 @@
                         </li>
                         <li>
                             <a href="#visualizationDataResolver" title="src/app/services/visualization-data-service/visualization-data.service.ts" ><b>visualizationDataResolver</b>&nbsp;&nbsp;&nbsp;(src/.../visualization-data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#zipCitationsAndPublications" title="src/app/schemas/studies/utils.ts" ><b>zipCitationsAndPublications</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -701,16 +713,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getStudy"></a>
+                    <a name="createStudyResolver"></a>
                     <span class="name">
-                        <span ><b>getStudy</b></span>
-                        <a href="#getStudy"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createStudyResolver</b></span>
+                        <a href="#createStudyResolver"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getStudy(route: ActivatedRouteSnapshot)</code>
+<code>createStudyResolver()</code>
                 </td>
             </tr>
 
@@ -719,47 +731,15 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Gets the study data from the route</p>
+                        <div class="io-description"><p>Creates a resolver for study data based on the route parameters and data</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>route</td>
-                                            <td>
-                                                        <code>ActivatedRouteSnapshot</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Activated route snapshot</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#Study" target="_self" >ResolveFn&lt;Study&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>Study data</p>
+                                <p>Resolver function for study data</p>
 
                             </div>
                 </td>
@@ -1027,6 +1007,300 @@
                         </div>
                             <div class="io-description">
                                 
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/schemas/studies/utils.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getChips"></a>
+                    <span class="name">
+                        <span ><b>getChips</b></span>
+                        <a href="#getChips"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getChips(study: <a href="../undefineds/BaseStudy.html" target="_self">BaseStudy</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Computes the chips to be displayed for a study based on its datasets and cell count</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>study</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#BaseStudy" target="_self" >BaseStudy</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The study for which to compute the chips</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Chips array</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTags"></a>
+                    <span class="name">
+                        <span ><b>getTags</b></span>
+                        <a href="#getTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTags(study: <a href="../undefineds/BaseStudy.html" target="_self">BaseStudy</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Computes the tags to be displayed for a study based on its consortium and HRA registration status</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>study</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#BaseStudy" target="_self" >BaseStudy</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The study for which to compute the tags</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Tag[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Tags array</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="simplePluralizeWord"></a>
+                    <span class="name">
+                        <span ><b>simplePluralizeWord</b></span>
+                        <a href="#simplePluralizeWord"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>simplePluralizeWord(count: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, word: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Simple helper function to pluralize a word based on the count</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>count</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Number of items</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>word</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Word to be pluralized</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Pluralized word if count is not 1, otherwise the original word</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zipCitationsAndPublications"></a>
+                    <span class="name">
+                        <span ><b>zipCitationsAndPublications</b></span>
+                        <a href="#zipCitationsAndPublications"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>zipCitationsAndPublications(study: <a href="../undefineds/BaseStudy.html" target="_self">BaseStudy</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Zips the citations and publications of a study into PublicationItems</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>study</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#BaseStudy" target="_self" >BaseStudy</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The study for which to zip citations and publications</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/PublicationItem.html" target="_self" >PublicationItem[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>PublicationItems</p>
+
                             </div>
                 </td>
             </tr>

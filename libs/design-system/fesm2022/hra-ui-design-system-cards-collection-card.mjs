@@ -49,6 +49,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
             args: [{ selector: 'hra-collection-card', imports: [AssetUrlPipe, HraCommonModule, IconsModule, MatChipsModule], changeDetection: ChangeDetectionStrategy.OnPush, template: "<div class=\"tagline\">\n  @for (icon of icons(); track icon) {\n    <hra-icon class=\"icon\" [icon]=\"icon\" />\n  }\n  <div class=\"container\">\n    <span class=\"title\">{{ tagline() }}</span>\n    <mat-chip-set>\n      @for (taglineChip of taglineChips(); track taglineChip) {\n        <mat-chip hraChipSize=\"small\">{{ taglineChip }}</mat-chip>\n      }\n    </mat-chip-set>\n  </div>\n</div>\n\n@if (image(); as src) {\n  <img class=\"image\" alt=\"\" [attr.src]=\"src | assetUrl\" />\n}\n\n<div class=\"description\">\n  <div class=\"label\">{{ label() }}</div>\n  <div class=\"supporting-text\">{{ supportingText() }}</div>\n  <mat-chip-set>\n    @for (tag of tags(); track tag) {\n      <mat-chip hraChipSize=\"small\">\n        <mat-icon>{{ tag['icon'] }} </mat-icon>\n        {{ tag['text'] }}\n      </mat-chip>\n    }\n  </mat-chip-set>\n</div>\n\n<div class=\"actions\">\n  <ng-content select=\"hra-collection-card-action:not([alignment='right'])\" />\n  <div class=\"spacer\"></div>\n  <ng-content select=\"hra-collection-card-action[alignment='right']\" />\n</div>\n", styles: [":host{display:flex;flex-direction:column;overflow:hidden;flex-grow:1;width:100%;min-width:16.5rem;border:.0625rem solid var(--mat-sys-outline);border-radius:.75rem;background-color:var(--mat-sys-on-primary)}:host mat-chip{margin-top:0rem;margin-bottom:0rem}:host .header,:host .image{width:100%;aspect-ratio:16/9;border-block:.0625rem solid var(--mat-sys-outline)}:host .tagline{display:flex;align-items:center;gap:.75rem;width:calc(100% + 2px);padding:1rem;font:var(--mat-sys-title-small);letter-spacing:var(--mat-sys-title-small-tracking)}:host .tagline .icon{flex-shrink:0;width:3rem;height:3rem}:host .tagline .container .title{display:block;color:var(--mat-sys-secondary);margin-bottom:.5rem}:host .description{flex-grow:1;padding:1rem 1rem .5rem}:host .description .label{margin-bottom:2px;color:var(--mat-sys-secondary);font:var(--mat-sys-label-large);letter-spacing:var(--mat-sys-label-large-tracking)}:host .description .supporting-text{color:var(--mat-sys-primary);margin-bottom:1rem;font:var(--mat-sys-label-medium);letter-spacing:var(--mat-sys-label-medium-tracking)}:host .description mat-chip-set{min-height:.25rem}:host .description .tag{display:inline-flex;gap:.4375rem;align-items:center}:host .actions{display:flex;align-items:center;padding:1rem;--mat-button-filled-label-text-font: var(--mat-sys-label-medium-font);--mat-button-filled-label-text-size: var(--mat-sys-label-medium-size);--mat-button-filled-label-text-tracking: var(--mat-sys-label-medium-tracking);--mat-button-filled-label-text-weight: var(--mat-sys-label-medium-weight)}:host .actions .spacer{flex-grow:1}\n"] }]
         }], propDecorators: { tagline: [{ type: i0.Input, args: [{ isSignal: true, alias: "tagline", required: true }] }], image: [{ type: i0.Input, args: [{ isSignal: true, alias: "image", required: false }] }], icons: [{ type: i0.Input, args: [{ isSignal: true, alias: "icons", required: false }] }], taglineChips: [{ type: i0.Input, args: [{ isSignal: true, alias: "taglineChips", required: false }] }], label: [{ type: i0.Input, args: [{ isSignal: true, alias: "label", required: false }] }], supportingText: [{ type: i0.Input, args: [{ isSignal: true, alias: "supportingText", required: false }] }], tags: [{ type: i0.Input, args: [{ isSignal: true, alias: "tags", required: false }] }] } });
 
+/** Schema for a tag with icon and text */
+const TagSchema = z.object({
+    icon: z.string(),
+    text: z.string(),
+});
 /** Schema for content template collection card data */
 const CollectionCardSchema = ContentTemplateSchema.extend({
     component: z.literal('CollectionCard'),
@@ -56,7 +61,7 @@ const CollectionCardSchema = ContentTemplateSchema.extend({
     taglineChips: z.array(z.string()).optional(),
     image: z.string().optional(),
     icons: IconListSchema.optional(),
-    tags: z.array(z.record(z.string(), z.string())).optional(),
+    tags: z.array(TagSchema).optional(),
     label: z.string().optional(),
     supportingText: z.string().optional(),
     actionsInfo: z.record(z.string(), z.string()).optional(),
@@ -79,5 +84,5 @@ const CollectionCardDef = {
  * Generated bundle index. Do not edit.
  */
 
-export { CollectionCardActionComponent, CollectionCardComponent, CollectionCardDef, CollectionCardSchema };
+export { CollectionCardActionComponent, CollectionCardComponent, CollectionCardDef, CollectionCardSchema, TagSchema };
 //# sourceMappingURL=hra-ui-design-system-cards-collection-card.mjs.map
