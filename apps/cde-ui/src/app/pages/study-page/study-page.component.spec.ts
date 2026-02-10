@@ -1,132 +1,301 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Router } from '@angular/router';
-import { provideAssetHref } from '@hra-ui/common/url';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen } from '@testing-library/angular';
-import userEvent from '@testing-library/user-event';
-import saveAs from 'file-saver';
+import { userEvent } from '@testing-library/user-event';
 import { provideMarkdown } from 'ngx-markdown';
-
-import { RawStudy } from '../../schemas/study.schema';
+import { Study } from '../../schemas/studies/studies.schema';
 import { StudyPageComponent } from './study-page.component';
-import { provideDesignSystem } from '@hra-ui/design-system';
 
-jest.mock('file-saver', () => ({ __esModule: true, default: jest.fn() }));
-
-const mockStudy = {
-  slug: 'test-study',
-  organName: 'Organ',
-  technology: 'Tech',
-  thumbnail: 'thumb.png',
-  authors: 'Author',
-  affiliations: 'Affiliation',
-  consortium: 'Consortium',
-  euiUrl: 'https://eui.example',
-  description: 'Desc',
-  publication: ['https://pub.example'],
-  citations: ['Citation'],
-  cellCount: 100,
-  datasets: [
-    {
-      slug: 'ds-1',
-      thumbnail: 't1.png',
-      cellCount: 10,
-      originalCellTypesCount: 1,
-      level3CellTypesCount: 2,
-      level2CellTypesCount: 3,
-      level1CellTypesCount: 4,
-    },
-    {
-      slug: 'ds-2',
-      thumbnail: 't2.png',
-      cellCount: 20,
-      originalCellTypesCount: 2,
-      level3CellTypesCount: 3,
-      level2CellTypesCount: 4,
-      level1CellTypesCount: 5,
-    },
-  ],
-} as RawStudy;
-
-const galleryData = { studies: [mockStudy] };
-const providers = [
-  provideMarkdown(),
-  provideAssetHref('http://localhost/'),
-  provideDesignSystem(),
-  provideHttpClient(),
-  provideHttpClientTesting(),
-];
+// Mock file-saver to avoid actual file downloads in tests
+jest.mock('file-saver', () => ({
+  saveAs: jest.fn(),
+}));
 
 describe('StudyPageComponent', () => {
-  beforeEach(() => jest.clearAllMocks());
+  const MOCK_DATASET = {
+    slug: 'test-dataset-1',
+    thumbnail: 'thumbnail.png',
+    nodes: 'nodes.csv',
+    edges: 'edges.csv',
+    'node-target-key': 'cell_id',
+    'node-target-value': 'cell_type',
+    'node-cl-id-key': 'cl_id',
+    'max-edge-distance': 75,
+    cellCount: 1000,
+    originalCellTypesCount: 10,
+    level3CellTypesCount: 8,
+    level2CellTypesCount: 5,
+    level1CellTypesCount: 3,
+  };
 
-  it('renders study and filters datasets', async () => {
-    await render(StudyPageComponent, { providers, inputs: { data: galleryData, studyId: 'test-study' } });
+  const MOCK_STUDY: Study = {
+    slug: 'test-study',
+    organName: 'Heart',
+    description: 'This is a test study description for spatial omics data.',
+    authors: 'Test Author',
+    affiliations: 'Test University',
+    consortium: 'HuBMAP',
+    technology: 'CODEX',
+    euiUrl: 'https://example.com/eui',
+    cellCount: 1000,
+    tagline: 'Heart, CODEX',
+    thumbnail: 'assets/data/gallery/thumbnails/test-study.png',
+    image: 'assets/data/gallery/images/test-study.png',
+    chips: ['1 dataset', '1,000 cells'],
+    tags: [
+      { icon: 'diversity_3', text: 'HuBMAP' },
+      { icon: 'check_circle', text: 'HRA registered' },
+    ],
+    citations: ['Test Citation'],
+    publications: ['https://example.com/publication'],
+    publicationItems: [{ label: 'Test Citation', url: 'https://example.com/publication' }],
+    datasets: [MOCK_DATASET],
+  };
 
-    expect(screen.getByText(/Organ,\s*Tech/i)).toBeInTheDocument();
-    expect(screen.getByText('Author')).toBeInTheDocument();
-    expect(screen.getByText('ds-1')).toBeInTheDocument();
-    expect(screen.getByText('ds-2')).toBeInTheDocument();
+  const MOCK_STUDY_NO_EUI: Study = {
+    ...MOCK_STUDY,
+    euiUrl: '',
+    tags: [{ icon: 'diversity_3', text: 'HuBMAP' }],
+  };
 
-    await userEvent.type(screen.getByLabelText(/search/i), 'ds-1');
-    expect(screen.getByText('ds-1')).toBeInTheDocument();
-    expect(screen.queryByText('ds-2')).not.toBeInTheDocument();
-  });
+  const MOCK_STUDY_NO_PUBLICATIONS: Study = {
+    ...MOCK_STUDY,
+    citations: [],
+    publications: [],
+    publicationItems: [],
+  };
 
-  it('navigates and downloads CSV', async () => {
-    const navigate = jest.fn().mockResolvedValue(true);
-    const { fixture } = await render(StudyPageComponent, {
-      providers: [...providers, { provide: Router, useValue: { navigate } }],
-      inputs: { data: galleryData, studyId: 'test-study' },
+  const MOCK_STUDY_NO_DATASETS: Study = {
+    ...MOCK_STUDY,
+    datasets: [],
+  };
+
+  const MOCK_STUDY_MULTIPLE_DATASETS: Study = {
+    ...MOCK_STUDY,
+    chips: ['3 datasets', '3,000 cells'],
+    datasets: [
+      MOCK_DATASET,
+      { ...MOCK_DATASET, slug: 'test-dataset-2', cellCount: 2000 },
+      { ...MOCK_DATASET, slug: 'another-dataset', cellCount: 3000 },
+    ],
+  };
+
+  async function setup(study: Study = MOCK_STUDY) {
+    const renderResult = await render(StudyPageComponent, {
+      providers: [provideHttpClient(), provideHttpClientTesting(), provideIcons(), provideMarkdown()],
+      inputs: { study },
     });
 
-    fixture.componentInstance.onExploreDataset('ds-1');
-    expect(navigate).toHaveBeenCalledWith(['/gallery', 'test-study', 'ds-1']);
+    return {
+      ...renderResult,
+      user: userEvent.setup(),
+    };
+  }
 
-    await userEvent.click(screen.getByText('download'));
-    expect(saveAs).toHaveBeenCalledWith(expect.any(Blob), 'test-study.csv');
-  });
-
-  it('shows fallback for missing study', async () => {
-    await render(StudyPageComponent, { providers, inputs: { data: galleryData, studyId: 'missing' } });
-    expect(screen.getByText(/No datasets available/i)).toBeInTheDocument();
-  });
-
-  it('handles empty dataset navigation gracefully', async () => {
-    const navigate = jest.fn();
-    const { fixture } = await render(StudyPageComponent, {
-      providers: [...providers, { provide: Router, useValue: { navigate } }],
-      inputs: { data: galleryData, studyId: 'test-study' },
+  describe('Study Header', () => {
+    it('should render the study tagline', async () => {
+      await setup();
+      expect(screen.getByText('Heart, CODEX')).toBeInTheDocument();
     });
 
-    fixture.componentInstance.onExploreDataset('');
-    expect(navigate).not.toHaveBeenCalled();
-  });
+    it('should render authors and affiliations as chips', async () => {
+      await setup();
 
-  it('handles study without optional fields', async () => {
-    const minimalStudy = {
-      slug: 'minimal',
-      organName: 'Organ',
-      technology: 'Tech',
-      authors: 'A',
-      affiliations: 'B',
-      datasets: [{ slug: 'd1' }],
-    } as RawStudy;
-    await render(StudyPageComponent, {
-      providers,
-      inputs: { data: { studies: [minimalStudy] }, studyId: 'minimal' },
+      expect(screen.getByText('Test Author')).toBeInTheDocument();
+      expect(screen.getByText('Test University')).toBeInTheDocument();
     });
 
-    expect(screen.getByText(/Organ,\s*Tech/i)).toBeInTheDocument();
-    expect(screen.getByText('1 dataset')).toBeInTheDocument();
+    it('should render study chips', async () => {
+      await setup();
+
+      expect(screen.getByText('1 dataset')).toBeInTheDocument();
+      expect(screen.getByText('1,000 cells')).toBeInTheDocument();
+    });
+
+    it('should render study tags with icons', async () => {
+      const { container } = await setup();
+
+      // Find chips specifically (not footer links)
+      const chips = container.querySelectorAll('mat-chip');
+      const chipTexts = Array.from(chips).map((chip) => chip.textContent?.trim());
+
+      expect(chipTexts).toContainEqual(expect.stringContaining('HuBMAP'));
+      expect(chipTexts).toContainEqual(expect.stringContaining('HRA registered'));
+    });
+
+    it('should render the study banner image', async () => {
+      await setup();
+
+      const banner = screen.getByAltText('Study Banner');
+      expect(banner).toBeInTheDocument();
+    });
   });
 
-  it('skips CSV download when no datasets', async () => {
-    const { fixture } = await render(StudyPageComponent, {
-      providers,
-      inputs: { data: galleryData, studyId: 'missing' },
+  describe('Overview Section', () => {
+    it('should render the overview section', async () => {
+      await setup();
+
+      const overviews = screen.getAllByText('Overview');
+      expect(overviews.length).toBeGreaterThan(0);
     });
-    fixture.componentInstance.onDownloadCSVButtonClicked();
-    expect(saveAs).not.toHaveBeenCalled();
+
+    it('should render the study description', async () => {
+      await setup();
+      expect(screen.getByText('This is a test study description for spatial omics data.')).toBeInTheDocument();
+    });
+  });
+
+  describe('Publications Section', () => {
+    it('should render the publications section', async () => {
+      await setup();
+
+      const publications = screen.getAllByText('Publications');
+      expect(publications.length).toBeGreaterThan(0);
+    });
+
+    it('should render publication items when available', async () => {
+      await setup();
+      expect(screen.getByText('Test Citation')).toBeInTheDocument();
+    });
+
+    it('should show message when no publications are available', async () => {
+      await setup(MOCK_STUDY_NO_PUBLICATIONS);
+      expect(screen.getByText('No source data available')).toBeInTheDocument();
+    });
+  });
+
+  describe('Datasets Section', () => {
+    it('should render the datasets section', async () => {
+      await setup();
+
+      const datasetsHeadings = screen.getAllByText('Datasets');
+      expect(datasetsHeadings.length).toBeGreaterThan(0);
+    });
+
+    it('should render the search filter', async () => {
+      await setup();
+
+      const searchInput = screen.getByLabelText('Search');
+      expect(searchInput).toBeInTheDocument();
+    });
+
+    it('should render the download icon', async () => {
+      await setup();
+
+      const downloadIcon = screen.getByText('download');
+      expect(downloadIcon).toBeInTheDocument();
+    });
+
+    it('should render the datasets table with data', async () => {
+      await setup();
+
+      expect(screen.getByText('test-dataset-1')).toBeInTheDocument();
+      expect(screen.getByText('1,000')).toBeInTheDocument();
+    });
+
+    it('should show message when no datasets are available', async () => {
+      await setup(MOCK_STUDY_NO_DATASETS);
+      expect(screen.getByText('No datasets available')).toBeInTheDocument();
+    });
+
+    it('should display correct counts in search filter', async () => {
+      const { container } = await setup(MOCK_STUDY_MULTIPLE_DATASETS);
+      const searchFilter = container.querySelector('hra-search-filter');
+      expect(searchFilter).toBeInTheDocument();
+      expect(searchFilter?.textContent).toContain('3');
+    });
+  });
+
+  describe('Search Filtering', () => {
+    it('should filter datasets based on search query', async () => {
+      const { user } = await setup(MOCK_STUDY_MULTIPLE_DATASETS);
+      const searchInput = screen.getByLabelText('Search');
+      await user.type(searchInput, 'another');
+
+      expect(screen.getByText('another-dataset')).toBeInTheDocument();
+      expect(screen.queryByText('test-dataset-1')).not.toBeInTheDocument();
+    });
+
+    it('should update viewing count when filtering', async () => {
+      const { user } = await setup(MOCK_STUDY_MULTIPLE_DATASETS);
+      const searchInput = screen.getByLabelText('Search');
+      await user.type(searchInput, 'another');
+
+      expect(screen.getByText(/1.*of.*3/)).toBeInTheDocument();
+    });
+
+    it('should be case insensitive', async () => {
+      const { user } = await setup(MOCK_STUDY_MULTIPLE_DATASETS);
+      const searchInput = screen.getByLabelText('Search');
+      await user.type(searchInput, 'ANOTHER');
+
+      expect(screen.getByText('another-dataset')).toBeInTheDocument();
+    });
+
+    it('should handle empty search results', async () => {
+      const { user } = await setup(MOCK_STUDY_MULTIPLE_DATASETS);
+      const searchInput = screen.getByLabelText('Search');
+      await user.type(searchInput, 'nonexistent');
+
+      expect(screen.getByText(/0.*of.*3/)).toBeInTheDocument();
+      expect(screen.queryByText('test-dataset-1')).not.toBeInTheDocument();
+    });
+
+    it('should clear filter and show all datasets when search is cleared', async () => {
+      const { user } = await setup(MOCK_STUDY_MULTIPLE_DATASETS);
+      const searchInput = screen.getByLabelText('Search');
+      await user.type(searchInput, 'another');
+
+      expect(screen.getByText(/1.*of.*3/)).toBeInTheDocument();
+      await user.clear(searchInput);
+      expect(screen.getByText(/3.*of.*3/)).toBeInTheDocument();
+    });
+  });
+
+  describe('Download CSV', () => {
+    it('should download datasets as CSV when download icon is clicked', async () => {
+      const { saveAs } = await import('file-saver');
+      const { user } = await setup();
+      const downloadIcon = screen.getByText('download');
+      await user.click(downloadIcon);
+
+      expect(saveAs).toHaveBeenCalled();
+    });
+
+    it('should include correct filename in CSV download', async () => {
+      const { saveAs } = await import('file-saver');
+      const { user } = await setup();
+      const downloadIcon = screen.getByText('download');
+      await user.click(downloadIcon);
+
+      const calls = (saveAs as unknown as jest.Mock).mock.calls;
+      const filename = calls[calls.length - 1][1];
+      expect(filename).toBe('test-study-datasets.csv');
+    });
+  });
+
+  describe('EUI Section', () => {
+    it('should render EUI section when euiUrl is provided', async () => {
+      await setup();
+
+      const euiTexts = screen.getAllByText('View in the Exploration User Interface');
+      expect(euiTexts.length).toBeGreaterThan(0);
+      expect(
+        screen.getByText('This data has been registered spatially into the Human Reference Atlas.'),
+      ).toBeInTheDocument();
+    });
+
+    it('should render EUI link with correct URL', async () => {
+      await setup();
+
+      const euiLink = screen.getByText('Use app');
+      expect(euiLink).toBeInTheDocument();
+    });
+
+    it('should not render EUI section when euiUrl is not provided', async () => {
+      await setup(MOCK_STUDY_NO_EUI);
+      expect(screen.queryByText('View in the Exploration User Interface')).not.toBeInTheDocument();
+    });
   });
 });

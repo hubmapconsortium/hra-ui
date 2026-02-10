@@ -1,5 +1,4 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { DOCUMENT } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import {
   Component,
@@ -10,14 +9,16 @@ import {
   inject,
   input,
   output,
-  signal,
+  TemplateRef,
   viewChild,
 } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { injectAssetUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
@@ -31,7 +32,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
 import {
-  ButtonIconColumnType,
+  DataExplorationColumnType,
   IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
@@ -52,6 +53,16 @@ type RowElementContext<T, CT extends TableColumnType> = {
   element: TableRow;
   column: TableColumnWithType<CT>;
 };
+
+/** Type for the data exploration preview template context */
+interface DataExplorationPreviewContext {
+  /** Title of the data exploration preview */
+  title: string;
+  /** URL of the data exploration preview's image */
+  url: string;
+  /** Close callback */
+  close: () => void;
+}
 
 /** Directive for typing the context of Text Row Element */
 @Directive({
@@ -133,18 +144,18 @@ export class MenuButtonRowElementDirective {
   }
 }
 
-/** Directive for typing the context of ButtonIcon Row Element */
+/** Directive for typing the context of DataExploration Row Element */
 @Directive({
-  selector: 'ng-template[hraButtonIconRowElement]',
+  selector: 'ng-template[hraDataExplorationRowElement]',
 })
-export class ButtonIconRowElementDirective {
+export class DataExplorationRowElementDirective {
   /* istanbul ignore next */
 
-  /** Guard for the context of ButtonIcon Row Element */
+  /** Guard for the context of DataExploration Row Element */
   static ngTemplateContextGuard(
-    _dir: ButtonIconRowElementDirective,
+    _dir: DataExplorationRowElementDirective,
     _ctx: unknown,
-  ): _ctx is RowElementContext<string, ButtonIconColumnType> {
+  ): _ctx is RowElementContext<string, DataExplorationColumnType> {
     return true;
   }
 }
@@ -172,7 +183,6 @@ export class NumericRowElementDirective {
   selector: 'hra-table',
   imports: [
     HraCommonModule,
-    ImageModalComponent,
     MarkdownModule,
     MatMenuModule,
     MatSortModule,
@@ -184,11 +194,13 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     MenuButtonRowElementDirective,
-    ButtonIconRowElementDirective,
+    DataExplorationRowElementDirective,
     NumericRowElementDirective,
     PlainTooltipDirective,
     IconsModule,
     ButtonsModule,
+    LinkDirective,
+    ImageModalComponent,
   ],
   templateUrl: 'table.component.html',
   styleUrl: 'table.component.scss',
@@ -232,38 +244,23 @@ export class TableComponent<T = TableRow> {
   /** Emits download object id on download button hover */
   readonly downloadHovered = output<string>();
 
-  /** Modal state for image preview */
-  readonly showImageModal = signal<boolean>(false);
-
-  /** Image modal data */
-  readonly modalImageUrl = signal<string>('');
-
-  /** Image modal title */
-  readonly modalImageTitle = signal<string>('');
-
-  /** Image modal alt text */
-  readonly modalImageAlt = signal<string>('');
-
   /** Scrollbar ref */
-  readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
+  protected readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
 
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
 
-  /** Selection model for checkbox functionality */
-  readonly selection = new SelectionModel<TableRow>(true, []);
+  /** Snackbar service for download notification */
+  protected readonly snackbar = inject(SnackbarService);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
 
-  /** Document reference for managing body overflow */
-  private readonly document = inject(DOCUMENT);
+  /** Material dialog service */
+  private readonly dialog = inject(MatDialog);
 
   /** Resolver for asset urls */
   private readonly resolveAssetUrl = injectAssetUrlResolver();
-
-  /** Snackbar service for download notification */
-  readonly snackbar = inject(SnackbarService);
 
   /** CSV resource from remote URL */
   private readonly csv = httpResource.text<T[]>(
@@ -313,6 +310,9 @@ export class TableComponent<T = TableRow> {
 
   /** Table data source */
   protected readonly dataSource = new MatTableDataSource<T>([]);
+
+  /** Selection model for checkbox functionality */
+  readonly selection = new SelectionModel<TableRow>(true, []);
 
   /** Sort data on load and set columns */
   constructor() {
@@ -379,7 +379,7 @@ export class TableComponent<T = TableRow> {
    * Toggle row selection
    */
   toggleRow(row: TableRow): void {
-    this.selection.toggle(row as TableRow);
+    this.selection.toggle(row);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
 
@@ -416,27 +416,22 @@ export class TableComponent<T = TableRow> {
   }
 
   /**
-   * Opens the image preview modal
-   * @param imageUrl URL of the image to preview
-   * @param title Title for the modal
-   * @param alt Alt text for the image
+   * Opens a dialog with a data exploration preview
+   *
+   * @param template Exploration preview template reference
+   * @param title Title of the exploration preview
+   * @param url Url of the exploration preview image
    */
-  openImageModal(imageUrl: string, title = '', alt = ''): void {
-    this.modalImageUrl.set(imageUrl);
-    this.modalImageTitle.set(title);
-    this.modalImageAlt.set(alt);
-    this.showImageModal.set(true);
-    this.document.body.style.overflow = 'hidden';
-  }
-
-  /**
-   * Closes the image preview modal
-   */
-  closeImageModal(): void {
-    this.showImageModal.set(false);
-    this.modalImageUrl.set('');
-    this.modalImageTitle.set('');
-    this.modalImageAlt.set('');
-    this.document.body.style.overflow = '';
+  openDataExplorationPreview(template: TemplateRef<DataExplorationPreviewContext>, title: string, url: string): void {
+    const ref = this.dialog.open(template, {
+      data: {
+        title,
+        url,
+        close: () => ref.close(),
+      },
+      closeOnNavigation: true,
+      hasBackdrop: true,
+      minWidth: 'calc(100vw - 32px)',
+    });
   }
 }
