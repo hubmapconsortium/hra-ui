@@ -14,6 +14,7 @@ import { saveAs } from 'file-saver';
 import { unparse } from 'papaparse';
 import { Study } from '../../schemas/studies/studies.schema';
 
+/** Columns for the datasets table */
 const TABLE_COLUMNS: TableColumn[] = [
   {
     column: 'route',
@@ -32,7 +33,9 @@ const TABLE_COLUMNS: TableColumn[] = [
   { column: 'level1CellTypesCount', label: '#Level 1 cell types', type: 'numeric' },
 ];
 
+/** CSV headers for dataset download */
 const CSV_HEADERS = TABLE_COLUMNS.slice(1).map((col) => col.label);
+/** Data columns for dataset download */
 const CSV_COLUMNS = TABLE_COLUMNS.slice(1).map((col) => col.column);
 
 /** Component for displaying a study page in the Cell Distance Explorer */
@@ -56,13 +59,16 @@ const CSV_COLUMNS = TABLE_COLUMNS.slice(1).map((col) => col.column);
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudyPageComponent {
+  /** Study data input */
   readonly study = input.required<Study>();
 
   /** Search query for filtering datasets */
   readonly searchQuery = signal('');
 
+  /** Columns for the datasets table */
   protected readonly tableColumns = TABLE_COLUMNS;
 
+  /** Datasets with routes for navigation */
   protected readonly datasetsWithRoutes = computed(() => {
     const datasets = this.study().datasets;
     return datasets.map((dataset) => ({
@@ -71,6 +77,7 @@ export class StudyPageComponent {
     }));
   });
 
+  /** Filtered datasets based on the search query */
   protected readonly filteredDatasets = computed(() => {
     const query = this.searchQuery().toLowerCase().trim();
     const datasets = this.datasetsWithRoutes();
@@ -81,6 +88,10 @@ export class StudyPageComponent {
     return datasets.filter((dataset) => dataset.slug.toLowerCase().includes(query));
   });
 
+  /**
+   * Downloads the datasets of the study as a CSV file.
+   * The CSV includes the dataset ID, cell count, and cell type counts.
+   */
   downloadDatasetsAsCsv(): void {
     const datasets = this.study().datasets;
     const header = unparse([CSV_HEADERS], { header: false });

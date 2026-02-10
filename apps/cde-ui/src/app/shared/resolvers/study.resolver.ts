@@ -46,6 +46,10 @@ export function getStudyDatasetCrumbs(route: ActivatedRouteSnapshot): Breadcrumb
   ];
 }
 
+/**
+ * Creates a resolver for study data based on the route parameters and data
+ * @returns Resolver function for study data
+ */
 export function createStudyResolver(): ResolveFn<Study> {
   return (route) => {
     const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);

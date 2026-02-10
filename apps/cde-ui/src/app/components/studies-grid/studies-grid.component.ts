@@ -32,13 +32,16 @@ import { SourceDataMenuComponent } from './source-data-menu/source-data-menu.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudiesGridComponent {
+  /** Key in the route data containing the studies data */
   readonly dataName = input(STUDIES_DATA_KEY);
 
+  /** Studies data from the route */
   readonly studies = computed(() => {
     const data = this.routeData();
     const key = this.dataName();
-    return (data?.[key] as Studies).studies ?? [];
+    return (data?.[key] as Studies | undefined)?.studies ?? [];
   });
 
+  /** Route data */
   private readonly routeData = injectRouteData.global<Record<string, Studies>>();
 }
