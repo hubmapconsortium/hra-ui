@@ -501,8 +501,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="216"
-                                    class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:216</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">src/app/pages/metadata-page/metadata-page.component.ts:213</a></div>
                         </td>
                     </tr>
 
@@ -1050,7 +1050,7 @@ export class MetadataPageComponent {
                 ? &#x60;[${metadata.was_derived_from.doi}](${metadata.was_derived_from.doi})&#x60;
                 : &#x27;&#x27;,
             },
-            { provenance: &#x27;HuBMAP ID&#x27;, metadata: metadata.was_derived_from.hubmapId ?? &#x27;&#x27; },
+            { provenance: &#x27;Data ID&#x27;, metadata: metadata.was_derived_from.hubmapId ?? &#x27;&#x27; },
             { provenance: &#x27;Date published&#x27;, metadata: metadata.was_derived_from.creation_date ?? &#x27;&#x27; },
             { provenance: &#x27;Date last processed&#x27;, metadata: metadata.creation_date ?? &#x27;&#x27; },
           ].filter((item) &#x3D;&gt; item.metadata !&#x3D;&#x3D; &#x27;&#x27;),
@@ -1133,9 +1133,6 @@ export class MetadataPageComponent {
   private createMarkdownList(items?: PersonInfo[]): string {
     if (!items) {
       return &#x27;&#x27;;
-    }
-    if (items.length &#x3D;&#x3D;&#x3D; 1) {
-      return this.createMarkdownLink(items[0].label, items[0].id);
     }
     return items.map((item) &#x3D;&gt; &#x60;\n* ${this.createMarkdownLink(item.label, item.id)}&#x60;).join(&#x27; &#x27;);
   }
