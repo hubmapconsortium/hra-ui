@@ -245,7 +245,7 @@ export class TableComponent<T = TableRow> {
   readonly downloadHovered = output<string>();
 
   /** Scrollbar ref */
-  readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
+  protected readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
 
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
@@ -312,7 +312,7 @@ export class TableComponent<T = TableRow> {
   protected readonly dataSource = new MatTableDataSource<T>([]);
 
   /** Selection model for checkbox functionality */
-  protected readonly selection = new SelectionModel<TableRow>(true, []);
+  readonly selection = new SelectionModel<TableRow>(true, []);
 
   /** Sort data on load and set columns */
   constructor() {
@@ -379,7 +379,7 @@ export class TableComponent<T = TableRow> {
    * Toggle row selection
    */
   toggleRow(row: TableRow): void {
-    this.selection.toggle(row as TableRow);
+    this.selection.toggle(row);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
 
