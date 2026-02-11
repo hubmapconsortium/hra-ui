@@ -6567,8 +6567,18 @@ studies:
     euiUrl: >-
       https://hubmapconsortium.github.io/hra-registrations/hubmap-pancreas-campbell-2024/
     publications:
-      - >-
-        https://figshare.com/projects/HuBMAP_TMC_-_Pacific_Northwest_National_Laboratory_GeoMX_DSP_Images/256367
+      - https://doi.org/10.6084/m9.figshare.29661272.v4
+      - https://doi.org/10.6084/m9.figshare.29669540.v4
+      - https://doi.org/10.6084/m9.figshare.29669573.v2
+      - https://doi.org/10.6084/m9.figshare.29669618.v1
+      - https://doi.org/10.6084/m9.figshare.29669648.v1
+      - https://doi.org/10.6084/m9.figshare.29669675.v1
+      - https://doi.org/10.6084/m9.figshare.29669726.v1
+      - https://doi.org/10.6084/m9.figshare.29669789.v3
+      - https://doi.org/10.6084/m9.figshare.29669831.v1
+      - https://doi.org/10.6084/m9.figshare.29669861.v1
+      - https://doi.org/10.6084/m9.figshare.29669882.v2
+      - https://doi.org/10.6084/m9.figshare.29661308.v2
       - https://doi.org/10.1101/2025.09.23.678129
     cellCount: 14891875
     datasets:
