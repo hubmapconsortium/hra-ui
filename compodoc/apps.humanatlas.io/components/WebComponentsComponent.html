@@ -230,6 +230,11 @@
                             <li>
                                     <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
+                                <a href="#activeComponents" >activeComponents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#activeOrgan" >activeOrgan</a>
                             </li>
                             <li>
@@ -302,7 +307,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/pages/us6/web-components.component.ts:141</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/pages/us6/web-components.component.ts:151</a></div>
                             </td>
                         </tr>
 
@@ -345,8 +350,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="212"
-                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:212</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:222</a></div>
                         </td>
                     </tr>
 
@@ -384,8 +389,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="170"
-                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:170</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:180</a></div>
                         </td>
                     </tr>
 
@@ -465,8 +470,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="206"
-                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:206</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:216</a></div>
                         </td>
                     </tr>
 
@@ -546,8 +551,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="198"
-                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:198</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="208"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:208</a></div>
                         </td>
                     </tr>
 
@@ -627,8 +632,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/app/pages/us6/web-components.component.ts:197</a></div>
                         </td>
                     </tr>
 
@@ -706,6 +711,52 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeComponents"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>activeComponents</b></span>
+                        <a href="#activeComponents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const organ &#x3D; this.activeOrgan();
+    if (!organ) {
+      return [];
+    }
+
+    return this.components.filter((def) &#x3D;&gt; organ.appData[def.id]);
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/pages/us6/web-components.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Active components based on the selected organ</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1008,6 +1059,16 @@ export class WebComponentsComponent {
   /** Data to be displayed in the AppIframe */
   protected readonly appIframeData &#x3D; signal&lt;AppIframeData | undefined&gt;(undefined);
 
+  /** Active components based on the selected organ */
+  protected readonly activeComponents &#x3D; computed(() &#x3D;&gt; {
+    const organ &#x3D; this.activeOrgan();
+    if (!organ) {
+      return [];
+    }
+
+    return this.components.filter((def) &#x3D;&gt; organ.appData[def.id]);
+  });
+
   /** Window object */
   private readonly window &#x3D; inject(WINDOW);
   /** Sanitizer for bypassing HTML */
@@ -1170,7 +1231,7 @@ export class WebComponentsComponent {
     @if (activeOrgan(); as organ) {
       &lt;div class&#x3D;&quot;card-collection&quot;&gt;
         &lt;div class&#x3D;&quot;cards&quot; [hraFeature]&#x3D;&quot;organ.label&quot;&gt;
-          @for (component of components; track component.id) {
+          @for (component of activeComponents(); track component.id) {
             &lt;hra-action-card
               class&#x3D;&quot;component-card&quot;
               variant&#x3D;&quot;elevated&quot;
@@ -1265,7 +1326,7 @@ export class WebComponentsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="web-components">  <div class="content-container">    <div class="heading-container">      <div class="title-logo-div">        <hra-app-label logo="product:web-components" tagline="Web Components" />      </div>      <p class="description">        Explore, use, and share web components to improve Human Reference Atlas data access and analysis.      </p>    </div>    <div class="card-container">      <p>Select organ:</p>      <mat-form-field hraFeature="organ" appearance="fill" class="organ-select">        <mat-label>Organ</mat-label>        <mat-select [hraModelChangeEvent]="[\'id\']" [(ngModel)]="activeOrgan">          @for (organ of organs; track organ.id) {            <mat-option [value]="organ">{{ organ.label }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    @if (activeOrgan(); as organ) {      <div class="card-collection">        <div class="cards" [hraFeature]="organ.label">          @for (component of components; track component.id) {            <hra-action-card              class="component-card"              variant="elevated"              [hraFeature]="component.productTitle | slugify"              [tagline]="component.webComponentName || component.productTitle"              [subtagline]="component.webComponentName && component.productTitle"              [image]="component.previewImage"            >              {{ component.description }}              <hra-action-card-action>                <button                  hraClickEvent                  hraFeature="use-app"                  mat-button                  hraPrimaryButton                  hraButtonSize="medium"                  (click)="onUseApp(organ, component)"                >                  Use app                </button>              </hra-action-card-action>              @if (component.embedAs !== \'external\') {                <hra-action-card-action alignment="right">                  <button                    hraClickEvent                    hraFeature="embed"                    mat-flat-button                    hraPrimaryButton                    hraButtonSize="medium"                    (click)="openSidenav(organ, component, 0)"                  >                    Embed                  </button>                </hra-action-card-action>              }            </hra-action-card>          }        </div>      </div>    }  </div>  <ng-template #sidenavTemplate>    @if (sidenavData(); as data) {      <hra-embed-sidenav-content        data-testid="sidenav-overlay"        [tagline]="data.tagline"        [code]="data.code"        [showApp]="data.showApp"        [tabIndex]="data.tabIndex"        [documentLink]="data.docLink"        (closeSidenav)="sidenavData.set(undefined)"      />    }  </ng-template>  <ng-template #appIframeTemplate>    @if (appIframeData(); as data) {      <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)" />      <iframe title="appIframe" class="app-iframe" data-testid="iframe-overlay" [srcdoc]="data.code"></iframe>    }  </ng-template></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="web-components">  <div class="content-container">    <div class="heading-container">      <div class="title-logo-div">        <hra-app-label logo="product:web-components" tagline="Web Components" />      </div>      <p class="description">        Explore, use, and share web components to improve Human Reference Atlas data access and analysis.      </p>    </div>    <div class="card-container">      <p>Select organ:</p>      <mat-form-field hraFeature="organ" appearance="fill" class="organ-select">        <mat-label>Organ</mat-label>        <mat-select [hraModelChangeEvent]="[\'id\']" [(ngModel)]="activeOrgan">          @for (organ of organs; track organ.id) {            <mat-option [value]="organ">{{ organ.label }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    @if (activeOrgan(); as organ) {      <div class="card-collection">        <div class="cards" [hraFeature]="organ.label">          @for (component of activeComponents(); track component.id) {            <hra-action-card              class="component-card"              variant="elevated"              [hraFeature]="component.productTitle | slugify"              [tagline]="component.webComponentName || component.productTitle"              [subtagline]="component.webComponentName && component.productTitle"              [image]="component.previewImage"            >              {{ component.description }}              <hra-action-card-action>                <button                  hraClickEvent                  hraFeature="use-app"                  mat-button                  hraPrimaryButton                  hraButtonSize="medium"                  (click)="onUseApp(organ, component)"                >                  Use app                </button>              </hra-action-card-action>              @if (component.embedAs !== \'external\') {                <hra-action-card-action alignment="right">                  <button                    hraClickEvent                    hraFeature="embed"                    mat-flat-button                    hraPrimaryButton                    hraButtonSize="medium"                    (click)="openSidenav(organ, component, 0)"                  >                    Embed                  </button>                </hra-action-card-action>              }            </hra-action-card>          }        </div>      </div>    }  </div>  <ng-template #sidenavTemplate>    @if (sidenavData(); as data) {      <hra-embed-sidenav-content        data-testid="sidenav-overlay"        [tagline]="data.tagline"        [code]="data.code"        [showApp]="data.showApp"        [tabIndex]="data.tabIndex"        [documentLink]="data.docLink"        (closeSidenav)="sidenavData.set(undefined)"      />    }  </ng-template>  <ng-template #appIframeTemplate>    @if (appIframeData(); as data) {      <hra-back-button-bar class="back-bar" (backClick)="appIframeData.set(undefined)" />      <iframe title="appIframe" class="app-iframe" data-testid="iframe-overlay" [srcdoc]="data.code"></iframe>    }  </ng-template></ng-container></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'WebComponentsComponent'};
