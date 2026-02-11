@@ -1,12 +1,25 @@
 @use 'vars';
 @use 'utils';
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 :host {
   background-color: vars.$secondary-container;
   display: block;
 
   section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 6rem 2.5rem;
+    min-height: calc(100vh - 113px);
   }
 
   .visualize {
@@ -18,14 +31,15 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(387px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(17.75rem, 1fr));
       gap: 1.5rem;
       justify-items: center;
       max-width: 107.5rem;
       width: 100%;
 
       hra-collection-card {
-        max-width: 24.1875rem;
+        animation: fadeIn 0.8s ease-in-out;
+        opacity: 1;
 
         .label {
           @include utils.use-font(label, large);
@@ -46,16 +60,18 @@
 
     .title {
       @include utils.use-font(display, large);
+      color: vars.$secondary;
       margin-bottom: 3.5rem;
       text-align: center;
     }
   }
 
   .cite {
-    background-image: url(/assets/backgrounds/cde-lung-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
     .content-container {
-      margin: 0 auto;
       max-width: 90rem;
     }
 

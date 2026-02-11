@@ -1,10 +1,10 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
@@ -15,6 +15,7 @@ import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'title',
+  'sourceFileName',
   'colorMapFileName',
   'organ',
   'technology',
@@ -22,6 +23,7 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'age',
   'thickness',
   'pixelSize',
+  'creationTimestamp',
 ];
 
 /** Defines a pipe that provides a default value if the input is undefined or empty */
@@ -116,6 +118,10 @@ export class MetadataComponent {
 
   /** Formats the creation timestamp using a given formatter */
   formatCreationTimestamp(format: Intl.DateTimeFormat): string | undefined {
+    if (this.metadata().creationTimestamp === undefined) {
+      return undefined;
+    }
+
     return format.format(this.metadata().creationTimestamp);
   }
 }

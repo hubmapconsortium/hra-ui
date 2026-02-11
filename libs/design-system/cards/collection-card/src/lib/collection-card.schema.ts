@@ -2,6 +2,15 @@ import { ContentTemplateSchema, ProjectedContentTemplateSchema } from '@hra-ui/c
 import { IconListSchema } from '@hra-ui/design-system/icons';
 import * as z from 'zod';
 
+/** Tag type inferred from TagSchema */
+export type Tag = z.infer<typeof TagSchema>;
+
+/** Schema for a tag with icon and text */
+export const TagSchema = z.object({
+  icon: z.string(),
+  text: z.string(),
+});
+
 /** Content template collection card data */
 export type CollectionCard = z.infer<typeof CollectionCardSchema>;
 
@@ -12,7 +21,7 @@ export const CollectionCardSchema = ContentTemplateSchema.extend({
   taglineChips: z.array(z.string()).optional(),
   image: z.string().optional(),
   icons: IconListSchema.optional(),
-  tags: z.array(z.record(z.string(), z.string())).optional(),
+  tags: z.array(TagSchema).optional(),
   label: z.string().optional(),
   supportingText: z.string().optional(),
   actionsInfo: z.record(z.string(), z.string()).optional(),

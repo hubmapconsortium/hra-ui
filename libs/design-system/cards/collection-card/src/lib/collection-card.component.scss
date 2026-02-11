@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
@@ -7,11 +8,15 @@
   overflow: hidden;
   flex-grow: 1;
   width: 100%;
-  min-width: 17rem;
-  max-width: 25.5rem;
+  min-width: 16.5rem;
   border: 0.0625rem solid vars.$outline;
   border-radius: 0.75rem;
   background-color: vars.$on-primary;
+
+  mat-chip {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
 
   .header,
   .image {
@@ -24,6 +29,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    width: calc(100% + 2px);
     padding: 1rem;
     @include utils.use-font(title, small);
 
@@ -31,6 +37,14 @@
       flex-shrink: 0;
       width: 3rem;
       height: 3rem;
+    }
+
+    .container {
+      .title {
+        display: block;
+        color: vars.$secondary;
+        margin-bottom: 0.5rem;
+      }
     }
   }
 
@@ -40,13 +54,19 @@
     padding-bottom: 0.5rem;
 
     .label {
+      margin-bottom: 2px;
+      color: vars.$secondary;
       @include utils.use-font(label, large);
     }
 
     .supporting-text {
-      @include utils.use-font(body, medium);
-      color: vars.$on-surface-variant;
+      color: vars.$primary;
       margin-bottom: 1rem;
+      @include utils.use-font(label, medium);
+    }
+
+    mat-chip-set {
+      min-height: 0.25rem;
     }
 
     .tag {
@@ -60,7 +80,15 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    @include utils.use-font(label, large);
+
+    @include mat.button-overrides(
+      (
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-tracking: vars.$label-medium-tracking,
+        filled-label-text-weight: vars.$label-medium-weight,
+      )
+    );
 
     .spacer {
       flex-grow: 1;

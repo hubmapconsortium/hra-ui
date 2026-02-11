@@ -99,6 +99,16 @@ export class WebComponentsComponent {
   /** Data to be displayed in the AppIframe */
   protected readonly appIframeData = signal<AppIframeData | undefined>(undefined);
 
+  /** Active components based on the selected organ */
+  protected readonly activeComponents = computed(() => {
+    const organ = this.activeOrgan();
+    if (!organ) {
+      return [];
+    }
+
+    return this.components.filter((def) => organ.appData[def.id]);
+  });
+
   /** Window object */
   private readonly window = inject(WINDOW);
   /** Sanitizer for bypassing HTML */

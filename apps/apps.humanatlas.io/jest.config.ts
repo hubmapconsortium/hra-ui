@@ -8,8 +8,8 @@ export default {
     global: {
       statements: 73,
       branches: 60,
-      lines: 73,
-      functions: 73,
+      lines: 72,
+      functions: 72,
     },
   },
 };

@@ -29,7 +29,6 @@ content:
           from 14 studies comprising 12 tissue types with a total of 47,349,496 cells.
 
       - component: StudiesGrid
-        yamlUrl: assets/data/gallery/data.yaml
 
   - component: PageSection
     tagline: View collection in the Exploration User Interface
