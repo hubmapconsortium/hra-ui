@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { StudyDataType } from '../../schemas/study.schema';
+import { Studies, Study } from '../../schemas/studies/studies.schema';
 import { NotFoundError } from '../utils/not-found-error';
 import { getRequiredRouteData, getRequiredRouteParam } from '../utils/route-properties';
 
@@ -9,6 +9,10 @@ import { getRequiredRouteData, getRequiredRouteParam } from '../utils/route-prop
 export const STUDY_ID_PARAM = 'studyId';
 /** Dataset ID route parameter */
 export const DATASET_ID_PARAM = 'datasetId';
+/** Route data key for studies data */
+export const STUDIES_DATA_KEY = 'studies';
+/** Route data key for study data */
+export const STUDY_DATA_KEY = 'study';
 
 /**
  * Gets the study breadcrumbs from the route
@@ -16,13 +20,11 @@ export const DATASET_ID_PARAM = 'datasetId';
  * @returns Breadcrumb items for the study
  */
 export function getStudyCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
-  const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
-  const study = getStudy(route);
-
+  const study = getRequiredRouteData<Study>(route, STUDY_DATA_KEY, true);
   return [
     {
       name: `${study.organName}, ${study.technology}`,
-      route: `/gallery/${studyId}`,
+      route: `/gallery/${study.slug}`,
     },
   ];
 }
@@ -33,15 +35,32 @@ export function getStudyCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] 
  * @returns Breadcrumb items for the study dataset
  */
 export function getStudyDatasetCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
-  const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
   const datasetId = getRequiredRouteParam(route, DATASET_ID_PARAM);
+  const [studyCrumb] = getStudyCrumbs(route);
   return [
-    ...getStudyCrumbs(route),
+    studyCrumb,
     {
       name: datasetId,
-      route: `/gallery/${studyId}/${datasetId}`,
+      route: `${studyCrumb.route}/${datasetId}`,
     },
   ];
+}
+
+/**
+ * Creates a resolver for study data based on the route parameters and data
+ * @returns Resolver function for study data
+ */
+export function createStudyResolver(): ResolveFn<Study> {
+  return (route) => {
+    const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
+    const data = getRequiredRouteData<Studies>(route, STUDIES_DATA_KEY, true);
+    const study = data.studies.find((s) => s.slug === studyId);
+    if (!study) {
+      throw new NotFoundError(`Study not found: ${studyId}`);
+    }
+
+    return study;
+  };
 }
 
 /**
@@ -49,12 +68,12 @@ export function getStudyDatasetCrumbs(route: ActivatedRouteSnapshot): Breadcrumb
  * @returns Resolver function for study dataset visualization data
  */
 export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<CdeVisualizationElementProps>> {
-  return (route: ActivatedRouteSnapshot) => {
-    const study = getStudy(route);
+  return (route) => {
+    const study = getRequiredRouteData<Study>(route, STUDY_DATA_KEY, true);
     const datasetId = getRequiredRouteParam(route, DATASET_ID_PARAM);
     const dataset = study.datasets.find((d) => d.slug === datasetId);
     if (!dataset) {
-      throw new NotFoundError(`Study dataset not found: ${datasetId}`);
+      throw new NotFoundError(`Study dataset not found: ${datasetId} in study ${study.slug}`);
     }
 
     return {
@@ -72,20 +91,4 @@ export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<Cde
       },
     };
   };
-}
-
-/**
- * Gets the study data from the route
- * @param route Activated route snapshot
- * @returns Study data
- */
-function getStudy(route: ActivatedRouteSnapshot): StudyDataType['studies'][number] {
-  const studyId = getRequiredRouteParam(route, STUDY_ID_PARAM);
-  const data = getRequiredRouteData<StudyDataType>(route, 'data', true);
-  const study = data.studies.find((s) => s.slug === studyId);
-  if (!study) {
-    throw new NotFoundError(`Study not found: ${studyId}`);
-  }
-
-  return study;
 }

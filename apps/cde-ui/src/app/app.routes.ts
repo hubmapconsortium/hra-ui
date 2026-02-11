@@ -10,7 +10,7 @@ import { CreateVisualizationPageComponent } from './pages/create-visualization-p
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { StudyPageComponent } from './pages/study-page/study-page.component';
 import { VisualizationPageComponent } from './pages/visualization/visualization.component';
-import { StudyDataSchema } from './schemas/study.schema';
+import { StudiesSchema } from './schemas/studies/studies.schema';
 import {
   visualizationDataCanActivate,
   visualizationDataResolver,
@@ -26,9 +26,12 @@ import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolve
 import { organsResolver } from './shared/resolvers/organs.resolver';
 import {
   createStudyDatasetVisualizationResolver,
+  createStudyResolver,
   DATASET_ID_PARAM,
   getStudyCrumbs,
   getStudyDatasetCrumbs,
+  STUDIES_DATA_KEY,
+  STUDY_DATA_KEY,
   STUDY_ID_PARAM,
 } from './shared/resolvers/study.resolver';
 
@@ -69,6 +72,7 @@ export const ROUTES: Routes = [
     path: 'gallery',
     resolve: {
       [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Spatial Omics Gallery', route: '/gallery' }]),
+      [STUDIES_DATA_KEY]: createYamlSpecResolver('assets/data/gallery/studies.yaml', StudiesSchema),
     },
     children: [
       {
@@ -82,7 +86,7 @@ export const ROUTES: Routes = [
       {
         path: `:${STUDY_ID_PARAM}`,
         resolve: {
-          data: createYamlSpecResolver('assets/data/gallery/data.yaml', StudyDataSchema),
+          [STUDY_DATA_KEY]: createStudyResolver(),
         },
         children: [
           {

@@ -84,20 +84,20 @@ export const MenuButtonColumnTypeSchema = z
   })
   .meta({ id: 'MenuButtonColumnType' });
 
-/** Type for ButtonIcon Column */
-export type ButtonIconColumnType = z.infer<typeof ButtonIconColumnTypeSchema>;
+/** Type for DataExploration Column */
+export type DataExplorationColumnType = z.infer<typeof DataExplorationColumnTypeSchema>;
 
-/** Schema for ButtonIcon Column */
-export const ButtonIconColumnTypeSchema = z
+/** Schema for DataExploration Column */
+export const DataExplorationColumnTypeSchema = z
   .object({
-    type: z.literal('buttonIcon'),
-    buttonLabel: z.string().optional(),
-    previewIcon: z.string().optional(),
-    imageUrlColumn: z.string().optional(),
-    imageAltColumn: z.string().optional(),
+    type: z.literal('dataExploration'),
+    label: z.string().optional(),
+    icon: z.string().optional(),
+    external: z.boolean().optional(),
     titleColumn: z.string().optional(),
+    imageUrlColumn: z.string().optional(),
   })
-  .meta({ id: 'ButtonIconColumnType' });
+  .meta({ id: 'DataExplorationColumnType' });
 
 /** Type for MenuOptions Column */
 export type MenuOptionsType = z.infer<typeof MenuOptionsTypeSchema>;
@@ -120,7 +120,7 @@ export const SimpleTableColumnTypeSchema = z.union([
   MarkdownColumnTypeSchema.shape.type,
   IconColumnTypeSchema.shape.type,
   MenuButtonColumnTypeSchema.shape.type,
-  ButtonIconColumnTypeSchema.shape.type,
+  DataExplorationColumnTypeSchema.shape.type,
 ]);
 
 /** Inferred types for Table Columns */
@@ -134,7 +134,7 @@ export const TableColumnTypeSchema = z.union([
   LinkColumnTypeSchema,
   IconColumnTypeSchema,
   MenuButtonColumnTypeSchema,
-  ButtonIconColumnTypeSchema,
+  DataExplorationColumnTypeSchema,
 ]);
 
 /** Type for table columns */

@@ -17,4 +17,12 @@
       }
     }
   }
+
+  &:has(cde-create-visualization-page) {
+    min-width: 45rem;
+
+    hra-header {
+      position: fixed;
+    }
+  }
 }

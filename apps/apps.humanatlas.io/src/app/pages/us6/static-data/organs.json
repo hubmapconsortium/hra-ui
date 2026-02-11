@@ -21,7 +21,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "kidney-renal-corpuscle"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fkidney-renal-corpuscle"
         },
         "ftu-ui-small": {
           "illustration": "kidney-renal-corpuscle"
@@ -54,7 +54,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "large-intestine-crypt-lieberkuhn"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Flarge-intestine-crypt-lieberkuhn"
         },
         "ftu-ui-small": {
           "illustration": "large-intestine-crypt-lieberkuhn"
@@ -87,7 +87,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "liver-liver-lobule"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fliver-liver-lobule"
         },
         "ftu-ui-small": {
           "illustration": "liver-liver-lobule"
@@ -120,7 +120,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "lung-bronchial-submucosal-gland"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Flung-bronchial-submucosal-gland"
         },
         "ftu-ui-small": {
           "illustration": "lung-bronchial-submucosal-gland"
@@ -153,7 +153,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "pancreas-intercalated-duct"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fpancreas-intercalated-duct"
         },
         "ftu-ui-small": {
           "illustration": "pancreas-intercalated-duct"
@@ -186,7 +186,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "prostate-prostate-glandular-acinus"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fprostate-prostate-glandular-acinus"
         },
         "ftu-ui-small": {
           "illustration": "prostate-prostate-glandular-acinus"
@@ -219,7 +219,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "skin-dermal-papilla"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fskin-dermal-papilla"
         },
         "ftu-ui-small": {
           "illustration": "skin-dermal-papilla"
@@ -252,7 +252,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "small-intestine-villus"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fsmall-intestine-villus"
         },
         "ftu-ui-small": {
           "illustration": "small-intestine-villus"
@@ -285,7 +285,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "spleen-white-pulp"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fspleen-white-pulp"
         },
         "ftu-ui-small": {
           "illustration": "spleen-white-pulp"
@@ -318,7 +318,7 @@
           "url": "https://apps.humanatlas.io/asctb-reporter/"
         },
         "ftu-ui": {
-          "illustration": "thymus-thymus-lobule"
+          "url": "https://apps.humanatlas.io/ftu-explorer/ftu?id=https:%2F%2Fpurl.humanatlas.io%2F2d-ftu%2Fthymus-thymus-lobule"
         },
         "ftu-ui-small": {
           "illustration": "thymus-thymus-lobule"
