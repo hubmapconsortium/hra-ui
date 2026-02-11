@@ -483,6 +483,7 @@ markdown ul {
 .cdk-global-scrollblock {
   position: relative !important;
   overflow-y: hidden !important;
+  top: 0 !important;
 }
 
 html {

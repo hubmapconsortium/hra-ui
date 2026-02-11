@@ -57,6 +57,13 @@ declare class CollectionCardComponent {
 /** Content template definition for collection card */
 declare const CollectionCardDef: ContentTemplateDef<CollectionCardComponent>;
 
+/** Tag type inferred from TagSchema */
+type Tag = z.infer<typeof TagSchema>;
+/** Schema for a tag with icon and text */
+declare const TagSchema: z.ZodObject<{
+    icon: z.ZodString;
+    text: z.ZodString;
+}, z.core.$strip>;
 /** Content template collection card data */
 type CollectionCard = z.infer<typeof CollectionCardSchema>;
 /** Schema for content template collection card data */
@@ -81,7 +88,10 @@ declare const CollectionCardSchema: z.ZodObject<{
         fontSet: z.ZodOptional<z.ZodString>;
         inline: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>]>>]>>;
-    tags: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodString>>>;
+    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        icon: z.ZodString;
+        text: z.ZodString;
+    }, z.core.$strip>>>;
     label: z.ZodOptional<z.ZodString>;
     supportingText: z.ZodOptional<z.ZodString>;
     actionsInfo: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
@@ -161,5 +171,5 @@ declare const CollectionCardSchema: z.ZodObject<{
     }, unknown>>>]>>;
 }, z.core.$strip>;
 
-export { CollectionCardActionComponent, CollectionCardComponent, CollectionCardDef, CollectionCardSchema };
-export type { CollectionCard };
+export { CollectionCardActionComponent, CollectionCardComponent, CollectionCardDef, CollectionCardSchema, TagSchema };
+export type { CollectionCard, Tag };

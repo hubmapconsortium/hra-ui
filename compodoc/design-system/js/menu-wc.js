@@ -1086,9 +1086,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/BaseButtonVariantDirective.html" data-type="entity-link" >BaseButtonVariantDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="directives/ButtonIconRowElementDirective.html" data-type="entity-link" >ButtonIconRowElementDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="directives/ButtonSizeDirective.html" data-type="entity-link" >ButtonSizeDirective</a>
                                 </li>
                                 <li class="link">
@@ -1105,6 +1102,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/CtaButtonDirective.html" data-type="entity-link" >CtaButtonDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/DataExplorationRowElementDirective.html" data-type="entity-link" >DataExplorationRowElementDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/DensityDirective.html" data-type="entity-link" >DensityDirective</a>
@@ -1260,6 +1260,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/CtaConfig.html" data-type="entity-link" >CtaConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DataExplorationPreviewContext.html" data-type="entity-link" >DataExplorationPreviewContext</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/DataItem.html" data-type="entity-link" >DataItem</a>

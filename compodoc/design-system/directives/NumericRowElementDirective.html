@@ -225,8 +225,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="160"
-                                    class="link-to-prism">table/src/lib/table/table.component.ts:160</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">table/src/lib/table/table.component.ts:171</a></div>
                         </td>
                     </tr>
 
@@ -294,7 +294,6 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SelectionModel } from &#x27;@angular/cdk/collections&#x27;;
-import { DOCUMENT } from &#x27;@angular/common&#x27;;
 import { httpResource } from &#x27;@angular/common/http&#x27;;
 import {
   Component,
@@ -305,14 +304,16 @@ import {
   inject,
   input,
   output,
-  signal,
+  TemplateRef,
   viewChild,
 } from &#x27;@angular/core&#x27;;
 import { MatCheckboxModule } from &#x27;@angular/material/checkbox&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
 import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { MatSort, MatSortModule } from &#x27;@angular/material/sort&#x27;;
 import { MatTableDataSource, MatTableModule } from &#x27;@angular/material/table&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { LinkDirective } from &#x27;@hra-ui/common/router-ext&#x27;;
 import { injectAssetUrlResolver } from &#x27;@hra-ui/common/url&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { TextHyperlinkDirective } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
@@ -326,7 +327,7 @@ import { MarkdownModule } from &#x27;ngx-markdown&#x27;;
 import { NgScrollbar } from &#x27;ngx-scrollbar&#x27;;
 import { parse } from &#x27;papaparse&#x27;;
 import {
-  ButtonIconColumnType,
+  DataExplorationColumnType,
   IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
@@ -347,6 +348,16 @@ type RowElementContext&lt;T, CT extends TableColumnType&gt; &#x3D; {
   element: TableRow;
   column: TableColumnWithType&lt;CT&gt;;
 };
+
+/** Type for the data exploration preview template context */
+interface DataExplorationPreviewContext {
+  /** Title of the data exploration preview */
+  title: string;
+  /** URL of the data exploration preview&#x27;s image */
+  url: string;
+  /** Close callback */
+  close: () &#x3D;&gt; void;
+}
 
 /** Directive for typing the context of Text Row Element */
 @Directive({
@@ -428,18 +439,18 @@ export class MenuButtonRowElementDirective {
   }
 }
 
-/** Directive for typing the context of ButtonIcon Row Element */
+/** Directive for typing the context of DataExploration Row Element */
 @Directive({
-  selector: &#x27;ng-template[hraButtonIconRowElement]&#x27;,
+  selector: &#x27;ng-template[hraDataExplorationRowElement]&#x27;,
 })
-export class ButtonIconRowElementDirective {
+export class DataExplorationRowElementDirective {
   /* istanbul ignore next */
 
-  /** Guard for the context of ButtonIcon Row Element */
+  /** Guard for the context of DataExploration Row Element */
   static ngTemplateContextGuard(
-    _dir: ButtonIconRowElementDirective,
+    _dir: DataExplorationRowElementDirective,
     _ctx: unknown,
-  ): _ctx is RowElementContext&lt;string, ButtonIconColumnType&gt; {
+  ): _ctx is RowElementContext&lt;string, DataExplorationColumnType&gt; {
     return true;
   }
 }
@@ -467,7 +478,6 @@ export class NumericRowElementDirective {
   selector: &#x27;hra-table&#x27;,
   imports: [
     HraCommonModule,
-    ImageModalComponent,
     MarkdownModule,
     MatMenuModule,
     MatSortModule,
@@ -479,11 +489,13 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     MenuButtonRowElementDirective,
-    ButtonIconRowElementDirective,
+    DataExplorationRowElementDirective,
     NumericRowElementDirective,
     PlainTooltipDirective,
     IconsModule,
     ButtonsModule,
+    LinkDirective,
+    ImageModalComponent,
   ],
   templateUrl: &#x27;table.component.html&#x27;,
   styleUrl: &#x27;table.component.scss&#x27;,
@@ -527,38 +539,23 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
   /** Emits download object id on download button hover */
   readonly downloadHovered &#x3D; output&lt;string&gt;();
 
-  /** Modal state for image preview */
-  readonly showImageModal &#x3D; signal&lt;boolean&gt;(false);
-
-  /** Image modal data */
-  readonly modalImageUrl &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
-
-  /** Image modal title */
-  readonly modalImageTitle &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
-
-  /** Image modal alt text */
-  readonly modalImageAlt &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
-
   /** Scrollbar ref */
-  readonly scrollbar &#x3D; viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;);
+  protected readonly scrollbar &#x3D; viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;);
 
   /** Mat sort element */
   private readonly sort &#x3D; viewChild.required(MatSort);
 
-  /** Selection model for checkbox functionality */
-  readonly selection &#x3D; new SelectionModel&lt;TableRow&gt;(true, []);
+  /** Snackbar service for download notification */
+  protected readonly snackbar &#x3D; inject(SnackbarService);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler &#x3D; inject(ErrorHandler);
 
-  /** Document reference for managing body overflow */
-  private readonly document &#x3D; inject(DOCUMENT);
+  /** Material dialog service */
+  private readonly dialog &#x3D; inject(MatDialog);
 
   /** Resolver for asset urls */
   private readonly resolveAssetUrl &#x3D; injectAssetUrlResolver();
-
-  /** Snackbar service for download notification */
-  readonly snackbar &#x3D; inject(SnackbarService);
 
   /** CSV resource from remote URL */
   private readonly csv &#x3D; httpResource.text&lt;T[]&gt;(
@@ -608,6 +605,9 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
 
   /** Table data source */
   protected readonly dataSource &#x3D; new MatTableDataSource&lt;T&gt;([]);
+
+  /** Selection model for checkbox functionality */
+  readonly selection &#x3D; new SelectionModel&lt;TableRow&gt;(true, []);
 
   /** Sort data on load and set columns */
   constructor() {
@@ -674,7 +674,7 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
    * Toggle row selection
    */
   toggleRow(row: TableRow): void {
-    this.selection.toggle(row as TableRow);
+    this.selection.toggle(row);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
 
@@ -711,28 +711,23 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
   }
 
   /**
-   * Opens the image preview modal
-   * @param imageUrl URL of the image to preview
-   * @param title Title for the modal
-   * @param alt Alt text for the image
+   * Opens a dialog with a data exploration preview
+   *
+   * @param template Exploration preview template reference
+   * @param title Title of the exploration preview
+   * @param url Url of the exploration preview image
    */
-  openImageModal(imageUrl: string, title &#x3D; &#x27;&#x27;, alt &#x3D; &#x27;&#x27;): void {
-    this.modalImageUrl.set(imageUrl);
-    this.modalImageTitle.set(title);
-    this.modalImageAlt.set(alt);
-    this.showImageModal.set(true);
-    this.document.body.style.overflow &#x3D; &#x27;hidden&#x27;;
-  }
-
-  /**
-   * Closes the image preview modal
-   */
-  closeImageModal(): void {
-    this.showImageModal.set(false);
-    this.modalImageUrl.set(&#x27;&#x27;);
-    this.modalImageTitle.set(&#x27;&#x27;);
-    this.modalImageAlt.set(&#x27;&#x27;);
-    this.document.body.style.overflow &#x3D; &#x27;&#x27;;
+  openDataExplorationPreview(template: TemplateRef&lt;DataExplorationPreviewContext&gt;, title: string, url: string): void {
+    const ref &#x3D; this.dialog.open(template, {
+      data: {
+        title,
+        url,
+        close: () &#x3D;&gt; ref.close(),
+      },
+      closeOnNavigation: true,
+      hasBackdrop: true,
+      minWidth: &#x27;calc(100vw - 32px)&#x27;,
+    });
   }
 }
 </code></pre>

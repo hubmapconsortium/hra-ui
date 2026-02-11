@@ -327,6 +327,16 @@ export class WebComponentsComponent {
   /** Data to be displayed in the AppIframe */
   protected readonly appIframeData &#x3D; signal&lt;AppIframeData | undefined&gt;(undefined);
 
+  /** Active components based on the selected organ */
+  protected readonly activeComponents &#x3D; computed(() &#x3D;&gt; {
+    const organ &#x3D; this.activeOrgan();
+    if (!organ) {
+      return [];
+    }
+
+    return this.components.filter((def) &#x3D;&gt; organ.appData[def.id]);
+  });
+
   /** Window object */
   private readonly window &#x3D; inject(WINDOW);
   /** Sanitizer for bypassing HTML */
