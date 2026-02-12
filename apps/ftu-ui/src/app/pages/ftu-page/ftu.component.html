@@ -3,27 +3,29 @@
   [fullscreen]="isFullscreen()"
   [illustrationTemplate]="illustration"
   [biomarkerTemplate]="biomarker"
-  [sourceListTemplate]="sourceListTemplate"
+  [sourceListTemplate]="sourcelist"
   [(fullscreentabIndex)]="fullscreentabIndex"
   (closeFullscreen)="closefullscreen()"
 >
   <ng-template #illustration>
-    <div class="left-side">
-      <ftu-medical-illustration-behavior
-        class="illustration"
-        [(isFullscreen)]="isFullscreen"
-        (isFullscreenChange)="fullscreentabIndex.set(0)"
-      />
-    </div>
+    <ftu-medical-illustration-behavior
+      class="illustration"
+      [(isFullscreen)]="isFullscreen"
+      (isFullscreenChange)="fullscreentabIndex.set(0)"
+    />
   </ng-template>
 
   <ng-template #biomarker>
     <div class="fullscreen-content-container">
-      <ftu-biomarker-details
-        class="illustration-details"
-        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"
-        (sourceListTemplate)="setSourceList($event)"
-      />
+      <ftu-biomarker-details class="illustration-details" (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)" />
     </div>
+  </ng-template>
+
+  <ng-template #sourcelist>
+    @if (!(sources().length > 0 && selectedSources.length > 0)) {
+      <div class="source-list">
+        <ftu-source-list class="content" [sources]="sources()" (selectionChanged)="setSelectedSources($event)" />
+      </div>
+    }
   </ng-template>
 </ftu-fullscreen-container>

@@ -1,30 +1,39 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { dispatch, injectDestroy$ } from '@hra-ui/cdk/injectors';
+import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
+import { HraCommonModule } from '@hra-ui/common';
+import { FtuFullScreenService } from '@hra-ui/ftu-ui-components';
 import {
   BiomarkerDetailsComponent,
   MedicalIllustrationBehaviorComponent,
 } from '@hra-ui/ftu-ui-components/src/lib/behavioral';
-import { FullscreenContainerComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
-import { ActiveFtuActions } from '@hra-ui/state';
+import { FullscreenContainerComponent, SourceListComponent } from '@hra-ui/ftu-ui-components/src/lib/molecules';
+import { ActiveFtuActions, SourceRefsActions, SourceRefsSelectors } from '@hra-ui/state';
 import { takeUntil } from 'rxjs';
-import { FtuFullScreenService } from '@hra-ui/ftu-ui-components';
 
 /** Main FTU page */
 @Component({
   selector: 'ftu-ftu-page',
   imports: [
-    CommonModule,
+    HraCommonModule,
     BiomarkerDetailsComponent,
     FullscreenContainerComponent,
     MedicalIllustrationBehaviorComponent,
+    SourceListComponent,
   ],
   templateUrl: './ftu.component.html',
   styleUrl: './ftu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
+  /** List of sources with titles and links displayed to the user */
+  readonly sources = selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  readonly selectedSources = selectSnapshot(SourceRefsSelectors.selectedSourceReferences);
+
+  /** Action to set selected sources */
+  readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
+
   /**
    * Fullscreen service of ftu component
    */
@@ -40,23 +49,10 @@ export class FtuComponent {
   fullscreentabIndex = this.fullscreenService.fullscreentabIndex;
 
   /**
-   * Source list template of ftu component
-   */
-  sourceListTemplate: TemplateRef<unknown> | null = null;
-
-  /**
    * Closes the fullscreen mode
    */
   closefullscreen() {
     this.fullscreenService.isFullscreen.set(false);
-  }
-
-  /**
-   * Sets the source list template
-   * @param ref Template ref to source list
-   */
-  setSourceList(ref: TemplateRef<unknown>) {
-    this.sourceListTemplate = ref;
   }
 
   /** Set the illustration from the id query parameter */

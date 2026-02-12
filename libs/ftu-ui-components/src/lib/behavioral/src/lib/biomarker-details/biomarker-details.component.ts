@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  output,
-  signal,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
@@ -41,7 +32,6 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '../../../../atoms/src';
-import { SourceListComponent, SourceListItem } from '../../../../molecules/src';
 import {
   BiomarkerTableComponent,
   DataCell,
@@ -70,7 +60,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     BiomarkerTableComponent,
     GradientLegendComponent,
     SizeLegendComponent,
-    SourceListComponent,
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
     MessageIndicatorModule,
@@ -90,7 +79,7 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0 && !isBiomarkerfullscreen()',
   },
 })
-export class BiomarkerDetailsComponent implements AfterViewInit {
+export class BiomarkerDetailsComponent {
   /** Reference to biomarker table */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
@@ -152,8 +141,7 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
-  /** List of selected sources */
-  readonly selectedSources = signal<SourceListItem[]>([]);
+  readonly selectedSources = selectSnapshot(SourceRefsSelectors.selectedSourceReferences);
 
   /** Active tab index */
   activeTabIndex = 0;
@@ -165,22 +153,6 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
    * Determines whether biomarkerfullscreen is in fullscreen mode
    */
   readonly isBiomarkerfullscreen = this.fullscreenService.isFullscreen;
-
-  /**
-   * View child of source list component
-   */
-  @ViewChild('sourceList', { static: true }) sourceListRef!: TemplateRef<unknown>;
-
-  /**
-   * Source list template of biomarker details component
-   */
-  readonly sourceListTemplate = output<TemplateRef<unknown>>();
-
-  ngAfterViewInit(): void {
-    if (this.sourceListRef) {
-      this.sourceListTemplate.emit(this.sourceListRef);
-    }
-  }
 
   /** Table tabs */
   get tab(): CellSummaryAggregate {

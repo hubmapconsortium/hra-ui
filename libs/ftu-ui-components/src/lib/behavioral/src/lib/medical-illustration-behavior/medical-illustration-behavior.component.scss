@@ -7,17 +7,12 @@
   flex-direction: column;
   overflow: hidden;
 
-  ftu-label-box {
-    height: 4.0625rem;
-    border-bottom: 0.0625rem solid vars.$outline-variant;
-  }
-
   .illustration-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid vars.$outline-variant;
+    padding-left: 1rem;
+    height: 4rem;
     background-color: vars.$surface-container-low;
 
     .content {
@@ -28,6 +23,7 @@
   ftu-interactive-svg {
     flex: 1;
     overflow: hidden;
+    border-top: 1px solid var(--mat-sys-outline-variant);
   }
 
   @media (min-height: 49.5rem) {

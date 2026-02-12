@@ -3,15 +3,12 @@
 @use '../../../../../../../design-system/styles/utils';
 
 :host {
-  border-left: 0.0625rem solid vars.$outline-variant;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 4rem auto 1fr;
+  grid-template-rows: 4rem 1fr;
   grid-template-areas:
     'headline legend-area'
-    'table table'
-    'source-list source-list';
-  gap: 0.0625rem;
+    'table table';
   background-color: vars.$outline-variant;
 
   > * {
@@ -25,7 +22,8 @@
     align-items: center;
     justify-content: space-between;
     @include utils.use-font(label, medium);
-    padding: 12px 16px;
+    padding: 0 1rem;
+    height: 4rem;
   }
 
   &.full-screen-grid {
@@ -111,18 +109,12 @@
     grid-template-areas:
       'headline headline'
       'empty empty';
-
-    .biomarker-header {
-      height: 4rem;
-    }
   }
 
   &.no-data-selected {
     grid-template-areas:
       'headline headline'
-      'select-data-message select-data-message'
-      'source-list source-list';
-
+      'select-data-message select-data-message';
     .select-data-message {
       padding: 0 1rem;
       padding-top: 4.875rem;
@@ -227,6 +219,7 @@
   ftu-biomarker-table {
     grid-area: table;
     width: 100%;
+    border-top: 1px solid vars.$outline-variant;
   }
 
   ftu-empty-biomarker {

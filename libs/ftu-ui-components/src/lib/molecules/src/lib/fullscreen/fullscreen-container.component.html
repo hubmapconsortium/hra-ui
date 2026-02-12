@@ -1,6 +1,7 @@
 @if (!fullscreen()) {
   <ng-container [ngTemplateOutlet]="illustrationTemplate()" />
   <ng-container [ngTemplateOutlet]="biomarkerTemplate()" />
+  <ng-container [ngTemplateOutlet]="sourceListTemplate()" />
 } @else {
   <div hraFeature="fullscreen-overlay" class="fullscreen-overlay">
     <mat-tab-group

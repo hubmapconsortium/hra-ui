@@ -91,7 +91,7 @@
     </div>
   }
 
-  @if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
+  <!-- @if (!(source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
     <div class="source-list" [style.display]="isBiomarkerfullscreen() ? 'none' : undefined">
       <ftu-source-list
         class="content"
@@ -99,7 +99,7 @@
         (selectionChanged)="setSelectedSources($event); selectedSources.set($event)"
       />
     </div>
-  }
+  } -->
 
   <ng-template let-tooltip #infoTooltip>
     <div class="biomarker-details info-tooltip">
@@ -107,12 +107,7 @@
     </div>
   </ng-template>
 
-  <ng-template #sourceList>
-    <ftu-source-list
-      class="content"
-      [sources]="source()"
-      [hideTitle]="true"
-      (selectionChanged)="setSelectedSources($event)"
-    />
-  </ng-template>
+  <!-- <ng-template #sourceList>
+    <ftu-source-list class="content" [hideTitle]="true" (selectionChanged)="setSelectedSources($event)" />
+  </ng-template> -->
 </ng-container>

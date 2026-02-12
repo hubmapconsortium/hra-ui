@@ -9,6 +9,11 @@
     height: 100vh;
   }
 
+  hra-header {
+    box-shadow: none;
+    border-bottom: 1px solid vars.$outline;
+  }
+
   .main {
     display: flex;
     flex: 1;
