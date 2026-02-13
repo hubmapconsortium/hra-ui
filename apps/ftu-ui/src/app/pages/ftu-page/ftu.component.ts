@@ -29,6 +29,7 @@ export class FtuComponent {
   /** List of sources with titles and links displayed to the user */
   readonly sources = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
+  /** List of selected sources */
   readonly selectedSources = selectSnapshot(SourceRefsSelectors.selectedSourceReferences);
 
   /** Action to set selected sources */
