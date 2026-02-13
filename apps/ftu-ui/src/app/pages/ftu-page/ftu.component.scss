@@ -3,7 +3,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  min-width: 63rem;
+  min-width: calc(63rem - 1px);
   height: 100%;
 
   .content-container {

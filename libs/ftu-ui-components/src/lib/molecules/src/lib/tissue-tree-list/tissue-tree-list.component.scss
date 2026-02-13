@@ -5,8 +5,7 @@
 :host {
   height: 100%;
   overflow: hidden;
-  max-width: 17rem;
-  min-width: 17rem;
+  width: 17rem;
 
   @include mat.tree-overrides(
     (
