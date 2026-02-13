@@ -10,7 +10,7 @@
 
   @include mat.tree-overrides(
     (
-      node-min-height: 1.375rem,
+      node-min-height: 1rem,
       node-text-font: vars.$label-small-font,
       node-text-size: vars.$label-small-size,
       node-text-weight: vars.$label-small-weight,
@@ -25,6 +25,7 @@
   .row {
     &.child {
       margin: 0 1rem 0 2.5rem;
+      padding: 0.125rem 0;
       border-radius: 0.25rem;
 
       &.selected {
