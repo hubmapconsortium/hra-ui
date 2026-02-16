@@ -4,13 +4,5 @@
     "emitDecoratorMetadata": true
   },
   "exclude": ["../**/*.spec.ts"],
-  "include": [
-    "../**/*.stories.ts",
-    "../**/*.stories.js",
-    "../**/*.stories.jsx",
-    "../**/*.stories.tsx",
-    "../**/*.stories.mdx",
-    "*.js",
-    "*.ts"
-  ]
+  "include": ["../**/*.stories.ts", "../**/*.stories.tsx", "../**/*.stories.mdx", "*.ts"]
 }
