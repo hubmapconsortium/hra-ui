@@ -19,9 +19,11 @@
             [hideSingleSelectionIndicator]="true"
             (selectionChange)="changeOptions('CT', 'sort', $event)"
           >
-            <mat-option *ngFor="let option of sortOptions" hraClickEvent [hraFeature]="option" [value]="option">
-              {{ option }}
-            </mat-option>
+            @for (option of sortOptions; track option) {
+              <mat-option hraClickEvent [hraFeature]="option" [value]="option">
+                {{ option }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
         <mat-form-field>
@@ -37,9 +39,11 @@
             [hideSingleSelectionIndicator]="true"
             (selectionChange)="changeOptions('CT', 'size', $event)"
           >
-            <mat-option *ngFor="let option of ctSizeOptions" hraClickEvent [hraFeature]="option" [value]="option">
-              {{ option }}
-            </mat-option>
+            @for (option of ctSizeOptions; track option) {
+              <mat-option hraClickEvent [hraFeature]="option" [value]="option">
+                {{ option }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>
@@ -62,9 +66,11 @@
             [hideSingleSelectionIndicator]="true"
             (selectionChange)="changeOptions('BM', 'sort', $event)"
           >
-            <mat-option *ngFor="let option of sortOptions" hraClickEvent [hraFeature]="option" [value]="option">
-              {{ option }}
-            </mat-option>
+            @for (option of sortOptions; track option) {
+              <mat-option hraClickEvent [hraFeature]="option" [value]="option">
+                {{ option }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
         <mat-form-field>
@@ -80,9 +86,11 @@
             [hideSingleSelectionIndicator]="true"
             (selectionChange)="changeOptions('BM', 'size', $event)"
           >
-            <mat-option *ngFor="let option of bmSizeOptions" hraClickEvent [hraFeature]="option" [value]="option">
-              {{ option }}
-            </mat-option>
+            @for (option of bmSizeOptions; track option) {
+              <mat-option hraClickEvent [hraFeature]="option" [value]="option">
+                {{ option }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>
@@ -100,9 +108,11 @@
             [hideSingleSelectionIndicator]="true"
             (selectionChange)="changeOptions('BM', 'type', $event)"
           >
-            <mat-option *ngFor="let option of bimodalBTypeOptions" hraClickEvent [hraFeature]="option" [value]="option">
-              {{ option }}
-            </mat-option>
+            @for (option of bimodalBTypeOptions; track option) {
+              <mat-option hraClickEvent [hraFeature]="option" [value]="option">
+                {{ option }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>

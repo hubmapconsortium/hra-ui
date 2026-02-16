@@ -10,7 +10,7 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { registerStyleComponents } from '@hra-ui/cdk/styling';
-import { NG_SCROLLBAR } from 'ngx-scrollbar';
+import { NgScrollbar } from 'ngx-scrollbar';
 import { SCROLL_TIMELINE, ScrollTimelineFunc } from '../scroll-timeline/scroll-timeline';
 
 /** Keyframes for the top gradient */
@@ -74,7 +74,7 @@ export class ScrollOverflowFadeDirective {
   /** Renderer instance */
   private readonly renderer = inject(Renderer2);
   /** Nearest ng-scrollbar instance */
-  private readonly scrollbar = inject(NG_SCROLLBAR);
+  private readonly scrollbar = inject(NgScrollbar);
   /** Signal providing access to ScrollTimeline though browser builtin or polyfill */
   private readonly scrollTimeline = inject(SCROLL_TIMELINE);
 
@@ -86,11 +86,11 @@ export class ScrollOverflowFadeDirective {
 
     effect((onCleanup) => {
       const scrollTimeline = this.scrollTimeline();
-      if (!this.scrollbar.viewport.initialized() || !scrollTimeline) {
+      if (!this.scrollbar.adapter.initialized() || !scrollTimeline) {
         return;
       }
 
-      const viewport = this.scrollbar.viewport.nativeElement;
+      const viewport = this.scrollbar.adapter.viewportElement;
       const cleanupFns = [
         this.attachGradient(viewport, 'top', scrollTimeline, GRADIENT_TOP_KEYFRAMES),
         this.attachGradient(viewport, 'bottom', scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),

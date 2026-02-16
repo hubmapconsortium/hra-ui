@@ -10,45 +10,45 @@
       (closedStart)="toggleSideNav()"
       #rightDrawer
     >
-      <app-report
-        *ngIf="report$ | async"
-        [compareData]="allCompareData$"
-        [inputReportData]="rd$"
-        [sheetData]="data"
-        [asFullData]="(fullAsData$ | async) ?? []"
-        [fullDataByOrgan]="(fullDataByOrgan$ | async) ?? []"
-        [currentSheet]="sheet"
-        [currentSheetConfig]="sheetConfig$"
-        [linksData$]="links$"
-        [bmType]="(bmType$ | async) ?? ''"
-        [hideReportCompareTab]="(mode$ | async) === 'playground'"
-        (deleteSheet)="deleteSheet($event)"
-        (closeReport)="rightDrawer.close()"
-        (computedReport)="updateReport($event)"
-      />
+      @if (report$ | async) {
+        <app-report
+          [compareData]="allCompareData$"
+          [inputReportData]="rd$"
+          [sheetData]="data"
+          [asFullData]="(fullAsData$ | async) ?? []"
+          [fullDataByOrgan]="(fullDataByOrgan$ | async) ?? []"
+          [currentSheet]="sheet"
+          [currentSheetConfig]="sheetConfig$"
+          [linksData$]="links$"
+          [bmType]="(bmType$ | async) ?? ''"
+          [hideReportCompareTab]="(mode$ | async) === 'playground'"
+          (deleteSheet)="deleteSheet($event)"
+          (closeReport)="rightDrawer.close()"
+          (computedReport)="updateReport($event)"
+        />
+      }
 
-      <app-indent
-        *ngIf="il$ | async"
-        [sheetData]="data"
-        [currentSheet]="sheet"
-        (closeIL)="rightDrawer.close()"
-        (openBottomSheet)="getStructureInfo($event)"
-      />
+      @if (il$ | async) {
+        <app-indent
+          [sheetData]="data"
+          [currentSheet]="sheet"
+          (closeIL)="rightDrawer.close()"
+          (openBottomSheet)="getStructureInfo($event)"
+        />
+      }
 
-      <app-debug-logs
-        *ngIf="dl$ | async"
-        [currentSheet]="sheet"
-        [logs]="(logs$ | async)!"
-        (closeDebug)="rightDrawer.close()"
-      />
+      @if (dl$ | async) {
+        <app-debug-logs [currentSheet]="sheet" [logs]="(logs$ | async)!" (closeDebug)="rightDrawer.close()" />
+      }
 
-      <app-compare
-        *ngIf="c$ | async"
-        class="compare-sidenav"
-        [compareSheets]="(compareSheets$ | async) ?? []"
-        (closeCompare)="rightDrawer.close()"
-        (compareData)="compareData($event)"
-      />
+      @if (c$ | async) {
+        <app-compare
+          class="compare-sidenav"
+          [compareSheets]="(compareSheets$ | async) ?? []"
+          (closeCompare)="rightDrawer.close()"
+          (compareData)="compareData($event)"
+        />
+      }
     </mat-drawer>
     <mat-drawer-content>
       <hra-header hraFeature="header" [breadcrumbs]="crumbs() ?? []">
@@ -203,15 +203,11 @@
       </mat-menu>
 
       <mat-menu #downloadMenu="matMenu">
-        <button
-          *ngFor="let option of imgOptions"
-          mat-menu-item
-          hraClickEvent
-          [hraFeature]="`download.${option}`"
-          (click)="exportImage(option)"
-        >
-          {{ option }}
-        </button>
+        @for (option of imgOptions; track option) {
+          <button mat-menu-item hraClickEvent [hraFeature]="`download.${option}`" (click)="exportImage(option)">
+            {{ option }}
+          </button>
+        }
       </mat-menu>
 
       <router-outlet />
