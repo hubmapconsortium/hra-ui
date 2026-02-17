@@ -21,7 +21,7 @@ export const appRoutes: Route[] = [
     data: {
       crumbs: [
         { name: 'Apps', route: 'https://apps.humanatlas.io' },
-        { name: 'ASCT+B Reporter', route: '../' },
+        { name: 'ASCT+B Reporter', route: '/' },
         { name: 'Visualization app' },
       ] satisfies BreadcrumbItem[],
       appControls: true,

@@ -36,6 +36,10 @@ export class InfoComponent implements OnInit {
   error: Error = { hasError: false };
   info!: SheetInfo;
 
+  protected get doiReferences() {
+    return this.info.references?.filter((ref) => ref.doi) ?? [];
+  }
+
   ngOnInit(): void {
     this.loading = true;
     this.data.subscribe((info: SheetInfo) => {
