@@ -97,17 +97,13 @@ export const DATA_FILE_REFERENCE = z.object({
 
 /** Zod Schema for a SOURCE_REFERENCE */
 export const SOURCE_REFERENCE = z.object({
+  id: IRI,
   title: z.string(),
-  link: IRI,
+  label: z.string(),
+  authors: z.string().array(),
   year: z.number(),
-  datasetTitle: z.string(),
-  datasetLink: IRI,
-  cellType: z.string(),
-  healthStatus: z.string(),
-  sex: z.string(),
-  age: z.string(),
-  bmi: z.string(),
-  ethnicity: z.string(),
+  doi: z.string(),
+  link: z.string().url(),
 });
 
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
