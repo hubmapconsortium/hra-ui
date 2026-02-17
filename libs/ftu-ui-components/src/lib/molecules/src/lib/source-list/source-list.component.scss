@@ -61,6 +61,7 @@
   }
 
   .table-content {
+    height: calc(100% - 4rem);
     overflow: auto;
 
     &.hidden {
@@ -68,7 +69,7 @@
     }
 
     hra-table {
-      max-height: 163px;
+      // max-height: 163px;
       border-radius: 0;
       border-left: none;
       border-right: none;
@@ -108,6 +109,73 @@
       }
     }
   }
+
+  ::ng-deep table {
+    @include mat.table-overrides(
+      (
+        background-color: vars.$on-primary,
+
+        header-container-height: 2rem,
+        header-headline-color: vars.$secondary,
+        header-headline-font: vars.$label-medium-font,
+        header-headline-line-height: vars.$label-medium-line-height,
+        header-headline-size: vars.$label-medium-size,
+        header-headline-tracking: vars.$label-medium-tracking,
+        header-headline-weight: vars.$label-medium-weight,
+
+        row-item-container-height: 2rem,
+        row-item-label-text-color: vars.$primary,
+        row-item-label-text-font: vars.$label-medium-font,
+        row-item-label-text-line-height: vars.$label-medium-line-height,
+        row-item-label-text-size: vars.$label-medium-size,
+        row-item-label-text-tracking: vars.$label-medium-tracking,
+        row-item-label-text-weight: vars.$label-medium-weight,
+        row-item-outline-width: 0px,
+      )
+    );
+
+    @include mat.checkbox-overrides(
+      (
+        state-layer-size: 2rem,
+      )
+    );
+
+    tbody tr:nth-child(even) {
+      background-color: vars.$surface-bright;
+    }
+
+    .cdk-column-dataset,
+    .cdk-column-donor,
+    .cdk-column-healthStatus,
+    .cdk-column-year {
+      border-left: 1px solid vars.$outline-variant;
+    }
+
+    ng-scrollbar {
+      --scrollbar-offset: 4;
+    }
+
+    ::ng-deep thead {
+      background-color: vars.$surface-container;
+
+      th {
+        border-bottom: 0.0625rem solid vars.$outline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    ::ng-deep tbody {
+      td {
+        max-width: 143.6704px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
   .end {
     cursor: pointer;
   }
