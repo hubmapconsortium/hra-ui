@@ -8,7 +8,7 @@
 
   .content-container {
     display: grid;
-    grid-template-columns: auto minmax(auto, min-content);
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: minmax(18.5rem, 3fr) 1fr;
     grid-template-areas:
       'illustration illustration-details'

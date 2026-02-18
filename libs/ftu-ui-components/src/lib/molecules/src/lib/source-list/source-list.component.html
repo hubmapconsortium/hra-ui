@@ -31,95 +31,104 @@
         (selectionChange)="onSelectionChange()"
         #sourceTable
       /> -->
-      <div class="mat-elevation-z8">
-        <table mat-table multiTemplateDataRows [dataSource]="datasource">
-          <ng-container hraFeature="select" matColumnDef="select">
-            <th *matHeaderCellDef mat-header-cell data-column-type="checkbox">
-              <mat-checkbox hraFeature="toggle-all" disableRipple hraPlainTooltip="Hide all" aria-label="Hide all" />
-            </th>
+      <table mat-table matSort [dataSource]="datasource">
+        <ng-container hraFeature="select" matColumnDef="select">
+          <th *matHeaderCellDef mat-header-cell data-column-type="checkbox">
+            <mat-checkbox hraFeature="toggle-all" disableRipple hraPlainTooltip="Hide all" aria-label="Hide all" />
+          </th>
+          <td *matCellDef="let element" mat-cell data-column-type="checkbox">
+            <mat-checkbox hraFeature="toggle" disableRipple hraPlainTooltip="Hide" aria-label="Hide" />
+          </td>
+        </ng-container>
 
-            <td *matCellDef="let element" mat-cell data-column-type="checkbox">
-              <mat-checkbox hraFeature="toggle" disableRipple hraPlainTooltip="Hide" aria-label="Hide" />
-            </td>
-          </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="title">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
+          <td *matCellDef="let element" mat-cell>{{ element.title }}</td>
+        </ng-container>
 
-          <!-- Position Column -->
-          <ng-container matColumnDef="title">
-            <th *matHeaderCellDef mat-header-cell>Title</th>
-            <td *matCellDef="let element" mat-cell>{{ element.title }}</td>
-          </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="link">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>DOI</th>
+          <td *matCellDef="let element" mat-cell>
+            <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.link">
+              {{ element.link }}
+            </a>
+          </td>
+        </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="link">
-            <th *matHeaderCellDef mat-header-cell>DOI</th>
-            <td *matCellDef="let element" mat-cell>{{ element.link }}</td>
-          </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="year">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header data-column-type="numeric" justify="end">Year</th>
+          <td *matCellDef="let element" mat-cell data-column-type="numeric">{{ element.year }}</td>
+        </ng-container>
 
-          <!-- Weight Column -->
-          <ng-container matColumnDef="year">
-            <th *matHeaderCellDef mat-header-cell>Year</th>
-            <td *matCellDef="let element" mat-cell>{{ element.year }}</td>
-          </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="datasetTitle">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
+          <td *matCellDef="let element" mat-cell>{{ element.datasetTitle }}</td>
+        </ng-container>
 
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="datasetTitle">
-            <th *matHeaderCellDef mat-header-cell>Dataset Title</th>
-            <td *matCellDef="let element" mat-cell>{{ element.datasetTitle }}</td>
-          </ng-container>
+        <ng-container matColumnDef="datasetLink">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>ID</th>
+          <td *matCellDef="let element" mat-cell>
+            <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.datasetLink">
+              {{ element.datasetLink }}
+            </a>
+          </td></ng-container
+        >
 
-          <ng-container matColumnDef="datasetLink">
-            <th *matHeaderCellDef mat-header-cell>Dataset Link</th>
-            <td *matCellDef="let element" mat-cell>{{ element.datasetLink }}</td>
-          </ng-container>
+        <ng-container matColumnDef="cellType">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Cell type annotation tool</th>
+          <td *matCellDef="let element" mat-cell>{{ element.cellType }}</td>
+        </ng-container>
 
-          <ng-container matColumnDef="cellType">
-            <th *matHeaderCellDef mat-header-cell>Cell Type</th>
-            <td *matCellDef="let element" mat-cell>{{ element.cellType }}</td>
-          </ng-container>
+        <ng-container matColumnDef="healthStatus">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Health Status</th>
+          <td *matCellDef="let element" mat-cell>{{ element.healthStatus }}</td>
+        </ng-container>
 
-          <ng-container matColumnDef="healthStatus">
-            <th *matHeaderCellDef mat-header-cell>Health Status</th>
-            <td *matCellDef="let element" mat-cell>{{ element.healthStatus }}</td>
-          </ng-container>
+        <ng-container matColumnDef="sex">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Sex</th>
+          <td *matCellDef="let element" mat-cell>{{ element.sex }}</td>
+        </ng-container>
 
-          <ng-container matColumnDef="sex">
-            <th *matHeaderCellDef mat-header-cell>Sex</th>
-            <td *matCellDef="let element" mat-cell>{{ element.sex }}</td>
-          </ng-container>
+        <ng-container matColumnDef="age">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header data-column-type="numeric" justify="end">Age</th>
+          <td *matCellDef="let element" mat-cell data-column-type="numeric">{{ element.age }}</td>
+        </ng-container>
 
-          <ng-container matColumnDef="age">
-            <th *matHeaderCellDef mat-header-cell>Age</th>
-            <td *matCellDef="let element" mat-cell>{{ element.age }}</td>
-          </ng-container>
+        <ng-container matColumnDef="bmi">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>BMI</th>
+          <td *matCellDef="let element" mat-cell>{{ element.bmi }}</td>
+        </ng-container>
 
-          <ng-container matColumnDef="bmi">
-            <th *matHeaderCellDef mat-header-cell>BMI</th>
-            <td *matCellDef="let element" mat-cell>{{ element.bmi }}</td>
-          </ng-container>
+        <ng-container matColumnDef="ethnicity">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Ethnicity</th>
+          <td *matCellDef="let element" mat-cell>{{ element.ethnicity }}</td>
+        </ng-container>
 
-          <ng-container matColumnDef="ethnicity">
-            <th *matHeaderCellDef mat-header-cell>Ethnicity</th>
-            <td *matCellDef="let element" mat-cell>{{ element.ethnicity }}</td>
-          </ng-container>
+        <!-- Secondary Column -->
+        <ng-container matColumnDef="publications">
+          <th *matHeaderCellDef mat-header-cell [attr.colspan]="3">Publications</th>
+        </ng-container>
 
-          <!-- Secondary Column -->
-          <ng-container matColumnDef="publications">
-            <th *matHeaderCellDef mat-header-cell [attr.colspan]="3">Publications</th>
-          </ng-container>
+        <ng-container matColumnDef="dataset">
+          <th *matHeaderCellDef mat-header-cell [attr.colspan]="4">Dataset</th>
+        </ng-container>
 
-          <ng-container matColumnDef="dataset">
-            <th *matHeaderCellDef mat-header-cell [attr.colspan]="4">Dataset</th>
-          </ng-container>
+        <ng-container matColumnDef="donor">
+          <th *matHeaderCellDef mat-header-cell [attr.colspan]="5">Donor</th>
+        </ng-container>
 
-          <ng-container matColumnDef="donor">
-            <th *matHeaderCellDef mat-header-cell [attr.colspan]="5">Donor</th>
-          </ng-container>
-
-          <tr *matHeaderRowDef="['publications', 'dataset', 'donor']; sticky: true" mat-header-row></tr>
-          <tr *matHeaderRowDef="columnIds(); sticky: true" mat-header-row></tr>
-          <tr *matRowDef="let row; columns: columnIds()" mat-row></tr>
-        </table>
-      </div>
+        <tr
+          *matHeaderRowDef="['publications', 'dataset', 'donor']; sticky: true"
+          class="top-header-row"
+          mat-header-row
+        ></tr>
+        <tr *matHeaderRowDef="columnIds(); sticky: true" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: columnIds()" mat-row></tr>
+      </table>
     } @else {
       <!--
         TODO: Need to do in a way that FTU hides the source list completely from the grid,

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   EventEmitter,
   inject,
   input,
@@ -10,12 +11,13 @@ import {
   Output,
   signal,
   SimpleChanges,
+  viewChild,
   ViewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -31,68 +33,68 @@ import {
 
 const TEST_SOURCES: SourceReference[] = [
   {
-    title:
-      'Single cell transcriptional and chromatin accessibility profiling redefine cellular heterogeneity in the adult human kidney',
-    link: 'https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-nephron' as Iri,
-    year: 2021,
-    datasetTitle: 'snRNA-seq of Three Healthy Human Kidney Tissue',
-    datasetLink: 'https://doi.org/10.1038/s41467-021-22368-w' as Iri,
-    cellType: 'Cell type text',
+    title: 'Unlocking Functional Tissue Unit Potential with Novel Genes: Implications for Regenerative Medicine',
+    link: 'https://doi.org/10.3390/ijms24032423' as Iri,
+    year: 2025,
+    datasetTitle: 'Dataset Title 1',
+    datasetLink: 'https://doi.org/10.1016/j.jhep.2022.12.023' as Iri,
+    cellType: 'Annotation tool label',
     healthStatus: 'Healthy',
-    sex: 'Male',
-    age: '30',
+    sex: 'Female',
+    age: '36',
     bmi: '20-25',
     ethnicity: 'Ethnicity',
   },
   {
-    title: 'Single-cell transcriptomics of the human kidney reveals the cellular identity of renal tumors',
-    link: 'https://doi.org/10.1016/j.ccell.2022.01.010#CellSummary_kidney-tumor' as Iri,
-    year: 2022,
-    datasetTitle: 'scRNA-seq of Healthy and Tumor Kidney Tissue',
-    datasetLink: 'https://doi.org/10.1016/j.ccell.2022.01.010' as Iri,
-    cellType: 'Cell type text',
-    healthStatus: 'Tumor',
-    sex: 'Female',
-    age: '50',
+    title: 'Cellular Dynamics in Functional Tissue Units: A Multiscale Analysis of Tissue Organization and Function',
+    link: 'https://doi.org/10.1016/j.jhep.2022.12.023' as Iri,
+    year: 2025,
+    datasetTitle: 'Dataset Title 2',
+    datasetLink: 'https://doi.org/10.1016/j.jhep.2022.12.023' as Iri,
+    cellType: 'Annotation tool label',
+    healthStatus: 'Diseased',
+    sex: 'Male',
+    age: '52',
     bmi: '25-30',
     ethnicity: 'Ethnicity',
   },
   {
-    title: 'Single-cell transcriptomics of the human kidney reveals the cellular identity of renal tumors',
-    link: 'https://doi.org/10.1016/j.ccell.2022.01.010#CellSummary_kidney-tumor' as Iri,
-    year: 2022,
-    datasetTitle: 'scRNA-seq of Healthy and Tumor Kidney Tissue',
-    datasetLink: 'https://doi.org/10.1016/j.ccell.2022.01.010' as Iri,
-    cellType: 'Cell type text',
-    healthStatus: 'Tumor',
-    sex: 'Male',
-    age: '40',
+    title: 'Gene Expression Patterns in Healthy FTUs: A Comprehensive Analysis of Transcriptomic Signatures',
+    link: 'https://doi.org/10.1002/advs.202205927' as Iri,
+    year: 2025,
+    datasetTitle: 'Dataset Title 3',
+    datasetLink: 'https://doi.org/10.1016/j.jhep.2022.12.023' as Iri,
+    cellType: 'Annotation tool label',
+    healthStatus: 'Unknown',
+    sex: 'Female',
+    age: '24',
     bmi: '20-25',
     ethnicity: 'Ethnicity',
   },
   {
-    title: 'Single-cell transcriptomics of the human kidney reveals the cellular identity of renal tumors',
-    link: 'https://doi.org/10.1016/j.ccell.2022.01.010#CellSummary_kidney-tumor' as Iri,
-    year: 2022,
-    datasetTitle: 'scRNA-seq of Healthy and Tumor Kidney Tissue',
-    datasetLink: 'https://doi.org/10.1016/j.ccell.2022.01.010' as Iri,
-    cellType: 'Cell type text',
-    healthStatus: 'Tumor',
-    sex: 'Female',
-    age: '60',
+    title: 'Spatial Genomics of Functional Tissue Units: Mapping the Landscape of Gene Expression in Three Dimensions',
+    link: 'https://doi.org/10.3389/fimmu.2023.1140795' as Iri,
+    year: 2025,
+    datasetTitle: 'Dataset Title 4',
+    datasetLink: 'https://doi.org/10.1016/j.jhep.2022.12.023' as Iri,
+    cellType: 'Annotation tool label',
+    healthStatus: 'Unknown',
+    sex: 'Male',
+    age: '16',
     bmi: '30-35',
     ethnicity: 'Ethnicity',
   },
   {
-    title: 'Single-cell transcriptomics of the human kidney reveals the cellular identity of renal tumors',
-    link: 'https://doi.org/10.1016/j.ccell.2022.01.010#CellSummary_kidney-tumor' as Iri,
-    year: 2022,
-    datasetTitle: 'scRNA-seq of Healthy and Tumor Kidney Tissue',
-    datasetLink: 'https://doi.org/10.1016/j.ccell.2022.01.010' as Iri,
-    cellType: 'Cell type text',
-    healthStatus: 'Tumor',
-    sex: 'Male',
-    age: '70',
+    title:
+      'Single-Cell Analysis of FTU Heterogeneity: Uncovering the Diversity of Cell Types and States within Tissues',
+    link: 'https://doi.org/10.1007/s00429-023-02705-8' as Iri,
+    year: 2025,
+    datasetTitle: 'Dataset Title 5',
+    datasetLink: 'https://doi.org/10.1016/j.jhep.2022.12.023' as Iri,
+    cellType: 'Annotation tool label',
+    healthStatus: 'Unknown',
+    sex: 'Female',
+    age: '48',
     bmi: '25-30',
     ethnicity: 'Ethnicity',
   },
@@ -232,6 +234,16 @@ export class SourceListComponent implements OnChanges {
     const columns = this.tableColumns.map((col) => col.column);
     return ['select', ...columns];
   });
+
+  /** Mat sort element */
+  private readonly sort = viewChild.required(MatSort);
+
+  /** Sort data on load and set columns */
+  constructor() {
+    effect(() => {
+      this.datasource.sort = this.sort();
+    });
+  }
 
   /** Opens the source list in fullscreen mode */
   openSourceListFullscreen(): void {

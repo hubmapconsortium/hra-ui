@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: space-between;
     height: 4rem;
-    padding: 0 16px;
+    padding: 0 1rem;
 
     .view-fullscreen {
       display: flex;
@@ -61,52 +61,12 @@
   }
 
   .table-content {
+    width: 100%;
     height: calc(100% - 4rem);
     overflow: auto;
 
     &.hidden {
       display: none;
-    }
-
-    hra-table {
-      // max-height: 163px;
-      border-radius: 0;
-      border-left: none;
-      border-right: none;
-
-      @include mat.table-overrides(
-        (
-          row-item-label-text-size: vars.$label-small-size,
-        )
-      );
-
-      ::ng-deep td {
-        max-width: 143.6704px;
-        max-height: 32px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      ::ng-deep th[data-column-type='text'] {
-        max-width: 640px;
-      }
-
-      ::ng-deep th[data-column-type='numeric'] {
-        max-width: 80px;
-        min-width: 80px;
-      }
-
-      ::ng-deep th[data-column-type='link'] {
-        max-width: 196px;
-      }
-
-      ::ng-deep th:nth-child(3)[data-column-type='text'],
-      ::ng-deep td:nth-child(3) {
-        width: 80px !important;
-        min-width: 80px !important;
-        max-width: 80px !important;
-      }
     }
   }
 
@@ -117,19 +77,19 @@
 
         header-container-height: 2rem,
         header-headline-color: vars.$secondary,
-        header-headline-font: vars.$label-medium-font,
-        header-headline-line-height: vars.$label-medium-line-height,
-        header-headline-size: vars.$label-medium-size,
-        header-headline-tracking: vars.$label-medium-tracking,
-        header-headline-weight: vars.$label-medium-weight,
+        header-headline-font: vars.$label-small-font,
+        header-headline-line-height: vars.$label-small-line-height,
+        header-headline-size: vars.$label-small-size,
+        header-headline-tracking: vars.$label-small-tracking,
+        header-headline-weight: vars.$label-small-weight,
 
         row-item-container-height: 2rem,
         row-item-label-text-color: vars.$primary,
-        row-item-label-text-font: vars.$label-medium-font,
-        row-item-label-text-line-height: vars.$label-medium-line-height,
-        row-item-label-text-size: vars.$label-medium-size,
-        row-item-label-text-tracking: vars.$label-medium-tracking,
-        row-item-label-text-weight: vars.$label-medium-weight,
+        row-item-label-text-font: vars.$label-small-font,
+        row-item-label-text-line-height: vars.$label-small-line-height,
+        row-item-label-text-size: vars.$label-small-size,
+        row-item-label-text-tracking: vars.$label-small-tracking,
+        row-item-label-text-weight: vars.$label-small-weight,
         row-item-outline-width: 0px,
       )
     );
@@ -140,8 +100,28 @@
       )
     );
 
+    .top-header-row {
+      th {
+        text-align: center;
+        border-top: 0.0625rem solid vars.$outline-variant;
+      }
+    }
+
+    thead {
+      background-color: vars.$surface-container;
+
+      th {
+        border-bottom: 0.0625rem solid vars.$outline-variant;
+        white-space: nowrap;
+      }
+    }
+
     tbody tr:nth-child(even) {
       background-color: vars.$surface-bright;
+    }
+
+    tr:hover {
+      background-color: utils.with-alpha(vars.$secondary, 8%);
     }
 
     .cdk-column-dataset,
@@ -151,32 +131,52 @@
       border-left: 1px solid vars.$outline-variant;
     }
 
-    ng-scrollbar {
-      --scrollbar-offset: 4;
-    }
+    th,
+    td {
+      min-width: 76.8px;
+      max-width: calc((((max(100vw, 1007px) - 274px) / 3)) / 5);
+      padding: 0 0.5rem;
+      white-space: nowrap;
 
-    ::ng-deep thead {
-      background-color: vars.$surface-container;
-
-      th {
-        border-bottom: 0.0625rem solid vars.$outline;
+      .mat-sort-header-content {
         overflow: hidden;
-        text-overflow: ellipsis;
         white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
       }
     }
 
-    ::ng-deep tbody {
-      td {
-        max-width: 143.6704px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+    td[data-column-type='checkbox'],
+    th[data-column-type='checkbox'] {
+      min-width: unset;
+      max-width: 2rem;
+      padding: 0;
     }
-  }
 
-  .end {
-    cursor: pointer;
+    th:nth-child(2),
+    td:nth-child(2) {
+      min-width: 116px;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      min-width: 98px;
+    }
+
+    td:nth-child(4),
+    th:nth-child(4) {
+      width: 72px;
+      padding-left: 18px;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5),
+    th:nth-child(6),
+    td:nth-child(6),
+    th:nth-child(7),
+    td:nth-child(7) {
+      max-width: calc((((max(100vw, 1007px) - 274px) / 3) - 72px) / 3);
+      min-width: 93.5px;
+    }
   }
 }
