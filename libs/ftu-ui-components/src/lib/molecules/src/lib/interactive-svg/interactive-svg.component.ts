@@ -13,10 +13,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { TooltipComponent } from '../../../../atoms/src';
-import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
+import { InlineSVGModule, type SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
+import { TooltipComponent } from '../../../../atoms/src';
 
 /** Delay before tooltip becomes visible */
 const HOVER_DELAY = 200;
@@ -101,7 +101,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   @Output() readonly nodeClick = new EventEmitter<T>();
 
   /** SVG script eval mode */
-  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
+  readonly NEVER_EVAL_SCRIPTS = 'never' as SVGScriptEvalMode;
 
   /** Tooltip position settings */
   readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;

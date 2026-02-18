@@ -4,7 +4,7 @@
       <span class="source-list-title">Source data</span>
     }
     <div class="view-fullscreen" [class.hide-title]="hideTitle()">
-      <hra-results-indicator description="Viewing" [value]="selectedCount()" [total]="sources.length" />
+      <hra-results-indicator description="Viewing" [value]="selectedCount()" [total]="sources().length" />
       @if (!hideTitle()) {
         <button
           mat-icon-button
@@ -20,10 +20,10 @@
   </div>
 
   <div class="table-content" [class.hidden]="!showTable()">
-    @if (sources.length !== 0) {
+    @if (sources().length !== 0) {
       <hra-table
         variant="alternating"
-        [rows]="sources"
+        [rows]="sources()"
         [columns]="tableColumns"
         [enableRowSelection]="true"
         [enableSort]="true"

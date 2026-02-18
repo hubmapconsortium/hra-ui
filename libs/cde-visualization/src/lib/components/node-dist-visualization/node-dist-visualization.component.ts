@@ -129,11 +129,8 @@ export class NodeDistVisualizationComponent {
 
   /** Data for cell info panel */
   protected readonly cellInfoContent = computed((): DataItem[] => {
-    const info = this.cellInfo();
-    if (!info) {
-      return [];
-    }
-
+    // This is guarded by cellInfoOpen() so cellInfo() will always have a value here
+    const info = this.cellInfo() as NodeEvent;
     const nodes = this.nodes();
     const edges = this.edges();
     const { index, raw: node } = info;

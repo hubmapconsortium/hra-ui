@@ -1,16 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  inject,
-  input,
-  Input,
-  OnChanges,
-  Output,
-  signal,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, output, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -67,15 +55,15 @@ export interface SourceListItem extends TableRow {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.full-screen]': 'hideTitle()',
-    '[class.no-data-full-screen]': 'hideTitle() && sources.length === 0',
+    '[class.no-data-full-screen]': 'hideTitle() && sources().length === 0',
   },
 })
-export class SourceListComponent implements OnChanges {
+export class SourceListComponent {
   /** List of sources with titles and links displayed to the user */
-  @Input() sources: SourceListItem[] = [];
+  readonly sources = input<SourceListItem[]>([]);
 
   /** Text that appears in the empty biomarker message */
-  @Input() message = '';
+  readonly message = input<string>('');
 
   /** Whether to hide the title of the source list */
   readonly hideTitle = input<boolean>(false);
@@ -84,16 +72,16 @@ export class SourceListComponent implements OnChanges {
   private readonly fullscreenService = inject(FtuFullScreenService);
 
   /** Whether to show the biomarker table */
-  showTable = signal(true);
+  readonly showTable = signal(true);
 
   /** Number of selected sources */
-  selectedCount = signal(0);
+  readonly selectedCount = signal(0);
 
   /** Emits when source selection changed */
-  @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
+  readonly selectionChanged = output<SourceListItem[]>();
 
   /** Reference to the table component */
-  @ViewChild('sourceTable') sourceTable!: TableComponent<TableRow>;
+  readonly sourceTable = viewChild<TableComponent<TableRow>>('sourceTable');
 
   /** Table columns configuration */
   readonly tableColumns: TableColumn[] = [
@@ -122,25 +110,25 @@ export class SourceListComponent implements OnChanges {
     },
   ];
 
+  /** Initialize source list */
+  constructor() {
+    effect(() => {
+      const sources = this.sources();
+      const table = this.sourceTable();
+
+      if (table && sources.length > 0) {
+        table.selection.clear();
+        table.selection.select(...sources);
+        this.selectedCount.set(table.selection.selected.length);
+        this.selectionChanged.emit(table.selection.selected as SourceListItem[]);
+      }
+    });
+  }
+
   /** Opens the source list in fullscreen mode */
   openSourceListFullscreen(): void {
     this.fullscreenService.fullscreentabIndex.set(FullscreenTab.SourceList);
     this.fullscreenService.isFullscreen.set(true);
-  }
-
-  /** On sources change, resets selection and selects all sources */
-  ngOnChanges(changes: SimpleChanges) {
-    if ('sources' in changes) {
-      // Wait for the table to be initialized, then select all
-      setTimeout(() => {
-        if (this.sourceTable && this.sources.length > 0) {
-          this.sourceTable.selection.clear();
-          this.sourceTable.selection.select(...this.sources);
-          this.selectedCount.set(this.sourceTable.selection.selected.length);
-          this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
-        }
-      });
-    }
   }
 
   /**
@@ -155,9 +143,10 @@ export class SourceListComponent implements OnChanges {
    * Handle selection changes from the table
    */
   onSelectionChange(): void {
-    if (this.sourceTable) {
-      this.selectedCount.set(this.sourceTable.selection.selected.length);
-      this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
+    const table = this.sourceTable();
+    if (table) {
+      this.selectedCount.set(table.selection.selected.length);
+      this.selectionChanged.emit(table.selection.selected as SourceListItem[]);
     }
   }
 }
