@@ -4,7 +4,12 @@
       <span class="source-list-title">Source data</span>
     }
     <div class="view-fullscreen" [class.hide-title]="hideTitle()">
-      <hra-results-indicator description="Viewing" [value]="selectedCount()" [total]="sources.length" />
+      <hra-results-indicator
+        description="Viewing"
+        itemType="datasets"
+        [value]="selectedCount()"
+        [total]="sources.length"
+      />
       @if (!hideTitle()) {
         <button
           mat-icon-button
@@ -34,46 +39,56 @@
       <table mat-table matSort [dataSource]="datasource">
         <ng-container hraFeature="select" matColumnDef="select">
           <th *matHeaderCellDef mat-header-cell data-column-type="checkbox">
-            <mat-checkbox hraFeature="toggle-all" disableRipple hraPlainTooltip="Hide all" aria-label="Hide all" />
+            <mat-checkbox
+              hraFeature="toggle-all"
+              disableRipple
+              hraPlainTooltip="Hide all"
+              aria-label="Hide all"
+              [checked]="selection.hasValue() && isAllSelected()"
+              (change)="toggleAllRows()"
+            />
           </th>
           <td *matCellDef="let element" mat-cell data-column-type="checkbox">
-            <mat-checkbox hraFeature="toggle" disableRipple hraPlainTooltip="Hide" aria-label="Hide" />
+            <mat-checkbox
+              hraFeature="toggle"
+              disableRipple
+              hraPlainTooltip="Hide"
+              aria-label="Hide"
+              [checked]="selection.isSelected(element)"
+              (change)="$event ? toggleRow(element) : null"
+            />
           </td>
         </ng-container>
 
-        <!-- Position Column -->
         <ng-container matColumnDef="title">
           <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
           <td *matCellDef="let element" mat-cell>{{ element.title }}</td>
         </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="link">
+        <ng-container matColumnDef="doi">
           <th *matHeaderCellDef mat-header-cell mat-sort-header>DOI</th>
           <td *matCellDef="let element" mat-cell>
-            <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.link">
-              {{ element.link }}
+            <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.doi">
+              {{ element.doi }}
             </a>
           </td>
         </ng-container>
 
-        <!-- Weight Column -->
         <ng-container matColumnDef="year">
           <th *matHeaderCellDef mat-header-cell mat-sort-header data-column-type="numeric" justify="end">Year</th>
           <td *matCellDef="let element" mat-cell data-column-type="numeric">{{ element.year }}</td>
         </ng-container>
 
-        <!-- Symbol Column -->
         <ng-container matColumnDef="datasetTitle">
           <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
           <td *matCellDef="let element" mat-cell>{{ element.datasetTitle }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="datasetLink">
+        <ng-container matColumnDef="datasetId">
           <th *matHeaderCellDef mat-header-cell mat-sort-header>ID</th>
           <td *matCellDef="let element" mat-cell>
-            <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.datasetLink">
-              {{ element.datasetLink }}
+            <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.datasetId">
+              {{ element.datasetId }}
             </a>
           </td></ng-container
         >

@@ -9,7 +9,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DialogService } from '@hra-ui/design-system/dialog';
 import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
-import { IllustrationMappingItem } from '@hra-ui/services';
+import { IllustrationMappingItem, SourceReference } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
   CellSummaryAggregate,
@@ -202,7 +202,7 @@ export class BiomarkerDetailsWcComponent {
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
   /** List of selected sources */
-  readonly selectedSources = signal<SourceListItem[]>([]);
+  readonly selectedSources = signal<SourceReference[]>([]);
 
   /**
    * Gets tissue title from the list of tissues

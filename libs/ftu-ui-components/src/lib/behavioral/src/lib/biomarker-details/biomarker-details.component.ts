@@ -119,14 +119,10 @@ export class BiomarkerDetailsComponent {
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
-  /**
-   * Iri  of medical illustration behavior component
-   */
+  /** Iri of medical illustration behavior component */
   readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
 
-  /**
-   * Get all tissues
-   */
+  /** Get all tissues */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
 
   /** Selects the cells hovered currently to highlight in table */

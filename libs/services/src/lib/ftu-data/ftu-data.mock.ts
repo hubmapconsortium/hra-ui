@@ -51,7 +51,7 @@ function defineNode(
     parent,
     label,
     synonymLabels: [],
-    link: url && createLinkId('FTU'),
+    doi: url && createLinkId('FTU'),
     representation_of: id,
     object: {
       file: url,
@@ -67,7 +67,7 @@ const BASE_ID = 'https://purl.humanatlas.io/2d-ftu/';
 
 /** Mock tissue data */
 export const MOCK_TISSUE_DATA = {
-  root: BASE_ID as Iri,
+  root: BASE_ID,
   nodes: Object.assign(
     {},
     defineNode(
@@ -244,11 +244,10 @@ export const MOCK_SUMMARIES = {
  */
 const sourceReferences: SourceReference[] = [
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title: 'Kidney Precision Medicine Project',
     datasetTitle: 'Ancillary Study Data, Clinical Data, HRT Codebook',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',
@@ -258,11 +257,10 @@ const sourceReferences: SourceReference[] = [
     sex: 'Sex',
   },
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title: '[Dataset Owner Title]',
     datasetTitle: '<Dataset Title + Link to Dataset>',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',
@@ -272,11 +270,10 @@ const sourceReferences: SourceReference[] = [
     sex: 'Sex',
   },
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title: '[Dataset Owner Title]',
     datasetTitle: '<Dataset Title + Link to Dataset>',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',
@@ -286,13 +283,12 @@ const sourceReferences: SourceReference[] = [
     sex: 'Sex',
   },
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title:
       '[Dataset Owner Title but extremely long and wraps around to the next line as you can see here in this example]',
     datasetTitle:
       '<Extremely long dataset title that wraps around to the next line as you can see in this example + link to dataset>',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',
@@ -302,11 +298,10 @@ const sourceReferences: SourceReference[] = [
     sex: 'Sex',
   },
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title: 'Kidney Precision Medicine Project',
     datasetTitle: 'Ancillary Study Data, Clinical Data, HRT Codebook',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',
@@ -316,11 +311,10 @@ const sourceReferences: SourceReference[] = [
     sex: 'Sex',
   },
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title: '[Dataset Owner Title]',
     datasetTitle: '<Dataset Title + Link to Dataset>',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',
@@ -330,11 +324,10 @@ const sourceReferences: SourceReference[] = [
     sex: 'Sex',
   },
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title: '[Dataset Owner Title]',
     datasetTitle: '<Dataset Title + Link to Dataset>',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',
@@ -344,13 +337,12 @@ const sourceReferences: SourceReference[] = [
     sex: 'Sex',
   },
   {
-    datasetLink:
-      'https://cns-iu.github.io/hra-cell-type-populations-supporting-information/data/enriched_rui_locations.jsonld#36e76662-60b8-4193-8a70-1bfd4f6938d0_D088_Lung' as Iri,
+    datasetId: '10.1016/j.jhep.2022.12.023',
     title:
       '[Dataset Owner Title but extremely long and wraps around to the next line as you can see here in this example]',
     datasetTitle:
       '<Extremely long dataset title that wraps around to the next line as you can see in this example + link to dataset>',
-    link: 'google.com' as Iri,
+    doi: '10.1016/j.jhep.2022.12.023',
     year: -1,
     cellType: 'Cell type text',
     healthStatus: 'Healthy',

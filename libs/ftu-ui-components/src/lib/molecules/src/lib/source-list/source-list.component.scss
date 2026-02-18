@@ -16,6 +16,7 @@
     .view-fullscreen {
       display: flex;
       align-items: center;
+      gap: 1rem;
 
       &.hide-title {
         justify-content: flex-end;
@@ -24,7 +25,6 @@
 
       hra-results-indicator {
         --hra-results-indicator-height: 2.375rem;
-        border-radius: 624.9375rem;
       }
     }
 
@@ -116,12 +116,14 @@
       }
     }
 
-    tbody tr:nth-child(even) {
-      background-color: vars.$surface-bright;
-    }
+    tbody {
+      tr:nth-child(even) {
+        background-color: vars.$surface-bright;
+      }
 
-    tr:hover {
-      background-color: utils.with-alpha(vars.$secondary, 8%);
+      tr:hover {
+        background-color: utils.with-alpha(vars.$secondary, 8%);
+      }
     }
 
     .cdk-column-dataset,
@@ -133,8 +135,8 @@
 
     th,
     td {
-      min-width: 76.8px;
-      max-width: calc((((max(100vw, 1007px) - 274px) / 3)) / 5);
+      min-width: 72px;
+      max-width: calc((((max(100vw, 1280px) - 274px) / 3)) / 5);
       padding: 0 0.5rem;
       white-space: nowrap;
 
@@ -166,6 +168,7 @@
     td:nth-child(4),
     th:nth-child(4) {
       width: 72px;
+      max-width: 72px;
       padding-left: 18px;
     }
 
@@ -175,7 +178,7 @@
     td:nth-child(6),
     th:nth-child(7),
     td:nth-child(7) {
-      max-width: calc((((max(100vw, 1007px) - 274px) / 3) - 72px) / 3);
+      max-width: calc((((max(100vw, 1280px) - 274px) / 3) - 72px) / 3);
       min-width: 93.5px;
     }
   }
