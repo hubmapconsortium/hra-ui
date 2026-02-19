@@ -210,7 +210,7 @@
         }
       </mat-menu>
 
-      <router-outlet />
+      <router-outlet (deactivate)="infoSheetRef?.dismiss()" />
     </mat-drawer-content>
   </mat-drawer-container>
 </ng-container>
