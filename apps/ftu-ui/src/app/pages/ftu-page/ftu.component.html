@@ -25,7 +25,12 @@
   <ng-template #sourcelist>
     @if (!(sources().length > 0 && selectedSources.length > 0)) {
       <div class="source-list">
-        <ftu-source-list class="content" [sources]="sources()" (selectionChanged)="setSelectedSources($event)" />
+        <ftu-source-list
+          class="content"
+          [sources]="sources()"
+          [hideTitle]="isFullscreen()"
+          (selectionChanged)="setSelectedSources($event)"
+        />
       </div>
     }
   </ng-template>

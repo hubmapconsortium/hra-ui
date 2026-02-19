@@ -18,13 +18,21 @@
       align-items: center;
       gap: 1rem;
 
-      &.hide-title {
-        justify-content: flex-end;
-        flex: 1;
-      }
-
       hra-results-indicator {
         --hra-results-indicator-height: 2.375rem;
+      }
+
+      .publication-count {
+        --hra-results-indicator-height: 2.375rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--hra-results-indicator-height);
+        color: vars.$primary;
+        padding: 0.5rem 0.75rem;
+        border: 0.0625rem solid vars.$outline-variant;
+        border-radius: 0.25rem;
+        @include utils.use-font(label, small);
       }
     }
 
@@ -71,6 +79,9 @@
   }
 
   ::ng-deep table {
+    border-bottom: 1px solid vars.$outline-variant;
+    border-top: 1px solid vars.$outline-variant;
+
     @include mat.table-overrides(
       (
         background-color: vars.$on-primary,
@@ -103,7 +114,6 @@
     .top-header-row {
       th {
         text-align: center;
-        border-top: 0.0625rem solid vars.$outline-variant;
       }
     }
 

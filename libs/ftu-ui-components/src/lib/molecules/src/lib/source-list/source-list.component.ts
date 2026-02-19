@@ -93,6 +93,8 @@ export class SourceListComponent implements OnChanges {
   /** Emits when source selection changed */
   @Output() readonly selectionChanged = new EventEmitter<SourceReference[]>();
 
+  numPublications = computed(() => this.sources.filter((source) => source.doi).length);
+
   readonly selection = new SelectionModel<TableRow>(true, []);
 
   /** Table columns configuration */

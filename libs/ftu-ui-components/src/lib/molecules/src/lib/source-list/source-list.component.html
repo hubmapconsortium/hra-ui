@@ -10,6 +10,9 @@
         [value]="selectedCount()"
         [total]="sources.length"
       />
+
+      <span class="publication-count"> {{ numPublications() }} total publications </span>
+
       @if (!hideTitle()) {
         <button
           mat-icon-button
