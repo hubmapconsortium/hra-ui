@@ -4,14 +4,10 @@ import {
   Component,
   computed,
   effect,
-  EventEmitter,
   inject,
   input,
-  Input,
-  OnChanges,
-  Output,
+  output,
   signal,
-  SimpleChanges,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -65,17 +61,20 @@ export interface SourceListItem extends TableRow {
   styleUrl: './source-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.no-data-full-screen]': 'hideTitle() && sources.length === 0',
+    '[class.no-data-full-screen]': 'hideTitle() && sources().length === 0',
   },
 })
-export class SourceListComponent implements OnChanges {
-  /** List of sources with titles and links displayed to the user */
-  @Input() sources: SourceReference[] = [];
+export class SourceListComponent {
+  /** Mat sort element */
+  private readonly sort = viewChild(MatSort);
 
   datasource = new MatTableDataSource<SourceReference>([]);
 
+  /** List of sources with titles and links displayed to the user */
+  readonly sources = input<SourceReference[]>([]);
+
   /** Text that appears in the empty biomarker message */
-  @Input() message = '';
+  readonly message = input<string>('');
 
   /** Whether to hide the title of the source list */
   readonly hideTitle = input<boolean>(false);
@@ -84,15 +83,20 @@ export class SourceListComponent implements OnChanges {
   private readonly fullscreenService = inject(FtuFullScreenService);
 
   /** Whether to show the biomarker table */
-  showTable = signal(true);
+  readonly showTable = signal(true);
 
   /** Number of selected sources */
-  selectedCount = signal(0);
+  readonly selectedCount = signal(0);
+
+  protected readonly columnIds = computed(() => {
+    const columns = this.tableColumns.map((col) => col.column);
+    return ['select', ...columns];
+  });
+
+  readonly numPublications = computed(() => this.sources().filter((source) => source.doi).length);
 
   /** Emits when source selection changed */
-  @Output() readonly selectionChanged = new EventEmitter<SourceReference[]>();
-
-  numPublications = computed(() => this.sources.filter((source) => source.doi).length);
+  readonly selectionChanged = output<SourceReference[]>();
 
   readonly selection = new SelectionModel<TableRow>(true, []);
 
@@ -161,18 +165,23 @@ export class SourceListComponent implements OnChanges {
     },
   ];
 
-  protected readonly columnIds = computed(() => {
-    const columns = this.tableColumns.map((col) => col.column);
-    return ['select', ...columns];
-  });
-
-  /** Mat sort element */
-  private readonly sort = viewChild(MatSort);
-
   /** Sort data on load and set columns */
   constructor() {
     effect(() => {
       this.datasource.sort = this.sort();
+    });
+
+    /** Initialize source list */
+    effect(() => {
+      const sources = this.sources();
+
+      if (sources.length > 0) {
+        this.datasource.data = sources;
+        this.selection.clear();
+        this.selection.select(...sources);
+        this.selectedCount.set(this.selection.selected.length);
+        this.selectionChanged.emit(this.selection.selected as SourceReference[]);
+      }
     });
   }
 
@@ -180,23 +189,6 @@ export class SourceListComponent implements OnChanges {
   openSourceListFullscreen(): void {
     this.fullscreenService.fullscreentabIndex.set(FullscreenTab.SourceList);
     this.fullscreenService.isFullscreen.set(true);
-  }
-
-  /** On sources change, resets selection and selects all sources */
-  ngOnChanges(changes: SimpleChanges) {
-    if ('sources' in changes) {
-      // Wait for the table to be initialized, then select all
-
-      setTimeout(() => {
-        if (this.sources.length > 0) {
-          this.datasource.data = this.sources;
-          this.selection.clear();
-          this.selection.select(...this.sources);
-          this.selectedCount.set(this.selection.selected.length);
-          this.selectionChanged.emit(this.selection.selected as SourceReference[]);
-        }
-      });
-    }
   }
 
   /**

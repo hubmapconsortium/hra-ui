@@ -2,6 +2,10 @@
 @use 'vars';
 
 :host {
+  .content {
+    padding: 2rem 1rem 0rem 1rem;
+  }
+
   .drawer-header {
     display: flex;
     align-items: center;
@@ -60,12 +64,5 @@
 
   mat-divider {
     border-top-color: vars.$outline-variant;
-  }
-
-  ::ng-deep .ng-scroll-content {
-    max-width: 100%;
-    --_viewport-padding-top: 2rem;
-    --_viewport-padding-right: 1rem;
-    --_viewport-padding-left: 1rem;
   }
 }

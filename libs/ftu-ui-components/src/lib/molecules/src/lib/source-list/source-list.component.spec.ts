@@ -1,8 +1,5 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatTableModule } from '@angular/material/table';
 import { Iri } from '@hra-ui/services';
 import { render, screen } from '@testing-library/angular';
-import { Shallow } from 'shallow-render';
 import {
   FtuFullScreenService,
   FullscreenTab,
@@ -10,7 +7,6 @@ import {
 import { SourceListComponent, SourceListItem } from './source-list.component';
 
 describe('SourceListComponent', () => {
-  let shallow: Shallow<SourceListComponent>;
   const testItem = {
     link: 'test',
     authors: ['test'],
@@ -20,17 +16,25 @@ describe('SourceListComponent', () => {
     label: 'test',
   } as SourceListItem;
   const testSources = [testItem] as SourceListItem[];
-  beforeEach(() => {
-    shallow = new Shallow(SourceListComponent).dontMock(MatTableModule);
-  });
 
   it('should create', async () => {
-    await expect(shallow.render()).resolves.toBeDefined();
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    expect(fixture.componentInstance).toBeDefined();
   });
 
   it('should initialize showTable to be true', async () => {
-    const { instance } = await shallow.render();
-    expect(instance.showTable()).toBe(true);
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    expect(fixture.componentInstance.showTable()).toBe(true);
   });
 
   it('should openFullscreen', async () => {
@@ -38,39 +42,58 @@ describe('SourceListComponent', () => {
       fullscreentabIndex: { set: jest.fn() },
       isFullscreen: { set: jest.fn() },
     } as unknown as FtuFullScreenService;
-    const { instance } = await shallow.render();
-    (
-      instance as unknown as {
-        fullscreenService?: FtuFullScreenService;
-      }
-    ).fullscreenService = fullscreenMock;
-    instance.openSourceListFullscreen();
+
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+      providers: [{ provide: FtuFullScreenService, useValue: fullscreenMock }],
+    });
+
+    fixture.componentInstance.openSourceListFullscreen();
+
     expect(fullscreenMock.fullscreentabIndex.set).toHaveBeenCalledWith(FullscreenTab.SourceList);
     expect(fullscreenMock.isFullscreen.set).toHaveBeenCalledWith(true);
   });
 
   it('should toggle showTable on toggleTable() method call', async () => {
-    const { instance } = await shallow.render();
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    const instance = fixture.componentInstance;
+    expect(instance.showTable()).toBe(true);
+
     instance.toggleTable();
     expect(instance.showTable()).toBe(false);
+
     instance.toggleTable();
     expect(instance.showTable()).toBe(true);
   });
 
   it('should emit selectionChanged when onSelectionChange is called', async () => {
-    const { instance } = await shallow.render({ bind: { sources: testSources } });
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    const instance = fixture.componentInstance;
     let emittedValue: SourceListItem[] | undefined;
 
     instance.selectionChanged.subscribe((value: SourceListItem[]) => {
       emittedValue = value;
     });
 
-    instance.sourceTable = {
-      selection: {
-        selected: testSources,
-      },
+    const sourceTable = instance.sourceTable();
+    if (sourceTable) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
+      (sourceTable as any).selection = {
+        selected: testSources,
+      };
+    }
 
     instance.onSelectionChange();
 
@@ -80,10 +103,9 @@ describe('SourceListComponent', () => {
 
   it('should display table columns correctly', async () => {
     await render(SourceListComponent, {
-      componentInputs: {
+      inputs: {
         sources: testSources,
       },
-      imports: [MatTableModule, HttpClientTestingModule],
     });
 
     expect(screen.getByText('Authors')).toBeInTheDocument();
@@ -104,10 +126,9 @@ describe('SourceListComponent', () => {
     };
 
     await render(SourceListComponent, {
-      componentInputs: {
+      inputs: {
         sources: [testSourceItem],
       },
-      imports: [MatTableModule, HttpClientTestingModule],
     });
 
     expect(

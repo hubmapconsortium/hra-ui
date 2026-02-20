@@ -4,17 +4,17 @@
       <span class="source-list-title">Source data</span>
     }
     <div class="view-controls">
-      @if (sources.length > 0) {
+      @if (sources().length > 0) {
         <hra-results-indicator
           description="Viewing"
           itemType="datasets"
           [value]="selectedCount()"
-          [total]="sources.length"
+          [total]="sources().length"
         />
 
         <span class="publication-count"> {{ numPublications() }} total publications </span>
       }
-      @if (!hideTitle() && sources.length > 0) {
+      @if (!hideTitle() && sources().length > 0) {
         <button
           mat-icon-button
           hraIconButtonSize="large"
@@ -29,7 +29,7 @@
   </div>
 
   <div class="table-content" [class.hidden]="!showTable()">
-    @if (sources.length > 0) {
+    @if (sources().length > 0) {
       <table mat-table matSort [dataSource]="datasource">
         <ng-container hraFeature="select" matColumnDef="select">
           <th *matHeaderCellDef mat-header-cell data-column-type="checkbox">

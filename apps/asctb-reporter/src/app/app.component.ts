@@ -191,7 +191,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
   snackbarRef!: MatSnackBarRef<SnackbarComponent>;
 
   /** Botton input sheet ref */
-  infoSheetRef!: MatBottomSheetRef;
+  infoSheetRef?: MatBottomSheetRef;
 
   /** Bimodal filter values to snd via snackbar update */
   bimodalConfig!: BimodalConfig;
@@ -409,6 +409,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
         this.bs$.subscribe((value) => {
           if (value) {
             this.infoSheetRef = this.infoSheet.open(InfoComponent, {
+              closeOnNavigation: true,
               disableClose: false,
               hasBackdrop: false,
               autoFocus: false,
@@ -423,6 +424,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
         this.bottomSheetDOI$.subscribe((data) => {
           if (data.length) {
             this.infoSheetRef = this.infoSheet.open(DoiComponent, {
+              closeOnNavigation: true,
               disableClose: false,
               hasBackdrop: false,
               autoFocus: false,

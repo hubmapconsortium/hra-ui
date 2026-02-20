@@ -2,10 +2,10 @@
   "name": "@hra-ui/application",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/core": "^20.2.0",
+    "@angular/core": "^21.1.4",
     "@hra-ui/common": "1.1.0",
     "@hra-ui/design-system": "1.1.0",
-    "@angular/material": "^20.2.0",
+    "@angular/material": "^21.1.4",
     "@hra-ui/cdk": "1.1.0",
     "store2": "^2.14.4",
     "zod": "^4.1.3"

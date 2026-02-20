@@ -74,6 +74,7 @@
   .table {
     background-color: vars.$surface-container-low;
     width: 100%;
+    table-layout: auto;
 
     .highlight {
       &:first-child,
