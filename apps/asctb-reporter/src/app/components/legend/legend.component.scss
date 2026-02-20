@@ -1,6 +1,6 @@
 @use 'utils';
 @use 'vars';
-@import './../../../assets/stylesheets/_colors.scss';
+@use './../../../../public/stylesheets/_colors.scss';
 
 :host {
   .title {
@@ -33,22 +33,22 @@
 
   .protein {
     @extend .polygon;
-    background-image: url(../../../assets/legends/diamondSymbol.svg);
+    background-image: url(../../../../public/legends/diamondSymbol.svg);
   }
 
   .lipids {
     @extend .polygon;
-    background-image: url(../../../assets/legends/squareSymbol.svg);
+    background-image: url(../../../../public/legends/squareSymbol.svg);
   }
 
   .metabolites {
     @extend .polygon;
-    background-image: url(../../../assets/legends/triangleSymbol.svg);
+    background-image: url(../../../../public/legends/triangleSymbol.svg);
   }
 
   .proteoforms {
     @extend .polygon;
-    background-image: url(../../../assets/legends/crossSymbol.svg);
+    background-image: url(../../../../public/legends/crossSymbol.svg);
   }
 
   .legends {

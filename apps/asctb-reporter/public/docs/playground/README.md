@@ -19,7 +19,6 @@ This feature allows you to play around with a sample visualization and upload yo
    <br>
 
 3. There are three tabs,
-
    - **Visualization**: This is the default view which shows the visualization (as shown in the image above).
    - **Table**: This is a tabular view of the data. This is not a full-featured table but a basic view for quick edits. Alternatively, you can edit your sheet on Google Sheets and then head over to the Reporter, click on the _Refresh_ button, and get the latest data.
 

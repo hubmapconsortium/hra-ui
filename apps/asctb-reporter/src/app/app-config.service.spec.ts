@@ -52,7 +52,7 @@ describe('ConfigService', () => {
     it.each([
       ['allSheetConfigurations$', environment.sheetConfigUrl, mockSheetData],
       ['allOMAPSheetConfigurations$', environment.omapSheetConfigUrl, mockOMAPData],
-      ['config$', 'assets/configuration.json', { key: 'value' }],
+      ['config$', 'configuration.json', { key: 'value' }],
     ])('should fetch and cache %s', (observable, url, mockData) => {
       let callCount = 0;
       const obs$ = service[observable as keyof typeof service] as typeof service.config$;
@@ -115,7 +115,7 @@ describe('ConfigService', () => {
     it.each([
       ['allSheetConfigurations$', environment.sheetConfigUrl, 404],
       ['allOMAPSheetConfigurations$', environment.omapSheetConfigUrl, 500],
-      ['config$', 'assets/configuration.json', 403],
+      ['config$', 'configuration.json', 403],
     ])('should handle errors for %s', (observable, url, status) => {
       const obs$ = service[observable as keyof typeof service] as typeof service.config$;
       obs$.subscribe({
