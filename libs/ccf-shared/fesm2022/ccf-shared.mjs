@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
 import { inject, ChangeDetectorRef, ChangeDetectionStrategy, Component, NgModule, model, input, output, signal, ElementRef, Directive, Injectable, Input, EventEmitter, Output } from '@angular/core';
 import { Store, State } from '@ngxs/store';
-import { Subscription, of, Observable, Subject } from 'rxjs';
+import { Subscription, of, Subject } from 'rxjs';
 import * as i1 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { MatRippleModule } from '@angular/material/core';
@@ -15,7 +15,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import * as i4 from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Computed, StateRepository } from '@angular-ru/ngxs/decorators';
 import { NgxsImmutableDataRepository } from '@angular-ru/ngxs/repositories';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -33,8 +33,9 @@ import * as i1$2 from '@hra-ui/common/analytics';
 import { injectFeaturePath, injectLogEvent } from '@hra-ui/common/analytics';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 
-function StoreDebugComponent_div_0_li_4_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "li", 4);
+const _forTrack0 = ($index, $item) => $item[0];
+function StoreDebugComponent_For_1_For_5_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵelementStart(0, "li", 2);
     i0.ɵɵtext(1);
     i0.ɵɵpipe(2, "json");
     i0.ɵɵelementEnd();
@@ -43,19 +44,19 @@ function StoreDebugComponent_div_0_li_4_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵadvance();
     i0.ɵɵtextInterpolate2("", kv_r1[0], ": ", i0.ɵɵpipeBind1(2, 2, kv_r1[1]));
 } }
-function StoreDebugComponent_div_0_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 1)(1, "div");
+function StoreDebugComponent_For_1_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵelementStart(0, "div", 0)(1, "div");
     i0.ɵɵtext(2);
     i0.ɵɵelementEnd();
-    i0.ɵɵelementStart(3, "ul", 2);
-    i0.ɵɵtemplate(4, StoreDebugComponent_div_0_li_4_Template, 3, 4, "li", 3);
+    i0.ɵɵelementStart(3, "ul", 1);
+    i0.ɵɵrepeaterCreate(4, StoreDebugComponent_For_1_For_5_Template, 3, 4, "li", 2, i0.ɵɵrepeaterTrackByIdentity);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const state_r2 = ctx.$implicit;
     i0.ɵɵadvance(2);
     i0.ɵɵtextInterpolate(state_r2[0]);
     i0.ɵɵadvance(2);
-    i0.ɵɵproperty("ngForOf", state_r2[1]);
+    i0.ɵɵrepeater(state_r2[1]);
 } }
 /**
  * Simple component for displaying the current values in the data store.
@@ -96,15 +97,15 @@ class StoreDebugComponent {
         this.subscriptions.unsubscribe();
     }
     static ɵfac = function StoreDebugComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || StoreDebugComponent)(); };
-    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: StoreDebugComponent, selectors: [["ccf-store-debug"]], standalone: false, decls: 1, vars: 1, consts: [["class", "state", 4, "ngFor", "ngForOf"], [1, "state"], [1, "kvlist"], ["class", "kvpair", 4, "ngFor", "ngForOf"], [1, "kvpair"]], template: function StoreDebugComponent_Template(rf, ctx) { if (rf & 1) {
-            i0.ɵɵtemplate(0, StoreDebugComponent_div_0_Template, 5, 2, "div", 0);
+    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: StoreDebugComponent, selectors: [["ccf-store-debug"]], standalone: false, decls: 2, vars: 0, consts: [[1, "state"], [1, "kvlist"], [1, "kvpair"]], template: function StoreDebugComponent_Template(rf, ctx) { if (rf & 1) {
+            i0.ɵɵrepeaterCreate(0, StoreDebugComponent_For_1_Template, 6, 1, "div", 0, _forTrack0);
         } if (rf & 2) {
-            i0.ɵɵproperty("ngForOf", ctx.data);
-        } }, dependencies: [i1.NgForOf, i1.JsonPipe], styles: ["[_nghost-%COMP%]{display:block}"], changeDetection: 0 });
+            i0.ɵɵrepeater(ctx.data);
+        } }, dependencies: [i1.JsonPipe], styles: ["[_nghost-%COMP%]{display:block}"], changeDetection: 0 });
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(StoreDebugComponent, [{
         type: Component,
-        args: [{ selector: 'ccf-store-debug', standalone: false, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div *ngFor=\"let state of data\" class=\"state\">\n  <div>{{ state[0] }}</div>\n  <ul class=\"kvlist\">\n    <li *ngFor=\"let kv of state[1]\" class=\"kvpair\">{{ kv[0] }}: {{ kv[1] | json }}</li>\n  </ul>\n</div>\n", styles: [":host{display:block}\n"] }]
+        args: [{ selector: 'ccf-store-debug', standalone: false, changeDetection: ChangeDetectionStrategy.OnPush, template: "@for (state of data; track state[0]) {\n  <div class=\"state\">\n    <div>{{ state[0] }}</div>\n    <ul class=\"kvlist\">\n      @for (kv of state[1]; track kv) {\n        <li class=\"kvpair\">{{ kv[0] }}: {{ kv[1] | json }}</li>\n      }\n    </ul>\n  </div>\n}\n", styles: [":host{display:block}\n"] }]
     }], () => [], null); })();
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(StoreDebugComponent, { className: "StoreDebugComponent", filePath: "lib/components/store-debug/store-debug.component.ts", lineNumber: 20 }); })();
 
@@ -323,9 +324,7 @@ let GlobalConfigState = class GlobalConfigState extends NgxsImmutableDataReposit
     static ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: GlobalConfigState, factory: GlobalConfigState.ɵfac });
 };
 __decorate([
-    Computed(),
-    __metadata("design:type", Observable),
-    __metadata("design:paramtypes", [])
+    Computed()
 ], GlobalConfigState.prototype, "config$", null);
 GlobalConfigState = __decorate([
     StateRepository(),
@@ -514,8 +513,8 @@ function spatialSceneNodeReviver(nodes) {
 function filterToParams(filter = {}) {
     const { ageRange, bmiRange, sex, ontologyTerms, cellTypeTerms, biomarkerTerms, consortiums, tmc: providers, technologies, spatialSearches: spatial, } = filter;
     return {
-        age: JSON.stringify(rangeToMinMax(ageRange, 1, 110)),
-        bmi: JSON.stringify(rangeToMinMax(bmiRange, 13, 83)),
+        age: rangeToMinMax(ageRange, 1, 110),
+        bmi: rangeToMinMax(bmiRange, 13, 83),
         sex: sex?.toLowerCase(),
         ontologyTerms,
         cellTypeTerms,
@@ -523,7 +522,7 @@ function filterToParams(filter = {}) {
         consortiums,
         providers,
         technologies,
-        spatial: spatial?.length ? JSON.stringify(spatial) : undefined,
+        spatial,
     };
 }
 /**
@@ -735,88 +734,46 @@ class ApiEndpointDataSourceService {
     static ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ApiEndpointDataSourceService, factory: ApiEndpointDataSourceService.ɵfac, providedIn: 'root' });
 }
 __decorate([
-    Cacheable(CACHE_CONFIG_NO_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_NO_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getProviderNames", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_NO_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_NO_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getDatasetTechnologyNames", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_NO_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_NO_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getConsortiumNames", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_NO_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_NO_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getOntologyTreeModel", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_NO_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_NO_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getCellTypeTreeModel", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_NO_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_NO_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getBiomarkerTreeModel", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_NO_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_NO_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getReferenceOrgans", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getTissueBlockResults", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getAggregateResults", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getOntologyTermOccurences", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getCellTypeTermOccurences", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getBiomarkerTermOccurences", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getScene", null);
 __decorate([
-    Cacheable(CACHE_CONFIG_PARAMS),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
-    __metadata("design:returntype", Observable)
+    Cacheable(CACHE_CONFIG_PARAMS)
 ], ApiEndpointDataSourceService.prototype, "getReferenceOrganScene", null);
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ApiEndpointDataSourceService, [{
         type: Injectable,
@@ -1499,8 +1456,8 @@ class XYZPositionModule {
     }], null, null); })();
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(XYZPositionModule, { declarations: [XYZPositionComponent], imports: [CommonModule], exports: [XYZPositionComponent] }); })();
 
-function SpatialSearchKeyboardUIComponent_div_15_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 9);
+function SpatialSearchKeyboardUIComponent_Conditional_15_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵelementStart(0, "div", 8);
     i0.ɵɵtext(1, "SHIFT");
     i0.ɵɵelementEnd();
 } }
@@ -1517,7 +1474,7 @@ class SpatialSearchKeyboardUIComponent {
     /** Emits the key value when a key is hovered over */
     keyHovered = new EventEmitter();
     static ɵfac = function SpatialSearchKeyboardUIComponent_Factory(__ngFactoryType__) { return new (__ngFactoryType__ || SpatialSearchKeyboardUIComponent)(); };
-    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: SpatialSearchKeyboardUIComponent, selectors: [["ccf-spatial-search-keyboard-ui"]], inputs: { currentKey: "currentKey", shiftPressed: "shiftPressed" }, outputs: { keyClicked: "keyClicked", keyHovered: "keyHovered" }, standalone: false, decls: 16, vars: 13, consts: [["hraFeature", "keyboard-ui", 1, "keys"], [1, "keyrow"], ["hraFeature", "q", "hraClickEvent", "", 1, "key", "blue", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "w", "hraClickEvent", "", 1, "key", "green", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "e", "hraClickEvent", "", 1, "key", "blue", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "a", "hraClickEvent", "", 1, "key", "red", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "s", "hraClickEvent", "", 1, "key", "green", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "d", "hraClickEvent", "", 1, "key", "red", 3, "mousedown", "mouseover", "mouseout"], ["class", "shift", 4, "ngIf"], [1, "shift"]], template: function SpatialSearchKeyboardUIComponent_Template(rf, ctx) { if (rf & 1) {
+    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: SpatialSearchKeyboardUIComponent, selectors: [["ccf-spatial-search-keyboard-ui"]], inputs: { currentKey: "currentKey", shiftPressed: "shiftPressed" }, outputs: { keyClicked: "keyClicked", keyHovered: "keyHovered" }, standalone: false, decls: 16, vars: 13, consts: [["hraFeature", "keyboard-ui", 1, "keys"], [1, "keyrow"], ["hraFeature", "q", "hraClickEvent", "", 1, "key", "blue", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "w", "hraClickEvent", "", 1, "key", "green", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "e", "hraClickEvent", "", 1, "key", "blue", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "a", "hraClickEvent", "", 1, "key", "red", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "s", "hraClickEvent", "", 1, "key", "green", 3, "mousedown", "mouseover", "mouseout"], ["hraFeature", "d", "hraClickEvent", "", 1, "key", "red", 3, "mousedown", "mouseover", "mouseout"], [1, "shift"]], template: function SpatialSearchKeyboardUIComponent_Template(rf, ctx) { if (rf & 1) {
             i0.ɵɵelementStart(0, "div", 0)(1, "div", 1)(2, "div", 2);
             i0.ɵɵlistener("mousedown", function SpatialSearchKeyboardUIComponent_Template_div_mousedown_2_listener() { return ctx.keyClicked.emit("q"); })("mouseover", function SpatialSearchKeyboardUIComponent_Template_div_mouseover_2_listener() { return ctx.keyHovered.emit("q"); })("mouseout", function SpatialSearchKeyboardUIComponent_Template_div_mouseout_2_listener() { return ctx.keyHovered.emit(); });
             i0.ɵɵtext(3, " Q ");
@@ -1542,7 +1499,7 @@ class SpatialSearchKeyboardUIComponent {
             i0.ɵɵlistener("mousedown", function SpatialSearchKeyboardUIComponent_Template_div_mousedown_13_listener() { return ctx.keyClicked.emit("d"); })("mouseover", function SpatialSearchKeyboardUIComponent_Template_div_mouseover_13_listener() { return ctx.keyHovered.emit("d"); })("mouseout", function SpatialSearchKeyboardUIComponent_Template_div_mouseout_13_listener() { return ctx.keyHovered.emit(); });
             i0.ɵɵtext(14, " D ");
             i0.ɵɵelementEnd()();
-            i0.ɵɵtemplate(15, SpatialSearchKeyboardUIComponent_div_15_Template, 2, 0, "div", 8);
+            i0.ɵɵconditionalCreate(15, SpatialSearchKeyboardUIComponent_Conditional_15_Template, 2, 0, "div", 8);
             i0.ɵɵelementEnd();
         } if (rf & 2) {
             i0.ɵɵadvance(2);
@@ -1558,12 +1515,12 @@ class SpatialSearchKeyboardUIComponent {
             i0.ɵɵadvance(2);
             i0.ɵɵclassProp("highlighted", ctx.currentKey === "d");
             i0.ɵɵadvance(2);
-            i0.ɵɵproperty("ngIf", ctx.shiftPressed);
-        } }, dependencies: [i1.NgIf, i1$2.ClickEventDirective, i1$2.FeatureDirective], styles: ["[_nghost-%COMP%]{font:var(--mat-sys-label-large)}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]{display:flex;flex-direction:column;align-items:flex-start;padding:0;gap:.5rem;width:7rem;-webkit-user-select:none;user-select:none}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]{display:flex;flex-direction:row;justify-content:center;align-items:center;padding:0;gap:.5rem}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]   .key[_ngcontent-%COMP%]{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:2rem;height:2rem;border:2px solid;border-radius:.5rem;cursor:pointer}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]   .key[_ngcontent-%COMP%]:hover, [_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]   .key.highlighted[_ngcontent-%COMP%]{color:#fff}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .green[_ngcontent-%COMP%]{color:#1dcc65}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .blue[_ngcontent-%COMP%]{color:#2979ff}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .red[_ngcontent-%COMP%]{color:#d50000}[_nghost-%COMP%]   .shift[_ngcontent-%COMP%]{color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:7rem;height:2rem;border:2px solid;border-radius:.5rem}"], changeDetection: 0 });
+            i0.ɵɵconditional(ctx.shiftPressed ? 15 : -1);
+        } }, dependencies: [i1$2.ClickEventDirective, i1$2.FeatureDirective], styles: ["[_nghost-%COMP%]{font:var(--mat-sys-label-large)}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]{display:flex;flex-direction:column;align-items:flex-start;padding:0;gap:.5rem;width:7rem;-webkit-user-select:none;user-select:none}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]{display:flex;flex-direction:row;justify-content:center;align-items:center;padding:0;gap:.5rem}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]   .key[_ngcontent-%COMP%]{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:2rem;height:2rem;border:2px solid;border-radius:.5rem;cursor:pointer}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]   .key[_ngcontent-%COMP%]:hover, [_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .keyrow[_ngcontent-%COMP%]   .key.highlighted[_ngcontent-%COMP%]{color:#fff}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .green[_ngcontent-%COMP%]{color:#1dcc65}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .blue[_ngcontent-%COMP%]{color:#2979ff}[_nghost-%COMP%]   .keys[_ngcontent-%COMP%]   .red[_ngcontent-%COMP%]{color:#d50000}[_nghost-%COMP%]   .shift[_ngcontent-%COMP%]{color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:7rem;height:2rem;border:2px solid;border-radius:.5rem}"], changeDetection: 0 });
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SpatialSearchKeyboardUIComponent, [{
         type: Component,
-        args: [{ selector: 'ccf-spatial-search-keyboard-ui', standalone: false, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div hraFeature=\"keyboard-ui\" class=\"keys\">\n  <div class=\"keyrow\">\n    <div\n      hraFeature=\"q\"\n      hraClickEvent\n      class=\"key blue\"\n      [class.highlighted]=\"currentKey === 'q'\"\n      (mousedown)=\"keyClicked.emit('q')\"\n      (mouseover)=\"keyHovered.emit('q')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      Q\n    </div>\n    <div\n      hraFeature=\"w\"\n      hraClickEvent\n      class=\"key green\"\n      [class.highlighted]=\"currentKey === 'w'\"\n      (mousedown)=\"keyClicked.emit('w')\"\n      (mouseover)=\"keyHovered.emit('w')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      W\n    </div>\n    <div\n      hraFeature=\"e\"\n      hraClickEvent\n      class=\"key blue\"\n      [class.highlighted]=\"currentKey === 'e'\"\n      (mousedown)=\"keyClicked.emit('e')\"\n      (mouseover)=\"keyHovered.emit('e')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      E\n    </div>\n  </div>\n  <div class=\"keyrow\">\n    <div\n      hraFeature=\"a\"\n      hraClickEvent\n      class=\"key red\"\n      [class.highlighted]=\"currentKey === 'a'\"\n      (mousedown)=\"keyClicked.emit('a')\"\n      (mouseover)=\"keyHovered.emit('a')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      A\n    </div>\n    <div\n      hraFeature=\"s\"\n      hraClickEvent\n      class=\"key green\"\n      [class.highlighted]=\"currentKey === 's'\"\n      (mousedown)=\"keyClicked.emit('s')\"\n      (mouseover)=\"keyHovered.emit('s')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      S\n    </div>\n    <div\n      hraFeature=\"d\"\n      hraClickEvent\n      class=\"key red\"\n      [class.highlighted]=\"currentKey === 'd'\"\n      (mousedown)=\"keyClicked.emit('d')\"\n      (mouseover)=\"keyHovered.emit('d')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      D\n    </div>\n  </div>\n  <div *ngIf=\"shiftPressed\" class=\"shift\">SHIFT</div>\n</div>\n", styles: [":host{font:var(--mat-sys-label-large)}:host .keys{display:flex;flex-direction:column;align-items:flex-start;padding:0;gap:.5rem;width:7rem;-webkit-user-select:none;user-select:none}:host .keys .keyrow{display:flex;flex-direction:row;justify-content:center;align-items:center;padding:0;gap:.5rem}:host .keys .keyrow .key{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:2rem;height:2rem;border:2px solid;border-radius:.5rem;cursor:pointer}:host .keys .keyrow .key:hover,:host .keys .keyrow .key.highlighted{color:#fff}:host .keys .green{color:#1dcc65}:host .keys .blue{color:#2979ff}:host .keys .red{color:#d50000}:host .shift{color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:7rem;height:2rem;border:2px solid;border-radius:.5rem}\n"] }]
+        args: [{ selector: 'ccf-spatial-search-keyboard-ui', standalone: false, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div hraFeature=\"keyboard-ui\" class=\"keys\">\n  <div class=\"keyrow\">\n    <div\n      hraFeature=\"q\"\n      hraClickEvent\n      class=\"key blue\"\n      [class.highlighted]=\"currentKey === 'q'\"\n      (mousedown)=\"keyClicked.emit('q')\"\n      (mouseover)=\"keyHovered.emit('q')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      Q\n    </div>\n    <div\n      hraFeature=\"w\"\n      hraClickEvent\n      class=\"key green\"\n      [class.highlighted]=\"currentKey === 'w'\"\n      (mousedown)=\"keyClicked.emit('w')\"\n      (mouseover)=\"keyHovered.emit('w')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      W\n    </div>\n    <div\n      hraFeature=\"e\"\n      hraClickEvent\n      class=\"key blue\"\n      [class.highlighted]=\"currentKey === 'e'\"\n      (mousedown)=\"keyClicked.emit('e')\"\n      (mouseover)=\"keyHovered.emit('e')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      E\n    </div>\n  </div>\n  <div class=\"keyrow\">\n    <div\n      hraFeature=\"a\"\n      hraClickEvent\n      class=\"key red\"\n      [class.highlighted]=\"currentKey === 'a'\"\n      (mousedown)=\"keyClicked.emit('a')\"\n      (mouseover)=\"keyHovered.emit('a')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      A\n    </div>\n    <div\n      hraFeature=\"s\"\n      hraClickEvent\n      class=\"key green\"\n      [class.highlighted]=\"currentKey === 's'\"\n      (mousedown)=\"keyClicked.emit('s')\"\n      (mouseover)=\"keyHovered.emit('s')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      S\n    </div>\n    <div\n      hraFeature=\"d\"\n      hraClickEvent\n      class=\"key red\"\n      [class.highlighted]=\"currentKey === 'd'\"\n      (mousedown)=\"keyClicked.emit('d')\"\n      (mouseover)=\"keyHovered.emit('d')\"\n      (mouseout)=\"keyHovered.emit()\"\n    >\n      D\n    </div>\n  </div>\n  @if (shiftPressed) {\n    <div class=\"shift\">SHIFT</div>\n  }\n</div>\n", styles: [":host{font:var(--mat-sys-label-large)}:host .keys{display:flex;flex-direction:column;align-items:flex-start;padding:0;gap:.5rem;width:7rem;-webkit-user-select:none;user-select:none}:host .keys .keyrow{display:flex;flex-direction:row;justify-content:center;align-items:center;padding:0;gap:.5rem}:host .keys .keyrow .key{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:2rem;height:2rem;border:2px solid;border-radius:.5rem;cursor:pointer}:host .keys .keyrow .key:hover,:host .keys .keyrow .key.highlighted{color:#fff}:host .keys .green{color:#1dcc65}:host .keys .blue{color:#2979ff}:host .keys .red{color:#d50000}:host .shift{color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:.25rem;width:7rem;height:2rem;border:2px solid;border-radius:.5rem}\n"] }]
     }], null, { currentKey: [{
             type: Input
         }], shiftPressed: [{

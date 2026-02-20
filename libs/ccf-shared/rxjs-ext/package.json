@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/ccf-shared-rxjs-ext.mjs"
+  "module": "../fesm2022/ccf-shared-rxjs-ext.mjs",
+  "typings": "../types/ccf-shared-rxjs-ext.d.ts"
 }

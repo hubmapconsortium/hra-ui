@@ -540,7 +540,7 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
   readonly downloadHovered &#x3D; output&lt;string&gt;();
 
   /** Scrollbar ref */
-  readonly scrollbar &#x3D; viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;);
+  protected readonly scrollbar &#x3D; viewChild.required&lt;NgScrollbar&gt;(&#x27;scrollbar&#x27;);
 
   /** Mat sort element */
   private readonly sort &#x3D; viewChild.required(MatSort);
@@ -607,7 +607,7 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
   protected readonly dataSource &#x3D; new MatTableDataSource&lt;T&gt;([]);
 
   /** Selection model for checkbox functionality */
-  protected readonly selection &#x3D; new SelectionModel&lt;TableRow&gt;(true, []);
+  readonly selection &#x3D; new SelectionModel&lt;TableRow&gt;(true, []);
 
   /** Sort data on load and set columns */
   constructor() {
@@ -674,7 +674,7 @@ export class TableComponent&lt;T &#x3D; TableRow&gt; {
    * Toggle row selection
    */
   toggleRow(row: TableRow): void {
-    this.selection.toggle(row as TableRow);
+    this.selection.toggle(row);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
 

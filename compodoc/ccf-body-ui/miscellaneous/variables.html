@@ -390,10 +390,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>z
-  .object({})
-  .passthrough()
-  .refine((obj): obj is SpatialSceneNode &#x3D;&gt; true)</code>
+                        <i>Default value : </i><code>z.looseObject({}) as unknown as z.ZodType&lt;SpatialSceneNode&gt;</code>
                     </td>
                 </tr>
 

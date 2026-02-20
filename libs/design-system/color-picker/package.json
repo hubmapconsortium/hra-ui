@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/hra-ui-design-system-color-picker.mjs"
+  "module": "../fesm2022/hra-ui-design-system-color-picker.mjs",
+  "typings": "../types/hra-ui-design-system-color-picker.d.ts"
 }

@@ -7,11 +7,11 @@ import { ImageModalComponent } from '@hra-ui/design-system/modal/image-modal';
 const REEXPORTS = [InfoModalComponent, ImageModalComponent];
 /** Exports all brand components, modules, etc. */
 class ModalModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ModalModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: ModalModule, imports: [InfoModalComponent, ImageModalComponent], exports: [InfoModalComponent, ImageModalComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ModalModule, imports: [REEXPORTS] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ModalModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.5", ngImport: i0, type: ModalModule, imports: [InfoModalComponent, ImageModalComponent], exports: [InfoModalComponent, ImageModalComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ModalModule, imports: [REEXPORTS] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ModalModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ModalModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: REEXPORTS,

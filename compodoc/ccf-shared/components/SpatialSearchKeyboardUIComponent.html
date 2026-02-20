@@ -317,7 +317,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter</code>
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
                     </td>
                 </tr>
@@ -344,7 +344,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter</code>
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
                     </td>
                 </tr>
@@ -470,7 +470,9 @@ export class SpatialSearchKeyboardUIComponent {
       D
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div *ngIf&#x3D;&quot;shiftPressed&quot; class&#x3D;&quot;shift&quot;&gt;SHIFT&lt;/div&gt;
+  @if (shiftPressed) {
+    &lt;div class&#x3D;&quot;shift&quot;&gt;SHIFT&lt;/div&gt;
+  }
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -501,7 +503,7 @@ export class SpatialSearchKeyboardUIComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div hraFeature="keyboard-ui" class="keys">  <div class="keyrow">    <div      hraFeature="q"      hraClickEvent      class="key blue"      [class.highlighted]="currentKey === \'q\'"      (mousedown)="keyClicked.emit(\'q\')"      (mouseover)="keyHovered.emit(\'q\')"      (mouseout)="keyHovered.emit()"    >      Q    </div>    <div      hraFeature="w"      hraClickEvent      class="key green"      [class.highlighted]="currentKey === \'w\'"      (mousedown)="keyClicked.emit(\'w\')"      (mouseover)="keyHovered.emit(\'w\')"      (mouseout)="keyHovered.emit()"    >      W    </div>    <div      hraFeature="e"      hraClickEvent      class="key blue"      [class.highlighted]="currentKey === \'e\'"      (mousedown)="keyClicked.emit(\'e\')"      (mouseover)="keyHovered.emit(\'e\')"      (mouseout)="keyHovered.emit()"    >      E    </div>  </div>  <div class="keyrow">    <div      hraFeature="a"      hraClickEvent      class="key red"      [class.highlighted]="currentKey === \'a\'"      (mousedown)="keyClicked.emit(\'a\')"      (mouseover)="keyHovered.emit(\'a\')"      (mouseout)="keyHovered.emit()"    >      A    </div>    <div      hraFeature="s"      hraClickEvent      class="key green"      [class.highlighted]="currentKey === \'s\'"      (mousedown)="keyClicked.emit(\'s\')"      (mouseover)="keyHovered.emit(\'s\')"      (mouseout)="keyHovered.emit()"    >      S    </div>    <div      hraFeature="d"      hraClickEvent      class="key red"      [class.highlighted]="currentKey === \'d\'"      (mousedown)="keyClicked.emit(\'d\')"      (mouseover)="keyHovered.emit(\'d\')"      (mouseout)="keyHovered.emit()"    >      D    </div>  </div>  <div *ngIf="shiftPressed" class="shift">SHIFT</div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div hraFeature="keyboard-ui" class="keys">  <div class="keyrow">    <div      hraFeature="q"      hraClickEvent      class="key blue"      [class.highlighted]="currentKey === \'q\'"      (mousedown)="keyClicked.emit(\'q\')"      (mouseover)="keyHovered.emit(\'q\')"      (mouseout)="keyHovered.emit()"    >      Q    </div>    <div      hraFeature="w"      hraClickEvent      class="key green"      [class.highlighted]="currentKey === \'w\'"      (mousedown)="keyClicked.emit(\'w\')"      (mouseover)="keyHovered.emit(\'w\')"      (mouseout)="keyHovered.emit()"    >      W    </div>    <div      hraFeature="e"      hraClickEvent      class="key blue"      [class.highlighted]="currentKey === \'e\'"      (mousedown)="keyClicked.emit(\'e\')"      (mouseover)="keyHovered.emit(\'e\')"      (mouseout)="keyHovered.emit()"    >      E    </div>  </div>  <div class="keyrow">    <div      hraFeature="a"      hraClickEvent      class="key red"      [class.highlighted]="currentKey === \'a\'"      (mousedown)="keyClicked.emit(\'a\')"      (mouseover)="keyHovered.emit(\'a\')"      (mouseout)="keyHovered.emit()"    >      A    </div>    <div      hraFeature="s"      hraClickEvent      class="key green"      [class.highlighted]="currentKey === \'s\'"      (mousedown)="keyClicked.emit(\'s\')"      (mouseover)="keyHovered.emit(\'s\')"      (mouseout)="keyHovered.emit()"    >      S    </div>    <div      hraFeature="d"      hraClickEvent      class="key red"      [class.highlighted]="currentKey === \'d\'"      (mousedown)="keyClicked.emit(\'d\')"      (mouseover)="keyHovered.emit(\'d\')"      (mouseout)="keyHovered.emit()"    >      D    </div>  </div>  @if (shiftPressed) {    <div class="shift">SHIFT</div>  }</div></div>'
     var COMPONENTS = [{'name': 'OpacitySliderComponent', 'selector': 'ccf-opacity-slider'},{'name': 'SpatialSearchKeyboardUIBehaviorComponent', 'selector': 'ccf-spatial-search-keyboard-ui-behavior'},{'name': 'SpatialSearchKeyboardUIComponent', 'selector': 'ccf-spatial-search-keyboard-ui'},{'name': 'SpatialSearchListComponent', 'selector': 'ccf-spatial-search-list'},{'name': 'StoreDebugComponent', 'selector': 'ccf-store-debug'},{'name': 'XYZPositionComponent', 'selector': 'ccf-xyz-position'}];
     var DIRECTIVES = [{'name': 'BaseWebComponent', 'selector': ''},{'name': 'NumberDirective', 'selector': 'input[ccfNumbersOnly]'}];
     var ACTUAL_COMPONENT = {'name': 'SpatialSearchKeyboardUIComponent'};

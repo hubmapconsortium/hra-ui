@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/hra-ui-common-import-meta.mjs"
+  "module": "../fesm2022/hra-ui-common-import-meta.mjs",
+  "typings": "../types/hra-ui-common-import-meta.d.ts"
 }

@@ -1,0 +1,12 @@
+/* @license
+Papa Parse
+v5.5.3
+https://github.com/mholt/PapaParse
+License: MIT
+*/
+
+/**
+ * @license Angular v21.1.5
+ * (c) 2010-2026 Google LLC. https://angular.dev/
+ * License: MIT
+ */

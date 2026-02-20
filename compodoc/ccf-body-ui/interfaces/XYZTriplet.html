@@ -395,10 +395,7 @@ function connectOutput&lt;T&gt;(out: OutputEmitterRef&lt;T&gt;, source: Observab
 }
 
 /** Zod for SPATIAL SCENE NODE  */
-export const SPATIAL_SCENE_NODE &#x3D; z
-  .object({})
-  .passthrough()
-  .refine((obj): obj is SpatialSceneNode &#x3D;&gt; true);
+export const SPATIAL_SCENE_NODE &#x3D; z.looseObject({}) as unknown as z.ZodType&lt;SpatialSceneNode&gt;;
 
 /** Zod for SPATIAL SCENE NODE array */
 export const SPATIAL_SCENE_NODE_ARRAY &#x3D; z.array(SPATIAL_SCENE_NODE);

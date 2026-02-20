@@ -393,7 +393,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>SVGScriptEvalMode.NEVER</code>
+                        <i>Default value : </i><code>&#x27;never&#x27; as SVGScriptEvalMode</code>
                     </td>
                 </tr>
                     <tr>
@@ -420,7 +420,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { findOrThrow } from &#x27;@hra-ui/common/array-util&#x27;;
-import { InlineSVGModule, SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
+import { InlineSVGModule, type SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
 import { BrandLogoSize, injectBrandLogos } from &#x27;./brand-logos&#x27;;
 
 /** Brand logo */
@@ -444,7 +444,7 @@ export class BrandLogoComponent {
   readonly logos &#x3D; input(injectBrandLogos());
 
   /** SVG script eval mode */
-  protected readonly NEVER_EVAL_SCRIPTS &#x3D; SVGScriptEvalMode.NEVER;
+  protected readonly NEVER_EVAL_SCRIPTS &#x3D; &#x27;never&#x27; as SVGScriptEvalMode;
 
   /** Logo data */
   protected readonly data &#x3D; computed(() &#x3D;&gt; findOrThrow(this.logos(), ({ size }) &#x3D;&gt; size &#x3D;&#x3D;&#x3D; this.size()));

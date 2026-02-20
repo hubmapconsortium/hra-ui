@@ -389,7 +389,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>SVGScriptEvalMode.NEVER</code>
+                        <i>Default value : </i><code>&#x27;never&#x27; as SVGScriptEvalMode</code>
                     </td>
                 </tr>
                     <tr>
@@ -416,7 +416,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { findOrThrow } from &#x27;@hra-ui/common/array-util&#x27;;
-import { InlineSVGModule, SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
+import { InlineSVGModule, type SVGScriptEvalMode } from &#x27;ng-inline-svg-2&#x27;;
 import { BrandMarkVariant, injectBrandMarks } from &#x27;./brand-marks&#x27;;
 
 /**
@@ -437,7 +437,7 @@ export class BrandMarkComponent {
   readonly marks &#x3D; input(injectBrandMarks());
 
   /** SVG script eval mode */
-  protected readonly NEVER_EVAL_SCRIPTS &#x3D; SVGScriptEvalMode.NEVER;
+  protected readonly NEVER_EVAL_SCRIPTS &#x3D; &#x27;never&#x27; as SVGScriptEvalMode;
 
   /** Mark data */
   protected readonly data &#x3D; computed(() &#x3D;&gt; findOrThrow(this.marks(), ({ variant }) &#x3D;&gt; variant &#x3D;&#x3D;&#x3D; this.variant()));

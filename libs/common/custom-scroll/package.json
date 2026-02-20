@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/hra-ui-common-custom-scroll.mjs"
+  "module": "../fesm2022/hra-ui-common-custom-scroll.mjs",
+  "typings": "../types/hra-ui-common-custom-scroll.d.ts"
 }

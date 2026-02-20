@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-content-templates-page-section.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-content-templates-page-section.mjs",
+  "typings": "../../types/hra-ui-design-system-content-templates-page-section.d.ts"
 }

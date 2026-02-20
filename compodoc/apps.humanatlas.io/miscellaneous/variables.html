@@ -295,10 +295,10 @@
                             <a href="#TOOLTIP_CONTENT" title="src/app/pages/us1/cell-population-predictor/cell-population-predictor.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../cell-population-predictor.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../similar-anatomical-structures-table.component.ts)</a>
+                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us2/tissue-origin-predictions/components/similar-datasets-table/similar-datasets-table.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../similar-datasets-table.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us2/tissue-origin-predictions/components/similar-datasets-table/similar-datasets-table.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../similar-datasets-table.component.ts)</a>
+                            <a href="#TOOLTIP_CONTENT" title="src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts" ><b>TOOLTIP_CONTENT</b>&nbsp;&nbsp;&nbsp;(src/.../similar-anatomical-structures-table.component.ts)</a>
                         </li>
                         <li>
                             <a href="#WINDOW" title="src/app/pages/landing-page/landing-page.component.ts" ><b>WINDOW</b>&nbsp;&nbsp;&nbsp;(src/.../landing-page.component.ts)</a>
@@ -790,6 +790,47 @@
       helpUrl: &#x27;https://docs.humanatlas.io/apps&#x27;,
     },
   },
+
+  {
+    path: &#x27;api&#x27;,
+    children: [
+      {
+        path: &#x27;&#x27;,
+        pathMatch: &#x27;full&#x27;,
+        component: ApiComponent,
+        data: {
+          serverId: &#x27;prod&#x27;,
+        },
+      },
+      {
+        path: &#x27;:serverId&#x27;,
+        component: ApiComponent,
+        resolve: {
+          serverId: serverIdResolver,
+        },
+      },
+    ],
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;API&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/api&#x27;,
+    },
+  },
+  {
+    path: &#x27;cell-population-graphs&#x27;,
+    component: CellPopulationGraphComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;Cell Population Graphs&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/cell-population-graphs&#x27;,
+    },
+  },
+  {
+    path: &#x27;hra-pop-visualizer&#x27;,
+    component: HraPopVisualizerComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;HRApop Visualizer&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/hra-pop-visualizer&#x27;,
+    },
+  },
   {
     path: &#x27;us1&#x27;,
     children: [
@@ -846,86 +887,53 @@
       helpUrl: &#x27;https://humanatlas.io/user-story/6&#x27;,
     },
   },
-  {
-    path: &#x27;cell-population-graphs&#x27;,
-    component: CellPopulationGraphComponent,
-    data: {
-      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;Cell Population Graphs&#x27; }] satisfies BreadcrumbItem[],
-      helpUrl: &#x27;https://humanatlas.io/cell-population-graphs&#x27;,
-    },
-  },
-  {
-    path: &#x27;hra-pop-visualizer&#x27;,
-    component: HraPopVisualizerComponent,
-    data: {
-      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;HRApop Visualizer&#x27; }] satisfies BreadcrumbItem[],
-      helpUrl: &#x27;https://humanatlas.io/hra-pop-visualizer&#x27;,
-    },
-  },
-  {
-    path: &#x27;api&#x27;,
-    children: [
-      {
-        path: &#x27;&#x27;,
-        pathMatch: &#x27;full&#x27;,
-        component: ApiComponent,
-        data: {
-          serverId: &#x27;prod&#x27;,
-        },
-      },
-      {
-        path: &#x27;:serverId&#x27;,
-        component: ApiComponent,
-        resolve: {
-          serverId: serverIdResolver,
-        },
-      },
-    ],
-    data: {
-      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;API&#x27; }] satisfies BreadcrumbItem[],
-      helpUrl: &#x27;https://humanatlas.io/api&#x27;,
-    },
-  },
-  {
-    path: &#x27;500&#x27;,
-    component: ServerErrorPageComponent,
-  },
+
   // Redirects
+  {
+    path: &#x27;apis&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://humanatlas.io/api&#x27;),
+  },
   {
     path: &#x27;asctb-reporter&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/asctb-reporter&#x27;),
-  },
-  {
-    path: &#x27;rui&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/rui&#x27;),
-  },
-  {
-    path: &#x27;eui&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/eui&#x27;),
-  },
-  {
-    path: &#x27;organ-info&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/organ-info&#x27;),
-  },
-  {
-    path: &#x27;ftu&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/ftu-explorer&#x27;),
   },
   {
     path: &#x27;cde&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/cde&#x27;),
   },
   {
+    path: &#x27;dashboard&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/dashboard&#x27;),
+  },
+  {
+    path: &#x27;eui&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/eui&#x27;),
+  },
+  {
+    path: &#x27;ftu&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/ftu-explorer&#x27;),
+  },
+  {
     path: &#x27;kg&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/kg-explorer&#x27;),
+  },
+  {
+    path: &#x27;organ-info&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/organ-info&#x27;),
+  },
+  {
+    path: &#x27;rui&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/rui&#x27;),
   },
   {
     path: &#x27;web-components&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/us6&#x27;),
   },
+
+  // Error pages
   {
-    path: &#x27;apis&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://humanatlas.io/api&#x27;),
+    path: &#x27;500&#x27;,
+    component: ServerErrorPageComponent,
   },
   {
     path: &#x27;**&#x27;,
@@ -2756,7 +2764,7 @@ spec: OpenAPI spec URL</p>
         </tbody>
     </table>
 </section>
-    <h3>src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts</h3>
+    <h3>src/app/pages/us2/tissue-origin-predictions/components/similar-datasets-table/similar-datasets-table.component.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -2793,7 +2801,7 @@ cell type annotations in the HRA Workflows Runner (for sc-transcriptomics datase
         </tbody>
     </table>
 </section>
-    <h3>src/app/pages/us2/tissue-origin-predictions/components/similar-datasets-table/similar-datasets-table.component.ts</h3>
+    <h3>src/app/pages/us2/tissue-origin-predictions/components/similar-anatomical-structures-table/similar-anatomical-structures-table.component.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>

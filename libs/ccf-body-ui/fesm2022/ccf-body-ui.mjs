@@ -859,10 +859,7 @@ function connectOutput(out, source) {
     return source.subscribe((value) => out.emit(value));
 }
 /** Zod for SPATIAL SCENE NODE  */
-const SPATIAL_SCENE_NODE = z
-    .object({})
-    .passthrough()
-    .refine((obj) => true);
+const SPATIAL_SCENE_NODE = z.looseObject({});
 /** Zod for SPATIAL SCENE NODE array */
 const SPATIAL_SCENE_NODE_ARRAY = z.array(SPATIAL_SCENE_NODE);
 /** Preprocesses the scene input */
@@ -892,21 +889,21 @@ class BodyUiComponent {
     /** Constructor for the component */
     constructor() {
         /** Scene for the deck gl */
-        this.scene = input(undefined, ...(ngDevMode ? [{ debugName: "scene", transform: parseSceneInput }] : [{ transform: parseSceneInput }]));
+        this.scene = input(undefined, { ...(ngDevMode ? { debugName: "scene" } : {}), transform: parseSceneInput });
         /** Rotation for the deck gl */
-        this.rotation = input(undefined, ...(ngDevMode ? [{ debugName: "rotation", transform: numberAttribute }] : [{ transform: numberAttribute }]));
+        this.rotation = input(undefined, { ...(ngDevMode ? { debugName: "rotation" } : {}), transform: numberAttribute });
         /** Rotation X for the deck gl */
-        this.rotationX = input(undefined, ...(ngDevMode ? [{ debugName: "rotationX", transform: numberAttribute }] : [{ transform: numberAttribute }]));
+        this.rotationX = input(undefined, { ...(ngDevMode ? { debugName: "rotationX" } : {}), transform: numberAttribute });
         /** Zoom for the deck gl */
-        this.zoom = input(undefined, ...(ngDevMode ? [{ debugName: "zoom", transform: numberAttribute }] : [{ transform: numberAttribute }]));
+        this.zoom = input(undefined, { ...(ngDevMode ? { debugName: "zoom" } : {}), transform: numberAttribute });
         /** Target for the deck gl */
-        this.target = input(undefined, ...(ngDevMode ? [{ debugName: "target", transform: parseTargetInput }] : [{ transform: parseTargetInput }]));
+        this.target = input(undefined, { ...(ngDevMode ? { debugName: "target" } : {}), transform: parseTargetInput });
         /** Bounds for the deck gl */
-        this.bounds = input(undefined, ...(ngDevMode ? [{ debugName: "bounds", transform: parseBoundsInput }] : [{ transform: parseBoundsInput }]));
+        this.bounds = input(undefined, { ...(ngDevMode ? { debugName: "bounds" } : {}), transform: parseBoundsInput });
         /** Camera for the deck gl */
         this.camera = input(...(ngDevMode ? [undefined, { debugName: "camera" }] : []));
         /** Flag for the interactive for deck gl */
-        this.interactive = input(undefined, ...(ngDevMode ? [{ debugName: "interactive", transform: booleanAttribute }] : [{ transform: booleanAttribute }]));
+        this.interactive = input(undefined, { ...(ngDevMode ? { debugName: "interactive" } : {}), transform: booleanAttribute });
         /** Output for node click */
         this.nodeClick = output();
         /** Output for node drag */
@@ -1018,7 +1015,7 @@ class BodyUiComponent {
         type: Component,
         args: [{ selector: 'hra-body-ui', encapsulation: ViewEncapsulation.ShadowDom, template: "<canvas role=\"img\" part=\"canvas\" #canvas></canvas>\n", styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"] }]
     }], () => [], { scene: [{ type: i0.Input, args: [{ isSignal: true, alias: "scene", required: false }] }], rotation: [{ type: i0.Input, args: [{ isSignal: true, alias: "rotation", required: false }] }], rotationX: [{ type: i0.Input, args: [{ isSignal: true, alias: "rotationX", required: false }] }], zoom: [{ type: i0.Input, args: [{ isSignal: true, alias: "zoom", required: false }] }], target: [{ type: i0.Input, args: [{ isSignal: true, alias: "target", required: false }] }], bounds: [{ type: i0.Input, args: [{ isSignal: true, alias: "bounds", required: false }] }], camera: [{ type: i0.Input, args: [{ isSignal: true, alias: "camera", required: false }] }], interactive: [{ type: i0.Input, args: [{ isSignal: true, alias: "interactive", required: false }] }], nodeClick: [{ type: i0.Output, args: ["nodeClick"] }], nodeDrag: [{ type: i0.Output, args: ["nodeDrag"] }], nodeHoverStart: [{ type: i0.Output, args: ["nodeHoverStart"] }], nodeHoverStop: [{ type: i0.Output, args: ["nodeHoverStop"] }], rotationChange: [{ type: i0.Output, args: ["rotationChange"] }], initialized: [{ type: i0.Output, args: ["initialized"] }], canvas: [{ type: i0.ViewChild, args: ['canvas', { isSignal: true }] }] }); })();
-(() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(BodyUiComponent, { className: "BodyUiComponent", filePath: "lib/body-ui/body-ui.component.ts", lineNumber: 125 }); })();
+(() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(BodyUiComponent, { className: "BodyUiComponent", filePath: "lib/body-ui/body-ui.component.ts", lineNumber: 122 }); })();
 
 /**
  * This function simplifies a scene by processing spatial scene nodes, loading GLTF files, and generating new nodes with simplified geometry.

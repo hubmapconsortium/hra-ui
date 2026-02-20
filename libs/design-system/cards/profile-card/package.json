@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-cards-profile-card.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-cards-profile-card.mjs",
+  "typings": "../../types/hra-ui-design-system-cards-profile-card.d.ts"
 }

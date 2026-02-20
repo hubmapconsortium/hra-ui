@@ -1,4 +1,5 @@
 import { Matrix4, toRadians } from '@math.gl/core';
+import { SpatialSceneNodeGeometryEnum } from '@hra-api/ng-client';
 
 const gray$1 = [204, 204, 204, 255];
 const red$2 = [213, 0, 0, 255];
@@ -219,7 +220,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingSphere',
             '@type': 'SpatialSceneNode',
             unpickable: false,
-            geometry: 'sphere',
+            geometry: SpatialSceneNodeGeometryEnum.Sphere,
             transformMatrix: new Matrix4(Matrix4.IDENTITY).translate([sphere.x, sphere.y, sphere.z]).scale(sphere.radius),
             color: gold,
         },
@@ -228,7 +229,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereXD',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x + sphere.radius + sphereLineLength / 2, sphere.y, sphere.z])
                 .rotateZ(toRadians(-90))
@@ -239,7 +240,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereXDCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x + sphere.radius + sphereLineLength, sphere.y, sphere.z])
                 .rotateZ(toRadians(-90))
@@ -250,7 +251,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereXDLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'D',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x + sphere.radius + sphereLineLength + sphereConeRadius * 3, sphere.y, sphere.z])
@@ -262,7 +263,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereXA',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x - sphere.radius - sphereLineLength / 2, sphere.y, sphere.z])
                 .rotateZ(toRadians(-90))
@@ -273,7 +274,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereXACone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x - sphere.radius - sphereLineLength, sphere.y, sphere.z])
                 .rotateZ(toRadians(90))
@@ -284,7 +285,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereXALabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'A',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x - sphere.radius - sphereLineLength - sphereConeRadius * 3.5, sphere.y, sphere.z])
@@ -296,7 +297,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereYW',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y + sphere.radius + sphereLineLength / 2, sphere.z])
                 .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
@@ -306,7 +307,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereYWCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y + sphere.radius + sphereLineLength, sphere.z])
                 .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
@@ -316,7 +317,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereYWLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'W',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y + sphere.radius + sphereLineLength + sphereConeRadius * 3, sphere.z])
@@ -328,7 +329,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereYS',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y - sphere.radius - sphereLineLength / 2, sphere.z])
                 .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
@@ -338,7 +339,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereYSCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y - sphere.radius - sphereLineLength, sphere.z])
                 .rotateZ(toRadians(180))
@@ -349,7 +350,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereYSLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'S',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y - sphere.radius - sphereLineLength - sphereConeRadius * 3.5, sphere.z])
@@ -361,7 +362,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereZQ',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y, sphere.z + sphere.radius + sphereLineLength / 2])
                 .rotateX(toRadians(90))
@@ -372,7 +373,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereZQCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y, sphere.z + sphere.radius + sphereLineLength])
                 .rotateX(toRadians(90))
@@ -383,7 +384,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereZQLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'Q',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y, sphere.z + sphere.radius + sphereLineLength + sphereConeRadius * 3])
@@ -395,7 +396,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereZE',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y, sphere.z - sphere.radius - sphereLineLength / 2])
                 .rotateX(toRadians(-90))
@@ -406,7 +407,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereZECone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y, sphere.z - sphere.radius - sphereLineLength])
                 .rotateX(toRadians(-90))
@@ -417,7 +418,7 @@ function getProbingSphereScene(node, sphere) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#ProbingsphereZELabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'E',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([sphere.x, sphere.y, sphere.z - sphere.radius - sphereLineLength - sphereConeRadius * 3.5])
@@ -465,7 +466,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeOriginSphere',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'sphere',
+            geometry: SpatialSceneNodeGeometryEnum.Sphere,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z])
                 .rotateXYZ([cube.rx, cube.ry, cube.rz])
@@ -477,7 +478,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeOriginX',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z])
                 .rotateXYZ([cube.rx, cube.ry, cube.rz])
@@ -492,7 +493,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeOriginY',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z])
                 .rotateXYZ([cube.rx, cube.ry, cube.rz])
@@ -506,7 +507,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeOriginZ',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z])
                 .rotateXYZ([cube.rx, cube.ry, cube.rz])
@@ -521,7 +522,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeXD',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x + cube.radius + sphereLineLength / 2, cube.y, cube.z])
                 .rotateZ(toRadians(-90))
@@ -532,7 +533,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeXDCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x + cube.radius + sphereLineLength, cube.y, cube.z])
                 .rotateZ(toRadians(-90))
@@ -543,7 +544,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeXDLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'D',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x + cube.radius + sphereLineLength + sphereConeRadius * 3, cube.y, cube.z])
@@ -555,7 +556,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeXA',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x - cube.radius - sphereLineLength / 2, cube.y, cube.z])
                 .rotateZ(toRadians(-90))
@@ -566,7 +567,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeXACone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x - cube.radius - sphereLineLength, cube.y, cube.z])
                 .rotateZ(toRadians(90))
@@ -577,7 +578,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeXALabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'A',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x - cube.radius - sphereLineLength - sphereConeRadius * 3.5, cube.y, cube.z])
@@ -589,7 +590,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeYW',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y + cube.radius + sphereLineLength / 2, cube.z])
                 .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
@@ -599,7 +600,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeYWCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y + cube.radius + sphereLineLength, cube.z])
                 .scale([sphereConeRadius, sphereConeRadius * 3, sphereConeRadius]),
@@ -609,7 +610,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeYWLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'W',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y + cube.radius + sphereLineLength + sphereConeRadius * 3, cube.z])
@@ -621,7 +622,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeYS',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y - cube.radius - sphereLineLength / 2, cube.z])
                 .scale([sphereLineRadius, sphereLineLength, sphereLineRadius]),
@@ -631,7 +632,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeYSCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y - cube.radius - sphereLineLength, cube.z])
                 .rotateZ(toRadians(180))
@@ -642,7 +643,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeYSLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'S',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y - cube.radius - sphereLineLength - sphereConeRadius * 3.5, cube.z])
@@ -654,7 +655,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeZQ',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z + cube.radius + sphereLineLength / 2])
                 .rotateX(toRadians(90))
@@ -665,7 +666,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeZQCone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z + cube.radius + sphereLineLength])
                 .rotateX(toRadians(90))
@@ -676,7 +677,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeZQLabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'Q',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z + cube.radius + sphereLineLength + sphereConeRadius * 3])
@@ -688,7 +689,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeZE',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cylinder',
+            geometry: SpatialSceneNodeGeometryEnum.Cylinder,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z - cube.radius - sphereLineLength / 2])
                 .rotateX(toRadians(-90))
@@ -699,7 +700,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeZECone',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'cone',
+            geometry: SpatialSceneNodeGeometryEnum.Cone,
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z - cube.radius - sphereLineLength])
                 .rotateX(toRadians(-90))
@@ -710,7 +711,7 @@ function getTissueBlockScene(node, placement) {
             '@id': 'http://purl.org/ccf/latest/ccf.owl#CubeZELabel',
             '@type': 'SpatialSceneNode',
             unpickable: true,
-            geometry: 'text',
+            geometry: SpatialSceneNodeGeometryEnum.Text,
             text: 'E',
             transformMatrix: new Matrix4(Matrix4.IDENTITY)
                 .translate([cube.x, cube.y, cube.z - cube.radius - sphereLineLength - sphereConeRadius * 3.5])

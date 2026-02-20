@@ -151,7 +151,7 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code>OnDestroy</code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -372,12 +372,16 @@ export class StoreDebugComponent implements OnDestroy {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngFor&#x3D;&quot;let state of data&quot; class&#x3D;&quot;state&quot;&gt;
-  &lt;div&gt;{{ state[0] }}&lt;/div&gt;
-  &lt;ul class&#x3D;&quot;kvlist&quot;&gt;
-    &lt;li *ngFor&#x3D;&quot;let kv of state[1]&quot; class&#x3D;&quot;kvpair&quot;&gt;{{ kv[0] }}: {{ kv[1] | json }}&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">@for (state of data; track state[0]) {
+  &lt;div class&#x3D;&quot;state&quot;&gt;
+    &lt;div&gt;{{ state[0] }}&lt;/div&gt;
+    &lt;ul class&#x3D;&quot;kvlist&quot;&gt;
+      @for (kv of state[1]; track kv) {
+        &lt;li class&#x3D;&quot;kvpair&quot;&gt;{{ kv[0] }}: {{ kv[1] | json }}&lt;/li&gt;
+      }
+    &lt;/ul&gt;
+  &lt;/div&gt;
+}
 </code></pre>
     </div>
 
@@ -407,7 +411,7 @@ export class StoreDebugComponent implements OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngFor="let state of data" class="state">  <div>{{ state[0] }}</div>  <ul class="kvlist">    <li *ngFor="let kv of state[1]" class="kvpair">{{ kv[0] }}: {{ kv[1] | json }}</li>  </ul></div></div>'
+        var COMPONENT_TEMPLATE = '<div>@for (state of data; track state[0]) {  <div class="state">    <div>{{ state[0] }}</div>    <ul class="kvlist">      @for (kv of state[1]; track kv) {        <li class="kvpair">{{ kv[0] }}: {{ kv[1] | json }}</li>      }    </ul>  </div>}</div>'
     var COMPONENTS = [{'name': 'OpacitySliderComponent', 'selector': 'ccf-opacity-slider'},{'name': 'SpatialSearchKeyboardUIBehaviorComponent', 'selector': 'ccf-spatial-search-keyboard-ui-behavior'},{'name': 'SpatialSearchKeyboardUIComponent', 'selector': 'ccf-spatial-search-keyboard-ui'},{'name': 'SpatialSearchListComponent', 'selector': 'ccf-spatial-search-list'},{'name': 'StoreDebugComponent', 'selector': 'ccf-store-debug'},{'name': 'XYZPositionComponent', 'selector': 'ccf-xyz-position'}];
     var DIRECTIVES = [{'name': 'BaseWebComponent', 'selector': ''},{'name': 'NumberDirective', 'selector': 'input[ccfNumbersOnly]'}];
     var ACTUAL_COMPONENT = {'name': 'StoreDebugComponent'};

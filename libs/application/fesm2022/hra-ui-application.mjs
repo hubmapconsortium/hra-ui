@@ -72,7 +72,7 @@ class BaseApplicationComponent {
     /** Page base url */
     pageHref = input(...(ngDevMode ? [undefined, { debugName: "pageHref" }] : []));
     /** Whether analytics is enabled/disabled or the specific analytics settings */
-    analytics = input(undefined, ...(ngDevMode ? [{ debugName: "analytics", transform: AnalyticsInput.parse }] : [{ transform: AnalyticsInput.parse }]));
+    analytics = input(undefined, { ...(ngDevMode ? { debugName: "analytics" } : {}), transform: AnalyticsInput.parse });
     /** Emits when the user changes their consent settings */
     consentChange = output();
     /** Initialize the application component */
@@ -115,10 +115,10 @@ class BaseApplicationComponent {
             initializeScreenSizeNoticeMonitor(options.screenSizeNotice);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseApplicationComponent, deps: "invalid", target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "20.3.15", type: BaseApplicationComponent, isStandalone: true, inputs: { assetHref: { classPropertyName: "assetHref", publicName: "assetHref", isSignal: true, isRequired: false, transformFunction: null }, pageHref: { classPropertyName: "pageHref", publicName: "pageHref", isSignal: true, isRequired: false, transformFunction: null }, analytics: { classPropertyName: "analytics", publicName: "analytics", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { consentChange: "consentChange" }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseApplicationComponent, deps: "invalid", target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: BaseApplicationComponent, isStandalone: true, inputs: { assetHref: { classPropertyName: "assetHref", publicName: "assetHref", isSignal: true, isRequired: false, transformFunction: null }, pageHref: { classPropertyName: "pageHref", publicName: "pageHref", isSignal: true, isRequired: false, transformFunction: null }, analytics: { classPropertyName: "analytics", publicName: "analytics", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { consentChange: "consentChange" }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseApplicationComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseApplicationComponent, decorators: [{
             type: Directive,
             args: [{}]
         }], ctorParameters: () => [{ type: undefined }], propDecorators: { assetHref: [{ type: i0.Input, args: [{ isSignal: true, alias: "assetHref", required: false }] }], pageHref: [{ type: i0.Input, args: [{ isSignal: true, alias: "pageHref", required: false }] }], analytics: [{ type: i0.Input, args: [{ isSignal: true, alias: "analytics", required: false }] }], consentChange: [{ type: i0.Output, args: ["consentChange"] }] } });

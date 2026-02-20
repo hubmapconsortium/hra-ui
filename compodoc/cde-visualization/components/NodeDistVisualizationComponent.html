@@ -363,7 +363,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:168</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:165</a></div>
                             </td>
                         </tr>
 
@@ -651,8 +651,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="232"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:232</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="229"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:229</a></div>
                         </td>
                     </tr>
 
@@ -692,8 +692,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="206"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:206</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:203</a></div>
                         </td>
                     </tr>
 
@@ -731,8 +731,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="226"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:226</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="223"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:223</a></div>
                         </td>
                     </tr>
 
@@ -770,8 +770,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="221"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:221</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:218</a></div>
                         </td>
                     </tr>
 
@@ -809,8 +809,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="215"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:215</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:212</a></div>
                         </td>
                     </tr>
 
@@ -895,11 +895,8 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed((): DataItem[] &#x3D;&gt; {
-    const info &#x3D; this.cellInfo();
-    if (!info) {
-      return [];
-    }
-
+    // This is guarded by cellInfoOpen() so cellInfo() will always have a value here
+    const info &#x3D; this.cellInfo() as NodeEvent;
     const nodes &#x3D; this.nodes();
     const edges &#x3D; this.edges();
     const { index, raw: node } &#x3D; info;
@@ -1327,11 +1324,8 @@ export class NodeDistVisualizationComponent {
 
   /** Data for cell info panel */
   protected readonly cellInfoContent &#x3D; computed((): DataItem[] &#x3D;&gt; {
-    const info &#x3D; this.cellInfo();
-    if (!info) {
-      return [];
-    }
-
+    // This is guarded by cellInfoOpen() so cellInfo() will always have a value here
+    const info &#x3D; this.cellInfo() as NodeEvent;
     const nodes &#x3D; this.nodes();
     const edges &#x3D; this.edges();
     const { index, raw: node } &#x3D; info;

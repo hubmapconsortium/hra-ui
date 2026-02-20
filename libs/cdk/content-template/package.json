@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/hra-ui-cdk-content-template.mjs"
+  "module": "../fesm2022/hra-ui-cdk-content-template.mjs",
+  "typings": "../types/hra-ui-cdk-content-template.d.ts"
 }

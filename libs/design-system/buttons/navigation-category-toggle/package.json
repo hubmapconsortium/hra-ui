@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-buttons-navigation-category-toggle.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-buttons-navigation-category-toggle.mjs",
+  "typings": "../../types/hra-ui-design-system-buttons-navigation-category-toggle.d.ts"
 }

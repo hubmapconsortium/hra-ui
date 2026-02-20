@@ -2,9 +2,9 @@
   "name": "@hra-ui/webcomponents",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/core": "^20.2.1",
-    "@angular/elements": "^20.2.1",
-    "@angular/platform-browser": "^20.2.1",
+    "@angular/core": "^21.1.4",
+    "@angular/elements": "^21.1.4",
+    "@angular/platform-browser": "^21.1.4",
     "rxjs": "^7.8.2"
   },
   "dependencies": {
@@ -12,13 +12,13 @@
   },
   "sideEffects": false,
   "module": "fesm2022/hra-ui-webcomponents.mjs",
-  "typings": "index.d.ts",
+  "typings": "types/hra-ui-webcomponents.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./index.d.ts",
+      "types": "./types/hra-ui-webcomponents.d.ts",
       "default": "./fesm2022/hra-ui-webcomponents.mjs"
     }
   }

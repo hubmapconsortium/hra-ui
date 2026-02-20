@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-scrolling-testing.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-scrolling-testing.mjs",
+  "typings": "../../types/hra-ui-design-system-scrolling-testing.d.ts"
 }

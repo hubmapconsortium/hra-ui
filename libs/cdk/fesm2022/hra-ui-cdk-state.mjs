@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import * as i1 from '@ngxs/store';
 import { Action as Action$5, State, Selector, NgxsModule } from '@ngxs/store';
 import * as i0 from '@angular/core';
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { createExternalUrl } from '@hra-ui/utils';
 import { load } from 'js-yaml';
-import { map, Observable } from 'rxjs';
+import { map } from 'rxjs';
 import { produce } from 'immer';
 
 /** Registry of action types */
@@ -90,14 +90,11 @@ let BaseHrefState = class BaseHrefState {
         }
         ctx.setState(baseHref);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseHrefState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseHrefState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseHrefState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseHrefState }); }
 };
 __decorate([
-    Action$5(Set$2),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Set$2]),
-    __metadata("design:returntype", void 0)
+    Action$5(Set$2)
 ], BaseHrefState.prototype, "setBaseHref", null);
 BaseHrefState = __decorate([
     State({
@@ -105,7 +102,7 @@ BaseHrefState = __decorate([
         defaults: '',
     })
 ], BaseHrefState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: BaseHrefState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseHrefState, decorators: [{
             type: Injectable
         }], propDecorators: { setBaseHref: [] } });
 
@@ -121,10 +118,7 @@ class BaseHrefSelectors {
     }
 }
 __decorate([
-    Selector([BaseHrefState]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", String)
+    Selector([BaseHrefState])
 ], BaseHrefSelectors, "baseHref", null);
 
 /** Base action factory */
@@ -329,38 +323,23 @@ let LinkRegistryState = class LinkRegistryState {
         const url = createExternalUrl(entry.url, extras);
         window.open(url, entry.target, entry.rel);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkRegistryState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: LinkRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: LinkRegistryState }); }
 };
 __decorate([
-    Action$5(Add$1),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Add$1]),
-    __metadata("design:returntype", void 0)
+    Action$5(Add$1)
 ], LinkRegistryState.prototype, "addOne", null);
 __decorate([
-    Action$5(AddMany$1),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, AddMany$1]),
-    __metadata("design:returntype", void 0)
+    Action$5(AddMany$1)
 ], LinkRegistryState.prototype, "addMany", null);
 __decorate([
-    Action$5(AddFromYaml$1),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, AddFromYaml$1, String]),
-    __metadata("design:returntype", void 0)
+    Action$5(AddFromYaml$1)
 ], LinkRegistryState.prototype, "addYaml", null);
 __decorate([
-    Action$5(LoadFromYaml$1),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, LoadFromYaml$1]),
-    __metadata("design:returntype", Observable)
+    Action$5(LoadFromYaml$1)
 ], LinkRegistryState.prototype, "loadYaml", null);
 __decorate([
-    Action$5(Navigate),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Navigate]),
-    __metadata("design:returntype", Promise)
+    Action$5(Navigate)
 ], LinkRegistryState.prototype, "navigate", null);
 LinkRegistryState = __decorate([
     State({
@@ -368,7 +347,7 @@ LinkRegistryState = __decorate([
         defaults: {},
     })
 ], LinkRegistryState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkRegistryState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: LinkRegistryState, decorators: [{
             type: Injectable
         }], propDecorators: { addOne: [], addMany: [], addYaml: [], loadYaml: [], navigate: [] } });
 
@@ -398,10 +377,7 @@ class LinkRegistrySelectors {
     }
 }
 __decorate([
-    Selector([LinkRegistryState]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Function)
+    Selector([LinkRegistryState])
 ], LinkRegistrySelectors, "query", null);
 
 /** Base action factory */
@@ -636,38 +612,23 @@ let ResourceRegistryState = class ResourceRegistryState {
     loadMarkdown(ctx, { id, url }) {
         return this.http.get(url, { responseType: 'text' }).pipe(map((markdown) => new Add(id, { type: BuiltinResourceType.Markdown, markdown })), map((action) => this.addOne(ctx, action)));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ResourceRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ResourceRegistryState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ResourceRegistryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ResourceRegistryState }); }
 };
 __decorate([
-    Action$5(Add),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Add]),
-    __metadata("design:returntype", void 0)
+    Action$5(Add)
 ], ResourceRegistryState.prototype, "addOne", null);
 __decorate([
-    Action$5(AddMany),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, AddMany]),
-    __metadata("design:returntype", void 0)
+    Action$5(AddMany)
 ], ResourceRegistryState.prototype, "addMany", null);
 __decorate([
-    Action$5(AddFromYaml),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, AddFromYaml, String]),
-    __metadata("design:returntype", void 0)
+    Action$5(AddFromYaml)
 ], ResourceRegistryState.prototype, "addYaml", null);
 __decorate([
-    Action$5(LoadFromYaml),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, LoadFromYaml]),
-    __metadata("design:returntype", Observable)
+    Action$5(LoadFromYaml)
 ], ResourceRegistryState.prototype, "loadYaml", null);
 __decorate([
-    Action$5(LoadMarkdown),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, LoadMarkdown]),
-    __metadata("design:returntype", Observable)
+    Action$5(LoadMarkdown)
 ], ResourceRegistryState.prototype, "loadMarkdown", null);
 ResourceRegistryState = __decorate([
     State({
@@ -675,7 +636,7 @@ ResourceRegistryState = __decorate([
         defaults: {},
     })
 ], ResourceRegistryState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: ResourceRegistryState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ResourceRegistryState, decorators: [{
             type: Injectable
         }], propDecorators: { addOne: [], addMany: [], addYaml: [], loadYaml: [], loadMarkdown: [] } });
 
@@ -755,46 +716,25 @@ class ResourceRegistrySelectors {
     }
 }
 __decorate([
-    Selector([ResourceRegistryState]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Function)
+    Selector([ResourceRegistryState])
 ], ResourceRegistrySelectors, "entry", null);
 __decorate([
-    Selector([ResourceRegistryState]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Function)
+    Selector([ResourceRegistryState])
 ], ResourceRegistrySelectors, "anyEntry", null);
 __decorate([
-    Selector([ResourceRegistryState]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Function)
+    Selector([ResourceRegistryState])
 ], ResourceRegistrySelectors, "field", null);
 __decorate([
-    Selector([ResourceRegistryState]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Function)
+    Selector([ResourceRegistryState])
 ], ResourceRegistrySelectors, "anyText", null);
 __decorate([
-    Selector([ResourceRegistrySelectors.field]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Function]),
-    __metadata("design:returntype", Function)
+    Selector([ResourceRegistrySelectors.field])
 ], ResourceRegistrySelectors, "markdown", null);
 __decorate([
-    Selector([ResourceRegistrySelectors.field]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Function]),
-    __metadata("design:returntype", Function)
+    Selector([ResourceRegistrySelectors.field])
 ], ResourceRegistrySelectors, "text", null);
 __decorate([
-    Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Function, Object]),
-    __metadata("design:returntype", Function)
+    Selector([ResourceRegistrySelectors.field, BaseHrefSelectors.baseHref])
 ], ResourceRegistrySelectors, "url", null);
 
 /** Base action factory */
@@ -919,26 +859,17 @@ let StorageState = class StorageState {
             draft[id] += 1;
         }));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: StorageState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: StorageState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: StorageState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: StorageState }); }
 };
 __decorate([
-    Action$5(Set$1),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Set$1]),
-    __metadata("design:returntype", void 0)
+    Action$5(Set$1)
 ], StorageState.prototype, "set", null);
 __decorate([
-    Action$5(Delete),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Delete]),
-    __metadata("design:returntype", void 0)
+    Action$5(Delete)
 ], StorageState.prototype, "delete", null);
 __decorate([
-    Action$5(Clear),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Clear]),
-    __metadata("design:returntype", void 0)
+    Action$5(Clear)
 ], StorageState.prototype, "clear", null);
 StorageState = StorageState_1 = __decorate([
     State({
@@ -949,7 +880,7 @@ StorageState = StorageState_1 = __decorate([
         },
     })
 ], StorageState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: StorageState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: StorageState, decorators: [{
             type: Injectable
         }], propDecorators: { set: [], delete: [], clear: [] } });
 
@@ -975,27 +906,20 @@ class StorageSelectors {
     }
 }
 __decorate([
-    Selector([StorageState]),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Function)
+    Selector([StorageState])
 ], StorageSelectors, "get", null);
 __decorate([
     Selector([StorageState])
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore Allow selector name
-    ,
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Function)
 ], StorageSelectors, "length", null);
 
 class CdkStateModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, imports: [i1.ɵNgxsFeatureModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CdkStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.5", ngImport: i0, type: CdkStateModule, imports: [i1.ɵNgxsFeatureModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CdkStateModule, imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: CdkStateModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CdkStateModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [NgxsModule.forFeature([BaseHrefState, LinkRegistryState, ResourceRegistryState, StorageState])],
