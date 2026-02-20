@@ -139,26 +139,3 @@ export const CONTRIBUTORS = [
     github: '',
   },
 ];
-
-export const IMAGES = [
-  {
-    path: 'homepage/laptop-images/vis.svg',
-    alt: 'Visualization',
-  },
-  {
-    path: 'homepage/laptop-images/report.svg',
-    alt: 'Report Generator',
-  },
-  {
-    path: 'homepage/laptop-images/compare.svg',
-    alt: 'Compare Results',
-  },
-  {
-    path: 'homepage/laptop-images/il.svg',
-    alt: 'Indented List',
-  },
-  {
-    path: 'homepage/laptop-images/link.svg',
-    alt: 'Playground Link',
-  },
-];
