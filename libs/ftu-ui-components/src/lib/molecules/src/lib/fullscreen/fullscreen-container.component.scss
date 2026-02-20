@@ -52,15 +52,9 @@
   }
 }
 
-.closeButton {
+.close-button {
   position: absolute;
   right: 1rem;
   top: 0.75rem;
   z-index: 1;
-}
-
-::ng-deep {
-  ftu-source-list .table-content {
-    margin: 0 !important;
-  }
 }

@@ -4,9 +4,6 @@
 
 :host {
   display: block;
-  position: relative;
-  width: 100%;
-  table-layout: fixed;
 
   @include mat.table-overrides(
     (
@@ -39,13 +36,14 @@
 
   cdk-virtual-scroll-viewport {
     width: 100%;
+    max-height: 100%;
   }
 
   .absolute-toggle {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    z-index: 1000;
+    z-index: 100;
     width: 14.625rem;
     border: 1px solid vars.$primary;
     border-radius: 6px;

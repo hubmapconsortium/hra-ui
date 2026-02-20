@@ -6,14 +6,23 @@
   display: block;
   height: 100%;
 
+  &.no-data-full-screen {
+    .source-list-header {
+      display: none;
+    }
+  }
+
   .source-list-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 4rem;
     padding: 0 1rem;
+    border-bottom: 1px solid vars.$outline-variant;
+    @include utils.use-font(label, medium);
+    color: vars.$secondary;
 
-    .view-fullscreen {
+    .view-controls {
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -35,37 +44,6 @@
         @include utils.use-font(label, small);
       }
     }
-
-    .source-list-title {
-      @include utils.use-font(label, medium);
-      color: vars.$secondary;
-    }
-  }
-
-  &.no-data-full-screen {
-    .source-list-header {
-      display: none;
-    }
-    ::ng-deep ftu-empty-biomarker .footer {
-      display: flex;
-      justify-content: end;
-      border-top: 0.0625rem solid vars.$outline-variant;
-
-      .collaborate-button {
-        width: auto !important;
-      }
-    }
-    .table-content {
-      height: 100%;
-    }
-  }
-
-  &.full-screen .table-content {
-    margin: 0 1rem 1rem 1rem;
-
-    hra-table {
-      border-radius: 0.25rem;
-    }
   }
 
   .table-content {
@@ -80,7 +58,6 @@
 
   ::ng-deep table {
     border-bottom: 1px solid vars.$outline-variant;
-    border-top: 1px solid vars.$outline-variant;
 
     @include mat.table-overrides(
       (

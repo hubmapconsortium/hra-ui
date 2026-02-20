@@ -10,6 +10,54 @@
     'headline legend-area'
     'table table';
 
+  &.full-screen-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 4rem auto;
+    grid-template-areas:
+      'legend-area'
+      'table';
+
+    .legend {
+      .legend-percentage {
+        width: 283px;
+        flex-grow: 0;
+        border-left: none;
+      }
+
+      .legend-gradient {
+        align-items: flex-start;
+        padding-left: 1rem;
+      }
+    }
+  }
+
+  &.full-screen-grid.no-data-sources {
+    grid-template-rows: 1fr;
+    grid-template-areas: 'empty';
+
+    .absolute-toggle {
+      display: none;
+    }
+
+    ftu-empty-biomarker {
+      margin-top: 0;
+      border: none;
+    }
+  }
+
+  &.full-screen-grid.no-data-selected {
+    grid-template-rows: 1fr;
+    grid-template-areas: 'select-data-message';
+
+    .absolute-toggle {
+      display: none;
+    }
+
+    .select-data-message {
+      padding-top: 1rem;
+    }
+  }
+
   .biomarker-header {
     grid-area: headline;
     display: flex;
@@ -21,82 +69,13 @@
     min-height: calc(4rem + 1px);
   }
 
-  &.full-screen-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: 4rem auto;
-    grid-template-areas:
-      'legend-area'
-      'table';
-
-    .legend {
-      .legend-percentage {
-        width: 17.75rem;
-        max-width: 17.75rem;
-        min-width: 17.75rem;
-        flex-grow: 0;
-        border-left: none;
-      }
-
-      .legend-gradient {
-        align-items: flex-start;
-        padding-left: 1rem;
-
-        .legend-header-gradient {
-          margin-left: 24.8px;
-        }
-
-        .content {
-          align-self: flex-start;
-        }
-      }
-    }
-  }
-
-  ::ng-deep ftu-empty-biomarker .footer {
-    border-top: 1px solid vars.$outline-variant;
-  }
-
-  &.no-data-full-screen-grid {
-    grid-template-rows: 1fr;
-    grid-template-areas: 'empty';
-
-    ftu-empty-biomarker {
-      padding-top: 0;
-    }
-
-    ::ng-deep ftu-empty-biomarker .footer {
-      display: flex;
-      justify-content: end;
-
-      .collaborate-button {
-        width: auto !important;
-      }
-    }
-
-    .absolute-toggle {
-      visibility: hidden;
-    }
-  }
-
-  .empty-state-divider {
-    grid-area: empty;
-    margin-top: 4rem;
-    border-top-color: vars.$outline-variant;
-    align-self: start;
-    z-index: 1;
-  }
-
   &.no-data-sources {
     grid-template-areas:
       'headline headline'
-      'empty empty' !important;
-
-    .source-list {
-      display: none;
-    }
+      'empty empty';
 
     ftu-empty-biomarker {
-      grid-area: empty;
+      border-top: 1px solid vars.$outline-variant;
     }
   }
 
@@ -111,13 +90,6 @@
     grid-template-areas:
       'headline headline'
       'select-data-message select-data-message';
-    .select-data-message {
-      padding: 0 1rem;
-      padding-top: 4.875rem;
-      grid-area: select-data-message;
-      @include utils.use-font(body, medium);
-      color: vars.$primary;
-    }
   }
 
   @include mat.button-toggle-overrides(
@@ -139,7 +111,7 @@
     position: absolute;
     top: 5rem;
     left: 1rem;
-    z-index: 1000;
+    z-index: 100;
     width: 14.625rem;
 
     .mat-button-toggle {
@@ -147,13 +119,13 @@
     }
   }
 
-  .table {
-    grid-area: table;
-    width: 100%;
-
-    .cursor {
-      pointer-events: auto;
-    }
+  .select-data-message {
+    grid-area: select-data-message;
+    padding: 1rem;
+    padding-top: 4.875rem;
+    @include utils.use-font(body, medium);
+    color: vars.$primary;
+    width: fit-content;
   }
 
   .legend {
@@ -197,12 +169,12 @@
 
   ftu-biomarker-table {
     grid-area: table;
-    width: 100%;
+    overflow: hidden;
   }
 
   ftu-empty-biomarker {
     grid-area: empty;
-    padding-top: 4rem;
+    margin-top: 4rem;
   }
 
   .biomarker-header,

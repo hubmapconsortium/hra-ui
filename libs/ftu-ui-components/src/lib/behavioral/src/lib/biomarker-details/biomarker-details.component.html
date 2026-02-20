@@ -52,9 +52,6 @@
   }
 
   @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
-    @if (!isBiomarkerfullscreen()) {
-      <mat-divider class="empty-state-divider" />
-    }
     <ftu-empty-biomarker emptyBehaviorText="We currently do not have cell type data for the selected biomarker." />
   }
 

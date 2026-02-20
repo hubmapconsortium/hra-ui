@@ -72,11 +72,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.full-screen-grid]': 'isBiomarkerfullscreen()',
-    '[class.no-data-full-screen-grid]': 'source().length === 0 && isBiomarkerfullscreen()',
-    '[class.no-data-sources]': 'source().length === 0 && !isBiomarkerfullscreen()',
-    '[class.no-data]':
-      '(source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) && !isBiomarkerfullscreen()',
-    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0 && !isBiomarkerfullscreen()',
+    '[class.no-data-sources]': 'source().length === 0',
+    '[class.no-data]': 'source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0',
+    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
   },
 })
 export class BiomarkerDetailsComponent {

@@ -3,35 +3,44 @@
 :host {
   display: flex;
   flex-direction: column;
-  min-width: calc(63rem - 1px);
   height: 100%;
 
   .content-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: minmax(18.5rem, 3fr) 1fr;
+    grid-template-rows: minmax(18.5rem, 2fr) 1fr;
     grid-template-areas:
       'illustration illustration-details'
       'source-list source-list';
     height: 100%;
 
-    &.fullscreen::ng-deep {
+    &.fullscreen {
       grid-template-columns: 1fr auto;
-      grid-template-rows: unset;
+      grid-template-rows: 1fr;
 
       .fullscreen-content-container {
-        border-left: none !important;
+        border-left: none;
       }
-    }
 
-    .fullscreen-content-container {
-      position: relative;
-      grid-area: illustration-details;
-      border-left: 0.0625rem solid vars.$outline;
+      .source-list {
+        border-top: none;
+        height: 100%;
+        max-height: unset;
+      }
     }
 
     .illustration {
       grid-area: illustration;
+    }
+
+    .fullscreen-content-container {
+      grid-area: illustration-details;
+      position: relative;
+      border-left: 0.0625rem solid vars.$outline;
+
+      .illustration-details {
+        height: 100%;
+      }
     }
 
     .source-list {
@@ -39,20 +48,6 @@
       border-top: 1px solid vars.$outline;
       min-height: 13.5rem;
       max-height: 18.75rem;
-      overflow: hidden;
-    }
-
-    &:has(ftu-biomarker-details.no-data),
-    &:has(ftu-biomarker-details.no-data-sources) {
-      .fullscreen-content-container {
-        flex: 1;
-        min-width: 5rem;
-        width: fit-content;
-      }
-    }
-
-    ftu-biomarker-details {
-      height: 100%;
     }
   }
 }
