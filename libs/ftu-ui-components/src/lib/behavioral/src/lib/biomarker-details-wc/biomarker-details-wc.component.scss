@@ -58,18 +58,6 @@
     )
   );
 
-  &.no-data {
-    ::ng-deep ftu-empty-biomarker .footer {
-      display: flex;
-      justify-content: end;
-      border-top: 0.0625rem solid vars.$outline-variant;
-
-      .collaborate-button {
-        width: auto !important;
-      }
-    }
-  }
-
   @media (min-width: 800px) and (min-height: 480px) {
     .biomarker-details {
       display: grid;
@@ -186,15 +174,6 @@
             line-height: 1;
             padding: 0;
           }
-        }
-      }
-    }
-    ::ng-deep ftu-empty-biomarker {
-      .footer {
-        border-top: 1px solid vars.$outline-variant;
-        button {
-          width: auto !important;
-          margin-left: 23.4375rem;
         }
       }
     }

@@ -8,7 +8,7 @@
   .content-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: minmax(18.5rem, 2fr) 1fr;
+    grid-template-rows: minmax(calc(100% - 18.75rem), 3fr) minmax(13.5rem, 1fr);
     grid-template-areas:
       'illustration illustration-details'
       'source-list source-list';
@@ -46,8 +46,6 @@
     .source-list {
       grid-area: source-list;
       border-top: 1px solid vars.$outline;
-      min-height: 13.5rem;
-      max-height: 18.75rem;
     }
   }
 }
