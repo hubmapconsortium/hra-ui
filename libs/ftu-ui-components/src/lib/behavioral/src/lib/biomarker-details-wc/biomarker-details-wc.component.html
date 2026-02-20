@@ -5,6 +5,7 @@
   disablePagination="true"
   disableRipple="true"
   [class.table-fullscreen]="isTableFullScreen"
+  [(selectedIndex)]="fullscreentabIndex"
   (selectedTabChange)="tabEvent.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
   #tabEvent="hraClickEvent"
 >

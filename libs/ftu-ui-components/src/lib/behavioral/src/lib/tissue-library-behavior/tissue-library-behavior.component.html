@@ -1,5 +1,5 @@
 <ng-container hraFeature="tissue-tree-list">
-  <ftu-label-box>
+  <ftu-label-box [class.compact]="isCompactMode()">
     <span [class.hidden]="isCompactMode()"> Functional Tissue Unit Explorer </span>
     <button hraClickEvent hraFeature="more-menu" mat-icon-button hraPlainTooltip="More" [matMenuTriggerFor]="moreMenu">
       <mat-icon>more_vert</mat-icon>

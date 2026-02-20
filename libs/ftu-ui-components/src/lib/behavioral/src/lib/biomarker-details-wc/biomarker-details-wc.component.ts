@@ -30,12 +30,13 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '../../../../atoms/src';
-import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
+import { InteractiveSvgComponent, SourceListComponent } from '../../../../molecules/src';
 import {
   BiomarkerTableComponent,
   DataCell,
   TissueInfo,
 } from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
+import { FtuFullScreenService } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 /**
  * PlaceHolder for Empty Tissue Info
  */
@@ -203,6 +204,16 @@ export class BiomarkerDetailsWcComponent {
 
   /** List of selected sources */
   readonly selectedSources = signal<SourceReference[]>([]);
+
+  /**
+   * Fullscreen service of ftu component
+   */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
+  /**
+   * Fullscreentab index of ftu component
+   */
+  fullscreentabIndex = this.fullscreenService.fullscreentabIndex;
 
   /**
    * Gets tissue title from the list of tissues

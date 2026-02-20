@@ -4,7 +4,7 @@
   height: 100vh;
   display: grid;
   width: 100%;
-  grid-template-columns: 17rem calc(100% - 17rem);
+  grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: 'sidebar biomarker';
 
@@ -19,8 +19,9 @@
     grid-area: sidebar;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 17rem;
+    // width: 17rem;
     height: 100%;
+    border-right: 1px solid vars.$outline;
 
     ::ng-deep .label {
       height: 3.5rem;
@@ -76,11 +77,6 @@
       }
     }
   }
-}
-
-::ng-deep hra-table {
-  max-width: unset !important;
-  height: 100% !important;
 }
 
 ::ng-deep .content {

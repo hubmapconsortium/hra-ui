@@ -8,6 +8,12 @@
   .hidden {
     display: none;
   }
+
+  .compact {
+    width: 4rem;
+    justify-content: center;
+    border-bottom: 1px solid vars.$outline-variant;
+  }
 }
 
 ::ng-deep {

@@ -14,6 +14,7 @@
     justify-content: space-between;
     padding: 0.75rem 1rem;
     color: vars.$secondary;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
 
     .content {
       @include utils.use-font(label, medium);
@@ -23,6 +24,5 @@
   ftu-interactive-svg {
     flex: 1;
     overflow: hidden;
-    border-top: 1px solid var(--mat-sys-outline-variant);
   }
 }
