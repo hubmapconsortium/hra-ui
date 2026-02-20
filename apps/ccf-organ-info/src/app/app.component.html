@@ -20,11 +20,13 @@
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
+
   <div class="content" #contentContainer>
     <div hraFeature="metadata" class="info-view">
       <div class="organ-title">
         {{ isLoading() ? 'Loading...' : statsLabel() }}
       </div>
+
       <div class="params">
         @let sex = organ.value()?.sex;
         <mat-button-toggle-group
@@ -38,6 +40,7 @@
           <mat-button-toggle value="Male" [hraClickEvent]="{ value: 'Male' }"> Male </mat-button-toggle>
           <mat-button-toggle value="Female" [hraClickEvent]="{ value: 'Female' }"> Female </mat-button-toggle>
         </mat-button-toggle-group>
+
         @let side = organ.value()?.side;
         <mat-button-toggle-group
           hraFeature="side-toggle"
@@ -51,7 +54,8 @@
           <mat-button-toggle value="Right" [hraClickEvent]="{ value: 'Right' }"> Right </mat-button-toggle>
         </mat-button-toggle-group>
       </div>
-      <div>
+
+      <div class="stats">
         @if (isLoading()) {
           <hra-progress-spinner size="large" color="color" class="loading-spinner" />
         } @else {
@@ -65,10 +69,12 @@
         }
       </div>
     </div>
+
     <div class="organ-view" [style.height.px]="contentHeightMonitor()">
       @if (isLoading()) {
         <hra-progress-spinner size="large" color="color" class="loading-spinner" />
       }
+
       <ccf-organ
         hraFeature="organ-viewer"
         hraClickEvent

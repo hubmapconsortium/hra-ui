@@ -17,25 +17,25 @@
       label-text-weight: vars.$label-medium-weight,
     )
   );
-}
 
-mat-chip {
-  max-width: calc(100% - 0.5rem) !important;
-}
-
-.mat-mdc-standard-chip .mdc-evolution-chip__cell--primary,
-.mat-mdc-standard-chip .mdc-evolution-chip__action--primary,
-.mat-mdc-standard-chip .mat-mdc-chip-action-label {
-  overflow: hidden !important;
-  cursor: pointer;
-}
-
-mat-snack-bar-container {
-  .mat-mdc-snackbar-surface {
-    min-width: auto !important;
+  mat-chip {
+    max-width: calc(100% - 0.5rem) !important;
   }
 
-  hra-snackbar {
-    gap: 0 !important;
+  .mat-mdc-standard-chip .mdc-evolution-chip__cell--primary,
+  .mat-mdc-standard-chip .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip .mat-mdc-chip-action-label {
+    overflow: hidden !important;
+    cursor: pointer;
+  }
+
+  mat-snack-bar-container {
+    .mat-mdc-snackbar-surface {
+      min-width: auto !important;
+    }
+
+    hra-snackbar {
+      gap: 0 !important;
+    }
   }
 }

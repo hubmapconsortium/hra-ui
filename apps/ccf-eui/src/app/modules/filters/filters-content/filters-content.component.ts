@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  model,
+  output,
+  untracked,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -121,15 +131,18 @@ export class FiltersContentComponent {
 
   /** Initialize the filter */
   constructor() {
+    // Dev Note: Always patch the form control inside an untracked block!
+    // Otherwise the effect might register dual slider signals as dependencies
+
     effect(() => {
-      const filter = normalizeFilter(this.filter());
-      this.filterForm.patchValue(filter);
+      const filter = this.filter();
+      untracked(() => this.filterForm.patchValue(normalizeFilter(filter)));
     });
 
     effect(() => {
       const currentSex = this.filterForm.controls.sex.value;
       if (this.isSexOptionDisabled(currentSex)) {
-        this.filterForm.patchValue({ sex: FilterSexEnum.Both });
+        untracked(() => this.filterForm.patchValue({ sex: FilterSexEnum.Both }));
       }
     });
   }

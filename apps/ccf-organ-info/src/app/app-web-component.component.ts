@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
@@ -95,13 +94,16 @@ function parseStringArray(value: unknown): string[] {
 /** Web component */
 @Component({
   selector: 'ccf-root-wc',
-  imports: [AppComponent, NgIf],
-  template: `<ccf-root
-    *ngIf="initialized"
-    (sexChange)="sexChange.emit($event)"
-    (nodeClicked)="nodeClicked.emit($event)"
-    (sideChange)="sideChange.emit($event)"
-  />`,
+  imports: [AppComponent],
+  template: `
+    @if (initialized) {
+      <ccf-root
+        (sexChange)="sexChange.emit($event)"
+        (nodeClicked)="nodeClicked.emit($event)"
+        (sideChange)="sideChange.emit($event)"
+      />
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {

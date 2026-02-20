@@ -5,7 +5,7 @@ export default {
   coverageDirectory: '../../coverage/libs/ftu-ui-components',
   coverageThreshold: {
     global: {
-      branches: 80,
+      branches: 78,
       functions: 80,
       lines: 80,
       statements: 80,

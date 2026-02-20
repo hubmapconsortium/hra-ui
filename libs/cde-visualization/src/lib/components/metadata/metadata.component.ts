@@ -63,12 +63,6 @@ export class MetadataComponent {
   /** Input for Metadata Component */
   readonly metadata = input.required<Metadata>();
 
-  /** Defines a computed property for the title label */
-  readonly titleLabel = computed(() => {
-    const { sampleExtra } = this.metadata();
-    return sampleExtra ? `Sample ${sampleExtra.type} Visualization (${sampleExtra.organ})` : 'Title';
-  });
-
   /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields = signal(false);
 
