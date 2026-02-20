@@ -136,6 +136,16 @@ describe('NodeDistVisualizationComponent', () => {
       await fixture.componentInstance.download();
       expect(fileSaver.saveData).toHaveBeenCalledWith(data, 'cell-distance-vis.png');
     });
+
+    it('does not attempt to save if toBlob returns null', async () => {
+      const fileSaver = mock<FileSaverService>();
+      const { fixture } = await setup({ providers: [{ provide: FileSaverService, useValue: fileSaver }] });
+      const el = await getVisualizationEl();
+      jest.mocked(el.instance?.toBlob)?.mockResolvedValue(null);
+
+      await fixture.componentInstance.download();
+      expect(fileSaver.saveData).not.toHaveBeenCalled();
+    });
   });
 
   describe('selection', () => {

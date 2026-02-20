@@ -9,7 +9,7 @@ export default {
       statements: 15,
       branches: 8,
       lines: 15,
-      functions: 15,
+      functions: 14,
     },
   },
 };

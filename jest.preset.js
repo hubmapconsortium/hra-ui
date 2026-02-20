@@ -19,9 +19,10 @@ function isRunningInNx() {
 
 module.exports = {
   ...nxPreset,
-  ...createCjsPreset(),
+  ...createCjsPreset({
+    testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
+  }),
 
-  testEnvironment: 'jest-preset-angular/environments/jest-jsdom-env',
   transformIgnorePatterns: [`/node_modules/(?!${ES_MODULES.join('|')})/`],
   moduleNameMapper: {
     '^nanoid$': 'node_modules/nanoid/index.browser.js',
