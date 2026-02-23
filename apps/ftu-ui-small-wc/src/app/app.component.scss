@@ -7,6 +7,7 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: 'sidebar biomarker';
+  background-color: vars.$surface-container-low;
 
   .header {
     grid-area: header;

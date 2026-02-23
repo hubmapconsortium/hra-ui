@@ -19,7 +19,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
-import { TableColumn, TableRow } from '@hra-ui/design-system/table';
+import { TableRow } from '@hra-ui/design-system/table';
 import { SourceReference } from '@hra-ui/services';
 import { EmptyBiomarkerComponent } from '../../../../atoms/src';
 import {
@@ -27,20 +27,19 @@ import {
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
 
-/** SourceListItem interface contains title and link to the dataset for the SourceList*/
-export interface SourceListItem extends TableRow {
-  title: string;
-  doi: string;
-  year: number;
-  datasetTitle: string;
-  datasetId: string;
-  cellType: string;
-  healthStatus: string;
-  sex: string;
-  age: string;
-  bmi: string;
-  ethnicity: string;
-}
+const COLUMN_IDS = [
+  'title',
+  'doi',
+  'year',
+  'datasetTitle',
+  'datasetId',
+  'cellType',
+  'healthStatus',
+  'sex',
+  'age',
+  'bmi',
+  'ethnicity',
+];
 
 /** This component shows list of sources with title and links to the datasets */
 @Component({
@@ -89,8 +88,7 @@ export class SourceListComponent {
   readonly selectedCount = signal(0);
 
   protected readonly columnIds = computed(() => {
-    const columns = this.tableColumns.map((col) => col.column);
-    return ['select', ...columns];
+    return ['select', ...COLUMN_IDS];
   });
 
   readonly numPublications = computed(() => this.sources().filter((source) => source.doi).length);
@@ -99,71 +97,6 @@ export class SourceListComponent {
   readonly selectionChanged = output<SourceReference[]>();
 
   readonly selection = new SelectionModel<TableRow>(true, []);
-
-  /** Table columns configuration */
-  readonly tableColumns: TableColumn[] = [
-    {
-      column: 'title',
-      label: 'Title',
-      type: 'text',
-    },
-    {
-      column: 'doi',
-      label: 'DOI',
-      type: {
-        type: 'link',
-        urlColumn: 'doi',
-      },
-    },
-    {
-      column: 'year',
-      label: 'Year',
-      type: 'text',
-    },
-    {
-      column: 'datasetTitle',
-      label: 'Title',
-      type: 'text',
-    },
-    {
-      column: 'datasetId',
-      label: 'ID',
-      type: {
-        type: 'link',
-        urlColumn: 'datasetId',
-      },
-    },
-    {
-      column: 'cellType',
-      label: 'Cell Type',
-      type: 'text',
-    },
-    {
-      column: 'healthStatus',
-      label: 'Health Status',
-      type: 'text',
-    },
-    {
-      column: 'sex',
-      label: 'Sex',
-      type: 'text',
-    },
-    {
-      column: 'age',
-      label: 'Age',
-      type: 'text',
-    },
-    {
-      column: 'bmi',
-      label: 'BMI',
-      type: 'text',
-    },
-    {
-      column: 'ethnicity',
-      label: 'Ethnicity',
-      type: 'text',
-    },
-  ];
 
   /** Sort data on load and set columns */
   constructor() {

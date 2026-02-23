@@ -147,7 +147,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   /** row height */
   readonly rowHeight = 28;
   /** header height */
-  readonly headerHeight = 97;
+  readonly headerHeight = 119;
   /** max visible rows */
   readonly maxVisibleRows = 10;
 

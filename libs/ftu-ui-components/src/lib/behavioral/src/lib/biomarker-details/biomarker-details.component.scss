@@ -58,17 +58,6 @@
     }
   }
 
-  .biomarker-header {
-    grid-area: headline;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    @include utils.use-font(label, medium);
-    color: vars.$secondary;
-    min-height: calc(4rem + 1px);
-  }
-
   &.no-data-sources {
     grid-template-areas:
       'headline headline'
@@ -107,6 +96,24 @@
     )
   );
 
+  .biomarker-header,
+  .legend {
+    border-bottom: 0.0625rem solid vars.$outline-variant;
+  }
+
+  .biomarker-header {
+    grid-area: headline;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    @include utils.use-font(label, medium);
+    color: vars.$secondary;
+    text-wrap: nowrap;
+    gap: 5px;
+    height: 4rem;
+  }
+
   .absolute-toggle {
     position: absolute;
     top: 5rem;
@@ -123,8 +130,6 @@
     grid-area: select-data-message;
     padding: 1rem;
     padding-top: 4.875rem;
-    @include utils.use-font(body, medium);
-    color: vars.$primary;
     width: fit-content;
   }
 
@@ -175,10 +180,5 @@
   ftu-empty-biomarker {
     grid-area: empty;
     margin-top: 4rem;
-  }
-
-  .biomarker-header,
-  .legend {
-    border-bottom: 0.0625rem solid vars.$outline-variant;
   }
 }
