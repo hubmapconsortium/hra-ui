@@ -30,7 +30,7 @@
           "fileReplacements": [
             {
               "replace": "apps/ftu-ui/src/environments/environment.ts",
-              "with": "apps/ftu-ui/src/environments/environment.stage.ts"
+              "with": "apps/ftu-ui/src/environments/environment.staging.ts"
             }
           ]
         },
