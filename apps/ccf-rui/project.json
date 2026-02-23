@@ -13,8 +13,10 @@
       "executor": "@nx/angular:application",
       "options": {
         "assets": [
-          "apps/ccf-rui/src/favicon.png",
-          "apps/ccf-rui/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/ccf-rui/public"
+          },
           {
             "input": "libs/design-system/assets",
             "glob": "**/*",
