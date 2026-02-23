@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { findOrThrow } from '@hra-ui/common/array-util';
-import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
+import { InlineSVGModule, type SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 
 /** Brand logo */
@@ -25,7 +25,7 @@ export class BrandLogoComponent {
   readonly brandConfig = input(injectBrandLogos());
 
   /** SVG script eval mode */
-  protected readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
+  protected readonly NEVER_EVAL_SCRIPTS = 'never' as SVGScriptEvalMode;
 
   /** Logo data */
   protected readonly data = computed(() => findOrThrow(this.brandConfig().logos, ({ size }) => size === this.size()));

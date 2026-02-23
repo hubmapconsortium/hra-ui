@@ -2,7 +2,7 @@
   <div class="nested-menu">
     <ng-scrollbar>
       @for (sheet of sheetDetails; track sheet) {
-        <ng-container *ngIf="sheet.version && sheet.name !== 'all'">
+        @if (sheet.version && sheet.name !== 'all') {
           <button
             class="expanded"
             hraFeature="sheet-submenu"
@@ -31,7 +31,7 @@
               </a>
             }
           </mat-menu>
-        </ng-container>
+        }
       }
     </ng-scrollbar>
   </div>

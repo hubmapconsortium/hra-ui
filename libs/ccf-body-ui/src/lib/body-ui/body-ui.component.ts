@@ -77,10 +77,7 @@ function connectOutput<T>(out: OutputEmitterRef<T>, source: Observable<T>): Subs
 }
 
 /** Zod for SPATIAL SCENE NODE  */
-export const SPATIAL_SCENE_NODE = z
-  .object({})
-  .passthrough()
-  .refine((obj): obj is SpatialSceneNode => true);
+export const SPATIAL_SCENE_NODE = z.looseObject({}) as unknown as z.ZodType<SpatialSceneNode>;
 
 /** Zod for SPATIAL SCENE NODE array */
 export const SPATIAL_SCENE_NODE_ARRAY = z.array(SPATIAL_SCENE_NODE);

@@ -33,6 +33,47 @@ export const appRoutes: Route[] = [
       helpUrl: 'https://docs.humanatlas.io/apps',
     },
   },
+
+  {
+    path: 'api',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ApiComponent,
+        data: {
+          serverId: 'prod',
+        },
+      },
+      {
+        path: ':serverId',
+        component: ApiComponent,
+        resolve: {
+          serverId: serverIdResolver,
+        },
+      },
+    ],
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'API' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/api',
+    },
+  },
+  {
+    path: 'cell-population-graphs',
+    component: CellPopulationGraphComponent,
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Cell Population Graphs' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/cell-population-graphs',
+    },
+  },
+  {
+    path: 'hra-pop-visualizer',
+    component: HraPopVisualizerComponent,
+    data: {
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'HRApop Visualizer' }] satisfies BreadcrumbItem[],
+      helpUrl: 'https://humanatlas.io/hra-pop-visualizer',
+    },
+  },
   {
     path: 'us1',
     children: [
@@ -89,86 +130,53 @@ export const appRoutes: Route[] = [
       helpUrl: 'https://humanatlas.io/user-story/6',
     },
   },
-  {
-    path: 'cell-population-graphs',
-    component: CellPopulationGraphComponent,
-    data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Cell Population Graphs' }] satisfies BreadcrumbItem[],
-      helpUrl: 'https://humanatlas.io/cell-population-graphs',
-    },
-  },
-  {
-    path: 'hra-pop-visualizer',
-    component: HraPopVisualizerComponent,
-    data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'HRApop Visualizer' }] satisfies BreadcrumbItem[],
-      helpUrl: 'https://humanatlas.io/hra-pop-visualizer',
-    },
-  },
-  {
-    path: 'api',
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: ApiComponent,
-        data: {
-          serverId: 'prod',
-        },
-      },
-      {
-        path: ':serverId',
-        component: ApiComponent,
-        resolve: {
-          serverId: serverIdResolver,
-        },
-      },
-    ],
-    data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'API' }] satisfies BreadcrumbItem[],
-      helpUrl: 'https://humanatlas.io/api',
-    },
-  },
-  {
-    path: '500',
-    component: ServerErrorPageComponent,
-  },
+
   // Redirects
+  {
+    path: 'apis',
+    ...createExternalRedirectRoute('https://humanatlas.io/api'),
+  },
   {
     path: 'asctb-reporter',
     ...createExternalRedirectRoute('https://apps.humanatlas.io/asctb-reporter'),
-  },
-  {
-    path: 'rui',
-    ...createExternalRedirectRoute('https://apps.humanatlas.io/rui'),
-  },
-  {
-    path: 'eui',
-    ...createExternalRedirectRoute('https://apps.humanatlas.io/eui'),
-  },
-  {
-    path: 'organ-info',
-    ...createExternalRedirectRoute('https://apps.humanatlas.io/organ-info'),
-  },
-  {
-    path: 'ftu',
-    ...createExternalRedirectRoute('https://apps.humanatlas.io/ftu-explorer'),
   },
   {
     path: 'cde',
     ...createExternalRedirectRoute('https://apps.humanatlas.io/cde'),
   },
   {
+    path: 'dashboard',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/dashboard'),
+  },
+  {
+    path: 'eui',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/eui'),
+  },
+  {
+    path: 'ftu',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/ftu-explorer'),
+  },
+  {
     path: 'kg',
     ...createExternalRedirectRoute('https://apps.humanatlas.io/kg-explorer'),
+  },
+  {
+    path: 'organ-info',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/organ-info'),
+  },
+  {
+    path: 'rui',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/rui'),
   },
   {
     path: 'web-components',
     ...createExternalRedirectRoute('https://apps.humanatlas.io/us6'),
   },
+
+  // Error pages
   {
-    path: 'apis',
-    ...createExternalRedirectRoute('https://humanatlas.io/api'),
+    path: '500',
+    component: ServerErrorPageComponent,
   },
   {
     path: '**',

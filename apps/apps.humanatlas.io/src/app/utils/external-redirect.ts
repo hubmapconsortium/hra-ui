@@ -10,7 +10,7 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 export function createExternalRedirectRoute(url: string): Route {
   const redirect: CanActivateFn = async () => {
     window.location.assign(url);
-    return true;
+    return false;
   };
 
   return {
