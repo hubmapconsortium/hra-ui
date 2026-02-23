@@ -7,6 +7,7 @@ import {
   TableOfContentsLayoutHeaderComponent,
 } from '@hra-ui/design-system/layouts/table-of-contents';
 import { MarkdownModule } from 'ngx-markdown';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleItem } from '../../schemas/people.schema';
 import { ContactInfo, ContactInfoComponent } from './contact-info/contact-info.component';
 
@@ -27,12 +28,13 @@ interface ProfileSection {
   selector: 'cns-people-profile',
   imports: [
     HraCommonModule,
+    ChipsModule,
+    ContactInfoComponent,
+    FooterComponent,
+    MarkdownModule,
     PageSectionComponent,
     TableOfContentsLayoutComponent,
     TableOfContentsLayoutHeaderComponent,
-    ChipsModule,
-    MarkdownModule,
-    ContactInfoComponent,
   ],
   templateUrl: './people-profile.component.html',
   styleUrl: './people-profile.component.scss',
