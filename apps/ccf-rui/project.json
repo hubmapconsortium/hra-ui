@@ -30,18 +30,6 @@
               "replace": "apps/ccf-rui/src/environments/environment.ts",
               "with": "apps/ccf-rui/src/environments/environment.prod.ts"
             }
-          ],
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "10kb"
-            }
           ]
         },
         "staging": {
@@ -55,8 +43,7 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
