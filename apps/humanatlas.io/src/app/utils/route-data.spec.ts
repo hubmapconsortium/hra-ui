@@ -4,7 +4,7 @@ import { render } from '@testing-library/angular';
 import { Subject } from 'rxjs';
 import { routeData } from './route-data';
 
-@Component({ standalone: true, template: '' })
+@Component({ template: '' })
 class DummyComponent {}
 
 describe('routeData', () => {
