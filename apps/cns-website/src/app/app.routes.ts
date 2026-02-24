@@ -48,6 +48,9 @@ export const appRoutes: Route[] = [
     component: LandingPageComponent,
     resolve: {
       featuredContent: createJsonSpecResolver(FEATURED_INDEX_URL, FeaturedDataSchema),
+      eventTypes: createJsonSpecResolver(EVENT_TYPES_INDEX_URL, ResearchTypesDataSchema),
+      publicationTypes: createJsonSpecResolver(PUBLICATION_TYPES_INDEX_URL, ResearchTypesDataSchema),
+      fundingTypes: createJsonSpecResolver(FUNDING_TYPES_INDEX_URL, ResearchTypesDataSchema),
       tags: createJsonSpecResolver(TAGS_INDEX_URL, TagsDataSchema),
     },
   },
