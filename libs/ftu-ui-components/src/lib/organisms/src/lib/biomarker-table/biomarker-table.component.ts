@@ -1,4 +1,4 @@
-import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
+// import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,20 +8,19 @@ import {
   inject,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
 import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
 import { DataItem } from '@hra-ui/design-system/modal/info-modal';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { TableColumn, TableRow } from '@hra-ui/design-system/table';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { SourceReference } from '@hra-ui/services';
-import { TableVirtualScrollDataSource, TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import { ReplaySubject } from 'rxjs';
 import { GradientPoint } from '../../../../atoms/src/lib/gradient-legend/gradient-legend.component';
 import { SizeLegend } from '../../../../atoms/src/lib/size-legend/size-legend.component';
@@ -74,18 +73,14 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
     MatTableModule,
     BiomarkerTableDataIconComponent,
     ScrollingModule,
-    TableVirtualScrollModule,
     MatButtonToggleModule,
     PlainTooltipDirective,
   ],
   templateUrl: './biomarker-table.component.html',
   styleUrl: './biomarker-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(window:mousemove)': 'onMouseMove()',
-  },
 })
-export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnChanges {
+export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /**
    * Input: TissueInfo carrying the details of the tissue open
    */
@@ -117,9 +112,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
 
   /** Emits cell type label when row is hovered */
   @Output() readonly rowHover = new EventEmitter<string>();
-
-  /** Reference to virtual scroll viewport */
-  @ViewChild(CdkVirtualScrollViewport, { static: true }) vscroll!: CdkVirtualScrollViewport;
 
   /** Reference to biomarker table */
   @ViewChild('table', { static: true, read: ElementRef }) table!: ElementRef;
@@ -173,19 +165,10 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
   }
 
   /** Source for the table */
-  readonly dataSource = new TableVirtualScrollDataSource<DataRow<T>>([]);
+  readonly dataSource = new MatTableDataSource<DataRow<T>>([]);
 
   /** Change detection */
   private readonly cdr = inject(ChangeDetectorRef);
-
-  /**
-   * Subscribes to scroll event on virtual scroll viewport and checks displayed columns
-   */
-  ngOnInit(): void {
-    const scroll$ = this.vscroll.scrollable.elementScrolled();
-    scroll$.subscribe(() => this.checkDisplayedColumns());
-    this.vscroll.checkViewportSize();
-  }
 
   /**
    * Sets the data source for the table on every change
@@ -193,17 +176,10 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * @param changes object consisting of change in the Input
    */
   ngOnChanges(changes: SimpleChanges): void {
-    this.checkDisplayedColumns('columns' in changes);
     if ('data' in changes || 'illustrationIds' in changes) {
       this.dataSource.data = this.sortTableData(this.data);
+      this.updateColumns();
     }
-  }
-
-  /**
-   * Checks for column updates on mouse move
-   */
-  onMouseMove() {
-    this.checkDisplayedColumns();
   }
 
   /**
@@ -211,32 +187,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    */
   trackByIndex(index: number): number {
     return index;
-  }
-
-  /**
-   * Checks to see if columns should be updated
-   */
-  checkDisplayedColumns(forceUpdate = false): void {
-    // Ensure viewport size is up to date
-    this.vscroll.checkViewportSize();
-
-    const scrollable = this.vscroll.scrollable;
-    const size = scrollable.measureViewportSize('horizontal');
-    const offset = scrollable.measureScrollOffset('start');
-    let shouldUpdate = forceUpdate;
-
-    if (size !== this.horizontalViewportSize) {
-      this.updateHorizontalViewportSize(size);
-      shouldUpdate = true;
-    }
-    if (offset !== this.horizontalScrollOffset) {
-      this.updateHorizontalViewportOffset(offset);
-      shouldUpdate = true;
-    }
-
-    if (shouldUpdate) {
-      this.updateColumns();
-    }
   }
 
   /**
@@ -291,19 +241,9 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnCh
    * Updates table columns with prefiller and postfiller columns
    */
   updateColumns(): void {
-    const { displayedColumnCount, displayedColumnOffset } = this;
     const columns = ['type', 'count'];
-    if (this.displayedColumnOffset > 0) {
-      columns.push('preFiller');
-    }
-
-    const displayedColumns = this.columns.slice(displayedColumnOffset, displayedColumnOffset + displayedColumnCount);
+    const displayedColumns = this.columns;
     columns.push(...displayedColumns);
-
-    if (displayedColumnOffset + displayedColumnCount < this.columns.length) {
-      columns.push('postFiller');
-    }
-
     this.columns$.next(columns);
     this.cdr.detectChanges();
   }

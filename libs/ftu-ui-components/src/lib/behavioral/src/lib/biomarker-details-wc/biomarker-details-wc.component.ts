@@ -289,10 +289,6 @@ export class BiomarkerDetailsWcComponent {
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
-    setTimeout(() => {
-      this.table.checkDisplayedColumns();
-    }, 250);
-
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
   }

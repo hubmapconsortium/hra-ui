@@ -1,5 +1,5 @@
 <!-- eslint-disable @angular-eslint/template/mouse-events-have-key-events -->
-<cdk-virtual-scroll-viewport hraFeature="biomarker-table" [tvsItemSize]="rowHeight" [headerHeight]="headerHeight">
+<ng-scrollbar>
   <table class="table" mat-table [dataSource]="dataSource" #table>
     <ng-container matColumnDef="type" sticky>
       <th *matHeaderCellDef mat-header-cell>Cell types</th>
@@ -74,4 +74,4 @@
       (mouseout)="setHoverId(undefined)"
     ></tr>
   </table>
-</cdk-virtual-scroll-viewport>
+</ng-scrollbar>
