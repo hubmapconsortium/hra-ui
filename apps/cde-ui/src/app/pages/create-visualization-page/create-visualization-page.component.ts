@@ -140,11 +140,7 @@ export class CreateVisualizationPageComponent {
     errorTolerance: 0, // Number of rows in the file that can be invalid before error is thrown
     papaparse: {
       header: true,
-      dynamicTyping: {
-        x: true,
-        y: true,
-        z: true,
-      },
+      dynamicTyping: true,
     },
   };
 
