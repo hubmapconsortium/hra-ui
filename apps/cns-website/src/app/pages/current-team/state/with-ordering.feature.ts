@@ -179,7 +179,10 @@ function createSortFn(sortBy: SortBy, store: PeopleProps): (a: PeopleItem, b: Pe
 
     default: {
       const displayOrderByPerson = store.displayOrderByPerson();
-      return (a, b) => compareByNumericProperty(a, b, displayOrderByPerson, 1);
+      return (a, b) => {
+        const byOrder = compareByNumericProperty(a, b, displayOrderByPerson, 1);
+        return byOrder !== 0 ? byOrder : compareByName(a, b, 1);
+      };
     }
   }
 }
