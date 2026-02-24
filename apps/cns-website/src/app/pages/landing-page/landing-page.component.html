@@ -8,21 +8,21 @@
     class="content-filter"
     hraButtonToggleSize="large"
     [multiple]="false"
-    [(value)]="selectedContentType"
+    [(value)]="contentType"
   >
-    @for (contentType of contentTypes; track contentType) {
-      <mat-button-toggle [value]="contentType.toLowerCase()">{{ contentType }}</mat-button-toggle>
+    @for (item of contentTypeItems; track item.slug) {
+      <mat-button-toggle [value]="item.slug">{{ item.label }}</mat-button-toggle>
     }
   </mat-button-toggle-group>
 
   <div class="content-grid">
-    <hra-gallery-grid [dataSource]="contentCards()">
+    <hra-gallery-grid [dataSource]="cards()[contentType()]">
       <hra-content-button
         *hraGalleryGridItem="let item"
-        [imageSrc]="item.imageSrc"
-        [date]="(item.date | date) || ''"
         [tagline]="item.tagline"
         [tags]="item.tags"
+        [date]="item.date"
+        [imageSrc]="item.image"
         [link]="item.link"
         [external]="item.external"
       />

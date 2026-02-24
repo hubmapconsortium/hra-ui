@@ -5,76 +5,42 @@ import { isAbsolute } from '@hra-ui/common/url';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { FeaturedData } from '../../schemas/featured.schema';
+import { FeaturedData, FeaturedDataKey } from '../../schemas/featured.schema';
+import { ResearchTypeId, ResearchTypesData } from '../../schemas/research-type.schema';
 import { ResearchItem } from '../../schemas/research.schema';
-import { TagsData } from '../../schemas/tags.schema';
+import { TagId, TagsData } from '../../schemas/tags.schema';
 import { getImageUrl } from '../../utils/research-item-images';
 
-/** Content Types Array */
-const ContentTypes = ['Featured', 'Publications', 'News'] as const;
+/** Content type item */
+interface ContentTypeItem {
+  /** Display label for the content type */
+  label: string;
+  /** Slug for the content type, used for matching with data keys */
+  slug: FeaturedDataKey;
+}
 
-/** Content Type */
-type ContentType = (typeof ContentTypes)[number];
-
-/** Lowercase Content Type */
-type LowercaseContentType = Lowercase<ContentType>;
-
-/** Interface for content card display */
-interface LandingPageContentCard {
-  /** Image source URL */
-  imageSrc: string;
-  /** Date string */
-  date: Date;
-  /** Tagline or title */
+/** Content card data structure for displaying research items on the landing page */
+interface ContentCard {
+  /** Tagline of the card */
   tagline: string;
-  /** Tags associated with the content */
+  /** Tags of the card */
   tags: string[];
-  /** Link URL */
+  /** Date of the content */
+  date: Date;
+  /** Image URL for the card */
+  image: string;
+  /** Link to the content */
   link: string;
   /** Whether the link is external */
   external: boolean;
 }
 
-/**
- * Maps a ResearchItem to a LandingPageContentCard
- *
- * @param item The featured content item from the API
- * @param tagsMap Map of tag slugs to their display names
- * @returns A content card for display
- */
-function mapToContentCard(item: ResearchItem, tagsMap: Map<string, string>): LandingPageContentCard {
-  /** Determine if the link is external */
-  const isExternal = item.link !== undefined && isAbsolute(item.link);
-
-  /** Map tag slugs to their proper display names */
-  const displayTags = item.tags.map((tagSlug) => tagsMap.get(tagSlug) ?? capitalizeFirstLetter(tagSlug));
-
-  if (item.type && !displayTags.includes(item.type)) {
-    displayTags.unshift(capitalizeFirstLetter(item.type.replace(/-/g, ' ')));
-  }
-
-  return {
-    imageSrc: getImageUrl(item),
-    date: item.dateStart,
-    tagline: item.title,
-    tags: displayTags,
-    link: item.link ?? '#',
-    external: isExternal,
-  };
-}
-
-/**
- * Capitalizes the first letter of each word in a string
- *
- * @param str The string to capitalize
- * @returns The capitalized string
- */
-function capitalizeFirstLetter(str: string): string {
-  return str
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
+/** Predefined content type items for the landing page */
+const CONTENT_TYPE_ITEMS: ContentTypeItem[] = [
+  { label: 'Featured', slug: 'featured' },
+  { label: 'Publications', slug: 'publications' },
+  { label: 'News', slug: 'news' },
+];
 
 /**
  * Landing page of CNS website
@@ -94,32 +60,100 @@ function capitalizeFirstLetter(str: string): string {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  /** Featured content data from resolver */
+  /** Featured content data */
   readonly featuredContent = input.required<FeaturedData>();
 
-  /** Tags data from resolver */
+  /** Event types data */
+  readonly eventTypes = input.required<ResearchTypesData>();
+
+  /** Publication types data */
+  readonly publicationTypes = input.required<ResearchTypesData>();
+
+  /** Funding types data */
+  readonly fundingTypes = input.required<ResearchTypesData>();
+
+  /** Tags data */
   readonly tags = input.required<TagsData>();
 
-  /** Content Types */
-  protected readonly contentTypes = ContentTypes;
+  /** All types data in a single array */
+  private readonly allTypes = computed(() => [
+    {
+      label: 'News',
+      value: 'news' as ResearchTypeId,
+    },
+    ...this.eventTypes(),
+    ...this.publicationTypes(),
+    ...this.fundingTypes(),
+  ]);
 
-  /** Selected content type */
-  protected readonly selectedContentType = signal<LowercaseContentType>('featured');
+  /** Currently selected content type */
+  protected readonly contentType = signal<FeaturedDataKey>('featured');
 
-  /** Tags map for quick lookup of tag names by slug */
-  private readonly tagsMap = computed<Map<string, string>>(() => {
-    const tags = this.tags();
-    return new Map(tags.map((tag) => [tag.slug, tag.name]));
-  });
+  /** Content type items for the toggle buttons */
+  protected readonly contentTypeItems = CONTENT_TYPE_ITEMS;
 
-  /** Content cards filtered by selected content type */
-  protected readonly contentCards = computed<LandingPageContentCard[]>(() => {
+  /** Content mapped to cards */
+  protected readonly cards = computed(() => {
     const data = this.featuredContent();
-    const selectedType = this.selectedContentType();
-    const tagsMap = this.tagsMap();
-
-    const items = data[selectedType] ?? [];
-
-    return items.map((item) => mapToContentCard(item, tagsMap));
+    return Object.entries(data).reduce(
+      (acc, [key, items]) => {
+        acc[key as FeaturedDataKey] = items.map((item) => this.toContentCard(item));
+        return acc;
+      },
+      {} as Record<FeaturedDataKey, ContentCard[]>,
+    );
   });
+
+  /**
+   * Converts a ResearchItem to a ContentCard
+   *
+   * @param item Content data
+   * @returns Mapped content card data
+   */
+  private toContentCard(item: ResearchItem): ContentCard {
+    const { title: tagline, type, tags, dateStart: date, link } = item;
+    const typeLabel = this.getTypeLabel(type);
+    const tagLabels = this.getTagLabels(tags);
+
+    return {
+      tagline,
+      tags: [typeLabel, ...tagLabels],
+      date,
+      image: getImageUrl(item),
+      link: link ?? '#',
+      external: link !== undefined && isAbsolute(link),
+    };
+  }
+
+  /**
+   * Gets the label for a given research type slug
+   *
+   * @param slug ResearchItem type slug
+   * @returns The label for the research type, or 'Other' if not found
+   */
+  private getTypeLabel(slug: ResearchTypeId): string {
+    const types = this.allTypes();
+    const type = types.find((t) => t.value === slug);
+    return type?.label ?? 'Other';
+  }
+
+  /**
+   * Gets the labels for a list of tag slugs.
+   * Slugs without a matching tag are skipped.
+   *
+   * @param slugs Slugs to find labels for
+   * @returns The labels for the given tag slugs
+   */
+  private getTagLabels(slugs: TagId[]): string[] {
+    const tags = this.tags();
+    const labels: string[] = [];
+    for (const slug of slugs) {
+      const tag = tags.find((t) => t.slug === slug);
+      if (tag) {
+        labels.push(tag.name);
+      }
+    }
+
+    return labels;
+  }
 }
