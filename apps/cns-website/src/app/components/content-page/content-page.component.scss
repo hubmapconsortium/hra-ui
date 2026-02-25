@@ -1,5 +1,6 @@
-@use 'vars' as vars;
 @use '@angular/material' as mat;
+@use 'vars';
+@use 'utils';
 
 :host {
   display: block;
@@ -13,4 +14,8 @@
       color: vars.$outline,
     )
   );
+
+  ::ng-deep hra-breadcrumbs .navigation .crumbs .crumb {
+    @include utils.use-font('label', 'medium');
+  }
 }
