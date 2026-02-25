@@ -66,4 +66,8 @@
   ::ng-deep markdown p {
     margin: 0;
   }
+
+  .spacer {
+    flex-grow: 1;
+  }
 }

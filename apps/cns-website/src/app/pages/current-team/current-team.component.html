@@ -82,16 +82,18 @@
                     [description]="store.getMemberTitle(person)"
                     [centerContent]="true"
                   >
-                    <a
-                      mat-button
-                      hraHyperlink
-                      class="learn-more"
-                      [hraLink]="`/people/${person.slug}`"
-                      [attr.aria-label]="`Learn more about ${person.name}`"
-                    >
-                      Learn more
-                      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-                    </a>
+                    @if (store.team() === 'current') {
+                      <a
+                        mat-button
+                        hraHyperlink
+                        class="learn-more"
+                        [hraLink]="`/people/${person.slug}`"
+                        [attr.aria-label]="`Learn more about ${person.name}`"
+                      >
+                        Learn more
+                        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+                      </a>
+                    }
                   </hra-profile-card>
                 </hra-gallery-grid>
               </section>
