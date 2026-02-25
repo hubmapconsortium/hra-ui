@@ -38,7 +38,7 @@ export class DownloadState implements NgxsOnInit {
    * @param ctx
    */
   ngxsOnInit(ctx: DownloadContext): void {
-    ctx.dispatch([new RegisterFormat(SVG_FORMAT), new RegisterFormat(PNG_FORMAT)]);
+    ctx.dispatch([new RegisterFormat(PNG_FORMAT), new RegisterFormat(SVG_FORMAT)]);
   }
 
   /**

@@ -16,6 +16,7 @@ import {
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
 import { TissueTreeListComponent } from '../../../../molecules/src';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 /**
  * Component for Tissue Library Behavior
  */
@@ -73,6 +74,8 @@ export class TissueLibraryBehaviorComponent {
 
   /** Full Screen Service */
   protected fullScreenService = inject(FtuFullScreenService);
+
+  protected snackbar = inject(SnackbarService);
 
   /** Compact Mode */
   protected readonly isCompactMode = signal<boolean>(false);
