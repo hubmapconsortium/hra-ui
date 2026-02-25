@@ -19,19 +19,12 @@
         [level]="1"
         [breadcrumbs]="breadcrumbs()"
         [tags]="tags()"
-      >
-        @let role = primaryRole();
-        @if (role.type === 'member' && role.background; as background) {
-          <div class="profile-description">
-            <p>{{ background }}</p>
-          </div>
-        }
-      </hra-page-section>
+      />
     </hra-table-of-contents-layout-header>
 
     @for (section of sections(); track section.anchor) {
       <hra-page-section [tagline]="section.tagline" [level]="2" [anchor]="section.anchor">
-        <markdown [data]="section.content" />
+        <hra-markdown [data]="section.content" />
       </hra-page-section>
     }
   </hra-table-of-contents-layout>

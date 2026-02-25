@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ChipsModule } from '@hra-ui/design-system/chips';
+import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import {
   TableOfContentsLayoutComponent,
   TableOfContentsLayoutHeaderComponent,
 } from '@hra-ui/design-system/layouts/table-of-contents';
-import { MarkdownModule } from 'ngx-markdown';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleItem } from '../../schemas/people.schema';
-import { ContactInfo, ContactInfoComponent } from './contact-info/contact-info.component';
 import { getRefinedRoleTypeLabel, refineRoleType } from '../../utils/refined-roles';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { ContactInfo, ContactInfoComponent } from './contact-info/contact-info.component';
 
 /** Profile section data */
 interface ProfileSection {
@@ -33,7 +33,7 @@ interface ProfileSection {
     ChipsModule,
     ContactInfoComponent,
     FooterComponent,
-    MarkdownModule,
+    MarkdownComponent,
     PageSectionComponent,
     TableOfContentsLayoutComponent,
     TableOfContentsLayoutHeaderComponent,
