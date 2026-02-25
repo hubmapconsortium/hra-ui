@@ -165,7 +165,7 @@ describe('CurrentTeamComponent', () => {
     await user.click(formerToggle);
 
     expect(await screen.findByText('Former Member')).toBeInTheDocument();
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.queryAllByText(/learn more/i)).toHaveLength(0);
 
     const currentToggle = await screen.findByRole('radio', { name: /current team/i });
     await user.click(currentToggle);
@@ -429,7 +429,7 @@ describe('CurrentTeamComponent', () => {
   it('should have filter buttons available', async () => {
     await renderComponent();
 
-    expect(await screen.findByRole('button', { name: /^roles$/i })).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: /^role$/i })).toBeInTheDocument();
     expect(await screen.findByRole('button', { name: /^active year$/i })).toBeInTheDocument();
   });
 

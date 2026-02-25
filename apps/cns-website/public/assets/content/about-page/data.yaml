@@ -1,6 +1,8 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: About the Cyberinfrastructure for Network Science Center
-subtitle: Celebrating 20+ years of data visualization research at Indiana University.
+subtitle: |
+  We are atlas builders and system integrators with a core focus on data visualization literacy.
+  We publish in high impact journals, our code is high quality, and we communicate our work well to diverse audiences.
 breadcrumbs:
   - name: Home
     route: /
@@ -13,17 +15,13 @@ content:
     content:
       - component: Markdown
         data: |
-          Our mission is to advance datasets, tools, and services for the study of biomedical, social and behavioral science, physics, and other networks.
-          A specific focus is research on the structure and evolution of science and technology (S&T) and the communication of results via static and interactive maps of
-          science (learn more at scimaps.org).
-
-          We co-organize international workshops and conferences, promote network science and visualization at national and international initiatives, organize and finance a
-          weekly Network Science talk series, hold an annual open house, host about 10 national and international visitors/faculty each year, and organize regular workshops on
-          the infrastructures and tools we develop and support. In addition, we develop custom interactive data visualization applications for both public and private sector clients in
-          need of innovative ways to interpret and utilize their data. Our clients have included National Science Foundation (NSF), the National Institutes of Health (NIH), the U.S. Department of
-          Agriculture (USDA), the National Academy of Sciences, the Biotechnology and Biological Sciences Research Council in the UK (BBSRC), TD Ameritrade, Net eSolutions, and Cummins Inc.
-
-          Our administrative home is in Luddy Hall at the Luddy School of Informatics, Computing, and Engineering, Indiana University, Bloomington, Indiana, USA.
+          The [CNS](https://cns.iu.edu/) mission is to advance research, development, teaching, and service in data mining, modeling, and visualization.
+          Specific foci are increased data visualization literacy and research on multi-level atlases
+          of the structure and evolution of science and technology (see [Mapping Science Exhibit](https://scimaps.org/)),
+          mapping the human body at the single cell level (see [HuBMAP](https://portal.hubmapconsortium.org/)),
+          and the communication of results via static and interactive data visualizations
+          (see courses like the [Visual Analytics Certificate](https://visanalytics.cns.iu.edu/)
+          and the [Visible Human MOOC](https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc)).
       - component: Image
         src: /assets/content/about-page/images/luddy-hall.png
 
@@ -44,6 +42,9 @@ content:
           Today, many students and staff members decide to join CNS because its strong focus on information visualization excellence. Almost all projects at CNS aim to advance data visualization design, standards, tools,
           or data visualization literacy in general.
       - component: Image
+        styles:
+          max-width: 640px
+          max-height: 480px
         src: /assets/content/about-page/images/history-2005.png
 
   - component: PageSection
