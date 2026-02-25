@@ -10,8 +10,9 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
 import { PeopleItem } from '../../../schemas/people.schema';
+import { REFINED_ROLE_TYPE_OPTIONS, RefinedRoleType, refineRoleType } from '../../../utils/refined-roles';
+import { PeopleMethods, PeopleProps } from './with-people.feature';
 
 /**
  * Team type filter - current or past members
@@ -26,7 +27,7 @@ export enum TeamType {
  */
 export interface RoleTypeOption extends SearchListOption {
   /** The role type identifier */
-  id: RoleType;
+  id: RefinedRoleType;
 }
 
 /**
@@ -83,15 +84,6 @@ function createYearList(startYear: number): number[] {
   return years;
 }
 
-/** Available role type options for filtering team members by their role */
-export const ROLE_TYPE_OPTIONS: RoleTypeOption[] = [
-  { id: RoleType.Collaborator, label: 'Collaborators' },
-  { id: RoleType.MasterStudent, label: 'Masters student' },
-  { id: RoleType.PhDStudent, label: 'PhD students' },
-  { id: RoleType.Staff, label: 'Staff' },
-  { id: RoleType.Student, label: 'Students' },
-];
-
 /** Available year options for filtering team members by active year (from 2000 to current year) */
 export const YEAR_OPTIONS: YearOption[] = createYearList(2000).map((year) => ({
   id: year.toString(),
@@ -102,9 +94,9 @@ export const YEAR_OPTIONS: YearOption[] = createYearList(2000).map((year) => ({
 /** Filter configuration for roles with all available role type options */
 const ROLES_FILTER: FilterOptionCategory<RoleTypeOption> = {
   id: 'roles',
-  label: 'Roles',
+  label: 'Role',
   disableSearch: true,
-  options: ROLE_TYPE_OPTIONS,
+  options: REFINED_ROLE_TYPE_OPTIONS,
   selected: [],
 };
 
@@ -171,7 +163,7 @@ export function withFilters() {
         const rolesByPerson = store.rolesByPerson();
         return people.filter((person) => {
           const roles = rolesByPerson.get(person);
-          return roles && roles.some((role) => selectedTypes.has(store.getRoleType(role)));
+          return roles && roles.some((role) => selectedTypes.has(refineRoleType(role)));
         });
       });
 

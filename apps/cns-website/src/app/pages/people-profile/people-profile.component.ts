@@ -10,6 +10,8 @@ import { MarkdownModule } from 'ngx-markdown';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleItem } from '../../schemas/people.schema';
 import { ContactInfo, ContactInfoComponent } from './contact-info/contact-info.component';
+import { getRefinedRoleTypeLabel, refineRoleType } from '../../utils/refined-roles';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 
 /** Profile section data */
 interface ProfileSection {
@@ -46,17 +48,24 @@ export class PeopleProfileComponent {
    */
   readonly data = input.required<PeopleItem>();
 
+  /** Breadcrumbs computed for navigation */
+  protected readonly breadcrumbs = computed((): BreadcrumbItem[] => [
+    { name: 'Home', route: '/' },
+    { name: 'People', route: '/people' },
+    { name: this.data().name },
+  ]);
+
   /** Primary role computed from profile data */
-  readonly primaryRole = computed(() => this.data().roles?.[0]);
+  protected readonly primaryRole = computed(() => this.data().roles?.[0]);
 
   /** Contact info computed for the sidebar */
-  readonly contactInfo = computed<ContactInfo>(() => ({
+  protected readonly contactInfo = computed<ContactInfo>(() => ({
     image: this.data().image || '',
-    role: this.data().roles?.[0],
+    role: this.primaryRole(),
   }));
 
   /** Role tags computed for display */
-  readonly tags = computed(() => {
+  protected readonly tags = computed(() => {
     const role = this.primaryRole();
     if (!role) {
       return [];
@@ -67,21 +76,15 @@ export class PeopleProfileComponent {
       if (role.title) {
         tags.push(role.title);
       }
-
-      tags.push('Faculty');
     }
+
+    tags.push(getRefinedRoleTypeLabel(refineRoleType(role)));
+
     return tags;
   });
 
-  /** Breadcrumbs computed for navigation */
-  readonly breadcrumbs = computed(() => [
-    { name: 'Home', route: '/' },
-    { name: 'People', route: '/people' },
-    { name: this.data().name },
-  ]);
-
   /** Profile sections computed from role data */
-  readonly sections = computed<ProfileSection[]>(() => {
+  protected readonly sections = computed<ProfileSection[]>(() => {
     const role = this.primaryRole();
     if (!role) {
       return [];

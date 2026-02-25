@@ -13,17 +13,6 @@ import { PeopleItem } from '../../../schemas/people.schema';
 import { AnyRole } from '../../../schemas/roles.schema';
 
 /**
- * Normalized role types for team members
- */
-export enum RoleType {
-  Collaborator = 'collaborator',
-  MasterStudent = 'masterStudent',
-  PhDStudent = 'phdStudent',
-  Staff = 'staff',
-  Student = 'student',
-}
-
-/**
  * Props provided by the people feature
  */
 export type PeopleProps = {
@@ -45,8 +34,6 @@ export type PeopleProps = {
  * Methods provided by the people feature
  */
 export type PeopleMethods = {
-  /** Get the normalized role type for a given role */
-  getRoleType(role: AnyRole): RoleType;
   /** Get the display title for a team member */
   getMemberTitle(person: PeopleItem): string;
   /** Get the searchable text for a team member */
@@ -180,22 +167,6 @@ export function withPeople() {
         }
       };
 
-      const getRoleType = (role: AnyRole): RoleType => {
-        switch (role.type) {
-          case 'collaborator':
-            return RoleType.Collaborator;
-          case 'student':
-            if (role.degree === 'Ph.D.') {
-              return RoleType.PhDStudent;
-            } else if (role.degree === 'Masters') {
-              return RoleType.MasterStudent;
-            }
-            return RoleType.Student;
-          case 'member':
-            return RoleType.Staff;
-        }
-      };
-
       const getSearchableText = (person: PeopleItem): string => {
         const parts = [person.name, getMemberTitle(person)];
         return parts
@@ -221,7 +192,7 @@ export function withPeople() {
 
       const setPeople = signalMethod((people: PeopleItem[]) => patchState(store, setEntities(people, peopleConfig)));
 
-      return { getMemberTitle, getRoleType, getSearchableText, isActiveInYear, setPeople } satisfies PeopleMethods;
+      return { getMemberTitle, getSearchableText, isActiveInYear, setPeople } satisfies PeopleMethods;
     }),
   );
 }

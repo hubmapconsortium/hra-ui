@@ -1,4 +1,5 @@
-import { ROLE_TYPE_OPTIONS, RoleTypeOption, TeamType, YEAR_OPTIONS, YearOption } from './with-filters.feature';
+import { REFINED_ROLE_TYPE_OPTIONS } from '../../../utils/refined-roles';
+import { RoleTypeOption, TeamType, YEAR_OPTIONS, YearOption } from './with-filters.feature';
 import { GroupBy, SortBy } from './with-ordering.feature';
 
 /**
@@ -57,7 +58,7 @@ export function parseTeamType(value: unknown): TeamType {
  * @returns Array of matched role options or null
  */
 export function parseRoles(value: unknown): RoleTypeOption[] | null {
-  return parseOptions(ROLE_TYPE_OPTIONS, value);
+  return parseOptions(REFINED_ROLE_TYPE_OPTIONS, value);
 }
 
 /**

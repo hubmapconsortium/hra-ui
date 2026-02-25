@@ -10,8 +10,9 @@ import {
 } from '@ngrx/signals';
 import { PeopleItem } from '../../../schemas/people.schema';
 import { AnyRole } from '../../../schemas/roles.schema';
+import { RefinedRoleType, refineRoleType } from '../../../utils/refined-roles';
 import { FilterProps, TeamType } from './with-filters.feature';
-import { PeopleMethods, PeopleProps, RoleType } from './with-people.feature';
+import { PeopleMethods, PeopleProps } from './with-people.feature';
 
 /**
  * Sort options for team members
@@ -67,7 +68,7 @@ interface OrderingState {
 }
 
 /** Grouping keys */
-type GroupByKey = '' | 'current' | 'unknown' | 'skip' | RoleType | number;
+type GroupByKey = '' | 'current' | 'unknown' | 'skip' | RefinedRoleType | number;
 
 /**
  * Initial state for ordering
@@ -126,11 +127,11 @@ const GROUP_BY_KEY_ORDER: Record<GroupByKey, number> = {
   current: -1,
   skip: 9999,
   unknown: 6,
-  [RoleType.Collaborator]: 5,
-  [RoleType.MasterStudent]: 3,
-  [RoleType.PhDStudent]: 2,
-  [RoleType.Staff]: 0,
-  [RoleType.Student]: 4,
+  [RefinedRoleType.Collaborator]: 5,
+  [RefinedRoleType.MasterStudent]: 3,
+  [RefinedRoleType.PhDStudent]: 2,
+  [RefinedRoleType.Staff]: 0,
+  [RefinedRoleType.Student]: 4,
 };
 
 /**
@@ -199,7 +200,7 @@ function createGroupByKeyFn(
   store: PeopleProps & PeopleMethods,
 ): (person: PeopleItem) => GroupByKey {
   const rolesByPerson = store.rolesByPerson();
-  const impl = createGroupByKeyImpl(groupBy, store);
+  const impl = createGroupByKeyImpl(groupBy);
   return (person) => {
     const roles = rolesByPerson.get(person);
     return roles && roles.length > 0 ? impl(roles[0]) : 'skip';
@@ -210,16 +211,12 @@ function createGroupByKeyFn(
  * Creates implementation for deriving groupBy keys for a team member's role
  *
  * @param groupBy Selected grouping option
- * @param store Store containing people properties
  * @returns A function that derives group keys from a role
  */
-function createGroupByKeyImpl(
-  groupBy: GroupBy | null,
-  store: PeopleProps & PeopleMethods,
-): (role: AnyRole) => GroupByKey {
+function createGroupByKeyImpl(groupBy: GroupBy | null): (role: AnyRole) => GroupByKey {
   switch (groupBy) {
     case GroupBy.Role:
-      return (role) => store.getRoleType(role);
+      return (role) => refineRoleType(role);
     case GroupBy.StartYear:
       return (role) => role.dateStart.getFullYear();
     case GroupBy.EndYear:
@@ -237,11 +234,11 @@ const GROUP_BY_KEY_LABELS: Record<GroupByKey, string> = {
   current: 'Current',
   skip: '',
   unknown: 'Unknown',
-  [RoleType.Collaborator]: 'Collaborators',
-  [RoleType.MasterStudent]: 'Master Students',
-  [RoleType.PhDStudent]: 'PhD Students',
-  [RoleType.Staff]: 'Staff',
-  [RoleType.Student]: 'Students',
+  [RefinedRoleType.Collaborator]: 'Collaborators',
+  [RefinedRoleType.MasterStudent]: 'Master Students',
+  [RefinedRoleType.PhDStudent]: 'PhD Students',
+  [RefinedRoleType.Staff]: 'Staff',
+  [RefinedRoleType.Student]: 'Students',
 };
 
 /**
