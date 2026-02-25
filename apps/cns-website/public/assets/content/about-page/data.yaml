@@ -44,6 +44,9 @@ content:
           Today, many students and staff members decide to join CNS because its strong focus on information visualization excellence. Almost all projects at CNS aim to advance data visualization design, standards, tools,
           or data visualization literacy in general.
       - component: Image
+        styles:
+          max-width: 640px
+          max-height: 480px
         src: /assets/content/about-page/images/history-2005.png
 
   - component: PageSection
