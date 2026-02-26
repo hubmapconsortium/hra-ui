@@ -26,22 +26,27 @@
       );
     }
 
-    .layout-container {
-      margin: 2.5rem 1.5rem;
+    .content {
+      display: flex;
+      flex-direction: column;
 
-      .section {
-        width: 100%;
-        max-width: 87.5rem;
-        margin: auto;
+      .layout-container {
+        margin: 2.5rem 1.5rem;
+
+        .section {
+          width: 100%;
+          max-width: 87.5rem;
+          margin: auto;
+        }
+
+        @media (min-width: 640px) {
+          margin: 2.5rem;
+        }
       }
 
-      @media (min-width: 640px) {
-        margin: 2.5rem;
+      .spacer {
+        flex-grow: 1;
       }
     }
-  }
-
-  .spacer {
-    flex-grow: 1;
   }
 }

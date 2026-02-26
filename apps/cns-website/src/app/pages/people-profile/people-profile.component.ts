@@ -13,7 +13,7 @@ import {
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleItem } from '../../schemas/people.schema';
 import { getRefinedRoleTypeLabel, refineRoleType } from '../../utils/refined-roles';
-import { ContactInfo, ContactInfoComponent } from './contact-info/contact-info.component';
+import { ContactInfoComponent } from './contact-info/contact-info.component';
 
 /** Profile section data */
 interface ProfileSection {
@@ -66,11 +66,20 @@ export class PeopleProfileComponent {
   /** Primary role computed from profile data */
   protected readonly primaryRole = computed(() => this.data().roles?.[0]);
 
-  /** Contact info computed for the sidebar */
-  protected readonly contactInfo = computed<ContactInfo>(() => ({
-    image: this.data().image || '',
-    role: this.primaryRole(),
-  }));
+  /** Whether contact info is available for display */
+  protected readonly hasContactInfo = computed(() => {
+    if (this.data().image) {
+      return true;
+    }
+
+    const role = this.primaryRole();
+    if (!role || role.type !== 'member') {
+      return false;
+    }
+
+    const { email, fax, office, phone } = role;
+    return !!(email || fax || office || phone);
+  });
 
   /** Role tags computed for display */
   protected readonly tags = computed(() => {

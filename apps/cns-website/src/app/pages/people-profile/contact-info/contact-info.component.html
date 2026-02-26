@@ -1,29 +1,31 @@
-<div class="profile-picture">
-  <img alt="Profile picture" [attr.src]="contactInfo().image" />
-</div>
+@if (image(); as src) {
+  <div class="profile-picture">
+    <img alt="Profile picture" [attr.src]="src | assetUrl" />
+  </div>
+}
 
-@let role = contactInfo().role;
-@if (role && role.type === 'member') {
+@let data = role();
+@if (data && data.type === 'member') {
   <hra-page-section class="contact-info-section" tagline="Contact info" [level]="5">
-    @if (role.office; as office) {
+    @if (data.office; as office) {
       <hra-page-section tagline="Office" [level]="6">
         <div class="value">{{ office }}</div>
       </hra-page-section>
     }
 
-    @if (role.phone; as phone) {
+    @if (data.phone; as phone) {
       <hra-page-section tagline="Phone" [level]="6">
         <div class="value">{{ phone }}</div>
       </hra-page-section>
     }
 
-    @if (role.fax; as fax) {
+    @if (data.fax; as fax) {
       <hra-page-section tagline="Fax" [level]="6">
         <div class="value">{{ fax }}</div>
       </hra-page-section>
     }
 
-    @if (role.email; as email) {
+    @if (data.email; as email) {
       <hra-page-section tagline="Email" [level]="6">
         <div class="value">
           <a [attr.href]="`mailto:${email}`">{{ email }}</a>
