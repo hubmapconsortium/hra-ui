@@ -14,8 +14,4 @@
       color: vars.$outline,
     )
   );
-
-  ::ng-deep hra-breadcrumbs .navigation .crumbs .crumb {
-    @include utils.use-font('label', 'medium');
-  }
 }
