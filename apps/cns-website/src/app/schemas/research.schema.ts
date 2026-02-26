@@ -30,9 +30,9 @@ export const ResearchItemSchema = z
     /** Description of the research */
     description: z.string(),
     /** Start date of the research */
-    dateStart: z.iso.date().pipe(z.coerce.date()),
+    dateStart: z.coerce.date(),
     /** End date of the research */
-    dateEnd: z.iso.date().pipe(z.coerce.date()),
+    dateEnd: z.coerce.date(),
     /** Link associated with the research */
     link: z.string().optional(),
     /** People associated with the research */

@@ -2,8 +2,8 @@ import * as z from 'zod';
 
 /** Base role schema with common fields */
 const BaseRoleSchema = z.object({
-  dateStart: z.iso.date().pipe(z.coerce.date()),
-  dateEnd: z.iso.date().pipe(z.coerce.date()).nullable(),
+  dateStart: z.coerce.date(),
+  dateEnd: z.union([z.literal('').transform(() => null), z.coerce.date()]).nullable(),
 });
 
 /** Type representing a team member role */
