@@ -14,10 +14,11 @@
     @for (option of filteredOptions(); track option.id) {
       <mat-list-option
         togglePosition="before"
+        hraClickEvent
         [hraFeature]="option.label | slugify"
         [value]="option"
         [selected]="selected().includes(option)"
-        [attr.aria-label]="`Toggle ${option.id}`"
+        [attr.aria-label]="`Toggle ${option.label}`"
       >
         <mat-label class="labels-count">
           <span class="option-labels">

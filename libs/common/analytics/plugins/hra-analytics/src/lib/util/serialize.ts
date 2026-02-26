@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { ZodError } from 'zod';
 
 /**
  * Serializes complex values into simpler types.
@@ -20,6 +21,9 @@ export function serialize(value: unknown): unknown {
 
   if (value instanceof Date) {
     return value.toISOString();
+  } else if (value instanceof ZodError) {
+    const props = pick(value, ['name', 'stack']);
+    return { ...props, issues: JSON.stringify(value.issues) };
   } else if (value instanceof Error) {
     return pick(value, ['name', 'message', 'stack']);
   } else if (value instanceof HttpErrorResponse) {

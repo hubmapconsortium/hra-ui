@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -38,6 +39,7 @@ import { ResearchStore } from './state/research.store';
     EndOfResultsIndicatorComponent,
     FilterMenuComponent,
     FooterComponent,
+    FormsModule,
     GalleryGridComponent,
     GalleryGridItemDirective,
     IconsModule,

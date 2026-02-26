@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -29,6 +30,7 @@ import { CurrentTeamStore } from './state/current-team.store';
     ButtonsModule,
     FilterMenuComponent,
     FooterComponent,
+    FormsModule,
     GalleryGridComponent,
     GalleryGridItemDirective,
     IconsModule,

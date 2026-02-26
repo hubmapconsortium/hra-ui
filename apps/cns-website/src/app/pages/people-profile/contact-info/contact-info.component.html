@@ -1,36 +1,38 @@
-@if (image(); as src) {
-  <div class="profile-picture">
-    <img alt="Profile picture" [attr.src]="src | assetUrl" />
-  </div>
-}
+<ng-container hraFeature="contact-info">
+  @if (image(); as src) {
+    <div class="profile-picture">
+      <img alt="Profile picture" [attr.src]="src | assetUrl" />
+    </div>
+  }
 
-@let data = role();
-@if (data && data.type === 'member') {
-  <hra-page-section class="contact-info-section" tagline="Contact info" [level]="5">
-    @if (data.office; as office) {
-      <hra-page-section tagline="Office" [level]="6">
-        <div class="value">{{ office }}</div>
-      </hra-page-section>
-    }
+  @let data = role();
+  @if (data && data.type === 'member') {
+    <hra-page-section class="contact-info-section" tagline="Contact info" [level]="5">
+      @if (data.office; as office) {
+        <hra-page-section hraFeature="office" tagline="Office" [level]="6">
+          <div class="value">{{ office }}</div>
+        </hra-page-section>
+      }
 
-    @if (data.phone; as phone) {
-      <hra-page-section tagline="Phone" [level]="6">
-        <div class="value">{{ phone }}</div>
-      </hra-page-section>
-    }
+      @if (data.phone; as phone) {
+        <hra-page-section hraFeature="phone" tagline="Phone" [level]="6">
+          <div class="value">{{ phone }}</div>
+        </hra-page-section>
+      }
 
-    @if (data.fax; as fax) {
-      <hra-page-section tagline="Fax" [level]="6">
-        <div class="value">{{ fax }}</div>
-      </hra-page-section>
-    }
+      @if (data.fax; as fax) {
+        <hra-page-section hraFeature="fax" tagline="Fax" [level]="6">
+          <div class="value">{{ fax }}</div>
+        </hra-page-section>
+      }
 
-    @if (data.email; as email) {
-      <hra-page-section tagline="Email" [level]="6">
-        <div class="value">
-          <a [attr.href]="`mailto:${email}`">{{ email }}</a>
-        </div>
-      </hra-page-section>
-    }
-  </hra-page-section>
-}
+      @if (data.email; as email) {
+        <hra-page-section hraFeature="email" tagline="Email" [level]="6">
+          <div class="value">
+            <a hraClickEvent [attr.href]="`mailto:${email}`">{{ email }}</a>
+          </div>
+        </hra-page-section>
+      }
+    </hra-page-section>
+  }
+</ng-container>

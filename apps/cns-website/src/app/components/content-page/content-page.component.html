@@ -1,4 +1,4 @@
-<hra-table-of-contents-layout>
+<hra-table-of-contents-layout [hraFeature]="data().title | slugify">
   <hra-table-of-contents-layout-header>
     <hra-page-section [tagline]="data().title" [icons]="data().icons" [breadcrumbs]="data().breadcrumbs">
       <hra-markdown class="subtitle" [data]="data().subtitle" />

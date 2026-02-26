@@ -21,6 +21,8 @@ interface ContentTypeItem {
 
 /** Content card data structure for displaying research items on the landing page */
 interface ContentCard {
+  /** Unique slug for the content card */
+  slug: string;
   /** Tagline of the card */
   tagline: string;
   /** Tags of the card */
@@ -111,11 +113,12 @@ export class LandingPageComponent {
    * @returns Mapped content card data
    */
   private toContentCard(item: ResearchItem): ContentCard {
-    const { title: tagline, type, tags, dateStart: date, link } = item;
+    const { slug, title: tagline, type, tags, dateStart: date, link } = item;
     const typeLabel = this.getTypeLabel(type);
     const tagLabels = this.getTagLabels(tags);
 
     return {
+      slug,
       tagline,
       tags: [typeLabel, ...tagLabels],
       date,

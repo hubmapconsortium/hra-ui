@@ -3,10 +3,18 @@
 
   <mat-icon matPrefix>search</mat-icon>
 
-  <input matInput type="text" [(ngModel)]="search" />
+  <input hraClickEvent matInput type="text" [(ngModel)]="search" />
 
   @if (search().length > 0) {
-    <button class="clear-search" matSuffix mat-icon-button aria-label="Clear search" (click)="search.set('')">
+    <button
+      class="clear-search"
+      hraFeature="clear"
+      hraClickEvent
+      matSuffix
+      mat-icon-button
+      aria-label="Clear search"
+      (click)="search.set('')"
+    >
       <mat-icon>cancel</mat-icon>
     </button>
   }

@@ -1,4 +1,4 @@
-<mat-sidenav-container class="container">
+<mat-sidenav-container class="container" hraFeature="research-page">
   <mat-sidenav
     class="sidebar"
     aria-label="Filter research"
@@ -9,14 +9,15 @@
   >
     <hra-filter-menu
       tagline="Research at the Cyberinfrastructure for Network Science Center"
+      hraFeature="filters"
       [filters]="store.filters()"
       [counts]="store.counts()"
       (filtersChange)="store.updateFilters($event)"
     >
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraFeature="view" subscriptSizing="dynamic">
         <mat-icon class="select-icon" matPrefix>{{ store.view() === 'gallery' ? 'cards' : 'list' }}</mat-icon>
         <mat-label>View as</mat-label>
-        <mat-select [value]="store.view()" (valueChange)="store.setView($event)">
+        <mat-select hraModelChangeEvent [ngModel]="store.view()" (ngModelChange)="store.setView($event)">
           <mat-option value="gallery">
             <mat-icon class="select-icon" fontIcon="cards" />
             Gallery
@@ -28,10 +29,10 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraFeature="sort-by" subscriptSizing="dynamic">
         <mat-icon class="select-icon" matPrefix>sort</mat-icon>
         <mat-label>Sort by</mat-label>
-        <mat-select [value]="store.sortBy()" (valueChange)="store.setSortBy($event)">
+        <mat-select hraModelChangeEvent [ngModel]="store.sortBy()" (ngModelChange)="store.setSortBy($event)">
           <mat-option value="nameAsc">Ascending (A-Z) by title</mat-option>
           <mat-option value="nameDesc">Descending (Z-A) by title</mat-option>
           <mat-option value="newest">Newest</mat-option>
@@ -39,10 +40,10 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic">
+      <mat-form-field hraFeature="group-by" subscriptSizing="dynamic">
         <mat-icon class="select-icon" matPrefix>category</mat-icon>
         <mat-label>Group by</mat-label>
-        <mat-select [value]="store.groupBy()" (valueChange)="store.setGroupBy($event)">
+        <mat-select hraModelChangeEvent [ngModel]="store.groupBy()" (ngModelChange)="store.setGroupBy($event)">
           <mat-option [value]="null">None</mat-option>
           <mat-option value="publicationType">Publication type</mat-option>
           <mat-option value="year">Year</mat-option>
@@ -53,6 +54,7 @@
 
   <mat-sidenav-content role="main">
     <hra-search-filter
+      hraFeature="search"
       label="Search"
       separator="/"
       [totalCount]="store.numResearchItems()"
@@ -62,9 +64,9 @@
     />
 
     <ng-scrollbar hraScrollOverflowFade>
-      <div class="content">
+      <div class="content" hraFeature="result">
         @if (store.numFilteredItems() === 0) {
-          <hra-no-results-indicator (clearFilters)="store.resetFilters()" />
+          <hra-no-results-indicator hraFeature="no-results" (clearFilters)="store.resetFilters()" />
         } @else if (store.view() === 'gallery') {
           @for (group of store.sortedGroupedItems(); track group.label) {
             <section class="gallery-group">
@@ -75,6 +77,7 @@
               <hra-gallery-grid [dataSource]="group.items">
                 <hra-gallery-card
                   *hraGalleryGridItem="let item"
+                  [hraFeature]="item.slug"
                   [imageSrc]="getImageUrl(item)"
                   [tagline]="item.title"
                   [date]="(item.dateStart | date) ?? ''"
