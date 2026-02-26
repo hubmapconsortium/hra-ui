@@ -1,35 +1,33 @@
-<cns-contact-info class="contact-sidebar" [contactInfo]="contactInfo()" />
+<mat-sidenav-container class="container">
+  <mat-sidenav class="sidenav" role="complementary" mode="side" [opened]="!isMobile()">
+    <cns-contact-info [contactInfo]="contactInfo()" />
+  </mat-sidenav>
 
-<div class="main-content">
-  <hra-page-section
-    class="profile-header-section-mobile"
-    [tagline]="data().name"
-    [level]="1"
-    [breadcrumbs]="breadcrumbs()"
-    [tags]="tags()"
-  />
+  <mat-sidenav-content>
+    <hra-table-of-contents-layout class="layout-container">
+      <hra-table-of-contents-layout-header>
+        <hra-page-section
+          class="section"
+          [tagline]="data().name"
+          [level]="1"
+          [breadcrumbs]="breadcrumbs()"
+          [tags]="tags()"
+        >
+          @if (isMobile()) {
+            <cns-contact-info [contactInfo]="contactInfo()" />
+          }
+        </hra-page-section>
+      </hra-table-of-contents-layout-header>
 
-  <cns-contact-info class="contact-sidebar-mobile" [contactInfo]="contactInfo()" />
+      @for (section of sections(); track section.anchor) {
+        <hra-page-section class="section" [tagline]="section.tagline" [level]="2" [anchor]="section.anchor">
+          <hra-markdown [data]="section.content" />
+        </hra-page-section>
+      }
+    </hra-table-of-contents-layout>
 
-  <hra-table-of-contents-layout>
-    <hra-table-of-contents-layout-header>
-      <hra-page-section
-        class="profile-header-section-desktop"
-        [tagline]="data().name"
-        [level]="1"
-        [breadcrumbs]="breadcrumbs()"
-        [tags]="tags()"
-      />
-    </hra-table-of-contents-layout-header>
+    <div class="spacer"></div>
 
-    @for (section of sections(); track section.anchor) {
-      <hra-page-section [tagline]="section.tagline" [level]="2" [anchor]="section.anchor">
-        <hra-markdown [data]="section.content" />
-      </hra-page-section>
-    }
-  </hra-table-of-contents-layout>
-
-  <div class="spacer"></div>
-
-  <cns-footer />
-</div>
+    <cns-footer />
+  </mat-sidenav-content>
+</mat-sidenav-container>

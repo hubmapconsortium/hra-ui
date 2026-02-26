@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
+import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ChipsModule } from '@hra-ui/design-system/chips';
@@ -34,6 +36,9 @@ interface ProfileSection {
     ContactInfoComponent,
     FooterComponent,
     MarkdownComponent,
+    MatSidenav,
+    MatSidenavContainer,
+    MatSidenavContent,
     PageSectionComponent,
     TableOfContentsLayoutComponent,
     TableOfContentsLayoutHeaderComponent,
@@ -47,6 +52,9 @@ export class PeopleProfileComponent {
    * Profile data from route resolver
    */
   readonly data = input.required<PeopleItem>();
+
+  /** Whether the current screen size matches mobile breakpoint */
+  protected readonly isMobile = watchBreakpoint(Breakpoints.Mobile);
 
   /** Breadcrumbs computed for navigation */
   protected readonly breadcrumbs = computed((): BreadcrumbItem[] => [
