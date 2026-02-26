@@ -132,7 +132,10 @@
         mat-menu-item
         hraClickEvent
         [hraFeature]="`download-source-data-csv`"
-        (click)="snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })"
+        (click)="
+          downloadCsv(sourceReferences(), activeIri());
+          snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })
+        "
       >
         <div>Source data CSV</div>
       </button>
@@ -140,7 +143,10 @@
         mat-menu-item
         hraClickEvent
         [hraFeature]="`download-source-data-biomarker-expressions-json`"
-        (click)="snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })"
+        (click)="
+          downloadSummaries(filteredSummaries());
+          snackbar.open('File downloaded', '', false, 'start', { duration: 5000 })
+        "
       >
         <div>Source data biomarker expressions JSON</div>
       </button>

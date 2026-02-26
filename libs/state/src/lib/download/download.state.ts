@@ -4,9 +4,18 @@ import { Action, NgxsOnInit, State } from '@ngxs/store';
 import { produce } from 'immer';
 import { Observable, tap } from 'rxjs';
 
-import { FtuDataService } from '@hra-ui/services';
-import { PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
-import { AddEntry, ClearEntries, Download, Load, RegisterFormat } from './download.action';
+import { FtuDataService, SourceReference } from '@hra-ui/services';
+import { COLUMN_IDS, ColumnId } from '../source-refs';
+import { JSON_FORMAT, PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
+import {
+  AddEntry,
+  ClearEntries,
+  Download,
+  DownloadCsv,
+  DownloadSummaries,
+  Load,
+  RegisterFormat,
+} from './download.action';
 import { createDownloadFormatId, DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
 
 /**
@@ -38,7 +47,7 @@ export class DownloadState implements NgxsOnInit {
    * @param ctx
    */
   ngxsOnInit(ctx: DownloadContext): void {
-    ctx.dispatch([new RegisterFormat(PNG_FORMAT), new RegisterFormat(SVG_FORMAT)]);
+    ctx.dispatch([new RegisterFormat(PNG_FORMAT), new RegisterFormat(SVG_FORMAT), new RegisterFormat(JSON_FORMAT)]);
   }
 
   /**
@@ -128,6 +137,29 @@ export class DownloadState implements NgxsOnInit {
       default:
         throw new Error('Cannot download file without data');
     }
+  }
+
+  @Action(DownloadSummaries)
+  downloadSummaries(ctx: DownloadContext, { summaries }: DownloadSummaries): Observable<unknown> | void {
+    this.downloadData(new Blob([JSON.stringify(summaries)]), 'cell-summaries.json');
+  }
+
+  @Action(DownloadCsv)
+  downloadCsv(ctx: DownloadContext, { sourceRefs, id }: DownloadCsv): Observable<unknown> | void {
+    const filename = this.guessFilename(ctx, createDownloadFormatId('csv'), id as string);
+
+    // const header = 'title,doi,year,datasetTitle,datasetId,cellType,healthStatus,sex,age,bmi,ethnicity\n';
+    const header = COLUMN_IDS.join(',') + '\n';
+    const rows = sourceRefs
+      .map((ref) =>
+        COLUMN_IDS.map((col: ColumnId) => {
+          const value = (ref as SourceReference)[col] ?? '';
+          return typeof value === 'string' ? `"${value.replace(/"/g, '""')}"` : value;
+        }).join(','),
+      )
+      .join('\n');
+    const csvContent = header + rows;
+    this.downloadData(new Blob([csvContent], { type: 'text/csv' }), filename);
   }
 
   /**

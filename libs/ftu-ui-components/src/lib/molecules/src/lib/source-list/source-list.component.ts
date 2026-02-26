@@ -21,25 +21,12 @@ import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { TableRow } from '@hra-ui/design-system/table';
 import { SourceReference } from '@hra-ui/services';
+import { COLUMN_IDS } from '@hra-ui/state';
 import { EmptyBiomarkerComponent } from '../../../../atoms/src';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
-
-const COLUMN_IDS = [
-  'title',
-  'doi',
-  'year',
-  'datasetTitle',
-  'datasetId',
-  'cellType',
-  'healthStatus',
-  'sex',
-  'age',
-  'bmi',
-  'ethnicity',
-];
 
 /** This component shows list of sources with title and links to the datasets */
 @Component({

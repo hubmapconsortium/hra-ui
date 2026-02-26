@@ -7,16 +7,24 @@ import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Tissue } from '@hra-ui/services';
-import { ActiveFtuSelectors, DownloadActions, DownloadSelectors, LinkIds, TissueLibrarySelectors } from '@hra-ui/state';
+import {
+  ActiveFtuSelectors,
+  CellSummarySelectors,
+  DownloadActions,
+  DownloadSelectors,
+  LinkIds,
+  SourceRefsSelectors,
+  TissueLibrarySelectors,
+} from '@hra-ui/state';
 import { LabelBoxComponent } from '../../../../atoms/src';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
 import { TissueTreeListComponent } from '../../../../molecules/src';
-import { SnackbarService } from '@hra-ui/design-system/snackbar';
 /**
  * Component for Tissue Library Behavior
  */
@@ -71,6 +79,16 @@ export class TissueLibraryBehaviorComponent {
 
   /** Download Action Dispatcher */
   protected readonly download = dispatch(DownloadActions.Download);
+
+  protected readonly downloadSummaries = dispatch(DownloadActions.DownloadSummaries);
+
+  protected readonly filteredSummaries = selectSnapshot(CellSummarySelectors.filteredSummaries);
+
+  protected readonly sourceReferences = selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  protected readonly downloadCsv = dispatch(DownloadActions.DownloadCsv);
+
+  protected readonly activeIri = selectSnapshot(ActiveFtuSelectors.iri);
 
   /** Full Screen Service */
   protected fullScreenService = inject(FtuFullScreenService);

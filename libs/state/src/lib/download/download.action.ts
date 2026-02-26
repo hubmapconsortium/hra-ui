@@ -1,6 +1,6 @@
 import { Action } from '@hra-ui/cdk/state';
+import { CellSummary, Iri, SourceReference } from '@hra-ui/services';
 import { DownloadEntry, DownloadFormat, DownloadFormatId } from './download.model';
-import { Iri } from '@hra-ui/services';
 
 /**
  * Register format into state
@@ -55,6 +55,21 @@ export class Download extends Action('[Download] Download') {
    * @param selectedFormat
    */
   constructor(readonly format: DownloadFormatId) {
+    super();
+  }
+}
+
+export class DownloadSummaries extends Action('[Download] Download Summaries') {
+  constructor(readonly summaries: CellSummary[]) {
+    super();
+  }
+}
+
+export class DownloadCsv extends Action('[Download] Download CSV') {
+  constructor(
+    readonly sourceRefs: SourceReference[],
+    readonly id?: Iri,
+  ) {
     super();
   }
 }

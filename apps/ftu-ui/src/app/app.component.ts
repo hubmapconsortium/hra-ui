@@ -52,12 +52,14 @@ import {
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
+  CellSummarySelectors,
   DownloadActions,
   DownloadSelectors,
   HraStateModule,
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
+  SourceRefsSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
@@ -65,6 +67,7 @@ import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
 import { environment } from '../environments/environment';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 /** Input property keys */
 type InputProps =
@@ -234,6 +237,18 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
 
   /** Download Action Dispatcher */
   protected readonly download = dispatch(DownloadActions.Download);
+
+  protected readonly downloadSummaries = dispatch(DownloadActions.DownloadSummaries);
+
+  protected readonly filteredSummaries = selectSnapshot(CellSummarySelectors.filteredSummaries);
+
+  protected readonly sourceReferences = selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  protected readonly downloadCsv = dispatch(DownloadActions.DownloadCsv);
+
+  protected readonly activeIri = selectSnapshot(ActiveFtuSelectors.iri);
+
+  protected snackbar = inject(SnackbarService);
 
   /** Initialize the app */
   constructor() {

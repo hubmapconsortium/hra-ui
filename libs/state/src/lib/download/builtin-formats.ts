@@ -1,4 +1,4 @@
-import { Png, Svg } from './builtin-formats-ids';
+import { Csv, Json, Png, Svg } from './builtin-formats-ids';
 import { DownloadFormat } from './download.model';
 
 /**
@@ -17,6 +17,18 @@ export const PNG_FORMAT: DownloadFormat = {
   id: Png,
   label: 'Illustration PNG',
   extension: '.png',
+};
+
+export const CSV_FORMAT: DownloadFormat = {
+  id: Csv,
+  label: 'Source data CSV',
+  extension: '.csv',
+};
+
+export const JSON_FORMAT: DownloadFormat = {
+  id: Json,
+  label: 'Source data biomarker expressions JSON',
+  extension: '.json',
 };
 
 // TODO add new formats: ai

@@ -5,6 +5,22 @@ import { Observable, tap } from 'rxjs';
 
 import { Load, Reset, ResetSelectedSources, SetSelectedSources } from './source-refs.actions';
 
+export type ColumnId = keyof SourceReference;
+
+export const COLUMN_IDS: ColumnId[] = [
+  'title',
+  'doi',
+  'year',
+  'datasetTitle',
+  'datasetId',
+  'cellType',
+  'healthStatus',
+  'sex',
+  'age',
+  'bmi',
+  'ethnicity',
+];
+
 /**
  * Source refs model interface
  */

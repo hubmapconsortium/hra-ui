@@ -16,4 +16,9 @@ export class CellSummarySelectors {
   static summaries(state: CellSummaryModel): CellSummary[] {
     return state.summaries;
   }
+
+  @Selector([CellSummaryState])
+  static filteredSummaries(state: CellSummaryModel): CellSummary[] {
+    return state.filteredSummaries;
+  }
 }
