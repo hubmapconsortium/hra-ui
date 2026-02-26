@@ -4,6 +4,11 @@
 
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);
+
+  // TODO: Fix in design system and remove this override
+  hra-breadcrumbs .navigation .crumbs .crumb {
+    @include utils.use-font('label', 'medium');
+  }
 }
 
 body {
