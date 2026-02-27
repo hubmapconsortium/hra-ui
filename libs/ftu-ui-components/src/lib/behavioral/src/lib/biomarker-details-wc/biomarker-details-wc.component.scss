@@ -8,6 +8,20 @@
   height: 100%;
 
   mat-tab-group {
+    @include mat.tabs-overrides(
+      (
+        container-height: 63px,
+        active-indicator-color: vars.$on-tertiary-fixed,
+        active-label-text-color: vars.$secondary,
+        inactive-label-text-color: vars.$primary,
+        label-text-font: vars.$label-medium-font,
+        label-text-line-height: vars.$label-medium-line-height,
+        label-text-size: vars.$label-medium-size,
+        label-text-tracking: vars.$label-medium-tracking,
+        label-text-weight: vars.$label-medium-weight,
+      )
+    );
+
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -29,21 +43,6 @@
       }
     }
   }
-
-  @include mat.tabs-overrides(
-    (
-      container-height: 4rem,
-      active-indicator-color: vars.$on-tertiary-fixed,
-      active-label-text-color: vars.$secondary,
-      inactive-label-text-color: vars.$primary,
-      background-color: vars.$surface-container-low,
-      label-text-font: vars.$label-medium-font,
-      label-text-line-height: vars.$label-medium-line-height,
-      label-text-size: vars.$label-medium-size,
-      label-text-tracking: vars.$label-medium-tracking,
-      label-text-weight: vars.$label-medium-weight,
-    )
-  );
 
   @include mat.button-toggle-overrides(
     (
@@ -69,6 +68,11 @@
       position: relative;
       height: 100%;
       overflow: hidden;
+
+      &.empty {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+      }
 
       .legend {
         grid-area: legend-area;
@@ -174,6 +178,17 @@
             line-height: 1;
             padding: 0;
           }
+        }
+      }
+    }
+
+    ftu-empty-biomarker {
+      ::ng-deep .footer {
+        display: flex;
+        justify-content: end;
+
+        button {
+          width: auto !important;
         }
       }
     }

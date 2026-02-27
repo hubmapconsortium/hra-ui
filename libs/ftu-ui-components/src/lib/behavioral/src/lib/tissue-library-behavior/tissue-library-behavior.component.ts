@@ -7,7 +7,6 @@ import { dispatch, select$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { LinkRegistryActions } from '@hra-ui/cdk/state';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Tissue } from '@hra-ui/services';
 import {
@@ -92,8 +91,6 @@ export class TissueLibraryBehaviorComponent {
 
   /** Full Screen Service */
   protected fullScreenService = inject(FtuFullScreenService);
-
-  protected snackbar = inject(SnackbarService);
 
   /** Compact Mode */
   protected readonly isCompactMode = signal<boolean>(false);

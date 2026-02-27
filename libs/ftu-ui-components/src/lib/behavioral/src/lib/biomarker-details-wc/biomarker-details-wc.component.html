@@ -9,7 +9,7 @@
   (selectedTabChange)="tabEvent.logEvent(undefined, undefined, { tab: $event.tab.textLabel })"
   #tabEvent="hraClickEvent"
 >
-  <mat-tab hraFeature="illustration-tab" label="FTU Illustration">
+  <mat-tab hraFeature="illustration-tab" label="FTU illustration">
     <ftu-interactive-svg
       hraHoverEvent
       hraFeature="illustration"
@@ -20,7 +20,7 @@
     />
   </mat-tab>
 
-  <mat-tab hraFeature="source-data-tab" label="Source Data">
+  <mat-tab hraFeature="source-data-tab" label="Source data">
     <div class="source-list">
       @if (source().length > 0) {
         <ftu-source-list
@@ -33,55 +33,51 @@
       }
 
       @if (source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) {
-        <ftu-empty-biomarker
-          class="wc-empty-biomarker"
-          emptyBehaviorText="We currently do not have cell type by biomarker data for genes, proteins, or lipids."
-        />
+        <ftu-empty-biomarker emptyBehaviorText="We currently do not have data for this functional tissue unit." />
       }
     </div>
   </mat-tab>
 
-  <mat-tab hraFeature="biomarkers-tab" label="Cell types by Biomarkers" [disabled]="tab.rows.length === 0">
-    <div class="biomarker-details">
-      <div class="legend" hraFeature="legends">
-        <button
-          hraClickEvent
-          hraFeature="percentage"
-          class="legend-percentage"
-          hraRichTooltipTagline="Percentage of cells"
-          [hraRichTooltip]
-          [hraRichTooltipDescription]="percentageTooltipText"
-        >
-          <span class="legend-header-percentage">Percentage of cells</span>
-          <ftu-size-legend class="content" [sizes]="sizes()" />
-        </button>
-        <mat-divider [vertical]="true" />
-        <button
-          hraClickEvent
-          hraFeature="expression"
-          class="legend-gradient"
-          hraRichTooltipTagline="Biomarker expression mean"
-          [hraRichTooltip]
-          [hraRichTooltipDescription]="expressionTooltipText"
-        >
-          <span class="legend-header-gradient">Biomarker expression mean</span>
-          <ftu-gradient-legend class="content" [gradient]="gradients()" />
-        </button>
-      </div>
-      <mat-button-toggle-group
-        hraButtonToggleSize="medium"
-        class="biomarker-toggle-group absolute-toggle"
-        [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
-        (change)="onToggleChange($event.value)"
-      >
-        @for (option of toggleOptions; track option.value) {
-          <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
-            option.label
-          }}</mat-button-toggle>
-        }
-      </mat-button-toggle-group>
-
+  <mat-tab hraFeature="biomarkers-tab" label="Cell types by biomarkers">
+    <div class="biomarker-details" [class.empty]="tab.rows.length === 0">
       @if (tab.rows.length !== 0) {
+        <div class="legend" hraFeature="legends">
+          <button
+            hraClickEvent
+            hraFeature="percentage"
+            class="legend-percentage"
+            hraRichTooltipTagline="Percentage of cells"
+            [hraRichTooltip]
+            [hraRichTooltipDescription]="percentageTooltipText"
+          >
+            <span class="legend-header-percentage">Percentage of cells</span>
+            <ftu-size-legend class="content" [sizes]="sizes()" />
+          </button>
+          <mat-divider [vertical]="true" />
+          <button
+            hraClickEvent
+            hraFeature="expression"
+            class="legend-gradient"
+            hraRichTooltipTagline="Biomarker expression mean"
+            [hraRichTooltip]
+            [hraRichTooltipDescription]="expressionTooltipText"
+          >
+            <span class="legend-header-gradient">Biomarker expression mean</span>
+            <ftu-gradient-legend class="content" [gradient]="gradients()" />
+          </button>
+        </div>
+        <mat-button-toggle-group
+          hraButtonToggleSize="medium"
+          class="biomarker-toggle-group absolute-toggle"
+          [value]="tab.rows.length !== 0 ? selectedToggleValue : null"
+          (change)="onToggleChange($event.value)"
+        >
+          @for (option of toggleOptions; track option.value) {
+            <mat-button-toggle [value]="option.value" [disabled]="isToggleOptionDisabled($index)">{{
+              option.label
+            }}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
         <ftu-biomarker-table
           [class.small]="tab.rows.length < 10"
           [data]="$any(tab.rows)"
@@ -94,6 +90,10 @@
           [highlightedCellId]="selectedOnHovered()?.ontologyId ?? ''"
           (rowHover)="highlightCells($event)"
           #table
+        />
+      } @else {
+        <ftu-empty-biomarker
+          emptyBehaviorText="We currently do not have cell type by biomarker data for genes, proteins, or lipids."
         />
       }
     </div>

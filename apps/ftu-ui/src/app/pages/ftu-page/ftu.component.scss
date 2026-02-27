@@ -8,11 +8,17 @@
   .content-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: minmax(calc(100% - 18.75rem), 3fr) minmax(13.5rem, 1fr);
+    grid-template-rows: 1fr auto;
     grid-template-areas:
       'illustration illustration-details'
       'source-list source-list';
     height: 100%;
+
+    &:has(.no-data-sources) {
+      grid-template-columns: 1fr 238px;
+      grid-template-rows: auto;
+      grid-template-areas: 'illustration illustration-details';
+    }
 
     &.fullscreen {
       grid-template-columns: 1fr auto;
@@ -27,6 +33,17 @@
         border-top: none;
         height: 100%;
         max-height: unset;
+      }
+
+      .empty-source-list {
+        ::ng-deep .footer {
+          display: flex;
+          justify-content: end;
+
+          button {
+            width: auto;
+          }
+        }
       }
     }
 

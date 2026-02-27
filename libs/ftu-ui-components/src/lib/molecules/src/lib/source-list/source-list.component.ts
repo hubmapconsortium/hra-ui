@@ -22,7 +22,6 @@ import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/resu
 import { TableRow } from '@hra-ui/design-system/table';
 import { SourceReference } from '@hra-ui/services';
 import { COLUMN_IDS } from '@hra-ui/state';
-import { EmptyBiomarkerComponent } from '../../../../atoms/src';
 import {
   FtuFullScreenService,
   FullscreenTab,
@@ -39,7 +38,6 @@ import {
     MatIconModule,
     MatSortModule,
     IconButtonModule,
-    EmptyBiomarkerComponent,
     MatCheckboxModule,
     ResultsIndicatorComponent,
   ],
@@ -66,7 +64,7 @@ export class SourceListComponent {
   readonly hideTitle = input<boolean>(false);
 
   /** Fullscreen service */
-  private readonly fullscreenService = inject(FtuFullScreenService);
+  readonly fullscreenService = inject(FtuFullScreenService);
 
   /** Whether to show the biomarker table */
   readonly showTable = signal(true);

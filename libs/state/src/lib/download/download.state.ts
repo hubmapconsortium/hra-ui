@@ -17,6 +17,7 @@ import {
   RegisterFormat,
 } from './download.action';
 import { createDownloadFormatId, DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 /**
  * Download State Model used to convert
@@ -41,6 +42,8 @@ export class DownloadState implements NgxsOnInit {
    * Data service of download state
    */
   private readonly dataService = inject(FtuDataService);
+
+  private readonly snackbar = inject(SnackbarService);
 
   /**
    * Ngxs on init and registry default format
@@ -125,12 +128,12 @@ export class DownloadState implements NgxsOnInit {
     switch (entry?.type) {
       case 'url': {
         const filename = this.guessFilename(ctx, format, entry.url);
-        return this.downloadRemoteData(entry.url).pipe(tap((data) => this.downloadData(data, filename)));
+        return this.downloadRemoteData(entry.url).pipe(tap((data) => void this.downloadData(data, filename)));
       }
 
       case 'data': {
         const filename = this.guessFilename(ctx, format, '');
-        this.downloadData(new Blob([entry.data]), filename);
+        void this.downloadData(new Blob([entry.data]), filename);
         break;
       }
 
@@ -141,14 +144,12 @@ export class DownloadState implements NgxsOnInit {
 
   @Action(DownloadSummaries)
   downloadSummaries(ctx: DownloadContext, { summaries }: DownloadSummaries): Observable<unknown> | void {
-    this.downloadData(new Blob([JSON.stringify(summaries)]), 'cell-summaries.json');
+    void this.downloadData(new Blob([JSON.stringify(summaries)]), 'cell-summaries.json');
   }
 
   @Action(DownloadCsv)
   downloadCsv(ctx: DownloadContext, { sourceRefs, id }: DownloadCsv): Observable<unknown> | void {
     const filename = this.guessFilename(ctx, createDownloadFormatId('csv'), id as string);
-
-    // const header = 'title,doi,year,datasetTitle,datasetId,cellType,healthStatus,sex,age,bmi,ethnicity\n';
     const header = COLUMN_IDS.join(',') + '\n';
     const rows = sourceRefs
       .map((ref) =>
@@ -159,7 +160,7 @@ export class DownloadState implements NgxsOnInit {
       )
       .join('\n');
     const csvContent = header + rows;
-    this.downloadData(new Blob([csvContent], { type: 'text/csv' }), filename);
+    void this.downloadData(new Blob([csvContent], { type: 'text/csv' }), filename);
   }
 
   /**
@@ -186,7 +187,57 @@ export class DownloadState implements NgxsOnInit {
    * @param blob
    * @param fileName
    */
-  private downloadData(blob: Blob, filename: string) {
+  private async downloadData(blob: Blob, filename: string): Promise<void> {
+    const saveStatus = await this.saveWithFilePicker(blob, filename);
+
+    if (saveStatus === 'saved') {
+      this.snackbar.open('File downloaded', '', false, 'start', { duration: 5000 });
+      return;
+    }
+
+    if (saveStatus === 'canceled') {
+      return;
+    }
+
+    this.downloadWithAnchor(blob, filename);
+  }
+
+  /**
+   * Uses the browser save-file dialog when supported.
+   * Returns save status so cancel can be handled without fallback.
+   */
+  private async saveWithFilePicker(blob: Blob, filename: string): Promise<'saved' | 'canceled' | 'unsupported'> {
+    const picker = (
+      window as Window & {
+        showSaveFilePicker?: (options: { suggestedName: string }) => Promise<{
+          createWritable: () => Promise<{ write: (data: Blob) => Promise<void>; close: () => Promise<void> }>;
+        }>;
+      }
+    ).showSaveFilePicker;
+
+    if (!picker) {
+      return 'unsupported';
+    }
+
+    try {
+      const handle = await picker({ suggestedName: filename });
+      const writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return 'saved';
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        return 'canceled';
+      }
+
+      return 'unsupported';
+    }
+  }
+
+  /**
+   * Fallback for browsers without file picker support.
+   */
+  private downloadWithAnchor(blob: Blob, filename: string): void {
     const url = window.URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     document.body.appendChild(anchor);
@@ -195,6 +246,7 @@ export class DownloadState implements NgxsOnInit {
     anchor.click();
     anchor.remove();
     window.URL.revokeObjectURL(url);
+    this.snackbar.open('File downloaded', '', false, 'start', { duration: 5000 });
   }
 
   /**

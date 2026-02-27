@@ -42,6 +42,16 @@
     ftu-empty-biomarker {
       margin-top: 0;
       border: none;
+      height: 100%;
+
+      ::ng-deep .footer {
+        display: flex;
+        justify-content: end;
+
+        .collaborate-button {
+          width: auto;
+        }
+      }
     }
   }
 
@@ -65,6 +75,7 @@
 
     ftu-empty-biomarker {
       border-top: 1px solid vars.$outline-variant;
+      height: calc(100% - 4rem);
     }
   }
 
@@ -119,7 +130,7 @@
     top: 5rem;
     left: 1rem;
     z-index: 100;
-    width: 14.625rem;
+    min-width: 12.875rem;
 
     .mat-button-toggle {
       flex: 1;
