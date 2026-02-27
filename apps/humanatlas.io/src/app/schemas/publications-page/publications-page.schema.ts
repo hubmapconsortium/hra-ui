@@ -1,9 +1,18 @@
 import * as z from 'zod';
 
-/** Publications page data type */
-export type PublicationsPageData = z.infer<typeof PublicationsPageDataSchema>;
+/** Type for a single publication item */
+export type PublicationItem = z.infer<typeof PublicationItemSchema>;
 
-/** Publications page data schema */
-export const PublicationsPageDataSchema = z.record(z.string(), z.string().array()).meta({ id: 'PublicationsPageData' });
+/** Publication schema */
+export const PublicationItemSchema = z
+  .object({
+    description: z.string(),
+    dateStart: z.coerce.date(),
+  })
+  .meta({ id: 'Publication' });
 
-export default PublicationsPageDataSchema;
+/** Type for the publication data array */
+export type PublicationData = z.infer<typeof PublicationDataSchema>;
+
+/** Publication data schema - array of publication items */
+export const PublicationDataSchema = z.array(PublicationItemSchema).meta({ id: 'PublicationData' });

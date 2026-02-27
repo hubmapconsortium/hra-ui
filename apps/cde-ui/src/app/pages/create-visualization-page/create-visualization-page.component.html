@@ -408,7 +408,7 @@
       hraFeature="submit"
       hraClickEvent
       [disabled]="!hasValidNodes() || !hasValidData()"
-      (click)="submit()"
+      (click)="$event.preventDefault(); submit()"
     >
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>
