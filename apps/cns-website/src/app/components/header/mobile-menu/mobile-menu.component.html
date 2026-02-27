@@ -25,9 +25,12 @@
           hraSecondaryButton
           hraClickEvent
           class="category link"
+          tabindex="0"
           [hraFeature]="option.label | slugify"
           [hraLink]="option.url"
           [hraLinkExternal]="option.external"
+          (click)="!option.external && scrollbarStore.scrollToTop()"
+          (keyup.enter)="!option.external && scrollbarStore.scrollToTop()"
         >
           {{ option.label }}
         </a>
