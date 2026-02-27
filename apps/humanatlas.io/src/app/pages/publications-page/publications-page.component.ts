@@ -91,8 +91,8 @@ export class PublicationsPageComponent {
   private groupPublicationsByYear(publications: PublicationData): Record<string, string[]> {
     return publications.reduce(
       (acc, pub) => {
-        const year = new Date(pub['dateStart']).getFullYear();
-        const description = pub['description'];
+        const year = pub.dateStart.getFullYear();
+        const description = pub.description;
         if (!acc[year]) {
           acc[year] = [];
         }
