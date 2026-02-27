@@ -17,11 +17,13 @@ import { EndOfResultsIndicatorComponent } from '@hra-ui/design-system/indicators
 import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no-results-indicator';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
+import { NgScrollbar } from 'ngx-scrollbar';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { ResearchTypesData } from '../../schemas/research-type.schema';
 import { ResearchData } from '../../schemas/research.schema';
 import { TagId, TagsData } from '../../schemas/tags.schema';
+import { ScrollbarStore } from '../../state/scrollbar/scrollbar.store';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { getImageUrl } from '../../utils/research-item-images';
 import { ResearchStore } from './state/research.store';
@@ -85,9 +87,13 @@ export class ResearchPageComponent {
   protected readonly store = inject(ResearchStore);
   /** Sidebar store for managing sidebar visibility */
   protected readonly sidebarStore = inject(SidebarStore);
+  /** Scrollbar store for managing viewport scrolling */
+  protected readonly scrollbarStore = inject(ScrollbarStore);
 
   /** Sidebar component reference */
   private readonly sidebar = viewChild.required(MatSidenav);
+  /** Scrollbar component reference */
+  private readonly scrollbar = viewChild.required(NgScrollbar);
 
   /** Combined research items from news, publications, events, funding, and visualizations */
   private readonly researchItems = computed(() => [
@@ -113,6 +119,11 @@ export class ResearchPageComponent {
     effect((onCleanup) => {
       this.sidebarStore.setSidebar(this.sidebar());
       onCleanup(() => this.sidebarStore.clearSidebar());
+    });
+
+    effect((onCleanup) => {
+      this.scrollbarStore.setScrollbar(this.scrollbar());
+      onCleanup(() => this.scrollbarStore.clearScrollbar());
     });
   }
 

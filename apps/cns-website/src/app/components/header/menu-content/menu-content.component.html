@@ -1,5 +1,14 @@
 @if (menu().featured; as featured) {
-  <a mat-button class="featured-link" [hraLink]="featured.url" [hraLinkExternal]="featured.external">
+  <a
+    mat-button
+    hraClickEvent
+    class="featured-link"
+    tabindex="0"
+    [hraLink]="featured.url"
+    [hraLinkExternal]="featured.external"
+    (click)="!featured.external && scrollbarStore.scrollToTop()"
+    (keyup.enter)="!featured.external && scrollbarStore.scrollToTop()"
+  >
     <div class="featured-content-container">
       <div class="featured-content">
         <span class="label">{{ featured.label }}</span>
@@ -31,9 +40,12 @@
           hraSecondaryButton
           hraClickEvent
           class="item-label"
+          tabindex="0"
           [hraFeature]="item.label | slugify"
           [hraLink]="item.url"
           [hraLinkExternal]="item.external"
+          (click)="!item.external && scrollbarStore.scrollToTop()"
+          (keyup.enter)="!item.external && scrollbarStore.scrollToTop()"
         >
           {{ item.label }}
         </a>

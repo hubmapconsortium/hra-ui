@@ -15,8 +15,10 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no-results-indicator';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
+import { NgScrollbar } from 'ngx-scrollbar';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
+import { ScrollbarStore } from '../../state/scrollbar/scrollbar.store';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { CurrentTeamStore } from './state/current-team.store';
 
@@ -61,12 +63,16 @@ export class CurrentTeamComponent {
 
   /** Sidebar store for managing sidebar state */
   protected readonly sidebarStore = inject(SidebarStore);
+  /** Scrollbar store for managing viewport scrolling */
+  protected readonly scrollbarStore = inject(ScrollbarStore);
 
   /** Gender neutral placeholder image for members without pictures */
   protected readonly placeholderImage = '/assets/placeholder-images/placeholder.png';
 
   /** Reference to the sidebar component */
   private readonly sidebar = viewChild.required(MatSidenav);
+  /** Scrollbar component reference */
+  private readonly scrollbar = viewChild.required(NgScrollbar);
 
   /**
    * Initializes the component and store with route data
@@ -78,6 +84,11 @@ export class CurrentTeamComponent {
     effect((onCleanup) => {
       this.sidebarStore.setSidebar(this.sidebar());
       onCleanup(() => this.sidebarStore.clearSidebar());
+    });
+
+    effect((onCleanup) => {
+      this.scrollbarStore.setScrollbar(this.scrollbar());
+      onCleanup(() => this.scrollbarStore.clearScrollbar());
     });
   }
 }

@@ -55,16 +55,19 @@
             (overlayOutsideClick)="closeMenu(category)"
             (detach)="closeMenu(category)"
           >
-            <cns-mega-menu [menu]="category" />
+            <cns-mega-menu cdkTrapFocus cdkTrapFocusAutoCapture [menu]="category" />
           </ng-template>
         } @else {
           <a
             mat-button
             hraSecondaryButton
             class="item-label"
+            tabindex="0"
             [hraFeature]="category.label | slugify"
             [hraLink]="category.url"
             [hraLinkExternal]="category.external"
+            (click)="!category.external && scrollbarStore.scrollToTop()"
+            (keyup.enter)="!category.external && scrollbarStore.scrollToTop()"
           >
             {{ category.label }}
           </a>

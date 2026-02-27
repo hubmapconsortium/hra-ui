@@ -1,3 +1,4 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkConnectedOverlay, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
@@ -20,6 +21,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { filter } from 'rxjs';
+import { ScrollbarStore } from '../../state/scrollbar/scrollbar.store';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { MegaMenuComponent } from './mega-menu/mega-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
@@ -49,6 +51,7 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
     InlineSVGModule,
     MobileMenuComponent,
     MegaMenuComponent,
+    CdkTrapFocus,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -65,6 +68,8 @@ export class HeaderComponent {
 
   /** Sidebar store for managing sidebar state */
   protected readonly sidebarStore = inject(SidebarStore);
+  /** Scrollbar store for managing viewport scrolling */
+  protected readonly scrollbarStore = inject(ScrollbarStore);
 
   /** Overlay positions for the mobile menu */
   protected readonly mobileMenuPositions = MOBILE_MENU_POSITIONS;
