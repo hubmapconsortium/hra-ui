@@ -3,10 +3,10 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ContentTemplatesModule } from '@hra-ui/design-system/content-templates/';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { MarkdownModule } from 'ngx-markdown';
 
-import { PublicationsPageData } from '../../schemas/publications-page/publications-page.schema';
 import { AssetUrlPipe } from '@hra-ui/common/url';
+import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
+import { PublicationData } from '../../schemas/publications-page/publications-page.schema';
 
 /** A single publication item */
 interface PublicationItem {
@@ -28,7 +28,7 @@ interface PublicationItem {
   imports: [
     HraCommonModule,
     ContentTemplatesModule,
-    MarkdownModule,
+    MarkdownComponent,
     TableOfContentsLayoutModule,
     AssetUrlPipe,
     NavigationModule,
@@ -39,10 +39,12 @@ interface PublicationItem {
 })
 export class PublicationsPageComponent {
   /** Publication data */
-  readonly publications = input.required<PublicationsPageData>();
+  readonly publications = input.required<PublicationData>();
 
   /** Publication items sorted by year in descending order */
-  protected readonly items = computed(() => this.normalizePublications(this.publications()));
+  protected readonly items = computed(() =>
+    this.normalizePublications(this.groupPublicationsByYear(this.publications())),
+  );
 
   /**
    * Normalizes publications from a mapping object into an array
@@ -50,7 +52,7 @@ export class PublicationsPageComponent {
    * @param publications Mapping from year to contents
    * @returns Array of normalized and sorted items
    */
-  private normalizePublications(publications: PublicationsPageData): PublicationItem[] {
+  private normalizePublications(publications: Record<string, string[]>): PublicationItem[] {
     const pairs = Object.entries(publications);
     const items = pairs.map(
       ([year, contents]) =>
@@ -79,5 +81,25 @@ export class PublicationsPageComponent {
     const publicationLinks = doc.body.querySelectorAll('a[href^="/docs/publications/"]');
     publicationLinks.forEach((el) => el.setAttribute('href', `https://cns.iu.edu${el.getAttribute('href')}`));
     return doc.body.innerHTML;
+  }
+
+  /**
+   * Groups publications by year
+   * @param publications Raw publication data array
+   * @returns Mapping from year to publication contents
+   */
+  private groupPublicationsByYear(publications: PublicationData): Record<string, string[]> {
+    return publications.reduce(
+      (acc, pub) => {
+        const year = new Date(pub['dateStart']).getFullYear();
+        const description = pub['description'];
+        if (!acc[year]) {
+          acc[year] = [];
+        }
+        acc[year].push(description);
+        return acc;
+      },
+      {} as Record<string, string[]>,
+    );
   }
 }
