@@ -119,50 +119,8 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Columns replaysubject */
   readonly columns$ = new ReplaySubject<string[]>(1);
 
-  /** Cell width (px) */
-  private readonly cellWidth = 44;
-  /** Extra columns to render outside the visible viewport */
-  private readonly extraDisplayedColumnCount = 2;
-
-  /** Current horizontal viewport size */
-  private horizontalViewportSize = 400;
-  /** Current horizontal scroll offset */
-  private horizontalScrollOffset = 0;
-  /** Current displayed column count */
-  private displayedColumnCount = 10;
-  /** Current displayed column offset */
-  private displayedColumnOffset = 0;
-
   /** Injects BottomSheetService */
   private readonly bottomSheetService = inject(BottomSheetService);
-
-  /** row height */
-  readonly rowHeight = 28;
-  /** header height */
-  readonly headerHeight = 119;
-  /** max visible rows */
-  readonly maxVisibleRows = 10;
-
-  /**
-   * Gets viewport height
-   * @returns viewport height in pixels
-   */
-  get viewportHeight(): number {
-    const rows = this.dataSource.data.length;
-    const visible = Math.min(rows, this.maxVisibleRows) + 1; // offset
-    return this.headerHeight + visible * this.rowHeight;
-  }
-
-  /** Gets the current width of the prefiller column */
-  get preFillerWidth(): string {
-    return `${this.cellWidth * this.displayedColumnOffset}px`;
-  }
-
-  /** Gets the current width of the postfiller column */
-  get postFillerWidth(): string {
-    const count = this.columns.length - this.displayedColumnCount - this.displayedColumnOffset;
-    return `${this.cellWidth * count}px`;
-  }
 
   /** Source for the table */
   readonly dataSource = new MatTableDataSource<DataRow<T>>([]);
@@ -180,13 +138,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
       this.dataSource.data = this.sortTableData(this.data);
       this.updateColumns();
     }
-  }
-
-  /**
-   * Returns index value
-   */
-  trackByIndex(index: number): number {
-    return index;
   }
 
   /**
@@ -219,22 +170,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     ];
 
     this.bottomSheetService.openTableBottomSheet(rows, columns, true);
-  }
-  /**
-   * Updates horizontal viewport size and updates displayed column count
-   */
-  updateHorizontalViewportSize(size: number): void {
-    this.horizontalViewportSize = size;
-    this.displayedColumnCount =
-      Math.ceil(this.horizontalViewportSize / this.cellWidth) + this.extraDisplayedColumnCount;
-  }
-
-  /**
-   * Updates horizontal viewport offset and updates displayed column offset
-   */
-  updateHorizontalViewportOffset(offset: number): void {
-    this.horizontalScrollOffset = offset;
-    this.displayedColumnOffset = Math.max(Math.floor(offset / this.cellWidth) - this.extraDisplayedColumnCount / 2, 0);
   }
 
   /**

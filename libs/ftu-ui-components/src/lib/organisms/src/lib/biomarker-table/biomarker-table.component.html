@@ -21,13 +21,6 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="preFiller">
-      <th *matHeaderCellDef mat-header-cell></th>
-      <td *matCellDef="let element" mat-cell style="max-width: unset">
-        <div [style.width]="preFillerWidth"></div>
-      </td>
-    </ng-container>
-
     @for (column of columns; track column) {
       <ng-container [matColumnDef]="column">
         <th *matHeaderCellDef class="icon-header" mat-header-cell [hraPlainTooltip]="column">
@@ -58,13 +51,6 @@
         </td>
       </ng-container>
     }
-
-    <ng-container matColumnDef="postFiller">
-      <th *matHeaderCellDef mat-header-cell></th>
-      <td *matCellDef="let element" mat-cell style="max-width: unset">
-        <div [style.width]="postFillerWidth"></div>
-      </td>
-    </ng-container>
 
     <tr *matHeaderRowDef="(columns$ | async) ?? []; sticky: true" mat-header-row class="column-header-row"></tr>
     <tr
