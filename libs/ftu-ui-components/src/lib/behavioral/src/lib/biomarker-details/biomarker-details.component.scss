@@ -186,12 +186,6 @@
   ftu-biomarker-table {
     grid-area: table;
     overflow: hidden;
-    background-image: linear-gradient(
-      to right,
-      vars.$surface-container-low 283px,
-      vars.$outline 283px,
-      vars.$on-primary 284px
-    );
   }
 
   ftu-empty-biomarker {

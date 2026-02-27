@@ -2,6 +2,8 @@
 
 :host {
   height: 100vh;
+  min-height: 45rem;
+  min-width: 80rem;
   display: grid;
   width: 100%;
   grid-template-columns: auto 1fr;
