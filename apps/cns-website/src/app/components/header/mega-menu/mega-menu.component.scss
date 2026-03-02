@@ -52,11 +52,11 @@
     justify-content: center;
 
     .label {
-      @include utils.use-font(label, medium);
+      @include utils.use-font(label, large);
     }
 
     .tagline {
-      @include utils.use-font(label, small);
+      @include utils.use-font(label, medium);
     }
   }
 
@@ -77,7 +77,7 @@
   }
 
   .group {
-    @include utils.use-font(label, medium);
+    @include utils.use-font(label, large);
     display: flex;
     flex-direction: column;
     width: 178px;
@@ -98,7 +98,7 @@
   }
 
   .item-label {
-    @include utils.use-font(label, medium);
+    @include utils.use-font(label, large);
     min-height: 2.75rem;
     justify-content: start;
     padding: 0 0.75rem;
