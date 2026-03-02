@@ -137,7 +137,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/cell-summary/cell-summary.actions.ts</code>
+            <code>src/lib/download/download.action.ts</code>
         </p>
 
 
@@ -145,7 +145,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Loads the given Iri to the state</p>
+                <p>Action to load entries from data service</p>
 
             </p>
 
@@ -153,7 +153,7 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                        <code>Action(&#x27;[CellSummary] Load&#x27;)</code>
+                        <code>Action(&#x27;[Download] Load&#x27;)</code>
             </p>
 
 
@@ -170,13 +170,13 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/lib/cell-summary/cell-summary.actions.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/lib/download/download.action.ts:21</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Intializes the set iri</p>
+                            <div class="io-description"><p>Creates a action to load from the enteries from the data service</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -186,6 +186,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -200,6 +201,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Organ Iri for which the entries are loaded</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -222,36 +227,65 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@hra-ui/cdk/state&#x27;;
-import { Iri, SourceReference } from &#x27;@hra-ui/services&#x27;;
+import { DownloadEntry, DownloadFormat, DownloadFormatId } from &#x27;./download.model&#x27;;
+import { Iri } from &#x27;@hra-ui/services&#x27;;
 
-/** Loads the given Iri to the state */
-export class Load extends Action(&#x27;[CellSummary] Load&#x27;) {
-  /** Intializes the set iri */
+/**
+ * Register format into state
+ */
+export class RegisterFormat extends Action(&#x27;[Download] Register Format&#x27;) {
+  /**
+   * Creates an instance of register format.
+   * @param format
+   */
+  constructor(readonly format: DownloadFormat) {
+    super();
+  }
+}
+
+/**
+ * Action to load entries from data service
+ */
+export class Load extends Action(&#x27;[Download] Load&#x27;) {
+  /**
+   * Creates a action to load from the enteries from the data service
+   * @param iri Organ Iri for which the entries are loaded
+   */
   constructor(readonly iri: Iri) {
     super();
   }
 }
 
-/** Filters summaries by sources */
-export class FilterSummaries extends Action(&#x27;[CellSummary] Filter Summaries&#x27;) {
-  /** Initializes */
-  constructor(readonly sources: SourceReference[]) {
+/**
+ * Add entry into download state
+ */
+export class AddEntry extends Action(&#x27;[Download] Add&#x27;) {
+  /** Constructor for Addd Entry */
+  constructor(
+    readonly id: DownloadFormatId,
+    readonly entry: DownloadEntry,
+  ) {
     super();
   }
 }
 
 /**
- * Action to combine summaries by biomarker
+ * Clear all entries from download state
  */
-export class CombineSummariesByBiomarker extends Action(&#x27;[CellSummary] Combine Summaries by Biomarker&#x27;) {}
+export class ClearEntries extends Action(&#x27;[Download] Clear&#x27;) {}
 
 /**
- * Compute aggregate of the given data and store to state */
-export class ComputeAggregates extends Action(&#x27;[CellSummary] Compute Aggregates&#x27;) {}
-
-/**
- * Action to reset the current state */
-export class Reset extends Action(&#x27;[CellSummary] Reset&#x27;) {}
+ * Download file Action
+ */
+export class Download extends Action(&#x27;[Download] Download&#x27;) {
+  /**
+   * Creates an instance of download.
+   * @param selectedFormat
+   */
+  constructor(readonly format: DownloadFormatId) {
+    super();
+  }
+}
 </code></pre>
     </div>
 </div>

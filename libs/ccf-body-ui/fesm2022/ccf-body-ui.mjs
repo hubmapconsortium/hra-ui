@@ -11,7 +11,7 @@ import { Subject, BehaviorSubject, map, catchError, of, Subscription } from 'rxj
 import { share } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
-import { effect, input, numberAttribute, booleanAttribute, output, inject, ErrorHandler, viewChild, ViewEncapsulation, Component } from '@angular/core';
+import { effect, input, numberAttribute, booleanAttribute, output, inject, ErrorHandler, viewChild, ViewEncapsulation, ChangeDetectionStrategy, Component } from '@angular/core';
 import { derivedAsync } from 'ngxtension/derived-async';
 import * as z from 'zod';
 
@@ -1009,13 +1009,13 @@ class BodyUiComponent {
             i0.ɵɵqueryAdvance();
         } }, inputs: { scene: [1, "scene"], rotation: [1, "rotation"], rotationX: [1, "rotationX"], zoom: [1, "zoom"], target: [1, "target"], bounds: [1, "bounds"], camera: [1, "camera"], interactive: [1, "interactive"] }, outputs: { nodeClick: "nodeClick", nodeDrag: "nodeDrag", nodeHoverStart: "nodeHoverStart", nodeHoverStop: "nodeHoverStop", rotationChange: "rotationChange", initialized: "initialized" }, decls: 2, vars: 0, consts: [["canvas", ""], ["role", "img", "part", "canvas"]], template: function BodyUiComponent_Template(rf, ctx) { if (rf & 1) {
             i0.ɵɵdomElement(0, "canvas", 1, 0);
-        } }, styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"], encapsulation: 3 }); }
+        } }, styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"], encapsulation: 3, changeDetection: 0 }); }
 }
 (() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(BodyUiComponent, [{
         type: Component,
-        args: [{ selector: 'hra-body-ui', encapsulation: ViewEncapsulation.ShadowDom, template: "<canvas role=\"img\" part=\"canvas\" #canvas></canvas>\n", styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"] }]
+        args: [{ selector: 'hra-body-ui', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.ShadowDom, template: "<canvas role=\"img\" part=\"canvas\" #canvas></canvas>\n", styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"] }]
     }], () => [], { scene: [{ type: i0.Input, args: [{ isSignal: true, alias: "scene", required: false }] }], rotation: [{ type: i0.Input, args: [{ isSignal: true, alias: "rotation", required: false }] }], rotationX: [{ type: i0.Input, args: [{ isSignal: true, alias: "rotationX", required: false }] }], zoom: [{ type: i0.Input, args: [{ isSignal: true, alias: "zoom", required: false }] }], target: [{ type: i0.Input, args: [{ isSignal: true, alias: "target", required: false }] }], bounds: [{ type: i0.Input, args: [{ isSignal: true, alias: "bounds", required: false }] }], camera: [{ type: i0.Input, args: [{ isSignal: true, alias: "camera", required: false }] }], interactive: [{ type: i0.Input, args: [{ isSignal: true, alias: "interactive", required: false }] }], nodeClick: [{ type: i0.Output, args: ["nodeClick"] }], nodeDrag: [{ type: i0.Output, args: ["nodeDrag"] }], nodeHoverStart: [{ type: i0.Output, args: ["nodeHoverStart"] }], nodeHoverStop: [{ type: i0.Output, args: ["nodeHoverStop"] }], rotationChange: [{ type: i0.Output, args: ["rotationChange"] }], initialized: [{ type: i0.Output, args: ["initialized"] }], canvas: [{ type: i0.ViewChild, args: ['canvas', { isSignal: true }] }] }); })();
-(() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(BodyUiComponent, { className: "BodyUiComponent", filePath: "lib/body-ui/body-ui.component.ts", lineNumber: 122 }); })();
+(() => { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassDebugInfo(BodyUiComponent, { className: "BodyUiComponent", filePath: "lib/body-ui/body-ui.component.ts", lineNumber: 124 }); })();
 
 /**
  * This function simplifies a scene by processing spatial scene nodes, loading GLTF files, and generating new nodes with simplified geometry.

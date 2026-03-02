@@ -319,6 +319,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import {
   booleanAttribute,
+  ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
@@ -435,6 +436,7 @@ const INITIAL_PROPS &#x3D; {
   selector: &#x27;hra-body-ui&#x27;,
   templateUrl: &#x27;./body-ui.component.html&#x27;,
   styleUrl: &#x27;./body-ui.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class BodyUiComponent {
