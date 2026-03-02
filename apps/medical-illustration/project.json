@@ -12,7 +12,12 @@
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/medical-illustration/src/favicon.png", "apps/medical-illustration/src/assets"],
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/medical-illustration/public"
+          }
+        ],
         "polyfills": ["zone.js"]
       },
       "configurations": {
@@ -20,7 +25,7 @@
           "fileReplacements": [
             {
               "replace": "apps/medical-illustration/src/environments/environment.ts",
-              "with": "apps/medical-illustration/src/environments/environment.stage.ts"
+              "with": "apps/medical-illustration/src/environments/environment.staging.ts"
             }
           ]
         },
@@ -35,8 +40,7 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/medical-illustration/browser/"

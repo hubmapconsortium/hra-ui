@@ -12,8 +12,13 @@
     "build": {
       "executor": "@nx/angular:application",
       "options": {
-        "assets": ["apps/ccf-body-ui-wc/src/favicon.png", "apps/ccf-body-ui-wc/src/assets"],
-        "polyfills": ["apps/ccf-body-ui-wc/src/polyfills.ts"]
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/ccf-body-ui-wc/public"
+          }
+        ],
+        "polyfills": ["zone.js"]
       },
       "configurations": {
         "production": {
@@ -21,18 +26,6 @@
             {
               "replace": "apps/ccf-body-ui-wc/src/environments/environment.ts",
               "with": "apps/ccf-body-ui-wc/src/environments/environment.prod.ts"
-            }
-          ],
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "1mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "8kb",
-              "maximumError": "16kb"
             }
           ]
         },
@@ -47,8 +40,7 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",

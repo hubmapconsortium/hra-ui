@@ -217,3 +217,46 @@ export function loadData<T, Opts>(
     return data;
   });
 }
+
+/** Helper for managing data loading state */
+export class LoadingState {
+  /** State of each loading operation */
+  private readonly isLoading: boolean[] = [];
+
+  /**
+   * Initialize a loading state manager
+   *
+   * @param upstreamObserver Observer to be notified of loading state changes
+   */
+  constructor(private upstreamObserver?: NextObserver<boolean>) {}
+
+  /**
+   * Create a new observer to manage an individual loading operation,
+   * notifying the upstream observer of any changes in loading state.
+   *
+   * @returns A new observer for managing loading state
+   */
+  createObserver(): NextObserver<boolean> {
+    const { isLoading } = this;
+    const index = isLoading.length;
+    isLoading.push(false);
+
+    return {
+      next: (value) => {
+        isLoading[index] = value;
+        this.notifyUpstreamObserver();
+      },
+    };
+  }
+
+  /**
+   * Notify the upstream observer of the current loading state,
+   * which is true if any individual loading operation is currently in progress.
+   */
+  private notifyUpstreamObserver(): void {
+    const { upstreamObserver, isLoading } = this;
+    if (upstreamObserver) {
+      upstreamObserver.next(isLoading.some((state) => state));
+    }
+  }
+}

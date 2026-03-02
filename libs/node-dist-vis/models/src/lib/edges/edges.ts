@@ -14,6 +14,7 @@ import {
 } from '../data-view';
 import { NodeFilterView } from '../filters';
 import { NodesView } from '../nodes';
+import { LoadingState } from '../utils';
 
 /** Edges input */
 export type EdgesInput = DataViewInput<EdgesView>;
@@ -182,8 +183,9 @@ export function loadEdges(
   keys: Signal<EdgeKeysInput>,
   loading?: NextObserver<boolean>,
 ): Signal<EdgesView> {
-  const data = loadViewData(input, EdgesView, loading);
-  const mapping = loadViewKeyMapping(keys, undefined, loading);
+  const loadingState = new LoadingState(loading);
+  const data = loadViewData(input, EdgesView, loadingState.createObserver());
+  const mapping = loadViewKeyMapping(keys, undefined, loadingState.createObserver());
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
   return createDataView(EdgesView, data, inferred, EMPTY_EDGES_VIEW);
 }

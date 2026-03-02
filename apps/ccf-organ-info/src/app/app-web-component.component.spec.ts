@@ -2,7 +2,8 @@ import { NgxsDataPluginModule } from '@angular-ru/ngxs';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { importProvidersFrom } from '@angular/core';
-import { AggregateCount, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import { AggregateCount, SpatialEntity, SpatialSceneNode, TissueBlock, TissueBlockTypeEnum } from '@hra-api/ng-client';
+import { provideDesignSystem } from '@hra-ui/design-system';
 import { NgxsModule } from '@ngxs/store';
 import { render, waitFor } from '@testing-library/angular';
 import { DataSourceService, GlobalConfigState } from 'ccf-shared';
@@ -56,7 +57,7 @@ describe('AppWebComponent', () => {
   const mockTissueBlocks: TissueBlock[] = [
     {
       '@id': 'block1',
-      '@type': 'TissueBlock',
+      '@type': TissueBlockTypeEnum.Sample,
       label: 'Block 1',
       sampleType: 'Tissue Block',
       link: 'http://example.com/block1',
@@ -94,6 +95,7 @@ describe('AppWebComponent', () => {
   };
 
   const providers = [
+    provideDesignSystem(),
     provideHttpClient(),
     provideHttpClientTesting(),
     importProvidersFrom(NgxsDataPluginModule.forRoot(), NgxsModule.forRoot([GlobalConfigState])),
