@@ -105,8 +105,8 @@ export const SOURCE_REFERENCE = z.object({
   cellType: z.string().optional(),
   healthStatus: z.string().optional(),
   sex: z.string().optional(),
-  age: z.string().optional(),
-  bmi: z.string().optional(),
+  age: z.number().optional(),
+  bmi: z.number().optional(),
   ethnicity: z.string().optional(),
 });
 

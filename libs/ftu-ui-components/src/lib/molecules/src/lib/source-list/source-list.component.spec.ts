@@ -16,8 +16,8 @@ describe('SourceListComponent', () => {
     cellType: 'test',
     healthStatus: 'test',
     sex: 'test',
-    age: 'test',
-    bmi: 'test',
+    age: 25,
+    bmi: 21,
     ethnicity: 'test',
   } as SourceReference;
   const testSources = [testItem] as SourceReference[];
@@ -183,8 +183,8 @@ describe('SourceListComponent', () => {
       cellType: 'test',
       healthStatus: 'test',
       sex: 'Male',
-      age: '30',
-      bmi: '100',
+      age: 30,
+      bmi: 21,
       ethnicity: 'test',
     };
 

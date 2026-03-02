@@ -59,13 +59,28 @@ export class Download extends Action('[Download] Download') {
   }
 }
 
+/**
+ * Action to download cell summaries file
+ */
 export class DownloadSummaries extends Action('[Download] Download Summaries') {
+  /**
+   * Creates an instance of download summaries.
+   * @param summaries Summaries to be downloaded
+   */
   constructor(readonly summaries: CellSummary[]) {
     super();
   }
 }
 
+/**
+ * Action to download CSV file of source references
+ */
 export class DownloadCsv extends Action('[Download] Download CSV') {
+  /**
+   * Creates an instance of download csv.
+   * @param sourceRefs Source references to be downloaded
+   * @param [id] Optional Iri identifier for the download
+   */
   constructor(
     readonly sourceRefs: SourceReference[],
     readonly id?: Iri,

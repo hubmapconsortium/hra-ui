@@ -33,16 +33,13 @@ import { SnackbarService } from '@hra-ui/design-system/snackbar';
 })
 @Injectable()
 export class DownloadState implements NgxsOnInit {
-  /**
-   * Http object inject for download state
-   */
+  /** Http object inject for download state */
   private readonly http = inject(HttpClient);
 
-  /**
-   * Data service of download state
-   */
+  /** Data service of download state */
   private readonly dataService = inject(FtuDataService);
 
+  /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
 
   /**
@@ -142,11 +139,23 @@ export class DownloadState implements NgxsOnInit {
     }
   }
 
+  /**
+   * Download summaries action to download cell summary data in json format
+   * @param ctx Context
+   * @param { summaries } Summaries to be downloaded
+   * @returns Observable of download action or void
+   */
   @Action(DownloadSummaries)
   downloadSummaries(ctx: DownloadContext, { summaries }: DownloadSummaries): Observable<unknown> | void {
     void this.downloadData(new Blob([JSON.stringify(summaries)]), 'cell-summaries.json');
   }
 
+  /**
+   * Download CSV action to download source reference data in csv format
+   * @param ctx Context
+   * @param { sourceRefs, id } sourceRefs to be downloaded and id for filename guess
+   * @returns Observable of download action or void
+   */
   @Action(DownloadCsv)
   downloadCsv(ctx: DownloadContext, { sourceRefs, id }: DownloadCsv): Observable<unknown> | void {
     const filename = this.guessFilename(ctx, createDownloadFormatId('csv'), id as string);
