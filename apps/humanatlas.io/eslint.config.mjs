@@ -5,16 +5,7 @@ export default [
   ...configs.angular,
   ...configs.yaml,
   {
-    ignores: ['src/static/**/*'],
-  },
-  {
-    files: ['**/*.ts'],
-    rules: {
-      '@angular-eslint/directive-selector': 'off',
-      '@angular-eslint/component-selector': 'off',
-      '@angular-eslint/prefer-signals': 'off',
-      '@angular-eslint/prefer-standalone': 'off',
-    },
+    ignores: ['static/**/*'],
   },
   {
     files: ['**/*.html'],

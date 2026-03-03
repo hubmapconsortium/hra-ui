@@ -5,7 +5,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { render } from '@testing-library/angular';
 import { createReleaseNotesContentResolver } from './release-notes-content.resolver';
 
-@Component({ standalone: true, template: '' })
+@Component({ template: '' })
 class TestComponent {}
 
 describe('createReleaseNotesContentResolver', () => {
