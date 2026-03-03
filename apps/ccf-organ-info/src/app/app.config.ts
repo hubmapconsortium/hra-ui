@@ -1,5 +1,5 @@
 import { NgxsDataPluginModule } from '@angular-ru/ngxs';
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { HraApiConfiguration, HraApiModule } from '@hra-api/ng-client';
 import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
@@ -24,6 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideAnalytics(withErrorHandler()),
     { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
     provideDesignSystem(),
+    provideZonelessChangeDetection(),
     importProvidersFrom(
       NgxsDataPluginModule.forRoot(),
       NgxsModule.forRoot(ROOT_STATES, {

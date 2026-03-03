@@ -5,7 +5,7 @@ import { render } from '@testing-library/angular';
 import { of } from 'rxjs';
 import { VersionedTableParamSyncControllerService } from './versioned-table-param-sync.service';
 
-@Component({ standalone: true, template: '' })
+@Component({ template: '' })
 class TestComponent {}
 
 describe('VersionedTableParamSyncControllerService', () => {

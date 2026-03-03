@@ -10,6 +10,20 @@
   },
   "targets": {
     "build": {
+      "executor": "@nx/angular:application",
+      "options": {
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/kg-explorer/public"
+          },
+          {
+            "input": "libs/design-system/assets",
+            "glob": "**/*",
+            "output": "./assets"
+          }
+        ]
+      },
       "configurations": {
         "staging": {
           "fileReplacements": [
@@ -25,39 +39,12 @@
               "replace": "apps/kg-explorer/src/environments/environment.ts",
               "with": "apps/kg-explorer/src/environments/environment.prod.ts"
             }
-          ],
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "1mb"
-            }
           ]
         }
-      },
-      "executor": "@nx/angular:application",
-      "options": {
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "apps/kg-explorer/public"
-          },
-          {
-            "input": "libs/design-system/assets",
-            "glob": "**/*",
-            "output": "./assets"
-          }
-        ]
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",

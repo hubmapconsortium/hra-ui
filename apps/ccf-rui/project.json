@@ -13,8 +13,10 @@
       "executor": "@nx/angular:application",
       "options": {
         "assets": [
-          "apps/ccf-rui/src/favicon.png",
-          "apps/ccf-rui/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/ccf-rui/public"
+          },
           {
             "input": "libs/design-system/assets",
             "glob": "**/*",
@@ -30,18 +32,6 @@
               "replace": "apps/ccf-rui/src/environments/environment.ts",
               "with": "apps/ccf-rui/src/environments/environment.prod.ts"
             }
-          ],
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "10kb"
-            }
           ]
         },
         "staging": {
@@ -55,8 +45,7 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",

@@ -6,7 +6,7 @@
 <div class="description">
   <ul>
     @if (error.hasGidError) {
-      <img alt="Valid google sheet url example" width="100%" src="assets/urlScreen.png" />
+      <img alt="Valid google sheet url example" width="100%" [attr.src]="'urlScreen.png' | assetUrl" />
       <li>
         <strong>Please copy and use the sheet URL from the Address bar like from above example.</strong>
       </li>

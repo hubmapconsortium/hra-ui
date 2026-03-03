@@ -36,5 +36,5 @@ export class ConfigService {
     ),
   );
 
-  config$ = this.http.get<Record<string, unknown>>('assets/configuration.json').pipe(take(1), shareReplay(1));
+  config$ = this.http.get<Record<string, unknown>>('configuration.json').pipe(take(1), shareReplay(1));
 }

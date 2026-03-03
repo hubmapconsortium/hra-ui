@@ -16,21 +16,21 @@
     ],
     "allowSyntheticDefaultImports": true,
     "declaration": false,
-    "sourceMap": true,
-    "importHelpers": true,
-    "experimentalDecorators": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "useDefineForClassFields": true,
-    "strict": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
-    "useUnknownInCatchVariables": true,
+    "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": true,
     "paths": {
       "@hra-ui/application": [
         "libs/application/src/index.ts"
@@ -112,5 +112,11 @@
   "exclude": [
     "node_modules",
     "tmp"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }
