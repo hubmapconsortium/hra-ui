@@ -30,7 +30,7 @@ export const INITIAL_CATEGORY_SETTINGS = { ...ALL_CATEGORIES_DISABLED, ...ALWAYS
  * User preferences manager service
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'platform',
 })
 export class ConsentService {
   /** Writable signal containing record of enabled/disable categories */
