@@ -1,0 +1,79 @@
+@if (menu().featured; as featured) {
+  <div class="featured-section">
+    <a
+      mat-button
+      hraClickEvent
+      class="featured-link"
+      tabindex="0"
+      cdkFocusRegionStart
+      cdkFocusInitial
+      [hraLink]="featured.url"
+      [hraLinkExternal]="featured.external"
+      (click)="!featured.external && scrollbarStore.scrollToTop()"
+      (keyup.enter)="!featured.external && scrollbarStore.scrollToTop()"
+    >
+      <div class="featured-content-container">
+        @if (featured.imgSrc; as src) {
+          <img class="featured-image" alt="" [src]="src | assetUrl" />
+        }
+        <div class="featured-bottom">
+          <div class="featured-label">
+            <span class="label">{{ featured.label }}</span>
+            @if (featured.tagline; as tagline) {
+              <span class="tagline">{{ tagline }}</span>
+            }
+          </div>
+          <mat-icon>arrow_right_alt</mat-icon>
+        </div>
+      </div>
+    </a>
+  </div>
+}
+
+<div class="right-side">
+  <div class="nav-items">
+    <div class="groups">
+      @for (group of menu().items; track group; let outerFirst = $first) {
+        <div class="group">
+          <div class="group-label">
+            {{ group.label }}
+          </div>
+
+          <mat-divider class="divider" />
+          <div class="items">
+            @for (item of group.items; track item) {
+              @let isFocusRegionStart = $first && outerFirst && !menu().featured;
+              <a
+                mat-button
+                hraSecondaryButton
+                hraClickEvent
+                class="item-label"
+                tabindex="0"
+                [attr.cdkFocusRegionStart]="isFocusRegionStart ? '' : null"
+                [attr.cdkFocusInitial]="isFocusRegionStart ? '' : null"
+                [hraFeature]="item.label | slugify"
+                [hraLink]="item.url"
+                [hraLinkExternal]="item.external"
+                (click)="!item.external && scrollbarStore.scrollToTop()"
+                (keyup.enter)="!item.external && scrollbarStore.scrollToTop()"
+              >
+                {{ item.label }}
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="socials">
+    @for (id of socials(); track id) {
+      <hra-social-media-button
+        size="large"
+        variant="color"
+        [attr.cdkFocusRegionEnd]="$last ? '' : null"
+        [id]="$any(id)"
+      />
+    }
+  </div>
+</div>

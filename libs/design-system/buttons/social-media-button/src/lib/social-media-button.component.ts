@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
-import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/buttons/icon-button';
-import { SOCIALS } from './static-data/parsed';
-import { SocialMediaId } from './types/social-media.schema';
 import { findOrThrow } from '@hra-ui/common/array-util';
+import { IconButtonModule, IconButtonSize, IconButtonVariant } from '@hra-ui/design-system/buttons/icon-button';
+import { injectSocials } from './socials';
+import { SocialMediaId } from './types/social-media.schema';
 
 /**
  * Social media buttons for HRA apps
@@ -25,6 +25,8 @@ export class SocialMediaButtonComponent {
   /** Button variant */
   readonly variant = input<IconButtonVariant>('dark');
 
+  private readonly socials = injectSocials();
+
   /** Social media button data */
-  protected readonly data = computed(() => findOrThrow(SOCIALS, ({ id }) => id === this.id()));
+  protected readonly data = computed(() => findOrThrow(this.socials, ({ id }) => id === this.id()));
 }

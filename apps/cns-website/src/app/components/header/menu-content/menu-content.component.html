@@ -1,0 +1,55 @@
+@if (menu().featured; as featured) {
+  <a
+    mat-button
+    hraClickEvent
+    class="featured-link"
+    tabindex="0"
+    [hraLink]="featured.url"
+    [hraLinkExternal]="featured.external"
+    (click)="!featured.external && scrollbarStore.scrollToTop()"
+    (keyup.enter)="!featured.external && scrollbarStore.scrollToTop()"
+  >
+    <div class="featured-content-container">
+      <div class="featured-content">
+        <span class="label">{{ featured.label }}</span>
+        <span class="tagline">{{ featured.tagline }}</span>
+      </div>
+      <mat-icon>arrow_right_alt</mat-icon>
+    </div>
+  </a>
+}
+
+@for (group of menu().items; track group) {
+  <div class="group">
+    <div class="group-label">
+      {{ group.label }}
+    </div>
+
+    @if (group.description; as description) {
+      <div class="group-description">
+        {{ description }}
+      </div>
+    }
+
+    <mat-divider class="divider" />
+
+    <div class="items">
+      @for (item of group.items; track item) {
+        <a
+          mat-button
+          hraSecondaryButton
+          hraClickEvent
+          class="item-label"
+          tabindex="0"
+          [hraFeature]="item.label | slugify"
+          [hraLink]="item.url"
+          [hraLinkExternal]="item.external"
+          (click)="!item.external && scrollbarStore.scrollToTop()"
+          (keyup.enter)="!item.external && scrollbarStore.scrollToTop()"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </div>
+  </div>
+}

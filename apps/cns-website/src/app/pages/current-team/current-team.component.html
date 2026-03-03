@@ -1,0 +1,113 @@
+<mat-sidenav-container hraFeature="teams-page" class="container">
+  <mat-sidenav
+    class="sidebar"
+    aria-label="Filter team members"
+    [mode]="sidebarStore.mode()"
+    [opened]="sidebarStore.isOpen()"
+    [disableClose]="sidebarStore.mode() === 'side'"
+    (closedStart)="sidebarStore.close()"
+  >
+    <hra-filter-menu
+      class="filters"
+      hraFeature="filters"
+      tagline="People at the Cyberinfrastructure for Network Science Center"
+      [filters]="store.filters()"
+      (filtersChange)="store.setFilters($event)"
+    >
+      <mat-button-toggle-group
+        class="team-toggle"
+        aria-label="Select team"
+        hraFeature="team"
+        hraModelChangeEvent
+        hraButtonToggleSize="medium"
+        [ngModel]="store.team()"
+        (ngModelChange)="store.setTeam($event)"
+      >
+        <mat-button-toggle value="current">Current team</mat-button-toggle>
+        <mat-button-toggle value="past">Former team</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-form-field class="sort-by" hraFeature="sort-by" subscriptSizing="dynamic">
+        <mat-icon class="select-icon" matPrefix>sort</mat-icon>
+        <mat-label>Sort by</mat-label>
+        <mat-select hraModelChangeEvent [ngModel]="store.sortBy()" (ngModelChange)="store.setSortBy($event)">
+          @if (store.team() === 'current') {
+            <mat-option value="hierarchical">Hierarchical</mat-option>
+          }
+          <mat-option value="lastNameAsc">Last name (ascending A-Z)</mat-option>
+          <mat-option value="lastNameDesc">Last name (descending Z-A)</mat-option>
+          <mat-option value="endYearNewest">End year (new to old)</mat-option>
+          <mat-option value="startYearOldest">Start year (old to new)</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="group-by" hraFeature="group-by" subscriptSizing="dynamic">
+        <mat-icon class="select-icon" matPrefix>category</mat-icon>
+        <mat-label>Group by</mat-label>
+        <mat-select hraModelChangeEvent [ngModel]="store.groupBy()" (ngModelChange)="store.setGroupBy($event)">
+          <mat-option [value]="null">None</mat-option>
+          <mat-option value="role">Role</mat-option>
+          <mat-option value="startYear">Start year</mat-option>
+          <mat-option value="endYear">End year</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </hra-filter-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content role="main">
+    <ng-scrollbar hraScrollOverflowFade>
+      <div class="content">
+        <div class="search-bar">
+          <hra-search-filter
+            hraFeature="search"
+            label="Search"
+            separator="/"
+            [totalCount]="store.numFilteredByTeam()"
+            [viewingCount]="store.numFilteredPeople()"
+            [search]="store.search() ?? ''"
+            (searchChange)="store.setSearch($event)"
+          />
+        </div>
+
+        <div class="profile-list">
+          @if (store.numFilteredPeople() === 0) {
+            <hra-no-results-indicator hraFeature="no-results" (clearFilters)="store.resetFilters()" />
+          } @else {
+            @for (group of store.sortedGroupedPeople(); track group.label) {
+              <section class="section" hraFeature="profiles">
+                @if (group.label) {
+                  <h3 hra-section-link class="title" [underlined]="true">{{ group.label }}</h3>
+                }
+                <hra-gallery-grid class="gallery" [dataSource]="group.people">
+                  <hra-profile-card
+                    *hraGalleryGridItem="let person"
+                    [hraFeature]="person.slug"
+                    [pictureUrl]="person.image ? person.image : placeholderImage"
+                    [name]="person.name"
+                    [description]="store.getMemberTitle(person)"
+                    [centerContent]="true"
+                  >
+                    @if (store.team() === 'current') {
+                      <a
+                        mat-button
+                        hraHyperlink
+                        class="learn-more"
+                        [hraLink]="`/people/${person.slug}`"
+                        [attr.aria-label]="`Learn more about ${person.name}`"
+                      >
+                        Learn more
+                        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+                      </a>
+                    }
+                  </hra-profile-card>
+                </hra-gallery-grid>
+              </section>
+            }
+          }
+        </div>
+
+        <cns-footer class="footer" />
+      </div>
+    </ng-scrollbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

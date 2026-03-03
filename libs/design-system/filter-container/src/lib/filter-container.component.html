@@ -9,23 +9,28 @@
         </div>
       </hra-info-button>
     }
-    <button
-      mat-button
-      hraButtonVariant="secondary"
+    <mat-button-toggle
       class="category-button"
-      color="primary"
-      (click)="actionClick.emit()"
+      hraFeature="menu-toggle"
+      hraClickEvent
+      [checked]="active()"
+      (change)="actionClick.emit()"
     >
       {{ action() }}
-    </button>
+    </mat-button-toggle>
   </div>
 
   @if (chips().length > 0) {
-    <mat-chip-set class="chips-container">
+    <mat-chip-set class="chips-container" hraFeature="chips">
       @for (chip of chips(); track chip.label) {
         <mat-chip disableRipple (removed)="removeChip(chip)">
           {{ chip.label }}
-          <button matChipRemove [attr.aria-label]="`Remove ${chip.label}`">
+          <button
+            matChipRemove
+            hraFeature="remove"
+            [hraClickEvent]="{ value: chip.label }"
+            [attr.aria-label]="`Remove ${chip.label}`"
+          >
             <mat-icon>close</mat-icon>
           </button>
         </mat-chip>

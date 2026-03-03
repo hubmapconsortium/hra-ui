@@ -1,0 +1,39 @@
+<div
+  class="content"
+  hraFeature="landing-page"
+  [style.background-image]="'assets/content/landing-page/bg-homepage.png' | assetUrl | cssUrl"
+>
+  <div class="title">Science you can see</div>
+  <div class="tagline">
+    Celebrating 20+ years of research at Indiana University's Cyberinfrastructure for Network Science Center.
+  </div>
+
+  <mat-button-toggle-group
+    class="content-filter"
+    hraFeature="content-filter"
+    hraButtonToggleSize="large"
+    [multiple]="false"
+    [(value)]="contentType"
+  >
+    @for (item of contentTypeItems; track item.slug) {
+      <mat-button-toggle [hraClickEvent]="{ value: item.slug }" [value]="item.slug">{{ item.label }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+
+  <div class="content-grid">
+    <hra-gallery-grid [dataSource]="cards()[contentType()]">
+      <hra-content-button
+        *hraGalleryGridItem="let item"
+        [hraFeature]="item.slug"
+        [tagline]="item.tagline"
+        [tags]="item.tags"
+        [date]="item.date"
+        [imageSrc]="item.image"
+        [link]="item.link"
+        [external]="item.external"
+      />
+    </hra-gallery-grid>
+  </div>
+</div>
+
+<cns-footer />

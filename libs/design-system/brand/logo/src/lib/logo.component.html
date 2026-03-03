@@ -2,9 +2,9 @@
   class="logo"
   hraFeature="logo"
   hraClickEvent
-  aria-label="Visit Human Reference Atlas"
-  href="https://humanatlas.io/"
   target="_self"
+  [attr.aria-label]="`Visit ${brandConfig().label}`"
+  [href]="brandConfig().url"
   [inlineSVG]="data().src | assetUrl"
   [evalScripts]="NEVER_EVAL_SCRIPTS"
   [style.width.px]="data().width"

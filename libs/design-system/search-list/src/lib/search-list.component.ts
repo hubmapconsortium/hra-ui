@@ -1,14 +1,14 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule, MatListOption } from '@angular/material/list';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule, MatListOption } from '@angular/material/list';
 
 /** Search list option interface */
 export interface SearchListOption {
@@ -57,6 +57,9 @@ export class SearchListComponent<T extends SearchListOption> {
   /** Currently selected filters */
   readonly selected = model<T[]>([]);
 
+  /** Counts for each filter option */
+  readonly counts = input<Record<string, number>>();
+
   /** Current search bar value */
   readonly search = model<string>('');
 
@@ -64,11 +67,18 @@ export class SearchListComponent<T extends SearchListOption> {
   readonly filteredOptions = computed(() => this.doSearch());
 
   /**
-   * Updates selected options on update
-   * @param event Selected options in list
+   * Updates selected options on option click
+   * @param event Selected options
    */
   selectionUpdate(event: MatListOption[]): void {
     this.selected.set(event.map((option) => option.value));
+  }
+
+  /** Gets count for an option, either from the option itself or from the counts input
+   * @param option Option to get count for
+   */
+  getCount(option: T): number | undefined {
+    return option.count ?? this.counts()?.[option.id];
   }
 
   /** Filters options according to the search bar value */

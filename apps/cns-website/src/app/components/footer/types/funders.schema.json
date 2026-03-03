@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "CnsFunders",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "funders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CnsFunder"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "funders"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "CnsFunder": {
+      "id": "CnsFunder",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string",
+          "format": "uri"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "link",
+        "image"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

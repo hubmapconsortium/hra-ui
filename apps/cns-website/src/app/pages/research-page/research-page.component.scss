@@ -1,0 +1,114 @@
+@use 'utils';
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+  height: calc(100vh - 3.5rem);
+  width: 100%;
+
+  .container {
+    height: 100%;
+
+    @include mat.sidenav-overrides(
+      (
+        container-background-color: vars.$surface-container-low,
+        container-divider-color: vars.$outline,
+        container-shape: vars.$corner-none,
+        container-width: 20rem,
+        content-background-color: vars.$on-primary,
+      )
+    );
+  }
+
+  mat-form-field {
+    @include mat.form-field-overrides(
+      (
+        filled-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
+        filled-label-text-color: vars.$primary,
+        leading-icon-color: vars.$primary,
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-weight: vars.$label-medium-weight,
+        filled-label-text-tracking: vars.$label-medium-tracking,
+      )
+    );
+
+    @include mat.select-overrides(
+      (
+        enabled-trigger-text-color: vars.$secondary,
+      )
+    );
+  }
+
+  mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 3.5rem);
+    align-items: center;
+  }
+
+  hra-search-filter,
+  .content > *:not(cns-footer) {
+    max-width: 95rem;
+    width: calc(100% - 5rem);
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+
+    @media (max-width: 639px) {
+      width: calc(100% - 2.5rem);
+      margin-left: 1.25rem;
+      margin-right: 1.25rem;
+    }
+  }
+
+  hra-search-filter {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: vars.$on-primary;
+  }
+
+  ng-scrollbar {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 10.5rem);
+
+    &:has(.gallery-group) {
+      gap: 3rem;
+    }
+
+    .gallery-group .title {
+      margin-bottom: 2rem;
+
+      @include mat.divider-overrides(
+        (
+          color: vars.$outline,
+        )
+      );
+    }
+
+    .page-end {
+      padding-bottom: 2.5rem;
+
+      mat-divider {
+        margin-top: 2rem;
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    hra-end-of-results-indicator {
+      padding: 0;
+      flex-direction: row;
+    }
+  }
+}

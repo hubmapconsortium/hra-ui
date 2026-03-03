@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+@use 'vars' as vars;
+
+:host {
+  display: block;
+
+  .container {
+    height: calc(100vh - 3.5rem);
+    --hra-table-of-contents-layout-top-offset: 2.5rem;
+
+    @include mat.sidenav-overrides(
+      (
+        container-background-color: vars.$surface-container-low,
+        container-divider-color: vars.$outline,
+        container-shape: vars.$corner-none,
+        container-width: 16rem,
+        content-background-color: vars.$on-primary,
+      )
+    );
+
+    @media (min-width: 924px) {
+      @include mat.sidenav-overrides(
+        (
+          container-width: 18.75rem,
+        )
+      );
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+
+      .layout-container {
+        margin: 2.5rem 1.5rem;
+
+        .section {
+          width: 100%;
+          max-width: 87.5rem;
+          margin: auto;
+        }
+
+        @media (min-width: 640px) {
+          margin: 2.5rem;
+        }
+      }
+
+      .spacer {
+        flex-grow: 1;
+      }
+    }
+  }
+}

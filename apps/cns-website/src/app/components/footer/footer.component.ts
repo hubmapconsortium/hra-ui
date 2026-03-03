@@ -1,0 +1,51 @@
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
+import { BrandModule } from '@hra-ui/design-system/brand';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
+import { InlineSVGModule } from 'ng-inline-svg-2';
+import { CNS_SOCIAL_IDS } from '../static-data/parsed';
+import { FundingComponent } from './funding/funding.component';
+import { FUNDER_IDS } from './static-data/parsed';
+
+/**
+ * CNS footer component
+ */
+@Component({
+  selector: 'cns-footer',
+  imports: [
+    HraCommonModule,
+    RouterExtModule,
+    MatIconModule,
+    BrandModule,
+    ButtonsModule,
+    FundingComponent,
+    MatDividerModule,
+    InlineSVGModule,
+  ],
+  templateUrl: './footer.component.html',
+  styleUrl: './footer.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FooterComponent {
+  /** List of funders to show */
+  readonly funders = input(FUNDER_IDS);
+  /** List of social media link to show */
+  readonly socials = input(CNS_SOCIAL_IDS);
+  /** inject Privacy Preference Service */
+  private readonly privacyPreferences = inject(PrivacyPreferencesService);
+
+  /** Copyright text (always uses current year) */
+  readonly copyrightText = computed(
+    () => `© ${new Date().getFullYear()} Cyberinfrastructure for Network Science Center at Indiana University`,
+  );
+
+  /** Open Privacy Preferences Modal */
+  openPrivacyPreferences(event: Event): void {
+    event.preventDefault();
+    this.privacyPreferences.openPrivacyPreferences('manage');
+  }
+}

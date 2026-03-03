@@ -1,0 +1,39 @@
+<mat-sidenav-container class="container" [hraFeature]="`profile-page.${data().slug}`">
+  <mat-sidenav class="sidenav" role="complementary" mode="side" [opened]="hasContactInfo() && !isMobile()">
+    <cns-contact-info [image]="data().image" [role]="primaryRole()" />
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <hra-table-of-contents-layout class="layout-container">
+      <hra-table-of-contents-layout-header>
+        <hra-page-section
+          class="section"
+          [tagline]="data().name"
+          [level]="1"
+          [breadcrumbs]="breadcrumbs()"
+          [tags]="tags()"
+        >
+          @if (hasContactInfo() && isMobile()) {
+            <cns-contact-info [image]="data().image" [role]="primaryRole()" />
+          }
+        </hra-page-section>
+      </hra-table-of-contents-layout-header>
+
+      @for (section of sections(); track section.anchor) {
+        <hra-page-section
+          class="section"
+          [hraFeature]="section.tagline | slugify"
+          [tagline]="section.tagline"
+          [level]="2"
+          [anchor]="section.anchor"
+        >
+          <hra-markdown [data]="section.content" />
+        </hra-page-section>
+      }
+    </hra-table-of-contents-layout>
+
+    <div class="spacer"></div>
+
+    <cns-footer />
+  </mat-sidenav-content>
+</mat-sidenav-container>

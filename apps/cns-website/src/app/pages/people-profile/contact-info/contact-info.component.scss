@@ -1,0 +1,54 @@
+@use 'vars' as vars;
+@use 'utils' as utils;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-width: 12.5rem;
+  max-width: 100%;
+  flex: 0;
+
+  @media (min-width: 640px) {
+    background: vars.$surface-container-low;
+    padding: 2rem;
+    max-width: 18.75rem;
+    flex: 1;
+    min-height: 100%;
+  }
+}
+
+.profile-picture {
+  width: 100%;
+  max-width: 15rem;
+  max-height: 18.75rem;
+  margin-bottom: 2rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.value {
+  @include utils.use-font(body, large);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.contact-info-section {
+  ::ng-deep {
+    hra-page-label {
+      h5 {
+        border-bottom: 1px solid vars.$outline-variant;
+      }
+    }
+
+    hra-page-section .content {
+      margin-top: 0;
+    }
+  }
+}

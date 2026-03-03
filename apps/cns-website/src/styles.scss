@@ -1,0 +1,17 @@
+@use 'cns-light-theme' as cns;
+@use 'theming';
+@use 'utils';
+
+@include utils.global-styles() {
+  @include theming.theme(cns.$theme);
+
+  // TODO: Fix in design system and remove this override
+  hra-breadcrumbs .navigation .crumbs .crumb {
+    @include utils.use-font('label', 'medium');
+  }
+}
+
+body {
+  height: 100vh;
+  min-width: 20rem;
+}

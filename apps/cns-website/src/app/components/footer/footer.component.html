@@ -1,0 +1,34 @@
+<footer hraFeature="footer">
+  <div class="content-container">
+    <div class="logo-and-socials">
+      <a
+        class="logo"
+        hraFeature="logo"
+        hraClickEvent
+        aria-label="Visit CNS"
+        hraLink="https://cns.iu.edu/"
+        [inlineSVG]="'assets/cns_footer_logo.svg' | assetUrl"
+      >
+      </a>
+      <div class="socials">
+        @for (id of socials(); track id) {
+          <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
+        }
+      </div>
+    </div>
+
+    <cns-funding [funders]="funders()" />
+  </div>
+
+  <mat-divider />
+
+  <div class="privacy-container">
+    <span class="privacy">
+      <button hraTextButton (click)="openPrivacyPreferences($event)">Privacy Preferences</button>
+      <div class="separator">&#183;</div>
+      <a hraHyperlink hraFeature="hra-privacy-policy" hraLink="https://cns.iu.edu/privacy-policy">Privacy Policy</a>
+    </span>
+
+    <span class="copyright"> {{ copyrightText() }} </span>
+  </div>
+</footer>

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "CnsHeaderMenus",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/CnsHeaderMenu"
+          },
+          {
+            "$ref": "#/$defs/CnsHeaderMenuItem"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "options"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "CnsHeaderMenu": {
+      "id": "CnsHeaderMenu",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "menu"
+        },
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CnsHeaderMenuGroup"
+          }
+        },
+        "featured": {
+          "$ref": "#/$defs/CnsHeaderMenuItem"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "CnsHeaderMenuGroup": {
+      "id": "CnsHeaderMenuGroup",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "group"
+        },
+        "label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "target": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CnsHeaderMenuItem"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "CnsHeaderMenuItem": {
+      "id": "CnsHeaderMenuItem",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "item"
+        },
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "imgSrc": {
+          "type": "string"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

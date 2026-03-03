@@ -1,7 +1,8 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
@@ -24,9 +25,10 @@ export interface FilterChip {
   imports: [
     HraCommonModule,
     ButtonsModule,
-    MatIconModule,
+    MatButtonToggleModule,
     MatChipsModule,
     MatDividerModule,
+    MatIconModule,
     InfoButtonComponent,
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
@@ -38,6 +40,9 @@ export interface FilterChip {
 export class FilterContainerComponent<T extends FilterChip> {
   /** tagline for the filter category */
   readonly action = input.required<string>();
+
+  /** Whether the filter container is active/open */
+  readonly active = model(false);
 
   /** Whether to show the info button with tooltip */
   readonly showTooltip = input(false, { transform: booleanAttribute });

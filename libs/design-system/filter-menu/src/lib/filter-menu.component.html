@@ -31,19 +31,21 @@
     </div>
   </div>
 
-  <div class="filters section">
+  <div hraFeature="filter-list" class="filters section">
     <div class="header">
       <hra-icon class="icon" fontIcon="filter_list" />
       <span class="title">Filters</span>
     </div>
     @for (filter of filters(); track $index) {
       <hra-filter-container
-        enableDivider
         cdkOverlayOrigin
+        [hraFeature]="filter.id | slugify"
+        [enableDivider]="!$last"
         [action]="filter.label"
+        [active]="activeFilter() === filter"
         [chips]="filter.selected ?? []"
         (chipsChange)="updateFilterSelection(filter, $event)"
-        (actionClick)="activeFilter.set(filter)"
+        (actionClick)="toggleFilterMenu(filter)"
         #filterMenuOrigin="cdkOverlayOrigin"
       />
 
@@ -59,8 +61,11 @@
         (detach)="closeFilterMenu(filter)"
       >
         <hra-search-list
+          [hraFeature]="`${(filter.id | slugify)}.menu`"
           [options]="filter.options"
           [selected]="filter.selected ?? []"
+          [counts]="counts()?.[$index]"
+          [disableSearch]="filter.disableSearch ?? false"
           (selectedChange)="updateFilterSelection(filter, $event)"
         />
       </ng-template>

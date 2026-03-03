@@ -9,16 +9,16 @@
 <ng-scrollbar hraScrollOverflowFade class="filter-options">
   <mat-selection-list
     [disableRipple]="disableRipple()"
-    (selectionChange)="selectionUpdate(list.selectedOptions.selected)"
-    #list
+    (selectionChange)="selectionUpdate($event.source.selectedOptions.selected)"
   >
     @for (option of filteredOptions(); track option.id) {
       <mat-list-option
         togglePosition="before"
+        hraClickEvent
         [hraFeature]="option.label | slugify"
         [value]="option"
         [selected]="selected().includes(option)"
-        [attr.aria-label]="`Toggle ${option.id}`"
+        [attr.aria-label]="`Toggle ${option.label}`"
       >
         <mat-label class="labels-count">
           <span class="option-labels">
@@ -27,8 +27,9 @@
               <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
             }
           </span>
-          @if (option.count) {
-            <span class="option-count">{{ option.count | number }}</span>
+          @let count = getCount(option);
+          @if (count !== undefined) {
+            <span class="option-count">{{ count | number }}</span>
           }
         </mat-label>
       </mat-list-option>
