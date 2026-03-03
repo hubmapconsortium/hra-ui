@@ -64,6 +64,7 @@ import {
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
+import { FullscreenPortalContentComponent } from '@hra-ui/design-system/fullscreen';
 import { environment } from '../environments/environment';
 
 /** Input property keys */
@@ -119,6 +120,7 @@ export function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
     MatDividerModule,
     PlainTooltipDirective,
     LinkDirective,
+    FullscreenPortalContentComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

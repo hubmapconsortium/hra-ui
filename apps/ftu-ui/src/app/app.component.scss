@@ -32,4 +32,10 @@
       overflow: scroll;
     }
   }
+
+  hra-fullscreen-portal-content {
+    .main {
+      height: 100%;
+    }
+  }
 }
