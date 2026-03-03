@@ -4,8 +4,9 @@ import { Action, NgxsOnInit, State } from '@ngxs/store';
 import { produce } from 'immer';
 import { Observable, tap } from 'rxjs';
 
-import { FtuDataService, SourceReference } from '@hra-ui/services';
-import { COLUMN_IDS, ColumnId } from '../source-refs';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import { FtuDataService } from '@hra-ui/services';
+import { unparse } from 'papaparse';
 import { JSON_FORMAT, PNG_FORMAT, SVG_FORMAT } from './builtin-formats';
 import {
   AddEntry,
@@ -17,7 +18,6 @@ import {
   RegisterFormat,
 } from './download.action';
 import { createDownloadFormatId, DownloadContext, DownloadFormatId, DownloadModel } from './download.model';
-import { SnackbarService } from '@hra-ui/design-system/snackbar';
 
 /**
  * Download State Model used to convert
@@ -159,16 +159,7 @@ export class DownloadState implements NgxsOnInit {
   @Action(DownloadCsv)
   downloadCsv(ctx: DownloadContext, { sourceRefs, id }: DownloadCsv): Observable<unknown> | void {
     const filename = this.guessFilename(ctx, createDownloadFormatId('csv'), id as string);
-    const header = COLUMN_IDS.join(',') + '\n';
-    const rows = sourceRefs
-      .map((ref) =>
-        COLUMN_IDS.map((col: ColumnId) => {
-          const value = (ref as SourceReference)[col] ?? '';
-          return typeof value === 'string' ? `"${value.replace(/"/g, '""')}"` : value;
-        }).join(','),
-      )
-      .join('\n');
-    const csvContent = header + rows;
+    const csvContent = unparse(sourceRefs);
     void this.downloadData(new Blob([csvContent], { type: 'text/csv' }), filename);
   }
 

@@ -1,5 +1,4 @@
-/* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -55,6 +54,7 @@ import {
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
+import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { environment } from '../environments/environment';
 
 /** Input property keys */
@@ -142,19 +142,23 @@ export class AppComponent extends BaseApplicationComponent {
   readonly appResources = input<string>('assets/resources.yml');
 
   /** Emits whenever a different illustration is selected by the user */
-  @Output('illustration-selected') readonly illustrationSelected = select$(ActiveFtuSelectors.iri).pipe(
-    filterUndefined(),
-  );
+  readonly illustrationSelected = outputFromObservable(select$(ActiveFtuSelectors.iri).pipe(filterUndefined()), {
+    alias: 'illustration-selected',
+  });
 
   /** Emits when the mouse hover on/off a single cell */
-  @Output('cell-hover') readonly cellHover = select$(IllustratorSelectors.selectedOnHovered).pipe(
-    map((node) => node?.source),
+  readonly cellHover = outputFromObservable(
+    select$(IllustratorSelectors.selectedOnHovered).pipe(map((node) => node?.source)),
+    { alias: 'cell-hover' },
   );
 
   /** Emits when the user clicks a cell */
-  @Output('cell-click') readonly cellClick = inject(Actions).pipe(
-    ofActionDispatched(IllustratorActions.SetClicked),
-    map(({ selectedOnClick }) => selectedOnClick.source),
+  readonly cellClick = outputFromObservable(
+    inject(Actions).pipe(
+      ofActionDispatched(IllustratorActions.SetClicked),
+      map(({ selectedOnClick }) => selectedOnClick.source),
+    ),
+    { alias: 'cell-click' },
   );
 
   /** Fullscreen service */

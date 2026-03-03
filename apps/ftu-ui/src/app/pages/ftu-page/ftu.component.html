@@ -32,13 +32,11 @@
           (selectionChanged)="setSelectedSources($event)"
         />
       </div>
-    } @else {
-      @if (isFullscreen() && sources().length === 0) {
-        <ftu-empty-biomarker
-          class="empty-source-list"
-          emptyBehaviorText="We currently do not have data for this functional tissue unit."
-        />
-      }
+    } @else if (isFullscreen() && sources().length === 0) {
+      <ftu-empty-biomarker
+        class="empty-source-list"
+        emptyBehaviorText="We currently do not have data for this functional tissue unit."
+      />
     }
   </ng-template>
 </ftu-fullscreen-container>
