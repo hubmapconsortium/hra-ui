@@ -1,5 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import * as i1 from '@hra-ui/common/analytics';
+import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { createCustomElement } from '@hra-ui/webcomponents';
 import * as i0 from '@angular/core';
@@ -32,7 +34,6 @@ import { map, BehaviorSubject, switchMap, combineLatest, distinctUntilChanged } 
 import * as i2$1 from '@angular/cdk/overlay';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ColorPickerDirective } from 'ngx-color-picker';
-import * as i1 from '@hra-ui/common/analytics';
 import * as i2$2 from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 import * as i5$1 from '@hra-ui/design-system/buttons/icon-button';
@@ -1862,7 +1863,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
 
 /** Custom element definition for CdeVisualizationComponent */
 const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
-    providers: [provideHttpClient(), provideAnimations(), provideDesignSystem()],
+    providers: [
+        provideAppConfiguration({
+            name: 'cde-visualization',
+            version: '1.1.0',
+        }),
+        provideAnalytics(withErrorHandler()),
+        provideDesignSystem(),
+        provideHttpClient(),
+    ],
 });
 
 /**

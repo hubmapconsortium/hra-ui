@@ -550,7 +550,15 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>createCustomElement(&#x27;cde-visualization&#x27;, CdeVisualizationComponent, {
-  providers: [provideHttpClient(), provideAnimations(), provideDesignSystem()],
+  providers: [
+    provideAppConfiguration({
+      name: &#x27;cde-visualization&#x27;,
+      version: &#x27;1.1.0&#x27;,
+    }),
+    provideAnalytics(withErrorHandler()),
+    provideDesignSystem(),
+    provideHttpClient(),
+  ],
 })</code>
                     </td>
                 </tr>
