@@ -4,7 +4,7 @@ subtitle: Learn how to construct and use the Human Reference Atlas.
 icons: misc:training
 content:
   - component: PageSection
-    tagline: Standard Operating Procedures (SOPs)
+    tagline: Standard operating procedures (SOPs)
     anchor: sops
     level: 2
     content:
@@ -13,7 +13,7 @@ content:
         Processes and procedures to ensure the standardized construction of the Human Reference Atlas.
 
         - [Standard Operating Procedures](standard-operating-procedures)
-        - [Standard Operating Procedure Glossary](https://docs.google.com/document/d/1IBuPOt2mkPOOMF9vUsZk5HQ3vm9M7WjnlW-ZOMG6wSY/edit?tab=t.0#heading=h.ihfnxsruj8m7)
+        - [Standard Operating Procedure Glossary](https://doi.org/10.5281/zenodo.17664992)
 
   - component: PageSection
     tagline: Introduction to the Human Reference Atlas
@@ -39,6 +39,19 @@ content:
         5. [Know Your Body Buddies](https://cns-iu.github.io/hra-scrollytelling/story5.html)
 
   - component: PageSection
+    tagline: Human Atlas videos
+    anchor: human-atlas-videos
+    level: 3
+    content:
+      component: Markdown
+      data: |
+        Watch introductory videos showcasing Human Reference Atlas efforts:
+
+        - [10^10 — A Multiscale Voyage through the Human Body](https://www.youtube.com/watch?v=-YNP5XdnLPA)
+        - [Human Reference Atlas: Define Yourself—The Human Gut Atlas Story](https://www.youtube.com/watch?v=_H3S5HeFFPE)
+        - [Human Reference Atlas: Vasculature Common Coordinate Framework (VCCF)](https://www.youtube.com/watch?v=zQeMgxo8n_U)
+
+  - component: PageSection
     tagline: 24 Hour Events
     anchor: 24-hour-events
     level: 3
@@ -59,7 +72,7 @@ content:
       data: The [Visible Human Course](https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc) is free and it empowers anyone to help construct and properly use the evolving Human Reference Atlas.
 
   - component: PageSection
-    tagline: Kaggle Competitions
+    tagline: Kaggle competitions
     anchor: kaggle-competitions
     level: 2
     content:
