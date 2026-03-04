@@ -6,7 +6,8 @@
       "currentVersionResolver": "git-tag",
       "fallbackCurrentVersionResolver": "disk",
       "preVersionCommand": "npx nx run-many -t build"
-    }
+    },
+    "versionPlans": true
   },
   "plugins": [
     {
