@@ -1,0 +1,19 @@
+{
+  "name": "cdk-v2",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/hra-ui/cdk/src",
+  "prefix": "hra",
+  "projectType": "library",
+  "tags": ["type:lib", "project:cdk"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/hra-ui/cdk/tsconfig.lib.json"
+      }
+    }
+  }
+}

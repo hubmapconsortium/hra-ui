@@ -1,0 +1,19 @@
+{
+  "name": "content-templates",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/hra-ui/content-templates/src",
+  "prefix": "hra",
+  "projectType": "library",
+  "tags": ["type:lib", "project:content-templates"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/hra-ui/content-templates/tsconfig.lib.json"
+      }
+    }
+  }
+}
