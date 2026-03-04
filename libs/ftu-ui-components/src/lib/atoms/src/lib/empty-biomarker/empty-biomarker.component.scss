@@ -11,9 +11,15 @@
     flex: 1;
     @include utils.use-font(body, medium);
     color: vars.$primary;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
   }
 
   .footer {
     padding: 1rem;
+
+    .collaborate-button {
+      @include utils.use-font(label, medium);
+      width: 100%;
+    }
   }
 }

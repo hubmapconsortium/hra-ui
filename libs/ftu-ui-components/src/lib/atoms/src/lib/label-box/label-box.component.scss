@@ -5,7 +5,8 @@
   @include utils.use-font(label, medium);
   display: flex;
   align-items: center;
-  padding-left: 1rem;
+  justify-content: center;
   min-height: 4rem;
+  gap: 0.5rem;
   color: vars.$secondary;
 }

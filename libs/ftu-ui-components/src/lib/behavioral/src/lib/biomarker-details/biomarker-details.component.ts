@@ -72,11 +72,9 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.full-screen-grid]': 'isBiomarkerfullscreen()',
-    '[class.no-data-full-screen-grid]': 'source().length === 0 && isBiomarkerfullscreen()',
-    '[class.no-data-sources]': 'source().length === 0 && !isBiomarkerfullscreen()',
-    '[class.no-data]':
-      '(source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) && !isBiomarkerfullscreen()',
-    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0 && !isBiomarkerfullscreen()',
+    '[class.no-data-sources]': 'source().length === 0',
+    '[class.no-data]': 'source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0',
+    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
   },
 })
 export class BiomarkerDetailsComponent {
@@ -119,14 +117,10 @@ export class BiomarkerDetailsComponent {
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
-  /**
-   * Iri  of medical illustration behavior component
-   */
+  /** Iri of medical illustration behavior component */
   readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
 
-  /**
-   * Get all tissues
-   */
+  /** Get all tissues */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
 
   /** Selects the cells hovered currently to highlight in table */
@@ -246,10 +240,6 @@ export class BiomarkerDetailsComponent {
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
-    setTimeout(() => {
-      this.table.checkDisplayedColumns();
-    }, 250);
-
     this.isTableFullScreen = !this.isTableFullScreen;
     this.fullscreenService.fullscreentabIndex.set(FullscreenTab.BiomarkerDetails);
     this.fullscreenService.isFullscreen.set(this.isTableFullScreen);

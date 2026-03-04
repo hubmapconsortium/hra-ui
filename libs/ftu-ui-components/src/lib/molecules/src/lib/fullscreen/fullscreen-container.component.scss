@@ -15,7 +15,7 @@
       label-text-size: vars.$label-medium-size,
       label-text-tracking: vars.$label-medium-tracking,
       label-text-weight: vars.$label-medium-weight,
-      container-height: 4.3rem,
+      container-height: 63px,
     )
   );
 }
@@ -52,15 +52,9 @@
   }
 }
 
-.closeButton {
+.close-button {
   position: absolute;
   right: 1rem;
   top: 0.75rem;
   z-index: 1;
-}
-
-::ng-deep {
-  ftu-source-list .table-content {
-    margin: 0 !important;
-  }
 }

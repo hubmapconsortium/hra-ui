@@ -25,8 +25,18 @@
   <ng-template #sourcelist>
     @if (sources().length > 0) {
       <div class="source-list">
-        <ftu-source-list class="content" [sources]="sources()" (selectionChanged)="setSelectedSources($event)" />
+        <ftu-source-list
+          class="content"
+          [sources]="sources()"
+          [hideTitle]="isFullscreen()"
+          (selectionChanged)="setSelectedSources($event)"
+        />
       </div>
+    } @else if (isFullscreen() && sources().length === 0) {
+      <ftu-empty-biomarker
+        class="empty-source-list"
+        emptyBehaviorText="We currently do not have data for this functional tissue unit."
+      />
     }
   </ng-template>
 </ftu-fullscreen-container>

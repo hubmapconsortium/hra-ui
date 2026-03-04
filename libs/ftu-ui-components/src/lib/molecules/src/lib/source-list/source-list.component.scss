@@ -3,112 +3,165 @@
 @use '@angular/material' as mat;
 
 :host {
-  display: block;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 18.75rem;
+
+  &.no-data-full-screen {
+    .source-list-header {
+      display: none;
+    }
+  }
 
   .source-list-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 4rem;
-    padding: 0 16px;
+    padding: 0 1rem;
+    border-bottom: 1px solid vars.$outline-variant;
+    @include utils.use-font(label, medium);
+    color: vars.$secondary;
 
-    .view-fullscreen {
+    .view-controls {
       display: flex;
       align-items: center;
-
-      &.hide-title {
-        justify-content: flex-end;
-        flex: 1;
-      }
+      gap: 1rem;
 
       hra-results-indicator {
         --hra-results-indicator-height: 2.375rem;
-        border-radius: 624.9375rem;
       }
-    }
 
-    .source-list-title {
-      @include utils.use-font(label, medium);
-      color: vars.$secondary;
-    }
-  }
-
-  &.no-data-full-screen {
-    .source-list-header {
-      display: none;
-    }
-    ::ng-deep ftu-empty-biomarker .footer {
-      display: flex;
-      justify-content: end;
-      border-top: 0.0625rem solid vars.$outline-variant;
-
-      .collaborate-button {
-        width: auto !important;
+      .publication-count {
+        --hra-results-indicator-height: 2.375rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--hra-results-indicator-height);
+        color: vars.$primary;
+        padding: 0.5rem 0.75rem;
+        border: 0.0625rem solid vars.$outline-variant;
+        border-radius: 0.25rem;
+        @include utils.use-font(label, small);
       }
-    }
-    .table-content {
-      height: 100%;
-    }
-  }
-
-  &.full-screen .table-content {
-    margin: 0 1rem 1rem 1rem;
-
-    hra-table {
-      border-radius: 0.25rem;
     }
   }
 
   .table-content {
+    width: 100%;
+    height: calc(100% - 4rem);
     overflow: auto;
 
     &.hidden {
       display: none;
     }
+  }
 
-    hra-table {
-      max-height: 163px;
-      border-radius: 0;
-      border-left: none;
-      border-right: none;
+  ::ng-deep table {
+    border-bottom: 1px solid vars.$outline-variant;
 
-      @include mat.table-overrides(
-        (
-          row-item-label-text-size: vars.$label-small-size,
-        )
-      );
+    @include mat.table-overrides(
+      (
+        background-color: vars.$on-primary,
 
-      ::ng-deep td {
-        max-width: 143.6704px;
-        max-height: 32px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+        header-container-height: 2rem,
+        header-headline-color: vars.$secondary,
+        header-headline-font: vars.$label-small-font,
+        header-headline-line-height: vars.$label-small-line-height,
+        header-headline-size: vars.$label-small-size,
+        header-headline-tracking: vars.$label-small-tracking,
+        header-headline-weight: vars.$label-small-weight,
 
-      ::ng-deep th[data-column-type='text'] {
-        max-width: 640px;
-      }
+        row-item-container-height: 2rem,
+        row-item-label-text-color: vars.$primary,
+        row-item-label-text-font: vars.$label-small-font,
+        row-item-label-text-line-height: vars.$label-small-line-height,
+        row-item-label-text-size: vars.$label-small-size,
+        row-item-label-text-tracking: vars.$label-small-tracking,
+        row-item-label-text-weight: vars.$label-small-weight,
+        row-item-outline-width: 0px,
+      )
+    );
 
-      ::ng-deep th[data-column-type='numeric'] {
-        max-width: 80px;
-        min-width: 80px;
-      }
+    @include mat.checkbox-overrides(
+      (
+        state-layer-size: 2rem,
+      )
+    );
 
-      ::ng-deep th[data-column-type='link'] {
-        max-width: 196px;
-      }
-
-      ::ng-deep th:nth-child(3)[data-column-type='text'],
-      ::ng-deep td:nth-child(3) {
-        width: 80px !important;
-        min-width: 80px !important;
-        max-width: 80px !important;
+    .top-header-row {
+      th {
+        text-align: center;
       }
     }
-  }
-  .end {
-    cursor: pointer;
+
+    thead {
+      background-color: vars.$surface-container;
+
+      th {
+        border-bottom: 0.0625rem solid vars.$outline-variant;
+        white-space: nowrap;
+      }
+    }
+
+    tbody {
+      tr:nth-child(even) {
+        background-color: vars.$surface-bright;
+      }
+
+      tr:hover {
+        background-color: utils.with-alpha(vars.$secondary, 8%);
+      }
+    }
+
+    .cdk-column-dataset,
+    .cdk-column-donor,
+    .cdk-column-healthStatus,
+    .cdk-column-year {
+      border-left: 1px solid vars.$outline-variant;
+    }
+
+    th,
+    td {
+      min-width: 4.5rem;
+      max-width: 0rem;
+      padding: 0 0.5rem;
+      white-space: nowrap;
+
+      .mat-sort-header-content {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+      }
+    }
+
+    td[data-column-type='checkbox'],
+    th[data-column-type='checkbox'] {
+      min-width: unset;
+      max-width: 2rem;
+      padding: 0;
+    }
+
+    th:nth-child(2) {
+      min-width: 7.25rem;
+    }
+
+    th:nth-child(4) {
+      width: 4.5rem;
+      max-width: 4.5rem;
+    }
+
+    th:nth-child(5) {
+      min-width: 7.25rem;
+    }
+
+    th:nth-child(9) {
+      min-width: 4.5rem;
+    }
+
+    th:nth-child(10) {
+      min-width: 4.75rem;
+    }
   }
 }
