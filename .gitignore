@@ -51,7 +51,8 @@ Thumbs.db
 
 # Caches
 .angular
-.nx
+.nx/cache
+.nx/workspace-data
 .sass-cache
 
 # Logs
