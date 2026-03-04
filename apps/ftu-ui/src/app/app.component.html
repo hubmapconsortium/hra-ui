@@ -1,148 +1,157 @@
 <ng-container hraFeature="ftu-ui">
-  <hra-header hraFeature="secondary-navigation" [breadcrumbs]="crumbs()">
-    @if (!isLanding()) {
-      <a
-        hraFeature="download"
-        hraClickEvent
-        mat-icon-button
-        hraPlainTooltip="Download options"
-        [matMenuTriggerFor]="downloadMenu"
-      >
-        <mat-icon>download</mat-icon>
-      </a>
-      <a
-        hraFeature="metadata"
-        hraClickEvent
-        mat-icon-button
-        hraPlainTooltip="View illustration metadata"
-        [hraLink]="illustrationMetadata"
-      >
-        <mat-icon>database</mat-icon>
-      </a>
-    } @else {
-      <a
-        hraFeature="knowledge-graph"
-        hraClickEvent
-        mat-icon-button
-        href="https://lod.humanatlas.io/2d-ftu/"
-        target="_blank"
-        hraPlainTooltip="View in Knowledge Graph"
-      >
-        <mat-icon>database</mat-icon>
-      </a>
-    }
-
-    <a
-      hraFeature="embed"
-      hraClickEvent
-      mat-icon-button
-      rel="noopener noreferrer"
-      hraPlainTooltip="Embed app"
-      [matMenuTriggerFor]="embedMenu"
-    >
-      <mat-icon>code</mat-icon>
-    </a>
-    <hra-help-button [action]="helpMenu" />
-
-    <!-- Help & documentation Menu -->
-    <mat-menu class="more-menu" #helpMenu>
-      <a
-        hraFeature="data-documentation"
-        hraClickEvent
-        mat-menu-item
-        href="https://humanatlas.io/2d-ftu-illustrations"
-        target="_blank"
-      >
-        <div class="title">Functional Tissue Unit Illustrations</div>
-        <div class="description">Data documentation</div>
-      </a>
-      <a
-        hraFeature="app-guidance"
-        hraClickEvent
-        mat-menu-item
-        href="https://humanatlas.io/user-story/4"
-        target="_blank"
-      >
-        <div class="title">Functional Tissue Unit Explorer</div>
-        <div class="description">App guidance & documentation</div>
-      </a>
-      <mat-divider />
-      <a
-        hraFeature="read-publication"
-        hraClickEvent
-        mat-menu-item
-        href="https://doi.org/10.1038/s41467-024-54591-6"
-        target="_blank"
-      >
-        <div>Read publication</div>
-      </a>
-    </mat-menu>
-
-    <!-- Embed Menu -->
-    <mat-menu #embedMenu>
-      <a
-        hraFeature="embed-full-app"
-        hraClickEvent
-        mat-menu-item
-        href="https://docs.humanatlas.io/dev/web-components#ftu-explorer"
-        target="_blank"
-      >
-        <mat-icon>code</mat-icon>
-        <div>Full app</div>
-      </a>
-      <a
-        hraFeature="embed-web-component"
-        hraClickEvent
-        mat-menu-item
-        href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-swc"
-        target="_blank"
-      >
-        <mat-icon>code</mat-icon>
-        <div>Web component</div>
-      </a>
-      <a
-        hraFeature="embed-illustration-viewer"
-        hraClickEvent
-        mat-menu-item
-        href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-illustration-viewer"
-        target="_blank"
-      >
-        <mat-icon>code</mat-icon>
-        <div>Illustration viewer</div>
-      </a>
-    </mat-menu>
-
-    <!-- Download Menu -->
-    <mat-menu hraFeature="download-menu" class="download-menu" #downloadMenu>
-      @for (format of downloadFormats(); track format.label) {
-        <button hraClickEvent mat-menu-item [hraFeature]="format.label | slugify" (click)="download(format.id)">
-          <div>{{ format.label }}</div>
-        </button>
+  @if (isFullscreen() && !isLanding()) {
+    <hra-fullscreen-portal-content>
+      <ng-container [ngTemplateOutlet]="main" />
+    </hra-fullscreen-portal-content>
+  } @else {
+    <hra-header hraFeature="secondary-navigation" [breadcrumbs]="crumbs()">
+      @if (!isLanding()) {
+        <a
+          hraFeature="download"
+          hraClickEvent
+          mat-icon-button
+          hraPlainTooltip="Download options"
+          [matMenuTriggerFor]="downloadMenu"
+        >
+          <mat-icon>download</mat-icon>
+        </a>
+        <a
+          hraFeature="metadata"
+          hraClickEvent
+          mat-icon-button
+          hraPlainTooltip="View illustration metadata"
+          [hraLink]="illustrationMetadata"
+        >
+          <mat-icon>database</mat-icon>
+        </a>
+      } @else {
+        <a
+          hraFeature="knowledge-graph"
+          hraClickEvent
+          mat-icon-button
+          href="https://lod.humanatlas.io/2d-ftu/"
+          target="_blank"
+          hraPlainTooltip="View in Knowledge Graph"
+        >
+          <mat-icon>database</mat-icon>
+        </a>
       }
-      <mat-divider />
-      <button
-        mat-menu-item
+
+      <a
+        hraFeature="embed"
         hraClickEvent
-        [hraFeature]="`download-source-data-csv`"
-        (click)="downloadCsv(sourceReferences(), activeIri())"
+        mat-icon-button
+        rel="noopener noreferrer"
+        hraPlainTooltip="Embed app"
+        [matMenuTriggerFor]="embedMenu"
       >
-        <div>Source data CSV</div>
-      </button>
-      <button
-        mat-menu-item
-        hraClickEvent
-        [hraFeature]="`download-source-data-biomarker-expressions-json`"
-        (click)="downloadSummaries(filteredSummaries())"
-      >
-        <div>Source data biomarker expressions JSON</div>
-      </button>
-    </mat-menu>
-  </hra-header>
+        <mat-icon>code</mat-icon>
+      </a>
+      <hra-help-button [action]="helpMenu" />
+
+      <!-- Help & documentation Menu -->
+      <mat-menu class="more-menu" #helpMenu>
+        <a
+          hraFeature="data-documentation"
+          hraClickEvent
+          mat-menu-item
+          href="https://humanatlas.io/2d-ftu-illustrations"
+          target="_blank"
+        >
+          <div class="title">Functional Tissue Unit Illustrations</div>
+          <div class="description">Data documentation</div>
+        </a>
+        <a
+          hraFeature="app-guidance"
+          hraClickEvent
+          mat-menu-item
+          href="https://humanatlas.io/user-story/4"
+          target="_blank"
+        >
+          <div class="title">Functional Tissue Unit Explorer</div>
+          <div class="description">App guidance & documentation</div>
+        </a>
+        <mat-divider />
+        <a
+          hraFeature="read-publication"
+          hraClickEvent
+          mat-menu-item
+          href="https://doi.org/10.1038/s41467-024-54591-6"
+          target="_blank"
+        >
+          <div>Read publication</div>
+        </a>
+      </mat-menu>
+
+      <!-- Embed Menu -->
+      <mat-menu #embedMenu>
+        <a
+          hraFeature="embed-full-app"
+          hraClickEvent
+          mat-menu-item
+          href="https://docs.humanatlas.io/dev/web-components#ftu-explorer"
+          target="_blank"
+        >
+          <mat-icon>code</mat-icon>
+          <div>Full app</div>
+        </a>
+        <a
+          hraFeature="embed-web-component"
+          hraClickEvent
+          mat-menu-item
+          href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-swc"
+          target="_blank"
+        >
+          <mat-icon>code</mat-icon>
+          <div>Web component</div>
+        </a>
+        <a
+          hraFeature="embed-illustration-viewer"
+          hraClickEvent
+          mat-menu-item
+          href="https://docs.humanatlas.io/dev/web-components#ftu-explorer-illustration-viewer"
+          target="_blank"
+        >
+          <mat-icon>code</mat-icon>
+          <div>Illustration viewer</div>
+        </a>
+      </mat-menu>
+
+      <!-- Download Menu -->
+      <mat-menu hraFeature="download-menu" class="download-menu" #downloadMenu>
+        @for (format of downloadFormats(); track format.label) {
+          <button hraClickEvent mat-menu-item [hraFeature]="format.label | slugify" (click)="download(format.id)">
+            <div>{{ format.label }}</div>
+          </button>
+        }
+        <mat-divider />
+        <button
+          mat-menu-item
+          hraClickEvent
+          [hraFeature]="`download-source-data-csv`"
+          (click)="downloadCsv(sourceReferences(), activeIri())"
+        >
+          <div>Source data CSV</div>
+        </button>
+        <button
+          mat-menu-item
+          hraClickEvent
+          [hraFeature]="`download-source-data-biomarker-expressions-json`"
+          (click)="downloadSummaries(filteredSummaries())"
+        >
+          <div>Source data biomarker expressions JSON</div>
+        </button>
+      </mat-menu>
+    </hra-header>
+    <ng-container [ngTemplateOutlet]="main" />
+  }
+</ng-container>
+
+<ng-template #main>
   <div class="main">
     @if (isFtuPage) {
-      <ftu-tissue-library-behavior class="sidebar" [class.hidden]="isFullscreen()" [(selected)]="selectedFtu" />
+      <ftu-tissue-library-behavior class="sidebar" [(selected)]="selectedFtu" />
     }
-
     <div class="content">
       <router-outlet />
     </div>
@@ -150,4 +159,4 @@
   @if (isLanding()) {
     <hra-footer />
   }
-</ng-container>
+</ng-template>

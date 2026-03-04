@@ -31,7 +31,8 @@
     }
   }
 
-  &.full-screen-grid.no-data-sources {
+  &.full-screen-grid.no-data-sources,
+  &.full-screen-grid.no-data {
     grid-template-rows: 1fr;
     grid-template-areas: 'empty';
 
@@ -69,21 +70,24 @@
   }
 
   &.no-data-sources {
+    ftu-empty-biomarker {
+      border-top: 1px solid vars.$outline-variant;
+    }
+  }
+
+  &.no-data-sources,
+  &.no-data {
     grid-template-areas:
       'headline headline'
       'empty empty';
 
     ftu-empty-biomarker {
       border-top: 1px solid vars.$outline-variant;
-      height: calc(100% - 4rem);
     }
   }
 
   &.no-data {
     grid-template-rows: 4rem auto;
-    grid-template-areas:
-      'headline headline'
-      'empty empty';
   }
 
   &.no-data-selected {
