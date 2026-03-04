@@ -14,8 +14,13 @@
       'source-list source-list';
     height: 100%;
 
+    &:has(.no-data-sources),
+    &:has(.no-data),
+    &:has(.no-data-selected) {
+      grid-template-columns: 1fr 14.875rem;
+    }
+
     &:has(.no-data-sources) {
-      grid-template-columns: 1fr 238px;
       grid-template-rows: auto;
       grid-template-areas: 'illustration illustration-details';
     }
@@ -36,6 +41,8 @@
       }
 
       .empty-source-list {
+        height: 100%;
+
         ::ng-deep .footer {
           display: flex;
           justify-content: end;

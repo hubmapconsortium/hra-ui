@@ -162,6 +162,8 @@
   }
 
   ftu-empty-biomarker {
+    height: 100%;
+
     ::ng-deep .footer {
       display: flex;
       justify-content: end;
