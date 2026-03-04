@@ -6,14 +6,8 @@
     "target": "ES2022",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "lib": [
-      "ES2022",
-      "DOM"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules/@testing-library"
-    ],
+    "lib": ["ES2022", "DOM"],
+    "typeRoots": ["./node_modules/@types", "./node_modules/@testing-library"],
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "esModuleInterop": true,
@@ -32,87 +26,36 @@
     "useDefineForClassFields": true,
     "useUnknownInCatchVariables": true,
     "paths": {
-      "@hra-ui/application": [
-        "libs/application/src/index.ts"
-      ],
-      "@hra-ui/cde-visualization": [
-        "libs/cde-visualization/src/index.ts"
-      ],
-      "@hra-ui/cdk": [
-        "libs/cdk/src/index.ts"
-      ],
-      "@hra-ui/cdk/*": [
-        "libs/cdk/*/src/index.ts"
-      ],
-      "@hra-ui/common": [
-        "libs/common/src/index.ts"
-      ],
-      "@hra-ui/common/*": [
-        "libs/common/*/src/index.ts"
-      ],
-      "@hra-ui/components/*": [
-        "libs/components/*/src/index.ts"
-      ],
-      "@hra-ui/dashboard": [
-        "libs/dashboard/src/index.ts"
-      ],
-      "@hra-ui/design-system": [
-        "libs/design-system/src/index.ts"
-      ],
-      "@hra-ui/design-system/*": [
-        "libs/design-system/*/src/index.ts"
-      ],
-      "@hra-ui/ftu-ui-components": [
-        "libs/ftu-ui-components/src/index.ts"
-      ],
-      "@hra-ui/ftu-ui-components/*": [
-        "libs/ftu-ui-components/*/src/index.ts"
-      ],
-      "@hra-ui/node-dist-vis": [
-        "libs/node-dist-vis/src/index.ts"
-      ],
-      "@hra-ui/node-dist-vis/*": [
-        "libs/node-dist-vis/*/src/index.ts"
-      ],
-      "@hra-ui/services": [
-        "libs/services/src/index.ts"
-      ],
-      "@hra-ui/state": [
-        "libs/state/src/index.ts"
-      ],
-      "@hra-ui/utils": [
-        "libs/shared/utils/src/index.ts"
-      ],
-      "@hra-ui/utils/*": [
-        "libs/shared/utils/*/src/index.ts"
-      ],
-      "@hra-ui/webcomponents": [
-        "libs/shared/webcomponents/src/index.ts"
-      ],
-      "@hra-ui/zod-to-json-schema": [
-        "tools/plugins/zod-to-json-schema/src/index.ts"
-      ],
-      "ccf-body-ui": [
-        "libs/ccf-body-ui/src/public-api.ts"
-      ],
-      "ccf-scene-utils": [
-        "libs/ccf-scene-utils/src/index.ts"
-      ],
-      "ccf-shared": [
-        "libs/ccf-shared/src/public-api.ts"
-      ],
-      "ccf-shared/*": [
-        "libs/ccf-shared/*/src/public-api.ts"
-      ],
-      "vega-embed": [
-        "node_modules/vega-embed/build/embed.d.ts"
-      ]
+      "@hra-ui/application": ["libs/application/src/index.ts"],
+      "@hra-ui/cde-visualization": ["libs/cde-visualization/src/index.ts"],
+      "@hra-ui/cdk": ["libs/cdk/src/index.ts"],
+      "@hra-ui/cdk/*": ["libs/cdk/*/src/index.ts"],
+      "@hra-ui/common": ["libs/common/src/index.ts"],
+      "@hra-ui/common/*": ["libs/common/*/src/index.ts"],
+      "@hra-ui/components/*": ["libs/components/*/src/index.ts"],
+      "@hra-ui/dashboard": ["libs/dashboard/src/index.ts"],
+      "@hra-ui/design-system": ["libs/design-system/src/index.ts"],
+      "@hra-ui/design-system/*": ["libs/design-system/*/src/index.ts"],
+      "@hra-ui/ftu-ui-components": ["libs/ftu-ui-components/src/index.ts"],
+      "@hra-ui/ftu-ui-components/*": ["libs/ftu-ui-components/*/src/index.ts"],
+      "@hra-ui/node-dist-vis": ["libs/node-dist-vis/src/index.ts"],
+      "@hra-ui/node-dist-vis/*": ["libs/node-dist-vis/*/src/index.ts"],
+      "@hra-ui/services": ["libs/services/src/index.ts"],
+      "@hra-ui/state": ["libs/state/src/index.ts"],
+      "@hra-ui/utils": ["libs/shared/utils/src/index.ts"],
+      "@hra-ui/utils/*": ["libs/shared/utils/*/src/index.ts"],
+      "@hra-ui/utils-v2": ["libs/hra-ui/utils/src/index.ts"],
+      "@hra-ui/utils-v2/*": ["libs/hra-ui/utils/*/src/index.ts"],
+      "@hra-ui/webcomponents": ["libs/shared/webcomponents/src/index.ts"],
+      "@hra-ui/zod-to-json-schema": ["tools/plugins/zod-to-json-schema/src/index.ts"],
+      "ccf-body-ui": ["libs/ccf-body-ui/src/public-api.ts"],
+      "ccf-scene-utils": ["libs/ccf-scene-utils/src/index.ts"],
+      "ccf-shared": ["libs/ccf-shared/src/public-api.ts"],
+      "ccf-shared/*": ["libs/ccf-shared/*/src/public-api.ts"],
+      "vega-embed": ["node_modules/vega-embed/build/embed.d.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ],
+  "exclude": ["node_modules", "tmp"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
