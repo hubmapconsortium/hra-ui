@@ -5,7 +5,7 @@
         hraFeature="download"
         hraClickEvent
         mat-icon-button
-        hraPlainTooltip="Download illustration"
+        hraPlainTooltip="Download options"
         [matMenuTriggerFor]="downloadMenu"
       >
         <mat-icon>download</mat-icon>
@@ -113,12 +113,29 @@
     </mat-menu>
 
     <!-- Download Menu -->
-    <mat-menu hraFeature="download-menu" #downloadMenu>
+    <mat-menu hraFeature="download-menu" class="download-menu" #downloadMenu>
       @for (format of downloadFormats(); track format.label) {
         <button hraClickEvent mat-menu-item [hraFeature]="format.label | slugify" (click)="download(format.id)">
           <div>{{ format.label }}</div>
         </button>
       }
+      <mat-divider />
+      <button
+        mat-menu-item
+        hraClickEvent
+        [hraFeature]="`download-source-data-csv`"
+        (click)="downloadCsv(sourceReferences(), activeIri())"
+      >
+        <div>Source data CSV</div>
+      </button>
+      <button
+        mat-menu-item
+        hraClickEvent
+        [hraFeature]="`download-source-data-biomarker-expressions-json`"
+        (click)="downloadSummaries(filteredSummaries())"
+      >
+        <div>Source data biomarker expressions JSON</div>
+      </button>
     </mat-menu>
   </hra-header>
   <div class="main">

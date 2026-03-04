@@ -1,16 +1,4 @@
-/* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  Input,
-  model,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, model } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -52,18 +40,21 @@ import {
 import {
   ActiveFtuActions,
   ActiveFtuSelectors,
+  CellSummarySelectors,
   DownloadActions,
   DownloadSelectors,
   HraStateModule,
   IllustratorActions,
   IllustratorSelectors,
   LinkIds,
+  SourceRefsSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
 import { Actions, ofActionDispatched } from '@ngxs/store';
 import { filter, from, map, Observable, OperatorFunction, ReplaySubject, switchMap, take } from 'rxjs';
 
+import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { environment } from '../environments/environment';
 
 /** Input property keys */
@@ -128,52 +119,68 @@ export function filterUndefined<T>(): OperatorFunction<T | undefined, T> {
     '[class.app-height]': '!isLanding()',
   },
 })
-export class AppComponent extends BaseApplicationComponent implements OnChanges, OnInit {
+export class AppComponent extends BaseApplicationComponent {
   /** Illustration to display (choosen automatically if not provided) */
-  @Input() selectedIllustration?: string | RawIllustration;
+  readonly selectedIllustration = model<string | RawIllustration>();
 
   /** Set of all illustrations */
-  @Input() illustrations: string | RawIllustrationsJsonld = environment.illustrationsUrl;
+  readonly illustrations = input<string | RawIllustrationsJsonld>(environment.illustrationsUrl);
 
   /** Cell summaries to display in tables */
-  @Input() summaries: string | RawCellSummary = '';
+  readonly summaries = input<string | RawCellSummary>('');
 
   /** Datasets to display in the sources tab */
-  @Input() datasets: string | RawDatasets = '';
+  readonly datasets = input<string | RawDatasets>('');
 
   /** Base href if different from the page */
-  @Input() baseHref = '';
+  readonly baseHref = input<string>('');
 
   /** Application links */
-  @Input() appLinks = 'assets/links.yml';
+  readonly appLinks = input<string>('assets/links.yml');
 
   /** Application resources */
-  @Input() appResources = 'assets/resources.yml';
+  readonly appResources = input<string>('assets/resources.yml');
 
   /** Emits whenever a different illustration is selected by the user */
-  @Output('illustration-selected') readonly illustrationSelected = select$(ActiveFtuSelectors.iri).pipe(
-    filterUndefined(),
-  );
+  readonly illustrationSelected = outputFromObservable(select$(ActiveFtuSelectors.iri).pipe(filterUndefined()), {
+    alias: 'illustration-selected',
+  });
 
   /** Emits when the mouse hover on/off a single cell */
-  @Output('cell-hover') readonly cellHover = select$(IllustratorSelectors.selectedOnHovered).pipe(
-    map((node) => node?.source),
+  readonly cellHover = outputFromObservable(
+    select$(IllustratorSelectors.selectedOnHovered).pipe(map((node) => node?.source)),
+    { alias: 'cell-hover' },
   );
 
   /** Emits when the user clicks a cell */
-  @Output('cell-click') readonly cellClick = inject(Actions).pipe(
-    ofActionDispatched(IllustratorActions.SetClicked),
-    map(({ selectedOnClick }) => selectedOnClick.source),
+  readonly cellClick = outputFromObservable(
+    inject(Actions).pipe(
+      ofActionDispatched(IllustratorActions.SetClicked),
+      map(({ selectedOnClick }) => selectedOnClick.source),
+    ),
+    { alias: 'cell-click' },
   );
 
   /** Fullscreen service */
   private readonly fullscreenService = inject(FtuFullScreenService);
-
-  /** Determines whether fullscreen is active */
-  readonly isFullscreen = this.fullscreenService.isFullscreen;
+  /** The router */
+  readonly router = inject(Router);
+  /** Current route */
+  private readonly activatedRoute = inject(ActivatedRoute);
+  /** Enpoints used to load data */
+  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
   /** Whether an illustration is active */
   private readonly isActive = selectSnapshot(ActiveFtuSelectors.isActive);
+  /** Available Download Formats */
+  protected readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);
+  /** Current filtered summaries for CSV export */
+  protected readonly filteredSummaries = selectSnapshot(CellSummarySelectors.filteredSummaries);
+  /** Source references used in summaries and downloads */
+  protected readonly sourceReferences = selectSnapshot(SourceRefsSelectors.sourceReferences);
+  /** Currently active FTU IRI */
+  protected readonly activeIri = selectSnapshot(ActiveFtuSelectors.iri);
+
   /** Loaded tissues */
   private readonly tissues = select$(TissueLibrarySelectors.tissues);
   /** Get link entries */
@@ -185,20 +192,20 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
   private readonly loadLinks = dispatch$(LinkRegistryActions.LoadFromYaml);
   /** Update link */
   private readonly updateLink = dispatch(LinkRegistryActions.Add);
+  /** Navigate */
+  private readonly navigate = dispatch(LinkRegistryActions.Navigate);
   /** Load resources */
   private readonly loadResources = dispatch(ResourceRegistryActions.LoadFromYaml);
   /** Load datasets */
   private readonly loadDatasets = dispatch(TissueLibraryActions.Load);
-  /** Navigate */
-  private readonly navigate = dispatch(LinkRegistryActions.Navigate);
   /** Clear the active illustration */
   private readonly clearActiveFtu = dispatch(ActiveFtuActions.Clear);
-
-  /** The router */
-  readonly router = inject(Router);
-
-  /** Current route */
-  private readonly activatedRoute = inject(ActivatedRoute);
+  /** Download Action Dispatcher */
+  protected readonly download = dispatch(DownloadActions.Download);
+  /** Download summaries action dispatcher */
+  protected readonly downloadSummaries = dispatch(DownloadActions.DownloadSummaries);
+  /** Download CSV action dispatcher */
+  protected readonly downloadCsv = dispatch(DownloadActions.DownloadCsv);
 
   /** Signal for route data */
   private readonly data = routeData();
@@ -219,26 +226,14 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
   /** Selected FTU */
   protected readonly selectedFtu = model<Tissue>();
 
-  /** Enpoints used to load data */
-  private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
+  /** Determines whether fullscreen is active */
+  readonly isFullscreen = this.fullscreenService.isFullscreen;
 
   /** Whether the component is initialized */
   private initialized = false;
 
-  /** Data for Menus */
   /** Illustration Metadata */
   protected readonly illustrationMetadata = LinkIds.Illustration;
-
-  /** Available Download Formats */
-  protected readonly downloadFormats = selectSnapshot(DownloadSelectors.formats);
-
-  /** Download Action Dispatcher */
-  protected readonly download = dispatch(DownloadActions.Download);
-
-  /** Initialize the app */
-  constructor() {
-    super({ screenSizeNotice: { width: 1280, height: 832 } });
-  }
 
   /** Whether the current page is the ftu page */
   protected get isFtuPage(): boolean {
@@ -250,33 +245,29 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
     });
   }
 
-  /** Initializes the component */
-  ngOnInit(): void {
+  /** Initialize the app */
+  constructor() {
+    super({ screenSizeNotice: { width: 1280, height: 720 } });
+
     this.router.initialNavigation();
 
-    // Ensure updates are run even when no inputs have been set
-    if (!this.initialized) {
-      this.ngOnChanges({});
-    }
-  }
+    effect(() => {
+      const selectors =
+        this.baseHref() || !this.initialized
+          ? UPDATE_ALL_SELECTORS
+          : {
+              appLinks: !!this.appLinks(),
+              appResources: !!this.appResources(),
+              baseHref: false,
+              datasets: !!this.datasets(),
+              illustrations: !!this.illustrations(),
+              selectedIllustration: !!this.selectedIllustration(),
+              summaries: !!this.summaries(),
+            };
 
-  /** Updates the state when inputs change */
-  ngOnChanges(changes: SimpleChanges) {
-    const selectors =
-      'baseHref' in changes || !this.initialized
-        ? UPDATE_ALL_SELECTORS
-        : {
-            appLinks: 'appLinks' in changes,
-            appResources: 'appResources' in changes,
-            baseHref: false,
-            datasets: 'datasets' in changes,
-            illustrations: 'illustrations' in changes,
-            selectedIllustration: 'selectedIllustration' in changes,
-            summaries: 'summaries' in changes,
-          };
-
-    this.applyUpdates(selectors);
-    this.initialized = true;
+      this.applyUpdates(selectors);
+      this.initialized = true;
+    });
   }
 
   /**
@@ -290,26 +281,26 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
       if (!endpointsUpdated && this.endpoints && typeof this.endpoints.next === 'function') {
         const { illustrations, datasets, summaries } = this;
         this.endpoints.next({
-          illustrations: illustrationsInput(illustrations) ?? '',
-          datasets: rawDatasetsInput(datasets) ?? '',
-          summaries: rawCellSummariesInput(summaries) ?? '',
-          baseHref,
+          illustrations: illustrationsInput(illustrations()) ?? '',
+          datasets: rawDatasetsInput(datasets()) ?? '',
+          summaries: rawCellSummariesInput(summaries()) ?? '',
+          baseHref: baseHref(),
         });
         endpointsUpdated = true;
       }
     };
 
     if (selectors.baseHref) {
-      this.setBaseHref(baseHref);
+      this.setBaseHref(baseHref());
     }
 
     let linksLoading$: Observable<unknown> | undefined;
     if (selectors.appLinks) {
-      linksLoading$ = this.loadLinks(setUrl(this.appLinks, baseHref));
+      linksLoading$ = this.loadLinks(setUrl(this.appLinks(), baseHref()));
     }
 
     if (selectors.appResources) {
-      this.loadResources(setUrl(this.appResources, baseHref));
+      this.loadResources(setUrl(this.appResources(), baseHref()));
     }
 
     if (selectors.datasets) {
@@ -336,7 +327,7 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
    */
   private updateSelectedIllustration(): void {
     const { selectedIllustration } = this;
-    const selected = selectedIllustrationInput(selectedIllustration);
+    const selected = selectedIllustrationInput(selectedIllustration());
     if (selected) {
       const iri = typeof selected === 'string' ? selected : selected['@id'];
       this.updateLink(LinkIds.ExploreFTU, {
@@ -373,8 +364,8 @@ export class AppComponent extends BaseApplicationComponent implements OnChanges,
         take(1),
       )
       .subscribe((iri) => {
-        if (!this.isActive() && this.selectedIllustration === undefined) {
-          this.selectedIllustration = iri;
+        if (!this.isActive() && this.selectedIllustration() === undefined) {
+          this.selectedIllustration.set(iri);
           this.updateSelectedIllustration();
         }
       });

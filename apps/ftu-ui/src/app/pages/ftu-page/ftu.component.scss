@@ -3,49 +3,67 @@
 :host {
   display: flex;
   flex-direction: column;
-  min-width: calc(63rem - 1px);
   height: 100%;
 
   .content-container {
     display: grid;
-    grid-template-columns: auto minmax(36.25rem, min-content);
-    grid-template-rows: minmax(18.5rem, auto) minmax(min-content, max-content);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     grid-template-areas:
       'illustration illustration-details'
       'source-list source-list';
     height: 100%;
 
-    &.fullscreen::ng-deep {
-      grid-template-columns: 1fr auto;
-      grid-template-rows: unset;
-
-      .fullscreen-content-container {
-        border-left: none !important;
-      }
+    &:has(.no-data-sources) {
+      grid-template-columns: 1fr 238px;
+      grid-template-rows: auto;
+      grid-template-areas: 'illustration illustration-details';
     }
 
-    .fullscreen-content-container {
-      position: relative;
-      grid-area: illustration-details;
-      border-left: 0.0625rem solid vars.$outline;
+    &.fullscreen {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: 1fr;
+
+      .fullscreen-content-container {
+        border-left: none;
+        height: 100%;
+      }
+
+      .source-list {
+        border-top: none;
+        height: 100%;
+        max-height: unset;
+      }
+
+      .empty-source-list {
+        ::ng-deep .footer {
+          display: flex;
+          justify-content: end;
+
+          button {
+            width: auto;
+          }
+        }
+      }
     }
 
     .illustration {
       grid-area: illustration;
     }
 
+    .fullscreen-content-container {
+      grid-area: illustration-details;
+      position: relative;
+      border-left: 0.0625rem solid vars.$outline;
+
+      .illustration-details {
+        height: 100%;
+      }
+    }
+
     .source-list {
       grid-area: source-list;
       border-top: 1px solid vars.$outline;
-      min-height: 13.5rem;
-      max-height: 18.75rem;
-    }
-
-    &:has(ftu-biomarker-details.no-data),
-    &:has(ftu-biomarker-details.no-data-sources) {
-      .fullscreen-content-container {
-        flex: 1;
-      }
     }
   }
 }

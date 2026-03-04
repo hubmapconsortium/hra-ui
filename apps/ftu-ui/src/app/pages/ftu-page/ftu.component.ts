@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { HraCommonModule } from '@hra-ui/common';
-import { FtuFullScreenService } from '@hra-ui/ftu-ui-components';
+import { FtuFullScreenService, EmptyBiomarkerComponent } from '@hra-ui/ftu-ui-components';
 import {
   BiomarkerDetailsComponent,
   MedicalIllustrationBehaviorComponent,
@@ -20,6 +20,7 @@ import { takeUntil } from 'rxjs';
     FullscreenContainerComponent,
     MedicalIllustrationBehaviorComponent,
     SourceListComponent,
+    EmptyBiomarkerComponent,
   ],
   templateUrl: './ftu.component.html',
   styleUrl: './ftu.component.scss',

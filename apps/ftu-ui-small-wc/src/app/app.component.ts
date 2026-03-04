@@ -16,6 +16,7 @@ import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryAct
 import { HraCommonModule } from '@hra-ui/common';
 import {
   BiomarkerDetailsWcComponent,
+  FtuFullScreenService,
   TissueLibraryBehaviorComponent,
 } from '@hra-ui/ftu-ui-components/src/lib/behavioral';
 import {
@@ -37,7 +38,6 @@ import {
   IllustratorActions,
   IllustratorSelectors,
   ScreenModeAction,
-  ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from '@hra-ui/state';
@@ -130,8 +130,6 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
     map(({ selectedOnClick }) => selectedOnClick.source),
   );
 
-  /** Whether in full screen mode */
-  readonly isFullscreen = selectSnapshot(ScreenModeSelectors.isFullScreen);
   /** Whether an illustration is active */
   private readonly isActive = selectSnapshot(ActiveFtuSelectors.isActive);
   /** Loaded tissues */
@@ -155,12 +153,18 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
   /** Enpoints used to load data */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
 
+  /** Full Screen Service */
+  protected fullScreenService = inject(FtuFullScreenService);
+
+  /** Whether in full screen mode */
+  readonly isFullscreen = this.fullScreenService.isFullscreen;
+
   /** Whether the component is initialized */
   private initialized = false;
 
   /** Initialize the app */
   constructor() {
-    super({ analytics: false, screenSizeNotice: { width: 800, height: 480 } });
+    super({ analytics: false, screenSizeNotice: { width: 1280, height: 720 } });
   }
 
   /** Initializes the component */

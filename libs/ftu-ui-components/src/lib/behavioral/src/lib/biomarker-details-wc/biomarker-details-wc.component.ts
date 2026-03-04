@@ -9,7 +9,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { DialogService } from '@hra-ui/design-system/dialog';
 import { RichTooltipDirective, RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
-import { IllustrationMappingItem } from '@hra-ui/services';
+import { IllustrationMappingItem, SourceReference } from '@hra-ui/services';
 import {
   ActiveFtuSelectors,
   CellSummaryAggregate,
@@ -30,12 +30,13 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '../../../../atoms/src';
-import { InteractiveSvgComponent, SourceListComponent, SourceListItem } from '../../../../molecules/src';
+import { InteractiveSvgComponent, SourceListComponent } from '../../../../molecules/src';
 import {
   BiomarkerTableComponent,
   DataCell,
   TissueInfo,
 } from '../../../../organisms/src/lib/biomarker-table/biomarker-table.component';
+import { FtuFullScreenService } from '../ftu-fullscreen-service/ftu-fullscreen.service';
 /**
  * PlaceHolder for Empty Tissue Info
  */
@@ -202,7 +203,17 @@ export class BiomarkerDetailsWcComponent {
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
   /** List of selected sources */
-  readonly selectedSources = signal<SourceListItem[]>([]);
+  readonly selectedSources = signal<SourceReference[]>([]);
+
+  /**
+   * Fullscreen service of ftu component
+   */
+  private readonly fullscreenService = inject(FtuFullScreenService);
+
+  /**
+   * Fullscreentab index of ftu component
+   */
+  fullscreentabIndex = this.fullscreenService.fullscreentabIndex;
 
   /**
    * Gets tissue title from the list of tissues
@@ -278,10 +289,6 @@ export class BiomarkerDetailsWcComponent {
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
-    setTimeout(() => {
-      this.table.checkDisplayedColumns();
-    }, 250);
-
     this.isTableFullScreen = !this.isTableFullScreen;
     this.setScreenMode(this.isTableFullScreen);
   }

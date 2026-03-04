@@ -8,6 +8,7 @@
   &.app-height {
     height: 100vh;
     min-height: 45rem;
+    min-width: 80rem;
   }
 
   hra-header {
@@ -18,7 +19,7 @@
   .main {
     display: flex;
     flex: 1;
-    height: calc(100vh - 7.1rem);
+    height: calc(100vh - 7.125rem);
     background-color: vars.$surface-container-low;
 
     ftu-tissue-library-behavior {
@@ -26,10 +27,10 @@
     }
 
     .content {
-      flex: 1;
       display: flex;
+      flex: 1;
       flex-direction: column;
-      overflow: scroll;
+      overflow: hidden;
     }
   }
 }
