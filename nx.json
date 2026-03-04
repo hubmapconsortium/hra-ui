@@ -1,7 +1,8 @@
 {
   "release": {
+    "projects": ["libs/hra-ui/*"],
     "version": {
-      "manifestRootsToUpdate": ["dist/{projectRoot}"],
+      "manifestRootsToUpdate": ["{projectRoot}", "dist/{projectRoot}"],
       "currentVersionResolver": "git-tag",
       "fallbackCurrentVersionResolver": "disk",
       "preVersionCommand": "npx nx run-many -t build"
