@@ -66,6 +66,18 @@ const meta: Meta<SearchListComponent<SearchListOption>> = {
     ],
     disableSearch: false,
     disableRipple: false,
+    disableCounter: false,
+  },
+  argTypes: {
+    disableCounter: {
+      control: 'boolean',
+    },
+    disableSearch: {
+      control: 'boolean',
+    },
+    disableRipple: {
+      control: 'boolean',
+    },
   },
 };
 
