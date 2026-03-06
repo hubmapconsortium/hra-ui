@@ -1,6 +1,6 @@
 import { EnvironmentProviders, inject, makeEnvironmentProviders } from '@angular/core';
 import { Router } from '@angular/router';
-import { getFeatureProviders, ProviderFeature } from '@hra-ui/common/util/providers';
+import { getProvidersForFeatures, ProviderFeature } from '@hra-ui/utils-v2/di';
 import { provideRouter } from './injectors';
 
 /** Router extension feature */
@@ -17,5 +17,5 @@ const enum RouterExtFeatureKind {}
  * @returns Environment providers
  */
 export function provideRouterExt(...features: RouterExtFeature[]): EnvironmentProviders {
-  return makeEnvironmentProviders([provideRouter(() => inject(Router)), ...features.flatMap(getFeatureProviders)]);
+  return makeEnvironmentProviders([provideRouter(() => inject(Router)), ...getProvidersForFeatures(features)]);
 }

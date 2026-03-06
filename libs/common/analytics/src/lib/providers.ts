@@ -4,7 +4,7 @@ import {
   makeEnvironmentProviders,
   provideAppInitializer,
 } from '@angular/core';
-import { createFeature, getFeatureProviders, ProviderFeature } from '@hra-ui/common/util/providers';
+import { createProviderFeature, getProvidersForFeatures, ProviderFeature } from '@hra-ui/utils-v2/di';
 import { AnalyticsPlugin } from 'analytics';
 import {
   AnalyticsErrorHandler,
@@ -30,7 +30,7 @@ const enum AnalyticsFeatureKind {
  * @returns An analytics feature
  */
 export function withErrorHandler(config: AnalyticsErrorHandlerConfig = {}): AnalyticsFeature {
-  return createFeature(AnalyticsFeatureKind.ErrorHandler, [
+  return createProviderFeature(AnalyticsFeatureKind.ErrorHandler, [
     provideAnalyticsErrorHandlerConfig(config),
     {
       provide: ErrorHandlerToken,
@@ -46,7 +46,7 @@ export function withErrorHandler(config: AnalyticsErrorHandlerConfig = {}): Anal
  * @returns An analytics feature
  */
 export function withPlugins(...plugins: (AnalyticsPlugin | (() => AnalyticsPlugin))[]): AnalyticsFeature {
-  return createFeature(
+  return createProviderFeature(
     AnalyticsFeatureKind.Plugins,
     plugins.map((plugin) => providePlugin(plugin)),
   );
@@ -58,7 +58,7 @@ export function withPlugins(...plugins: (AnalyticsPlugin | (() => AnalyticsPlugi
  * @returns An analytics feature
  */
 export function withRouterEvents(): AnalyticsFeature {
-  return createFeature(AnalyticsFeatureKind.RouterEvents, [provideAppInitializer(setupRouterEventListener)]);
+  return createProviderFeature(AnalyticsFeatureKind.RouterEvents, [provideAppInitializer(setupRouterEventListener)]);
 }
 
 /**
@@ -68,5 +68,5 @@ export function withRouterEvents(): AnalyticsFeature {
  * @returns Environment providers
  */
 export function provideAnalytics(...features: AnalyticsFeature[]): EnvironmentProviders {
-  return makeEnvironmentProviders([...features.flatMap(getFeatureProviders)]);
+  return makeEnvironmentProviders(getProvidersForFeatures(features));
 }
