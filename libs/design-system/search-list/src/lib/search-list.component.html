@@ -27,8 +27,10 @@
               <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
             }
           </span>
-          @if (option.count) {
-            <span class="option-count">{{ option.count | number }}</span>
+          @if (option.count && !disableCounter()) {
+            <span class="option-count" hraPlainTooltip="Number of unique items per filter category">{{
+              option.count | number
+            }}</span>
           }
         </mat-label>
       </mat-list-option>
