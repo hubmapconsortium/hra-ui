@@ -1,8 +1,8 @@
 import { computed, contentChildren, Directive, effect, inject, input, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { IsActiveMatchOptions, NavigationEnd } from '@angular/router';
+import { IsActiveMatchOptions, isActive as isUrlTreeActive, NavigationEnd } from '@angular/router';
 import { injectWindow } from '@hra-ui/common/injectors';
-import { isUrlActive } from '@hra-ui/common/url';
+import { isUrlActive } from '@hra-ui/utils-v2/paths';
 import { createNotifier } from 'ngxtension/create-notifier';
 import { injectRouter } from '../injectors';
 import { LinkDirective } from '../link/link.directive';
@@ -98,7 +98,7 @@ export class LinkActiveDirective {
         return false;
       }
 
-      return router.isActive(urlTree, options);
+      return isUrlTreeActive(urlTree, router, options);
     });
   }
 }
