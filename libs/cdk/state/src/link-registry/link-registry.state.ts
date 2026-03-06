@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, NgZone } from '@angular/core';
 import { Router, UrlCreationOptions } from '@angular/router';
-import { createExternalUrl } from '@hra-ui/utils';
-import { UnionMember } from '@hra-ui/utils/types';
+import { createExternalUrl } from './url/create';
 import { Action, State } from '@ngxs/store';
 import { load } from 'js-yaml';
 import { map, Observable } from 'rxjs';
@@ -10,19 +9,19 @@ import { Add, AddFromYaml, AddMany, LoadFromYaml, Navigate } from './link-regist
 import {
   ExternalLinkEntry,
   InternalLinkEntry,
+  LINK_REGISTRY_SCHEMA,
   LinkEntry,
   LinkId,
   LinkRegistryContext,
   LinkRegistryModel,
   LinkType,
-  LINK_REGISTRY_SCHEMA,
 } from './link-registry.model';
 
 /** Query function for link entry optionally with type specified */
 export type LinkRegistryQuery = <T extends LinkType | string = string>(
   id: LinkId,
   type?: T,
-) => UnionMember<LinkEntry, 'type', T> | undefined;
+) => Extract<LinkEntry, { type: T }> | undefined;
 
 /** State for keeping track of links globally */
 @State<LinkRegistryModel>({

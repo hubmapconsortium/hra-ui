@@ -1,0 +1,10 @@
+{
+  "name": "@hra-ui/utils",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^21.1.5",
+    "@angular/router": "^21.1.5",
+    "type-fest": "^5.4.4"
+  },
+  "sideEffects": false
+}

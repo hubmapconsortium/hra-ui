@@ -5,7 +5,6 @@
     "@angular/common": "^21.1.4",
     "@angular/core": "^21.1.4",
     "@ngxs/store": "^21.0.0",
-    "@hra-ui/utils": "*",
     "@angular/cdk": "^21.1.4",
     "rxjs": "^7.8.2",
     "@hra-ui/common": "1.1.0",

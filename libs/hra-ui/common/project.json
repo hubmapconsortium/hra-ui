@@ -1,0 +1,19 @@
+{
+  "name": "common-v2",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/hra-ui/common/src",
+  "prefix": "hra",
+  "projectType": "library",
+  "tags": ["type:lib", "project:common"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/hra-ui/common/tsconfig.lib.json"
+      }
+    }
+  }
+}

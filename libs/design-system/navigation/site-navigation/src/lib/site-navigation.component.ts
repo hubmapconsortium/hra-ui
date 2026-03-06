@@ -8,9 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { HraCommonModule } from '@hra-ui/common';
-import { injectAppUrlResolver, isAbsolute } from '@hra-ui/common/url';
 import { injectRouter } from '@hra-ui/common/router-ext';
+import { injectAppUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { isAbsoluteUrl } from '@hra-ui/utils/paths';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { injectNavigationEnd } from 'ngxtension/navigation-end';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';
@@ -84,7 +85,7 @@ export class SiteNavigationComponent {
     for (const category of categories) {
       for (const item of category.children) {
         const resolvedUrl = this.urlResolver(item.url);
-        if (!isAbsolute(resolvedUrl) && this.router?.isActive(resolvedUrl, ACTIVE_MATCH_OPTIONS)) {
+        if (!isAbsoluteUrl(resolvedUrl) && this.router?.isActive(resolvedUrl, ACTIVE_MATCH_OPTIONS)) {
           return category.label;
         }
       }

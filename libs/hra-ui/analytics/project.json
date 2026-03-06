@@ -1,0 +1,19 @@
+{
+  "name": "analytics",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/hra-ui/analytics/src",
+  "prefix": "hra",
+  "projectType": "library",
+  "tags": ["type:lib", "project:analytics"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/hra-ui/analytics/tsconfig.lib.json"
+      }
+    }
+  }
+}

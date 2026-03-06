@@ -1,8 +1,15 @@
 import { Directive, DoCheck, ElementRef, inject, Injector, Input } from '@angular/core';
 import { ActivatedRoute, Params, QueryParamsHandling, UrlCreationOptions } from '@angular/router';
 import { dispatch, selectQuerySnapshot } from '@hra-ui/cdk/injectors';
-import { EMPTY_LINK, LinkEntry, LinkRegistryActions, LinkRegistrySelectors, LinkType } from '@hra-ui/cdk/state';
-import { createExternalUrl, createInternalUrl } from '@hra-ui/utils';
+import {
+  createExternalUrl,
+  createInternalUrl,
+  EMPTY_LINK,
+  LinkEntry,
+  LinkRegistryActions,
+  LinkRegistrySelectors,
+  LinkType,
+} from '@hra-ui/cdk/state';
 
 /** Link Directive for routing */
 @Directive({

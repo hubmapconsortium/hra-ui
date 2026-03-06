@@ -1,5 +1,5 @@
 import { ResolveFn } from '@angular/router';
-import { joinWithSlash } from '@hra-ui/common/url';
+import { joinWithSlashes } from '@hra-ui/utils/paths';
 import { ContentPageData, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 
@@ -11,7 +11,7 @@ import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/
 export function createReleaseNotesContentResolver(baseUrl: string): ResolveFn<ContentPageData> {
   return (route, state) => {
     const version = route.params['version'] as string;
-    const url = joinWithSlash(baseUrl, `${version}.yaml`);
+    const url = joinWithSlashes(baseUrl, `${version}.yaml`);
     const resolver = createYamlSpecResolver(url, ContentPageDataSchema);
     return resolver(route, state);
   };
