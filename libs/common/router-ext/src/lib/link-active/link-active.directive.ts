@@ -98,7 +98,7 @@ export class LinkActiveDirective {
         return false;
       }
 
-      return isUrlTreeActive(urlTree, router, options);
+      return isUrlTreeActive(urlTree, router, options)();
     });
   }
 }
