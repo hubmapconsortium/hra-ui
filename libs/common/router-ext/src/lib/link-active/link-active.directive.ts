@@ -2,7 +2,7 @@ import { computed, contentChildren, Directive, effect, inject, input, output } f
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IsActiveMatchOptions, isActive as isUrlTreeActive, NavigationEnd } from '@angular/router';
 import { injectWindow } from '@hra-ui/common/injectors';
-import { isUrlActive } from '@hra-ui/utils-v2/paths';
+import { isUrlActive } from '@hra-ui/utils/paths';
 import { createNotifier } from 'ngxtension/create-notifier';
 import { injectRouter } from '../injectors';
 import { LinkDirective } from '../link/link.directive';

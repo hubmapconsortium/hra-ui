@@ -2,7 +2,7 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { EnvironmentProviders, makeEnvironmentProviders, NgModule } from '@angular/core';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
 import { getImportMetaUrl } from '@hra-ui/common/import-meta';
-import { joinWithSlashes } from '@hra-ui/utils-v2/paths';
+import { joinWithSlashes } from '@hra-ui/utils/paths';
 import {
   NgScrollbarModule,
   NgScrollbarOptions,

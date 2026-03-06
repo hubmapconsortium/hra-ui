@@ -2,7 +2,7 @@ import { assertInInjectionContext, inject } from '@angular/core';
 import { IconResolver } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { assetUrl } from '@hra-ui/common/url';
-import { joinWithSlashes } from '@hra-ui/utils-v2/paths';
+import { joinWithSlashes } from '@hra-ui/utils/paths';
 import { SVG_ICON_DIRECTORY } from '../utils/tokens';
 
 /**

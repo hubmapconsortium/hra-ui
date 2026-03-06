@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform, signal, WritableSignal } from '@angular/core';
 import { getImportMetaUrl } from '@hra-ui/common/import-meta';
-import { isAbsoluteUrl, joinWithSlashes } from '@hra-ui/utils-v2/paths';
+import { isAbsoluteUrl, joinWithSlashes } from '@hra-ui/utils/paths';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { createHrefProvider } from '../util/href-provider';
 import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';

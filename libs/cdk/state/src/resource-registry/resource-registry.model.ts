@@ -1,4 +1,3 @@
-import { UnionMember } from '@hra-ui/utils/types';
 import { StateContext } from '@ngxs/store';
 import * as z from 'zod';
 
@@ -41,7 +40,7 @@ export const RESOURCE_ID = z
 // ------------------------------------
 
 /** Extracts the builtin entry with type T */
-type ExtractBuiltinEntryType<T> = UnionMember<z.infer<typeof BUILTIN_ENTRY>, 'type', T>;
+type ExtractBuiltinEntryType<T> = Extract<z.infer<typeof BUILTIN_ENTRY>, { type: T }>;
 
 /** Maps raw builtin type strings to ResourceType */
 type BuiltinTypes<T = typeof RawBuiltinResourceType> = {

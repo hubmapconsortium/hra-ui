@@ -51,7 +51,7 @@
     "@google/model-viewer": "4.1.0",
     "store2": "^2.14.4",
     "type-fest": "^5.0.1",
-    "@hra-ui/utils-v2": "0.0.1"
+    "@hra-ui/utils": "0.0.1"
   },
   "sideEffects": false
 }

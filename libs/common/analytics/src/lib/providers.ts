@@ -4,7 +4,7 @@ import {
   makeEnvironmentProviders,
   provideAppInitializer,
 } from '@angular/core';
-import { createProviderFeature, getProvidersForFeatures, ProviderFeature } from '@hra-ui/utils-v2/di';
+import { createProviderFeature, getProvidersForFeatures, ProviderFeature } from '@hra-ui/utils/di';
 import { AnalyticsPlugin } from 'analytics';
 import {
   AnalyticsErrorHandler,

@@ -1,3 +1,4 @@
+// TODO move into router-ext?
 import { IsActiveMatchOptions } from '@angular/router';
 import { stripLeadingHash } from './path';
 import { parseUrl } from './url';

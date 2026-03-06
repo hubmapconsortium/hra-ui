@@ -1,6 +1,6 @@
 import { EnvironmentProviders, inject, makeEnvironmentProviders } from '@angular/core';
 import { Router } from '@angular/router';
-import { getProvidersForFeatures, ProviderFeature } from '@hra-ui/utils-v2/di';
+import { getProvidersForFeatures, ProviderFeature } from '@hra-ui/utils/di';
 import { provideRouter } from './injectors';
 
 /** Router extension feature */

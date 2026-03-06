@@ -1,7 +1,7 @@
 import { LocationStrategy } from '@angular/common';
 import { booleanAttribute, computed, Directive, inject, input } from '@angular/core';
 import { injectAppUrlResolver } from '@hra-ui/common/url';
-import { isAbsoluteUrl, stripTrailingSlash } from '@hra-ui/utils-v2/paths';
+import { isAbsoluteUrl, stripTrailingSlash } from '@hra-ui/utils/paths';
 import { injectRouter } from '../injectors';
 import { isAuxClick } from '../util/event';
 

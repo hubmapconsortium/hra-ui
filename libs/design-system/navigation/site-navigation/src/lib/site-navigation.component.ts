@@ -11,7 +11,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { injectRouter } from '@hra-ui/common/router-ext';
 import { injectAppUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { isAbsoluteUrl } from '@hra-ui/utils-v2/paths';
+import { isAbsoluteUrl } from '@hra-ui/utils/paths';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { injectNavigationEnd } from 'ngxtension/navigation-end';
 import { NavigationCategoryComponent } from './navigation-category/navigation-category.component';

@@ -1,5 +1,5 @@
 import { Directive, input } from '@angular/core';
-import { stripLeadingHash } from '@hra-ui/utils-v2/paths';
+import { stripLeadingHash } from '@hra-ui/utils/paths';
 import { injectRouter } from '../injectors';
 import { isAuxClick } from '../util/event';
 

@@ -1,5 +1,5 @@
 import { ResolveFn } from '@angular/router';
-import { joinWithSlashes } from '@hra-ui/utils-v2/paths';
+import { joinWithSlashes } from '@hra-ui/utils/paths';
 import { ContentPageData, ContentPageDataSchema } from '@hra-ui/design-system/content-templates/content-page';
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 

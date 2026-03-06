@@ -1,18 +1,18 @@
-import type { Any, AnyFunction } from '@hra-ui/utils/types';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { select$, StateSelector } from './select';
 import { SnapshotObserver } from './snapshot-observer';
 
 /** Get remaining arguments after applying bound arguments */
-type RestArgs<F extends AnyFunction, BoundArgs extends Any[]> = F extends (
+type RestArgs<F extends (...args: any[]) => any, BoundArgs extends any[]> = F extends (
   ...args: [...BoundArgs, ...infer Rest]
-) => Any
+) => any
   ? Rest
   : never;
 
 /** Function type returned by {@link selectQuerySnapshot} */
-type SelectQuery<F extends AnyFunction, BoundArgs extends Any[]> = <
+type SelectQuery<F extends (...args: any[]) => any, BoundArgs extends any[]> = <
   Res = ReturnType<F>,
-  Args extends Any[] = RestArgs<F, BoundArgs>
+  Args extends any[] = RestArgs<F, BoundArgs>,
 >(
   ...args: Args
 ) => Res;
@@ -62,7 +62,7 @@ export function selectSnapshot<T>(selector: StateSelector<T>): () => T {
  * @param boundArgs Optional bound query arguments
  * @returns A snapshot function taking the same arguments as the query selector (excluding bound arguments)
  */
-export function selectQuerySnapshot<F extends (...args: [...BoundArgs, ...Any[]]) => Any, BoundArgs extends Any[]>(
+export function selectQuerySnapshot<F extends (...args: [...BoundArgs, ...any[]]) => any, BoundArgs extends any[]>(
   selector: StateSelector<F>,
   ...boundArgs: BoundArgs
 ): SelectQuery<F, BoundArgs> {

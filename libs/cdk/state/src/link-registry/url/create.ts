@@ -2,7 +2,6 @@ import { LocationStrategy } from '@angular/common';
 import { Injector, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router, UrlCreationOptions } from '@angular/router';
-import { Any } from '@hra-ui/utils/types';
 
 /**
  * Sets parameters with non-nullish values on a URLSearchParams
@@ -27,7 +26,8 @@ function setQueryParams(dest: URLSearchParams, params: Params | null | undefined
  */
 export function createInternalUrl(
   injector: Injector,
-  commands: Any[],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  commands: any[],
   extras: UrlCreationOptions,
   isResourceUrl: boolean,
 ): string | undefined {
