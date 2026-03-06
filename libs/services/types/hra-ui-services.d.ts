@@ -66,13 +66,17 @@ declare const DATA_FILE_REFERENCE: z.ZodObject<{
 }, z.core.$strip>;
 /** Zod Schema for a SOURCE_REFERENCE */
 declare const SOURCE_REFERENCE: z.ZodObject<{
-    id: z.core.$ZodBranded<z.core.$ZodBranded<z.ZodString, "URL", "out">, "IRI", "out">;
-    title: z.ZodString;
-    label: z.ZodString;
-    authors: z.ZodArray<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
+    doi: z.ZodOptional<z.ZodString>;
     year: z.ZodNumber;
-    doi: z.ZodString;
-    link: z.ZodString;
+    datasetTitle: z.ZodString;
+    datasetId: z.ZodString;
+    cellType: z.ZodOptional<z.ZodString>;
+    healthStatus: z.ZodOptional<z.ZodString>;
+    sex: z.ZodOptional<z.ZodString>;
+    age: z.ZodOptional<z.ZodNumber>;
+    bmi: z.ZodOptional<z.ZodNumber>;
+    ethnicity: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
 declare const ILLUSTRATION_MAPPING_ITEM: z.ZodObject<{
@@ -424,7 +428,7 @@ interface ExtendedTissue extends Tissue {
 }
 /** Mock tissue data */
 declare const MOCK_TISSUE_DATA: {
-    root: Iri;
+    root: string;
     nodes: Record<Iri, ExtendedTissue>;
 };
 /** Mock summary data */

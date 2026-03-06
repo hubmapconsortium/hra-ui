@@ -1,23 +1,25 @@
 import * as i0 from '@angular/core';
-import { TemplateRef, OnChanges, OnDestroy, EventEmitter, SimpleChanges, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { TemplateRef, OnChanges, OnDestroy, EventEmitter, SimpleChanges, ElementRef } from '@angular/core';
 import { ConnectedPosition } from '@angular/cdk/overlay';
 import { SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
-import { TableRow, TableComponent, TableColumn } from '@hra-ui/design-system/table';
-import * as _hra_ui_services from '@hra-ui/services';
-import { Iri, IllustrationMappingItem } from '@hra-ui/services';
+import * as node_modules__angular_material_types__paginator_chunk from 'node_modules/@angular/material/types/_paginator-chunk';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { TableRow } from '@hra-ui/design-system/table';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import * as _hra_ui_cdk_state from '@hra-ui/cdk/state';
 import { LinkId } from '@hra-ui/cdk/state';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { DataItem } from '@hra-ui/design-system/modal/info-modal';
-import { TableVirtualScrollDataSource } from 'ng-table-virtual-scroll';
+import * as _hra_ui_services from '@hra-ui/services';
+import { SourceReference, IllustrationMappingItem } from '@hra-ui/services';
 import * as _hra_ui_utils_types_hra_ui_utils_types from '@hra-ui/utils/types/hra-ui-utils-types';
 import * as zod from 'zod';
 import { CellSummaryAggregate } from '@hra-ui/state';
 import * as dist_libs_services_types_hra_ui_services from 'dist/libs/services/types/hra-ui-services';
 import * as _angular_router from '@angular/router';
+import * as _hra_ui_ftu_ui_components from '@hra-ui/ftu-ui-components';
 
 /**
  *  Component for any empty biomaker cell
@@ -252,44 +254,89 @@ declare class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChang
     static ɵcmp: i0.ɵɵComponentDeclaration<InteractiveSvgComponent<any>, "ftu-interactive-svg", never, { "url": { "alias": "url"; "required": false; }; "mapping": { "alias": "mapping"; "required": false; }; "highlightId": { "alias": "highlightId"; "required": false; }; }, { "nodeHover": "nodeHover"; "nodeClick": "nodeClick"; }, never, never, true, never>;
 }
 
-/** SourceListItem interface contains title and link to the dataset for the SourceList*/
-interface SourceListItem extends TableRow {
-    /** Unique identifier for the source */
-    id: Iri;
-    /** List of authors for the source */
-    authors: string[];
-    /** Year dataset was released */
-    year: number;
-    /** Title of the dataset in the SourceList */
-    title: string;
-    /** DOI of dataset */
-    doi: string;
-    /** Label of the dataset in the SourceList */
-    label: string;
-    /** Link to the dataset in the SourceList */
-    link: string;
+/**
+ * Full screen tab index enum
+ */
+declare enum FullscreenTab {
+    Illustration = 0,
+    SourceList = 1,
+    BiomarkerDetails = 2
 }
+/**
+ * Ftu Full screen service
+ */
+declare class FtuFullScreenService {
+    /**
+     * Boolean input signal to determine if full screen is enabled
+     */
+    readonly isFullscreen: i0.WritableSignal<boolean>;
+    /**
+     * Input signal to store the current fullscreen tab index
+     */
+    readonly fullscreentabIndex: i0.WritableSignal<FullscreenTab>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FtuFullScreenService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FtuFullScreenService>;
+}
+
 /** This component shows list of sources with title and links to the datasets */
 declare class SourceListComponent {
+    /** Mat sort element */
+    private readonly sort;
+    datasource: MatTableDataSource<{
+        year: number;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
+    }, node_modules__angular_material_types__paginator_chunk.MatPaginator>;
     /** List of sources with titles and links displayed to the user */
-    readonly sources: i0.InputSignal<SourceListItem[]>;
+    readonly sources: i0.InputSignal<{
+        year: number;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
+    }[]>;
     /** Text that appears in the empty biomarker message */
     readonly message: i0.InputSignal<string>;
     /** Whether to hide the title of the source list */
     readonly hideTitle: i0.InputSignal<boolean>;
     /** Fullscreen service */
-    private readonly fullscreenService;
+    readonly fullscreenService: FtuFullScreenService;
     /** Whether to show the biomarker table */
     readonly showTable: i0.WritableSignal<boolean>;
     /** Number of selected sources */
     readonly selectedCount: i0.WritableSignal<number>;
+    protected readonly columnIds: i0.Signal<string[]>;
+    readonly numPublications: i0.Signal<number>;
     /** Emits when source selection changed */
-    readonly selectionChanged: i0.OutputEmitterRef<SourceListItem[]>;
-    /** Reference to the table component */
-    readonly sourceTable: i0.Signal<TableComponent<Record<string, string | number | boolean | any[]>> | undefined>;
-    /** Table columns configuration */
-    readonly tableColumns: TableColumn[];
-    /** Initialize source list */
+    readonly selectionChanged: i0.OutputEmitterRef<{
+        year: number;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
+    }[]>;
+    readonly selection: SelectionModel<Record<string, string | number | boolean | any[]>>;
+    /** Sort data on load and set columns */
     constructor();
     /** Opens the source list in fullscreen mode */
     openSourceListFullscreen(): void;
@@ -302,6 +349,18 @@ declare class SourceListComponent {
      * Handle selection changes from the table
      */
     onSelectionChange(): void;
+    /**
+     * Whether the number of selected elements matches the total number of rows.
+     */
+    isAllSelected(): boolean;
+    /**
+     * Selects all rows if they are not all selected; otherwise clear selection.
+     */
+    toggleAllRows(): void;
+    /**
+     * Toggle row selection
+     */
+    toggleRow(row: TableRow): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SourceListComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SourceListComponent, "ftu-source-list", never, { "sources": { "alias": "sources"; "required": false; "isSignal": true; }; "message": { "alias": "message"; "required": false; "isSignal": true; }; "hideTitle": { "alias": "hideTitle"; "required": false; "isSignal": true; }; }, { "selectionChanged": "selectionChanged"; }, never, never, true, never>;
 }
@@ -456,7 +515,7 @@ interface TissueInfo {
 /** Describes the composition of a single row in the table */
 type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
 /** Cell types table, describing the types and quanitites of cells for a specific organ */
-declare class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnChanges {
+declare class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     /**
      * Input: TissueInfo carrying the details of the tissue open
      */
@@ -464,7 +523,7 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnC
     /** Columns for the table */
     columns: string[];
     /** Source list for biomarker table */
-    dataSources: SourceListItem[];
+    dataSources: SourceReference[];
     /** Rows of the table */
     data: DataRow<T>[];
     /** Gradient colors along with their stop points */
@@ -477,49 +536,16 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnC
     illustrationIds: string[];
     /** Emits cell type label when row is hovered */
     readonly rowHover: EventEmitter<string>;
-    /** Reference to virtual scroll viewport */
-    vscroll: CdkVirtualScrollViewport;
     /** Reference to biomarker table */
     table: ElementRef;
     /** Columns replaysubject */
     readonly columns$: ReplaySubject<string[]>;
-    /** Cell width (px) */
-    private readonly cellWidth;
-    /** Extra columns to render outside the visible viewport */
-    private readonly extraDisplayedColumnCount;
-    /** Current horizontal viewport size */
-    private horizontalViewportSize;
-    /** Current horizontal scroll offset */
-    private horizontalScrollOffset;
-    /** Current displayed column count */
-    private displayedColumnCount;
-    /** Current displayed column offset */
-    private displayedColumnOffset;
     /** Injects BottomSheetService */
     private readonly bottomSheetService;
-    /** row height */
-    readonly rowHeight = 28;
-    /** header height */
-    readonly headerHeight = 97;
-    /** max visible rows */
-    readonly maxVisibleRows = 10;
-    /**
-     * Gets viewport height
-     * @returns viewport height in pixels
-     */
-    get viewportHeight(): number;
-    /** Gets the current width of the prefiller column */
-    get preFillerWidth(): string;
-    /** Gets the current width of the postfiller column */
-    get postFillerWidth(): string;
     /** Source for the table */
-    readonly dataSource: TableVirtualScrollDataSource<DataRow<T>>;
+    readonly dataSource: MatTableDataSource<DataRow<T>, node_modules__angular_material_types__paginator_chunk.MatPaginator>;
     /** Change detection */
     private readonly cdr;
-    /**
-     * Subscribes to scroll event on virtual scroll viewport and checks displayed columns
-     */
-    ngOnInit(): void;
     /**
      * Sets the data source for the table on every change
      * Sorts the biomarker table on illustrationIds change
@@ -527,30 +553,10 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnC
      */
     ngOnChanges(changes: SimpleChanges): void;
     /**
-     * Checks for column updates on mouse move
-     */
-    onMouseMove(): void;
-    /**
-     * Returns index value
-     */
-    trackByIndex(index: number): number;
-    /**
-     * Checks to see if columns should be updated
-     */
-    checkDisplayedColumns(forceUpdate?: boolean): void;
-    /**
      * Opens bottom sheet
      * @param cellData
      */
     openBottomSheet(cellData: T): void;
-    /**
-     * Updates horizontal viewport size and updates displayed column count
-     */
-    updateHorizontalViewportSize(size: number): void;
-    /**
-     * Updates horizontal viewport offset and updates displayed column offset
-     */
-    updateHorizontalViewportOffset(offset: number): void;
     /**
      * Updates table columns with prefiller and postfiller columns
      */
@@ -631,7 +637,7 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnInit, OnC
 }
 
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
-declare class BiomarkerDetailsComponent implements AfterViewInit {
+declare class BiomarkerDetailsComponent {
     /** Reference to biomarker table */
     table: BiomarkerTableComponent<DataCell>;
     /** Tooltip text for percentage of cells legend */
@@ -671,21 +677,21 @@ declare class BiomarkerDetailsComponent implements AfterViewInit {
     readonly sizes: () => SizeLegend[];
     /** List of sources with titles and links displayed to the user */
     readonly source: () => {
-        id: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
-        title: string;
-        label: string;
-        authors: string[];
         year: number;
-        doi: string;
-        link: string;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
     }[];
-    /**
-     * Iri  of medical illustration behavior component
-     */
+    /** Iri of medical illustration behavior component */
     readonly iri: () => (string & zod.$brand<"URL"> & zod.$brand<"IRI">) | undefined;
-    /**
-     * Get all tissues
-     */
+    /** Get all tissues */
     readonly tissues: () => Record<string & zod.$brand<"URL"> & zod.$brand<"IRI">, {
         id: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
         label: string;
@@ -728,19 +734,34 @@ declare class BiomarkerDetailsComponent implements AfterViewInit {
     };
     /** Action to set selected sources */
     readonly setSelectedSources: (sources: {
-        id: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
-        title: string;
-        label: string;
-        authors: string[];
         year: number;
-        doi: string;
-        link: string;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
     }[]) => {
         readonly sources: _hra_ui_services.SourceReference[];
         readonly type: string;
     };
-    /** List of selected sources */
-    readonly selectedSources: i0.WritableSignal<SourceListItem[]>;
+    readonly selectedSources: () => {
+        year: number;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
+    }[];
     /** Active tab index */
     activeTabIndex: number;
     /** Fullscreen service */
@@ -749,15 +770,6 @@ declare class BiomarkerDetailsComponent implements AfterViewInit {
      * Determines whether biomarkerfullscreen is in fullscreen mode
      */
     readonly isBiomarkerfullscreen: i0.WritableSignal<boolean>;
-    /**
-     * View child of source list component
-     */
-    sourceListRef: TemplateRef<unknown>;
-    /**
-     * Source list template of biomarker details component
-     */
-    readonly sourceListTemplate: i0.OutputEmitterRef<TemplateRef<unknown>>;
-    ngAfterViewInit(): void;
     /** Table tabs */
     get tab(): CellSummaryAggregate;
     /** Toggle options for the biomarker table */
@@ -815,7 +827,7 @@ declare class BiomarkerDetailsComponent implements AfterViewInit {
      */
     highlightCells(label?: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<BiomarkerDetailsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<BiomarkerDetailsComponent, "ftu-biomarker-details", never, {}, { "sourceListTemplate": "sourceListTemplate"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BiomarkerDetailsComponent, "ftu-biomarker-details", never, {}, {}, never, never, true, never>;
 }
 
 /**
@@ -911,30 +923,6 @@ declare class MedicalIllustrationBehaviorComponent {
 }
 
 /**
- * Full screen tab index enum
- */
-declare enum FullscreenTab {
-    Illustration = 0,
-    SourceList = 1,
-    BiomarkerDetails = 2
-}
-/**
- * Ftu Full screen service
- */
-declare class FtuFullScreenService {
-    /**
-     * Boolean input signal to determine if full screen is enabled
-     */
-    readonly isFullscreen: i0.WritableSignal<boolean>;
-    /**
-     * Input signal to store the current fullscreen tab index
-     */
-    readonly fullscreentabIndex: i0.WritableSignal<FullscreenTab>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FtuFullScreenService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<FtuFullScreenService>;
-}
-
-/**
  * Component for Tissue Library Behavior
  */
 declare class TissueLibraryBehaviorComponent {
@@ -986,6 +974,74 @@ declare class TissueLibraryBehaviorComponent {
         readonly format: string & zod.$brand<"DownloadFormatId">;
         readonly type: string;
     };
+    protected readonly downloadSummaries: (summaries: {
+        cell_source: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
+        biomarker_type: string;
+        summary: {
+            cell_id: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
+            cell_label: string;
+            genes: {
+                gene_id: string;
+                gene_label: string;
+                ensemble_id: string;
+                mean_expression: number;
+            }[];
+            count: number;
+            percentage: number;
+            dataset_count?: number | undefined;
+        }[];
+    }[]) => {
+        readonly summaries: _hra_ui_services.CellSummary[];
+        readonly type: string;
+    };
+    protected readonly filteredSummaries: () => {
+        cell_source: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
+        biomarker_type: string;
+        summary: {
+            cell_id: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
+            cell_label: string;
+            genes: {
+                gene_id: string;
+                gene_label: string;
+                ensemble_id: string;
+                mean_expression: number;
+            }[];
+            count: number;
+            percentage: number;
+            dataset_count?: number | undefined;
+        }[];
+    }[];
+    protected readonly sourceReferences: () => {
+        year: number;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
+    }[];
+    protected readonly downloadCsv: (sourceRefs: {
+        year: number;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
+    }[], id?: (string & zod.$brand<"URL"> & zod.$brand<"IRI">) | undefined) => {
+        readonly sourceRefs: _hra_ui_services.SourceReference[];
+        readonly id?: _hra_ui_services.Iri | undefined;
+        readonly type: string;
+    };
+    protected readonly activeIri: () => (string & zod.$brand<"URL"> & zod.$brand<"IRI">) | undefined;
     /** Full Screen Service */
     protected fullScreenService: FtuFullScreenService;
     /** Compact Mode */
@@ -1136,16 +1192,40 @@ declare class BiomarkerDetailsWcComponent {
     readonly sizes: () => SizeLegend[];
     /** List of sources with titles and links displayed to the user */
     readonly source: () => {
-        id: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
-        title: string;
-        label: string;
-        authors: string[];
         year: number;
-        doi: string;
-        link: string;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
     }[];
     /** List of selected sources */
-    readonly selectedSources: i0.WritableSignal<SourceListItem[]>;
+    readonly selectedSources: i0.WritableSignal<{
+        year: number;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
+    }[]>;
+    /**
+     * Fullscreen service of ftu component
+     */
+    private readonly fullscreenService;
+    /**
+     * Fullscreentab index of ftu component
+     */
+    fullscreentabIndex: i0.WritableSignal<_hra_ui_ftu_ui_components.FullscreenTab>;
     /**
      * Gets tissue title from the list of tissues
      */
@@ -1168,15 +1248,19 @@ declare class BiomarkerDetailsWcComponent {
     readonly message = "We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.";
     /** Sets currently selected sources */
     readonly setSelectedSources: (sources: {
-        id: string & zod.$brand<"URL"> & zod.$brand<"IRI">;
-        title: string;
-        label: string;
-        authors: string[];
         year: number;
-        doi: string;
-        link: string;
+        datasetTitle: string;
+        datasetId: string;
+        title?: string | undefined;
+        doi?: string | undefined;
+        cellType?: string | undefined;
+        healthStatus?: string | undefined;
+        sex?: string | undefined;
+        age?: number | undefined;
+        bmi?: number | undefined;
+        ethnicity?: string | undefined;
     }[]) => {
-        readonly sources: _hra_ui_services.SourceReference[];
+        readonly sources: SourceReference[];
         readonly type: string;
     };
     /** Selects the cells hovered currently to highlight in table */
@@ -1239,4 +1323,4 @@ declare class BiomarkerDetailsWcComponent {
 }
 
 export { BiomarkerDetailsComponent, BiomarkerDetailsWcComponent, BiomarkerTableComponent, BiomarkerTableDataIconComponent, EmptyBiomarkerComponent, FtuFullScreenService, FullscreenContainerComponent, FullscreenTab, GradientLegendComponent, InteractiveSvgComponent, LabelBoxComponent, MedicalIllustrationBehaviorComponent, SizeLegendComponent, SourceListComponent, TissueLibraryBehaviorComponent, TissueTreeListComponent, TooltipComponent };
-export type { DataCell, DataNode, DataRow, GradientPoint, NodeMapEntry, NodeTooltipData, SizeLegend, SourceListItem, TissueInfo };
+export type { DataCell, DataNode, DataRow, GradientPoint, NodeMapEntry, NodeTooltipData, SizeLegend, TissueInfo };

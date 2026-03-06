@@ -102,7 +102,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Download.html" data-type="entity-link" >Download</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DownloadCsv.html" data-type="entity-link" >DownloadCsv</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DownloadSelectors.html" data-type="entity-link" >DownloadSelectors</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DownloadSummaries.html" data-type="entity-link" >DownloadSummaries</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FilterSummaries.html" data-type="entity-link" >FilterSummaries</a>

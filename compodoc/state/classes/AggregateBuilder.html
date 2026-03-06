@@ -422,7 +422,7 @@ function capitalize(str: string): string {
  * Returns summaries with ids that are included in a source reference array
  */
 export function filterSummaries(summaries: CellSummary[], sources: SourceReference[]): CellSummary[] {
-  const sourceIds &#x3D; new Set&lt;string&gt;(sources.map((source) &#x3D;&gt; source.id));
+  const sourceIds &#x3D; new Set&lt;string&gt;(sources.map((source) &#x3D;&gt; source.datasetId));
   return summaries.filter((summary) &#x3D;&gt; sourceIds.has(summary.cell_source));
 }
 

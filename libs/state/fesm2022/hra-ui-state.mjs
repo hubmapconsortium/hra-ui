@@ -9,6 +9,8 @@ import { tap, forkJoin, switchMap } from 'rxjs';
 import * as z from 'zod';
 import { HttpClient } from '@angular/common/http';
 import { produce } from 'immer';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import { unparse } from 'papaparse';
 
 /** Loads the given Iri to the state */
 let Load$5 = class Load extends Action('[CellSummary] Load') {
@@ -88,14 +90,26 @@ var sourceRefs_actions = /*#__PURE__*/Object.freeze({
     SetSelectedSources: SetSelectedSources
 });
 
+/** Column IDs for source reference table */
+const COLUMN_IDS = [
+    'title',
+    'doi',
+    'year',
+    'datasetTitle',
+    'datasetId',
+    'cellType',
+    'healthStatus',
+    'sex',
+    'age',
+    'bmi',
+    'ethnicity',
+];
 /**
  * State to handle the source references
  */
 let SourceRefsState = class SourceRefsState {
     constructor() {
-        /**
-         * Data service of Ftu
-         */
+        /** Data service of Ftu */
         this.dataService = inject(FtuDataService);
     }
     /**
@@ -181,7 +195,7 @@ function capitalize(str) {
  * Returns summaries with ids that are included in a source reference array
  */
 function filterSummaries(summaries, sources) {
-    const sourceIds = new Set(sources.map((source) => source.id));
+    const sourceIds = new Set(sources.map((source) => source.datasetId));
     return summaries.filter((summary) => sourceIds.has(summary.cell_source));
 }
 /**
@@ -479,15 +493,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
             type: Injectable
         }], propDecorators: { load: [], filterSummaries: [], combineSummariesByBiomarker: [], computeAggregates: [], reset: [] } });
 
-/** selectors for the CellSummary state */
+/** Selectors for the CellSummary state */
 class CellSummarySelectors {
-    /** get the aggregate data from the state */
+    /** Get the aggregate data from the state */
     static aggregates(state) {
         return state.aggregates;
     }
-    /** get the summaries data from the state */
+    /** Get the summaries data from the state */
     static summaries(state) {
         return state.summaries;
+    }
+    /** Get the filtered summaries data from the state */
+    static filteredSummaries(state) {
+        return state.filteredSummaries;
     }
 }
 __decorate([
@@ -496,6 +514,9 @@ __decorate([
 __decorate([
     Selector([CellSummaryState])
 ], CellSummarySelectors, "summaries", null);
+__decorate([
+    Selector([CellSummaryState])
+], CellSummarySelectors, "filteredSummaries", null);
 
 /**
  * Define a Zod schema for `DOWNLOAD_FORMAT_ID`,
@@ -539,17 +560,19 @@ function createDownloadFormatId(id) {
     return DOWNLOAD_FORMAT_ID.parse(id);
 }
 
-/**
- * SVG DEFAULT FORMAT CREATE ID
- */
+/** SVG DEFAULT FORMAT CREATE ID */
 const Svg = createDownloadFormatId('svg');
-/**
- * PNG DEFAULT FORMAT CREATE ID
- */
+/** PNG DEFAULT FORMAT CREATE ID */
 const Png = createDownloadFormatId('png');
+/** CSV DEFAULT FORMAT CREATE ID */
+const Csv = createDownloadFormatId('csv');
+/** JSON DEFAULT FORMAT CREATE ID */
+const Json = createDownloadFormatId('json');
 
 var builtinFormatsIds = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    Csv: Csv,
+    Json: Json,
     Png: Png,
     Svg: Svg
 });
@@ -609,31 +632,69 @@ class Download extends Action('[Download] Download') {
         this.format = format;
     }
 }
+/**
+ * Action to download cell summaries file
+ */
+class DownloadSummaries extends Action('[Download] Download Summaries') {
+    /**
+     * Creates an instance of download summaries.
+     * @param summaries Summaries to be downloaded
+     */
+    constructor(summaries) {
+        super();
+        this.summaries = summaries;
+    }
+}
+/**
+ * Action to download CSV file of source references
+ */
+class DownloadCsv extends Action('[Download] Download CSV') {
+    /**
+     * Creates an instance of download csv.
+     * @param sourceRefs Source references to be downloaded
+     * @param [id] Optional Iri identifier for the download
+     */
+    constructor(sourceRefs, id) {
+        super();
+        this.sourceRefs = sourceRefs;
+        this.id = id;
+    }
+}
 
 var download_action = /*#__PURE__*/Object.freeze({
     __proto__: null,
     AddEntry: AddEntry,
     ClearEntries: ClearEntries,
     Download: Download,
+    DownloadCsv: DownloadCsv,
+    DownloadSummaries: DownloadSummaries,
     Load: Load$3,
     RegisterFormat: RegisterFormat
 });
 
-/**
- * SVG DEFAULT FORMAT
- */
+/** SVG DEFAULT FORMAT */
 const SVG_FORMAT = {
     id: Svg,
-    label: 'SVG',
+    label: 'Illustration SVG',
     extension: '.svg',
 };
-/**
- * PNG DEFAULT FORMAT
- */
+/** PNG DEFAULT FORMAT */
 const PNG_FORMAT = {
     id: Png,
-    label: 'PNG',
+    label: 'Illustration PNG',
     extension: '.png',
+};
+/** CSV DEFAULT FORMAT */
+const CSV_FORMAT = {
+    id: Csv,
+    label: 'Source data CSV',
+    extension: '.csv',
+};
+/** JSON DEFAULT FORMAT */
+const JSON_FORMAT = {
+    id: Json,
+    label: 'Source data biomarker expressions JSON',
+    extension: '.json',
 };
 // TODO add new formats: ai
 
@@ -644,21 +705,19 @@ const PNG_FORMAT = {
  */
 let DownloadState = class DownloadState {
     constructor() {
-        /**
-         * Http object inject for download state
-         */
+        /** Http object inject for download state */
         this.http = inject(HttpClient);
-        /**
-         * Data service of download state
-         */
+        /** Data service of download state */
         this.dataService = inject(FtuDataService);
+        /** Snackbar service */
+        this.snackbar = inject(SnackbarService);
     }
     /**
      * Ngxs on init and registry default format
      * @param ctx
      */
     ngxsOnInit(ctx) {
-        ctx.dispatch([new RegisterFormat(SVG_FORMAT), new RegisterFormat(PNG_FORMAT)]);
+        ctx.dispatch([new RegisterFormat(PNG_FORMAT), new RegisterFormat(SVG_FORMAT), new RegisterFormat(JSON_FORMAT)]);
     }
     /**
      * Actions register format in Download State
@@ -714,16 +773,36 @@ let DownloadState = class DownloadState {
         switch (entry?.type) {
             case 'url': {
                 const filename = this.guessFilename(ctx, format, entry.url);
-                return this.downloadRemoteData(entry.url).pipe(tap((data) => this.downloadData(data, filename)));
+                return this.downloadRemoteData(entry.url).pipe(tap((data) => void this.downloadData(data, filename)));
             }
             case 'data': {
                 const filename = this.guessFilename(ctx, format, '');
-                this.downloadData(new Blob([entry.data]), filename);
+                void this.downloadData(new Blob([entry.data]), filename);
                 break;
             }
             default:
                 throw new Error('Cannot download file without data');
         }
+    }
+    /**
+     * Download summaries action to download cell summary data in json format
+     * @param ctx Context
+     * @param { summaries } Summaries to be downloaded
+     * @returns Observable of download action or void
+     */
+    downloadSummaries(ctx, { summaries }) {
+        void this.downloadData(new Blob([JSON.stringify(summaries)]), 'cell-summaries.json');
+    }
+    /**
+     * Download CSV action to download source reference data in csv format
+     * @param ctx Context
+     * @param { sourceRefs, id } sourceRefs to be downloaded and id for filename guess
+     * @returns Observable of download action or void
+     */
+    downloadCsv(ctx, { sourceRefs, id }) {
+        const filename = this.guessFilename(ctx, createDownloadFormatId('csv'), id);
+        const csvContent = unparse(sourceRefs);
+        void this.downloadData(new Blob([csvContent], { type: 'text/csv' }), filename);
     }
     /**
      * Guess filename
@@ -747,7 +826,44 @@ let DownloadState = class DownloadState {
      * @param blob
      * @param fileName
      */
-    downloadData(blob, filename) {
+    async downloadData(blob, filename) {
+        const saveStatus = await this.saveWithFilePicker(blob, filename);
+        if (saveStatus === 'saved') {
+            this.snackbar.open('File downloaded', '', false, 'start', { duration: 5000 });
+            return;
+        }
+        if (saveStatus === 'canceled') {
+            return;
+        }
+        this.downloadWithAnchor(blob, filename);
+    }
+    /**
+     * Uses the browser save-file dialog when supported.
+     * Returns save status so cancel can be handled without fallback.
+     */
+    async saveWithFilePicker(blob, filename) {
+        const picker = window.showSaveFilePicker;
+        if (!picker) {
+            return 'unsupported';
+        }
+        try {
+            const handle = await picker({ suggestedName: filename });
+            const writable = await handle.createWritable();
+            await writable.write(blob);
+            await writable.close();
+            return 'saved';
+        }
+        catch (error) {
+            if (error instanceof DOMException && error.name === 'AbortError') {
+                return 'canceled';
+            }
+            return 'unsupported';
+        }
+    }
+    /**
+     * Fallback for browsers without file picker support.
+     */
+    downloadWithAnchor(blob, filename) {
         const url = window.URL.createObjectURL(blob);
         const anchor = document.createElement('a');
         document.body.appendChild(anchor);
@@ -756,6 +872,7 @@ let DownloadState = class DownloadState {
         anchor.click();
         anchor.remove();
         window.URL.revokeObjectURL(url);
+        this.snackbar.open('File downloaded', '', false, 'start', { duration: 5000 });
     }
     /**
      * Downloads and save -  method is used to direct fetch file
@@ -784,6 +901,12 @@ __decorate([
 __decorate([
     Action$1(Download)
 ], DownloadState.prototype, "download", null);
+__decorate([
+    Action$1(DownloadSummaries)
+], DownloadState.prototype, "downloadSummaries", null);
+__decorate([
+    Action$1(DownloadCsv)
+], DownloadState.prototype, "downloadCsv", null);
 DownloadState = __decorate([
     State({
         name: 'download',
@@ -795,7 +918,7 @@ DownloadState = __decorate([
 ], DownloadState);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: DownloadState, decorators: [{
             type: Injectable
-        }], propDecorators: { registerFormat: [], load: [], addEntry: [], clearEntries: [], download: [] } });
+        }], propDecorators: { registerFormat: [], load: [], addEntry: [], clearEntries: [], download: [], downloadSummaries: [], downloadCsv: [] } });
 
 /**
  * Available format selectors
@@ -1451,5 +1574,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { activeFtu_actions as ActiveFtuActions, ActiveFtuSelectors, ActiveFtuState, builtinFormatsIds as BuiltinFormat, cellSummary_actions as CellSummaryActions, CellSummarySelectors, CellSummaryState, download_action as DownloadActions, DownloadSelectors, DownloadState, HraStateModule, illustrator_actions as IllustratorActions, IllustratorSelectors, IllustratorState, linkIds as LinkIds, resourceIds as ResourceIds, resourceTypes as ResourceTypes, screenMode_actions as ScreenModeAction, ScreenModeSelectors, ScreenModeState, sourceRefs_actions as SourceRefsActions, SourceRefsSelectors, SourceRefsState, tissueLibrary_actions as TissueLibraryActions, TissueLibrarySelectors, TissueLibraryState };
+export { activeFtu_actions as ActiveFtuActions, ActiveFtuSelectors, ActiveFtuState, builtinFormatsIds as BuiltinFormat, COLUMN_IDS, cellSummary_actions as CellSummaryActions, CellSummarySelectors, CellSummaryState, download_action as DownloadActions, DownloadSelectors, DownloadState, HraStateModule, illustrator_actions as IllustratorActions, IllustratorSelectors, IllustratorState, linkIds as LinkIds, resourceIds as ResourceIds, resourceTypes as ResourceTypes, screenMode_actions as ScreenModeAction, ScreenModeSelectors, ScreenModeState, sourceRefs_actions as SourceRefsActions, SourceRefsSelectors, SourceRefsState, tissueLibrary_actions as TissueLibraryActions, TissueLibrarySelectors, TissueLibraryState };
 //# sourceMappingURL=hra-ui-state.mjs.map

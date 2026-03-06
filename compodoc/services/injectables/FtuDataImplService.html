@@ -982,8 +982,14 @@ export class FtuDataImplService extends FtuDataService {
    */
   private toSourceReferences(data: DataSources): SourceReference[] {
     const results: SourceReference[] &#x3D; [];
-    for (const { &#x27;@id&#x27;: id, label, link, description, authors &#x3D; [], year &#x3D; -1, doi &#x3D; &#x27;&#x27; } of data) {
-      results.push({ id, label, link, title: description, authors, year, doi });
+    for (const { &#x27;@id&#x27;: id, label, link, description, year &#x3D; -1 } of data) {
+      results.push({
+        datasetId: id,
+        datasetTitle: label,
+        doi: link,
+        title: description,
+        year,
+      });
     }
     return results;
   }

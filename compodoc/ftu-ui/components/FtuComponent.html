@@ -178,10 +178,12 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                            <code>HraCommonModule</code>
                             <code>BiomarkerDetailsComponent</code>
                             <code>FullscreenContainerComponent</code>
                             <code>MedicalIllustrationBehaviorComponent</code>
+                            <code>SourceListComponent</code>
+                            <code>EmptyBiomarkerComponent</code>
                 </td>
             </tr>
 
@@ -227,7 +229,16 @@
                                 <a href="#isFullscreen" >isFullscreen</a>
                             </li>
                             <li>
-                                <a href="#sourceListTemplate" >sourceListTemplate</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedSources" >selectedSources</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#setSelectedSources" >setSelectedSources</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sources" >sources</a>
                             </li>
                         </ul>
                     </td>
@@ -243,9 +254,6 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#closefullscreen" >closefullscreen</a>
-                            </li>
-                            <li>
-                                <a href="#setSourceList" >setSourceList</a>
                             </li>
                         </ul>
                     </td>
@@ -270,7 +278,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -313,8 +321,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -328,80 +336,6 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="setSourceList"></a>
-                    <span class="name">
-                        <span ><b>setSourceList</b></span>
-                        <a href="#setSourceList"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>setSourceList(ref: TemplateRef<unknown>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:58</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Sets the source list template</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>ref</td>
-                                            <td>
-                                                        <code>TemplateRef&lt;unknown&gt;</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Template ref to source list</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -436,7 +370,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -473,7 +407,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -490,33 +424,110 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="sourceListTemplate"></a>
+                    <a name="selectedSources"></a>
                     <span class="name">
-                        <span ><b>sourceListTemplate</b></span>
-                        <a href="#sourceListTemplate"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedSources</b></span>
+                        <a href="#selectedSources"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>TemplateRef&lt;unknown&gt; | null</code>
+                        <i>Type : </i>    <code>unknown</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
+                        <i>Default value : </i><code>selectSnapshot(SourceRefsSelectors.selectedSourceReferences)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:34</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Source list template of ftu component</p>
+                    <div class="io-description"><p>List of selected sources</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setSelectedSources"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>setSelectedSources</b></span>
+                        <a href="#setSelectedSources"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>dispatch(SourceRefsActions.SetSelectedSources)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Action to set selected sources</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sources"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sources</b></span>
+                        <a href="#sources"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>selectSnapshot(SourceRefsSelectors.sourceReferences)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/ftu-page/ftu.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of sources with titles and links displayed to the user</p>
 </div>
                 </td>
             </tr>
@@ -529,33 +540,44 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component, inject, TemplateRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
-import { dispatch, injectDestroy$ } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { dispatch, injectDestroy$, selectSnapshot } from &#x27;@hra-ui/cdk/injectors&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { FtuFullScreenService, EmptyBiomarkerComponent } from &#x27;@hra-ui/ftu-ui-components&#x27;;
 import {
   BiomarkerDetailsComponent,
   MedicalIllustrationBehaviorComponent,
 } from &#x27;@hra-ui/ftu-ui-components/src/lib/behavioral&#x27;;
-import { FullscreenContainerComponent } from &#x27;@hra-ui/ftu-ui-components/src/lib/molecules&#x27;;
-import { ActiveFtuActions } from &#x27;@hra-ui/state&#x27;;
+import { FullscreenContainerComponent, SourceListComponent } from &#x27;@hra-ui/ftu-ui-components/src/lib/molecules&#x27;;
+import { ActiveFtuActions, SourceRefsActions, SourceRefsSelectors } from &#x27;@hra-ui/state&#x27;;
 import { takeUntil } from &#x27;rxjs&#x27;;
-import { FtuFullScreenService } from &#x27;@hra-ui/ftu-ui-components&#x27;;
 
 /** Main FTU page */
 @Component({
   selector: &#x27;ftu-ftu-page&#x27;,
   imports: [
-    CommonModule,
+    HraCommonModule,
     BiomarkerDetailsComponent,
     FullscreenContainerComponent,
     MedicalIllustrationBehaviorComponent,
+    SourceListComponent,
+    EmptyBiomarkerComponent,
   ],
   templateUrl: &#x27;./ftu.component.html&#x27;,
   styleUrl: &#x27;./ftu.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FtuComponent {
+  /** List of sources with titles and links displayed to the user */
+  readonly sources &#x3D; selectSnapshot(SourceRefsSelectors.sourceReferences);
+
+  /** List of selected sources */
+  readonly selectedSources &#x3D; selectSnapshot(SourceRefsSelectors.selectedSourceReferences);
+
+  /** Action to set selected sources */
+  readonly setSelectedSources &#x3D; dispatch(SourceRefsActions.SetSelectedSources);
+
   /**
    * Fullscreen service of ftu component
    */
@@ -571,23 +593,10 @@ export class FtuComponent {
   fullscreentabIndex &#x3D; this.fullscreenService.fullscreentabIndex;
 
   /**
-   * Source list template of ftu component
-   */
-  sourceListTemplate: TemplateRef&lt;unknown&gt; | null &#x3D; null;
-
-  /**
    * Closes the fullscreen mode
    */
   closefullscreen() {
     this.fullscreenService.isFullscreen.set(false);
-  }
-
-  /**
-   * Sets the source list template
-   * @param ref Template ref to source list
-   */
-  setSourceList(ref: TemplateRef&lt;unknown&gt;) {
-    this.sourceListTemplate &#x3D; ref;
   }
 
   /** Set the illustration from the id query parameter */
@@ -603,31 +612,44 @@ export class FtuComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ftu-fullscreen-container
   class&#x3D;&quot;content-container&quot;
+  [class.fullscreen]&#x3D;&quot;isFullscreen()&quot;
   [fullscreen]&#x3D;&quot;isFullscreen()&quot;
   [illustrationTemplate]&#x3D;&quot;illustration&quot;
   [biomarkerTemplate]&#x3D;&quot;biomarker&quot;
-  [sourceListTemplate]&#x3D;&quot;sourceListTemplate&quot;
+  [sourceListTemplate]&#x3D;&quot;sourcelist&quot;
   [(fullscreentabIndex)]&#x3D;&quot;fullscreentabIndex&quot;
   (closeFullscreen)&#x3D;&quot;closefullscreen()&quot;
 &gt;
   &lt;ng-template #illustration&gt;
-    &lt;div class&#x3D;&quot;left-side&quot;&gt;
-      &lt;ftu-medical-illustration-behavior
-        class&#x3D;&quot;illustration&quot;
-        [(isFullscreen)]&#x3D;&quot;isFullscreen&quot;
-        (isFullscreenChange)&#x3D;&quot;fullscreentabIndex.set(0)&quot;
-      /&gt;
-    &lt;/div&gt;
+    &lt;ftu-medical-illustration-behavior
+      class&#x3D;&quot;illustration&quot;
+      [(isFullscreen)]&#x3D;&quot;isFullscreen&quot;
+      (isFullscreenChange)&#x3D;&quot;fullscreentabIndex.set(0)&quot;
+    /&gt;
   &lt;/ng-template&gt;
 
   &lt;ng-template #biomarker&gt;
     &lt;div class&#x3D;&quot;fullscreen-content-container&quot;&gt;
-      &lt;ftu-biomarker-details
-        class&#x3D;&quot;illustration-details&quot;
-        (isBiomarkerfullscreenChange)&#x3D;&quot;fullscreentabIndex.set(2)&quot;
-        (sourceListTemplate)&#x3D;&quot;setSourceList($event)&quot;
-      /&gt;
+      &lt;ftu-biomarker-details class&#x3D;&quot;illustration-details&quot; (isBiomarkerfullscreenChange)&#x3D;&quot;fullscreentabIndex.set(2)&quot; /&gt;
     &lt;/div&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template #sourcelist&gt;
+    @if (sources().length &gt; 0) {
+      &lt;div class&#x3D;&quot;source-list&quot;&gt;
+        &lt;ftu-source-list
+          class&#x3D;&quot;content&quot;
+          [sources]&#x3D;&quot;sources()&quot;
+          [hideTitle]&#x3D;&quot;isFullscreen()&quot;
+          (selectionChanged)&#x3D;&quot;setSelectedSources($event)&quot;
+        /&gt;
+      &lt;/div&gt;
+    } @else if (isFullscreen() &amp;&amp; sources().length &#x3D;&#x3D;&#x3D; 0) {
+      &lt;ftu-empty-biomarker
+        class&#x3D;&quot;empty-source-list&quot;
+        emptyBehaviorText&#x3D;&quot;We currently do not have data for this functional tissue unit.&quot;
+      /&gt;
+    }
   &lt;/ng-template&gt;
 &lt;/ftu-fullscreen-container&gt;
 </code></pre>
@@ -659,7 +681,7 @@ export class FtuComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ftu-fullscreen-container  class="content-container"  [fullscreen]="isFullscreen()"  [illustrationTemplate]="illustration"  [biomarkerTemplate]="biomarker"  [sourceListTemplate]="sourceListTemplate"  [(fullscreentabIndex)]="fullscreentabIndex"  (closeFullscreen)="closefullscreen()">  <ng-template #illustration>    <div class="left-side">      <ftu-medical-illustration-behavior        class="illustration"        [(isFullscreen)]="isFullscreen"        (isFullscreenChange)="fullscreentabIndex.set(0)"      />    </div>  </ng-template>  <ng-template #biomarker>    <div class="fullscreen-content-container">      <ftu-biomarker-details        class="illustration-details"        (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)"        (sourceListTemplate)="setSourceList($event)"      />    </div>  </ng-template></ftu-fullscreen-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ftu-fullscreen-container  class="content-container"  [class.fullscreen]="isFullscreen()"  [fullscreen]="isFullscreen()"  [illustrationTemplate]="illustration"  [biomarkerTemplate]="biomarker"  [sourceListTemplate]="sourcelist"  [(fullscreentabIndex)]="fullscreentabIndex"  (closeFullscreen)="closefullscreen()">  <ng-template #illustration>    <ftu-medical-illustration-behavior      class="illustration"      [(isFullscreen)]="isFullscreen"      (isFullscreenChange)="fullscreentabIndex.set(0)"    />  </ng-template>  <ng-template #biomarker>    <div class="fullscreen-content-container">      <ftu-biomarker-details class="illustration-details" (isBiomarkerfullscreenChange)="fullscreentabIndex.set(2)" />    </div>  </ng-template>  <ng-template #sourcelist>    @if (sources().length > 0) {      <div class="source-list">        <ftu-source-list          class="content"          [sources]="sources()"          [hideTitle]="isFullscreen()"          (selectionChanged)="setSelectedSources($event)"        />      </div>    } @else if (isFullscreen() && sources().length === 0) {      <ftu-empty-biomarker        class="empty-source-list"        emptyBehaviorText="We currently do not have data for this functional tissue unit."      />    }  </ng-template></ftu-fullscreen-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ftu-ui-root'},{'name': 'FtuComponent', 'selector': 'ftu-ftu-page'},{'name': 'LandingComponent', 'selector': 'ftu-landing'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FtuComponent'};

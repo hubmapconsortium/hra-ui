@@ -112,12 +112,14 @@ declare const AGGREGATE: z.ZodObject<{
     }, z.core.$strip>>>>;
 }, z.core.$strip>;
 
-/** selectors for the CellSummary state */
+/** Selectors for the CellSummary state */
 declare class CellSummarySelectors {
-    /** get the aggregate data from the state */
+    /** Get the aggregate data from the state */
     static aggregates(state: CellSummaryModel): CellSummaryAggregate[];
-    /** get the summaries data from the state */
+    /** Get the summaries data from the state */
     static summaries(state: CellSummaryModel): CellSummary[];
+    /** Get the filtered summaries data from the state */
+    static filteredSummaries(state: CellSummaryModel): CellSummary[];
 }
 
 declare const Load_base$4: _hra_ui_cdk_state.ActionConstructor;
@@ -164,6 +166,10 @@ declare namespace sourceRefs_actions_d {
   };
 }
 
+/** Column ID type */
+type ColumnId = keyof SourceReference;
+/** Column IDs for source reference table */
+declare const COLUMN_IDS: ColumnId[];
 /**
  * Source refs model interface
  */
@@ -179,9 +185,7 @@ type Context$2 = StateContext<SourceRefsModel>;
  * State to handle the source references
  */
 declare class SourceRefsState {
-    /**
-     * Data service of Ftu
-     */
+    /** Data service of Ftu */
     private readonly dataService;
     /**
      * Loads the current state with the source references
@@ -242,19 +246,23 @@ declare class CellSummaryState {
     static ɵprov: i0.ɵɵInjectableDeclaration<CellSummaryState>;
 }
 
-/**
- * SVG DEFAULT FORMAT CREATE ID
- */
+/** SVG DEFAULT FORMAT CREATE ID */
 declare const Svg: string & z.$brand<"DownloadFormatId">;
-/**
- * PNG DEFAULT FORMAT CREATE ID
- */
+/** PNG DEFAULT FORMAT CREATE ID */
 declare const Png: string & z.$brand<"DownloadFormatId">;
+/** CSV DEFAULT FORMAT CREATE ID */
+declare const Csv: string & z.$brand<"DownloadFormatId">;
+/** JSON DEFAULT FORMAT CREATE ID */
+declare const Json: string & z.$brand<"DownloadFormatId">;
 
+declare const builtinFormatsIds_d_Csv: typeof Csv;
+declare const builtinFormatsIds_d_Json: typeof Json;
 declare const builtinFormatsIds_d_Png: typeof Png;
 declare const builtinFormatsIds_d_Svg: typeof Svg;
 declare namespace builtinFormatsIds_d {
   export {
+    builtinFormatsIds_d_Csv as Csv,
+    builtinFormatsIds_d_Json as Json,
     builtinFormatsIds_d_Png as Png,
     builtinFormatsIds_d_Svg as Svg,
   };
@@ -379,6 +387,32 @@ declare class Download extends Download_base {
      */
     constructor(format: DownloadFormatId);
 }
+declare const DownloadSummaries_base: _hra_ui_cdk_state.ActionConstructor;
+/**
+ * Action to download cell summaries file
+ */
+declare class DownloadSummaries extends DownloadSummaries_base {
+    readonly summaries: CellSummary[];
+    /**
+     * Creates an instance of download summaries.
+     * @param summaries Summaries to be downloaded
+     */
+    constructor(summaries: CellSummary[]);
+}
+declare const DownloadCsv_base: _hra_ui_cdk_state.ActionConstructor;
+/**
+ * Action to download CSV file of source references
+ */
+declare class DownloadCsv extends DownloadCsv_base {
+    readonly sourceRefs: SourceReference[];
+    readonly id?: Iri | undefined;
+    /**
+     * Creates an instance of download csv.
+     * @param sourceRefs Source references to be downloaded
+     * @param [id] Optional Iri identifier for the download
+     */
+    constructor(sourceRefs: SourceReference[], id?: Iri | undefined);
+}
 
 type download_action_d_AddEntry = AddEntry;
 declare const download_action_d_AddEntry: typeof AddEntry;
@@ -386,6 +420,10 @@ type download_action_d_ClearEntries = ClearEntries;
 declare const download_action_d_ClearEntries: typeof ClearEntries;
 type download_action_d_Download = Download;
 declare const download_action_d_Download: typeof Download;
+type download_action_d_DownloadCsv = DownloadCsv;
+declare const download_action_d_DownloadCsv: typeof DownloadCsv;
+type download_action_d_DownloadSummaries = DownloadSummaries;
+declare const download_action_d_DownloadSummaries: typeof DownloadSummaries;
 type download_action_d_RegisterFormat = RegisterFormat;
 declare const download_action_d_RegisterFormat: typeof RegisterFormat;
 declare namespace download_action_d {
@@ -393,6 +431,8 @@ declare namespace download_action_d {
     download_action_d_AddEntry as AddEntry,
     download_action_d_ClearEntries as ClearEntries,
     download_action_d_Download as Download,
+    download_action_d_DownloadCsv as DownloadCsv,
+    download_action_d_DownloadSummaries as DownloadSummaries,
     Load$3 as Load,
     download_action_d_RegisterFormat as RegisterFormat,
   };
@@ -404,14 +444,12 @@ declare namespace download_action_d {
  * format and download to user.
  */
 declare class DownloadState implements NgxsOnInit {
-    /**
-     * Http object inject for download state
-     */
+    /** Http object inject for download state */
     private readonly http;
-    /**
-     * Data service of download state
-     */
+    /** Data service of download state */
     private readonly dataService;
+    /** Snackbar service */
+    private readonly snackbar;
     /**
      * Ngxs on init and registry default format
      * @param ctx
@@ -448,6 +486,20 @@ declare class DownloadState implements NgxsOnInit {
      */
     download(ctx: DownloadContext, { format }: Download): Observable<unknown> | void;
     /**
+     * Download summaries action to download cell summary data in json format
+     * @param ctx Context
+     * @param { summaries } Summaries to be downloaded
+     * @returns Observable of download action or void
+     */
+    downloadSummaries(ctx: DownloadContext, { summaries }: DownloadSummaries): Observable<unknown> | void;
+    /**
+     * Download CSV action to download source reference data in csv format
+     * @param ctx Context
+     * @param { sourceRefs, id } sourceRefs to be downloaded and id for filename guess
+     * @returns Observable of download action or void
+     */
+    downloadCsv(ctx: DownloadContext, { sourceRefs, id }: DownloadCsv): Observable<unknown> | void;
+    /**
      * Guess filename
      * @param ctx
      * @param id
@@ -461,6 +513,15 @@ declare class DownloadState implements NgxsOnInit {
      * @param fileName
      */
     private downloadData;
+    /**
+     * Uses the browser save-file dialog when supported.
+     * Returns save status so cancel can be handled without fallback.
+     */
+    private saveWithFilePicker;
+    /**
+     * Fallback for browsers without file picker support.
+     */
+    private downloadWithAnchor;
     /**
      * Downloads and save -  method is used to direct fetch file
      * if available on url without conversion
@@ -1016,5 +1077,5 @@ declare class ActiveFtuSelectors {
     static iri({ iri }: ActiveFtuModel): Iri | undefined;
 }
 
-export { activeFtu_actions_d as ActiveFtuActions, ActiveFtuSelectors, ActiveFtuState, builtinFormatsIds_d as BuiltinFormat, cellSummary_actions_d as CellSummaryActions, CellSummarySelectors, CellSummaryState, download_action_d as DownloadActions, DownloadSelectors, DownloadState, HraStateModule, illustrator_actions_d as IllustratorActions, IllustratorSelectors, IllustratorState, linkIds_d as LinkIds, resourceIds_d as ResourceIds, resourceTypes_d as ResourceTypes, screenMode_actions_d as ScreenModeAction, ScreenModeSelectors, ScreenModeState, sourceRefs_actions_d as SourceRefsActions, SourceRefsSelectors, SourceRefsState, tissueLibrary_actions_d as TissueLibraryActions, TissueLibrarySelectors, TissueLibraryState };
-export type { CellSummaryAggregate, CellSummaryAggregateRow, DownloadFormat, HraStateModuleOptions };
+export { activeFtu_actions_d as ActiveFtuActions, ActiveFtuSelectors, ActiveFtuState, builtinFormatsIds_d as BuiltinFormat, COLUMN_IDS, cellSummary_actions_d as CellSummaryActions, CellSummarySelectors, CellSummaryState, download_action_d as DownloadActions, DownloadSelectors, DownloadState, HraStateModule, illustrator_actions_d as IllustratorActions, IllustratorSelectors, IllustratorState, linkIds_d as LinkIds, resourceIds_d as ResourceIds, resourceTypes_d as ResourceTypes, screenMode_actions_d as ScreenModeAction, ScreenModeSelectors, ScreenModeState, sourceRefs_actions_d as SourceRefsActions, SourceRefsSelectors, SourceRefsState, tissueLibrary_actions_d as TissueLibraryActions, TissueLibrarySelectors, TissueLibraryState };
+export type { CellSummaryAggregate, CellSummaryAggregateRow, ColumnId, DownloadFormat, HraStateModuleOptions };

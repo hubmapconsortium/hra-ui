@@ -241,6 +241,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#fullScreenService" >fullScreenService</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#isFullscreen" >isFullscreen</a>
                             </li>
@@ -320,7 +324,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/app.component.ts:159</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/app.component.ts:163</a></div>
                             </td>
                         </tr>
 
@@ -634,6 +638,44 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="fullScreenService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>fullScreenService</b></span>
+                        <a href="#fullScreenService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FtuFullScreenService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/app.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Full Screen Service</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="isFullscreen"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
@@ -650,12 +692,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>selectSnapshot(ScreenModeSelectors.isFullScreen)</code>
+                        <i>Default value : </i><code>this.fullScreenService.isFullscreen</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/app.component.ts:134</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/app.component.ts:160</a></div>
                         </td>
                     </tr>
 
@@ -691,6 +733,7 @@ import { BaseHrefActions, createLinkId, LinkRegistryActions, ResourceRegistryAct
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import {
   BiomarkerDetailsWcComponent,
+  FtuFullScreenService,
   TissueLibraryBehaviorComponent,
 } from &#x27;@hra-ui/ftu-ui-components/src/lib/behavioral&#x27;;
 import {
@@ -712,7 +755,6 @@ import {
   IllustratorActions,
   IllustratorSelectors,
   ScreenModeAction,
-  ScreenModeSelectors,
   TissueLibraryActions,
   TissueLibrarySelectors,
 } from &#x27;@hra-ui/state&#x27;;
@@ -805,8 +847,6 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
     map(({ selectedOnClick }) &#x3D;&gt; selectedOnClick.source),
   );
 
-  /** Whether in full screen mode */
-  readonly isFullscreen &#x3D; selectSnapshot(ScreenModeSelectors.isFullScreen);
   /** Whether an illustration is active */
   private readonly isActive &#x3D; selectSnapshot(ActiveFtuSelectors.isActive);
   /** Loaded tissues */
@@ -830,12 +870,18 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
   /** Enpoints used to load data */
   private readonly endpoints &#x3D; inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject&lt;FtuDataImplEndpoints&gt;;
 
+  /** Full Screen Service */
+  protected fullScreenService &#x3D; inject(FtuFullScreenService);
+
+  /** Whether in full screen mode */
+  readonly isFullscreen &#x3D; this.fullScreenService.isFullscreen;
+
   /** Whether the component is initialized */
   private initialized &#x3D; false;
 
   /** Initialize the app */
   constructor() {
-    super({ analytics: false, screenSizeNotice: { width: 800, height: 480 } });
+    super({ analytics: false, screenSizeNotice: { width: 1280, height: 720 } });
   }
 
   /** Initializes the component */
@@ -956,7 +1002,7 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;ftu-ui-small-wc&quot;&gt;
-  &lt;ftu-tissue-library-behavior class&#x3D;&quot;sidebar&quot; [class.display]&#x3D;&quot;isFullscreen()&quot; /&gt;
+  &lt;ftu-tissue-library-behavior class&#x3D;&quot;sidebar&quot; [class.hidden]&#x3D;&quot;isFullscreen()&quot; /&gt;
   &lt;ftu-wc-biomarker-details class&#x3D;&quot;biomarker&quot; /&gt;
 &lt;/ng-container&gt;
 </code></pre>
@@ -988,7 +1034,7 @@ export class AppComponent extends BaseApplicationComponent implements OnInit, On
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="ftu-ui-small-wc">  <ftu-tissue-library-behavior class="sidebar" [class.display]="isFullscreen()" />  <ftu-wc-biomarker-details class="biomarker" /></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="ftu-ui-small-wc">  <ftu-tissue-library-behavior class="sidebar" [class.hidden]="isFullscreen()" />  <ftu-wc-biomarker-details class="biomarker" /></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-root'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
