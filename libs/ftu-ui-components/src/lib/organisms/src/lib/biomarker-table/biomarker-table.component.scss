@@ -4,9 +4,12 @@
 
 :host {
   display: block;
-  position: relative;
-  width: 100%;
-  table-layout: fixed;
+  background-image: linear-gradient(
+    to right,
+    vars.$surface-container-low 283px,
+    vars.$outline 283px,
+    vars.$on-primary 284px
+  );
 
   @include mat.table-overrides(
     (
@@ -37,15 +40,17 @@
     )
   );
 
-  cdk-virtual-scroll-viewport {
+  ng-scrollbar {
     width: 100%;
+    height: 100%;
+    max-height: 100%;
   }
 
   .absolute-toggle {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    z-index: 1000;
+    z-index: 100;
     width: 14.625rem;
     border: 1px solid vars.$primary;
     border-radius: 6px;
@@ -76,6 +81,8 @@
   .table {
     background-color: vars.$surface-container-low;
     width: 100%;
+    height: 100%;
+    table-layout: auto;
 
     .highlight {
       &:first-child,
@@ -109,11 +116,15 @@
 
     td {
       border-bottom: none;
+      max-width: 28px;
+      min-width: 28px;
+      padding: 0;
     }
 
     td:first-child,
     td:nth-child(2) {
       background: vars.$surface-container-low;
+      padding-left: 1rem;
     }
 
     td:nth-child(2) {
@@ -174,7 +185,8 @@
       overflow: hidden;
       text-overflow: ellipsis;
       margin: auto;
-      max-height: calc(6rem - 16px);
+      max-height: 119px;
+      padding: 0.5rem 0;
     }
   }
 

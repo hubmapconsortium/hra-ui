@@ -19,5 +19,9 @@
       border-radius: 50%;
       background-color: vars.$secondary;
     }
+
+    .label {
+      color: vars.$on-primary-fixed;
+    }
   }
 }
