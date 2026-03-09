@@ -88,7 +88,7 @@ content:
             icons: product:millitome
             content:
               - component: Markdown
-                data: Protocol for registering human tissue at scale into 3D reference objects.
+                data: Guide for cutting and registering human tissue at scale for accurate 3D exploration.
             actionsLeft:
               component: TextHyperlink
               text: Learn more
