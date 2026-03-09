@@ -7,6 +7,7 @@ import { FilterContainerComponent } from '@hra-ui/design-system/filter-container
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { SearchListComponent, SearchListOption } from '@hra-ui/design-system/search-list';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Filter option category interface */
 export interface FilterOptionCategory<T extends SearchListOption> {
@@ -18,6 +19,11 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   options: T[];
   /** Selected filter options */
   selected?: T[];
+  tooltip?: {
+    description: string;
+    actionText?: string;
+    actionUrl?: string;
+  };
 }
 
 /** Position of the filter menu overlay */
@@ -39,10 +45,15 @@ const FILTER_MENU_POSITIONS: ConnectedPosition[] = [
     FilterContainerComponent,
     OverlayModule,
     SearchListComponent,
+    PlainTooltipDirective,
   ],
   templateUrl: './filter-menu.component.html',
   styleUrl: './filter-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.closed]': 'formClosed()',
+    '[class.collapsible]': 'enableCollapse()',
+  },
 })
 export class FilterMenuComponent<T extends SearchListOption> {
   /** Menu tagline */
@@ -54,11 +65,18 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Whether to show the close button */
   readonly enableClose = input<boolean>();
 
+  readonly enableCollapse = input<boolean>();
+
+  /** Whether or not the form panel is closed */
+  readonly formClosed = input(false);
+
   /** List of all filters with options */
   readonly filters = model.required<FilterOptionCategory<T>[]>();
 
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
+
+  readonly collapseClick = output();
 
   /** Whether the user is on a wide screen */
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');

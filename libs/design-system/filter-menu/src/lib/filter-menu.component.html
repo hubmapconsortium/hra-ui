@@ -1,22 +1,37 @@
-@if (tagline() || description() || enableClose()) {
+@if (tagline() || description() || enableClose() || enableCollapse()) {
   <div hraFeature="header" class="intro section">
-    <div class="tagline">
-      <span class="title">{{ tagline() }}</span>
-      <div class="filler"></div>
-      @if (!isWideScreen() && enableClose()) {
-        <button
-          hraFeature="close"
-          hraClickEvent
-          hraHoverEvent
-          mat-icon-button
-          aria-label="Close filter menu"
-          (click)="closeClick.emit()"
-        >
-          <hra-icon class="close" fontIcon="close" />
-        </button>
-      }
-    </div>
-    <div class="description">{{ description() }}</div>
+    @if (enableCollapse()) {
+      <button
+        hraFeature="toggle"
+        hraHoverEvent
+        mat-icon-button
+        aria-label="Open or close filters menu"
+        class="collapse-button"
+        [hraClickEvent]="{ opened: formClosed() }"
+        [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
+        (click)="collapseClick.emit()"
+      >
+        <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
+      </button>
+    } @else {
+      <div class="tagline">
+        <span class="title">{{ tagline() }}</span>
+        <div class="filler"></div>
+        @if (!isWideScreen() && enableClose()) {
+          <button
+            hraFeature="close"
+            hraClickEvent
+            hraHoverEvent
+            mat-icon-button
+            aria-label="Close filter menu"
+            (click)="closeClick.emit()"
+          >
+            <hra-icon class="close" fontIcon="close" />
+          </button>
+        }
+      </div>
+      <div class="description">{{ description() }}</div>
+    }
   </div>
 }
 
@@ -42,10 +57,27 @@
         cdkOverlayOrigin
         [action]="filter.label"
         [chips]="filter.selected ?? []"
+        [showTooltip]="filter.tooltip"
         (chipsChange)="updateFilterSelection(filter, $event)"
         (actionClick)="activeFilter.set(filter)"
         #filterMenuOrigin="cdkOverlayOrigin"
-      />
+      >
+        <p tooltipContent>
+          {{ filter.tooltip?.description }}
+        </p>
+        @if (filter.tooltip?.actionText) {
+          <button mat-button color="accent" tooltipActions>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              style="text-decoration: none; color: inherit"
+              [href]="filter.tooltip?.actionUrl"
+            >
+              {{ filter.tooltip?.actionText }}
+            </a>
+          </button>
+        }
+      </hra-filter-container>
 
       <ng-template
         cdkConnectedOverlay

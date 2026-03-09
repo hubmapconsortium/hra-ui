@@ -11,19 +11,19 @@ import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { FilterMenuComponent, FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
+
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { fromEvent, Observable } from 'rxjs';
 
-import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import { DigitalObjectMetadata } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import {
   FILTER_CATEGORY_INFO,
   FilterOption,
-  FilterOptionCategory,
   getOrganIcon,
   getOrganId,
   getProductIcon,
@@ -55,6 +55,22 @@ export interface CurrentFilters {
   biomarkers?: string[];
   /** Search term filters */
   searchTerm?: string;
+}
+
+/** Filter form values */
+export interface FilterFormValues {
+  /** Digital object form control */
+  digitalObjects: FilterOption[] | null;
+  /** Release version form control */
+  releaseVersion: FilterOption[] | null;
+  /** Organs form control */
+  organs: FilterOption[] | null;
+  /** Anatomical structures form control */
+  anatomicalStructures: FilterOption[] | null;
+  /** Cell types form control */
+  cellTypes: FilterOption[] | null;
+  /** Biomarkers form control */
+  biomarkers: FilterOption[] | null;
 }
 
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
@@ -126,7 +142,7 @@ export class MainPageComponent {
   /** Whether or not the filter menu is closed */
   readonly filterClosed = signal<boolean>(false);
   /** Filter categories */
-  readonly filterCategories = signal<Record<string, FilterOptionCategory>>(FILTER_CATEGORY_INFO);
+  readonly filterCategories = signal<Record<string, FilterOptionCategory<FilterOption>>>(FILTER_CATEGORY_INFO);
   /** Currently selected filters */
   readonly filters = signal<CurrentFilters>({});
   /** Scroll viewport height for the digital object table */
@@ -137,7 +153,9 @@ export class MainPageComponent {
   readonly downloadId = signal<string | undefined>(undefined);
 
   /** Filter categories as an array */
-  readonly filterCategoriesArray = computed<FilterOptionCategory[]>(() => Object.values(this.filterCategories()));
+  readonly filterCategoriesArray = computed<FilterOptionCategory<FilterOption>[]>(() =>
+    Object.values(this.filterCategories()),
+  );
 
   /**
    * Sets the initial filters according to query params
@@ -165,6 +183,9 @@ export class MainPageComponent {
 
     effect(() => {
       this.populateFilterOptions();
+    });
+
+    effect(() => {
       this.digitalObjectSearch().subscribe((results) => {
         this.applyMoreFilters(results);
       });
@@ -178,28 +199,40 @@ export class MainPageComponent {
     fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
   }
 
+  /** Normalizes query param values to string array */
+  private toStringArray(value: unknown): string[] | undefined {
+    if (typeof value === 'string') {
+      return [value];
+    }
+    if (Array.isArray(value)) {
+      return value.filter((item): item is string => typeof item === 'string');
+    }
+    return undefined;
+  }
+
   /**
    * Sets filters from query params in the url
    * @param queryParams Query params from the route
    */
   private setFiltersFomParams(queryParams: Params) {
-    const dObjects = queryParams['do'];
-    const versions = queryParams['versions'];
-    const organs = queryParams['organs'];
-    const as = queryParams['as'];
-    const ct = queryParams['ct'];
-    const b = queryParams['b'];
+    const dObjects = this.toStringArray(queryParams['do']);
+    const versions = this.toStringArray(queryParams['versions']);
+    const organs = this.toStringArray(queryParams['organs']);
+    const as = this.toStringArray(queryParams['as']);
+    const ct = this.toStringArray(queryParams['ct']);
+    const b = this.toStringArray(queryParams['b']);
     const search = queryParams['search'];
 
     this.filters.set({
       digitalObjects: dObjects,
-      releaseVersion: versions ? (Array.isArray(versions) ? versions : [versions]) : undefined,
+      releaseVersion: versions,
       organs: organs,
-      anatomicalStructures: as ? (Array.isArray(as) ? as : [as]) : undefined,
-      cellTypes: ct ? (Array.isArray(ct) ? ct : [ct]) : undefined,
-      biomarkers: b ? (Array.isArray(b) ? b : [b]) : undefined,
+      anatomicalStructures: as,
+      cellTypes: ct,
+      biomarkers: b,
       searchTerm: search ?? '',
     });
+
     this.searchControl.patchValue(this.filters().searchTerm);
   }
 
@@ -219,6 +252,23 @@ export class MainPageComponent {
       }
     }
     this.versionCounts.set(result);
+  }
+
+  handleFiltersChange(filters: FilterOptionCategory<FilterOption>[]) {
+    const formValues = {} as FilterFormValues;
+    filters.forEach((filter) => {
+      const id = filter.id as keyof FilterFormValues;
+      formValues[id] = filter.selected || null;
+    });
+    this.filterCategories.update((categories) => {
+      const updatedCategories = { ...categories };
+      filters.forEach((filter) => {
+        updatedCategories[filter.id] = filter;
+      });
+      return updatedCategories;
+    });
+
+    this.handleFilterSelectionChanges(formValues);
   }
 
   /**
@@ -347,32 +397,47 @@ export class MainPageComponent {
   private populateFilterOptions() {
     this.filterCategories.update((categories) => {
       return {
-        digitalObjects: {
-          ...categories['digitalObjects'],
-          options: this.digitalObjectsOptions(),
-        },
-        releaseVersions: {
-          ...categories['releaseVersions'],
-          options: this.hraVersionsOptions(),
-        },
-        organs: {
-          ...categories['organs'],
-          options: this.organsOptions(),
-        },
-        anatomicalStructures: {
-          ...categories['anatomicalStructures'],
-          options: this.ontologyOptions(this.ontologyTree()),
-        },
-        cellTypes: {
-          ...categories['cellTypes'],
-          options: this.ontologyOptions(this.cellTypeTree()),
-        },
-        biomarkers: {
-          ...categories['biomarkers'],
-          options: this.ontologyOptions(this.biomarkerTree()),
-        },
+        digitalObjects: this.withSelectedFromFilters(
+          'digitalObjects',
+          categories['digitalObjects'],
+          this.digitalObjectsOptions(),
+        ),
+        releaseVersion: this.withSelectedFromFilters(
+          'releaseVersion',
+          categories['releaseVersion'],
+          this.hraVersionsOptions(),
+        ),
+        organs: this.withSelectedFromFilters('organs', categories['organs'], this.organsOptions()),
+        anatomicalStructures: this.withSelectedFromFilters(
+          'anatomicalStructures',
+          categories['anatomicalStructures'],
+          this.ontologyOptions(this.ontologyTree()),
+        ),
+        cellTypes: this.withSelectedFromFilters(
+          'cellTypes',
+          categories['cellTypes'],
+          this.ontologyOptions(this.cellTypeTree()),
+        ),
+        biomarkers: this.withSelectedFromFilters(
+          'biomarkers',
+          categories['biomarkers'],
+          this.ontologyOptions(this.biomarkerTree()),
+        ),
       };
     });
+  }
+
+  private withSelectedFromFilters(
+    key: keyof CurrentFilters,
+    category: FilterOptionCategory<FilterOption>,
+    options: FilterOption[],
+  ): FilterOptionCategory<FilterOption> {
+    const selectedIds = new Set(this.filters()[key] ?? []);
+    return {
+      ...category,
+      options,
+      selected: options.filter((option) => selectedIds.has(option.id)),
+    };
   }
 
   /**
