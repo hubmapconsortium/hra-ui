@@ -107,4 +107,46 @@ describe('BiomarkerDetailsComponent', () => {
       expect(value).toEqual(label);
     });
   });
+
+  describe('onToggleChange(value)', () => {
+    it('updates activeTabIndex for a matching toggle value', async () => {
+      const { instance } = await shallow.render();
+
+      instance.activeTabIndex = 0;
+      instance.onToggleChange('proteins');
+
+      expect(instance.activeTabIndex).toBe(1);
+    });
+
+    it('does not update activeTabIndex for a non-matching toggle value', async () => {
+      const { instance } = await shallow.render();
+
+      instance.activeTabIndex = 2;
+      instance.onToggleChange('unknown');
+
+      expect(instance.activeTabIndex).toBe(2);
+    });
+  });
+
+  describe('highlightCells(label)', () => {
+    it('forwards the label to highlightCell action', async () => {
+      const { instance } = await shallow.render();
+      const highlightCellSpy = jest.fn();
+      (instance as Any).highlightCell = highlightCellSpy;
+
+      instance.highlightCells('gene-a');
+
+      expect(highlightCellSpy).toHaveBeenCalledWith('gene-a');
+    });
+
+    it('forwards undefined when no label is provided', async () => {
+      const { instance } = await shallow.render();
+      const highlightCellSpy = jest.fn();
+      (instance as Any).highlightCell = highlightCellSpy;
+
+      instance.highlightCells();
+
+      expect(highlightCellSpy).toHaveBeenCalledWith(undefined);
+    });
+  });
 });

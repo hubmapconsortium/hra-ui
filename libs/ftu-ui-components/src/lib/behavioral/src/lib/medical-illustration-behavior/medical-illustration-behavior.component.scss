@@ -6,19 +6,16 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
-  ftu-label-box {
-    height: 4.0625rem;
-    border-bottom: 0.0625rem solid vars.$outline-variant;
-  }
+  height: 100%;
 
   .illustration-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid vars.$outline-variant;
-    background-color: vars.$surface-container-low;
+    color: vars.$secondary;
+    height: 4rem;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
 
     .content {
       @include utils.use-font(label, medium);
@@ -28,18 +25,5 @@
   ftu-interactive-svg {
     flex: 1;
     overflow: hidden;
-  }
-
-  @media (min-height: 49.5rem) {
-    hra-label-box {
-      font-size: 0.9375rem;
-      height: 3rem;
-    }
-  }
-
-  @media (min-height: 60.75rem) {
-    hra-label-box {
-      font-size: 1.25rem;
-    }
   }
 }
