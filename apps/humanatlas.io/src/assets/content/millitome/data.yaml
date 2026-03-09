@@ -1,6 +1,6 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Millitomes
-subtitle: Protocol for registering human tissue at scale into HRA 3D reference objects using millitomes
+subtitle: Guide for cutting and registering human tissue at scale for accurate 3D exploration
 icons: product:millitome
 action:
   label: Get data
