@@ -1,15 +1,14 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule, MatListOption } from '@angular/material/list';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule, MatListOption } from '@angular/material/list';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Search list option interface */
 export interface SearchListOption {
@@ -40,7 +39,6 @@ export interface SearchListOption {
     MatInputModule,
     ReactiveFormsModule,
     MatListModule,
-    PlainTooltipDirective,
   ],
   templateUrl: './search-list.component.html',
   styleUrl: './search-list.component.scss',
@@ -52,9 +50,6 @@ export class SearchListComponent<T extends SearchListOption> {
 
   /** Whether to disable the ripple effect for list items */
   readonly disableRipple = input(false, { transform: booleanAttribute });
-
-  /** Whether to hide the count for each filter option */
-  readonly disableCounter = input(false, { transform: booleanAttribute });
 
   /** All filter options */
   readonly options = input.required<T[]>();
