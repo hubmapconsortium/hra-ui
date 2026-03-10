@@ -22,10 +22,10 @@
     >
       <hra-filter-menu
         hraFeature="filter-menu"
-        [filters]="filterCategoriesArray()"
+        [filters]="filterCategories()"
         [formClosed]="!sidenav.opened"
         [enableCollapse]="true"
-        (filtersChange)="handleFiltersChange($event); table.scrollToTop()"
+        (filtersChange)="handleFilterSelectionChanges($event); table.scrollToTop()"
         (collapseClick)="sidenav.toggle()"
       />
     </mat-sidenav>

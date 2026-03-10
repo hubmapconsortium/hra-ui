@@ -67,6 +67,10 @@
     }
   }
 
+  .filters {
+    width: 20rem;
+  }
+
   &.closed {
     .collapse-button {
       align-self: flex-end;

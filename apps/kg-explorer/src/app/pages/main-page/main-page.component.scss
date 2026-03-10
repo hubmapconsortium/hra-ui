@@ -18,10 +18,6 @@
     )
   );
 
-  mat-sidenav {
-    border-right: 1px solid vars.$outline;
-  }
-
   mat-sidenav-container {
     flex: 1;
   }
@@ -33,6 +29,7 @@
 
     @media (min-width: 1100px) {
       padding-left: 0;
+      border-left: 1px solid var(--mat-sys-outline);
     }
   }
 
