@@ -19,9 +19,13 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   options: T[];
   /** Selected filter options */
   selected?: T[];
+  /** Optional tooltip for the filter category */
   tooltip?: {
+    /** Tooltip text */
     description: string;
+    /** Action button text */
     actionText?: string;
+    /** Action button url */
     actionUrl?: string;
   };
 }
@@ -65,6 +69,7 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Whether to show the close button */
   readonly enableClose = input<boolean>();
 
+  /** Whether to enable collapse functionality */
   readonly enableCollapse = input<boolean>();
 
   /** Whether or not the form panel is closed */
@@ -76,6 +81,7 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
 
+  /** Emits when the collapse icon is clicked */
   readonly collapseClick = output();
 
   /** Whether the user is on a wide screen */

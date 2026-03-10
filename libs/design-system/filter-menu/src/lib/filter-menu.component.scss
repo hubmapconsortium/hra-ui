@@ -52,6 +52,12 @@
     }
   }
 
+  ng-scrollbar {
+    ::ng-deep .ng-scroll-content {
+      width: 100%;
+    }
+  }
+
   .customize {
     display: none;
 
@@ -65,10 +71,6 @@
       gap: 1rem;
       padding-bottom: 2.5rem;
     }
-  }
-
-  .filters {
-    width: 20rem;
   }
 
   &.closed {
