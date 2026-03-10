@@ -42,7 +42,7 @@ export class FilterContainerComponent<T extends FilterChip> {
   readonly action = input.required<string>();
 
   /** Total count of filter options in the category */
-  readonly filterTotalCount = input<number | undefined>();
+  readonly totalCount = input<number>();
 
   /** Whether to show the info button with tooltip */
   readonly showTooltip = input(false, { transform: booleanAttribute });

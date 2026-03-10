@@ -41,7 +41,7 @@
         enableDivider
         cdkOverlayOrigin
         [action]="filter.label"
-        [filterTotalCount]="filter.totalCount"
+        [totalCount]="filter.totalCount"
         [chips]="filter.selected ?? []"
         (chipsChange)="updateFilterSelection(filter, $event)"
         (actionClick)="activeFilter.set(filter)"

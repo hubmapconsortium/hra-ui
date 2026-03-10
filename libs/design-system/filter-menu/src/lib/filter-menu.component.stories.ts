@@ -146,6 +146,10 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  args: {
+    enableTotalCount: true,
+  },
+
   render: (args) => ({
     props: args,
     template: `

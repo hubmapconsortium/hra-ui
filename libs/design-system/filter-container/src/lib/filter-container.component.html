@@ -19,10 +19,10 @@
       <div class="label">
         {{ action() }}
       </div>
-      <div class="count" hraPlainTooltip="Number of unique items per filter category">
-        {{ filterTotalCount()?.toLocaleString() }}
-      </div>
     </button>
+    <div class="count" hraPlainTooltip="Number of unique items per filter category">
+      {{ totalCount() | number }}
+    </div>
   </div>
 
   @if (chips().length > 0) {
