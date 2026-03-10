@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DigitalObjectsJsonLd, HraKgService, OntologyTree } from '@hra-api/ng-client';
+import { FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
+import { SearchListOption } from '@hra-ui/design-system/search-list';
 import { TableColumn } from '@hra-ui/design-system/table';
 import { render } from '@testing-library/angular';
 import { of } from 'rxjs';
@@ -144,6 +146,19 @@ describe('MainPageComponent', () => {
     }
   });
 
+  function getFiltersWithSelections(
+    currentFilters: FilterOptionCategory<SearchListOption>[],
+    selections: Partial<Record<string, string[]>>,
+  ): FilterOptionCategory<SearchListOption>[] {
+    return currentFilters.map((category) => {
+      const selected = selections[category.id]?.map((id) => ({ id, label: id, count: 1 }));
+      return {
+        ...category,
+        selected,
+      };
+    });
+  }
+
   it('should initialize filters from query params', async () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
@@ -155,7 +170,7 @@ describe('MainPageComponent', () => {
       mockKgService as unknown as HraKgService,
     );
     const instance = fixture.componentInstance;
-    const filters = instance.filters();
+    const filters = instance.currentFilterIds();
 
     expect(filters.digitalObjects).toEqual(['2d-ftu']);
     expect(filters.releaseVersion).toEqual(['v1.2', 'v2.2']);
@@ -204,7 +219,7 @@ describe('MainPageComponent', () => {
     );
 
     const instance = fixture.componentInstance;
-    const filters = instance.filters();
+    const filters = instance.currentFilterIds();
 
     expect(filters.digitalObjects).toEqual(['2d-ftu']);
     expect(filters.releaseVersion).toEqual(['v1.2']);
@@ -234,12 +249,12 @@ describe('MainPageComponent', () => {
 
     const instance = fixture.componentInstance;
 
-    expect(instance.filters()).toEqual({
+    expect(instance.currentFilterIds()).toEqual({
       anatomicalStructures: undefined,
       biomarkers: undefined,
       cellTypes: undefined,
-      digitalObjects: '2d-ftu',
-      organs: 'http://purl.obolibrary.org/obo/UBERON_0002113',
+      digitalObjects: ['2d-ftu'],
+      organs: ['http://purl.obolibrary.org/obo/UBERON_0002113'],
       releaseVersion: undefined,
       searchTerm: '',
     });
@@ -274,14 +289,16 @@ describe('MainPageComponent', () => {
 
     const instance = fixture.componentInstance;
 
-    instance.handleFilterSelectionChanges({
-      digitalObjects: [{ id: '2d-ftu', label: 'Object 2', count: 5 }],
-      releaseVersion: [{ id: 'v2.0', label: 'v2.0', count: 3 }],
-      organs: [{ id: 'lung', label: 'Lung', count: 2 }],
-      anatomicalStructures: [{ id: 'aaa', label: 'aaa', count: 8 }],
-      cellTypes: [{ id: 'bbb', label: 'bbb', count: 9 }],
-      biomarkers: [{ id: 'ccc', label: 'ccc', count: 10 }],
-    });
+    instance.handleFilterSelectionChanges(
+      getFiltersWithSelections(instance.filterCategories(), {
+        digitalObjects: ['2d-ftu'],
+        releaseVersion: ['v2.0'],
+        organs: ['lung'],
+        anatomicalStructures: ['aaa'],
+        cellTypes: ['bbb'],
+        biomarkers: ['ccc'],
+      }),
+    );
 
     expect(mockRouter.navigate).toHaveBeenCalledWith([''], {
       queryParams: {
@@ -310,7 +327,7 @@ describe('MainPageComponent', () => {
     const instance = fixture.componentInstance;
 
     instance.searchControl.setValue('brain');
-    expect(instance.filters().searchTerm).toBe('brain');
+    expect(instance.currentFilterIds().searchTerm).toBe('brain');
   });
 
   it('should handle empty filter fields in handleFilterSelectionChanges', async () => {
@@ -326,18 +343,14 @@ describe('MainPageComponent', () => {
 
     const instance = fixture.componentInstance;
 
-    instance.filters().searchTerm = undefined;
-
-    instance.handleFilterSelectionChanges({
-      digitalObjects: null,
-      releaseVersion: null,
-      organs: null,
-      anatomicalStructures: null,
-      cellTypes: null,
-      biomarkers: null,
+    instance.currentFilterIds.set({
+      ...instance.currentFilterIds(),
+      searchTerm: undefined,
     });
 
-    expect(instance.filters()).toEqual({
+    instance.handleFilterSelectionChanges(getFiltersWithSelections(instance.filterCategories(), {}));
+
+    expect(instance.currentFilterIds()).toEqual({
       anatomicalStructures: undefined,
       biomarkers: undefined,
       cellTypes: undefined,
@@ -385,7 +398,10 @@ describe('MainPageComponent', () => {
     );
 
     const instance = fixture.componentInstance;
-    expect(instance.filterCategories()['anatomicalStructures'].options?.length).toEqual(2);
+    const anatomicalStructuresFilter = instance
+      .filterCategories()
+      .find((category: FilterOptionCategory<SearchListOption>) => category.id === 'anatomicalStructures');
+    expect(anatomicalStructuresFilter?.options?.length).toEqual(2);
   });
 
   it('applies more filters', async () => {
@@ -427,7 +443,7 @@ describe('MainPageComponent', () => {
 
     const instance = fixture.componentInstance;
     instance.searchControl.setValue('');
-    expect(instance.filters().searchTerm).toBeUndefined();
+    expect(instance.currentFilterIds().searchTerm).toBeUndefined();
   });
 
   it('should calculate scroll height based on screen size', async () => {
@@ -469,7 +485,6 @@ describe('MainPageComponent', () => {
     window.innerWidth = 500;
     window.dispatchEvent(new Event('resize'));
 
-    // instance['setScrollViewportHeight']();
     expect(instance.scrollHeight()).toBe(741);
   });
 
@@ -544,5 +559,118 @@ describe('MainPageComponent', () => {
     );
     const instance = fixture.componentInstance;
     expect(instance.filteredRows()).toEqual([]);
+  });
+
+  it('skips digital objects and organs filters when they are undefined (false branches)', async () => {
+    // No 'do' and no 'organs' params → digitalObjects/organs stay undefined
+    const routeNoDoOrOrgans = {
+      queryParams: of({
+        search: 'kidney',
+      }),
+    };
+
+    // doSearch returns the kidney FTU purl so applyMoreFilters gets a real row
+    const kgServiceWithResult = {
+      doSearch: jest
+        .fn()
+        .mockReturnValue(of(['https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle'])),
+    } as unknown as HraKgService;
+
+    const { fixture } = await setup(
+      mockData as DigitalObjectsJsonLd,
+      [],
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      routeNoDoOrOrgans as unknown as ActivatedRoute,
+      kgServiceWithResult,
+    );
+    const instance = fixture.componentInstance;
+
+    // Filters with undefined digitalObjects and undefined organs: both if-blocks are skipped
+    expect(instance.currentFilterIds().digitalObjects).toBeUndefined();
+    expect(instance.currentFilterIds().organs).toBeUndefined();
+    // Row passes through (search term 'kidney' matches the title)
+    expect(instance.filteredRows().length).toBeGreaterThan(0);
+  });
+
+  it('uses [] fallback for rows without organIds when filtering by organs', async () => {
+    // The landmark fixture in mock-data has no organIds field
+    const landmarkPurl = 'https://purl.humanatlas.io/landmark/main-bronchus-female-landmarks';
+
+    const routeWithOrgansFilter = {
+      queryParams: of({
+        organs: ['http://purl.obolibrary.org/obo/UBERON_0002113'],
+      }),
+    };
+
+    // doSearch returns the landmark purl so the row (organIds=undefined) reaches filterOrganResults
+    const kgServiceLandmark = {
+      doSearch: jest.fn().mockReturnValue(of([landmarkPurl])),
+    } as unknown as HraKgService;
+
+    const { fixture } = await setup(
+      mockData as DigitalObjectsJsonLd,
+      [],
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      routeWithOrgansFilter as unknown as ActivatedRoute,
+      kgServiceLandmark,
+    );
+    const instance = fixture.componentInstance;
+
+    // The landmark row has organIds=undefined so the ?? [] fallback is used;
+    // since [] contains no organ matching the filter, the row is excluded.
+    expect(instance.filteredRows()).toEqual([]);
+  });
+
+  it('does not call getDownloadOptions when downloadId does not match any row', async () => {
+    const mockHttpService = {
+      get: jest.fn().mockReturnValue(of(mockMetadata)),
+    } as unknown as HttpClient;
+
+    const { fixture } = await setup(
+      mockData as DigitalObjectsJsonLd,
+      [],
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      mockActivatedRoute as unknown as ActivatedRoute,
+      mockKgService as unknown as HraKgService,
+      mockHttpService,
+    );
+    const instance = fixture.componentInstance;
+
+    // Clear call count accumulated by earlier tests before asserting
+    mockDownloadService.getDownloadOptions.mockClear();
+
+    // Set a downloadId that doesn't match any row's `id`
+    instance.downloadId.set('https://lod.humanatlas.io/nonexistent/object/v1.0');
+    instance['attachDownloadOptions']();
+    expect(instance.download.getDownloadOptions).not.toHaveBeenCalled();
+  });
+
+  it('uses empty string fallback when searchTerm is undefined inside filterSearchFormResults', async () => {
+    const { fixture } = await setup(
+      mockData as DigitalObjectsJsonLd,
+      [],
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      { root: '', nodes: {} },
+      mockActivatedRoute as unknown as ActivatedRoute,
+      mockKgService as unknown as HraKgService,
+    );
+    const instance = fixture.componentInstance;
+
+    // Force searchTerm to undefined so the ?? '' fallback fires inside filterSearchFormResults
+    instance.currentFilterIds.set({ ...instance.currentFilterIds(), searchTerm: undefined });
+
+    // Any non-empty title includes '' so all rows pass through
+    const rows = [{ title: 'kidney test' }, { title: 'brain region' }] as Parameters<
+      (typeof instance)['filterSearchFormResults']
+    >[0];
+    const result = instance['filterSearchFormResults'](rows);
+    expect(result.length).toBe(2);
   });
 });
