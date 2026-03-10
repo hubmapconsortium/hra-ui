@@ -24,11 +24,14 @@ Developer conventions and patterns to follow
 
 - Change detection: components are always `OnPush` and always `standalone`. Prefer isolated, pure inputs and immutable patterns using Angular signals.
 - Styles: global include paths reference `libs/design-system/styles` (see `targetDefaults` in `nx.json`). Use SCSS and the shared tokens.
+- Angular components: Do not suggest replacing `styleUrl` with `styleUrls`.
 - Libraries: follow existing naming and export patterns in `libs/`; prefer adding small reusable components to `libs/design-system` rather than app-specific copies.
 - Deprecated libraries: **Do not reference these in new code** — `libs/ccf-shared`, `libs/ftu-ui-components`, and `libs/shared/utils` are deprecated and planned for removal. If equivalent functionality is needed, prefer `libs/design-system`, create a focused `libs/<new-lib>` or ask maintainers for guidance.
 - Tests: Jest is used across the workspace (see root `jest.config.ts` and per-project configs). Many projects set `passWithNoTests: true` in `nx.json` so run specific project tests rather than relying on a global run.
 - Use `@testing-library/angular` for unit tests: import and use `render()` from `@testing-library/angular` and assert via DOM queries (e.g., `screen.getByText`) instead of accessing the Angular `fixture` or component internals from the rendered result. This keeps tests resilient and aligned with existing project patterns.
 - Test setup helpers: When tests require repeated, large `render(...)` blocks (lots of `providers`, `imports`, `declarations`, or common stubs), factor them into a `setup()` helper function that returns the `render` result and common helpers (for example: `{ renderResult, screen, user }`). Keep the helper in the test file to make test files concise and maintainable.
+- Test constants: Move repeated constants (mock data, test fixtures, shared values) to the describe block level to reduce duplication across individual test cases. This improves maintainability and makes test data more visible and reusable.
+- Zod imports: Always import zod using `import * as z from 'zod';` — this ensures zod imports are tree shakeable.
 
 Integration and external dependencies
 

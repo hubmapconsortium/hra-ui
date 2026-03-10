@@ -1,10 +1,5 @@
 <!-- eslint-disable @angular-eslint/template/mouse-events-have-key-events -->
-<cdk-virtual-scroll-viewport
-  hraFeature="biomarker-table"
-  [tvsItemSize]="rowHeight"
-  [headerHeight]="headerHeight"
-  [style.height.px]="viewportHeight"
->
+<ng-scrollbar>
   <table class="table" mat-table [dataSource]="dataSource" #table>
     <ng-container matColumnDef="type" sticky>
       <th *matHeaderCellDef mat-header-cell>Cell types</th>
@@ -23,13 +18,6 @@
       <th *matHeaderCellDef class="count" mat-header-cell>#Cells</th>
       <td *matCellDef="let element" class="count" mat-cell [class.highlight]="isHighlighted(element)">
         {{ element[1] !== undefined ? (element[1] | number) : 'no data' }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="preFiller">
-      <th *matHeaderCellDef mat-header-cell></th>
-      <td *matCellDef="let element" mat-cell style="max-width: unset">
-        <div [style.width]="preFillerWidth"></div>
       </td>
     </ng-container>
 
@@ -64,13 +52,6 @@
       </ng-container>
     }
 
-    <ng-container matColumnDef="postFiller">
-      <th *matHeaderCellDef mat-header-cell></th>
-      <td *matCellDef="let element" mat-cell style="max-width: unset">
-        <div [style.width]="postFillerWidth"></div>
-      </td>
-    </ng-container>
-
     <tr *matHeaderRowDef="(columns$ | async) ?? []; sticky: true" mat-header-row class="column-header-row"></tr>
     <tr
       *matRowDef="let row; columns: (columns$ | async) ?? []"
@@ -79,4 +60,4 @@
       (mouseout)="setHoverId(undefined)"
     ></tr>
   </table>
-</cdk-virtual-scroll-viewport>
+</ng-scrollbar>

@@ -1,0 +1,53 @@
+:host {
+  display: block;
+
+  mat-chip-set {
+    ::ng-deep .mdc-evolution-chip-set__chips {
+      gap: 0.25rem;
+      margin-left: 0;
+    }
+    mat-chip {
+      margin: 0;
+    }
+  }
+
+  .study-banner {
+    margin-top: 0.5rem;
+  }
+
+  hra-page-section {
+    p:first-child {
+      margin-top: 0;
+    }
+
+    .citations-list > markdown:first-child {
+      ::ng-deep p {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .datasets-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+
+    .download-icon {
+      cursor: pointer;
+      height: 3rem;
+      width: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  hra-search-filter {
+    width: calc(100% - 3.25rem);
+
+    ::ng-deep mat-form-field {
+      min-width: 0 !important;
+    }
+  }
+}

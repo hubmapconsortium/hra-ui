@@ -26,7 +26,7 @@ import { MarkEmptyFormControlDirective } from '../../components/empty-form-contr
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
-import { OrganEntry } from '../../shared/resolvers/organs/organs.resolver';
+import { OrganEntry } from '../../shared/resolvers/organs.resolver';
 
 /** Error when missing required columns in uploaded csv */
 export interface MissingKeyError {
@@ -140,11 +140,7 @@ export class CreateVisualizationPageComponent {
     errorTolerance: 0, // Number of rows in the file that can be invalid before error is thrown
     papaparse: {
       header: true,
-      dynamicTyping: {
-        x: true,
-        y: true,
-        z: true,
-      },
+      dynamicTyping: true,
     },
   };
 

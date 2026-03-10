@@ -52,7 +52,7 @@
       "webComponentName": "",
       "description": "Explore FTUs by cell types and biomarkers with the full application.",
       "previewImage": "assets/ui-images/FTU_explorer.png",
-      "embedAs": "overlay",
+      "embedAs": "external",
       "docLink": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/ftu-ui/EMBEDDING.md"
     },
     {

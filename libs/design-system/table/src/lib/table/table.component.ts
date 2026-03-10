@@ -1,15 +1,29 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { httpResource } from '@angular/common/http';
-import { Component, computed, Directive, effect, ErrorHandler, inject, input, output, viewChild } from '@angular/core';
+import {
+  Component,
+  computed,
+  Directive,
+  effect,
+  ErrorHandler,
+  inject,
+  input,
+  output,
+  TemplateRef,
+  viewChild,
+} from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
+import { LinkDirective } from '@hra-ui/common/router-ext';
 import { injectAssetUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { IconsModule } from '@hra-ui/design-system/icons';
+import { ImageModalComponent } from '@hra-ui/design-system/modal/image-modal';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -18,6 +32,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
 import {
+  DataExplorationColumnType,
   IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
@@ -38,6 +53,16 @@ type RowElementContext<T, CT extends TableColumnType> = {
   element: TableRow;
   column: TableColumnWithType<CT>;
 };
+
+/** Type for the data exploration preview template context */
+interface DataExplorationPreviewContext {
+  /** Title of the data exploration preview */
+  title: string;
+  /** URL of the data exploration preview's image */
+  url: string;
+  /** Close callback */
+  close: () => void;
+}
 
 /** Directive for typing the context of Text Row Element */
 @Directive({
@@ -119,6 +144,22 @@ export class MenuButtonRowElementDirective {
   }
 }
 
+/** Directive for typing the context of DataExploration Row Element */
+@Directive({
+  selector: 'ng-template[hraDataExplorationRowElement]',
+})
+export class DataExplorationRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of DataExploration Row Element */
+  static ngTemplateContextGuard(
+    _dir: DataExplorationRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext<string, DataExplorationColumnType> {
+    return true;
+  }
+}
+
 /** Directive for typing the context of Numeric Row Element */
 @Directive({
   selector: 'ng-template[hraNumericRowElement]',
@@ -153,10 +194,13 @@ export class NumericRowElementDirective {
     TextRowElementDirective,
     MarkdownRowElementDirective,
     MenuButtonRowElementDirective,
+    DataExplorationRowElementDirective,
     NumericRowElementDirective,
     PlainTooltipDirective,
     IconsModule,
     ButtonsModule,
+    LinkDirective,
+    ImageModalComponent,
   ],
   templateUrl: 'table.component.html',
   styleUrl: 'table.component.scss',
@@ -201,22 +245,22 @@ export class TableComponent<T = TableRow> {
   readonly downloadHovered = output<string>();
 
   /** Scrollbar ref */
-  readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
+  protected readonly scrollbar = viewChild.required<NgScrollbar>('scrollbar');
 
   /** Mat sort element */
   private readonly sort = viewChild.required(MatSort);
 
-  /** Selection model for checkbox functionality */
-  readonly selection = new SelectionModel<TableRow>(true, []);
+  /** Snackbar service for download notification */
+  protected readonly snackbar = inject(SnackbarService);
 
   /** Error handler provider for logging errors */
   private readonly errorHandler = inject(ErrorHandler);
 
+  /** Material dialog service */
+  private readonly dialog = inject(MatDialog);
+
   /** Resolver for asset urls */
   private readonly resolveAssetUrl = injectAssetUrlResolver();
-
-  /** Snackbar service for download notification */
-  readonly snackbar = inject(SnackbarService);
 
   /** CSV resource from remote URL */
   private readonly csv = httpResource.text<T[]>(
@@ -266,6 +310,9 @@ export class TableComponent<T = TableRow> {
 
   /** Table data source */
   protected readonly dataSource = new MatTableDataSource<T>([]);
+
+  /** Selection model for checkbox functionality */
+  readonly selection = new SelectionModel<TableRow>(true, []);
 
   /** Sort data on load and set columns */
   constructor() {
@@ -332,7 +379,7 @@ export class TableComponent<T = TableRow> {
    * Toggle row selection
    */
   toggleRow(row: TableRow): void {
-    this.selection.toggle(row as TableRow);
+    this.selection.toggle(row);
     this.selectionChange.emit(this.selection.selected as T[]);
   }
 
@@ -366,5 +413,25 @@ export class TableComponent<T = TableRow> {
   /** Scrolls to top of the table */
   scrollToTop(): void {
     this.scrollbar().scrollTo({ top: 0, duration: 0 });
+  }
+
+  /**
+   * Opens a dialog with a data exploration preview
+   *
+   * @param template Exploration preview template reference
+   * @param title Title of the exploration preview
+   * @param url Url of the exploration preview image
+   */
+  openDataExplorationPreview(template: TemplateRef<DataExplorationPreviewContext>, title: string, url: string): void {
+    const ref = this.dialog.open(template, {
+      data: {
+        title,
+        url,
+        close: () => ref.close(),
+      },
+      closeOnNavigation: true,
+      hasBackdrop: true,
+      minWidth: 'calc(100vw - 32px)',
+    });
   }
 }

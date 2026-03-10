@@ -4,6 +4,7 @@ import { inject, Injectable } from '@angular/core';
 import {
   AggregateCount,
   DatabaseStatus,
+  DatabaseStatusStatusEnum,
   Filter,
   FilterSexEnum,
   OntologyTree,
@@ -443,7 +444,7 @@ export class DataState extends NgxsDataRepository<DataStateModel> implements Ngx
         take(1),
         tap(() => {
           this.updateStatus({
-            status: 'Ready',
+            status: DatabaseStatusStatusEnum.Ready,
           });
         }),
       )

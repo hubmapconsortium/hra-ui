@@ -1,0 +1,13 @@
+<ng-container hraFeature="image-modal">
+  <h2 class="header">
+    <span class="card-title">Preview: {{ modalTitle() }}</span>
+    <div class="filler"></div>
+    <button mat-icon-button class="close" hraFeature="close" hraClickEvent (click)="close.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </h2>
+
+  <mat-divider />
+
+  <img class="preview-image" [attr.src]="imageUrl() | assetUrl" [attr.alt]="altText()" />
+</ng-container>

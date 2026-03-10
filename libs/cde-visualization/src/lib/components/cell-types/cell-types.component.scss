@@ -72,6 +72,7 @@
           'table table table' 1fr
           / auto 1fr auto;
         overflow: hidden;
+        flex-grow: 1;
 
         &:not(:has(.total-cell-links)) {
           grid:
@@ -81,6 +82,10 @@
         }
       }
     }
+  }
+
+  .scroll-viewport {
+    height: 100%;
   }
 
   .total-ct-label,
@@ -137,11 +142,6 @@
               font: vars.$label-small;
               color: vars.$secondary;
             }
-          }
-
-          .mat-sort-header-arrow {
-            opacity: 1 !important;
-            transform: none !important;
           }
 
           tr th:last-child > div {
@@ -226,6 +226,12 @@
       .mdc-data-table__cell,
       .mdc-data-table__header-cell {
         padding: 0;
+      }
+
+      .mdc-data-table__cell {
+        &:nth-child(2) {
+          max-width: 10rem;
+        }
       }
     }
   }

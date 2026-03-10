@@ -84,6 +84,21 @@ export const MenuButtonColumnTypeSchema = z
   })
   .meta({ id: 'MenuButtonColumnType' });
 
+/** Type for DataExploration Column */
+export type DataExplorationColumnType = z.infer<typeof DataExplorationColumnTypeSchema>;
+
+/** Schema for DataExploration Column */
+export const DataExplorationColumnTypeSchema = z
+  .object({
+    type: z.literal('dataExploration'),
+    label: z.string().optional(),
+    icon: z.string().optional(),
+    external: z.boolean().optional(),
+    titleColumn: z.string().optional(),
+    imageUrlColumn: z.string().optional(),
+  })
+  .meta({ id: 'DataExplorationColumnType' });
+
 /** Type for MenuOptions Column */
 export type MenuOptionsType = z.infer<typeof MenuOptionsTypeSchema>;
 
@@ -105,6 +120,7 @@ export const SimpleTableColumnTypeSchema = z.union([
   MarkdownColumnTypeSchema.shape.type,
   IconColumnTypeSchema.shape.type,
   MenuButtonColumnTypeSchema.shape.type,
+  DataExplorationColumnTypeSchema.shape.type,
 ]);
 
 /** Inferred types for Table Columns */
@@ -118,6 +134,7 @@ export const TableColumnTypeSchema = z.union([
   LinkColumnTypeSchema,
   IconColumnTypeSchema,
   MenuButtonColumnTypeSchema,
+  DataExplorationColumnTypeSchema,
 ]);
 
 /** Type for table columns */

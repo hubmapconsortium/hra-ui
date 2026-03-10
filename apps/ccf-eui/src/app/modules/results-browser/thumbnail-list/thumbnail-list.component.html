@@ -11,6 +11,7 @@
       [class.empty]="thumbnail === undefined"
       [style.background-image]="thumbnail"
       [attr.href]="item.link"
+      [attr.aria-label]="item.technology"
       (click)="linkClicked.emit(item)"
     ></a>
     <div>

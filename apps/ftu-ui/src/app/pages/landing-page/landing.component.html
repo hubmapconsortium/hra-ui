@@ -1,6 +1,5 @@
 <ng-container hraFeature="landing-page">
-  <div class="splash-wrapper">
-    <img alt="" class="splash-header-img" [attr.src]="'assets/ui-images/ftu-splash.png' | assetUrl" />
+  <div class="splash-wrapper" [style.background-image]="'assets/ui-images/ftu-splash.png' | assetUrl | cssUrl">
     <div class="splash-section">
       <div class="splash-content">
         <hra-icon class="misc-logo" svgIcon="product:ftu" />
@@ -42,8 +41,7 @@
     </div>
   </div>
 
-  <div class="collaborators-wrapper">
-    <img alt="splas-img-2" class="splash-header-img-2" [attr.src]="'assets/ui-images/ftu-splash-2.png' | assetUrl" />
+  <div class="collaborators-wrapper" [style.background-image]="'assets/ui-images/ftu-splash-2.png' | assetUrl | cssUrl">
     <div class="collaborators-section">
       <div class="thankyou-container">
         <div class="thank-you-header">A special thanks to our partners</div>

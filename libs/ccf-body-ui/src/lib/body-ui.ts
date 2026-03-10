@@ -243,7 +243,7 @@ export class BodyUI {
     processSceneNodes(gltfUrl, gltfTransform, 'VHF_Kidney_L_Low1').then((results) => {
       console.log('results', results);
       console.log('data', data);
-      data = data.concat(Object.values(results));
+      data = data.concat(Object.values(results as unknown as SpatialSceneNode[]));
       data.push({
         '@id': 'TEST',
         '@type': 'TEST',

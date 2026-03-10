@@ -7,6 +7,7 @@ import {
   OntologyTree,
   SpatialEntity,
   SpatialSceneNode,
+  SpatialSearch,
   TissueBlock,
   V1Service,
 } from '@hra-api/ng-client';
@@ -60,9 +61,9 @@ interface DefaultParams {
 /** Filter parameter */
 interface FilterParams {
   /** Age range */
-  age?: string;
+  age?: MinMax;
   /** Bmi range */
-  bmi?: string;
+  bmi?: MinMax;
   /** Ontology terms */
   ontologyTerms?: string[];
   /** Cell types */
@@ -78,7 +79,7 @@ interface FilterParams {
   /** Technologies */
   technologies?: string[];
   /** Spatial positions */
-  spatial?: string;
+  spatial?: SpatialSearch[];
 }
 
 /** Subject used to flush caches */
@@ -115,7 +116,7 @@ function cast<T>(): (data: unknown) => T {
 function rangeToMinMax(range: number[] | undefined, low: number, high: number): MinMax | undefined {
   if (range) {
     const min = range[0] > low ? range[0] : undefined;
-    const max = range[1] < high ? range[0] : undefined;
+    const max = range[1] < high ? range[1] : undefined;
     if (min !== undefined || max !== undefined) {
       return { min, max };
     }
@@ -158,8 +159,8 @@ function filterToParams(filter: Filter = {}): FilterParams {
   } = filter;
 
   return {
-    age: JSON.stringify(rangeToMinMax(ageRange, 1, 110)),
-    bmi: JSON.stringify(rangeToMinMax(bmiRange, 13, 83)),
+    age: rangeToMinMax(ageRange, 1, 110),
+    bmi: rangeToMinMax(bmiRange, 13, 83),
     sex: sex?.toLowerCase() as FilterParams['sex'],
     ontologyTerms,
     cellTypeTerms,
@@ -167,7 +168,7 @@ function filterToParams(filter: Filter = {}): FilterParams {
     consortiums,
     providers,
     technologies,
-    spatial: spatial?.length ? JSON.stringify(spatial) : undefined,
+    spatial,
   };
 }
 

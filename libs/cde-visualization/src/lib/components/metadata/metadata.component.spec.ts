@@ -51,4 +51,21 @@ describe('MetadataComponent', () => {
     component.toggleEmptyFields();
     expect(component.showEmptyFields()).toBe(false);
   });
+
+  it('should hide empty metadata fields', async () => {
+    const { fixture } = await render(MetadataComponent, {
+      componentInputs: {
+        metadata: {
+          ...metadata,
+          creationTimestamp: undefined,
+        },
+      },
+      providers: [provideNoopAnimations()],
+    });
+
+    expect(screen.queryByText('Creation date')).toBeNull();
+    fixture.componentInstance.toggleEmptyFields();
+    fixture.detectChanges();
+    expect(screen.getByText('Creation date')).toBeInTheDocument();
+  });
 });

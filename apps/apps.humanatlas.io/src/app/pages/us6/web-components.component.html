@@ -24,7 +24,7 @@
     @if (activeOrgan(); as organ) {
       <div class="card-collection">
         <div class="cards" [hraFeature]="organ.label">
-          @for (component of components; track component.id) {
+          @for (component of activeComponents(); track component.id) {
             <hra-action-card
               class="component-card"
               variant="elevated"

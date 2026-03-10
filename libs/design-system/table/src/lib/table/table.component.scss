@@ -9,18 +9,6 @@
   border: 0.0625rem solid vars.$outline;
   border-radius: 0.5rem;
 
-  // Position scrollbar to start after header (only when headers are visible)
-  &:has(tr[mat-header-row]) ng-scrollbar {
-    ::ng-deep scrollbar-y {
-      top: 2.5rem;
-      height: calc(100% - 2.5rem);
-
-      .ng-scrollbar-sticky {
-        top: 2.5rem;
-      }
-    }
-  }
-
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
     border-left: 1px solid vars.$outline-variant;
@@ -98,7 +86,7 @@
     height: 100%;
     overflow: hidden;
 
-    ::ng-deep .ng-scroll-viewport {
+    .scroll-viewport {
       max-height: var(--hra-table-max-height);
     }
   }
@@ -193,5 +181,21 @@
     ::ng-deep tbody tr:nth-child(even) {
       background-color: vars.$surface-bright;
     }
+  }
+}
+
+.data-exploration-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .explore-button {
+    min-width: 5.125rem;
+  }
+
+  .preview-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

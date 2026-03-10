@@ -1,0 +1,51 @@
+<hra-grid-container hraFeature="spatial-omics-gallery" itemMinWidth="314px">
+  @for (study of studies(); track study.slug) {
+    <hra-collection-card
+      hraFeature="featured-study"
+      [tagline]="study.tagline"
+      [image]="study.thumbnail"
+      [taglineChips]="study.chips"
+      [label]="study.authors"
+      [supportingText]="study.affiliations"
+      [tags]="study.tags"
+    >
+      <hra-collection-card-action>
+        <div class="left-actions">
+          <a
+            mat-flat-button
+            hraClickEvent
+            hraFeature="view-datasets"
+            hraButtonSize="medium"
+            [hraLink]="`/gallery/${study.slug}`"
+          >
+            View dataset{{ study.datasets.length === 1 ? '' : 's' }}
+          </a>
+          @if (study.euiUrl) {
+            <button
+              hraFeature="more-options"
+              hraClickEvent
+              mat-icon-button
+              hraIconButtonSize="large"
+              hraIconButtonVariant="dark"
+              hraPlainTooltip="More"
+              aria-label="More options"
+              [matMenuTriggerFor]="moreMenu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #moreMenu>
+              <a mat-menu-item hraClickEvent hraLinkExternal hraFeature="view-datasets-in-eui" [hraLink]="study.euiUrl">
+                <mat-icon>open_in_new</mat-icon>
+                View datasets in the Exploration User Interface
+              </a>
+            </mat-menu>
+          }
+        </div>
+      </hra-collection-card-action>
+
+      <hra-collection-card-action alignment="right">
+        <cde-source-data-menu [publications]="study.publicationItems" />
+      </hra-collection-card-action>
+    </hra-collection-card>
+  }
+</hra-grid-container>

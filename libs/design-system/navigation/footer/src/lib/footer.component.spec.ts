@@ -18,7 +18,7 @@ describe('FooterComponent', () => {
   });
 
   it('should display copyright information correctly', async () => {
-    expect(screen.getByText(/© 2025/i)).toBeInTheDocument();
+    expect(screen.getByText(/© 2026/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Cyberinfrastructure for Network Science Center/i })).toBeInTheDocument();
 
     const iuLinks = screen.getAllByRole('link', { name: /Indiana University/i });

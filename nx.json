@@ -108,6 +108,7 @@
     },
     "@nx/angular:dev-server": {
       "defaultConfiguration": "development",
+      "continuous": true,
       "configurations": {
         "production": {
           "buildTarget": "{projectName}:build:production"

@@ -78,6 +78,8 @@ export interface NodeEvent {
   clientY: number;
   /** The materialized node object */
   object: object;
+  /** The raw node data entry */
+  raw: AnyDataEntry;
 }
 
 /** Default node target */
@@ -488,7 +490,13 @@ export class NodeDistVisComponent {
   private pickingInfoToNodeEvent(info: PickingInfo): NodeEvent {
     const view = this.nodesView();
     const { index, x, y } = info;
-    return { index, clientX: x, clientY: y, object: view.materializeAt(index) };
+    return {
+      index,
+      clientX: x,
+      clientY: y,
+      object: view.materializeAt(index),
+      raw: view.at(index),
+    };
   }
 
   /**

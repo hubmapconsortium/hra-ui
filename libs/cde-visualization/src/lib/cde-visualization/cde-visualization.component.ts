@@ -96,7 +96,7 @@ export class CdeVisualizationComponent {
   /** Node key mapping data */
   readonly nodeKeys = input<NodeKeysInput>();
   /** Node target selector used when calculating edges */
-  readonly nodeTargetSelector = input(DEFAULT_NODE_TARGET_SELECTOR);
+  readonly nodeTargetSelector = input<string>();
 
   /**
    * Column/property of the node's 'Cell Type' values
@@ -199,7 +199,7 @@ export class CdeVisualizationComponent {
   protected loadingManager = new LoadingManager();
 
   /** Sets the node target selector (uses default if not available) */
-  private readonly nodeTargetSelectorWithDefault = computed(() => {
+  protected readonly nodeTargetSelectorWithDefault = computed(() => {
     return this.nodeTargetSelector() || this.nodeTargetValue() || DEFAULT_NODE_TARGET_SELECTOR;
   });
 

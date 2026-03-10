@@ -1,17 +1,24 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen } from '@testing-library/angular';
 import { provideMarkdown } from 'ngx-markdown';
+import { PublicationData } from '../../schemas/publications-page/publications-page.schema';
 import { PublicationsPageComponent } from './publications-page.component';
-import { PublicationsPageData } from '../../schemas/publications-page/publications-page.schema';
 
 describe('PublicationsPageComponent', () => {
-  const mockPublicationsData: PublicationsPageData = {
-    '2024': ['<a href="/docs/publications/test1">Test Publication 2024</a>'],
-    '2023': ['<a href="#">Author</a> - Title'],
-  };
+  const mockPublicationsData: PublicationData = [
+    {
+      dateStart: new Date('2024-01-01'),
+      description: 'Test Publication 2024',
+    },
+    {
+      dateStart: new Date('2023-01-01'),
+      description: 'Test Publication 2023 by Author',
+    },
+  ];
 
-  const providers = [provideHttpClient(), provideHttpClientTesting(), provideMarkdown()];
+  const providers = [provideIcons(), provideHttpClient(), provideHttpClientTesting(), provideMarkdown()];
 
   async function setup(inputs = { publications: mockPublicationsData }) {
     const result = await render(PublicationsPageComponent, { inputs, providers });

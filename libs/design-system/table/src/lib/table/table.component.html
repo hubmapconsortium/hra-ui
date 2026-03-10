@@ -6,7 +6,6 @@
   <ng-scrollbar
     externalViewport=".scroll-viewport"
     externalContentWrapper=".content-wrapper"
-    externalSpacer="content-wrapper"
     asyncDetection="auto"
     #scrollbar
   >
@@ -20,7 +19,7 @@
           [matSortDisabled]="!enableSort()"
           [class.vertical-divider]="verticalDividers()"
         >
-          @let templates = { text, numeric, markdown, link, icon, menu };
+          @let templates = { text, numeric, markdown, link, icon, menu, dataExploration };
 
           <!-- Selection Column (if enabled) -->
           @if (enableRowSelection()) {
@@ -69,6 +68,7 @@
                   [hraFeature]="`header-cell.${(column.label | slugify)}`"
                   [attr.data-column-type]="type"
                   [sortActionDescription]="`Sort by ${column.label}`"
+                  [disabled]="!column.label"
                 >
                   {{ column.label }}
                 </th>
@@ -183,5 +183,55 @@
         {{ label }}
       </a>
     }
+  </ng-template>
+
+  <ng-template
+    let-url
+    let-column="column"
+    let-element="element"
+    hraFeature="data-exploration-cell"
+    hraDataExplorationRowElement
+    #dataExploration
+  >
+    @let titleColumn = column.type.titleColumn;
+    @let imageUrlColumn = column.type.imageUrlColumn;
+    @let title = titleColumn && `${element[titleColumn]}`;
+    @let imageUrl = imageUrlColumn && `${element[imageUrlColumn]}`;
+
+    <div class="data-exploration-cell">
+      <a
+        mat-flat-button
+        hraClickEvent
+        class="explore-button"
+        hraFeature="explore-button"
+        [hraLink]="url"
+        [hraLinkExternal]="column.type.external"
+      >
+        {{ column.type.label ?? 'Explore' }}
+      </a>
+
+      @if (title && imageUrl) {
+        <button
+          mat-icon-button
+          hraClickEvent
+          class="preview-icon"
+          hraFeature="preview-icon"
+          hraPlainTooltip="Preview image"
+          [attr.aria-label]="`Preview ${title}`"
+          (click)="openDataExplorationPreview(dataExplorationPreview, title, imageUrl)"
+        >
+          <hra-icon [fontIcon]="column.type.icon ?? 'preview'" />
+        </button>
+      }
+    </div>
+  </ng-template>
+
+  <ng-template let-context #dataExplorationPreview>
+    <hra-image-modal
+      [modalTitle]="context.title"
+      [imageUrl]="context.url"
+      [altText]="`Preview of ${context.title}`"
+      (close)="context.close()"
+    />
   </ng-template>
 </ng-container>

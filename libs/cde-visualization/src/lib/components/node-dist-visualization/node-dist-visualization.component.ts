@@ -26,7 +26,7 @@ import {
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
-import { DataItem, InfoModalComponent } from '@hra-ui/design-system/info-modal';
+import { DataItem, InfoModalComponent } from '@hra-ui/design-system/modal/info-modal';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -129,14 +129,11 @@ export class NodeDistVisualizationComponent {
 
   /** Data for cell info panel */
   protected readonly cellInfoContent = computed((): DataItem[] => {
-    const info = this.cellInfo();
-    if (!info) {
-      return [];
-    }
-
+    // This is guarded by cellInfoOpen() so cellInfo() will always have a value here
+    const info = this.cellInfo() as NodeEvent;
     const nodes = this.nodes();
     const edges = this.edges();
-    const { index, object: node } = info;
+    const { index, raw: node } = info;
     const edge = this.findClosestEdge(index);
     const type = nodes.getCellTypeFor(node);
     const ontologyId = nodes.getCellOntologyIDFor(node) ?? '-';

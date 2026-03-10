@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "bin": "./cli.js",
   "peerDependencies": {
-    "@angular/core": "^20.2.1",
+    "@angular/core": "^21.1.4",
     "@hra-ui/webcomponents": "1.0.0",
     "papaparse": "^5.4.1",
     "rxjs": "^7.8.2",
@@ -12,7 +12,7 @@
     "@deck.gl/extensions": "~8.8.20",
     "@deck.gl/layers": "~8.8.20",
     "@vivjs/layers": "0.16.1",
-    "ngxtension": "^5.1.0",
+    "ngxtension": "^7.0.2",
     "@hra-ui/common": "1.1.0",
     "@nebula.gl/edit-modes": "^1.1.0-alpha.5",
     "@nebula.gl/layers": "^1.1.0-alpha.5",

@@ -28,7 +28,7 @@ describe('NodeDistVisualizationComponent', () => {
   const EMPTY_FILTER = new NodeFilterView(undefined, undefined);
   const SAMPLE_NODE: AnyDataEntry = ['epithelial', 100, 200];
   const SAMPLE_EDGE: AnyDataEntry = [0, 1, 100, 200, 0, 100, 300, 0];
-  const SAMPLE_NODE_EVENT: NodeEvent = { index: 0, clientX: 0, clientY: 0, object: SAMPLE_NODE };
+  const SAMPLE_NODE_EVENT: NodeEvent = { index: 0, clientX: 0, clientY: 0, object: SAMPLE_NODE, raw: SAMPLE_NODE };
   const NODES = new NodesView([SAMPLE_NODE], EMPTY_NODES_VIEW.keyMapping);
   const EDGES = new EdgesView([SAMPLE_EDGE], EMPTY_EDGES_VIEW.keyMapping);
 
@@ -135,6 +135,16 @@ describe('NodeDistVisualizationComponent', () => {
 
       await fixture.componentInstance.download();
       expect(fileSaver.saveData).toHaveBeenCalledWith(data, 'cell-distance-vis.png');
+    });
+
+    it('does not attempt to save if toBlob returns null', async () => {
+      const fileSaver = mock<FileSaverService>();
+      const { fixture } = await setup({ providers: [{ provide: FileSaverService, useValue: fileSaver }] });
+      const el = await getVisualizationEl();
+      jest.mocked(el.instance?.toBlob)?.mockResolvedValue(null);
+
+      await fixture.componentInstance.download();
+      expect(fileSaver.saveData).not.toHaveBeenCalled();
     });
   });
 

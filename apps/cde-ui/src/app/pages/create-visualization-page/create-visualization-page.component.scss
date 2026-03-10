@@ -2,8 +2,8 @@
 
 :host {
   display: block;
-  min-width: 80rem;
-  background: url('../../../assets/backgrounds/create-visualization-page-background.png') no-repeat;
+  top: 7.0625rem;
+  background: url('../../../../public/assets/backgrounds/create-visualization-page-background.png') no-repeat;
   background-position: center;
   background-size: cover;
   position: relative;
@@ -27,7 +27,7 @@
     gap: 3rem;
     max-width: 53.5rem;
     align-items: flex-start;
-    padding: 3rem 0rem 6rem;
+    padding: 3rem 2.5rem 6rem;
   }
 
   .page-nav {

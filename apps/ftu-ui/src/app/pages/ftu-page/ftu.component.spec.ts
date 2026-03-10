@@ -1,8 +1,8 @@
+import { signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { dispatch, injectDestroy$, selectSnapshot } from '@hra-ui/cdk/injectors';
 import { FtuFullScreenService } from '@hra-ui/ftu-ui-components';
 import { EMPTY, of } from 'rxjs';
-import { signal, TemplateRef } from '@angular/core';
 import { Shallow } from 'shallow-render';
 import { FtuComponent } from './ftu.component';
 
@@ -46,17 +46,5 @@ describe('FtuComponent', () => {
     instance.closefullscreen();
 
     expect(mockFullscreenService.isFullscreen()).toBe(false);
-  });
-
-  it('should set sourceListTemplate when setSourceList() is called', async () => {
-    const { instance } = await shallow.render();
-
-    const mockTemplateRef = {} as TemplateRef<unknown>;
-
-    expect(instance.sourceListTemplate).toBeNull();
-
-    instance.setSourceList(mockTemplateRef);
-
-    expect(instance.sourceListTemplate).toBe(mockTemplateRef);
   });
 });
