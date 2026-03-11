@@ -178,6 +178,7 @@ const meta: Meta = {
     description: 'Supporting text here, if needed, but make it short and straightforward',
     enableClose: true,
     enableCollapse: false,
+    enableTotalCount: false,
     filters: FILTER_CATEGORIES,
     toggleOptions: [
       { id: 'option1', label: 'Option 1' },
@@ -215,6 +216,10 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  args: {
+    enableTotalCount: true,
+  },
+
   render: (args) => ({
     props: args,
     template: `
@@ -224,6 +229,7 @@ export const Default: Story = {
         [description]="description"
         [enableClose]="enableClose"
         [enableCollapse]="enableCollapse"
+        [enableTotalCount]="enableTotalCount"
       >
         ${CUSTOM_CONTROLS}
       </hra-filter-menu>

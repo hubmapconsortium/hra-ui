@@ -25,6 +25,7 @@
         [filters]="filterCategories()"
         [formClosed]="!sidenav.opened"
         [enableCollapse]="true"
+        [enableTotalCount]="true"
         (filtersChange)="handleFilterSelectionChanges($event); table.scrollToTop()"
         (collapseClick)="sidenav.toggle()"
       />
