@@ -91,6 +91,8 @@
         (detach)="closeFilterMenu(filter)"
       >
         <hra-search-list
+          cdkTrapFocus
+          cdkTrapFocusAutoCapture
           [options]="filter.options"
           [selected]="filter.selected ?? []"
           (selectedChange)="updateFilterSelection(filter, $event)"

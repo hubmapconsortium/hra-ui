@@ -1,3 +1,4 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
@@ -50,6 +51,7 @@ const FILTER_MENU_POSITIONS: ConnectedPosition[] = [
     OverlayModule,
     SearchListComponent,
     PlainTooltipDirective,
+    CdkTrapFocus,
   ],
   templateUrl: './filter-menu.component.html',
   styleUrl: './filter-menu.component.scss',
