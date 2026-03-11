@@ -21,11 +21,6 @@
       }
 
       .category-button {
-        flex: 0 1 auto;
-        min-width: fit-content;
-        width: 100%;
-        justify-content: flex-start;
-
         @include mat.button-overrides(
           (
             text-horizontal-padding: 0.75rem,
@@ -39,6 +34,7 @@
 
       .count {
         color: vars.$primary;
+        margin-left: auto;
         @include utils.use-font(label, small);
       }
     }
