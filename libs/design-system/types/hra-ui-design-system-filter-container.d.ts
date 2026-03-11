@@ -11,6 +11,8 @@ interface FilterChip {
 declare class FilterContainerComponent<T extends FilterChip> {
     /** tagline for the filter category */
     readonly action: _angular_core.InputSignal<string>;
+    /** Total count of filter options in the category */
+    readonly totalCount: _angular_core.InputSignal<number | undefined>;
     /** Whether to show the info button with tooltip */
     readonly showTooltip: _angular_core.InputSignalWithTransform<boolean, unknown>;
     /** Array of selected filter chips - two-way bindable */
@@ -25,7 +27,7 @@ declare class FilterContainerComponent<T extends FilterChip> {
      */
     removeChip(chip: T): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<FilterContainerComponent<any>, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<FilterContainerComponent<any>, "hra-filter-container", never, { "action": { "alias": "action"; "required": true; "isSignal": true; }; "showTooltip": { "alias": "showTooltip"; "required": false; "isSignal": true; }; "chips": { "alias": "chips"; "required": false; "isSignal": true; }; "enableDivider": { "alias": "enableDivider"; "required": false; "isSignal": true; }; }, { "chips": "chipsChange"; "actionClick": "actionClick"; }, never, ["[tooltipContent]", "[tooltipActions]"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<FilterContainerComponent<any>, "hra-filter-container", never, { "action": { "alias": "action"; "required": true; "isSignal": true; }; "totalCount": { "alias": "totalCount"; "required": false; "isSignal": true; }; "showTooltip": { "alias": "showTooltip"; "required": false; "isSignal": true; }; "chips": { "alias": "chips"; "required": false; "isSignal": true; }; "enableDivider": { "alias": "enableDivider"; "required": false; "isSignal": true; }; }, { "chips": "chipsChange"; "actionClick": "actionClick"; }, never, ["[tooltipContent]", "[tooltipActions]"], true, never>;
 }
 
 export { FilterContainerComponent };

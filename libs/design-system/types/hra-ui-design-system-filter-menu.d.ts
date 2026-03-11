@@ -12,6 +12,8 @@ interface FilterOptionCategory<T extends SearchListOption> {
     options: T[];
     /** Selected filter options */
     selected?: T[];
+    /** Total count */
+    totalCount?: number;
 }
 /**
  * A collapsing menu with ways to refine databases to particular views, sorting and grouping preferences, and filters
@@ -23,6 +25,8 @@ declare class FilterMenuComponent<T extends SearchListOption> {
     readonly description: _angular_core.InputSignal<string | undefined>;
     /** Whether to show the close button */
     readonly enableClose: _angular_core.InputSignal<boolean | undefined>;
+    /** Whether to enable total count display */
+    readonly enableTotalCount: _angular_core.InputSignal<boolean>;
     /** List of all filters with options */
     readonly filters: _angular_core.ModelSignal<FilterOptionCategory<T>[]>;
     /** Emits when the form opening state is toggled */
@@ -35,6 +39,8 @@ declare class FilterMenuComponent<T extends SearchListOption> {
     protected readonly activeFilter: _angular_core.WritableSignal<FilterOptionCategory<T> | undefined>;
     /** Current active filter id */
     protected readonly activeFilterId: _angular_core.Signal<string | undefined>;
+    /** Filters with total counts */
+    protected readonly filtersWithCounts: _angular_core.Signal<FilterOptionCategory<T>[]>;
     /**
      * Updates filters on filter selection
      * @param category Filter category to update
@@ -46,8 +52,10 @@ declare class FilterMenuComponent<T extends SearchListOption> {
      * @param category Filter category to close
      */
     closeFilterMenu(category?: FilterOptionCategory<T>): void;
+    /** Helper function to add total counts to filters */
+    private _addTotalCounts;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<FilterMenuComponent<any>, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<FilterMenuComponent<any>, "hra-filter-menu", never, { "tagline": { "alias": "tagline"; "required": false; "isSignal": true; }; "description": { "alias": "description"; "required": false; "isSignal": true; }; "enableClose": { "alias": "enableClose"; "required": false; "isSignal": true; }; "filters": { "alias": "filters"; "required": true; "isSignal": true; }; }, { "filters": "filtersChange"; "closeClick": "closeClick"; }, never, ["*"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<FilterMenuComponent<any>, "hra-filter-menu", never, { "tagline": { "alias": "tagline"; "required": false; "isSignal": true; }; "description": { "alias": "description"; "required": false; "isSignal": true; }; "enableClose": { "alias": "enableClose"; "required": false; "isSignal": true; }; "enableTotalCount": { "alias": "enableTotalCount"; "required": false; "isSignal": true; }; "filters": { "alias": "filters"; "required": true; "isSignal": true; }; }, { "filters": "filtersChange"; "closeClick": "closeClick"; }, never, ["*"], true, never>;
 }
 
 export { FilterMenuComponent };
