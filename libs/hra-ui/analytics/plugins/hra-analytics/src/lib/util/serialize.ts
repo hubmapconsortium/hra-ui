@@ -1,0 +1,108 @@
+import { HttpErrorResponse } from '@angular/common/http';
+
+/**
+ * Serializes complex values into simpler types.
+ * Currently handles the following objects:
+ * - Errors (and subclasses)
+ * - Events (ErrorEvent, KeyboardEvent, and MouseEvent)
+ * - Maps
+ * - Sets
+ * - Angular's HTTP error responses
+ *
+ * @param value Value to serialize
+ * @returns A replacement value to serialize
+ */
+export function serialize(value: unknown): unknown {
+  // Short circuit for non-objects
+  if (typeof value !== 'object' || value === null) {
+    return value;
+  }
+
+  if (value instanceof Date) {
+    return value.toISOString();
+  } else if (value instanceof Error) {
+    return pick(value, ['name', 'message', 'stack']);
+  } else if (value instanceof HttpErrorResponse) {
+    return pick(value, ['status', 'url', 'message', 'error']);
+  } else if (value instanceof Event) {
+    if (value instanceof ErrorEvent) {
+      return pick(value, ['message', 'filename', 'lineno', 'colno']);
+    } else if (value instanceof KeyboardEvent) {
+      const keys: (keyof KeyboardEvent)[] = ['key', 'altKey', 'ctrlKey', 'metaKey', 'shiftKey', 'repeat'];
+      return filterFalse(pick(value, keys));
+    } else if (value instanceof MouseEvent) {
+      const keys: (keyof MouseEvent)[] = ['button', 'buttons', 'altKey', 'ctrlKey', 'metaKey', 'shiftKey'];
+      const props = pick(value, keys);
+
+      const { type, currentTarget: el } = value;
+      const isAnchorClick = type === 'click' && el instanceof HTMLAnchorElement;
+      const targetKeys: (keyof HTMLAnchorElement)[] = ['href', 'type', 'target', 'download'];
+      const targetProps = isAnchorClick ? pickAttributes(el, targetKeys) : {};
+
+      return filterFalse({ ...props, ...targetProps });
+    }
+
+    return pick(value, ['type']);
+  } else if (value instanceof Map) {
+    return { map: [...value] };
+  } else if (value instanceof Set) {
+    return { set: [...value] };
+  }
+
+  return value;
+}
+
+/**
+ * Pick a set of properties from an object
+ *
+ * @param obj Original object
+ * @param keys Keys to pick from the object
+ * @returns A subset of the object
+ */
+function pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
+  return keys.reduce(
+    (acc, key) => {
+      acc[key] = obj[key];
+      return acc;
+    },
+    {} as Pick<T, K>,
+  );
+}
+
+/**
+ * Pick a set of attributes from an element.
+ * Excludes attributes not present on the element.
+ *
+ * @param el Element reference
+ * @param attributes Attributes to pick
+ * @returns Values by attribute name
+ */
+function pickAttributes<T extends Element, K extends string>(el: T, attributes: K[]): Partial<Record<K, string>> {
+  return attributes.reduce(
+    (acc, attr) => {
+      const value = el.getAttribute(attr);
+      if (value !== null) {
+        acc[attr] = value;
+      }
+      return acc;
+    },
+    {} as Partial<Record<K, string>>,
+  );
+}
+
+/**
+ * Creates a new object where any keys with a value strictly equal to false are removed
+ *
+ * @param obj Original object
+ * @returns Filtered object
+ */
+function filterFalse<T>(obj: T): Partial<T> {
+  const result: Partial<T> = {};
+  for (const key in obj) {
+    if (obj[key] !== false) {
+      result[key] = obj[key];
+    }
+  }
+
+  return result;
+}
