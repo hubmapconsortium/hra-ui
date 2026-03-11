@@ -1,4 +1,6 @@
 import { DigitalObjectInfo } from '@hra-api/ng-client';
+import { FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
+import { SearchListOption } from '@hra-ui/design-system/search-list';
 
 /** Tooltip data interface */
 export interface TooltipData {
@@ -22,75 +24,66 @@ export interface ObjectTypeData {
   documentationUrl?: string;
 }
 
-/** Filter option category interface */
-export interface FilterOptionCategory {
-  /** Category label */
-  label: string;
-  /** Filter options for the category */
-  options?: FilterOption[];
-  /** Tooltip data */
-  tooltip?: TooltipData;
-}
-
-/** Filter option interface */
-export interface FilterOption {
-  /** Option id */
-  id: string;
-  /** Option label */
-  label: string;
-  /** Secondary label (for release version options) */
-  secondaryLabel?: string;
-  /** Number of results for the filter option in the data */
-  count: number;
-  /** Tooltip data for the filter option (for digital objects category) */
-  tooltip?: TooltipData;
-}
-
 /** Filter category info */
-export const FILTER_CATEGORY_INFO: Record<string, FilterOptionCategory> = {
-  digitalObjects: {
+export const FILTER_CATEGORY_INFO: FilterOptionCategory<SearchListOption>[] = [
+  {
+    id: 'digitalObjects',
     label: 'Digital objects',
+    options: [],
     tooltip: {
       description: 'Categories of unique data structures that construct the evolving Human Reference Atlas.',
       actionText: 'Learn more',
       actionUrl: 'https://humanatlas.io/overview-data',
     },
   },
-  releaseVersions: {
+  {
+    id: 'releaseVersion',
     label: 'HRA release version',
+    options: [],
     tooltip: {
       description: 'New and updated data is released twice a year on June 15 and December 15.',
     },
   },
-  organs: {
+  {
+    id: 'organs',
     label: 'Organs',
+    options: [],
     tooltip: {
       description:
         'Organs are distinct body structures made of specialized cells and tissues that work together to perform specific biological functions.',
     },
   },
-  anatomicalStructures: {
+  {
+    id: 'anatomicalStructures',
     label: 'Anatomical structures',
+    options: [],
+
     tooltip: {
       description:
         'A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell.',
     },
   },
-  cellTypes: {
+  {
+    id: 'cellTypes',
     label: 'Cell types',
+    options: [],
+
     tooltip: {
       description:
         'Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. Tissue is composed of different (resident and transitory) cell types that are characterized or identified via biomarkers.',
     },
   },
-  biomarkers: {
+  {
+    id: 'biomarkers',
     label: 'Biomarkers',
+    options: [],
+
     tooltip: {
       description:
         'Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type. They include genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).',
     },
   },
-};
+];
 
 /** Stores data for a doType */
 export const DO_INFO: Record<string, ObjectTypeData> = {

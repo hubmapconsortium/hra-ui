@@ -22,11 +22,12 @@
     >
       <hra-filter-menu
         hraFeature="filter-menu"
-        [filterCategories]="filterCategoriesArray()"
+        [filters]="filterCategories()"
         [formClosed]="!sidenav.opened"
-        [currentFilters]="filters()"
-        (toggleForm)="sidenav.toggle()"
-        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
+        [enableCollapse]="true"
+        [enableTotalCount]="true"
+        (filtersChange)="handleFilterSelectionChanges($event); table.scrollToTop()"
+        (collapseClick)="sidenav.toggle()"
       />
     </mat-sidenav>
     <mat-sidenav-content hraFeature="digital-objects">

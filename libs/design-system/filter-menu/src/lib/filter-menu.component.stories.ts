@@ -32,6 +32,75 @@ const FILTER_CATEGORIES = [
   { id: 'category10', label: 'Category 10', options: FILTER_OPTIONS },
 ] as FilterOptionCategory<SearchListOption>[];
 
+const KG_FILTER_CATEGORIES = [
+  {
+    id: 'category1',
+    label: 'Digital objects',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 1 tooltip',
+      actionText: 'Learn more',
+      actionUrl: 'https://example.com',
+    },
+  },
+  {
+    id: 'category2',
+    label: 'HRA release version',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 2 tooltip',
+    },
+  },
+  {
+    id: 'category3',
+    label: 'Organs',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 3 tooltip',
+    },
+  },
+  {
+    id: 'category4',
+    label: 'Anatomical structures',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 4 tooltip',
+    },
+  },
+  {
+    id: 'category5',
+    label: 'Cell types',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 5 tooltip',
+    },
+  },
+  {
+    id: 'category6',
+    label: 'Biomarkers',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 6 tooltip',
+    },
+  },
+  {
+    id: 'category7',
+    label: 'Creators',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 7 tooltip',
+    },
+  },
+  {
+    id: 'category8',
+    label: 'Reviewers',
+    options: FILTER_OPTIONS,
+    tooltip: {
+      description: 'This is the Category 8 tooltip',
+    },
+  },
+] as FilterOptionCategory<SearchListOption>[];
+
 const CUSTOM_CONTROLS = `
 <mat-button-toggle-group class="toggle-group" [value]="toggleOptions[0]">
   @for (category of toggleOptions; track category.id) {
@@ -108,6 +177,7 @@ const meta: Meta = {
     tagline: 'Database Headline',
     description: 'Supporting text here, if needed, but make it short and straightforward',
     enableClose: true,
+    enableCollapse: false,
     enableTotalCount: false,
     filters: FILTER_CATEGORIES,
     toggleOptions: [
@@ -158,6 +228,7 @@ export const Default: Story = {
         [tagline]="tagline"
         [description]="description"
         [enableClose]="enableClose"
+        [enableCollapse]="enableCollapse"
         [enableTotalCount]="enableTotalCount"
       >
         ${CUSTOM_CONTROLS}
@@ -176,6 +247,29 @@ export const WithoutCustomizeControls: Story = {
         [tagline]="tagline"
         [description]="description"
         [enableClose]="enableClose"
+      />
+    `,
+    styles: [STYLES],
+  }),
+};
+
+export const KnowledgeGraphFilterMenu: Story = {
+  args: {
+    tagline: undefined,
+    description: undefined,
+    enableClose: false,
+    enableCollapse: true,
+    filters: KG_FILTER_CATEGORIES,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <hra-filter-menu
+        [filters]="filters"
+        [tagline]="tagline"
+        [description]="description"
+        [enableClose]="enableClose"
+        [enableCollapse]="enableCollapse"
       />
     `,
     styles: [STYLES],

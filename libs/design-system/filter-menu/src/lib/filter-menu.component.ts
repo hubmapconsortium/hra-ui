@@ -1,3 +1,4 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
@@ -7,6 +8,7 @@ import { FilterContainerComponent } from '@hra-ui/design-system/filter-container
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule, ScrollOverflowFadeDirective } from '@hra-ui/design-system/scrolling';
 import { SearchListComponent, SearchListOption } from '@hra-ui/design-system/search-list';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Filter option category interface */
 export interface FilterOptionCategory<T extends SearchListOption> {
@@ -18,6 +20,15 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   options: T[];
   /** Selected filter options */
   selected?: T[];
+  /** Optional tooltip for the filter category */
+  tooltip?: {
+    /** Tooltip text */
+    description: string;
+    /** Action button text */
+    actionText?: string;
+    /** Action button url */
+    actionUrl?: string;
+  };
   /** Total count */
   totalCount?: number;
 }
@@ -41,10 +52,16 @@ const FILTER_MENU_POSITIONS: ConnectedPosition[] = [
     FilterContainerComponent,
     OverlayModule,
     SearchListComponent,
+    PlainTooltipDirective,
+    CdkTrapFocus,
   ],
   templateUrl: './filter-menu.component.html',
   styleUrl: './filter-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.closed]': 'formClosed()',
+    '[class.collapsible]': 'enableCollapse()',
+  },
 })
 export class FilterMenuComponent<T extends SearchListOption> {
   /** Menu tagline */
@@ -56,6 +73,12 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Whether to show the close button */
   readonly enableClose = input<boolean>();
 
+  /** Whether to enable collapse functionality */
+  readonly enableCollapse = input<boolean>();
+
+  /** Whether or not the form panel is closed */
+  readonly formClosed = input(false);
+
   /** Whether to enable total count display */
   readonly enableTotalCount = input<boolean>(false);
 
@@ -64,6 +87,9 @@ export class FilterMenuComponent<T extends SearchListOption> {
 
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
+
+  /** Emits when the collapse icon is clicked */
+  readonly collapseClick = output();
 
   /** Whether the user is on a wide screen */
   protected readonly isWideScreen = watchBreakpoint('(min-width: 1100px)');

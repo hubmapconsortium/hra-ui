@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 20rem;
   color: vars.$secondary;
   gap: 1.5rem;
 
@@ -28,7 +27,6 @@
   .section {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
-    width: 20rem;
   }
 
   .intro {
@@ -54,16 +52,44 @@
     }
   }
 
-  .customize:has(.customize-controls:empty) {
-    display: none;
+  ng-scrollbar {
+    ::ng-deep .ng-scroll-content {
+      width: 100%;
+    }
   }
 
   .customize {
+    display: none;
+
+    &:has(mat-form-field) {
+      display: block;
+    }
+
     .controls {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       padding-bottom: 2.5rem;
+    }
+  }
+
+  &.closed {
+    .collapse-button {
+      align-self: flex-end;
+    }
+
+    .menu-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.closed.collapsible {
+    .section {
+      padding-right: 0.75rem;
+    }
+
+    ng-scrollbar {
+      visibility: hidden;
     }
   }
 }

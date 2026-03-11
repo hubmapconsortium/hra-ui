@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,19 +11,19 @@ import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { FilterMenuComponent, FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
+
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import { fromEvent, Observable } from 'rxjs';
 
-import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
+import { SearchListOption } from '@hra-ui/design-system/search-list';
 import { DigitalObjectMetadata } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import {
   FILTER_CATEGORY_INFO,
-  FilterOption,
-  FilterOptionCategory,
   getOrganIcon,
   getOrganId,
   getProductIcon,
@@ -39,8 +39,8 @@ interface DigitalObjectInfoWithHraVersions extends DigitalObjectInfo {
   hraVersions: string[];
 }
 
-/** Current filter interface (each category contains string of filter option IDs) */
-export interface CurrentFilters {
+/** Current active filter ids (each category contains string of filter option IDs) */
+export interface FilterIds {
   /** Digital object filters */
   digitalObjects?: string[];
   /** Release version filters */
@@ -126,9 +126,9 @@ export class MainPageComponent {
   /** Whether or not the filter menu is closed */
   readonly filterClosed = signal<boolean>(false);
   /** Filter categories */
-  readonly filterCategories = signal<Record<string, FilterOptionCategory>>(FILTER_CATEGORY_INFO);
-  /** Currently selected filters */
-  readonly filters = signal<CurrentFilters>({});
+  readonly filterCategories = signal<FilterOptionCategory<SearchListOption>[]>(FILTER_CATEGORY_INFO);
+  /** Currently selected filter ids (and search value) */
+  readonly currentFilterIds = signal<FilterIds>({});
   /** Scroll viewport height for the digital object table */
   readonly scrollHeight = signal(0);
   /** Records HRA version counts for the version filter */
@@ -136,17 +136,11 @@ export class MainPageComponent {
   /** Id of digital object to download */
   readonly downloadId = signal<string | undefined>(undefined);
 
-  /** Filter categories as an array */
-  readonly filterCategoriesArray = computed<FilterOptionCategory[]>(() => Object.values(this.filterCategories()));
-
   /**
-   * Sets the initial filters according to query params
-   * Sets filtered rows to all rows on init
-   * Fetches file download metadata for each object
-   * Update filter when searchbar input changes
-   * Populates all filter options
-   * Get download options for an object whenever the download button is clicked
-   * Set scroll viewport height when window is resized
+   * Initializes query-param and data subscriptions.
+   * Syncs search input changes back to filters and URL query params.
+   * Runs object search/filter effects and attaches download options on demand.
+   * Calculates and updates table viewport height on initial render and resize.
    */
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
@@ -157,6 +151,7 @@ export class MainPageComponent {
       this.allRows.set(objectData);
       this.filteredRows.set(this.allRows());
       this.setVersionCounts(items['@graph'] as DigitalObjectInfoWithHraVersions[]);
+      this.populateFilterOptions();
     });
 
     this.searchControl.valueChanges.subscribe((result?: string) => {
@@ -164,7 +159,6 @@ export class MainPageComponent {
     });
 
     effect(() => {
-      this.populateFilterOptions();
       this.digitalObjectSearch().subscribe((results) => {
         this.applyMoreFilters(results);
       });
@@ -178,29 +172,41 @@ export class MainPageComponent {
     fromEvent(window, 'resize').subscribe(() => this.setScrollViewportHeight());
   }
 
+  /** Normalizes query param values to string array */
+  private toStringArray(value: unknown): string[] | undefined {
+    if (typeof value === 'string') {
+      return [value];
+    }
+    if (Array.isArray(value)) {
+      return value.filter((item): item is string => typeof item === 'string');
+    }
+    return undefined;
+  }
+
   /**
    * Sets filters from query params in the url
    * @param queryParams Query params from the route
    */
   private setFiltersFomParams(queryParams: Params) {
-    const dObjects = queryParams['do'];
-    const versions = queryParams['versions'];
-    const organs = queryParams['organs'];
-    const as = queryParams['as'];
-    const ct = queryParams['ct'];
-    const b = queryParams['b'];
+    const dObjects = this.toStringArray(queryParams['do']);
+    const versions = this.toStringArray(queryParams['versions']);
+    const organs = this.toStringArray(queryParams['organs']);
+    const as = this.toStringArray(queryParams['as']);
+    const ct = this.toStringArray(queryParams['ct']);
+    const b = this.toStringArray(queryParams['b']);
     const search = queryParams['search'];
 
-    this.filters.set({
+    this.currentFilterIds.set({
       digitalObjects: dObjects,
-      releaseVersion: versions ? (Array.isArray(versions) ? versions : [versions]) : undefined,
+      releaseVersion: versions,
       organs: organs,
-      anatomicalStructures: as ? (Array.isArray(as) ? as : [as]) : undefined,
-      cellTypes: ct ? (Array.isArray(ct) ? ct : [ct]) : undefined,
-      biomarkers: b ? (Array.isArray(b) ? b : [b]) : undefined,
+      anatomicalStructures: as,
+      cellTypes: ct,
+      biomarkers: b,
       searchTerm: search ?? '',
     });
-    this.searchControl.patchValue(this.filters().searchTerm);
+
+    this.searchControl.patchValue(this.currentFilterIds().searchTerm);
   }
 
   /**
@@ -223,20 +229,19 @@ export class MainPageComponent {
 
   /**
    * Updates current filter selections when changed
-   * @param formControls
+   * @param filters Updated filters with options
    */
-  handleFilterSelectionChanges(formValues: FilterFormValues) {
-    const updatedFilters: CurrentFilters = {
-      digitalObjects: formValues.digitalObjects?.map((obj) => obj.id) || undefined,
-      releaseVersion: formValues.releaseVersion?.map((obj) => obj.id) || undefined,
-      organs: formValues.organs?.map((obj) => obj.id) || undefined,
-      anatomicalStructures: formValues.anatomicalStructures?.map((obj) => obj.id) || undefined,
-      cellTypes: formValues.cellTypes?.map((obj) => obj.id) || undefined,
-      biomarkers: formValues.biomarkers?.map((obj) => obj.id) || undefined,
-      searchTerm: this.filters().searchTerm || undefined,
-    };
-
-    this.filters.set(updatedFilters);
+  handleFilterSelectionChanges(filters: FilterOptionCategory<SearchListOption>[]) {
+    this.filterCategories.set(filters);
+    this.currentFilterIds.set({
+      digitalObjects: filters.find((f) => f.id === 'digitalObjects')?.selected?.map((obj) => obj.id),
+      releaseVersion: filters.find((f) => f.id === 'releaseVersion')?.selected?.map((obj) => obj.id),
+      organs: filters.find((f) => f.id === 'organs')?.selected?.map((obj) => obj.id),
+      anatomicalStructures: filters.find((f) => f.id === 'anatomicalStructures')?.selected?.map((obj) => obj.id),
+      cellTypes: filters.find((f) => f.id === 'cellTypes')?.selected?.map((obj) => obj.id),
+      biomarkers: filters.find((f) => f.id === 'biomarkers')?.selected?.map((obj) => obj.id),
+      searchTerm: this.currentFilterIds().searchTerm,
+    });
     this.updateQueryParamsFromFilters();
   }
 
@@ -246,13 +251,13 @@ export class MainPageComponent {
   private updateQueryParamsFromFilters() {
     this.router.navigate([''], {
       queryParams: {
-        do: this.filters().digitalObjects,
-        versions: this.filters().releaseVersion,
-        organs: this.filters().organs,
-        as: this.filters().anatomicalStructures,
-        ct: this.filters().cellTypes,
-        b: this.filters().biomarkers,
-        search: this.filters().searchTerm,
+        do: this.currentFilterIds().digitalObjects,
+        versions: this.currentFilterIds().releaseVersion,
+        organs: this.currentFilterIds().organs,
+        as: this.currentFilterIds().anatomicalStructures,
+        ct: this.currentFilterIds().cellTypes,
+        b: this.currentFilterIds().biomarkers,
+        search: this.currentFilterIds().searchTerm,
       },
     });
   }
@@ -260,7 +265,7 @@ export class MainPageComponent {
   /**
    * Calculates number of results for a filter option
    * @param filterOption Name of filter option
-   * @param category
+   * @param category Category to which the filter option belongs (e.g. 'doType' for digital object types, 'organIds' for organs, etc.)
    * @returns Number of results
    */
   private calculateCount(filterOption: string, category: string): number {
@@ -276,7 +281,7 @@ export class MainPageComponent {
    * Returns list of digital objects in the data as filter options
    * @returns Filter options
    */
-  private digitalObjectsOptions(): FilterOption[] {
+  private digitalObjectsOptions(): SearchListOption[] {
     return Array.from(this.kgFilterOptions().doOptions)
       .map((filterOption) => {
         return {
@@ -293,15 +298,15 @@ export class MainPageComponent {
    * Returns HRA version data as filter options
    * @returns Filter options
    */
-  private hraVersionsOptions(): FilterOption[] {
+  private hraVersionsOptions(): SearchListOption[] {
     return Object.keys(HRA_VERSION_DATA)
       .map((filterOption) => {
         const versionData = HRA_VERSION_DATA[filterOption];
         return {
           id: filterOption,
-          label: versionData ? versionData.label : filterOption,
+          label: versionData.label,
           count: this.versionCounts()[filterOption],
-          secondaryLabel: versionData ? versionData.date : undefined,
+          secondaryLabel: versionData.date,
         };
       })
       .sort((o1, o2) => o2.id.localeCompare(o1.id)); //Reverse order
@@ -311,7 +316,7 @@ export class MainPageComponent {
    * Returns list of organs in the data as filter options
    * @returns Filter options
    */
-  private organsOptions(): FilterOption[] {
+  private organsOptions(): SearchListOption[] {
     return Array.from(this.kgFilterOptions().organOptions)
       .map((organOption) => {
         return {
@@ -328,7 +333,7 @@ export class MainPageComponent {
    * @param data Tree data
    * @returns Filter options
    */
-  private ontologyOptions(data: OntologyTree): FilterOption[] {
+  private ontologyOptions(data: OntologyTree): SearchListOption[] {
     return this.asctbTermOccurrences()
       .filter((occurrence) => data.nodes[occurrence[0]])
       .map((occurrence) => {
@@ -346,51 +351,54 @@ export class MainPageComponent {
    */
   private populateFilterOptions() {
     this.filterCategories.update((categories) => {
-      return {
-        digitalObjects: {
-          ...categories['digitalObjects'],
-          options: this.digitalObjectsOptions(),
-        },
-        releaseVersions: {
-          ...categories['releaseVersions'],
-          options: this.hraVersionsOptions(),
-        },
-        organs: {
-          ...categories['organs'],
-          options: this.organsOptions(),
-        },
-        anatomicalStructures: {
-          ...categories['anatomicalStructures'],
-          options: this.ontologyOptions(this.ontologyTree()),
-        },
-        cellTypes: {
-          ...categories['cellTypes'],
-          options: this.ontologyOptions(this.cellTypeTree()),
-        },
-        biomarkers: {
-          ...categories['biomarkers'],
-          options: this.ontologyOptions(this.biomarkerTree()),
-        },
-      };
+      return [
+        this.withSelectedFromFilters('digitalObjects', categories[0], this.digitalObjectsOptions()),
+        this.withSelectedFromFilters('releaseVersion', categories[1], this.hraVersionsOptions()),
+        this.withSelectedFromFilters('organs', categories[2], this.organsOptions()),
+        this.withSelectedFromFilters('anatomicalStructures', categories[3], this.ontologyOptions(this.ontologyTree())),
+        this.withSelectedFromFilters('cellTypes', categories[4], this.ontologyOptions(this.cellTypeTree())),
+        this.withSelectedFromFilters('biomarkers', categories[5], this.ontologyOptions(this.biomarkerTree())),
+      ];
     });
   }
 
   /**
+   * Returns updated filter category with selected options based on current filters
+   * @param key Key of filter category to update
+   * @param category Filter category to update
+   * @param options Options for the filter category
+   * @returns Updated filter category with selected options
+   */
+  private withSelectedFromFilters(
+    key: keyof FilterIds,
+    category: FilterOptionCategory<SearchListOption>,
+    options: SearchListOption[],
+  ): FilterOptionCategory<SearchListOption> {
+    const selectedIds = new Set(this.currentFilterIds()[key] ?? []);
+    return {
+      ...category,
+      options,
+      selected: options.filter((option) => selectedIds.has(option.id)),
+    };
+  }
+
+  /**
    * Applies additional filters to digital objects obtained from KG search and sets new filtered rows
+   * @param searchResults List of digital object IDs obtained from KG search with selected filters
    */
   private applyMoreFilters(searchResults: string[]) {
     let newFilteredRows = this.allRows();
     newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['purl'] as string));
 
-    if (this.filters().searchTerm && this.filters().searchTerm !== '') {
+    if (this.currentFilterIds().searchTerm && this.currentFilterIds().searchTerm !== '') {
       newFilteredRows = this.filterSearchFormResults(newFilteredRows);
     }
 
-    if (this.filters().digitalObjects) {
+    if (this.currentFilterIds().digitalObjects) {
       newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
     }
 
-    if (this.filters().organs) {
+    if (this.currentFilterIds().organs) {
       newFilteredRows = this.filterOrganResults(newFilteredRows);
     }
     this.filteredRows.set(newFilteredRows);
@@ -403,7 +411,7 @@ export class MainPageComponent {
    */
   private filterSearchFormResults(currentResults: TableRow[]): TableRow[] {
     return currentResults.filter((row) => {
-      return (row['title'] as string).toLowerCase().includes((this.filters().searchTerm ?? '').toLowerCase());
+      return (row['title'] as string).toLowerCase().includes((this.currentFilterIds().searchTerm ?? '').toLowerCase());
     });
   }
 
@@ -413,7 +421,7 @@ export class MainPageComponent {
    * @returns Filtered results
    */
   private filterDigitalObjectResults(currentResults: TableRow[]): TableRow[] {
-    const currentDigitalObjectsFilters = this.filters().digitalObjects;
+    const currentDigitalObjectsFilters = this.currentFilterIds().digitalObjects;
     if (currentDigitalObjectsFilters && currentDigitalObjectsFilters.length === 0) {
       return currentResults;
     }
@@ -426,7 +434,7 @@ export class MainPageComponent {
    * @returns Filtered results
    */
   private filterOrganResults(currentResults: TableRow[]): TableRow[] {
-    const currentOrganFilters = this.filters().organs;
+    const currentOrganFilters = this.currentFilterIds().organs;
     if (currentOrganFilters && currentOrganFilters.length === 0) {
       return currentResults;
     }
@@ -440,10 +448,10 @@ export class MainPageComponent {
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
-    const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures;
-    const currentCellTypesFilters = this.filters().cellTypes;
-    const currentBiomarkerFilters = this.filters().biomarkers;
-    const currentHraVersionFilters = this.filters().releaseVersion;
+    const currentAnatomicalStructuresFilters = this.currentFilterIds().anatomicalStructures;
+    const currentCellTypesFilters = this.currentFilterIds().cellTypes;
+    const currentBiomarkerFilters = this.currentFilterIds().biomarkers;
+    const currentHraVersionFilters = this.currentFilterIds().releaseVersion;
 
     return this.kg.doSearch({
       ontologyTerms: currentAnatomicalStructuresFilters,
@@ -525,8 +533,8 @@ export class MainPageComponent {
    * @param searchTerm Search input
    */
   private onSearchChange(searchTerm?: string): void {
-    this.filters.set({
-      ...this.filters(),
+    this.currentFilterIds.set({
+      ...this.currentFilterIds(),
       searchTerm,
     });
 
