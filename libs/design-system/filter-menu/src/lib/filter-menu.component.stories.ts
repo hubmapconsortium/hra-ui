@@ -108,6 +108,7 @@ const meta: Meta = {
     tagline: 'Database Headline',
     description: 'Supporting text here, if needed, but make it short and straightforward',
     enableClose: true,
+    enableTotalCount: false,
     filters: FILTER_CATEGORIES,
     toggleOptions: [
       { id: 'option1', label: 'Option 1' },
@@ -145,6 +146,10 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  args: {
+    enableTotalCount: true,
+  },
+
   render: (args) => ({
     props: args,
     template: `
@@ -153,6 +158,7 @@ export const Default: Story = {
         [tagline]="tagline"
         [description]="description"
         [enableClose]="enableClose"
+        [enableTotalCount]="enableTotalCount"
       >
         ${CUSTOM_CONTROLS}
       </hra-filter-menu>
