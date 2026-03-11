@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 import { hraEventFilterPlugin } from './plugin';
 
-describe('Event Filter Plugin', () => {
+describe('hra-event-filter plugin', () => {
   function setup(isBrowser = true) {
     TestBed.configureTestingModule({
       providers: [

@@ -1,12 +1,15 @@
-import { assertInInjectionContext, inject } from '@angular/core';
+import { inject, Injector } from '@angular/core';
 import { CoreEvents, EventPayload } from '@hra-ui/analytics/events';
 import { AnalyticsInstance, AnalyticsPlugin, PageData } from 'analytics';
+import { assertInjector } from 'ngxtension/assert-injector';
 import { TelemetryService } from './telemetry/telemetry.service';
 
 /** Plugin configuration */
 export interface HraAnalyticsPluginConfig {
   /** Session identifier */
   sessionId: string;
+  /** Plugin injector context */
+  injector?: Injector;
 }
 
 /**
@@ -34,19 +37,20 @@ interface EventData {
  * @returns An analytics plugin
  */
 export function hraAnalyticsPlugin(pluginConfig: HraAnalyticsPluginConfig): AnalyticsPlugin {
-  assertInInjectionContext(hraAnalyticsPlugin);
-  const telemetry = inject(TelemetryService);
+  return assertInjector(hraAnalyticsPlugin, pluginConfig.injector, () => {
+    const telemetry = inject(TelemetryService);
 
-  return {
-    name: 'hra-analytics',
-    config: pluginConfig,
-    page({ config, instance, payload }: EventData) {
-      telemetry.send(buildEventData(instance, config, CoreEvents.PageView.type, payload.properties));
-    },
-    track({ config, instance, payload: { event, properties } }: EventData) {
-      telemetry.send(buildEventData(instance, config, event, properties));
-    },
-  };
+    return {
+      name: 'hra-analytics',
+      config: pluginConfig,
+      page({ config, instance, payload }: EventData) {
+        telemetry.send(buildEventData(instance, config, CoreEvents.PageView.type, payload.properties));
+      },
+      track({ config, instance, payload: { event, properties } }: EventData) {
+        telemetry.send(buildEventData(instance, config, event, properties));
+      },
+    };
+  });
 }
 
 /**

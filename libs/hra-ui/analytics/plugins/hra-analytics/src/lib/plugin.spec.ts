@@ -4,7 +4,7 @@ import { TelemetryService } from './telemetry/telemetry.service';
 import { Analytics } from 'analytics';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
 
-describe('Analytics Plugin', () => {
+describe('hra-analytics plugin', () => {
   const options = { sessionId: 'test' };
 
   beforeEach(() => {
