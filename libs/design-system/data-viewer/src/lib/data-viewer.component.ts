@@ -56,7 +56,15 @@ export class DataViewerComponent {
   protected readonly releaseVersion_ = computed(() => {
     const releaseVersion = this.releaseVersion();
     const data = this.releaseVersionData();
-    return data.find((item) => item.version === releaseVersion) ?? data[0];
+    const currentSelectedVersion = data.find((item) => item.version === releaseVersion) ?? data[0];
+    const organData = currentSelectedVersion.organData.map((organ) => {
+      return {
+        ...organ,
+        label: this.sentenceCase(organ.label),
+      };
+    });
+    const sortedOrganData = organData.sort((a, b) => a.label.localeCompare(b.label));
+    return { ...currentSelectedVersion, organData: sortedOrganData };
   });
 
   /** Current organ selected */
@@ -90,5 +98,15 @@ export class DataViewerComponent {
     const endIndex = url.lastIndexOf('/');
     const startIndex = url.lastIndexOf('/', endIndex - 1) + 1;
     return url.slice(startIndex, endIndex);
+  }
+
+  /**
+   * Converts a string to sentence case
+   * @param value String to convert
+   * @returns String in sentence case
+   */
+  private sentenceCase(value: string): string {
+    const processedValue = value.trim().toLowerCase();
+    return processedValue.charAt(0).toUpperCase() + processedValue.slice(1);
   }
 }

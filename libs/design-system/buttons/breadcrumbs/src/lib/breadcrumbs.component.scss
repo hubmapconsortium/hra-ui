@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     color: vars.$primary;
-    @include utils.use-font('label', 'small');
+    @include utils.use-font('label', 'medium');
     white-space: nowrap;
 
     .crumb {
