@@ -25,8 +25,12 @@ function selectRedirectPath(event: NavigationError): string {
  * @param event Navigation error event
  * @returns Redirect command to the appropriate error page
  */
-export function handleNavigationError(event: NavigationError): RedirectCommand {
+export function handleNavigationError(event: NavigationError): RedirectCommand | undefined {
   assertInInjectionContext(handleNavigationError);
+
+  if (event.error instanceof Event && event.error.type === 'abort') {
+    return;
+  }
 
   // Returning a redirect command stops router error propagation so we log the error here instead
   const analytics = inject(AnalyticsService);
