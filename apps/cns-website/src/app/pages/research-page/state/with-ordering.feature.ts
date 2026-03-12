@@ -42,14 +42,14 @@ type GroupByKey = ResearchTypeId | number | '' | 'unknown' | 'skip';
 /** Ordering state for sorting and grouping */
 interface OrderingState {
   /** Active sort option */
-  sortBy: SortBy;
+  _sortBy: SortBy | null;
   /** Active grouping option */
   groupBy: GroupBy | null;
 }
 
 /** Default ordering state (newest, no grouping) */
 const initialState: OrderingState = {
-  sortBy: SortBy.Newest,
+  _sortBy: null,
   groupBy: null,
 };
 
@@ -137,7 +137,8 @@ export function withOrdering() {
     { state: type<ResearchState>(), props: type<FilterProps>() },
     withState(initialState),
     withComputed((store) => {
-      const _sortByFn = computed(() => createSortByFn(store.sortBy()));
+      const sortBy = computed(() => store._sortBy() ?? SortBy.Newest);
+      const _sortByFn = computed(() => createSortByFn(sortBy()));
       const _sortedItems = computed(() => {
         const items = store.filteredItems();
         const sortByFn = _sortByFn();
@@ -198,6 +199,7 @@ export function withOrdering() {
       });
 
       return {
+        sortBy,
         sortedGroupedItems,
         sortedGroupedListItems,
         _sortedItems,
@@ -206,7 +208,7 @@ export function withOrdering() {
     }),
     withMethods((store) => ({
       /** Sets the current sort option */
-      setSortBy: signalMethod((sortBy: SortBy) => patchState(store, { sortBy })),
+      setSortBy: signalMethod((sortBy: SortBy | null) => patchState(store, { _sortBy: sortBy })),
       /** Sets the current grouping option */
       setGroupBy: signalMethod((groupBy: GroupBy | null) => patchState(store, { groupBy })),
     })),
