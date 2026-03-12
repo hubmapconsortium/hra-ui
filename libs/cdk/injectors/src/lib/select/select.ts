@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, inject } from '@angular/core';
-import { Any } from '@hra-ui/utils/types';
 import { StateToken, Store } from '@ngxs/store';
 import { MonoTypeOperatorFunction, Observable, takeUntil, tap } from 'rxjs';
 import { injectDestroy$ } from '../on-destroy/on-destroy';
 
 /** Selector type for select style functions */
-export type StateSelector<T> = ((...args: Any[]) => T) | StateToken<T>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type StateSelector<T> = ((...args: any[]) => T) | StateToken<T>;
 
 /** `select$` configuration options */
 export interface SelectOptions {

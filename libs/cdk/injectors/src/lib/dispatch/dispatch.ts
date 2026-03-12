@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { inject } from '@angular/core';
-import type { Any } from '@hra-ui/utils/types';
 import { Store } from '@ngxs/store';
 import { map, Observable } from 'rxjs';
 
@@ -19,7 +19,7 @@ function pipeActionInstance<A>(action: A, obs$: Observable<void>): Observable<A>
  * @param boundArgs Initial bound arguments
  * @returns A factory function creating a new action on each call
  */
-function createActionFactory<A, BoundArgs extends Any[], RestArgs extends Any[]>(
+function createActionFactory<A, BoundArgs extends any[], RestArgs extends any[]>(
   type: new (...args: [...BoundArgs, ...RestArgs]) => A,
   boundArgs: BoundArgs,
 ): (...args: RestArgs) => A {
@@ -32,14 +32,14 @@ function createActionFactory<A, BoundArgs extends Any[], RestArgs extends Any[]>
  * @param resultHandler Selects the output value from the action and the dispatch observable
  * @returns A new dispatch function taking user arguments, dispatches actions, and returns a value
  */
-function dispatchImpl<A, R, Args extends Any[]>(
+function dispatchImpl<A, R, Args extends any[]>(
   actionFactory: (...args: Args) => A,
   resultHandler: (action: A, obs$: Observable<void>) => R,
 ): (...args: Args) => R {
   const store = inject(Store);
   return (...args) => {
     const action = actionFactory(...args);
-    const obs$ = store.dispatch(action as Any);
+    const obs$ = store.dispatch(action as any);
     return resultHandler(action, obs$);
   };
 }
@@ -51,7 +51,7 @@ function dispatchImpl<A, R, Args extends Any[]>(
  * @param boundArgs Bound arguments to the action constructor
  * @returns A function that dispatches an action on the store each time it is called
  */
-export function dispatch<A, BoundArgs extends Any[], DispatchArgs extends Any[]>(
+export function dispatch<A, BoundArgs extends any[], DispatchArgs extends any[]>(
   type: new (...args: [...BoundArgs, ...DispatchArgs]) => A,
   ...boundArgs: BoundArgs
 ): (...args: DispatchArgs) => A {
@@ -67,7 +67,7 @@ export function dispatch<A, BoundArgs extends Any[], DispatchArgs extends Any[]>
  * @param boundArgs Bound arguments to the action constructor
  * @returns A function that dispatches an action on the store each time it is called
  */
-export function dispatch$<A, BoundArgs extends Any[], DispatchArgs extends Any[]>(
+export function dispatch$<A, BoundArgs extends any[], DispatchArgs extends any[]>(
   type: new (...args: [...BoundArgs, ...DispatchArgs]) => A,
   ...boundArgs: BoundArgs
 ): (...args: DispatchArgs) => Observable<A> {

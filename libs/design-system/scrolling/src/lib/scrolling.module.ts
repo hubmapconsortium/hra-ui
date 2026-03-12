@@ -2,14 +2,13 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
 import { EnvironmentProviders, makeEnvironmentProviders, NgModule } from '@angular/core';
 import { provideStyleComponents } from '@hra-ui/cdk/styling';
 import { getImportMetaUrl } from '@hra-ui/common/import-meta';
-import { joinWithSlash } from '@hra-ui/common/url';
+import { joinWithSlashes } from '@hra-ui/utils/paths';
 import {
   NgScrollbarModule,
   NgScrollbarOptions,
   provideScrollbarOptions,
   provideScrollbarPolyfill,
 } from 'ngx-scrollbar';
-
 import { ScrollOverflowFadeDirective } from './scroll-overflow-fade/scroll-overflow-fade.directive';
 import { ScrollbarStylesComponent } from './scrollbar-styles/scrollbar-styles.component';
 
@@ -32,7 +31,7 @@ export function provideScrolling(options?: ScrollingOptions): EnvironmentProvide
   const metaUrl = getImportMetaUrl();
   const href = /^https?:/.test(metaUrl) ? new URL('./', metaUrl).toString() : '';
   // TODO: Find a better way to resolve the polyfill url
-  const polyfillUrl = joinWithSlash(href, options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
+  const polyfillUrl = joinWithSlashes(href, options?.polyfillUrl ?? DEFAULT_POLYFILL_URL);
 
   return makeEnvironmentProviders([
     provideStyleComponents(ScrollbarStylesComponent),

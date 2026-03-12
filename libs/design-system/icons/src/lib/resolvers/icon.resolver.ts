@@ -1,7 +1,8 @@
 import { assertInInjectionContext, inject } from '@angular/core';
 import { IconResolver } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { assetUrl, joinWithSlash } from '@hra-ui/common/url';
+import { assetUrl } from '@hra-ui/common/url';
+import { joinWithSlashes } from '@hra-ui/utils/paths';
 import { SVG_ICON_DIRECTORY } from '../utils/tokens';
 
 /**
@@ -18,9 +19,7 @@ export function createSvgIconResolver(): IconResolver {
   const sanitizer = inject(DomSanitizer);
   const baseUrl = assetUrl(directory);
   return (name, namespace) => {
-    let path = baseUrl();
-    path = joinWithSlash(path, namespace);
-    path = joinWithSlash(path, `${name}.svg`);
+    const path = joinWithSlashes(baseUrl(), namespace, `${name}.svg`);
     return sanitizer.bypassSecurityTrustResourceUrl(path);
   };
 }

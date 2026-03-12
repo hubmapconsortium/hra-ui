@@ -1,6 +1,7 @@
 import { LocationStrategy } from '@angular/common';
 import { booleanAttribute, computed, Directive, inject, input } from '@angular/core';
-import { injectAppUrlResolver, isAbsolute, stripTrailingSlash } from '@hra-ui/common/url';
+import { injectAppUrlResolver } from '@hra-ui/common/url';
+import { isAbsoluteUrl, stripTrailingSlash } from '@hra-ui/utils/paths';
 import { injectRouter } from '../injectors';
 import { isAuxClick } from '../util/event';
 
@@ -30,7 +31,7 @@ export class LinkDirective {
     const { router, resolve } = this;
     if (router && !this.external()) {
       const url = resolve(this.url());
-      if (!isAbsolute(url)) {
+      if (!isAbsoluteUrl(url)) {
         return router.parseUrl(stripTrailingSlash(url));
       }
     }

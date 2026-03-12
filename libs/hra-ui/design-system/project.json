@@ -1,0 +1,19 @@
+{
+  "name": "design-system-v2",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/hra-ui/design-system/src",
+  "prefix": "hra",
+  "projectType": "library",
+  "tags": ["type:lib", "project:design-system"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package"
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/hra-ui/design-system/tsconfig.lib.json"
+      }
+    }
+  }
+}

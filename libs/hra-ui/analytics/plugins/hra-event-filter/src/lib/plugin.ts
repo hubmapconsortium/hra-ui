@@ -1,0 +1,69 @@
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injector, PLATFORM_ID } from '@angular/core';
+import { CoreEvents, EventCategory, EventType } from '@hra-ui/analytics/events';
+import { AnalyticsPlugin } from 'analytics';
+import { assertInjector } from 'ngxtension/assert-injector';
+
+/** Plugin configuration */
+export interface HraEventFilterPluginConfig {
+  /** Callback to check whether an event is enabled */
+  isEventEnabled: (type: EventType, category?: EventCategory) => boolean;
+  /** Plugin injector context */
+  injector?: Injector;
+}
+
+/** Abort function */
+type AbortFn = (reason: string) => unknown;
+
+/**
+ * Interface for data passed by the 'analytics' library to plugin callbacks.
+ * Only declares the fields that are used by the hra-event-filter plugin.
+ */
+interface EventData {
+  /** Aborts the current event */
+  abort: AbortFn;
+  /** Payload data */
+  payload: {
+    /** Event type */
+    event: EventType;
+    /** Event options */
+    options: {
+      /** Event category */
+      category?: EventCategory;
+    };
+  };
+}
+
+/**
+ * An `analytics` plugin that filters events based on an `isEventEnabled` callback
+ *
+ * @param config Plugin configuration
+ * @returns An analytics plugin
+ */
+export function hraEventFilterPlugin(config: HraEventFilterPluginConfig): AnalyticsPlugin {
+  return assertInjector(hraEventFilterPlugin, config.injector, () => {
+    const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+    const { isEventEnabled } = config;
+    const abortIfDisabled = (type: EventType, category: EventCategory | undefined, abort: AbortFn) => {
+      if (!isBrowser || !isEventEnabled(type, category)) {
+        return abort(`Event '${type}' is disabled`);
+      }
+      return undefined;
+    };
+
+    return {
+      name: 'hra-event-filter',
+      config: {},
+      pageStart({ abort }: EventData): unknown {
+        const { type, category } = CoreEvents.PageView;
+        return abortIfDisabled(type, category, abort);
+      },
+      identifyStart({ abort }: EventData): unknown {
+        return abort('Identify disabled');
+      },
+      trackStart({ abort, payload }: EventData): unknown {
+        return abortIfDisabled(payload.event, payload.options.category, abort);
+      },
+    };
+  });
+}

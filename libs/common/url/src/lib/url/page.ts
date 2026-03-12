@@ -1,8 +1,8 @@
 import { LocationStrategy } from '@angular/common';
 import { inject, Pipe, PipeTransform, signal, WritableSignal } from '@angular/core';
+import { isAbsoluteUrl, joinWithSlashes } from '@hra-ui/utils/paths';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { createHrefProvider } from '../util/href-provider';
-import { isAbsolute, joinWithSlash } from '../util/path';
 import { createUrlResolverFn, createUrlResolverInjector } from '../util/url-resolver';
 
 /**
@@ -21,7 +21,7 @@ function pageHref(): WritableSignal<string> {
  * @returns The resolved url
  */
 function resolvePageUrl(href: string, value: string): string {
-  return isAbsolute(value) ? value : joinWithSlash(href, value);
+  return isAbsoluteUrl(value) ? value : joinWithSlashes(href, value);
 }
 
 /** Page href */
