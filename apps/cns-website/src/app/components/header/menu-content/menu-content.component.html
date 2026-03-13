@@ -12,7 +12,9 @@
     <div class="featured-content-container">
       <div class="featured-content">
         <span class="label">{{ featured.label }}</span>
-        <span class="tagline">{{ featured.tagline }}</span>
+        @if (featured.tagline) {
+          <span class="tagline">{{ featured.tagline }}</span>
+        }
       </div>
       <mat-icon>arrow_right_alt</mat-icon>
     </div>
