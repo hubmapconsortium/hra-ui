@@ -1,32 +1,34 @@
 @if (menu().featured; as featured) {
   <div class="featured-section">
-    <a
-      mat-button
-      hraClickEvent
-      class="featured-link"
-      tabindex="0"
-      cdkFocusRegionStart
-      cdkFocusInitial
-      [hraLink]="featured.url"
-      [hraLinkExternal]="featured.external"
-      (click)="!featured.external && scrollbarStore.scrollToTop()"
-      (keyup.enter)="!featured.external && scrollbarStore.scrollToTop()"
-    >
+    <div class="featured-link">
       <div class="featured-content-container">
         @if (featured.imgSrc; as src) {
           <img class="featured-image" alt="" [src]="src | assetUrl" />
         }
-        <div class="featured-bottom">
+        <a
+          mat-button
+          hraClickEvent
+          class="featured-bottom"
+          tabindex="0"
+          cdkFocusRegionStart
+          cdkFocusInitial
+          [hraLink]="featured.url"
+          [hraLinkExternal]="featured.external"
+          (click)="!featured.external && scrollbarStore.scrollToTop()"
+          (keyup.enter)="!featured.external && scrollbarStore.scrollToTop()"
+        >
           <div class="featured-label">
-            <span class="label">{{ featured.label }}</span>
-            @if (featured.tagline; as tagline) {
-              <span class="tagline">{{ tagline }}</span>
-            }
+            <div class="featured-label-content">
+              <span class="label">{{ featured.label }}</span>
+              @if (featured.tagline; as tagline) {
+                <span class="tagline">{{ tagline }}</span>
+              }
+            </div>
+            <mat-icon>arrow_right_alt</mat-icon>
           </div>
-          <mat-icon>arrow_right_alt</mat-icon>
-        </div>
+        </a>
       </div>
-    </a>
+    </div>
   </div>
 }
 

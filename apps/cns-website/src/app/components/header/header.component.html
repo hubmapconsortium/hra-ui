@@ -35,7 +35,7 @@
             hraClickEvent
             hraHoverEvent
             cdkOverlayOrigin
-            class="navigation-menu"
+            class="menu-button"
             [hraFeature]="category.id | slugify"
             [toggled]="isMenuActive(category)"
             (toggledChange)="toggleMenu(category)"
@@ -61,7 +61,7 @@
           <a
             mat-button
             hraSecondaryButton
-            class="item-label"
+            class="menu-button"
             tabindex="0"
             [hraFeature]="category.label | slugify"
             [hraLink]="category.url"

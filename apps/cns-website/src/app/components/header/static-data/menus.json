@@ -9,8 +9,7 @@
         "type": "item",
         "label": "Meet our team",
         "url": "https://cns.iu.edu/people",
-        "imgSrc": "assets/group.png",
-        "target": "_blank"
+        "imgSrc": "assets/group.png"
       },
       "items": [
         {
@@ -19,7 +18,7 @@
           "items": [
             {
               "type": "item",
-              "label": "History & mission",
+              "label": "Our mission & history",
               "url": "https://cns.iu.edu/about/"
             },
             {
@@ -74,7 +73,7 @@
         "label": "Explore research",
         "tagline": "20+ years of research at Indiana University",
         "url": "https://cns.iu.edu/research",
-        "target": "_blank"
+        "imgSrc": "assets/research.png"
       },
       "items": [
         {
