@@ -15,8 +15,9 @@
     flex-grow: 1;
     padding: 6.25rem 1.25rem;
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
+    min-height: calc(100vh - 3.5rem);
 
     @media (min-width: 640px) {
       padding-left: 2.5rem;
