@@ -91,10 +91,9 @@
 
   .groups {
     display: flex;
-    gap: 2.5rem;
     width: 100%;
     max-width: 44.5rem;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .group {
@@ -105,6 +104,7 @@
     max-width: 21rem;
     flex-grow: 1;
     padding: 1.5rem;
+    width: 50%;
   }
 
   .items {
@@ -124,8 +124,9 @@
   .item-label {
     min-height: 2.75rem;
     justify-content: start;
-    padding: 0 0.75rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
+    height: auto;
   }
 
   .divider {
