@@ -96,7 +96,12 @@ export class LandingPageComponent {
 
   /** Content mapped to cards */
   protected readonly cards = computed(() => {
-    const data = this.featuredContent();
+    const data = {
+      ...this.featuredContent(),
+      featured: this.featuredContent().featured.sort(
+        (a, b) => new Date(b.dateStart).getTime() - new Date(a.dateStart).getTime(),
+      ),
+    };
     return Object.entries(data).reduce(
       (acc, [key, items]) => {
         acc[key as FeaturedDataKey] = items.map((item) => this.toContentCard(item));
