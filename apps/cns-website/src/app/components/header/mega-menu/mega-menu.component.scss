@@ -98,7 +98,7 @@
   }
 
   .group {
-    @include utils.use-font(label, medium);
+    @include utils.use-font(label, large);
     display: flex;
     flex-direction: column;
     min-width: 12rem;
@@ -122,7 +122,6 @@
   }
 
   .item-label {
-    @include utils.use-font(label, medium);
     min-height: 2.75rem;
     justify-content: start;
     padding: 0 0.75rem;

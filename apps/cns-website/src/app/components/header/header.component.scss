@@ -100,5 +100,6 @@ $z-index: 900;
     mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
     transition: 0.3s;
     z-index: $z-index - 1;
+    top: 3.5rem;
   }
 }
