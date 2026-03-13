@@ -19,7 +19,7 @@
           "items": [
             {
               "type": "item",
-              "label": "History & mission",
+              "label": "Our mission & history",
               "url": "https://cns.iu.edu/about/"
             },
             {
@@ -74,6 +74,7 @@
         "label": "Explore research",
         "tagline": "20+ years of research at Indiana University",
         "url": "https://cns.iu.edu/research",
+        "imgSrc": "assets/research.png",
         "target": "_blank"
       },
       "items": [

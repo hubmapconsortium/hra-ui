@@ -50,10 +50,10 @@ $z-index: 900;
   .item-label {
     @include mat.button-overrides(
       (
-        text-label-text-font: vars.$label-medium-font,
-        text-label-text-size: vars.$label-medium-size,
-        text-label-text-weight: vars.$label-medium-weight,
-        text-label-text-tracking: vars.$label-medium-tracking,
+        text-label-text-font: vars.$label-large-font,
+        text-label-text-size: vars.$label-large-size,
+        text-label-text-weight: vars.$label-large-weight,
+        text-label-text-tracking: vars.$label-large-tracking,
         text-horizontal-padding: 0.75rem,
       )
     );
@@ -62,10 +62,10 @@ $z-index: 900;
   .navigation-menu {
     @include mat.button-toggle-overrides(
       (
-        label-text-font: vars.$label-medium-font,
-        label-text-size: vars.$label-medium-size,
-        label-text-weight: vars.$label-medium-weight,
-        label-text-tracking: vars.$label-medium-tracking,
+        label-text-font: vars.$label-large-font,
+        label-text-size: vars.$label-large-size,
+        label-text-weight: vars.$label-large-weight,
+        label-text-tracking: vars.$label-large-tracking,
       )
     );
 
