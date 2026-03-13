@@ -1,4 +1,4 @@
-import { patchState, signalMethod, signalStoreFeature, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
 
 /** Display mode for research items */
 export enum View {
@@ -9,12 +9,12 @@ export enum View {
 /** View state for the research page */
 interface ViewState {
   /** Active display mode */
-  view: View;
+  _view: View | null;
 }
 
 /** Default view state (gallery) */
 const initialState: ViewState = {
-  view: View.Gallery,
+  _view: null,
 };
 
 /**
@@ -24,9 +24,12 @@ const initialState: ViewState = {
 export function withView() {
   return signalStoreFeature(
     withState(initialState),
+    withComputed((store) => ({
+      view: () => store._view() ?? View.Gallery,
+    })),
     withMethods((store) => ({
       /** Sets the active view mode */
-      setView: signalMethod((view: View) => patchState(store, { view })),
+      setView: signalMethod((view: View | null) => patchState(store, { _view: view })),
     })),
   );
 }

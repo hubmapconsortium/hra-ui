@@ -49,7 +49,7 @@ export const ResearchStore = signalStore(
   withHooks({
     onInit(store) {
       /** Writable signal slices for linkedQueryParam compatibility */
-      const view = createWritableStateSlice(store.view, store.setView);
+      const view = createWritableStateSlice(store._view, store.setView);
       const categories = createWritableStateSlice(store.categories, store.setCategories);
       const events = createWritableStateSlice(store.eventIds, store.setEventIds);
       const funding = createWritableStateSlice(store.fundingIds, store.setFundingIds);
@@ -57,7 +57,7 @@ export const ResearchStore = signalStore(
       const people = createWritableStateSlice(store.peopleIds, store.setPeopleIds);
       const years = createWritableStateSlice(store.years, store.setYears);
       const search = createWritableStateSlice(store.search, store.setSearch);
-      const sortBy = createWritableStateSlice(store.sortBy, store.setSortBy);
+      const sortBy = createWritableStateSlice(store._sortBy, store.setSortBy);
       const groupBy = createWritableStateSlice(store.groupBy, store.setGroupBy);
       const commonOptions = { replaceUrl: true, preserveFragment: true };
 
