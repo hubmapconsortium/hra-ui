@@ -300,7 +300,7 @@ describe('LandingPageComponent', () => {
       expect(card).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
-    it('should use "#" as default link when link is undefined', async () => {
+    it('should not display cards without a link', async () => {
       const customContent: FeaturedData = {
         featured: [
           {
@@ -313,11 +313,7 @@ describe('LandingPageComponent', () => {
       };
 
       await setupComponent(customContent);
-      const card = getCardByTagline('Featured Item Title');
-
-      expect(card).toHaveAttribute('href', '#');
-      expect(card).not.toHaveAttribute('target');
-      expect(card).not.toHaveAttribute('rel');
+      expect(screen.queryByText('Featured Item Title')).not.toBeInTheDocument();
     });
   });
 });
