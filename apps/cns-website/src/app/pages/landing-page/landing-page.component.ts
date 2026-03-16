@@ -96,20 +96,26 @@ export class LandingPageComponent {
 
   /** Content mapped to cards */
   protected readonly cards = computed(() => {
-    const data = {
-      ...this.featuredContent(),
-      featured: this.featuredContent().featured.sort(
-        (a, b) => new Date(b.dateStart).getTime() - new Date(a.dateStart).getTime(),
-      ),
-    };
-    return Object.entries(data).reduce(
+    return Object.entries(this.featuredContent()).reduce(
       (acc, [key, items]) => {
-        acc[key as FeaturedDataKey] = items.map((item) => this.toContentCard(item)).filter((card) => card.link !== '#'); // Filter out items without links
+        acc[key as FeaturedDataKey] = this.toContentCards(items);
         return acc;
       },
       {} as Record<FeaturedDataKey, ContentCard[]>,
     );
   });
+
+  /**
+   * Converts a list of ResearchItems to ContentCards, sorted by date descending and filtered to exclude items without valid links.
+   * @param items List of ResearchItems to convert
+   * @returns List of ContentCards mapped from the input items, sorted and filtered
+   */
+  private toContentCards(items: ResearchItem[]): ContentCard[] {
+    return [...items]
+      .sort((a, b) => new Date(b.dateStart).getTime() - new Date(a.dateStart).getTime())
+      .map((item) => this.toContentCard(item))
+      .filter((card) => card.link !== '#');
+  }
 
   /**
    * Converts a ResearchItem to a ContentCard
