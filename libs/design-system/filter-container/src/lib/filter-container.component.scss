@@ -13,7 +13,7 @@
     .top-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       color: vars.$secondary;
 
       .info-icon {
@@ -39,6 +39,7 @@
       }
 
       .count {
+        margin-left: auto;
         color: vars.$primary;
         @include utils.use-font(label, small);
       }

@@ -75,6 +75,7 @@ const CUSTOM_CONTROLS = `
 const STYLES = `
   .hra-app {
     height: 100vh;
+    width: 20rem;
   }
   .toggle-group {
     width: fit-content;
