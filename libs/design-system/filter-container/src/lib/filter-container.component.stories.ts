@@ -44,6 +44,7 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `<hra-filter-container [action]="action" [enableDivider]="enableDivider" (actionClick)="actionClick($event)" />`,
+    styles: [`.hra-app {width: 20rem;}`],
   }),
 };
 
@@ -60,6 +61,7 @@ export const WithInfoButton: Story = {
         </button>
       </hra-filter-container>
     `,
+    styles: [`.hra-app {width: 20rem;}`],
   }),
 };
 
@@ -76,6 +78,7 @@ export const WithChipsAndInfo: Story = {
         </button>
       </hra-filter-container>
     `,
+    styles: [`.hra-app {width: 20rem;}`],
   }),
   args: {
     action: 'Category',
@@ -95,6 +98,7 @@ export const WithDivider: Story = {
         </button>
       </hra-filter-container>
     `,
+    styles: [`.hra-app {width: 20rem;}`],
   }),
   args: {
     action: 'Category',

@@ -18,4 +18,6 @@ export class ResultsIndicatorComponent {
   readonly description = input<string>('');
   /** Input for separator */
   readonly separator = input<string>('of');
+  /** Input for item type */
+  readonly itemType = input<string>('');
 }

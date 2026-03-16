@@ -18,6 +18,9 @@
     >
       {{ action() }}
     </mat-button-toggle>
+    <div class="count" hraPlainTooltip="Number of unique items per filter category">
+      {{ totalCount() | number }}
+    </div>
   </div>
 
   @if (chips().length > 0) {

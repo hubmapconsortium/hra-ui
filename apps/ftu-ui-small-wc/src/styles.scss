@@ -4,4 +4,14 @@
 
 @include utils.global-styles() {
   @include theming.theme(light-theme.$theme);
+
+  mat-snack-bar-container {
+    .mat-mdc-snackbar-surface {
+      min-width: auto !important;
+    }
+
+    hra-snackbar {
+      gap: 0 !important;
+    }
+  }
 }

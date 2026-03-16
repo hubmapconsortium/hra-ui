@@ -6,9 +6,12 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PublicationsPageComponent } from './pages/publications-page/publications-page.component';
 import { createReleaseNotesContentResolver } from './resolvers/release-notes-content.resolver';
 import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
-import { PublicationsPageDataSchema } from './schemas/publications-page/publications-page.schema';
+import { PublicationDataSchema } from './schemas/publications-page/publications-page.schema';
 import { ReleaseNotesVersionsSchema } from './schemas/release-notes-version/release-notes-version.schema';
 import { createExternalRedirectRoute } from './utils/external-redirect';
+
+/** HRA publications URL */
+const HRA_PUBLICATIONS_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-hra-publications.json';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -212,7 +215,7 @@ export const appRoutes: Route[] = [
     path: 'publications',
     component: PublicationsPageComponent,
     resolve: {
-      publications: createJsonSpecResolver('https://cns.iu.edu/publications.json?sort=hra', PublicationsPageDataSchema),
+      publications: createJsonSpecResolver(HRA_PUBLICATIONS_URL, PublicationDataSchema),
     },
   },
   {

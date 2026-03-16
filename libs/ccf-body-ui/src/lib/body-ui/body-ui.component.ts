@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {
   booleanAttribute,
+  ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
@@ -117,6 +118,7 @@ const INITIAL_PROPS = {
   selector: 'hra-body-ui',
   templateUrl: './body-ui.component.html',
   styleUrl: './body-ui.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class BodyUiComponent {

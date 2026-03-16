@@ -36,12 +36,13 @@
       <hra-icon class="icon" fontIcon="filter_list" />
       <span class="title">Filters</span>
     </div>
-    @for (filter of filters(); track $index) {
+    @for (filter of filtersWithCounts(); track $index) {
       <hra-filter-container
         cdkOverlayOrigin
         [hraFeature]="filter.id | slugify"
         [enableDivider]="!$last"
         [action]="filter.label"
+        [totalCount]="filter.totalCount"
         [active]="activeFilter() === filter"
         [chips]="filter.selected ?? []"
         (chipsChange)="updateFilterSelection(filter, $event)"

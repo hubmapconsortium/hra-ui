@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  output,
-  signal,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
@@ -41,7 +32,6 @@ import {
   SizeLegend,
   SizeLegendComponent,
 } from '../../../../atoms/src';
-import { SourceListComponent, SourceListItem } from '../../../../molecules/src';
 import {
   BiomarkerTableComponent,
   DataCell,
@@ -70,7 +60,6 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
     BiomarkerTableComponent,
     GradientLegendComponent,
     SizeLegendComponent,
-    SourceListComponent,
     EmptyBiomarkerComponent,
     MatButtonToggleModule,
     MessageIndicatorModule,
@@ -83,14 +72,12 @@ const EMPTY_TISSUE_INFO: TissueInfo = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.full-screen-grid]': 'isBiomarkerfullscreen()',
-    '[class.no-data-full-screen-grid]': 'source().length === 0 && isBiomarkerfullscreen()',
-    '[class.no-data-sources]': 'source().length === 0 && !isBiomarkerfullscreen()',
-    '[class.no-data]':
-      '(source().length === 0 || (source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0)) && !isBiomarkerfullscreen()',
-    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0 && !isBiomarkerfullscreen()',
+    '[class.no-data-sources]': 'source().length === 0',
+    '[class.no-data]': 'source().length > 0 && selectedSources().length > 0 && tab.rows.length === 0',
+    '[class.no-data-selected]': 'source().length > 0 && selectedSources().length === 0',
   },
 })
-export class BiomarkerDetailsComponent implements AfterViewInit {
+export class BiomarkerDetailsComponent {
   /** Reference to biomarker table */
   @ViewChild('table') table!: BiomarkerTableComponent<DataCell>;
 
@@ -130,14 +117,10 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** List of sources with titles and links displayed to the user */
   readonly source = selectSnapshot(SourceRefsSelectors.sourceReferences);
 
-  /**
-   * Iri  of medical illustration behavior component
-   */
+  /** Iri of medical illustration behavior component */
   readonly iri = selectSnapshot(ActiveFtuSelectors.iri);
 
-  /**
-   * Get all tissues
-   */
+  /** Get all tissues */
   readonly tissues = selectSnapshot(TissueLibrarySelectors.tissues);
 
   /** Selects the cells hovered currently to highlight in table */
@@ -152,8 +135,7 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
   /** Action to set selected sources */
   readonly setSelectedSources = dispatch(SourceRefsActions.SetSelectedSources);
 
-  /** List of selected sources */
-  readonly selectedSources = signal<SourceListItem[]>([]);
+  readonly selectedSources = selectSnapshot(SourceRefsSelectors.selectedSourceReferences);
 
   /** Active tab index */
   activeTabIndex = 0;
@@ -165,22 +147,6 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
    * Determines whether biomarkerfullscreen is in fullscreen mode
    */
   readonly isBiomarkerfullscreen = this.fullscreenService.isFullscreen;
-
-  /**
-   * View child of source list component
-   */
-  @ViewChild('sourceList', { static: true }) sourceListRef!: TemplateRef<unknown>;
-
-  /**
-   * Source list template of biomarker details component
-   */
-  readonly sourceListTemplate = output<TemplateRef<unknown>>();
-
-  ngAfterViewInit(): void {
-    if (this.sourceListRef) {
-      this.sourceListTemplate.emit(this.sourceListRef);
-    }
-  }
 
   /** Table tabs */
   get tab(): CellSummaryAggregate {
@@ -274,10 +240,6 @@ export class BiomarkerDetailsComponent implements AfterViewInit {
    * calls the setScreenMode function.
    */
   toggleFullscreen(): void {
-    setTimeout(() => {
-      this.table.checkDisplayedColumns();
-    }, 250);
-
     this.isTableFullScreen = !this.isTableFullScreen;
     this.fullscreenService.fullscreentabIndex.set(FullscreenTab.BiomarkerDetails);
     this.fullscreenService.isFullscreen.set(this.isTableFullScreen);

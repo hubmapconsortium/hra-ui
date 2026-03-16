@@ -12,7 +12,6 @@
     "@hra-ui/design-system": "1.1.0",
     "@angular/common": "^21.1.4",
     "@angular/core": "^21.1.4",
-    "@angular/platform-browser": "^21.1.4",
     "@angular/cdk": "^21.1.4",
     "@angular/material": "^21.1.4",
     "@hra-ui/common": "1.1.0",
