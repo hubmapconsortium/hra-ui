@@ -105,13 +105,15 @@ content:
                 label: Tissue preservation method
               - column: imagingMethod
                 label: Multiplexed antibody-based imaging method
+              - column: consortia
+                label: Consortium
               - column: csvLabel
-                label: Download OMAP
+                label: Data
                 type:
                   type: link
                   urlColumn: csv
               - column: rpLabel
-                label: Representative Dataset
+                label: Representative dataset
                 type:
                   type: link
                   urlColumn: representativeDataset
