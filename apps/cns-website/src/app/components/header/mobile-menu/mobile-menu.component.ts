@@ -43,5 +43,16 @@ export class MobileMenuComponent {
   readonly closeMenu = output();
 
   /** Scrollbar store for managing viewport scrolling */
-  protected readonly scrollbarStore = inject(ScrollbarStore);
+  private readonly scrollbarStore = inject(ScrollbarStore);
+
+  /**
+   * Scrolls to the top of the page if the menu item is not an external link
+   *
+   * @param item Link item
+   */
+  maybeScrollToTop(item: { external?: boolean }): void {
+    if (!item.external) {
+      this.scrollbarStore.scrollToTop();
+    }
+  }
 }

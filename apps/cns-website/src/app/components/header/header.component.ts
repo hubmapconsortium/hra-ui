@@ -140,6 +140,17 @@ export class HeaderComponent {
   }
 
   /**
+   * Scrolls to the top of the page if the menu item is not an external link
+   *
+   * @param item Link item
+   */
+  maybeScrollToTop(item: { external?: boolean }): void {
+    if (!item.external) {
+      this.scrollbarStore.scrollToTop();
+    }
+  }
+
+  /**
    * Creates and attaches a resize observer that updates the menu offset
    * whenever the header size changes
    *
