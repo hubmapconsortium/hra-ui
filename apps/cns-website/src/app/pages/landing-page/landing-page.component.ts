@@ -104,7 +104,7 @@ export class LandingPageComponent {
     };
     return Object.entries(data).reduce(
       (acc, [key, items]) => {
-        acc[key as FeaturedDataKey] = items.map((item) => this.toContentCard(item));
+        acc[key as FeaturedDataKey] = items.map((item) => this.toContentCard(item)).filter((card) => card.link !== '#'); // Filter out items without links
         return acc;
       },
       {} as Record<FeaturedDataKey, ContentCard[]>,
