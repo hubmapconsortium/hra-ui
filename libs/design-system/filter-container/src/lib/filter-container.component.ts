@@ -6,10 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import {
+  InfoButtonActionsDirective,
   InfoButtonComponent,
   InfoButtonTaglineDirective,
-  InfoButtonActionsDirective,
 } from '@hra-ui/design-system/buttons/info-button';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** A filter chip representing a selected filter option */
 export interface FilterChip {
@@ -32,6 +33,7 @@ export interface FilterChip {
     InfoButtonComponent,
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
+    PlainTooltipDirective,
   ],
   templateUrl: './filter-container.component.html',
   styleUrl: './filter-container.component.scss',
@@ -40,6 +42,9 @@ export interface FilterChip {
 export class FilterContainerComponent<T extends FilterChip> {
   /** tagline for the filter category */
   readonly action = input.required<string>();
+
+  /** Total count of filter options in the category */
+  readonly totalCount = input<number>();
 
   /** Whether the filter container is active/open */
   readonly active = model(false);

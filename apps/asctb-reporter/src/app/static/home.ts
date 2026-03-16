@@ -68,7 +68,7 @@ export const VIDEO_SECTIONS = [
 
 export const CONTRIBUTORS = [
   {
-    img: 'assets/contributors/paul.jpg',
+    img: 'contributors/paul.jpg',
     name: 'Hrishikesh Paul',
     desc: 'Software Engineer Team Lead',
     mail: 'hrpaul@iu.edu',
@@ -77,7 +77,7 @@ export const CONTRIBUTORS = [
     github: 'https://github.com/hrishikeshpaul',
   },
   {
-    img: 'assets/contributors/katy.png',
+    img: 'contributors/katy.png',
     name: 'Katy Börner',
     desc: 'Director & Researcher',
     mail: 'katy@iu.edu',
@@ -86,7 +86,7 @@ export const CONTRIBUTORS = [
     github: '',
   },
   {
-    img: 'assets/contributors/bruce.jpg',
+    img: 'contributors/bruce.jpg',
     name: 'Bruce W Herr II',
     desc: 'Senior System Architect',
     mail: 'bherr@iu.edu',
@@ -95,7 +95,7 @@ export const CONTRIBUTORS = [
     github: 'https://github.com/bherr2',
   },
   {
-    img: 'assets/contributors/ellen.jpeg',
+    img: 'contributors/ellen.jpeg',
     name: 'Ellen M Quardokus',
     desc: 'Senior Research Analyst',
     mail: 'ellenmq@iu.edu',
@@ -104,7 +104,7 @@ export const CONTRIBUTORS = [
     github: '',
   },
   {
-    img: 'assets/contributors/ajay.jpeg',
+    img: 'contributors/ajay.jpeg',
     name: 'Sai Ajay Vutukuri',
     desc: 'Software Developer',
     mail: 'svutuku@iu.edu',
@@ -113,7 +113,7 @@ export const CONTRIBUTORS = [
     github: '',
   },
   {
-    img: 'assets/contributors/mac.jpeg',
+    img: 'contributors/mac.jpeg',
     name: 'Mac Vogelsang',
     desc: 'Software Developer',
     mail: 'madvogel@iu.edu',
@@ -122,7 +122,7 @@ export const CONTRIBUTORS = [
     github: '',
   },
   {
-    img: 'assets/contributors/nikhil.jpeg',
+    img: 'contributors/nikhil.jpeg',
     name: 'Nikhil Mahadevaswamy',
     desc: 'Angular Developer',
     mail: 'nmahade@iu.edu',
@@ -131,34 +131,11 @@ export const CONTRIBUTORS = [
     github: '',
   },
   {
-    img: 'assets/contributors/pramod.png',
+    img: 'contributors/pramod.png',
     name: 'Pramod Bhakta',
     desc: 'Angular Developer',
     mail: 'pnbhakta@iu.edu',
     link: 'https://github.com/pbrm4',
     github: '',
-  },
-];
-
-export const IMAGES = [
-  {
-    path: 'assets/homepage/laptop-images/vis.svg',
-    alt: 'Visualization',
-  },
-  {
-    path: 'assets/homepage/laptop-images/report.svg',
-    alt: 'Report Generator',
-  },
-  {
-    path: 'assets/homepage/laptop-images/compare.svg',
-    alt: 'Compare Results',
-  },
-  {
-    path: 'assets/homepage/laptop-images/il.svg',
-    alt: 'Indented List',
-  },
-  {
-    path: 'assets/homepage/laptop-images/link.svg',
-    alt: 'Playground Link',
   },
 ];

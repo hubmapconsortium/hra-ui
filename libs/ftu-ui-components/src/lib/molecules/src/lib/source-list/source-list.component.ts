@@ -1,38 +1,31 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input, output, signal, viewChild } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
-import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { Iri } from '@hra-ui/services';
-import { EmptyBiomarkerComponent } from '../../../../atoms/src';
+import { TableRow } from '@hra-ui/design-system/table';
+import { SourceReference } from '@hra-ui/services';
+import { COLUMN_IDS } from '@hra-ui/state';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
-
-/** SourceListItem interface contains title and link to the dataset for the SourceList*/
-export interface SourceListItem extends TableRow {
-  /** Unique identifier for the source */
-  id: Iri;
-  /** List of authors for the source */
-  authors: string[];
-  /** Year dataset was released */
-  year: number;
-  /** Title of the dataset in the SourceList */
-  title: string;
-  /** DOI of dataset */
-  doi: string;
-  /** Label of the dataset in the SourceList */
-  label: string;
-  /** Link to the dataset in the SourceList */
-  link: string;
-}
 
 /** This component shows list of sources with title and links to the datasets */
 @Component({
@@ -45,22 +38,24 @@ export interface SourceListItem extends TableRow {
     MatIconModule,
     MatSortModule,
     IconButtonModule,
-    EmptyBiomarkerComponent,
     MatCheckboxModule,
-    TableComponent,
     ResultsIndicatorComponent,
   ],
   templateUrl: './source-list.component.html',
   styleUrl: './source-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.full-screen]': 'hideTitle()',
     '[class.no-data-full-screen]': 'hideTitle() && sources().length === 0',
   },
 })
 export class SourceListComponent {
+  /** Mat sort element */
+  private readonly sort = viewChild(MatSort);
+
+  datasource = new MatTableDataSource<SourceReference>([]);
+
   /** List of sources with titles and links displayed to the user */
-  readonly sources = input<SourceListItem[]>([]);
+  readonly sources = input<SourceReference[]>([]);
 
   /** Text that appears in the empty biomarker message */
   readonly message = input<string>('');
@@ -69,7 +64,7 @@ export class SourceListComponent {
   readonly hideTitle = input<boolean>(false);
 
   /** Fullscreen service */
-  private readonly fullscreenService = inject(FtuFullScreenService);
+  readonly fullscreenService = inject(FtuFullScreenService);
 
   /** Whether to show the biomarker table */
   readonly showTable = signal(true);
@@ -77,50 +72,33 @@ export class SourceListComponent {
   /** Number of selected sources */
   readonly selectedCount = signal(0);
 
+  protected readonly columnIds = computed(() => {
+    return ['select', ...COLUMN_IDS];
+  });
+
+  readonly numPublications = computed(() => this.sources().filter((source) => source.doi).length);
+
   /** Emits when source selection changed */
-  readonly selectionChanged = output<SourceListItem[]>();
+  readonly selectionChanged = output<SourceReference[]>();
 
-  /** Reference to the table component */
-  readonly sourceTable = viewChild<TableComponent<TableRow>>('sourceTable');
+  readonly selection = new SelectionModel<TableRow>(true, []);
 
-  /** Table columns configuration */
-  readonly tableColumns: TableColumn[] = [
-    {
-      column: 'authors',
-      label: 'Authors',
-      type: 'text',
-    },
-    {
-      column: 'year',
-      label: 'Year',
-      type: 'text',
-    },
-    {
-      column: 'title',
-      label: 'Paper Title',
-      type: 'text',
-    },
-    {
-      column: 'link',
-      label: 'Paper DOI',
-      type: {
-        type: 'link',
-        urlColumn: 'link',
-      },
-    },
-  ];
-
-  /** Initialize source list */
+  /** Sort data on load and set columns */
   constructor() {
     effect(() => {
-      const sources = this.sources();
-      const table = this.sourceTable();
+      this.datasource.sort = this.sort();
+    });
 
-      if (table && sources.length > 0) {
-        table.selection.clear();
-        table.selection.select(...sources);
-        this.selectedCount.set(table.selection.selected.length);
-        this.selectionChanged.emit(table.selection.selected as SourceListItem[]);
+    /** Initialize source list */
+    effect(() => {
+      const sources = this.sources();
+
+      if (sources.length > 0) {
+        this.datasource.data = sources;
+        this.selection.clear();
+        this.selection.select(...sources);
+        this.selectedCount.set(this.selection.selected.length);
+        this.selectionChanged.emit(this.selection.selected as SourceReference[]);
       }
     });
   }
@@ -143,10 +121,36 @@ export class SourceListComponent {
    * Handle selection changes from the table
    */
   onSelectionChange(): void {
-    const table = this.sourceTable();
-    if (table) {
-      this.selectedCount.set(table.selection.selected.length);
-      this.selectionChanged.emit(table.selection.selected as SourceListItem[]);
+    this.selectedCount.set(this.selection.selected.length);
+    this.selectionChanged.emit(this.selection.selected as SourceReference[]);
+  }
+
+  /**
+   * Whether the number of selected elements matches the total number of rows.
+   */
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.datasource.data.length;
+    return numSelected === numRows;
+  }
+
+  /**
+   * Selects all rows if they are not all selected; otherwise clear selection.
+   */
+  toggleAllRows(): void {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.selection.select(...(this.datasource.data as TableRow[]));
     }
+    this.onSelectionChange();
+  }
+
+  /**
+   * Toggle row selection
+   */
+  toggleRow(row: TableRow): void {
+    this.selection.toggle(row);
+    this.onSelectionChange();
   }
 }

@@ -13,7 +13,7 @@ import {
   loadViewKeyMapping,
 } from './data-view';
 import { NodeFilterView } from './filters';
-import { batch, cachedAccessor, Dimensions, inplaceMinMax } from './utils';
+import { batch, cachedAccessor, Dimensions, inplaceMinMax, LoadingState } from './utils';
 
 /** Node view input */
 export type NodesInput = DataViewInput<NodesView>;
@@ -200,8 +200,9 @@ export function loadNodes(
   nodeTargetKey?: Signal<string | undefined>,
   loading?: NextObserver<boolean>,
 ): Signal<NodesView> {
-  const data = loadViewData(input, NodesView, loading);
-  const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey }, loading);
+  const loadingState = new LoadingState(loading);
+  const data = loadViewData(input, NodesView, loadingState.createObserver());
+  const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey }, loadingState.createObserver());
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
   return createDataView(NodesView, data, inferred, EMPTY_NODES_VIEW);
 }

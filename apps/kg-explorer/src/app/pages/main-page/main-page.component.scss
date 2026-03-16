@@ -113,6 +113,7 @@
   ::ng-deep hra-table {
     --mat-table-header-container-height: 5.375rem;
     --mat-table-row-item-container-height: 4.75rem;
+    --hra-table-max-height: calc(100vh - 215.5px);
     border: none;
     border-radius: 0;
 

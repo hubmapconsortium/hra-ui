@@ -1,13 +1,19 @@
-import PublicationsPageDataSchema, { PublicationsPageData } from './publications-page.schema';
+import { PublicationDataSchema, PublicationData } from './publications-page.schema';
 
 describe('PublicationsPageDataSchema', () => {
   it('should parse valid publications data', () => {
-    const validData: PublicationsPageData = {
-      '2024': ['<a href="/docs/publications/test1">Test Publication 2024</a>'],
-      '2023': ['<a href="#">Author</a> - Title'],
-    };
+    const validData: PublicationData = [
+      {
+        dateStart: new Date('2024-01-01'),
+        description: 'Test Publication 2024',
+      },
+      {
+        dateStart: new Date('2023-01-01'),
+        description: 'Test Publication 2023 by Author',
+      },
+    ];
 
-    const result = PublicationsPageDataSchema.safeParse(validData);
+    const result = PublicationDataSchema.safeParse(validData);
     expect(result.success).toBe(true);
   });
 });

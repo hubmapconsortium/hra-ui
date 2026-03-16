@@ -175,7 +175,7 @@ describe('SheetService', () => {
       expect(response).toEqual(mockResponse);
     });
 
-    const req = httpMock.expectOne('assets/data/1.0/test-sheet.csv');
+    const req = httpMock.expectOne('data/1.0/test-sheet.csv');
     expect(req.request.method).toBe('GET');
     expect(req.request.responseType).toBe('text');
     req.flush(mockResponse);

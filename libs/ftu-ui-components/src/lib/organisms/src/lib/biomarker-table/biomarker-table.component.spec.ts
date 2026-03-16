@@ -152,18 +152,6 @@ describe('BiomarkerTableComponent', () => {
     expect(instance.dataSource.data).toStrictEqual(sortedData);
   });
 
-  it('gets prefiller width', async () => {
-    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
-    instance.updateHorizontalViewportOffset(176);
-    expect(instance.preFillerWidth).toEqual('132px');
-  });
-
-  it('gets postfiller width', async () => {
-    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
-    instance.updateHorizontalViewportOffset(176);
-    expect(instance.postFillerWidth).toEqual('-44px');
-  });
-
   it('returns a size - getMinMaxSize function', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.getSize(0.9)).toBeDefined();
@@ -210,21 +198,5 @@ describe('BiomarkerTableComponent', () => {
 
     instance.setHoverId(undefined);
     expect(instance.highlightedCellId).toEqual('');
-  });
-
-  it('updates horizontal viewport size', async () => {
-    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
-    const spy = jest.spyOn(instance, 'updateHorizontalViewportSize');
-    instance.updateHorizontalViewportSize(200);
-    instance.checkDisplayedColumns();
-    expect(spy).toHaveBeenCalledWith(200);
-  });
-
-  it('updates horizontal viewport offset', async () => {
-    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
-    const spy = jest.spyOn(instance, 'updateHorizontalViewportOffset');
-    instance.updateHorizontalViewportOffset(100);
-    instance.checkDisplayedColumns();
-    expect(spy).toHaveBeenCalledWith(100);
   });
 });

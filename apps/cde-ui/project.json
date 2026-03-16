@@ -13,8 +13,10 @@
       "executor": "@nx/angular:application",
       "options": {
         "assets": [
-          "apps/cde-ui/src/favicon.png",
-          "apps/cde-ui/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/cde-ui/public"
+          },
           {
             "input": "libs/design-system/assets",
             "glob": "**/*",
@@ -22,27 +24,10 @@
           }
         ],
         "polyfills": ["zone.js"]
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "10mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "8kb",
-              "maximumError": "16kb"
-            }
-          ]
-        }
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
