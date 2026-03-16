@@ -14,8 +14,8 @@
           cdkFocusInitial
           [hraLink]="featured.url"
           [hraLinkExternal]="featured.external"
-          (click)="!featured.external && scrollbarStore.scrollToTop()"
-          (keyup.enter)="!featured.external && scrollbarStore.scrollToTop()"
+          (click)="maybeScrollToTop(featured)"
+          (keyup.enter)="maybeScrollToTop(featured)"
         >
           <div class="featured-label">
             <div class="featured-label-content">
@@ -56,8 +56,8 @@
                 [hraFeature]="item.label | slugify"
                 [hraLink]="item.url"
                 [hraLinkExternal]="item.external"
-                (click)="!item.external && scrollbarStore.scrollToTop()"
-                (keyup.enter)="!item.external && scrollbarStore.scrollToTop()"
+                (click)="maybeScrollToTop(item)"
+                (keyup.enter)="maybeScrollToTop(item)"
               >
                 {{ item.label }}
               </a>
