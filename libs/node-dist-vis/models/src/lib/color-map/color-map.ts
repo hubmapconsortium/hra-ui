@@ -13,7 +13,7 @@ import {
   loadViewKeyMapping,
 } from '../data-view';
 import { NodeFilterView } from '../filters';
-import { cachedAccessor, tryParseColor } from '../utils';
+import { cachedAccessor, LoadingState, tryParseColor } from '../utils';
 
 /** Color map input */
 export type ColorMapInput = DataViewInput<ColorMapView>;
@@ -129,14 +129,15 @@ export function loadColorMap(
   colorMapValue?: Signal<string | undefined>,
   loading?: NextObserver<boolean>,
 ): Signal<ColorMapView> {
-  const data = loadViewData(input, ColorMapView, loading);
+  const loadingState = new LoadingState(loading);
+  const data = loadViewData(input, ColorMapView, loadingState.createObserver());
   const mapping = loadViewKeyMapping(
     keys,
     {
       'Cell Type': colorMapKey,
       'Cell Color': colorMapValue,
     },
-    loading,
+    loadingState.createObserver(),
   );
   const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
   return createDataView(ColorMapView, data, inferred, EMPTY_COLOR_MAP_VIEW);

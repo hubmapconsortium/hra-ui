@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
+import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
 import { InputProps, createCustomElement } from '@hra-ui/webcomponents';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
@@ -20,5 +21,13 @@ export type CdeVisualizationElementProps = InputProps<CdeVisualizationComponent>
 
 /** Custom element definition for CdeVisualizationComponent */
 export const CdeVisualizationElement = createCustomElement('cde-visualization', CdeVisualizationComponent, {
-  providers: [provideHttpClient(), provideAnimations(), provideDesignSystem()],
+  providers: [
+    provideAppConfiguration({
+      name: 'cde-visualization',
+      version: '1.1.0',
+    }),
+    provideAnalytics(withErrorHandler()),
+    provideDesignSystem(),
+    provideHttpClient(),
+  ],
 });

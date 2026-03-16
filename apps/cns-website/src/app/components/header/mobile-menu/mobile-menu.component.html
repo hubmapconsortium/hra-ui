@@ -29,8 +29,8 @@
           [hraFeature]="option.label | slugify"
           [hraLink]="option.url"
           [hraLinkExternal]="option.external"
-          (click)="!option.external && scrollbarStore.scrollToTop()"
-          (keyup.enter)="!option.external && scrollbarStore.scrollToTop()"
+          (click)="maybeScrollToTop(option)"
+          (keyup.enter)="maybeScrollToTop(option)"
         >
           {{ option.label }}
         </a>

@@ -4,16 +4,20 @@ import { combineSummariesByBiomarkerType, computeAggregate, filterSummaries } fr
 import { CellSummaryAggregateCell } from './cell-summary.model';
 
 const source1: SourceReference = {
-  id: 'source1' as Iri,
-  label: '',
-  link: '',
-  title: '',
+  title: 'test',
+  doi: 'test',
   year: 2000,
-  authors: [],
-  doi: '',
+  datasetTitle: 'test',
+  datasetId: 'source1',
+  cellType: 'test',
+  healthStatus: 'test',
+  sex: 'test',
+  age: 'test',
+  bmi: 'test',
+  ethnicity: 'test',
 };
 const source2 = produce(source1, (draft) => {
-  draft.id = 'source2' as Iri;
+  draft.datasetId = 'source2' as Iri;
 });
 
 const geneBiomarker = 'gene';
@@ -26,7 +30,7 @@ const ensembleId2 = 'ensemble2';
 
 const summary1: CellSummary = {
   biomarker_type: geneBiomarker,
-  cell_source: source1.id,
+  cell_source: source1.datasetId as Iri,
   summary: [
     {
       cell_id: cell1,
@@ -47,7 +51,7 @@ const summary1: CellSummary = {
 
 const summary2: CellSummary = {
   biomarker_type: geneBiomarker,
-  cell_source: source2.id,
+  cell_source: source2.datasetId as Iri,
   summary: [
     {
       cell_id: cell2,
@@ -76,7 +80,7 @@ const summaries = [summary1, summary2];
 
 const summary3: CellSummary = {
   biomarker_type: 'protein',
-  cell_source: source1.id,
+  cell_source: source1.datasetId as Iri,
   summary: [
     {
       cell_id: cell1,
@@ -97,7 +101,7 @@ const summary3: CellSummary = {
 
 const summaryWithMultipleGenes: CellSummary = {
   biomarker_type: geneBiomarker,
-  cell_source: source1.id,
+  cell_source: source1.datasetId as Iri,
   summary: [
     {
       cell_id: cell1,
@@ -138,7 +142,7 @@ const summaryWithMultipleGenes: CellSummary = {
 
 const summaryWithReverseOrder: CellSummary = {
   biomarker_type: geneBiomarker,
-  cell_source: source1.id,
+  cell_source: source1.datasetId as Iri,
   summary: [
     {
       cell_id: cell1,
@@ -183,7 +187,7 @@ describe('Cell Summary Helpers', () => {
     it('returns empty array when no summaries match the sources', () => {
       const nonExistentSource: SourceReference = {
         ...source1,
-        id: 'nonexistent' as Iri,
+        datasetId: 'nonexistent' as Iri,
       };
       const result = filterSummaries(summaries, [nonExistentSource]);
       expect(result).toEqual([]);
@@ -311,7 +315,7 @@ describe('Cell Summary Helpers', () => {
     it('handles summary with no genes', () => {
       const emptyGeneSummary: CellSummary = {
         biomarker_type: geneBiomarker,
-        cell_source: source1.id,
+        cell_source: source1.datasetId as Iri,
         summary: [
           {
             cell_id: cell1,

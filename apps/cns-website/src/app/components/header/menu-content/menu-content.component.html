@@ -6,8 +6,8 @@
     tabindex="0"
     [hraLink]="featured.url"
     [hraLinkExternal]="featured.external"
-    (click)="!featured.external && scrollbarStore.scrollToTop()"
-    (keyup.enter)="!featured.external && scrollbarStore.scrollToTop()"
+    (click)="maybeScrollToTop(featured)"
+    (keyup.enter)="maybeScrollToTop(featured)"
   >
     <div class="featured-content-container">
       <div class="featured-content">
@@ -46,8 +46,8 @@
           [hraFeature]="item.label | slugify"
           [hraLink]="item.url"
           [hraLinkExternal]="item.external"
-          (click)="!item.external && scrollbarStore.scrollToTop()"
-          (keyup.enter)="!item.external && scrollbarStore.scrollToTop()"
+          (click)="maybeScrollToTop(item)"
+          (keyup.enter)="maybeScrollToTop(item)"
         >
           {{ item.label }}
         </a>

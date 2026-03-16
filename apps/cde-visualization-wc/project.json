@@ -13,8 +13,10 @@
       "executor": "@nx/angular:application",
       "options": {
         "assets": [
-          "apps/cde-visualization-wc/src/favicon.png",
-          "apps/cde-visualization-wc/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/cde-visualization-wc/public"
+          },
           {
             "input": "libs/design-system/assets",
             "glob": "**/*",
@@ -22,27 +24,10 @@
           }
         ],
         "polyfills": ["zone.js"]
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "4mb",
-              "maximumError": "8mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "10kb",
-              "maximumError": "20kb"
-            }
-          ]
-        }
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/cde-visualization-wc/browser/"

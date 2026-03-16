@@ -18,27 +18,10 @@
             "input": "apps/node-dist-vis-wc/public"
           }
         ]
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "1mb",
-              "maximumError": "10mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ]
-        }
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "build-webcomponent": {
       "command": "node tools/scripts/bundle-scripts.mjs dist/apps/node-dist-vis-wc/browser/"

@@ -13,7 +13,7 @@
   }
 
   .message {
-    @include utils.use-font(label, large);
+    @include utils.use-font(label, medium);
     color: var(--mat-sys-secondary);
     flex: 1;
   }

@@ -5,7 +5,7 @@ import { render } from '@testing-library/angular';
 import { of } from 'rxjs';
 import { DataViewerParamSyncControllerService } from './data-viewer-param-sync.service';
 
-@Component({ standalone: true, template: '' })
+@Component({ template: '' })
 class TestComponent {}
 
 describe('DataViewerParamSyncControllerService', () => {

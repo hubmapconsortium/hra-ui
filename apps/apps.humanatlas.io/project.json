@@ -54,8 +54,7 @@
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",

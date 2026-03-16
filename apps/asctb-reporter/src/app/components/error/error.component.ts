@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { AssetUrlPipe } from '@hra-ui/common/url';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { Error } from '../../models/response.model';
+
 @Component({
   selector: 'app-error',
-  imports: [CommonModule, MatIconModule, ErrorIndicatorComponent],
+  imports: [CommonModule, MatIconModule, ErrorIndicatorComponent, AssetUrlPipe],
   templateUrl: './error.component.html',
   styleUrl: './error.component.scss',
 })

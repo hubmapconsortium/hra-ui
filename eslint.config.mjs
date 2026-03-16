@@ -94,7 +94,7 @@ export const configs = {
           'error',
           {
             selector: 'SequenceExpression',
-            message: 'The comma operator is confusing and a common mistake. Don’t use it!',
+            message: "The comma operator is confusing and a common mistake. Don't use it!",
           },
         ],
         yoda: 'warn',

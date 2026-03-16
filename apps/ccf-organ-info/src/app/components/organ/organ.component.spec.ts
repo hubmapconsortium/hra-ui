@@ -1,10 +1,18 @@
 import { Component, input, output } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Filter, FilterSexEnum, SpatialEntity, SpatialSceneNode, TissueBlock } from '@hra-api/ng-client';
+import {
+  Filter,
+  FilterSexEnum,
+  SpatialEntity,
+  SpatialSceneNode,
+  TissueBlock,
+  TissueBlockTypeEnum,
+} from '@hra-api/ng-client';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { NodeClickEvent } from 'ccf-body-ui';
 import { OrganComponent } from './organ.component';
+import { provideDesignSystem } from '@hra-ui/design-system';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -64,7 +72,7 @@ describe('OrganComponent', () => {
   const mockBlocks: TissueBlock[] = [
     {
       '@id': 'block1',
-      '@type': 'TissueBlock',
+      '@type': TissueBlockTypeEnum.Sample,
       label: 'Block 1',
       sampleType: 'Tissue Block',
       link: 'http://example.com/block1',
@@ -79,7 +87,7 @@ describe('OrganComponent', () => {
     } as TissueBlock,
     {
       '@id': 'block2',
-      '@type': 'TissueBlock',
+      '@type': TissueBlockTypeEnum.Sample,
       label: 'Block 2',
       sampleType: 'Tissue Block',
       link: 'http://example.com/block2',
@@ -99,7 +107,7 @@ describe('OrganComponent', () => {
     tmc: ['Provider A'],
   } as Filter;
 
-  const providers = [provideHttpClient(), provideHttpClientTesting()];
+  const providers = [provideHttpClient(), provideHttpClientTesting(), provideDesignSystem()];
 
   async function renderComponent(
     inputs: Partial<{
@@ -144,7 +152,7 @@ describe('OrganComponent', () => {
     const blocksWithNoDonor: TissueBlock[] = [
       {
         '@id': 'block3',
-        '@type': 'TissueBlock',
+        '@type': TissueBlockTypeEnum.Sample,
         label: 'Block 3',
         sampleType: 'Tissue Block',
         link: 'http://example.com/block3',

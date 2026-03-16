@@ -66,8 +66,8 @@
             [hraFeature]="category.label | slugify"
             [hraLink]="category.url"
             [hraLinkExternal]="category.external"
-            (click)="!category.external && scrollbarStore.scrollToTop()"
-            (keyup.enter)="!category.external && scrollbarStore.scrollToTop()"
+            (click)="maybeScrollToTop(category)"
+            (keyup.enter)="maybeScrollToTop(category)"
           >
             {{ category.label }}
           </a>

@@ -1,7 +1,7 @@
 @use 'utils';
 @use 'vars';
 @use '@angular/material' as mat;
-@use './../../../assets/stylesheets/_colors.scss';
+@use './../../../../public/stylesheets/_colors.scss';
 
 :host {
   .controls {

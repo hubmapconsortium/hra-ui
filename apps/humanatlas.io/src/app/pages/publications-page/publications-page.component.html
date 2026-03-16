@@ -7,7 +7,7 @@
   @for (item of items(); track item.year) {
     <hra-page-section level="2" [tagline]="item.tagline" [anchor]="item.anchor">
       @for (content of item.contents; track content) {
-        <markdown [data]="content" />
+        <hra-markdown [data]="content" />
       }
     </hra-page-section>
   }

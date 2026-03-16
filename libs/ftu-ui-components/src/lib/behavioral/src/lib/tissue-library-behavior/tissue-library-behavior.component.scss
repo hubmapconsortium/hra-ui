@@ -1,35 +1,65 @@
 @use '../../../../../../../design-system/styles/vars';
+@use '../../../../../../../design-system/styles/utils';
 @use '@angular/material' as mat;
 
 :host {
   display: flex;
   flex-direction: column;
-  border-right: 0.0625rem solid vars.$outline-variant;
 
   .hidden {
     display: none;
   }
-}
 
-::ng-deep {
-  .more-menu {
-    width: 17.75rem !important;
-    a {
-      .title {
-        color: vars.$secondary;
-      }
-      .description {
-        color: vars.$primary;
-      }
-    }
-    @include mat.divider-overrides(
-      (
-        color: vars.$outline-variant,
-      )
-    );
+  .compact {
+    width: 4rem;
+    justify-content: center;
+    border-bottom: 1px solid vars.$outline-variant;
   }
 
   ftu-label-box {
-    border-bottom: 1px solid vars.$outline-variant;
+    height: 4rem;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+}
+
+::ng-deep {
+  .mat-mdc-menu-panel {
+    @include mat.menu-overrides(
+      (
+        item-label-text-color: vars.$secondary,
+        item-focus-state-layer-color: utils.with-alpha(vars.$tertiary, 20%),
+        item-hover-state-layer-color: utils.with-alpha(vars.$tertiary, 20%),
+        divider-color: vars.$outline-variant,
+        item-with-icon-leading-spacing: 0.75rem,
+        item-with-icon-trailing-spacing: 0.75rem,
+      )
+    );
+
+    .mat-mdc-menu-item {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    a {
+      .title {
+        @include utils.use-font(label, medium);
+        margin-bottom: 0.125rem;
+      }
+      .description {
+        color: vars.$primary;
+        @include utils.use-font(label, small);
+      }
+    }
+  }
+
+  .more-menu,
+  .help-menu {
+    width: 17.75rem;
+  }
+
+  .fullscreen-menu,
+  .download-menu,
+  .embed-menu {
+    width: 13.75rem;
   }
 }

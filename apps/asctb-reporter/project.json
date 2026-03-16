@@ -13,17 +13,17 @@
       "executor": "@nx/angular:application",
       "options": {
         "assets": [
-          "apps/asctb-reporter/src/favicon.png",
-          "apps/asctb-reporter/src/assets",
-          "apps/asctb-reporter/src/_redirects",
+          {
+            "glob": "**/*",
+            "input": "apps/asctb-reporter/public"
+          },
           {
             "input": "libs/design-system/assets",
             "glob": "**/*",
             "output": "./assets"
           }
         ],
-        "polyfills": ["apps/asctb-reporter/src/polyfills.ts"],
-        "scripts": ["node_modules/marked/lib/marked.umd.js"],
+        "polyfills": ["zone.js"],
         "styles": ["apps/asctb-reporter/src/styles.scss", "node_modules/jspreadsheet-ce/dist/jspreadsheet.css"]
       },
       "configurations": {
@@ -51,15 +51,14 @@
           "fileReplacements": [
             {
               "replace": "apps/asctb-reporter/src/environments/environment.ts",
-              "with": "apps/asctb-reporter/src/environments/environment.stage.ts"
+              "with": "apps/asctb-reporter/src/environments/environment.staging.ts"
             }
           ]
         }
       }
     },
     "serve": {
-      "executor": "@nx/angular:dev-server",
-      "continuous": true
+      "executor": "@nx/angular:dev-server"
     }
   }
 }
