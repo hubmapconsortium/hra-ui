@@ -3,8 +3,8 @@ import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/c
 import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
-import { ArchiveRedirectPageComponent } from './components/archive-redirect-page/archive-redirect-page.component';
 import { ContentPageComponent } from './components/content-page/content-page.component';
+import { ArchiveRedirectComponent } from './pages/archive-redirect/archive-redirect.component';
 import { CurrentTeamComponent } from './pages/current-team/current-team.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
@@ -219,6 +219,6 @@ export const appRoutes: Route[] = [
   },
   {
     path: '**',
-    component: ArchiveRedirectPageComponent,
+    component: ArchiveRedirectComponent,
   },
 ];

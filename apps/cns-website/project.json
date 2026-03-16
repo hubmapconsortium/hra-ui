@@ -20,6 +20,11 @@
             "output": "./assets"
           }
         ]
+      },
+      "configurations": {
+        "production": {
+          "baseHref": "/cns-website/"
+        }
       }
     },
     "serve": {
