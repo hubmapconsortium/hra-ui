@@ -71,6 +71,7 @@
     "@turf/helpers": "^7.2.0",
     "@vivjs/layers": "^0.16.1",
     "analytics": "^0.8.19",
+    "animate.css": "^4.1.1",
     "axios": "^1.13.5",
     "bootstrap": "^5.3.8",
     "cannon-es": "^0.20.0",
