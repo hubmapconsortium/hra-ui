@@ -319,7 +319,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">data-viewer/src/lib/data-viewer.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">data-viewer/src/lib/data-viewer.component.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -570,8 +570,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">data-viewer/src/lib/data-viewer.component.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">data-viewer/src/lib/data-viewer.component.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -661,7 +661,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">data-viewer/src/lib/data-viewer.component.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">data-viewer/src/lib/data-viewer.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -698,7 +698,15 @@
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
     const releaseVersion &#x3D; this.releaseVersion();
     const data &#x3D; this.releaseVersionData();
-    return data.find((item) &#x3D;&gt; item.version &#x3D;&#x3D;&#x3D; releaseVersion) ?? data[0];
+    const currentSelectedVersion &#x3D; data.find((item) &#x3D;&gt; item.version &#x3D;&#x3D;&#x3D; releaseVersion) ?? data[0];
+    const organData &#x3D; currentSelectedVersion.organData.map((organ) &#x3D;&gt; {
+      return {
+        ...organ,
+        label: this.sentenceCase(organ.label),
+      };
+    });
+    const sortedOrganData &#x3D; organData.sort((a, b) &#x3D;&gt; a.label.localeCompare(b.label));
+    return { ...currentSelectedVersion, organData: sortedOrganData };
   })</code>
                     </td>
                 </tr>
@@ -781,7 +789,15 @@ export class DataViewerComponent {
   protected readonly releaseVersion_ &#x3D; computed(() &#x3D;&gt; {
     const releaseVersion &#x3D; this.releaseVersion();
     const data &#x3D; this.releaseVersionData();
-    return data.find((item) &#x3D;&gt; item.version &#x3D;&#x3D;&#x3D; releaseVersion) ?? data[0];
+    const currentSelectedVersion &#x3D; data.find((item) &#x3D;&gt; item.version &#x3D;&#x3D;&#x3D; releaseVersion) ?? data[0];
+    const organData &#x3D; currentSelectedVersion.organData.map((organ) &#x3D;&gt; {
+      return {
+        ...organ,
+        label: this.sentenceCase(organ.label),
+      };
+    });
+    const sortedOrganData &#x3D; organData.sort((a, b) &#x3D;&gt; a.label.localeCompare(b.label));
+    return { ...currentSelectedVersion, organData: sortedOrganData };
   });
 
   /** Current organ selected */
@@ -815,6 +831,16 @@ export class DataViewerComponent {
     const endIndex &#x3D; url.lastIndexOf(&#x27;/&#x27;);
     const startIndex &#x3D; url.lastIndexOf(&#x27;/&#x27;, endIndex - 1) + 1;
     return url.slice(startIndex, endIndex);
+  }
+
+  /**
+   * Converts a string to sentence case
+   * @param value String to convert
+   * @returns String in sentence case
+   */
+  private sentenceCase(value: string): string {
+    const processedValue &#x3D; value.trim().toLowerCase();
+    return processedValue.charAt(0).toUpperCase() + processedValue.slice(1);
   }
 }
 </code></pre>

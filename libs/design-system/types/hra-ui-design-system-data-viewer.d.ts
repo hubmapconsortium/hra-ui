@@ -157,9 +157,6 @@ declare class DataViewerComponent {
     readonly organ: _angular_core.ModelSignal<string | undefined>;
     /** Current selected release version */
     protected readonly releaseVersion_: _angular_core.Signal<{
-        version: string;
-        label: string;
-        date: string;
         organData: {
             label: string;
             icon: string;
@@ -176,6 +173,9 @@ declare class DataViewerComponent {
                 crosswalkUrl?: string | undefined;
             }[];
         }[];
+        version: string;
+        label: string;
+        date: string;
         crosswalkUrl?: string | undefined;
         extractionsSitesUrl?: string | undefined;
         referenceOrgansUrl?: string | undefined;
@@ -206,6 +206,12 @@ declare class DataViewerComponent {
      * @returns A feature name
      */
     getCardFeatureId(card: ViewerCard): string;
+    /**
+     * Converts a string to sentence case
+     * @param value String to convert
+     * @returns String in sentence case
+     */
+    private sentenceCase;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<DataViewerComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<DataViewerComponent, "hra-data-viewer", never, { "releaseVersionData": { "alias": "releaseVersionData"; "required": true; "isSignal": true; }; "variant": { "alias": "variant"; "required": true; "isSignal": true; }; "githubIconsUrl": { "alias": "githubIconsUrl"; "required": true; "isSignal": true; }; "releaseVersion": { "alias": "releaseVersion"; "required": false; "isSignal": true; }; "organ": { "alias": "organ"; "required": false; "isSignal": true; }; }, { "releaseVersion": "releaseVersionChange"; "organ": "organChange"; }, never, never, true, never>;
 }
