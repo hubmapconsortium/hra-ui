@@ -45,9 +45,7 @@ content:
     content:
       - component: GridContainer
         styles:
-          margin-top: 2rem
-          gap: 2rem
-          grid-template-columns: repeat(auto-fill, minmax(max(17rem, calc(50% - 1rem)), 1fr))
+          margin-top: 1rem
         content:
           - component: ActionCard
             variant: outlined
