@@ -168,6 +168,6 @@ export class LandingPageComponent {
       }
     }
 
-    return labels;
+    return labels.filter((label) => label.toLowerCase() !== 'featured');
   }
 }
