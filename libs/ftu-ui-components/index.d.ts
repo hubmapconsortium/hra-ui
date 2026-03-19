@@ -179,6 +179,8 @@ declare class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChang
     private crosswalkEl?;
     /** List of highlighted svg elements */
     private highlightedElements;
+    /** Analytics logger */
+    private logEvent;
     /**
      * Updates the highlighting based on current highlight id
      * @param changes
@@ -217,6 +219,11 @@ declare class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChang
      * @param event Mouse event
      */
     private onCrosswalkHover;
+    /**
+     * Finds matching node in data from a clicked element and emits it
+     * @param event Mouse event
+     */
+    private onCrosswalkClick;
     /**
      * Clears observables
      */
