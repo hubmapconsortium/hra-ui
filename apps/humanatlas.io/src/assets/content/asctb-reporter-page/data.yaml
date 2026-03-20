@@ -2,6 +2,7 @@ $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: ASCT+B Reporter
 subtitle: Construct, explore, and compare data visually.
 icons: product:asctb-reporter
+
 headerContent:
   - component: FlexContainer
     content:
@@ -16,11 +17,17 @@ content:
     anchor: overview
     level: 2
     content:
-      component: Markdown
-      data: |
-        Anatomical structures, cell types, and biomarker (ASCT+B) tables aim to capture the nested part_of structure of human organ systems from gross anatomical structure scale to subcellular biomarker scale. Functional tissue units (FTUs) for an organ system are identified as well as the typology of cells and biomarkers used to uniquely identify cell types within that organ system (e.g., gene, protein, proteoforms, lipid or metabolic markers). Ontology terms and unique identifiers are matched to AS, CT, and B wherever possible for semantic search capability within Human Reference Atlas apps. This data is authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts and it used to develop a common coordinate framework (CCF) of the healthy human body.
+      - component: Markdown
+        data: |
+          Anatomical structures, cell types, and biomarker (ASCT+B) tables aim to capture the nested part_of structure of human organ systems from gross anatomical structure scale to subcellular biomarker scale.
 
-        The ASCT+B Reporter is a visualization app to explore, compare, and construct Human Reference Atlas digital objects ASCT+B tables and organ mapping antibody panels (OMAPs). This app includes a partonomy tree that presents relationships between various anatomical structures and substructures, that are linked to their respective cell types and biomarkers via bimodal networks. This app also presents an indented list view of the partonomy tree and lists statistics for various metadata (e.g., counts of ASCT+B Table entity types and relationship types) which are downloadable. The debug log lists any issues related to the data provided in the table. This app has a backend server, the ASCT+B API, to retrieve the data from Google Sheets and convert it to a machine-readable format.
+          Functional tissue units (FTUs) for an organ system are identified as well as the typology of cells and biomarkers used to uniquely identify cell types within that organ system (e.g., gene, protein, proteoforms, lipid or metabolic markers). Ontology terms and unique identifiers are matched to AS, CT, and B wherever possible for semantic search capability within Human Reference Atlas apps.
+
+          This data is authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts and it is used to develop a common coordinate framework (CCF) of the healthy human body. The ASCT+B Reporter is a visualization app to explore, compare, and construct Human Reference Atlas digital objects ASCT+B tables and organ mapping antibody panels (OMAPs).
+
+          This app includes a partonomy tree that presents relationships between various anatomical structures and substructures, that are linked to their respective cell types and biomarkers via bimodal networks. This app also presents an indented list view of the partonomy tree and lists statistics for various metadata (e.g., counts of ASCT+B table entity types and relationship types) which are downloadable. The debug log lists any issues related to the data provided in the table.
+
+          This app has a backend server, the ASCT+B API, to retrieve the data from Google Sheets and convert it to a machine-readable format.
 
   - component: PageSection
     tagline: App features
@@ -52,7 +59,9 @@ content:
     content:
       - component: Markdown
         data: |
-          The ASCT+B Reporter includes a feature for comparing uploaded data with the ASCT+B master tables. To use this feature, data must be entered into the ASCT+B table Google Sheets template and made publicly accessible so it can be uploaded into the Reporter. **Note:** `.xls` files are not supported. This feature is especially useful for comparing research data with the data in the ASCT+B Master Tables.
+          The ASCT+B Reporter includes a feature for comparing uploaded data with official ASCT+B tables.
+
+          To use this feature, data must be entered into the ASCT+B table Google Sheets template and made publicly accessible so it can be uploaded into the Reporter. **Note:** `.xls` files are not supported. This feature is especially useful for comparing research data with the data in the ASCT+B Master Tables.
 
           The ASCT+B Reporter app supports comparing:
           - ASCT+B tables to ASCT+B tables
@@ -66,17 +75,15 @@ content:
     content:
       - component: Markdown
         data: |
-          1. In the ASCT+B Reporter application, click the Compare button in top toolbar to open the Compare side panel.
-          2. Use templates to format data into an ASCT+B Table or an OMAP Compare Table.
+          1. In the ASCT+B Reporter application, click the `Compare` button in top toolbar to open the Compare side panel.
+          2. Use templates to format data into an ASCT+B table or an OMAP Compare table.
           3. Add data to compare in two ways:
-              <ol type="a">
-                <li>Upload an ASCT+B Table or OMAP Compare Table CSV or XLSX,</li>
-                <li>Add the URL of a publicly accessible Google Sheet.</li>
-            </ol>
+             1. Upload an ASCT+B table or OMAP Compare table CSV or XLSX,
+             2. Add the URL of a publicly accessible Google Sheet.
           4. Optional: Add a title and description for the dataset.
           5. Optional: Select a color for visualizing the data.
-          6. Optional: Add more datasets by clicking the Add button, then repeat step 1 and step 2 for each additional dataset.
-          7. Click the Compare button to generate the visualization to start comparing.
+          6. Optional: Add more datasets by clicking the `Add` button, then repeat step 1 and step 2 for each additional dataset.
+          7. Click the `Compare` button to generate the visualization to start comparing.
 
   - component: PageSection
     tagline: How to make a Google Sheet publicly accessible
@@ -130,20 +137,20 @@ content:
     content:
       - component: Markdown
         data: |
-          The **Main Sheet** tab includes statistics for the selected organ’s master table.
+          The **Main sheet** tab includes ASCT+B table statistics for the selected organ.
 
           1. Review **Unique Entities** to see unique counts for anatomical structures (AS), cell types (CT), and biomarkers (B).
           2. Review **Entity Links** to see counts for relationships between entities, including: `part_of`, `located_in`, and `characterizes`
           3. Review **Ontology Links** to see separate graphs showing how many structures have ontology IDs and how many do not.
           4. Expand **Alphabetical listings of AS, CT, and B** to view the names of the entities included in the counts above.
           5. Review **Counts by Organ and Biomarker Type** for additional count summaries.
-            - When a **single organ** is selected, biomarker counts appear in an expandable biomarker type section.
-            - When **multiple organs** are selected, counts appear in a table that includes AS, CT, B, and related tree and bimodal links.
+             - When a **single organ** is selected, biomarker counts appear in an expandable biomarker type section.
+             - When **multiple organs** are selected, counts appear in a table that includes AS, CT, B, and related tree and bimodal links.
 
-         How counts are calculated:
-         1. **Counts**: AS and CT counts are based on unique ontology ID entities in the master table. If an ontology ID is not available, the entity name is used instead.
-         2. **Tree links and bimodal links**: Tree link counts represent AS-to-AS relationships. Bimodal link counts represent AS-to-CT and CT-to-B relationships. These counts are based on the number of connected nodes and edges in the table data.
-         3. **Biomarker Counts**: Biomarker counts for proteins (BP), genes (BG), metabolites (BM), lipids (BL), and proteoforms (BF) are based on unique biomarker ID entities together with biomarker type. If an ID is not available, the entity name and biomarker type are used instead.
+          How counts are calculated:
+          1. **Counts**: Anatomical structure (AS) and cell type (CT) counts are based on unique ontology ID entities in the official ASCT+B table. If an ontology ID is not available, the entity name is used instead.
+          2. **Tree links and bimodal links**: Tree link counts represent AS-to-AS relationships. Bimodal link counts represent AS-to-CT and CT-to-B relationships. These counts are based on the number of connected nodes and edges in the table data.
+          3. **Biomarker Counts**: Biomarker counts for proteins (BP), genes (BG), metabolites (BM), lipids (BL), and proteoforms (BF) are based on unique biomarker ID entities together with biomarker type. If an ID is not available, the entity name and biomarker type are used instead.
 
   - component: PageSection
     tagline: Compare tab
