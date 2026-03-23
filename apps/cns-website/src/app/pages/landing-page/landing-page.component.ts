@@ -163,11 +163,11 @@ export class LandingPageComponent {
     const labels: string[] = [];
     for (const slug of slugs) {
       const tag = tags.find((t) => t.slug === slug);
-      if (tag) {
+      if (tag && tag.slug !== 'featured') {
         labels.push(tag.name);
       }
     }
 
-    return labels.filter((label) => label.toLowerCase() !== 'featured');
+    return labels;
   }
 }
