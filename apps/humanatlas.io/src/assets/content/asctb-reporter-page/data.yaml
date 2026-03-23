@@ -36,9 +36,9 @@ content:
     content:
       - component: Markdown
         data: |
-          This documentation provides a high-level overview of the ASCT+B Reporter application. 
+          This documentation provides a high-level overview of the ASCT+B Reporter application.
 
-          For the current requirements for formatting ASCT+B table data, use the [Standard operating procedure (SOP): Authoring Anatomical Structures, Cell Types and Biomarkers Tables](https://doi.org/10.5281/zenodo.5746152). 
+          For the current requirements for formatting ASCT+B table data, use the [Standard operating procedure (SOP): Authoring Anatomical Structures, Cell Types and Biomarkers Tables](https://doi.org/10.5281/zenodo.5746152).
 
           To prepare data in the required structure, start with the [ASCT+B Table Template](https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit?usp=sharing).
 
@@ -90,7 +90,7 @@ content:
 
           2. Select **Go to Visualization**.
 
-          3. In the organ selector, choose the organ table to view.  
+          3. In the organ selector, choose the organ table to view.
              If multiple versions are available for an organ, select the version from the dropdown.
 
           4. Select **Submit** to load the table and open the visualization.
@@ -668,7 +668,6 @@ content:
           1. In the top toolbar, select the **Download** icon.
           2. Review the available download options.
           3. Select a format to download the current view or dataset.
-
       - component: PageTable
         variant: alternating
         verticalDividers: true
