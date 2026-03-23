@@ -132,9 +132,13 @@ export class ResearchPageComponent {
    * @returns tag items
    */
   getTagItems(ids: TagId[]): TagItem[] {
-    return ids.map((id) => {
-      const tag = this.store.tagsMap().get(id);
-      return tag ? { slug: id, name: tag.name, description: tag.description } : { slug: id, name: id, description: '' };
-    });
+    return ids
+      .map((id) => {
+        const tag = this.store.tagsMap().get(id);
+        return tag
+          ? { slug: id, name: tag.name, description: tag.description }
+          : { slug: id, name: id, description: '' };
+      })
+      .filter((tag) => tag.slug !== 'featured');
   }
 }
