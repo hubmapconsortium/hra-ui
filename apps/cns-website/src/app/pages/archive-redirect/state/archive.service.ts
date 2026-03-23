@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
 import { injectAppHref, joinWithSlash } from '@hra-ui/common/url';
 import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { map, Observable } from 'rxjs';
@@ -14,30 +14,45 @@ export interface ArchiveEntry {
   redirectUrl: string;
 }
 
-/** Default API endpoint URL */
-const DEFAULT_API_ENDPOINT_URL = 'https://wayback.archive-it.org/219/';
-/** Default application href */
-const DEFAULT_APP_HREF = 'https://cns.iu.edu/';
+/** Options for configuring the archive service */
+export interface ArchiveServiceOptions {
+  /** API endpoint URL */
+  apiEndpointUrl?: string;
+  /** Base URL for constructing redirect URLs */
+  redirectBaseUrl?: string;
+  /** Default application href if not available from `injectAppHref` */
+  defaultAppHref?: string;
+}
 
-/** Injection token for the API endpoint URL */
-const API_ENDPOINT_URL_TOKEN = createInjectionToken(() => DEFAULT_API_ENDPOINT_URL);
+/** Default options for the archive service */
+const DEFAULT_OPTIONS: Required<ArchiveServiceOptions> = {
+  apiEndpointUrl: 'https://demo.cns.iu.edu/cns-api/archive.php',
+  redirectBaseUrl: 'https://wayback.archive-it.org/219/',
+  defaultAppHref: 'https://cns.iu.edu/',
+};
 
-/** Inject API endpoint URL */
-export const injectApiEndpointUrl = API_ENDPOINT_URL_TOKEN[0];
-/** Provide a different API endpoint URL */
-export const provideApiEndpointUrl = API_ENDPOINT_URL_TOKEN[1];
+/** Archive options injection methods */
+const OPTIONS_TOKEN = createInjectionToken((): ArchiveServiceOptions => DEFAULT_OPTIONS);
+
+/** Inject archive options */
+export const injectArchiveOptions = OPTIONS_TOKEN[0];
+/** Provide a different set of archive options */
+export const provideArchiveOptions = OPTIONS_TOKEN[1];
 
 /** Service for interacting with the archive API */
 @Injectable({
   providedIn: 'root',
 })
 export class ArchiveService {
+  /** Archive options */
+  readonly options = { ...DEFAULT_OPTIONS, ...injectArchiveOptions() };
+
   /** Http client */
   private readonly http = inject(HttpClient);
-  /** API endpoint URL */
-  private readonly apiEndpointUrl = injectApiEndpointUrl();
   /** Application href */
   private readonly appHref = injectAppHref();
+  /** Page base URL */
+  private readonly pageBaseUrl = computed(() => this.appHref() || this.options.defaultAppHref);
 
   /**
    * Load archive entries for a given route.
@@ -46,14 +61,11 @@ export class ArchiveService {
    * @returns Observable of archive entries
    */
   loadByRoute(route: string): Observable<ArchiveEntry[]> {
-    const timemapEndpointUrl = joinWithSlash(this.apiEndpointUrl, 'timemap/cdx');
-    const pageUrl = joinWithSlash(this.appHref() || DEFAULT_APP_HREF, route);
     return this.http
-      .get(timemapEndpointUrl, {
+      .get(this.options.apiEndpointUrl, {
         responseType: 'text',
         params: {
-          fl: 'timestamp,original',
-          url: pageUrl,
+          url: joinWithSlash(this.pageBaseUrl(), route),
         },
       })
       .pipe(map((response) => this.parseCdxResponse(response)));
@@ -110,7 +122,7 @@ export class ArchiveService {
    * @returns Constructed redirect URL
    */
   private constructRedirectUrl(timestamp: string, url: string): string {
-    const base = joinWithSlash(this.apiEndpointUrl, timestamp);
+    const base = joinWithSlash(this.options.redirectBaseUrl, timestamp);
     return joinWithSlash(base, url);
   }
 }

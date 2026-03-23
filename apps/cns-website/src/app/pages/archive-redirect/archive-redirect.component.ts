@@ -8,24 +8,31 @@ import { injectWindow } from '@hra-ui/common/injectors';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CopyableUrlContainerComponent } from '@hra-ui/design-system/copyable-url-container';
+import { createInjectionToken } from 'ngxtension/create-injection-token';
 import { interval, map, Observable, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
 import { ArchiveStore } from './state/archive.store';
 
-/** Default timestamp for the archive redirect */
-const DEFAULT_TIMESTAMP = Date.UTC(2026, 2, 9);
-/** Default delay before redirecting, in seconds */
-const DEFAULT_REDIRECT_DELAY_SECONDS = 5;
-
-/**
- * Parse an attribute value into a timestamp, returning a default value if the input is invalid.
- *
- * @param value Attribute value to parse
- * @returns Parsed timestamp or default value
- */
-function timestampAttribute(value: unknown): number {
-  const timestamp = numberAttribute(value, DEFAULT_TIMESTAMP);
-  return Number.isFinite(timestamp) && timestamp > 0 ? Math.floor(timestamp) : DEFAULT_TIMESTAMP;
+/** Options for configuring the archive redirect component */
+export interface ArchiveRedirectOptions {
+  /** Timestamp to look for archived pages before (in milliseconds since epoch) */
+  timestamp?: number;
+  /** Delay before redirecting, in seconds */
+  redirectDelaySeconds?: number;
 }
+
+/** Default options for the archive redirect component */
+const DEFAULT_OPTIONS: Required<ArchiveRedirectOptions> = {
+  timestamp: Date.UTC(2026, 2, 9), // March 9, 2026
+  redirectDelaySeconds: 5,
+};
+
+/** Injection token for archive redirect options */
+const OPTIONS_TOKEN = createInjectionToken((): ArchiveRedirectOptions => DEFAULT_OPTIONS);
+
+/** Inject archive redirect options */
+export const injectArchiveRedirectOptions = OPTIONS_TOKEN[0];
+/** Provide a different set of archive redirect options */
+export const provideArchiveRedirectOptions = OPTIONS_TOKEN[1];
 
 /**
  * RxJS operator that creates a countdown from a specified number of seconds,
@@ -64,7 +71,10 @@ function countdown(seconds: number): Observable<number> {
 })
 export class ArchiveRedirectComponent {
   /** Look for pages archived no later than this timestamp */
-  readonly timestamp = input(DEFAULT_TIMESTAMP, { transform: timestampAttribute });
+  readonly timestamp = input<string | number>();
+
+  /** Archive redirect options */
+  readonly options = { ...DEFAULT_OPTIONS, ...injectArchiveRedirectOptions() };
 
   /** Global window reference */
   private readonly window = injectWindow();
@@ -72,13 +82,18 @@ export class ArchiveRedirectComponent {
   private readonly store = inject(ArchiveStore);
   /** Activated route reference */
   private readonly activatedRoute = inject(ActivatedRoute);
-  /** Redirect delay in seconds */
-  private readonly redirectDelaySeconds = DEFAULT_REDIRECT_DELAY_SECONDS;
+
+  /** Parsed timestamp */
+  private readonly parsedTimestamp = computed(() => {
+    const defaultTimestamp = this.options.timestamp;
+    const value = numberAttribute(this.timestamp(), defaultTimestamp);
+    return Number.isFinite(value) && value > 0 ? Math.floor(value) : defaultTimestamp;
+  });
 
   /** Current URL */
   protected readonly currentUrl = computed(() => this.window.location.href);
   /** Redirect URL if found */
-  protected readonly redirectUrl = computed(() => this.store.getEntryBefore(this.timestamp())?.redirectUrl);
+  protected readonly redirectUrl = computed(() => this.store.getEntryBefore(this.parsedTimestamp())?.redirectUrl);
   /** Whether the archive entries are loading */
   protected readonly isLoading = computed(() => this.store.isLoading());
 
@@ -86,7 +101,7 @@ export class ArchiveRedirectComponent {
   private startCountdown$ = new Subject<void>();
   /** Redirect countdown observable */
   protected readonly countdown$ = this.startCountdown$.pipe(
-    switchMap(() => countdown(this.redirectDelaySeconds)),
+    switchMap(() => countdown(this.options.redirectDelaySeconds)),
     takeUntilDestroyed(),
     shareReplay(1),
   );
