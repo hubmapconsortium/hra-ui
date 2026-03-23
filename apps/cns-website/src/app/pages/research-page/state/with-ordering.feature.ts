@@ -125,7 +125,16 @@ function groupByKeyToLabel(key: GroupByKey, keyLabels: Record<GroupByKey, string
  * @param item Research item to convert
  */
 function convertToListViewItem(item: ResearchItem): ListViewItem {
-  return { content: item.description };
+  return { content: insertBreakpoints(item.description) };
+}
+
+/**
+ * Helper function to insert word break opportunities into strings (e.g., for long URLs).
+ * @param string url
+ * @returns url with breakpoints inserted
+ */
+function insertBreakpoints(string: string): string {
+  return string.replaceAll('/', '/<wbr>');
 }
 
 /**
