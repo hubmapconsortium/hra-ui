@@ -50,8 +50,11 @@ describe('DataViewerWithQueryParamsComponent', () => {
   it('should create', async () => {
     await setup();
 
-    const releaseLabel = await screen.findByText(/Release 1\.0/);
-    expect(releaseLabel).toBeInTheDocument();
+    const menuButton = await screen.findByRole('button', { name: /open the data viewer's menu/i });
+    expect(menuButton).toBeInTheDocument();
+
+    const title = await screen.findByText(/Functional Tissue Units/i);
+    expect(title).toBeInTheDocument();
   });
 
   it('should render data viewer with inputs', async () => {
