@@ -38,7 +38,7 @@ export const ArchiveStore = signalStore(
         switchMap((route) => archiveService.loadByRoute(route)),
         catchError(() => of([])),
         tap((entries) => patchState(store, { entries })),
-        deriveLoading(), // TODO time options
+        deriveLoading({ threshold: 200, loadingTime: 3000 }),
         tap((isLoading) => patchState(store, { isLoading })),
       ),
     ),
