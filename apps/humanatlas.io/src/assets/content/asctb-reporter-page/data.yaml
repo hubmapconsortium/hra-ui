@@ -21,36 +21,475 @@ content:
         data: |
           Anatomical structures, cell types, and biomarker (ASCT+B) tables aim to capture the nested part_of structure of human organ systems from gross anatomical structure scale to subcellular biomarker scale.
 
-          Functional tissue units (FTUs) for an organ system are identified as well as the typology of cells and biomarkers used to uniquely identify cell types within that organ system (e.g., gene, protein, proteoforms, lipid or metabolic markers). Ontology terms and unique identifiers are matched to AS, CT, and B wherever possible for semantic search capability within Human Reference Atlas apps.
+          Functional tissue units (FTUs) for an organ system are identified as well as the typology of cells and biomarkers used to uniquely identify cell types within that organ system (e.g., gene, protein, proteoforms, lipid or metabolic markers). Ontology terms and unique identifiers are matched to anatomical structures (AS), cell types (CT), and biomarkers (B) wherever possible for semantic search capability within Human Reference Atlas apps.
 
-          This data is authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts and it is used to develop a common coordinate framework (CCF) of the healthy human body. The ASCT+B Reporter is a visualization app to explore, compare, and construct Human Reference Atlas digital objects ASCT+B tables and organ mapping antibody panels (OMAPs).
+          This data is authored and reviewed by an international team of anatomists, pathologists, physicians, and other experts and it used to develop a common coordinate framework (CCF) of the healthy human body. The ASCT+B Reporter is a visualization app to explore, compare, and construct Human Reference Atlas digital objects ASCT+B tables and organ mapping antibody panels (OMAPs).
 
-          This app includes a partonomy tree that presents relationships between various anatomical structures and substructures, that are linked to their respective cell types and biomarkers via bimodal networks. This app also presents an indented list view of the partonomy tree and lists statistics for various metadata (e.g., counts of ASCT+B table entity types and relationship types) which are downloadable. The debug log lists any issues related to the data provided in the table.
+          This app includes a partonomy tree that presents relationships between various anatomical structures and substructures, that are linked to their respective cell types and biomarkers via bimodal networks. This app also presents an indented list view of the partonomy tree and lists statistics for various metadata (e.g., counts of ASCT+B Table entity types and relationship types) which are downloadable. The debug log lists any issues related to the data provided in the table.
 
           This app has a backend server, the ASCT+B API, to retrieve the data from Google Sheets and convert it to a machine-readable format.
 
   - component: PageSection
+    tagline: Data format
+    anchor: data-format
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          This documentation provides a high-level overview of the ASCT+B Reporter application. 
+          
+          For the current requirements for formatting ASCT+B table data, use the [Standard operating procedure (SOP): Authoring Anatomical Structures, Cell Types and Biomarkers Tables](https://doi.org/10.5281/zenodo.5746152). 
+          
+          To prepare data in the required structure, start with the [ASCT+B Table Template](https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit?usp=sharing).
+
+  - component: PageSection
+    tagline: Demo video
+    anchor: demo-video
+    level: 2
+    content:
+      - component: YouTubePlayer
+        videoId: pzUFmDhQEO8
+        label: Asct+b reporter application demo video
+
+  - component: PageSection
     tagline: App features
     anchor: app-features
-    level: 3
+    level: 2
     content:
       - component: Image
         src: assets/ui-images/annotated-ui-asctb-reporter.png
 
   - component: PageSection
-    tagline: App guide
-    anchor: app-guide
-    level: 2
-    content: []
-
-  - component: PageSection
-    tagline: Demo video
-    anchor: demo-video
+    tagline: Visualization
+    anchor: visualization
     level: 3
     content:
-      - component: YouTubePlayer
-        videoId: pzUFmDhQEO8
-        label: Asct+b reporter application demo video
+      - component: Markdown
+        data: |
+          The ASCT+B Reporter visualization shows how anatomical structures, cell types, and biomarkers are connected within a selected organ table.
+
+          The view combines:
+
+          - a **partonomy tree** for anatomical structures
+          - a **network layer** for cell types and biomarkers
+
+          In the visualization:
+
+          - **Anatomical structures** are shown in red
+          - **Cell types** are shown in blue
+          - **Biomarkers** are shown in green
+
+  - component: PageSection
+    tagline: Open a visualization
+    anchor: open-a-visualization
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          1. Open the ASCT+B Reporter.
+
+          2. Select **Go to Visualization**.
+
+          3. In the organ selector, choose the organ table to view.  
+             If multiple versions are available for an organ, select the version from the dropdown.
+
+          4. Select **Submit** to load the table and open the visualization.
+
+  - component: PageSection
+    tagline: What the visualization shows
+    anchor: what-the-visualization-shows
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          The visualization has two connected parts:
+
+          1. A **partonomy tree** that shows relationships between anatomical structures and substructures.
+          2. A **network layer** that extends from anatomical structures to cell types and then to biomarkers.
+
+  - component: PageSection
+    tagline: Partonomy tree
+    anchor: partonomy-tree
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          The partonomy tree shows anatomical structures and their substructures in a hierarchical layout.
+
+  - component: PageSection
+    tagline: How it works
+    anchor: partonomy-tree-how-it-works
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          - The tree uses a single root node called **Body**.
+          - **Body** is a helper node used to keep the tree structure valid.
+          - This is necessary because tree layouts do not allow a node to have multiple parents.
+
+  - component: PageSection
+    tagline: What to expect
+    anchor: partonomy-tree-what-to-expect
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          - Anatomical structure nodes are shown in red.
+          - Non-leaf anatomical structure nodes display ontology information on hover.
+          - Ontology links are shown below node names by default.
+          - This part of the tree is primarily structural and is not the main interactive layer.
+
+  - component: PageSection
+    tagline: Last layer of the partonomy tree
+    anchor: last-layer-of-the-partonomy-tree
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          The last visible layer of anatomical structures acts as the transition point between the tree and the network.
+
+          These nodes behave differently from the rest of the partonomy tree:
+
+          - they can be hovered over
+          - they can be selected
+          - they connect to related cell types and biomarkers
+
+          Their coordinates are reused to anchor the first layer of the network so the two parts of the visualization align cleanly.
+
+  - component: PageSection
+    tagline: Network layer
+    anchor: network-layer
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          The network layer extends the visualization beyond anatomical structures. It shows:
+
+          - relationships from **anatomical structures to cell types**
+          - relationships from **cell types to biomarkers**
+
+  - component: PageSection
+    tagline: Cell type layer
+    anchor: cell-type-layer
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          The cell type layer is the second layer of the visualization.
+
+          - Cell types are shown in blue.
+          - Hovering over or selecting a cell type highlights its connected anatomical structures and biomarkers.
+          - Node placement is controlled by configurable horizontal and vertical spacing values.
+          - Node matching is case-sensitive.
+          - Uniqueness is based on name, ontology link, and `rdfs:label`.
+
+  - component: PageSection
+    tagline: Biomarker layer
+    anchor: biomarker-layer
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          The biomarker layer is the third layer of the visualization.
+
+          - Biomarkers are shown in green.
+          - Hovering over or selecting a biomarker highlights connected cell types and related pathways.
+          - Node placement is controlled by configurable horizontal and vertical spacing values.
+          - Node matching is case-sensitive.
+          - Uniqueness is based on name, ontology link, and `rdfs:label`.
+
+  - component: PageSection
+    tagline: Interact with the visualization
+    anchor: interact-with-the-visualization
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          The interactive nodes are:
+
+          - the last layer of anatomical structure nodes
+          - cell type nodes
+          - biomarker nodes
+
+  - component: PageSection
+    tagline: Hover over a node
+    anchor: hover-over-a-node
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          Hovering over a node highlights connected paths and dims unrelated nodes. The tooltip can include:
+
+          - name
+          - degree
+          - indegree
+          - outdegree
+          - ontology ID
+          - `rdfs:label`
+
+  - component: PageSection
+    tagline: Select a node
+    anchor: select-a-node
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          Selecting a node keeps the highlighted paths visible.
+
+          When a node is selected:
+
+          - connected nodes remain highlighted
+          - unrelated nodes become less prominent
+          - the selected node label is emphasized
+
+  - component: PageSection
+    tagline: Open node details
+    anchor: open-node-details
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          Selecting a node name opens an information panel with additional details, including:
+
+          - description
+          - ontology ID
+          - IRI
+
+          This information is retrieved from the EBI ontology API.
+
+  - component: PageSection
+    tagline: View references
+    anchor: view-references
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          Selecting a path opens a panel that lists DOI references associated with that connection.
+
+  - component: PageSection
+    tagline: Technical notes
+    anchor: technical-notes
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          These notes explain how the visualization is structured and why some values may differ from the source table.
+
+  - component: PageSection
+    tagline: How node uniqueness works
+    anchor: how-node-uniqueness-works
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          To avoid incorrect merges in the visualization, nodes are identified using a combination of:
+
+          - name
+          - ontology link
+          - `rdfs:label`
+          - parent context
+
+          Parent context is important because two nodes may share the same name and ontology information but belong to different parent structures. Without that extra distinction, the visualization could merge nodes that should remain separate.
+
+  - component: PageSection
+    tagline: Why counts may look different
+    anchor: why-counts-may-look-different
+    level: 5
+    content:
+      - component: Markdown
+        data: |
+          In some cases, the number of anatomical structures shown in the visualization may be lower than the total count in the source table.
+
+          This happens because the visualization uses a tree structure, and tree structures cannot display the same node under multiple parents. When the data includes that pattern, the visualization resolves it into a single valid tree. As a result, some structures may be combined in the rendered view.
+
+  - component: PageSection
+    tagline: Visualization functions
+    anchor: visualization-functions
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Visualization functions help make the current view easier to explore.
+
+          Use these controls to sort, size, and filter nodes in the visualization. These functions apply to **cell type** and **biomarker** nodes.
+
+  - component: PageSection
+    tagline: Understand node metrics
+    anchor: understand-node-metrics
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Some visualization functions use connection counts to sort or size nodes.
+
+          - **Indegree**: Number of incoming links to a node
+          - **Outdegree**: Number of outgoing links from a node
+          - **Degree**: Total number of incoming and outgoing links
+
+  - component: PageSection
+    tagline: Sort nodes
+    anchor: sort-nodes
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Use sorting controls to change the order of cell type and biomarker nodes in the visualization.
+
+          Nodes can be sorted:
+
+          - alphabetically
+          - by degree
+
+          By default, nodes are sorted alphabetically. Changing the sort order updates the visualization.
+
+  - component: PageSection
+    tagline: Size nodes
+    anchor: size-nodes
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Use sizing controls to change the size of cell type and biomarker nodes in the visualization.
+
+          Nodes can be sized by:
+
+          - indegree
+          - outdegree
+          - degree
+
+          By default, all nodes use a base size of `300`. Changing the sizing option updates the visualization.
+
+  - component: PageSection
+    tagline: Filter biomarkers
+    anchor: filter-biomarkers
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Use the biomarker filter to show only selected biomarker types in the visualization. Changing the filter updates the visualization.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: biomarkerType
+            label: Biomarker type
+          - column: description
+            label: Description
+        rows:
+          - biomarkerType: Protein
+            description: Displayed as `BProtein` in ASCT+B tables.
+          - biomarkerType: Gene
+            description: Displayed as `BGene` in ASCT+B tables.
+          - biomarkerType: Proteoform
+            description: Displayed as `BProteoform` in ASCT+B tables.
+          - biomarkerType: Lipid
+            description: Displayed as `BLipid` in ASCT+B tables.
+          - biomarkerType: Metabolite
+            description: Displayed as `BMetabolites` in ASCT+B tables.
+
+  - component: PageSection
+    tagline: Filter Organ Mapping Antibody Panels
+    anchor: filter-organ-mapping-antibody-panels
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Use the **Organ Mapping Antibody Panels filters** to focus the visualization on data relevant to organ mapping antibody panels.
+
+          These filters help reduce visual complexity by showing only a subset of the current dataset.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: filter
+            label: Filter
+          - column: description
+            label: Description
+        rows:
+          - filter: Organs only
+            description: Limits the view to anatomical structures associated with organ mapping antibody panels.
+          - filter: Proteins only
+            description: Limits the view to protein biomarkers associated with organ mapping antibody panels.
+
+  - component: PageSection
+    tagline: Visualization controls
+    anchor: visualization-controls
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Visualization controls adjust how the current view is displayed.
+
+          Use the control panel to change label visibility, spacing, and highlighting for data quality checks. Current settings can also be downloaded as a JSON file.
+
+  - component: PageSection
+    tagline: Open the control panel
+    anchor: open-the-control-panel
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          1. Open a visualization in the ASCT+B Reporter.
+
+          2. Locate the control panel on the left side of the page.
+
+          3. Use the available controls to adjust the display.
+
+          4. Download the current settings as a JSON file, if needed.
+
+  - component: PageSection
+    tagline: Available controls
+    anchor: available-controls
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Use these controls to adjust how the visualization is displayed.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: control
+            label: Control
+          - column: description
+            label: Description
+        rows:
+          - control: Ontology IDs
+            description: Shows or hides ontology names displayed below node labels when ontology information is available.
+          - control: Show all anatomical structures
+            description: Displays anatomical structures and substructures in the all-organs view. This control is available only in the all-organs visualization.
+          - control: Tree Width
+            description: Adjusts the width of the partonomy tree for anatomical structure nodes.
+          - control: Tree Height
+            description: Adjusts the height of the partonomy tree for anatomical structure nodes.
+          - control: Bimodal Distance X
+            description: Adjusts the horizontal spacing between connected node groups, including anatomical structures and cell types, and cell types and biomarkers.
+          - control: Bimodal Distance Y
+            description: Adjusts the vertical spacing between connected node groups, including anatomical structures and cell types, and cell types and biomarkers.
+
+  - component: PageSection
+    tagline: Highlight data issues
+    anchor: highlight-data-issues
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Use these controls to highlight potential data issues directly in the visualization.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: control
+            label: Control
+          - column: description
+            label: Description
+        rows:
+          - control: Label Mismatch
+            description: Highlights nodes where the displayed name and label do not match.
+          - control: ID Missing
+            description: Highlights nodes that do not include an ID.
+          - control: ID Duplication
+            description: Highlights nodes with duplicate IDs.
 
   - component: PageSection
     tagline: Comparing datasets
@@ -59,7 +498,7 @@ content:
     content:
       - component: Markdown
         data: |
-          The ASCT+B Reporter includes a feature for comparing uploaded data with official ASCT+B tables.
+          The ASCT+B Reporter includes a feature for comparing uploaded data with the ASCT+B master tables.
 
           To use this feature, data must be entered into the ASCT+B table Google Sheets template and made publicly accessible so it can be uploaded into the Reporter. **Note:** `.xls` files are not supported. This feature is especially useful for comparing research data with the data in the ASCT+B Master Tables.
 
@@ -75,15 +514,15 @@ content:
     content:
       - component: Markdown
         data: |
-          1. In the ASCT+B Reporter application, click the `Compare` button in top toolbar to open the Compare side panel.
-          2. Use templates to format data into an ASCT+B table or an OMAP Compare table.
+          1. In the ASCT+B Reporter application, click the Compare button in top toolbar to open the Compare side panel.
+          2. Use templates to format data into an ASCT+B Table or an OMAP Compare Table.
           3. Add data to compare in two ways:
-             1. Upload an ASCT+B table or OMAP Compare table CSV or XLSX,
+             1. Upload an ASCT+B Table or OMAP Compare Table CSV or XLSX,
              2. Add the URL of a publicly accessible Google Sheet.
           4. Optional: Add a title and description for the dataset.
           5. Optional: Select a color for visualizing the data.
-          6. Optional: Add more datasets by clicking the `Add` button, then repeat step 1 and step 2 for each additional dataset.
-          7. Click the `Compare` button to generate the visualization to start comparing.
+          6. Optional: Add more datasets by clicking the Add button, then repeat step 1 and step 2 for each additional dataset.
+          7. Click the Compare button to generate the visualization to start comparing.
 
   - component: PageSection
     tagline: How to make a Google Sheet publicly accessible
@@ -115,7 +554,7 @@ content:
           5. Select the **Upload** tab to add custom data. Paste a Google Sheet or CSV URL, then select **Link** to visualize the data. A file can also be added using the **Upload attachments** icon.
           6. Verify that the Google Sheet has public access. Public access is required for Playground to load linked data correctly.
           7. Paste the Google Sheet URL from the browser address bar.
-          8. Confirm that the data uses the required [ASCT+B table template format](https://docs.google.com/spreadsheets/d/1tK916JyG5ZSXW_cXfsyZnzXfjyoN-8B2GXLbYD6_vF0/edit#gid=559906129).
+          8. Confirm that the data uses the required [ASCT+B Table Template format](https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit?usp=sharing).
 
   - component: PageSection
     tagline: View statistics report
@@ -137,7 +576,7 @@ content:
     content:
       - component: Markdown
         data: |
-          The **Main sheet** tab includes ASCT+B table statistics for the selected organ.
+          The **Main Sheet** tab includes statistics for the selected organ’s master table.
 
           1. Review **Unique Entities** to see unique counts for anatomical structures (AS), cell types (CT), and biomarkers (B).
           2. Review **Entity Links** to see counts for relationships between entities, including: `part_of`, `located_in`, and `characterizes`
@@ -148,7 +587,7 @@ content:
              - When **multiple organs** are selected, counts appear in a table that includes AS, CT, B, and related tree and bimodal links.
 
           How counts are calculated:
-          1. **Counts**: Anatomical structure (AS) and cell type (CT) counts are based on unique ontology ID entities in the official ASCT+B table. If an ontology ID is not available, the entity name is used instead.
+          1. **Counts**: AS and CT counts are based on unique ontology ID entities in the master table. If an ontology ID is not available, the entity name is used instead.
           2. **Tree links and bimodal links**: Tree link counts represent AS-to-AS relationships. Bimodal link counts represent AS-to-CT and CT-to-B relationships. These counts are based on the number of connected nodes and edges in the table data.
           3. **Biomarker Counts**: Biomarker counts for proteins (BP), genes (BG), metabolites (BM), lipids (BL), and proteoforms (BF) are based on unique biomarker ID entities together with biomarker type. If an ID is not available, the entity name and biomarker type are used instead.
 
@@ -163,3 +602,99 @@ content:
           1. Use the **Compare** feature to upload or link custom data.
           2. Open **Report** to view a report for each compare sheet.
           3. Download or delete compare sheet reports as needed.
+
+  - component: PageSection
+    tagline: Indented list
+    anchor: indented-list
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The **Indented List** displays anatomical structures and their substructures in a hierarchical list.
+
+          This view supports quick scanning and offers a more traditional alternative to the main visualization.
+
+          1. In the navigation bar, select the **Indented List** icon.
+          2. Review the hierarchical list of anatomical structures and substructures.
+          3. Select a structure name to open additional details in a bottom sheet.
+
+  - component: PageSection
+    tagline: Search
+    anchor: search
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The **Search** feature makes it easier to find and highlight anatomical structures, cell types, and biomarkers in the visualization.
+
+          Search results update as text is entered, and multiple items can be selected at the same time.
+
+          1. Select the search bar at the top of the page.
+          2. Enter a name to see matching results.
+          3. Select a result to highlight it in the visualization. Pressing **Enter** selects the first result in the list.
+          4. Select additional results to highlight multiple items at once. The visualization scrolls to the most recently selected item.
+          5. Use the filters in the search panel to limit results to **Anatomical Structures**, **Cell Types**, or **Biomarkers**. Multiple types can be selected at the same time.
+          6. Select **Deselect All** to clear the active type filters.
+          7. Select **X** to clear the search input, or click outside the panel to close it.
+
+  - component: PageSection
+    tagline: Debug log
+    anchor: debug-log
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The **Debug log** shows warnings and errors that occur while data is parsed and the visualization is generated.
+
+          This view can help with troubleshooting issues for the current organ or across the full session.
+
+          1. In the ASCT+B Reporter header, select the **more** menu.
+          2. Select **Debug log**.
+          3. Review the available tabs:
+             - **Organ** shows messages for the selected organ sheet.
+             - **All** shows messages for the full session.
+
+  - component: PageSection
+    tagline: Download data
+    anchor: download-data
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The **Download** menu provides options for saving the current visualization and its underlying data.
+
+          Use this feature to export images or reuse the data in other tools.
+
+          1. In the top toolbar, select the **Download** icon.
+          2. Review the available download options.
+          3. Select a format to download the current view or dataset.
+
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: format
+            label: Format
+          - column: description
+            label: Description
+          - column: bestFor
+            label: Best for
+        rows:
+          - format: PNG
+            description: A static image of the current visualization.
+            bestFor: Presentations, documents, and quick sharing.
+          - format: SVG
+            description: A scalable vector image of the visualization.
+            bestFor: High-quality graphics and editing in design tools.
+          - format: Vega Spec
+            description: A specification of the visualization in Vega format.
+            bestFor: Recreating or customizing the visualization in Vega-compatible tools.
+          - format: Graph Data
+            description: The underlying node and edge data for the visualization.
+            bestFor: Data analysis or reuse in other applications.
+          - format: JSON-LD
+            description: Structured data in JSON-LD format with linked data support.
+            bestFor: Interoperability and integration with semantic web tools.
+          - format: OWL (RDF/XML)
+            description: Ontology data in OWL format using RDF/XML.
+            bestFor: Use in ontology editors and semantic reasoning tools.
