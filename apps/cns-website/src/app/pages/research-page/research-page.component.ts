@@ -79,7 +79,6 @@ export class ResearchPageComponent {
   readonly eventTypes = input.required<ResearchTypesData>();
   /** Funding type definitions */
   readonly fundingTypes = input.required<ResearchTypesData>();
-
   /** Tags data from resolver */
   readonly tags = input.required<TagsData>();
 
