@@ -1,6 +1,7 @@
 @use 'cns-light-theme' as cns;
 @use 'theming';
 @use 'utils';
+@use 'animate.css';
 
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);

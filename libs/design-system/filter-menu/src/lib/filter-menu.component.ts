@@ -27,6 +27,8 @@ export interface FilterOptionCategory<T extends SearchListOption> {
 /** Position of the filter menu overlay */
 const FILTER_MENU_POSITIONS: ConnectedPosition[] = [
   { originX: 'end', originY: 'top', overlayX: 'start', overlayY: 'top', offsetX: 16 },
+  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetY: 16 },
+  { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom', offsetY: -16 },
 ];
 
 /**
