@@ -37,9 +37,9 @@ content:
       - component: Markdown
         data: |
           This documentation provides a high-level overview of the ASCT+B Reporter application. 
-          
+
           For the current requirements for formatting ASCT+B table data, use the [Standard operating procedure (SOP): Authoring Anatomical Structures, Cell Types and Biomarkers Tables](https://doi.org/10.5281/zenodo.5746152). 
-          
+
           To prepare data in the required structure, start with the [ASCT+B Table Template](https://docs.google.com/spreadsheets/d/1smQ8_3F-KSRlY7bmozsoM1EonQL4ahNaXP7zeQFf3Ko/edit?usp=sharing).
 
   - component: PageSection
