@@ -55,8 +55,8 @@ function serializeOptions<T extends { id: string }>(options: T[] | null): string
  * Parses view query parameter into a view enum.
  * @param value Raw query value
  */
-export function parseView(value: unknown): View {
-  return parseEnum(View, value) ?? View.Gallery;
+export function parseView(value: unknown): View | null {
+  return parseEnum(View, value);
 }
 
 /**
@@ -139,8 +139,8 @@ export function parseSearch(value: unknown): string | null {
  * Parses sort-by query parameter into sort enum.
  * @param value Raw query value
  */
-export function parseSortBy(value: unknown): SortBy {
-  return parseEnum(SortBy, value) ?? SortBy.Newest;
+export function parseSortBy(value: unknown): SortBy | null {
+  return parseEnum(SortBy, value);
 }
 
 /**

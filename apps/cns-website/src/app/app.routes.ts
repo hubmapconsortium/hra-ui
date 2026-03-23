@@ -4,6 +4,7 @@ import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-s
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { ContentPageComponent } from './components/content-page/content-page.component';
+import { ArchiveRedirectComponent } from './pages/archive-redirect/archive-redirect.component';
 import { CurrentTeamComponent } from './pages/current-team/current-team.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
@@ -129,13 +130,95 @@ export const appRoutes: Route[] = [
     },
   },
 
+  // Redirects
+  {
+    path: 'all_news.html',
+    redirectTo: '/research?category=news',
+  },
+  {
+    path: 'amatria.html',
+    redirectTo: '/amatria',
+  },
+  {
+    path: 'collaborators.html',
+    redirectTo: '/research?team=past&roles=collaborator',
+  },
+  {
+    path: 'contact.html',
+    redirectTo: '/contact',
+  },
+  {
+    path: 'current_students.html',
+    redirectTo: '/people?roles=phdStudent',
+  },
+  {
+    path: 'current_team.html',
+    redirectTo: '/people',
+  },
+  {
+    path: 'funding.html',
+    redirectTo: '/research?category=funding',
+  },
+  {
+    path: 'history.html',
+    redirectTo: '/about#our-history',
+  },
+  {
+    path: 'home.html',
+    redirectTo: '/',
+  },
+  {
+    path: 'interactive_displays.html',
+    redirectTo: '/research?category=display',
+  },
+  {
+    path: 'jobs.html',
+    redirectTo: '/jobs',
+  },
+  {
+    path: 'latest_news.html',
+    redirectTo: '/research?category=news',
+  },
+  {
+    path: 'mission.html',
+    redirectTo: '/about#our-mission',
+  },
+  {
+    path: 'presentations.html',
+    redirectTo: '/research?event=presentation',
+  },
+  {
+    path: 'previous_collaborators.html',
+    redirectTo: '/research?team=past&roles=collaborator',
+  },
+  {
+    path: 'publications.html',
+    redirectTo: '/research?category=publication',
+  },
+  {
+    path: 'visitor_info.html',
+    redirectTo: '/visitor_info',
+  },
+  {
+    path: 'visualizations.html',
+    redirectTo: '/research?category=visualization',
+  },
+  {
+    path: 'workshops.html',
+    redirectTo: '/research?event=workshop',
+  },
+
   // Error pages
   {
     path: '500',
     component: ServerErrorPageComponent,
   },
   {
-    path: '**',
+    path: '404',
     component: NotFoundPageComponent,
+  },
+  {
+    path: '**',
+    component: ArchiveRedirectComponent,
   },
 ];

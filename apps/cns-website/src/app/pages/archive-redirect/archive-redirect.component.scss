@@ -1,0 +1,89 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 3.5rem);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 7.5rem 1rem;
+
+    @media (min-width: 640px) {
+      margin: 7.5rem 2.5rem;
+    }
+  }
+
+  .title {
+    color: vars.$on-background;
+    text-align: center;
+    margin-bottom: 1rem;
+    @include utils.use-font(display, medium);
+
+    &:has(+ .card) {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .description {
+    color: vars.$on-surface-variant;
+    margin-bottom: 2rem;
+    text-align: center;
+    @include utils.use-font(title, medium);
+  }
+
+  .copy-url:has(+ .card) {
+    margin-bottom: 2.5rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 360px;
+    padding: 2rem;
+    border: 1px solid vars.$outline-variant;
+    border-radius: 0.75rem;
+
+    &.large {
+      max-width: 28rem;
+    }
+
+    .spinner {
+      margin-bottom: 1rem;
+
+      @include mat.progress-spinner-overrides(
+        (
+          active-indicator-color: vars.$secondary,
+        )
+      );
+    }
+
+    .spinner-text {
+      color: vars.$on-surface-variant;
+      text-align: center;
+      @include utils.use-font(title, medium);
+
+      .line-1 {
+        margin-bottom: 1rem;
+      }
+
+      .line-2 {
+        color: vars.$on-surface;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+}
