@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/cde-visualization/src/lib/components/histogram/histogram-menu/histogram-menu.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;",
+  "names": []
+}

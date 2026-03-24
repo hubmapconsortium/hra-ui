@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/design-system/content-templates/grid-container/src/lib/grid-container.component.scss"],
+  "sourcesContent": [":host {\n  --_hra-grid-container-item-min-width: var(--hra-grid-container-item-min-width, 17rem);\n\n  display: grid;\n  gap: 1.5rem;\n  grid-template-columns: repeat(auto-fit, minmax(var(--_hra-grid-container-item-min-width), 1fr));\n  justify-items: center;\n}\n"],
+  "mappings": ";AAAA;AACE,wCAAA,IAAA,mCAAA,EAAA;AAEA,WAAA;AACA,OAAA;AACA,yBAAA,OAAA,QAAA,EAAA,OAAA,IAAA,qCAAA,EAAA;AACA,iBAAA;;",
+  "names": []
+}
