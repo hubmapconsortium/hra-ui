@@ -125,36 +125,7 @@ function groupByKeyToLabel(key: GroupByKey, keyLabels: Record<GroupByKey, string
  * @param item Research item to convert
  */
 function convertToListViewItem(item: ResearchItem): ListViewItem {
-  return { content: insertBreakpoints(item.description) };
-}
-
-/**
- * Helper function to insert word break opportunities into strings (e.g., for long URLs)
- * Skips text within parentheses to avoid breaking URLs
- * @param string url
- * @returns url with breakpoints inserted
- */
-function insertBreakpoints(string: string): string {
-  let parenthesesDepth = 0;
-  let output = '';
-
-  for (const char of string) {
-    if (char === '(') {
-      parenthesesDepth += 1;
-      output += char;
-      continue;
-    }
-
-    if (char === ')') {
-      parenthesesDepth = Math.max(0, parenthesesDepth - 1);
-      output += char;
-      continue;
-    }
-
-    output += char === '/' && parenthesesDepth === 0 ? '/<wbr>' : char;
-  }
-
-  return output;
+  return { content: item.description };
 }
 
 /**
