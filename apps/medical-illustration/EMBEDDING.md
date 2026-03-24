@@ -43,9 +43,10 @@ illustration.selectedIllustration = 'https://...';
 ### Available inputs
 
 | Attribute name          | Description                                                                  | Data format                         | Default |
-| ----------------------- | ---------------------------------------------------------------------------- | ----------------------------------- | ------- |
+| ----------------------- | ---------------------------------------------------------------------------- | ----------------------------------- | ------- | ---- |
 | _selected-illustration_ | Active illustration                                                          | An id or object                     | None    |
 | _illustrations_         | All available illustrations. Must be set if _selected-illustration_ is an id | A json file url or a mapping object | None    |
+| _highlight_             |                                                                              | Purl id of node to highlight        | String  | None |
 | _base-href_             | Base url to fetch relative links                                             | An url                              | None    |
 
 ## Outputs
@@ -110,7 +111,7 @@ A `FtuIllustrationNode` is a plain object with at least the following properties
     </style>
   </head>
   <body>
-    <hra-medical-illustration id="illustration" selected-illustration="https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct" illustrations="https://cdn.humanatlas.io/ui/medical-illustration/assets/TEMP/2d-ftu-illustrations.jsonld"> </hra-medical-illustration>
+    <hra-medical-illustration id="illustration" selected-illustration="https://purl.humanatlas.io/2d-ftu/pancreas-intercalated-duct"> </hra-medical-illustration>
   </body>
 </html>
 ```
