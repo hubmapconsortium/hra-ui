@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, isDevMode, provideZonelessChangeDetection, signal } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
+import { provideTelemetryEndpoint } from '@hra-ui/common/analytics/plugins/hra-analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
@@ -85,6 +86,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideRouterExt(),
     provideSocials(CNS_SOCIALS),
+    provideTelemetryEndpoint(signal(`https://cns.iu.edu/tr${isDevMode() ? '-dev' : ''}`), true),
     provideZonelessChangeDetection(),
   ],
 };
