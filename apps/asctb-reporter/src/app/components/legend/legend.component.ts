@@ -1,4 +1,4 @@
-import { Component, OnChanges, inject, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { HraCommonModule } from '@hra-ui/common';
@@ -22,7 +22,7 @@ import { LegendService } from '../../services/legend/legend.service';
   templateUrl: './legend.component.html',
   styleUrl: './legend.component.scss',
 })
-export class LegendComponent implements OnChanges {
+export class LegendComponent {
   /** Legend service */
   readonly ls = inject(LegendService);
 
@@ -41,12 +41,14 @@ export class LegendComponent implements OnChanges {
   /**
    * On changes, check if tree and bimodal data are available and non-empty, then generate legend data using the LegendService.
    */
-  ngOnChanges() {
-    if (this.treeData() && this.bimodalData()) {
-      if (this.treeData().length && this.bimodalData().nodes.length) {
-        this.ls.makeLegendData(this.treeData(), this.bimodalData().nodes, this.compareData());
+  constructor() {
+    effect(() => {
+      const treeData = this.treeData();
+      const bimodalData = this.bimodalData();
+      if (treeData.length > 0 && bimodalData.nodes.length > 0) {
+        this.ls.makeLegendData(treeData, bimodalData.nodes, this.compareData());
       }
-    }
+    });
   }
 
   /**
