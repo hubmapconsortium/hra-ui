@@ -77,7 +77,7 @@ describe('LegendComponent', () => {
   });
 
   it('calls makeLegendData when inputs have data', async () => {
-    const { rerender, mockService } = await setup();
+    const { rerender, mockService, fixture } = await setup();
 
     const treeData = [{ color: '#000', isNew: false } as TNode];
     const bimodalData = {
@@ -87,6 +87,7 @@ describe('LegendComponent', () => {
     } as BimodalData;
 
     await rerender({ inputs: { treeData, bimodalData, compareData: [], error: mockError } });
+    fixture.detectChanges();
 
     expect(mockService.makeLegendData).toHaveBeenCalledWith(treeData, bimodalData.nodes, []);
   });
