@@ -3,31 +3,40 @@
   @let _legends = legendList$ | async | orderBy: 'sortOrder';
   @for (l of _legends; track l) {
     <div>
-      <div
-        [ngStyle]="{
-          'background-color': l.style === 'stroke' ? 'transparent' : l.color,
-          border: l.style === 'stroke' ? `3px solid ${l.color}` : 'none',
-          'border-style': l.style === 'stroke' ? 'dotted' : 'none',
-        }"
-        [ngClass]="{
-          rect:
-            l.name === 'Protein Presence' ||
-            l.name === 'Protein Absence' ||
-            l.name === 'AS-AS, AS-CT, CT-BM Paths' ||
-            l.name === 'Intermediate Protein',
-          circle:
-            l.name === 'Gene Biomarkers' ||
-            (!l.bmType &&
-              l.name !== 'Protein Presence' &&
-              l.name !== 'Protein Absence' &&
-              l.name !== 'AS-AS, AS-CT, CT-BM Paths' &&
-              l.name !== 'Intermediate Protein'),
-          protein: l.name === 'Protein Biomarkers',
-          lipids: l.name === 'Lipids Biomarkers',
-          metabolites: l.name === 'Metabolites Biomarkers',
-          proteoforms: l.name === 'Proteoforms Biomarkers',
-        }"
-      ></div>
+      @if (l.name === 'Lipids Biomarkers') {
+        <img class="polygon" alt="lipids" [attr.src]="'legends/squareSymbol.svg' | assetUrl" />
+      }
+      @if (l.name === 'Protein Biomarkers') {
+        <img class="polygon" alt="protein" [attr.src]="'legends/diamondSymbol.svg' | assetUrl" />
+      }
+      @if (l.name === 'Metabolites Biomarkers') {
+        <img class="polygon" alt="metabolites" [attr.src]="'legends/triangleSymbol.svg' | assetUrl" />
+      }
+      @if (l.name === 'Proteoforms Biomarkers') {
+        <img class="polygon" alt="proteoforms" [attr.src]="'legends/crossSymbol.svg' | assetUrl" />
+      } @else {
+        <div
+          [ngStyle]="{
+            'background-color': l.style === 'stroke' ? 'transparent' : l.color,
+            border: l.style === 'stroke' ? `3px solid ${l.color}` : 'none',
+            'border-style': l.style === 'stroke' ? 'dotted' : 'none',
+          }"
+          [ngClass]="{
+            rect:
+              l.name === 'Protein Presence' ||
+              l.name === 'Protein Absence' ||
+              l.name === 'AS-AS, AS-CT, CT-BM Paths' ||
+              l.name === 'Intermediate Protein',
+            circle:
+              l.name === 'Gene Biomarkers' ||
+              (!l.bmType &&
+                l.name !== 'Protein Presence' &&
+                l.name !== 'Protein Absence' &&
+                l.name !== 'AS-AS, AS-CT, CT-BM Paths' &&
+                l.name !== 'Intermediate Protein'),
+          }"
+        ></div>
+      }
       <span class="legend-label">{{ l.name }}</span>
     </div>
   }

@@ -17,38 +17,17 @@
   }
 
   .rect {
-    height: 0.125rem;
+    height: 0.0625rem;
     width: 0.9375rem;
     display: inline-block;
   }
 
   .polygon {
     display: inline-block;
-    height: 1.063rem;
-    width: 1.063rem;
+    height: 0.9375rem;
+    width: 0.9375rem;
     background-color: unset !important;
     background-repeat: no-repeat;
-    background-position: -0.438rem -0.438rem;
-  }
-
-  .protein {
-    @extend .polygon;
-    background-image: url(../../../../public/legends/diamondSymbol.svg);
-  }
-
-  .lipids {
-    @extend .polygon;
-    background-image: url(../../../../public/legends/squareSymbol.svg);
-  }
-
-  .metabolites {
-    @extend .polygon;
-    background-image: url(../../../../public/legends/triangleSymbol.svg);
-  }
-
-  .proteoforms {
-    @extend .polygon;
-    background-image: url(../../../../public/legends/crossSymbol.svg);
   }
 
   .legends {
@@ -67,7 +46,6 @@
       @include utils.use-font(label, medium);
       padding-left: 0.5rem;
       letter-spacing: 0.1px;
-      font-size: 14px;
     }
   }
 }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, inject } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 
+import { AssetUrlPipe } from '@hra-ui/common/url';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
 import { BimodalData } from '../../models/bimodal.model';
 import { Error } from '../../models/response.model';
@@ -12,7 +13,7 @@ import { LegendService } from '../../services/legend/legend.service';
 
 @Component({
   selector: 'app-legend',
-  imports: [CommonModule, ExpansionPanelModule, OrderByPipe, MatExpansionModule],
+  imports: [CommonModule, ExpansionPanelModule, OrderByPipe, MatExpansionModule, AssetUrlPipe],
   templateUrl: './legend.component.html',
   styleUrl: './legend.component.scss',
 })
