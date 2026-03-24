@@ -10,6 +10,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { MarkdownModule } from 'ngx-markdown';
 import * as i1 from '@hra-ui/common/analytics';
+import { injectLogEvent } from '@hra-ui/common/analytics';
 import * as i1$2 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import * as i3$1 from '@angular/material/tabs';
@@ -18,6 +19,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import * as i2 from '@angular/cdk/overlay';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { CoreEvents } from '@hra-ui/common/analytics/events';
 import * as i1$3 from 'ng-inline-svg-2';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, timer, Subject, fromEventPattern, takeUntil, ReplaySubject } from 'rxjs';
@@ -265,6 +267,8 @@ class InteractiveSvgComponent {
     crosswalkEl;
     /** List of highlighted svg elements */
     highlightedElements = [];
+    /** Analytics logger */
+    logEvent = injectLogEvent();
     /**
      * Updates the highlighting based on current highlight id
      * @param changes
@@ -284,14 +288,13 @@ class InteractiveSvgComponent {
         if (!entry || !crosswalkEl) {
             return;
         }
-        const encodedId = this.encodeId(entry.id);
-        const element = crosswalkEl.querySelector(`#${entry.id}, #${encodedId}`);
+        const id = entry.groupId || entry.id;
+        const element = crosswalkEl.querySelector(`#${id}, #${this.encodeId(id)}`);
         if (!element) {
             return;
         }
         const gElement = element.nodeName === 'g' ? element : element.parentElement;
-        const id = gElement.id;
-        const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);
+        const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
         this.highlightedElements = Array.from(elements);
         elements.forEach((el) => el.classList.add('click-active'));
     }
@@ -339,7 +342,7 @@ class InteractiveSvgComponent {
     attachCrosswalkHover(el) {
         this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));
         this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined));
-        this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));
+        this.attachEvent(el, 'click').subscribe((event) => this.onCrosswalkClick(event));
     }
     /**
      * Finds matching node in data from a hovered element
@@ -356,12 +359,32 @@ class InteractiveSvgComponent {
                         y: event.clientY,
                     },
                 });
-                this.nodeHover.emit(node); //emits node entry
+                this.nodeHover.emit(node);
             }
         }
         else {
             this.nodeHoverData$.next(undefined);
             this.nodeHover.emit();
+        }
+    }
+    /**
+     * Finds matching node in data from a clicked element and emits it
+     * @param event Mouse event
+     */
+    onCrosswalkClick(event) {
+        const node = this.getNode(event);
+        if (node) {
+            this.nodeClick.emit(node);
+        }
+        else {
+            this.logEvent(CoreEvents.Error, {
+                message: 'Missing node mapping for crosswalk element',
+                trigger: 'click',
+                triggerData: event,
+                context: {
+                    elementId: event.target.id,
+                },
+            });
         }
     }
     /**
