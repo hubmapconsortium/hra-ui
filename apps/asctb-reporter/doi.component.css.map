@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/asctb-reporter/src/app/components/doi/doi.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n\n  .sheet-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 0.5rem;\n  }\n\n  .doi {\n    max-height: 18.75rem;\n    overflow: auto;\n  }\n\n  .loading-wait {\n    width: 10%;\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,mBAAA;AACA,eAAA;AACA,kBAAA;;AAGF,MAAA,CAAA;AACE,cAAA;AACA,YAAA;;AAGF,MAAA,CAAA;AACE,SAAA;;",
-  "names": []
-}
