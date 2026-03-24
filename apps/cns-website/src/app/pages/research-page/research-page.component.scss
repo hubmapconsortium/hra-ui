@@ -51,14 +51,10 @@
   hra-search-filter,
   .content > *:not(cns-footer) {
     max-width: 95rem;
-    width: calc(100% - 5rem);
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
+    width: calc(100% - 2.5rem);
 
-    @media (max-width: 639px) {
-      width: calc(100% - 2.5rem);
-      margin-left: 1.25rem;
-      margin-right: 1.25rem;
+    @media (min-width: 640px) {
+      width: calc(100% - 5rem);
     }
   }
 
@@ -73,7 +69,10 @@
 
   ng-scrollbar {
     width: 100%;
-    height: 100%;
+
+    ::ng-deep ng-scroll-content {
+      width: 100%;
+    }
   }
 
   .content {
@@ -98,6 +97,7 @@
 
     .page-end {
       padding-bottom: 2.5rem;
+      margin-bottom: auto;
 
       mat-divider {
         margin-top: 2rem;
