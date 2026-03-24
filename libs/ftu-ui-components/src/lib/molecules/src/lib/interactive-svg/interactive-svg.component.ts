@@ -13,7 +13,9 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { InlineSVGModule, type SVGScriptEvalMode } from 'ng-inline-svg-2';
+import { injectLogEvent } from '@hra-ui/common/analytics';
+import { CoreEvents } from '@hra-ui/common/analytics/events';
+import { InlineSVGModule, SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, debounce, fromEventPattern, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
 import { TooltipComponent } from '../../../../atoms/src';
@@ -124,6 +126,9 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   /** List of highlighted svg elements */
   private highlightedElements: Element[] = [];
 
+  /** Analytics logger */
+  private logEvent = injectLogEvent();
+
   /**
    * Updates the highlighting based on current highlight id
    * @param changes
@@ -145,15 +150,14 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       return;
     }
 
-    const encodedId = this.encodeId(entry.id);
-    const element = crosswalkEl.querySelector(`#${entry.id}, #${encodedId}`);
+    const id = entry.groupId || entry.id;
+    const element = crosswalkEl.querySelector(`#${id}, #${this.encodeId(id)}`);
     if (!element) {
       return;
     }
 
     const gElement = element.nodeName === 'g' ? element : (element.parentElement as Element);
-    const id = gElement.id;
-    const elements = crosswalkEl.querySelectorAll(`#${id} :is(path, polygon, polyline)`);
+    const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
     this.highlightedElements = Array.from(elements);
     elements.forEach((el) => el.classList.add('click-active'));
   }
@@ -206,7 +210,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   private attachCrosswalkHover(el: Element): void {
     this.attachEvent(el, 'mouseover').subscribe((event) => this.onCrosswalkHover(event));
     this.attachEvent(el, 'mouseout').subscribe(() => this.onCrosswalkHover(undefined as never as MouseEvent));
-    this.attachEvent(el, 'click').subscribe((event) => this.nodeClick.emit(this.getNode(event)));
+    this.attachEvent(el, 'click').subscribe((event) => this.onCrosswalkClick(event));
   }
 
   /**
@@ -224,11 +228,31 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
             y: event.clientY,
           },
         });
-        this.nodeHover.emit(node); //emits node entry
+        this.nodeHover.emit(node);
       }
     } else {
       this.nodeHoverData$.next(undefined);
       this.nodeHover.emit();
+    }
+  }
+
+  /**
+   * Finds matching node in data from a clicked element and emits it
+   * @param event Mouse event
+   */
+  private onCrosswalkClick(event: MouseEvent): void {
+    const node = this.getNode(event);
+    if (node) {
+      this.nodeClick.emit(node);
+    } else {
+      this.logEvent(CoreEvents.Error, {
+        message: 'Missing node mapping for crosswalk element',
+        trigger: 'click',
+        triggerData: event,
+        context: {
+          elementId: (event.target as Element).id,
+        },
+      });
     }
   }
 
