@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { TemplateRef, OnChanges, OnDestroy, EventEmitter, SimpleChanges, ElementRef } from '@angular/core';
+import { TemplateRef, OnChanges, OnDestroy, SimpleChanges, EventEmitter, ElementRef } from '@angular/core';
 import { ConnectedPosition } from '@angular/cdk/overlay';
 import { SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
@@ -157,15 +157,15 @@ interface NodeMapEntry {
  */
 declare class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {
     /** SVG url */
-    url?: string;
+    readonly url: i0.InputSignal<string | undefined>;
     /** Mapping info */
-    mapping: T[];
+    readonly mapping: i0.InputSignal<T[]>;
     /** Highlighted ontology id */
-    highlightId?: string;
+    readonly highlightId: i0.InputSignal<string | string[] | undefined>;
     /** Emits node id when hovered */
-    readonly nodeHover: EventEmitter<T | undefined>;
+    readonly nodeHover: i0.OutputEmitterRef<T | undefined>;
     /** Emits node id when clicked */
-    readonly nodeClick: EventEmitter<T>;
+    readonly nodeClick: i0.OutputEmitterRef<T>;
     /** SVG script eval mode */
     readonly NEVER_EVAL_SCRIPTS: SVGScriptEvalMode;
     /** Tooltip position settings */
@@ -258,7 +258,7 @@ declare class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChang
      */
     private attachEvent;
     static ɵfac: i0.ɵɵFactoryDeclaration<InteractiveSvgComponent<any>, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InteractiveSvgComponent<any>, "ftu-interactive-svg", never, { "url": { "alias": "url"; "required": false; }; "mapping": { "alias": "mapping"; "required": false; }; "highlightId": { "alias": "highlightId"; "required": false; }; }, { "nodeHover": "nodeHover"; "nodeClick": "nodeClick"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InteractiveSvgComponent<any>, "ftu-interactive-svg", never, { "url": { "alias": "url"; "required": false; "isSignal": true; }; "mapping": { "alias": "mapping"; "required": false; "isSignal": true; }; "highlightId": { "alias": "highlightId"; "required": false; "isSignal": true; }; }, { "nodeHover": "nodeHover"; "nodeClick": "nodeClick"; }, never, never, true, never>;
 }
 
 /**

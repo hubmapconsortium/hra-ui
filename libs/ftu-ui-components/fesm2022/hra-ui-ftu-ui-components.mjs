@@ -1,6 +1,6 @@
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import * as i0 from '@angular/core';
-import { input, inject, ChangeDetectionStrategy, Component, Input, computed, model, output, EventEmitter, Renderer2, Output, ViewEncapsulation, signal, Injectable, viewChild, effect, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
+import { input, inject, ChangeDetectionStrategy, Component, Input, computed, model, output, Renderer2, ViewEncapsulation, signal, Injectable, viewChild, effect, EventEmitter, Output, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
 import * as i1$1 from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 import * as i3 from '@angular/material/icon';
@@ -17,6 +17,7 @@ import * as i3$1 from '@angular/material/tabs';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
+import { coerceArray } from '@angular/cdk/coercion';
 import * as i2 from '@angular/cdk/overlay';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CoreEvents } from '@hra-ui/common/analytics/events';
@@ -242,15 +243,15 @@ const TOOLTIP_POSITIONS = [
  */
 class InteractiveSvgComponent {
     /** SVG url */
-    url;
+    url = input(...(ngDevMode ? [undefined, { debugName: "url" }] : []));
     /** Mapping info */
-    mapping = [];
+    mapping = input([], ...(ngDevMode ? [{ debugName: "mapping" }] : []));
     /** Highlighted ontology id */
-    highlightId;
+    highlightId = input(...(ngDevMode ? [undefined, { debugName: "highlightId" }] : []));
     /** Emits node id when hovered */
-    nodeHover = new EventEmitter();
+    nodeHover = output();
     /** Emits node id when clicked */
-    nodeClick = new EventEmitter();
+    nodeClick = output();
     /** SVG script eval mode */
     NEVER_EVAL_SCRIPTS = 'never';
     /** Tooltip position settings */
@@ -283,20 +284,26 @@ class InteractiveSvgComponent {
      * Highlights cells that match highlightId
      */
     setHighlight() {
-        const { mapping, highlightId, crosswalkEl } = this;
-        const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);
-        if (!entry || !crosswalkEl) {
-            return;
+        const { crosswalkEl } = this;
+        const highlightIds = coerceArray(this.highlightId());
+        const mapping = this.mapping();
+        const result = [];
+        for (const id of highlightIds) {
+            const entry = mapping.find(({ ontologyId }) => ontologyId === id);
+            if (!entry || !crosswalkEl) {
+                continue;
+            }
+            const elementId = entry.groupId || entry.id;
+            const element = crosswalkEl.querySelector(`#${elementId}, #${this.encodeId(elementId)}`);
+            if (!element) {
+                continue;
+            }
+            const gElement = element.nodeName === 'g' ? element : element.parentElement;
+            const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
+            elements.forEach((el) => el.classList.add('click-active'));
+            elements.forEach((el) => result.push(el));
         }
-        const id = entry.groupId || entry.id;
-        const element = crosswalkEl.querySelector(`#${id}, #${this.encodeId(id)}`);
-        if (!element) {
-            return;
-        }
-        const gElement = element.nodeName === 'g' ? element : element.parentElement;
-        const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
-        this.highlightedElements = Array.from(elements);
-        elements.forEach((el) => el.classList.add('click-active'));
+        this.highlightedElements = result;
     }
     /**
      * Resets all highlighted elements in the svg
@@ -364,7 +371,7 @@ class InteractiveSvgComponent {
         }
         else {
             this.nodeHoverData$.next(undefined);
-            this.nodeHover.emit();
+            this.nodeHover.emit(undefined);
         }
     }
     /**
@@ -407,11 +414,11 @@ class InteractiveSvgComponent {
         const idCollection = [targetId, parentId, grandparentId];
         for (const id of idCollection) {
             const decodedID = this.decodeId(id);
-            const cellMatch = this.mapping.find((item) => item.id?.toLowerCase() === decodedID.toLowerCase());
+            const cellMatch = this.mapping().find((item) => item.id?.toLowerCase() === decodedID.toLowerCase());
             if (cellMatch) {
                 return cellMatch;
             }
-            const groupMatch = this.mapping.find((item) => item.groupId?.toLowerCase() === decodedID.toLowerCase());
+            const groupMatch = this.mapping().find((item) => item.groupId?.toLowerCase() === decodedID.toLowerCase());
             if (groupMatch) {
                 return groupMatch;
             }
@@ -450,22 +457,12 @@ class InteractiveSvgComponent {
         return fromEventPattern(add, remove).pipe(takeUntil(destroy$));
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: InteractiveSvgComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.5", type: InteractiveSvgComponent, isStandalone: true, selector: "ftu-interactive-svg", inputs: { url: "url", mapping: "mapping", highlightId: "highlightId" }, outputs: { nodeHover: "nodeHover", nodeClick: "nodeClick" }, usesOnChanges: true, ngImport: i0, template: "@if (url) {\n  <div\n    class=\"svg\"\n    [class.hover-active]=\"nodeHoverData$ | async\"\n    [inlineSVG]=\"url\"\n    [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n    (onSVGInserted)=\"setSvgElement($event)\"\n  ></div>\n}\n\n@if (nodeHoverDelayedData$ | async; as hover) {\n  <ng-template\n    cdkConnectedOverlay\n    cdkConnectedOverlayPanelClass=\"ftu-interactive-svg-tooltip-panel\"\n    [cdkConnectedOverlayOrigin]=\"hover.origin\"\n    [cdkConnectedOverlayPositions]=\"TOOLTIP_POSITIONS\"\n    [cdkConnectedOverlayViewportMargin]=\"16\"\n    [cdkConnectedOverlayOpen]=\"true\"\n  >\n    <ftu-ui-tooltip [text]=\"formatNodeName(hover.node)\" />\n  </ng-template>\n}\n", styles: [":host{background-color:var(--mat-sys-on-primary);display:flex;overflow:hidden}.svg{height:100%;width:100%;max-width:100%}svg{width:100%;height:100%;object-fit:contain}#Crosswalk :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group:hover :is(path,polygon,polyline){fill:transparent;stroke:transparent}.hover-active #Crosswalk g:hover :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group>g:hover :is(path,polygon,polyline),#Crosswalk .click-active{fill:red;mix-blend-mode:saturation}::-webkit-scrollbar{width:.5rem;height:.5rem}::-webkit-scrollbar-track{background:#f8f9fa;border:.063rem solid #d3d3d3}::-webkit-scrollbar-thumb{background:#a0abb4;border-radius:.5rem}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "ngmodule", type: InlineSVGModule }, { kind: "directive", type: i1$3.InlineSVGDirective, selector: "[inlineSVG]", inputs: ["inlineSVG", "resolveSVGUrl", "replaceContents", "prepend", "injectComponent", "cacheSVG", "setSVGAttributes", "removeSVGAttributes", "forceEvalStyles", "evalScripts", "fallbackImgUrl", "fallbackSVG", "onSVGLoaded"], outputs: ["onSVGInserted", "onSVGFailed"] }, { kind: "ngmodule", type: OverlayModule }, { kind: "directive", type: i2.CdkConnectedOverlay, selector: "[cdk-connected-overlay], [connected-overlay], [cdkConnectedOverlay]", inputs: ["cdkConnectedOverlayOrigin", "cdkConnectedOverlayPositions", "cdkConnectedOverlayPositionStrategy", "cdkConnectedOverlayOffsetX", "cdkConnectedOverlayOffsetY", "cdkConnectedOverlayWidth", "cdkConnectedOverlayHeight", "cdkConnectedOverlayMinWidth", "cdkConnectedOverlayMinHeight", "cdkConnectedOverlayBackdropClass", "cdkConnectedOverlayPanelClass", "cdkConnectedOverlayViewportMargin", "cdkConnectedOverlayScrollStrategy", "cdkConnectedOverlayOpen", "cdkConnectedOverlayDisableClose", "cdkConnectedOverlayTransformOriginOn", "cdkConnectedOverlayHasBackdrop", "cdkConnectedOverlayLockPosition", "cdkConnectedOverlayFlexibleDimensions", "cdkConnectedOverlayGrowAfterOpen", "cdkConnectedOverlayPush", "cdkConnectedOverlayDisposeOnNavigation", "cdkConnectedOverlayUsePopover", "cdkConnectedOverlayMatchWidth", "cdkConnectedOverlay"], outputs: ["backdropClick", "positionChange", "attach", "detach", "overlayKeydown", "overlayOutsideClick"], exportAs: ["cdkConnectedOverlay"] }, { kind: "component", type: TooltipComponent, selector: "ftu-ui-tooltip", inputs: ["text"] }, { kind: "pipe", type: i1$2.AsyncPipe, name: "async" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.ShadowDom });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.5", type: InteractiveSvgComponent, isStandalone: true, selector: "ftu-interactive-svg", inputs: { url: { classPropertyName: "url", publicName: "url", isSignal: true, isRequired: false, transformFunction: null }, mapping: { classPropertyName: "mapping", publicName: "mapping", isSignal: true, isRequired: false, transformFunction: null }, highlightId: { classPropertyName: "highlightId", publicName: "highlightId", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { nodeHover: "nodeHover", nodeClick: "nodeClick" }, usesOnChanges: true, ngImport: i0, template: "@if (url(); as svgUrl) {\n  <div\n    class=\"svg\"\n    [class.hover-active]=\"nodeHoverData$ | async\"\n    [inlineSVG]=\"svgUrl\"\n    [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n    (onSVGInserted)=\"setSvgElement($event)\"\n  ></div>\n}\n\n@if (nodeHoverDelayedData$ | async; as hover) {\n  <ng-template\n    cdkConnectedOverlay\n    cdkConnectedOverlayPanelClass=\"ftu-interactive-svg-tooltip-panel\"\n    [cdkConnectedOverlayOrigin]=\"hover.origin\"\n    [cdkConnectedOverlayPositions]=\"TOOLTIP_POSITIONS\"\n    [cdkConnectedOverlayViewportMargin]=\"16\"\n    [cdkConnectedOverlayOpen]=\"true\"\n  >\n    <ftu-ui-tooltip [text]=\"formatNodeName(hover.node)\" />\n  </ng-template>\n}\n", styles: [":host{background-color:var(--mat-sys-on-primary);display:flex;overflow:hidden}.svg{height:100%;width:100%;max-width:100%}svg{width:100%;height:100%;object-fit:contain}#Crosswalk :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group:hover :is(path,polygon,polyline){fill:transparent;stroke:transparent}.hover-active #Crosswalk g:hover :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group>g:hover :is(path,polygon,polyline),#Crosswalk .click-active{fill:red;mix-blend-mode:saturation}::-webkit-scrollbar{width:.5rem;height:.5rem}::-webkit-scrollbar-track{background:#f8f9fa;border:.063rem solid #d3d3d3}::-webkit-scrollbar-thumb{background:#a0abb4;border-radius:.5rem}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "ngmodule", type: InlineSVGModule }, { kind: "directive", type: i1$3.InlineSVGDirective, selector: "[inlineSVG]", inputs: ["inlineSVG", "resolveSVGUrl", "replaceContents", "prepend", "injectComponent", "cacheSVG", "setSVGAttributes", "removeSVGAttributes", "forceEvalStyles", "evalScripts", "fallbackImgUrl", "fallbackSVG", "onSVGLoaded"], outputs: ["onSVGInserted", "onSVGFailed"] }, { kind: "ngmodule", type: OverlayModule }, { kind: "directive", type: i2.CdkConnectedOverlay, selector: "[cdk-connected-overlay], [connected-overlay], [cdkConnectedOverlay]", inputs: ["cdkConnectedOverlayOrigin", "cdkConnectedOverlayPositions", "cdkConnectedOverlayPositionStrategy", "cdkConnectedOverlayOffsetX", "cdkConnectedOverlayOffsetY", "cdkConnectedOverlayWidth", "cdkConnectedOverlayHeight", "cdkConnectedOverlayMinWidth", "cdkConnectedOverlayMinHeight", "cdkConnectedOverlayBackdropClass", "cdkConnectedOverlayPanelClass", "cdkConnectedOverlayViewportMargin", "cdkConnectedOverlayScrollStrategy", "cdkConnectedOverlayOpen", "cdkConnectedOverlayDisableClose", "cdkConnectedOverlayTransformOriginOn", "cdkConnectedOverlayHasBackdrop", "cdkConnectedOverlayLockPosition", "cdkConnectedOverlayFlexibleDimensions", "cdkConnectedOverlayGrowAfterOpen", "cdkConnectedOverlayPush", "cdkConnectedOverlayDisposeOnNavigation", "cdkConnectedOverlayUsePopover", "cdkConnectedOverlayMatchWidth", "cdkConnectedOverlay"], outputs: ["backdropClick", "positionChange", "attach", "detach", "overlayKeydown", "overlayOutsideClick"], exportAs: ["cdkConnectedOverlay"] }, { kind: "component", type: TooltipComponent, selector: "ftu-ui-tooltip", inputs: ["text"] }, { kind: "pipe", type: i1$2.AsyncPipe, name: "async" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.ShadowDom });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: InteractiveSvgComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'ftu-interactive-svg', imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.ShadowDom, template: "@if (url) {\n  <div\n    class=\"svg\"\n    [class.hover-active]=\"nodeHoverData$ | async\"\n    [inlineSVG]=\"url\"\n    [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n    (onSVGInserted)=\"setSvgElement($event)\"\n  ></div>\n}\n\n@if (nodeHoverDelayedData$ | async; as hover) {\n  <ng-template\n    cdkConnectedOverlay\n    cdkConnectedOverlayPanelClass=\"ftu-interactive-svg-tooltip-panel\"\n    [cdkConnectedOverlayOrigin]=\"hover.origin\"\n    [cdkConnectedOverlayPositions]=\"TOOLTIP_POSITIONS\"\n    [cdkConnectedOverlayViewportMargin]=\"16\"\n    [cdkConnectedOverlayOpen]=\"true\"\n  >\n    <ftu-ui-tooltip [text]=\"formatNodeName(hover.node)\" />\n  </ng-template>\n}\n", styles: [":host{background-color:var(--mat-sys-on-primary);display:flex;overflow:hidden}.svg{height:100%;width:100%;max-width:100%}svg{width:100%;height:100%;object-fit:contain}#Crosswalk :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group:hover :is(path,polygon,polyline){fill:transparent;stroke:transparent}.hover-active #Crosswalk g:hover :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group>g:hover :is(path,polygon,polyline),#Crosswalk .click-active{fill:red;mix-blend-mode:saturation}::-webkit-scrollbar{width:.5rem;height:.5rem}::-webkit-scrollbar-track{background:#f8f9fa;border:.063rem solid #d3d3d3}::-webkit-scrollbar-thumb{background:#a0abb4;border-radius:.5rem}\n"] }]
-        }], propDecorators: { url: [{
-                type: Input
-            }], mapping: [{
-                type: Input
-            }], highlightId: [{
-                type: Input
-            }], nodeHover: [{
-                type: Output
-            }], nodeClick: [{
-                type: Output
-            }] } });
+            args: [{ selector: 'ftu-interactive-svg', imports: [CommonModule, InlineSVGModule, OverlayModule, TooltipComponent], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.ShadowDom, template: "@if (url(); as svgUrl) {\n  <div\n    class=\"svg\"\n    [class.hover-active]=\"nodeHoverData$ | async\"\n    [inlineSVG]=\"svgUrl\"\n    [evalScripts]=\"NEVER_EVAL_SCRIPTS\"\n    (onSVGInserted)=\"setSvgElement($event)\"\n  ></div>\n}\n\n@if (nodeHoverDelayedData$ | async; as hover) {\n  <ng-template\n    cdkConnectedOverlay\n    cdkConnectedOverlayPanelClass=\"ftu-interactive-svg-tooltip-panel\"\n    [cdkConnectedOverlayOrigin]=\"hover.origin\"\n    [cdkConnectedOverlayPositions]=\"TOOLTIP_POSITIONS\"\n    [cdkConnectedOverlayViewportMargin]=\"16\"\n    [cdkConnectedOverlayOpen]=\"true\"\n  >\n    <ftu-ui-tooltip [text]=\"formatNodeName(hover.node)\" />\n  </ng-template>\n}\n", styles: [":host{background-color:var(--mat-sys-on-primary);display:flex;overflow:hidden}.svg{height:100%;width:100%;max-width:100%}svg{width:100%;height:100%;object-fit:contain}#Crosswalk :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group:hover :is(path,polygon,polyline){fill:transparent;stroke:transparent}.hover-active #Crosswalk g:hover :is(path,polygon,polyline),.hover-active #Crosswalk .inset-group>g:hover :is(path,polygon,polyline),#Crosswalk .click-active{fill:red;mix-blend-mode:saturation}::-webkit-scrollbar{width:.5rem;height:.5rem}::-webkit-scrollbar-track{background:#f8f9fa;border:.063rem solid #d3d3d3}::-webkit-scrollbar-thumb{background:#a0abb4;border-radius:.5rem}\n"] }]
+        }], propDecorators: { url: [{ type: i0.Input, args: [{ isSignal: true, alias: "url", required: false }] }], mapping: [{ type: i0.Input, args: [{ isSignal: true, alias: "mapping", required: false }] }], highlightId: [{ type: i0.Input, args: [{ isSignal: true, alias: "highlightId", required: false }] }], nodeHover: [{ type: i0.Output, args: ["nodeHover"] }], nodeClick: [{ type: i0.Output, args: ["nodeClick"] }] } });
 
 /**
  * Full screen tab index enum
