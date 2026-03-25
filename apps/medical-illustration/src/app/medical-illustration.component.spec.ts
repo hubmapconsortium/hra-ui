@@ -109,7 +109,12 @@ describe('MedicalIllustrationComponent', () => {
   describe('.highlight', () => {
     it('can be set to a cell object', async () => {
       const { instance } = await shallow.render({ bind: { highlight: SAMPLE_CELL } });
-      expect(instance.highlightId).toEqual(SAMPLE_CELL.representation_of);
+      expect(instance.highlightIds()).toEqual([SAMPLE_CELL.representation_of]);
+    });
+
+    it('can be set to a string id', async () => {
+      const { instance } = await shallow.render({ bind: { highlight: 'test-id' } });
+      expect(instance.highlightIds()).toEqual(['test-id']);
     });
   });
 
