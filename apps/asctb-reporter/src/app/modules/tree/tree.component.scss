@@ -11,8 +11,13 @@
   }
 
   .scroll-bar-horizontal {
-    background-color: vars.$surface-container-lowest;
+    background-color: vars.$on-primary;
     overflow: scroll;
     height: calc(100vh - 12.1rem);
+
+    ::ng-deep .marks {
+      width: 100%;
+      height: fit-content;
+    }
   }
 }
