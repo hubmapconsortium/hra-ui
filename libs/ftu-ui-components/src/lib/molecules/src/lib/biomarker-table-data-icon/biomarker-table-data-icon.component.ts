@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 /**
  * Describes the data icon for the table

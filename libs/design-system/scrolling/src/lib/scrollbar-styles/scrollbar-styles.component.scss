@@ -2,7 +2,9 @@
 @use '../../../../styles/vars' as vars;
 
 @include utils.global-styles() {
-  --scrollbar-thumb-color: rgb(from #{vars.$primary} r g b / 0.72);
   --scrollbar-border-radius: 1rem;
-  --scrollbar-thickness: 8;
+  --scrollbar-track-color: transparent;
+  --scrollbar-track-thickness: 8px;
+  --scrollbar-thumb-color: rgb(from #{vars.$primary} r g b / 0.72);
+  --scrollbar-thumb-shape: 1rem;
 }

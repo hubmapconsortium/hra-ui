@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {},
   "files": [],
   "include": [],
@@ -8,16 +9,6 @@
     },
     {
       "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./tsconfig.editor.json"
     }
-  ],
-  "extends": "../../tsconfig.base.json",
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+  ]
 }

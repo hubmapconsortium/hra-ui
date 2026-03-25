@@ -110,6 +110,9 @@ describe('StudiesGridComponent', () => {
       inputs: { dataName },
     });
 
+    // Force a navigation to trigger route data loading
+    await renderResult.navigate('');
+
     return {
       ...renderResult,
       user: userEvent.setup(),

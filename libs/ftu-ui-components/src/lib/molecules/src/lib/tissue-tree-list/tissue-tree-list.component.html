@@ -37,19 +37,19 @@
 
 <ng-template let-label="label" let-data="data" #label>
   <div class="label-container">
-    <a
-      *ngIf="data.link; else noLink"
-      hraClickEvent
-      class="link"
-      [hraFeature]="label | slugify"
-      [hraLink]="data.link"
-      [queryParams]="{ id: data.id }"
-      (mouseup)="selectNode(data)"
-    >
-      {{ label }}
-    </a>
-    <ng-template #noLink>
+    @if (data.link) {
+      <a
+        hraClickEvent
+        class="link"
+        [hraFeature]="label | slugify"
+        [hraLink]="data.link"
+        [queryParams]="{ id: data.id }"
+        (mouseup)="selectNode(data)"
+      >
+        {{ label }}
+      </a>
+    } @else {
       <span>{{ label }}</span>
-    </ng-template>
+    }
   </div>
 </ng-template>

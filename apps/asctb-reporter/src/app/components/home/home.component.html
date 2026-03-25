@@ -1,5 +1,5 @@
 <div class="splash-header" hraFeature="header">
-  <img class="splash-img" alt="Splash Image" [src]="'assets/images/splash.png' | assetUrl" />
+  <img class="splash-img" alt="Splash Image" [src]="'images/splash.png' | assetUrl" />
   <div class="splash-content">
     <hra-icon class="icon" svgIcon="product:asctb-reporter" />
     <div class="title">Create and visualize Human Reference Atlas Data</div>
@@ -81,54 +81,58 @@
         [hraFeature]="contributor.name | slugify"
       >
         <div class="social-media-actions">
-          <a
-            *ngIf="contributor.mail"
-            mat-icon-button
-            hraIconButtonVariant="color"
-            hraIconButtonSize="large"
-            hraFeature="email"
-            hraClickEvent
-            target="_blank"
-            [href]="`mailto:${contributor.mail}`"
-          >
-            <mat-icon color="accent">mail</mat-icon>
-          </a>
-          <a
-            *ngIf="contributor.link"
-            mat-icon-button
-            hraIconButtonVariant="color"
-            hraIconButtonSize="large"
-            hraFeature="personal-website"
-            hraClickEvent
-            target="_blank"
-            [href]="contributor.link"
-          >
-            <mat-icon color="accent">person</mat-icon>
-          </a>
-          <a
-            *ngIf="contributor.linkedin"
-            mat-icon-button
-            hraIconButtonVariant="color"
-            hraIconButtonSize="large"
-            hraFeature="linkedin"
-            hraClickEvent
-            target="_blank"
-            [href]="contributor.linkedin"
-          >
-            <mat-icon svgIcon="social:linkedin" color="accent" />
-          </a>
-          <a
-            *ngIf="contributor.github"
-            mat-icon-button
-            hraIconButtonVariant="color"
-            hraIconButtonSize="large"
-            hraFeature="github"
-            hraClickEvent
-            target="_blank"
-            [href]="contributor.github"
-          >
-            <mat-icon svgIcon="social:github" color="accent" />
-          </a>
+          @if (contributor.mail; as mail) {
+            <a
+              mat-icon-button
+              hraIconButtonVariant="color"
+              hraIconButtonSize="large"
+              hraFeature="email"
+              hraClickEvent
+              target="_blank"
+              [attr.href]="`mailto:${mail}`"
+            >
+              <mat-icon color="accent">mail</mat-icon>
+            </a>
+          }
+          @if (contributor.link; as link) {
+            <a
+              mat-icon-button
+              hraIconButtonVariant="color"
+              hraIconButtonSize="large"
+              hraFeature="personal-website"
+              hraClickEvent
+              target="_blank"
+              [attr.href]="link"
+            >
+              <mat-icon color="accent">person</mat-icon>
+            </a>
+          }
+          @if (contributor.linkedin; as linkedin) {
+            <a
+              mat-icon-button
+              hraIconButtonVariant="color"
+              hraIconButtonSize="large"
+              hraFeature="linkedin"
+              hraClickEvent
+              target="_blank"
+              [attr.href]="linkedin"
+            >
+              <mat-icon svgIcon="social:linkedin" color="accent" />
+            </a>
+          }
+          @if (contributor.github; as github) {
+            <a
+              mat-icon-button
+              hraIconButtonVariant="color"
+              hraIconButtonSize="large"
+              hraFeature="github"
+              hraClickEvent
+              target="_blank"
+              [attr.href]="github"
+            >
+              <mat-icon svgIcon="social:github" color="accent" />
+            </a>
+          }
         </div>
       </hra-profile-card>
     }

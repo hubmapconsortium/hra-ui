@@ -1,6 +1,10 @@
-<div *ngFor="let state of data" class="state">
-  <div>{{ state[0] }}</div>
-  <ul class="kvlist">
-    <li *ngFor="let kv of state[1]" class="kvpair">{{ kv[0] }}: {{ kv[1] | json }}</li>
-  </ul>
-</div>
+@for (state of data; track state[0]) {
+  <div class="state">
+    <div>{{ state[0] }}</div>
+    <ul class="kvlist">
+      @for (kv of state[1]; track kv) {
+        <li class="kvpair">{{ kv[0] }}: {{ kv[1] | json }}</li>
+      }
+    </ul>
+  </div>
+}

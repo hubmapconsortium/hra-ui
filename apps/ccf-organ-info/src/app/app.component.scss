@@ -36,6 +36,7 @@
 
   .content {
     display: flex;
+    flex-grow: 1;
 
     height: 100%;
     .organ-title {
@@ -60,6 +61,13 @@
             width: 100%;
           }
         }
+      }
+
+      .stats {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: calc(100% - 6.625rem);
       }
     }
 

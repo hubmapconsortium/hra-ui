@@ -10,6 +10,9 @@
 }
 
 :host {
+  display: block;
+  width: 32rem;
+
   .loader-container {
     display: flex;
     flex-direction: column;

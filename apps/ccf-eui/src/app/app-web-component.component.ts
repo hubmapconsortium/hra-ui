@@ -121,7 +121,11 @@ function parseFilter(value: unknown): string | Partial<Filter> {
 @Component({
   selector: 'ccf-root-wc',
   standalone: false,
-  template: '<ccf-root *ngIf="initialized" />',
+  template: `
+    @if (initialized) {
+      <ccf-root />
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {

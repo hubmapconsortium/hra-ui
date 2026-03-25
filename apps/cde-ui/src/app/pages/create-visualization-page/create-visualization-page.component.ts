@@ -14,6 +14,7 @@ import {
 } from '@hra-ui/cde-visualization';
 import { HraCommonModule } from '@hra-ui/common';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
+import { assetUrl, cssUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
@@ -70,6 +71,9 @@ function optionalValue<T>(): T | null {
   templateUrl: './create-visualization-page.component.html',
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.background-image]': 'backgroundImageUrl()',
+  },
 })
 export class CreateVisualizationPageComponent {
   /** Organ entries */
@@ -79,6 +83,11 @@ export class CreateVisualizationPageComponent {
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
   /** Color map upload component */
   private readonly customColorMapFileUpload = viewChild<AnyFileUploadComponent>('customColorMapFileUpload');
+
+  /** Resolved background image URL */
+  protected readonly backgroundImageUrl = cssUrl(
+    assetUrl('assets/backgrounds/create-visualization-page-background.png'),
+  );
 
   /** Form builder */
   private readonly fb = inject(FormBuilder);
@@ -140,11 +149,7 @@ export class CreateVisualizationPageComponent {
     errorTolerance: 0, // Number of rows in the file that can be invalid before error is thrown
     papaparse: {
       header: true,
-      dynamicTyping: {
-        x: true,
-        y: true,
-        z: true,
-      },
+      dynamicTyping: true,
     },
   };
 

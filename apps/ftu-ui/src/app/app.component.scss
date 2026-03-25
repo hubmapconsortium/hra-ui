@@ -7,17 +7,36 @@
 
   &.app-height {
     height: 100vh;
+    min-height: 45rem;
+    min-width: 80rem;
+  }
+
+  hra-header {
+    box-shadow: none;
+    border-bottom: 1px solid vars.$outline;
   }
 
   .main {
     display: flex;
     flex: 1;
-    height: calc(100vh - 7.1rem);
+    height: calc(100vh - 7.125rem);
+    background-color: vars.$surface-container-low;
+
+    ftu-tissue-library-behavior {
+      border-right: 0.0625rem solid vars.$outline;
+    }
+
     .content {
-      flex: 1;
       display: flex;
+      flex: 1;
       flex-direction: column;
       overflow: hidden;
+    }
+  }
+
+  hra-fullscreen-portal-content {
+    .main {
+      height: 100%;
     }
   }
 }

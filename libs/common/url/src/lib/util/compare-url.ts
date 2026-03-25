@@ -1,15 +1,6 @@
 import { IsActiveMatchOptions } from '@angular/router';
 import { stripLeadingHash } from './path';
 
-// As of 5.9.3, typescript is missing the iterator methods on URLSearchParams in lib.dom.d.ts
-declare global {
-  /** URLSearchParams */
-  interface URLSearchParams {
-    /** Iterator */
-    [Symbol.iterator](): Iterator<[string, string]>;
-  }
-}
-
 /** List of matrix parameter key/value pairs */
 type MatrixParams = [string, string][];
 
@@ -160,7 +151,11 @@ function compareQueryParams(
     return false;
   }
 
-  return checkSubset(params1, params2);
+  // Typescript 5.9.3 is missing the iterator methods on URLSearchParams in lib.dom.d.ts
+  return checkSubset(
+    params1 as unknown as Iterable<[string, string]>,
+    params2 as unknown as Iterable<[string, string]>,
+  );
 }
 
 /**

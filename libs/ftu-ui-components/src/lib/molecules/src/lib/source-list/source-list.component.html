@@ -3,9 +3,18 @@
     @if (!hideTitle()) {
       <span class="source-list-title">Source data</span>
     }
-    <div class="view-fullscreen" [class.hide-title]="hideTitle()">
-      <hra-results-indicator description="Viewing" [value]="selectedCount()" [total]="sources.length" />
-      @if (!hideTitle()) {
+    <div class="view-controls">
+      @if (sources().length > 0) {
+        <hra-results-indicator
+          description="Viewing"
+          itemType="datasets"
+          [value]="selectedCount()"
+          [total]="sources().length"
+        />
+
+        <span class="publication-count"> {{ numPublications() }} total publications </span>
+      }
+      @if (!hideTitle() && sources().length > 0) {
         <button
           mat-icon-button
           hraIconButtonSize="large"
@@ -20,24 +29,114 @@
   </div>
 
   <div class="table-content" [class.hidden]="!showTable()">
-    @if (sources.length !== 0) {
-      <hra-table
-        variant="alternating"
-        [rows]="sources"
-        [columns]="tableColumns"
-        [enableRowSelection]="true"
-        [enableSort]="true"
-        [verticalDividers]="true"
-        (selectionChange)="onSelectionChange()"
-        #sourceTable
-      />
-    } @else {
-      <!--
-        TODO: Need to do in a way that FTU hides the source list completely from the grid,
-        will handle in the future.
-    -->
-      <ftu-empty-biomarker emptyBehaviorText="We currently do not have data for this functional tissue unit." />
-    }
+    <table mat-table matSort [dataSource]="datasource">
+      <ng-container hraFeature="select" matColumnDef="select">
+        <th *matHeaderCellDef mat-header-cell data-column-type="checkbox">
+          <mat-checkbox
+            hraFeature="toggle-all"
+            disableRipple
+            hraPlainTooltip="Hide all"
+            aria-label="Hide all"
+            [checked]="selection.hasValue() && isAllSelected()"
+            (change)="toggleAllRows()"
+          />
+        </th>
+        <td *matCellDef="let element" mat-cell data-column-type="checkbox">
+          <mat-checkbox
+            hraFeature="toggle"
+            disableRipple
+            hraPlainTooltip="Hide"
+            aria-label="Hide"
+            [checked]="selection.isSelected(element)"
+            (change)="$event ? toggleRow(element) : null"
+          />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
+        <td *matCellDef="let element" mat-cell>{{ element.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="doi">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>DOI</th>
+        <td *matCellDef="let element" mat-cell>
+          <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.doi">
+            {{ element.doi }}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="year">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header data-column-type="numeric" justify="end">Year</th>
+        <td *matCellDef="let element" mat-cell data-column-type="numeric">{{ element.year }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="datasetTitle">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Title</th>
+        <td *matCellDef="let element" mat-cell>{{ element.datasetTitle }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="datasetId">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>ID</th>
+        <td *matCellDef="let element" mat-cell>
+          <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.datasetId">
+            {{ element.datasetId }}
+          </a>
+        </td></ng-container
+      >
+
+      <ng-container matColumnDef="cellType">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Cell type annotation tool</th>
+        <td *matCellDef="let element" mat-cell>{{ element.cellType }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="healthStatus">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Health status</th>
+        <td *matCellDef="let element" mat-cell>{{ element.healthStatus }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="sex">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Sex</th>
+        <td *matCellDef="let element" mat-cell>{{ element.sex }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header data-column-type="numeric" justify="end">Age</th>
+        <td *matCellDef="let element" mat-cell data-column-type="numeric">{{ element.age }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="bmi">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>BMI</th>
+        <td *matCellDef="let element" mat-cell>{{ element.bmi }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ethnicity">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Ethnicity</th>
+        <td *matCellDef="let element" mat-cell>{{ element.ethnicity }}</td>
+      </ng-container>
+
+      <!-- Secondary Column -->
+      <ng-container matColumnDef="publications">
+        <th *matHeaderCellDef mat-header-cell [attr.colspan]="3">Publications</th>
+      </ng-container>
+
+      <ng-container matColumnDef="dataset">
+        <th *matHeaderCellDef mat-header-cell [attr.colspan]="4">Dataset</th>
+      </ng-container>
+
+      <ng-container matColumnDef="donor">
+        <th *matHeaderCellDef mat-header-cell [attr.colspan]="5">Donor</th>
+      </ng-container>
+
+      <tr
+        *matHeaderRowDef="['publications', 'dataset', 'donor']; sticky: true"
+        class="top-header-row"
+        mat-header-row
+      ></tr>
+      <tr *matHeaderRowDef="columnIds(); sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: columnIds()" mat-row></tr>
+    </table>
   </div>
 
   <ng-template let-columnName #dataHover>

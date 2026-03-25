@@ -1,7 +1,19 @@
-.doi {
-  max-height: 18.75rem;
-  overflow: auto;
-}
-.loading-wait {
-  width: 10%;
+:host {
+  display: block;
+
+  .sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+  }
+
+  .doi {
+    max-height: 18.75rem;
+    overflow: auto;
+  }
+
+  .loading-wait {
+    width: 10%;
+  }
 }

@@ -1,36 +1,45 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatTableModule } from '@angular/material/table';
-import { Iri } from '@hra-ui/services';
+import { SourceReference } from '@hra-ui/services';
 import { render, screen } from '@testing-library/angular';
-import { Shallow } from 'shallow-render';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
-import { SourceListComponent, SourceListItem } from './source-list.component';
+import { SourceListComponent } from './source-list.component';
 
 describe('SourceListComponent', () => {
-  let shallow: Shallow<SourceListComponent>;
   const testItem = {
-    link: 'test',
-    authors: ['test'],
-    year: 2000,
     title: 'test',
     doi: 'test',
-    label: 'test',
-  } as SourceListItem;
-  const testSources = [testItem] as SourceListItem[];
-  beforeEach(() => {
-    shallow = new Shallow(SourceListComponent).dontMock(MatTableModule);
-  });
+    year: 2000,
+    datasetTitle: 'test',
+    datasetId: 'test',
+    cellType: 'test',
+    healthStatus: 'test',
+    sex: 'test',
+    age: 25,
+    bmi: 21,
+    ethnicity: 'test',
+  } as SourceReference;
+  const testSources = [testItem] as SourceReference[];
 
   it('should create', async () => {
-    await expect(shallow.render()).resolves.toBeDefined();
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    expect(fixture.componentInstance).toBeDefined();
   });
 
   it('should initialize showTable to be true', async () => {
-    const { instance } = await shallow.render();
-    expect(instance.showTable()).toBe(true);
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    expect(fixture.componentInstance.showTable()).toBe(true);
   });
 
   it('should openFullscreen', async () => {
@@ -38,39 +47,53 @@ describe('SourceListComponent', () => {
       fullscreentabIndex: { set: jest.fn() },
       isFullscreen: { set: jest.fn() },
     } as unknown as FtuFullScreenService;
-    const { instance } = await shallow.render();
-    (
-      instance as unknown as {
-        fullscreenService?: FtuFullScreenService;
-      }
-    ).fullscreenService = fullscreenMock;
-    instance.openSourceListFullscreen();
+
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+      providers: [{ provide: FtuFullScreenService, useValue: fullscreenMock }],
+    });
+
+    fixture.componentInstance.openSourceListFullscreen();
+
     expect(fullscreenMock.fullscreentabIndex.set).toHaveBeenCalledWith(FullscreenTab.SourceList);
     expect(fullscreenMock.isFullscreen.set).toHaveBeenCalledWith(true);
   });
 
   it('should toggle showTable on toggleTable() method call', async () => {
-    const { instance } = await shallow.render();
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    const instance = fixture.componentInstance;
+    expect(instance.showTable()).toBe(true);
+
     instance.toggleTable();
     expect(instance.showTable()).toBe(false);
+
     instance.toggleTable();
     expect(instance.showTable()).toBe(true);
   });
 
   it('should emit selectionChanged when onSelectionChange is called', async () => {
-    const { instance } = await shallow.render({ bind: { sources: testSources } });
-    let emittedValue: SourceListItem[] | undefined;
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
 
-    instance.selectionChanged.subscribe((value: SourceListItem[]) => {
+    const instance = fixture.componentInstance;
+    let emittedValue: SourceReference[] | undefined;
+
+    instance.selectionChanged.subscribe((value: SourceReference[]) => {
       emittedValue = value;
     });
 
-    instance.sourceTable = {
-      selection: {
-        selected: testSources,
-      },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
+    instance.selection.clear();
+    instance.selection.select(...testSources);
 
     instance.onSelectionChange();
 
@@ -78,43 +101,98 @@ describe('SourceListComponent', () => {
     expect(emittedValue).toEqual(testSources);
   });
 
-  it('should display table columns correctly', async () => {
-    await render(SourceListComponent, {
-      componentInputs: {
-        sources: testSources,
+  it('should toggle all rows with toggleAllRows()', async () => {
+    const secondItem = {
+      ...testItem,
+      title: 'test-2',
+      doi: 'test-2',
+      datasetTitle: 'test-2',
+      datasetId: 'test-2',
+    } as SourceReference;
+    const sources = [testItem, secondItem];
+
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources,
       },
-      imports: [MatTableModule, HttpClientTestingModule],
     });
 
-    expect(screen.getByText('Authors')).toBeInTheDocument();
+    const instance = fixture.componentInstance;
+    let emittedValue: SourceReference[] | undefined;
+    instance.selectionChanged.subscribe((value: SourceReference[]) => {
+      emittedValue = value;
+    });
+
+    expect(instance.isAllSelected()).toBe(true);
+
+    instance.toggleAllRows();
+    expect(instance.isAllSelected()).toBe(false);
+    expect(instance.selectedCount()).toBe(0);
+    expect(emittedValue).toEqual([]);
+
+    instance.toggleAllRows();
+    expect(instance.isAllSelected()).toBe(true);
+    expect(instance.selectedCount()).toBe(2);
+    expect(emittedValue).toEqual(sources);
+  });
+
+  it('should toggle a single row with toggleRow()', async () => {
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    const instance = fixture.componentInstance;
+    let emittedValue: SourceReference[] | undefined;
+    instance.selectionChanged.subscribe((value: SourceReference[]) => {
+      emittedValue = value;
+    });
+
+    instance.toggleRow(testItem);
+    expect(instance.selection.isSelected(testItem)).toBe(false);
+    expect(instance.selectedCount()).toBe(0);
+    expect(emittedValue).toEqual([]);
+
+    instance.toggleRow(testItem);
+    expect(instance.selection.isSelected(testItem)).toBe(true);
+    expect(instance.selectedCount()).toBe(1);
+    expect(emittedValue).toEqual([testItem]);
+  });
+
+  it('should display table columns correctly', async () => {
+    await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    expect(screen.getAllByText('Title').length).toBeGreaterThan(0);
     expect(screen.getByText('Year')).toBeInTheDocument();
-    expect(screen.getByText('Paper Title')).toBeInTheDocument();
-    expect(screen.getByText('Paper DOI')).toBeInTheDocument();
+    expect(screen.getByText('DOI')).toBeInTheDocument();
+    expect(screen.getByText('Publications')).toBeInTheDocument();
   });
 
   it('should display SourceListItem data correctly in the table', async () => {
-    const testSourceItem: SourceListItem = {
-      id: 'https://test-id.com' as Iri,
-      authors: ['John Doe', 'Jane Smith'],
-      year: 2023,
+    const testSourceItem: SourceReference = {
       title: 'Test Research Paper',
       doi: '10.1000/test.doi',
-      label: 'Test Label',
-      link: 'https://doi.org/10.1000/test.doi',
+      year: 2023,
+      datasetTitle: 'Test Dataset',
+      datasetId: '10.1000/testdataset.doi',
+      cellType: 'test',
+      healthStatus: 'test',
+      sex: 'Male',
+      age: 30,
+      bmi: 21,
+      ethnicity: 'test',
     };
 
     await render(SourceListComponent, {
-      componentInputs: {
+      inputs: {
         sources: [testSourceItem],
       },
-      imports: [MatTableModule, HttpClientTestingModule],
     });
-
-    expect(
-      screen.getByText((content) => {
-        return content.includes('John Doe');
-      }),
-    ).toBeInTheDocument();
 
     expect(
       screen.getByText((content) => {
@@ -124,8 +202,10 @@ describe('SourceListComponent', () => {
 
     expect(
       screen.getByText((content) => {
-        return content.includes('https://doi.org/10.1000/test.doi');
+        return content.includes('10.1000/test.doi');
       }),
     ).toBeInTheDocument();
+
+    expect(screen.getByText('2023')).toBeInTheDocument();
   });
 });

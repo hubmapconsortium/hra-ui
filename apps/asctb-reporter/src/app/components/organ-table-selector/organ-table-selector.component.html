@@ -63,7 +63,12 @@
             <ng-container matColumnDef="version">
               <th *matHeaderCellDef mat-header-cell>Version</th>
               <td *matCellDef="let element" mat-cell>
-                <div *ngIf="element.version.length > 1">
+                @if (element.version.length === 1) {
+                  <mat-label
+                    >{{ element.version[0].viewValue }}
+                    {{ changeVersion(element.version[0].value, element) }}</mat-label
+                  >
+                } @else if (element.version.length > 1) {
                   <mat-form-field appearance="fill" subscriptSizing="dynamic">
                     <mat-select
                       hraFeature="data-version"
@@ -71,18 +76,14 @@
                       [(ngModel)]="element.symbol"
                       (selectionChange)="changeVersion($event.value, element)"
                     >
-                      <mat-option *ngFor="let option of element.version" [value]="option.value">
-                        {{ option.viewValue }}
-                      </mat-option>
+                      @for (option of element.version; track option) {
+                        <mat-option [value]="option.value">
+                          {{ option.viewValue }}
+                        </mat-option>
+                      }
                     </mat-select>
                   </mat-form-field>
-                </div>
-                <div *ngIf="element.version.length === 1">
-                  <mat-label
-                    >{{ element.version[0].viewValue }}
-                    {{ changeVersion(element.version[0].value, element) }}</mat-label
-                  >
-                </div>
+                }
               </td>
             </ng-container>
 
@@ -146,7 +147,9 @@
             <ng-container matColumnDef="Version">
               <th *matHeaderCellDef mat-header-cell id="version">Version</th>
               <td *matCellDef="let element" mat-cell>
-                <div *ngIf="element.version.length > 1">
+                @if (element.version.length === 1) {
+                  <mat-label>{{ element.version[0].viewValue }}</mat-label>
+                } @else if (element.version.length > 1) {
                   <mat-form-field class="version-dropdown" appearance="fill" subscriptSizing="dynamic">
                     <mat-select
                       hraFeature="data-version"
@@ -154,15 +157,14 @@
                       [(ngModel)]="element.symbol"
                       (selectionChange)="changeVersion($event.value, element)"
                     >
-                      <mat-option *ngFor="let option of element.version" [value]="option.value">
-                        {{ option.viewValue }}
-                      </mat-option>
+                      @for (option of element.version; track option) {
+                        <mat-option [value]="option.value">
+                          {{ option.viewValue }}
+                        </mat-option>
+                      }
                     </mat-select>
                   </mat-form-field>
-                </div>
-                <div *ngIf="element.version.length === 1">
-                  <mat-label>{{ element.version[0].viewValue }}</mat-label>
-                </div>
+                }
               </td>
             </ng-container>
 

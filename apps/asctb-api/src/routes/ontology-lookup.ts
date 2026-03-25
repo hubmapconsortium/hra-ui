@@ -17,8 +17,8 @@ export function setupOntologyLookupRoutes(app: Express): void {
    * label and description.
    */
   app.get('/lookup/:ontology/:id', async (req: Request, res: Response) => {
-    const ontologyCode = req.params['ontology'].toUpperCase();
-    const termId = req.params['id'];
+    const ontologyCode = (req.params['ontology'] as string).toUpperCase();
+    const termId = req.params['id'] as string;
     const output = req.query['output'] as 'graph' | string;
 
     switch (ontologyCode) {

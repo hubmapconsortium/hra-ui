@@ -1,5 +1,5 @@
 <ng-container hraFeature="tissue-tree-list">
-  <ftu-label-box>
+  <ftu-label-box [class.compact]="isCompactMode()">
     <span [class.hidden]="isCompactMode()"> Functional Tissue Unit Explorer </span>
     <button hraClickEvent hraFeature="more-menu" mat-icon-button hraPlainTooltip="More" [matMenuTriggerFor]="moreMenu">
       <mat-icon>more_vert</mat-icon>
@@ -41,7 +41,7 @@
       </button>
       <a hraFeature="download-menu" hraHoverEvent hraClickEvent mat-menu-item [matMenuTriggerFor]="downloadMenu">
         <mat-icon>download</mat-icon>
-        <div>Download illustation</div>
+        <div>Download options</div>
         <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </a>
       <mat-divider />
@@ -54,7 +54,7 @@
     </mat-menu>
 
     <!-- Help & documentation Menu -->
-    <mat-menu hraFeature="help-menu" class="more-menu" #helpMenu>
+    <mat-menu hraFeature="help-menu" class="help-menu" #helpMenu>
       <a
         hraFeature="documentation"
         hraClickEvent
@@ -88,7 +88,7 @@
     </mat-menu>
 
     <!-- Full Screen Menu -->
-    <mat-menu hraFeature="fullscreen-menu" #fullScreenMenu>
+    <mat-menu hraFeature="fullscreen-menu" class="fullscreen-menu" #fullScreenMenu>
       <button
         mat-menu-item
         hraClickEvent
@@ -116,7 +116,7 @@
     </mat-menu>
 
     <!-- Download Menu -->
-    <mat-menu hraFeature="download-menu" #downloadMenu>
+    <mat-menu hraFeature="download-menu" class="download-menu" #downloadMenu>
       @for (format of downloadFormats(); track format.label) {
         <button
           mat-menu-item
@@ -127,10 +127,27 @@
           <div>{{ format.label }}</div>
         </button>
       }
+      <mat-divider />
+      <button
+        mat-menu-item
+        hraClickEvent
+        [hraFeature]="`download-source-data-csv`"
+        (click)="downloadCsv(sourceReferences(), activeIri())"
+      >
+        <div>Source data CSV</div>
+      </button>
+      <button
+        mat-menu-item
+        hraClickEvent
+        [hraFeature]="`download-source-data-biomarker-expressions-json`"
+        (click)="downloadSummaries(filteredSummaries())"
+      >
+        <div>Source data biomarker expressions JSON</div>
+      </button>
     </mat-menu>
 
     <!-- Embed Menu -->
-    <mat-menu hraFeature="embed-menu" #embedMenu>
+    <mat-menu hraFeature="embed-menu" class="embed-menu" #embedMenu>
       <a
         mat-menu-item
         href="https://docs.humanatlas.io/dev/web-components#ftu-explorer"

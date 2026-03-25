@@ -103,7 +103,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   readonly nodeClick = output<T>();
 
   /** SVG script eval mode */
-  readonly NEVER_EVAL_SCRIPTS = SVGScriptEvalMode.NEVER;
+  readonly NEVER_EVAL_SCRIPTS = 'never' as SVGScriptEvalMode;
 
   /** Tooltip position settings */
   readonly TOOLTIP_POSITIONS = TOOLTIP_POSITIONS;

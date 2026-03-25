@@ -69,5 +69,7 @@
       D
     </div>
   </div>
-  <div *ngIf="shiftPressed" class="shift">SHIFT</div>
+  @if (shiftPressed) {
+    <div class="shift">SHIFT</div>
+  }
 </div>

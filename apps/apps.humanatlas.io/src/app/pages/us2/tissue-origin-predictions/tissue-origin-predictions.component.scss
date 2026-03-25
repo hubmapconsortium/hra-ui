@@ -85,6 +85,10 @@ h1 {
 }
 
 ::ng-deep {
+  div.cdk-overlay-popover:has(.eui-overlay-container) {
+    position: fixed;
+  }
+
   .eui-overlay-container {
     width: 100vw;
 

@@ -1,4 +1,6 @@
-<div *ngFor="let text of filteredSizes()" class="item">
-  <div class="circle" [style.--size.rem]="text.radius"></div>
-  <div class="label">{{ text.label }}</div>
-</div>
+@for (text of filteredSizes(); track text.label) {
+  <div class="item">
+    <div class="circle" [style.--size.rem]="text.radius"></div>
+    <div class="label">{{ text.label }}</div>
+  </div>
+}

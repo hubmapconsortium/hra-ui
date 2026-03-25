@@ -18,6 +18,8 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   options: T[];
   /** Selected filter options */
   selected?: T[];
+  /** Total count */
+  totalCount?: number;
 }
 
 /** Position of the filter menu overlay */
@@ -54,6 +56,9 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Whether to show the close button */
   readonly enableClose = input<boolean>();
 
+  /** Whether to enable total count display */
+  readonly enableTotalCount = input<boolean>(false);
+
   /** List of all filters with options */
   readonly filters = model.required<FilterOptionCategory<T>[]>();
 
@@ -71,6 +76,14 @@ export class FilterMenuComponent<T extends SearchListOption> {
 
   /** Current active filter id */
   protected readonly activeFilterId = computed(() => this.activeFilter()?.id);
+
+  /** Filters with total counts */
+  protected readonly filtersWithCounts = computed(() => {
+    if (this.enableTotalCount()) {
+      return this._addTotalCounts(this.filters());
+    }
+    return this.filters();
+  });
 
   /**
    * Updates filters on filter selection
@@ -90,5 +103,16 @@ export class FilterMenuComponent<T extends SearchListOption> {
     this.activeFilter.update((current) =>
       category !== undefined && current?.id !== category.id ? current : undefined,
     );
+  }
+
+  /** Helper function to add total counts to filters */
+  private _addTotalCounts(filterCategories: FilterOptionCategory<T>[]): FilterOptionCategory<T>[] {
+    return filterCategories.map((category) => {
+      const modifiedCategory = { ...category };
+      if (category.options) {
+        modifiedCategory.totalCount = category.options.reduce((sum, option) => sum + (option?.count || 0), 0);
+      }
+      return modifiedCategory;
+    });
   }
 }

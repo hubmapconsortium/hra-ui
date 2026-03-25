@@ -16,8 +16,13 @@
       color="primary"
       (click)="actionClick.emit()"
     >
-      {{ action() }}
+      <div class="label">
+        {{ action() }}
+      </div>
     </button>
+    <div class="count" hraPlainTooltip="Number of unique items per filter category">
+      {{ totalCount() | number }}
+    </div>
   </div>
 
   @if (chips().length > 0) {

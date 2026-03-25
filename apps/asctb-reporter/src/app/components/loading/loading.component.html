@@ -1,5 +1,5 @@
 <div class="h5">Please wait...</div>
 <hra-progress-spinner size="large" color="color" />
-@if (data) {
-  <div class="col" [innerHTML]="data"></div>
+@if (data(); as text) {
+  <div class="col" [innerHTML]="text"></div>
 }

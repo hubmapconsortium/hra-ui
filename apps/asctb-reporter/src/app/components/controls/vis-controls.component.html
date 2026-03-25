@@ -80,17 +80,18 @@
   <div class="label">IDs & labels</div>
 
   <div class="checkboxes">
-    <mat-slide-toggle
-      *ngIf="currentSheet.name === 'all' || (currentSheet.name === 'some' && selectedOrgans.length > 8)"
-      matTooltip="Toggle Visibility of Anatomical Structures"
-      matTooltipPosition="below"
-      hraFeature="show-all-as"
-      [checked]="config.show_all_AS"
-      [hraClickEvent]="{ enabled: config.show_all_AS }"
-      (change)="changeShowAS()"
-    >
-      Show all AS
-    </mat-slide-toggle>
+    @if (currentSheet.name === 'all' || (currentSheet.name === 'some' && selectedOrgans.length > 8)) {
+      <mat-slide-toggle
+        matTooltip="Toggle Visibility of Anatomical Structures"
+        matTooltipPosition="below"
+        hraFeature="show-all-as"
+        [checked]="config.show_all_AS"
+        [hraClickEvent]="{ enabled: config.show_all_AS }"
+        (change)="changeShowAS()"
+      >
+        Show all AS
+      </mat-slide-toggle>
+    }
     <mat-slide-toggle
       matTooltip="Toggle Visibility of Ontology Links"
       matTooltipPosition="below"

@@ -12,11 +12,13 @@
   </div>
 
   <div>
-    <div *ngIf="download" class="display-option" hraPlainTooltip="Download">
-      <button mat-icon-button class="mr-2" hraFeature="download" hraClickEvent (click)="downloadFn.emit()">
-        <mat-icon>get_app</mat-icon>
-      </button>
-    </div>
+    @if (download) {
+      <div class="display-option" hraPlainTooltip="Download">
+        <button mat-icon-button class="mr-2" hraFeature="download" hraClickEvent (click)="downloadFn.emit()">
+          <mat-icon>get_app</mat-icon>
+        </button>
+      </div>
+    }
 
     <div class="display-option" hraPlainTooltip="Close">
       <button mat-icon-button hraFeature="close" hraClickEvent (click)="closeSideNav.emit()">

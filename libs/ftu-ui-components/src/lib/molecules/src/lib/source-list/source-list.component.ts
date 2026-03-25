@@ -1,50 +1,31 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
+  computed,
+  effect,
   inject,
   input,
-  Input,
-  OnChanges,
-  Output,
+  output,
   signal,
-  SimpleChanges,
-  ViewChild,
+  viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconButtonModule } from '@hra-ui/design-system/buttons/icon-button';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
-import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { Iri } from '@hra-ui/services';
-import { EmptyBiomarkerComponent } from '../../../../atoms/src';
+import { TableRow } from '@hra-ui/design-system/table';
+import { SourceReference } from '@hra-ui/services';
+import { COLUMN_IDS } from '@hra-ui/state';
 import {
   FtuFullScreenService,
   FullscreenTab,
 } from '../../../../behavioral/src/lib/ftu-fullscreen-service/ftu-fullscreen.service';
-
-/** SourceListItem interface contains title and link to the dataset for the SourceList*/
-export interface SourceListItem extends TableRow {
-  /** Unique identifier for the source */
-  id: Iri;
-  /** List of authors for the source */
-  authors: string[];
-  /** Year dataset was released */
-  year: number;
-  /** Title of the dataset in the SourceList */
-  title: string;
-  /** DOI of dataset */
-  doi: string;
-  /** Label of the dataset in the SourceList */
-  label: string;
-  /** Link to the dataset in the SourceList */
-  link: string;
-}
 
 /** This component shows list of sources with title and links to the datasets */
 @Component({
@@ -57,90 +38,75 @@ export interface SourceListItem extends TableRow {
     MatIconModule,
     MatSortModule,
     IconButtonModule,
-    EmptyBiomarkerComponent,
     MatCheckboxModule,
-    TableComponent,
     ResultsIndicatorComponent,
   ],
   templateUrl: './source-list.component.html',
   styleUrl: './source-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.full-screen]': 'hideTitle()',
-    '[class.no-data-full-screen]': 'hideTitle() && sources.length === 0',
+    '[class.no-data-full-screen]': 'hideTitle() && sources().length === 0',
   },
 })
-export class SourceListComponent implements OnChanges {
+export class SourceListComponent {
+  /** Mat sort element */
+  private readonly sort = viewChild(MatSort);
+
+  datasource = new MatTableDataSource<SourceReference>([]);
+
   /** List of sources with titles and links displayed to the user */
-  @Input() sources: SourceListItem[] = [];
+  readonly sources = input<SourceReference[]>([]);
 
   /** Text that appears in the empty biomarker message */
-  @Input() message = '';
+  readonly message = input<string>('');
 
   /** Whether to hide the title of the source list */
   readonly hideTitle = input<boolean>(false);
 
   /** Fullscreen service */
-  private readonly fullscreenService = inject(FtuFullScreenService);
+  readonly fullscreenService = inject(FtuFullScreenService);
 
   /** Whether to show the biomarker table */
-  showTable = signal(true);
+  readonly showTable = signal(true);
 
   /** Number of selected sources */
-  selectedCount = signal(0);
+  readonly selectedCount = signal(0);
+
+  protected readonly columnIds = computed(() => {
+    return ['select', ...COLUMN_IDS];
+  });
+
+  readonly numPublications = computed(() => this.sources().filter((source) => source.doi).length);
 
   /** Emits when source selection changed */
-  @Output() readonly selectionChanged = new EventEmitter<SourceListItem[]>();
+  readonly selectionChanged = output<SourceReference[]>();
 
-  /** Reference to the table component */
-  @ViewChild('sourceTable') sourceTable!: TableComponent<TableRow>;
+  readonly selection = new SelectionModel<TableRow>(true, []);
 
-  /** Table columns configuration */
-  readonly tableColumns: TableColumn[] = [
-    {
-      column: 'authors',
-      label: 'Authors',
-      type: 'text',
-    },
-    {
-      column: 'year',
-      label: 'Year',
-      type: 'text',
-    },
-    {
-      column: 'title',
-      label: 'Paper Title',
-      type: 'text',
-    },
-    {
-      column: 'link',
-      label: 'Paper DOI',
-      type: {
-        type: 'link',
-        urlColumn: 'link',
-      },
-    },
-  ];
+  /** Sort data on load and set columns */
+  constructor() {
+    effect(() => {
+      this.datasource.sort = this.sort();
+    });
+
+    /** Initialize source list */
+    effect(() => {
+      const sources = this.sources();
+
+      if (sources.length > 0) {
+        this.datasource.data = sources;
+        this.selection.clear();
+        this.selection.select(...sources);
+        this.selectedCount.set(this.selection.selected.length);
+        this.selectionChanged.emit(this.selection.selected as SourceReference[]);
+      }
+    });
+  }
 
   /** Opens the source list in fullscreen mode */
   openSourceListFullscreen(): void {
     this.fullscreenService.fullscreentabIndex.set(FullscreenTab.SourceList);
     this.fullscreenService.isFullscreen.set(true);
-  }
-
-  /** On sources change, resets selection and selects all sources */
-  ngOnChanges(changes: SimpleChanges) {
-    if ('sources' in changes) {
-      // Wait for the table to be initialized, then select all
-      setTimeout(() => {
-        if (this.sourceTable && this.sources.length > 0) {
-          this.sourceTable.selection.clear();
-          this.sourceTable.selection.select(...this.sources);
-          this.selectedCount.set(this.sourceTable.selection.selected.length);
-          this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
-        }
-      });
-    }
   }
 
   /**
@@ -155,9 +121,36 @@ export class SourceListComponent implements OnChanges {
    * Handle selection changes from the table
    */
   onSelectionChange(): void {
-    if (this.sourceTable) {
-      this.selectedCount.set(this.sourceTable.selection.selected.length);
-      this.selectionChanged.emit(this.sourceTable.selection.selected as SourceListItem[]);
+    this.selectedCount.set(this.selection.selected.length);
+    this.selectionChanged.emit(this.selection.selected as SourceReference[]);
+  }
+
+  /**
+   * Whether the number of selected elements matches the total number of rows.
+   */
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.datasource.data.length;
+    return numSelected === numRows;
+  }
+
+  /**
+   * Selects all rows if they are not all selected; otherwise clear selection.
+   */
+  toggleAllRows(): void {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.selection.select(...(this.datasource.data as TableRow[]));
     }
+    this.onSelectionChange();
+  }
+
+  /**
+   * Toggle row selection
+   */
+  toggleRow(row: TableRow): void {
+    this.selection.toggle(row);
+    this.onSelectionChange();
   }
 }

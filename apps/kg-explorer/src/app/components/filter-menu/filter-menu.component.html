@@ -1,31 +1,33 @@
 <ng-scrollbar>
-  <div hraFeature="filters" class="drawer-header">
-    <hra-icon class="filter-icon" fontIcon="filter_list" />
-    <span class="drawer-title">Filters</span>
-    <div class="filler"></div>
-    <button
-      hraFeature="toggle"
-      hraHoverEvent
-      mat-icon-button
-      aria-label="Open or close filters menu"
-      [hraClickEvent]="{ opened: formClosed() }"
-      [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
-      (click)="toggleForm.emit()"
-    >
-      <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
-    </button>
-  </div>
+  <div class="content">
+    <div hraFeature="filters" class="drawer-header">
+      <hra-icon class="filter-icon" fontIcon="filter_list" />
+      <span class="drawer-title">Filters</span>
+      <div class="filler"></div>
+      <button
+        hraFeature="toggle"
+        hraHoverEvent
+        mat-icon-button
+        aria-label="Open or close filters menu"
+        [hraClickEvent]="{ opened: formClosed() }"
+        [hraPlainTooltip]="formClosed() ? 'Expand menu' : 'Collapse menu'"
+        (click)="toggleForm.emit()"
+      >
+        <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />
+      </button>
+    </div>
 
-  <form class="menu-content" [formGroup]="form">
-    @for (value of formValues(); track $index) {
-      <hra-filter-menu-overlay
-        [hraFeature]="filterCategories()[$index].label | slugify"
-        [form]="value[1]"
-        [filterOptionCategory]="filterCategories()[$index]"
-        [currentFilters]="currentFilters()[value[0]]"
-        (filterChanged)="handleFilterChange()"
-      />
-      <mat-divider />
-    }
-  </form>
+    <form class="menu-content" [formGroup]="form">
+      @for (value of formValues(); track $index) {
+        <hra-filter-menu-overlay
+          [hraFeature]="filterCategories()[$index].label | slugify"
+          [form]="value[1]"
+          [filterOptionCategory]="filterCategories()[$index]"
+          [currentFilters]="currentFilters()[value[0]]"
+          (filterChanged)="handleFilterChange()"
+        />
+        <mat-divider />
+      }
+    </form>
+  </div>
 </ng-scrollbar>

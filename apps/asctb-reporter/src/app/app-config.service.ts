@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-
+import { assetUrl } from '@hra-ui/common/url';
 import { map, shareReplay, take } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { SheetDetails } from './models/sheet.model';
@@ -36,5 +36,5 @@ export class ConfigService {
     ),
   );
 
-  config$ = this.http.get<Record<string, unknown>>('assets/configuration.json').pipe(take(1), shareReplay(1));
+  config$ = this.http.get<Record<string, unknown>>(assetUrl('configuration.json')()).pipe(take(1), shareReplay(1));
 }
