@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-indicators-step-indicator.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-indicators-step-indicator.mjs",
+  "typings": "../../types/hra-ui-design-system-indicators-step-indicator.d.ts"
 }

@@ -177,6 +177,47 @@ function loadData(input, loaderService, options, loading) {
         return data;
     });
 }
+/** Helper for managing data loading state */
+class LoadingState {
+    upstreamObserver;
+    /** State of each loading operation */
+    isLoading = [];
+    /**
+     * Initialize a loading state manager
+     *
+     * @param upstreamObserver Observer to be notified of loading state changes
+     */
+    constructor(upstreamObserver) {
+        this.upstreamObserver = upstreamObserver;
+    }
+    /**
+     * Create a new observer to manage an individual loading operation,
+     * notifying the upstream observer of any changes in loading state.
+     *
+     * @returns A new observer for managing loading state
+     */
+    createObserver() {
+        const { isLoading } = this;
+        const index = isLoading.length;
+        isLoading.push(false);
+        return {
+            next: (value) => {
+                isLoading[index] = value;
+                this.notifyUpstreamObserver();
+            },
+        };
+    }
+    /**
+     * Notify the upstream observer of the current loading state,
+     * which is true if any individual loading operation is currently in progress.
+     */
+    notifyUpstreamObserver() {
+        const { upstreamObserver, isLoading } = this;
+        if (upstreamObserver) {
+            upstreamObserver.next(isLoading.some((state) => state));
+        }
+    }
+}
 
 /** Data used when the input is nullish or invalid */
 const NULL_DATA_ARRAY = Object.freeze([]);
@@ -627,11 +668,12 @@ const EMPTY_COLOR_MAP_VIEW = new ColorMapView([], {
  * @returns A color map view
  */
 function loadColorMap(input, keys, colorMapKey, colorMapValue, loading) {
-    const data = loadViewData(input, ColorMapView, loading);
+    const loadingState = new LoadingState(loading);
+    const data = loadViewData(input, ColorMapView, loadingState.createObserver());
     const mapping = loadViewKeyMapping(keys, {
         'Cell Type': colorMapKey,
         'Cell Color': colorMapValue,
-    }, loading);
+    }, loadingState.createObserver());
     const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS$2, OPTIONAL_KEYS$2);
     return createDataView(ColorMapView, data, inferred, EMPTY_COLOR_MAP_VIEW);
 }
@@ -786,8 +828,9 @@ const EMPTY_EDGES_VIEW = new EdgesView([], {
  * @returns A edges view
  */
 function loadEdges(input, keys, loading) {
-    const data = loadViewData(input, EdgesView, loading);
-    const mapping = loadViewKeyMapping(keys, undefined, loading);
+    const loadingState = new LoadingState(loading);
+    const data = loadViewData(input, EdgesView, loadingState.createObserver());
+    const mapping = loadViewKeyMapping(keys, undefined, loadingState.createObserver());
     const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS$1, OPTIONAL_KEYS$1);
     return createDataView(EdgesView, data, inferred, EMPTY_EDGES_VIEW);
 }
@@ -1218,8 +1261,9 @@ const EMPTY_NODES_VIEW = new NodesView([], {
  * @returns A nodes view
  */
 function loadNodes(input, keys, nodeTargetKey, loading) {
-    const data = loadViewData(input, NodesView, loading);
-    const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey }, loading);
+    const loadingState = new LoadingState(loading);
+    const data = loadViewData(input, NodesView, loadingState.createObserver());
+    const mapping = loadViewKeyMapping(keys, { 'Cell Type': nodeTargetKey }, loadingState.createObserver());
     const inferred = inferViewKeyMapping(data, mapping, REQUIRED_KEYS, OPTIONAL_KEYS);
     return createDataView(NodesView, data, inferred, EMPTY_NODES_VIEW);
 }

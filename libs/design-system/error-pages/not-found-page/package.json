@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-error-pages-not-found-page.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-error-pages-not-found-page.mjs",
+  "typings": "../../types/hra-ui-design-system-error-pages-not-found-page.d.ts"
 }

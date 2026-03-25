@@ -145,7 +145,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>selectors for the CellSummary state</p>
+                <p>Selectors for the CellSummary state</p>
 
             </p>
 
@@ -169,6 +169,11 @@
                                     <span class="modifier"></span>
                                     <span class="modifier">Static</span>
                                 <a href="#aggregates" >aggregates</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Static</span>
+                                <a href="#filteredSummaries" >filteredSummaries</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -232,7 +237,7 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>get the aggregate data from the state</p>
+                        <div class="io-description"><p>Get the aggregate data from the state</p>
 </div>
 
                             <div class="io-description">
@@ -264,6 +269,85 @@
                             </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CellSummaryAggregate" target="_self" >CellSummaryAggregate[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredSummaries"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Static</span>
+                        <span ><b>filteredSummaries</b></span>
+                        <a href="#filteredSummaries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>filteredSummaries(state: <a href="../interfaces/CellSummaryModel.html" target="_self">CellSummaryModel</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Selector([&#x27;CellSummaryState&#x27;])<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/lib/cell-summary/cell-summary.selectors.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the filtered summaries data from the state</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CellSummaryModel.html" target="_self" >CellSummaryModel</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>CellSummary[]</code>
 
                         </div>
                             <div class="io-description">
@@ -311,7 +395,7 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>get the summaries data from the state</p>
+                        <div class="io-description"><p>Get the summaries data from the state</p>
 </div>
 
                             <div class="io-description">
@@ -367,18 +451,24 @@ import { CellSummary } from &#x27;@hra-ui/services&#x27;;
 import { CellSummaryModel, CellSummaryAggregate } from &#x27;./cell-summary.model&#x27;;
 import { CellSummaryState } from &#x27;./cell-summary.state&#x27;;
 
-/** selectors for the CellSummary state */
+/** Selectors for the CellSummary state */
 export class CellSummarySelectors {
-  /** get the aggregate data from the state */
+  /** Get the aggregate data from the state */
   @Selector([CellSummaryState])
   static aggregates(state: CellSummaryModel): CellSummaryAggregate[] {
     return state.aggregates;
   }
 
-  /** get the summaries data from the state */
+  /** Get the summaries data from the state */
   @Selector([CellSummaryState])
   static summaries(state: CellSummaryModel): CellSummary[] {
     return state.summaries;
+  }
+
+  /** Get the filtered summaries data from the state */
+  @Selector([CellSummaryState])
+  static filteredSummaries(state: CellSummaryModel): CellSummary[] {
+    return state.filteredSummaries;
   }
 }
 </code></pre>

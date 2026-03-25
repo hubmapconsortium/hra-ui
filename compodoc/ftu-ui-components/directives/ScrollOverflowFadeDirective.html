@@ -271,7 +271,7 @@ Primarily useful when there are sticky headers on a table, etc.</p>
   numberAttribute,
 } from &#x27;@angular/core&#x27;;
 import { registerStyleComponents } from &#x27;@hra-ui/cdk/styling&#x27;;
-import { NG_SCROLLBAR } from &#x27;ngx-scrollbar&#x27;;
+import { NgScrollbar } from &#x27;ngx-scrollbar&#x27;;
 import { SCROLL_TIMELINE, ScrollTimelineFunc } from &#x27;../scroll-timeline/scroll-timeline&#x27;;
 
 /** Keyframes for the top gradient */
@@ -335,7 +335,7 @@ export class ScrollOverflowFadeDirective {
   /** Renderer instance */
   private readonly renderer &#x3D; inject(Renderer2);
   /** Nearest ng-scrollbar instance */
-  private readonly scrollbar &#x3D; inject(NG_SCROLLBAR);
+  private readonly scrollbar &#x3D; inject(NgScrollbar);
   /** Signal providing access to ScrollTimeline though browser builtin or polyfill */
   private readonly scrollTimeline &#x3D; inject(SCROLL_TIMELINE);
 
@@ -347,11 +347,11 @@ export class ScrollOverflowFadeDirective {
 
     effect((onCleanup) &#x3D;&gt; {
       const scrollTimeline &#x3D; this.scrollTimeline();
-      if (!this.scrollbar.viewport.initialized() || !scrollTimeline) {
+      if (!this.scrollbar.adapter.initialized() || !scrollTimeline) {
         return;
       }
 
-      const viewport &#x3D; this.scrollbar.viewport.nativeElement;
+      const viewport &#x3D; this.scrollbar.adapter.viewportElement;
       const cleanupFns &#x3D; [
         this.attachGradient(viewport, &#x27;top&#x27;, scrollTimeline, GRADIENT_TOP_KEYFRAMES),
         this.attachGradient(viewport, &#x27;bottom&#x27;, scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),

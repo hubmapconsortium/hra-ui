@@ -790,6 +790,47 @@
       helpUrl: &#x27;https://docs.humanatlas.io/apps&#x27;,
     },
   },
+
+  {
+    path: &#x27;api&#x27;,
+    children: [
+      {
+        path: &#x27;&#x27;,
+        pathMatch: &#x27;full&#x27;,
+        component: ApiComponent,
+        data: {
+          serverId: &#x27;prod&#x27;,
+        },
+      },
+      {
+        path: &#x27;:serverId&#x27;,
+        component: ApiComponent,
+        resolve: {
+          serverId: serverIdResolver,
+        },
+      },
+    ],
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;API&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/api&#x27;,
+    },
+  },
+  {
+    path: &#x27;cell-population-graphs&#x27;,
+    component: CellPopulationGraphComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;Cell Population Graphs&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/cell-population-graphs&#x27;,
+    },
+  },
+  {
+    path: &#x27;hra-pop-visualizer&#x27;,
+    component: HraPopVisualizerComponent,
+    data: {
+      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;HRApop Visualizer&#x27; }] satisfies BreadcrumbItem[],
+      helpUrl: &#x27;https://humanatlas.io/hra-pop-visualizer&#x27;,
+    },
+  },
   {
     path: &#x27;us1&#x27;,
     children: [
@@ -846,86 +887,53 @@
       helpUrl: &#x27;https://humanatlas.io/user-story/6&#x27;,
     },
   },
-  {
-    path: &#x27;cell-population-graphs&#x27;,
-    component: CellPopulationGraphComponent,
-    data: {
-      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;Cell Population Graphs&#x27; }] satisfies BreadcrumbItem[],
-      helpUrl: &#x27;https://humanatlas.io/cell-population-graphs&#x27;,
-    },
-  },
-  {
-    path: &#x27;hra-pop-visualizer&#x27;,
-    component: HraPopVisualizerComponent,
-    data: {
-      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;HRApop Visualizer&#x27; }] satisfies BreadcrumbItem[],
-      helpUrl: &#x27;https://humanatlas.io/hra-pop-visualizer&#x27;,
-    },
-  },
-  {
-    path: &#x27;api&#x27;,
-    children: [
-      {
-        path: &#x27;&#x27;,
-        pathMatch: &#x27;full&#x27;,
-        component: ApiComponent,
-        data: {
-          serverId: &#x27;prod&#x27;,
-        },
-      },
-      {
-        path: &#x27;:serverId&#x27;,
-        component: ApiComponent,
-        resolve: {
-          serverId: serverIdResolver,
-        },
-      },
-    ],
-    data: {
-      crumbs: [{ name: &#x27;Apps&#x27;, route: &#x27;/&#x27; }, { name: &#x27;API&#x27; }] satisfies BreadcrumbItem[],
-      helpUrl: &#x27;https://humanatlas.io/api&#x27;,
-    },
-  },
-  {
-    path: &#x27;500&#x27;,
-    component: ServerErrorPageComponent,
-  },
+
   // Redirects
+  {
+    path: &#x27;apis&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://humanatlas.io/api&#x27;),
+  },
   {
     path: &#x27;asctb-reporter&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/asctb-reporter&#x27;),
-  },
-  {
-    path: &#x27;rui&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/rui&#x27;),
-  },
-  {
-    path: &#x27;eui&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/eui&#x27;),
-  },
-  {
-    path: &#x27;organ-info&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/organ-info&#x27;),
-  },
-  {
-    path: &#x27;ftu&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/ftu-explorer&#x27;),
   },
   {
     path: &#x27;cde&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/cde&#x27;),
   },
   {
+    path: &#x27;dashboard&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/dashboard&#x27;),
+  },
+  {
+    path: &#x27;eui&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/eui&#x27;),
+  },
+  {
+    path: &#x27;ftu&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/ftu-explorer&#x27;),
+  },
+  {
     path: &#x27;kg&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/kg-explorer&#x27;),
+  },
+  {
+    path: &#x27;organ-info&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/organ-info&#x27;),
+  },
+  {
+    path: &#x27;rui&#x27;,
+    ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/rui&#x27;),
   },
   {
     path: &#x27;web-components&#x27;,
     ...createExternalRedirectRoute(&#x27;https://apps.humanatlas.io/us6&#x27;),
   },
+
+  // Error pages
   {
-    path: &#x27;apis&#x27;,
-    ...createExternalRedirectRoute(&#x27;https://humanatlas.io/api&#x27;),
+    path: &#x27;500&#x27;,
+    component: ServerErrorPageComponent,
   },
   {
     path: &#x27;**&#x27;,

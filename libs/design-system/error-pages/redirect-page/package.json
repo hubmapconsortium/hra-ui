@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-error-pages-redirect-page.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-error-pages-redirect-page.mjs",
+  "typings": "../../types/hra-ui-design-system-error-pages-redirect-page.d.ts"
 }

@@ -708,7 +708,7 @@ export class BodyUI {
     processSceneNodes(gltfUrl, gltfTransform, &#x27;VHF_Kidney_L_Low1&#x27;).then((results) &#x3D;&gt; {
       console.log(&#x27;results&#x27;, results);
       console.log(&#x27;data&#x27;, data);
-      data &#x3D; data.concat(Object.values(results));
+      data &#x3D; data.concat(Object.values(results as unknown as SpatialSceneNode[]));
       data.push({
         &#x27;@id&#x27;: &#x27;TEST&#x27;,
         &#x27;@type&#x27;: &#x27;TEST&#x27;,

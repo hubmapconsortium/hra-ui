@@ -278,6 +278,24 @@ import { Observable, tap } from &#x27;rxjs&#x27;;
 
 import { Load, Reset, ResetSelectedSources, SetSelectedSources } from &#x27;./source-refs.actions&#x27;;
 
+/** Column ID type */
+export type ColumnId &#x3D; keyof SourceReference;
+
+/** Column IDs for source reference table */
+export const COLUMN_IDS: ColumnId[] &#x3D; [
+  &#x27;title&#x27;,
+  &#x27;doi&#x27;,
+  &#x27;year&#x27;,
+  &#x27;datasetTitle&#x27;,
+  &#x27;datasetId&#x27;,
+  &#x27;cellType&#x27;,
+  &#x27;healthStatus&#x27;,
+  &#x27;sex&#x27;,
+  &#x27;age&#x27;,
+  &#x27;bmi&#x27;,
+  &#x27;ethnicity&#x27;,
+];
+
 /**
  * Source refs model interface
  */
@@ -303,9 +321,7 @@ type Context &#x3D; StateContext&lt;SourceRefsModel&gt;;
 })
 @Injectable()
 export class SourceRefsState {
-  /**
-   * Data service of Ftu
-   */
+  /** Data service of Ftu */
   private readonly dataService &#x3D; inject(FtuDataService);
 
   /**

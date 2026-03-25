@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-content-templates-youtube-player.mjs",
+  "typings": "../../types/hra-ui-design-system-content-templates-youtube-player.d.ts"
 }

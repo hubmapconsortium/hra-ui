@@ -247,7 +247,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getCellSummaries(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                    <code>getCellSummaries(iri: <a href="../miscellaneous/typealiases.html#Iri" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
@@ -330,7 +330,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getDataFileReferences(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                    <code>getDataFileReferences(iri: <a href="../miscellaneous/typealiases.html#Iri" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
@@ -413,7 +413,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getIllustrationMapping(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                    <code>getIllustrationMapping(iri: <a href="../miscellaneous/typealiases.html#Iri" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
@@ -496,7 +496,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getIllustrationUrl(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                    <code>getIllustrationUrl(iri: <a href="../miscellaneous/typealiases.html#Iri" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
@@ -579,7 +579,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getSourceReferences(iri: <a href="../undefineds/Iri.html" target="_self">Iri</a>)</code>
+                    <code>getSourceReferences(iri: <a href="../miscellaneous/typealiases.html#Iri" target="_self">Iri</a>)</code>
                 </td>
             </tr>
 
@@ -982,8 +982,14 @@ export class FtuDataImplService extends FtuDataService {
    */
   private toSourceReferences(data: DataSources): SourceReference[] {
     const results: SourceReference[] &#x3D; [];
-    for (const { &#x27;@id&#x27;: id, label, link, description, authors &#x3D; [], year &#x3D; -1, doi &#x3D; &#x27;&#x27; } of data) {
-      results.push({ id, label, link, title: description, authors, year, doi });
+    for (const { &#x27;@id&#x27;: id, label, link, description, year &#x3D; -1 } of data) {
+      results.push({
+        datasetId: id,
+        datasetTitle: label,
+        doi: link,
+        title: description,
+        year,
+      });
     }
     return results;
   }

@@ -187,8 +187,8 @@
                             <code>IconsModule</code>
                             <code>MatDividerModule</code>
                                 <code><a href="../components/FilterMenuOverlayComponent.html" target="_self" >FilterMenuOverlayComponent</a></code>
-                            <code>ReactiveFormsModule</code>
-                            <code>FormsModule</code>
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                <code><a href="https://angular.io/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
                             <code>MatFormFieldModule</code>
                             <code>ScrollingModule</code>
                             <code>PlainTooltipDirective</code>
@@ -697,35 +697,37 @@ export class FilterMenuComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-scrollbar&gt;
-  &lt;div hraFeature&#x3D;&quot;filters&quot; class&#x3D;&quot;drawer-header&quot;&gt;
-    &lt;hra-icon class&#x3D;&quot;filter-icon&quot; fontIcon&#x3D;&quot;filter_list&quot; /&gt;
-    &lt;span class&#x3D;&quot;drawer-title&quot;&gt;Filters&lt;/span&gt;
-    &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
-    &lt;button
-      hraFeature&#x3D;&quot;toggle&quot;
-      hraHoverEvent
-      mat-icon-button
-      aria-label&#x3D;&quot;Open or close filters menu&quot;
-      [hraClickEvent]&#x3D;&quot;{ opened: formClosed() }&quot;
-      [hraPlainTooltip]&#x3D;&quot;formClosed() ? &#x27;Expand menu&#x27; : &#x27;Collapse menu&#x27;&quot;
-      (click)&#x3D;&quot;toggleForm.emit()&quot;
-    &gt;
-      &lt;hra-icon class&#x3D;&quot;menu-icon&quot; fontIcon&#x3D;&quot;arrow_menu_close&quot; /&gt;
-    &lt;/button&gt;
-  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;content&quot;&gt;
+    &lt;div hraFeature&#x3D;&quot;filters&quot; class&#x3D;&quot;drawer-header&quot;&gt;
+      &lt;hra-icon class&#x3D;&quot;filter-icon&quot; fontIcon&#x3D;&quot;filter_list&quot; /&gt;
+      &lt;span class&#x3D;&quot;drawer-title&quot;&gt;Filters&lt;/span&gt;
+      &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
+      &lt;button
+        hraFeature&#x3D;&quot;toggle&quot;
+        hraHoverEvent
+        mat-icon-button
+        aria-label&#x3D;&quot;Open or close filters menu&quot;
+        [hraClickEvent]&#x3D;&quot;{ opened: formClosed() }&quot;
+        [hraPlainTooltip]&#x3D;&quot;formClosed() ? &#x27;Expand menu&#x27; : &#x27;Collapse menu&#x27;&quot;
+        (click)&#x3D;&quot;toggleForm.emit()&quot;
+      &gt;
+        &lt;hra-icon class&#x3D;&quot;menu-icon&quot; fontIcon&#x3D;&quot;arrow_menu_close&quot; /&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
 
-  &lt;form class&#x3D;&quot;menu-content&quot; [formGroup]&#x3D;&quot;form&quot;&gt;
-    @for (value of formValues(); track $index) {
-      &lt;hra-filter-menu-overlay
-        [hraFeature]&#x3D;&quot;filterCategories()[$index].label | slugify&quot;
-        [form]&#x3D;&quot;value[1]&quot;
-        [filterOptionCategory]&#x3D;&quot;filterCategories()[$index]&quot;
-        [currentFilters]&#x3D;&quot;currentFilters()[value[0]]&quot;
-        (filterChanged)&#x3D;&quot;handleFilterChange()&quot;
-      /&gt;
-      &lt;mat-divider /&gt;
-    }
-  &lt;/form&gt;
+    &lt;form class&#x3D;&quot;menu-content&quot; [formGroup]&#x3D;&quot;form&quot;&gt;
+      @for (value of formValues(); track $index) {
+        &lt;hra-filter-menu-overlay
+          [hraFeature]&#x3D;&quot;filterCategories()[$index].label | slugify&quot;
+          [form]&#x3D;&quot;value[1]&quot;
+          [filterOptionCategory]&#x3D;&quot;filterCategories()[$index]&quot;
+          [currentFilters]&#x3D;&quot;currentFilters()[value[0]]&quot;
+          (filterChanged)&#x3D;&quot;handleFilterChange()&quot;
+        /&gt;
+        &lt;mat-divider /&gt;
+      }
+    &lt;/form&gt;
+  &lt;/div&gt;
 &lt;/ng-scrollbar&gt;
 </code></pre>
     </div>
@@ -756,7 +758,7 @@ export class FilterMenuComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-scrollbar>  <div hraFeature="filters" class="drawer-header">    <hra-icon class="filter-icon" fontIcon="filter_list" />    <span class="drawer-title">Filters</span>    <div class="filler"></div>    <button      hraFeature="toggle"      hraHoverEvent      mat-icon-button      aria-label="Open or close filters menu"      [hraClickEvent]="{ opened: formClosed() }"      [hraPlainTooltip]="formClosed() ? \'Expand menu\' : \'Collapse menu\'"      (click)="toggleForm.emit()"    >      <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />    </button>  </div>  <form class="menu-content" [formGroup]="form">    @for (value of formValues(); track $index) {      <hra-filter-menu-overlay        [hraFeature]="filterCategories()[$index].label | slugify"        [form]="value[1]"        [filterOptionCategory]="filterCategories()[$index]"        [currentFilters]="currentFilters()[value[0]]"        (filterChanged)="handleFilterChange()"      />      <mat-divider />    }  </form></ng-scrollbar></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-scrollbar>  <div class="content">    <div hraFeature="filters" class="drawer-header">      <hra-icon class="filter-icon" fontIcon="filter_list" />      <span class="drawer-title">Filters</span>      <div class="filler"></div>      <button        hraFeature="toggle"        hraHoverEvent        mat-icon-button        aria-label="Open or close filters menu"        [hraClickEvent]="{ opened: formClosed() }"        [hraPlainTooltip]="formClosed() ? \'Expand menu\' : \'Collapse menu\'"        (click)="toggleForm.emit()"      >        <hra-icon class="menu-icon" fontIcon="arrow_menu_close" />      </button>    </div>    <form class="menu-content" [formGroup]="form">      @for (value of formValues(); track $index) {        <hra-filter-menu-overlay          [hraFeature]="filterCategories()[$index].label | slugify"          [form]="value[1]"          [filterOptionCategory]="filterCategories()[$index]"          [currentFilters]="currentFilters()[value[0]]"          (filterChanged)="handleFilterChange()"        />        <mat-divider />      }    </form>  </div></ng-scrollbar></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FilterMenuComponent'};

@@ -228,15 +228,16 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from &#x27;@angular/core&#x27;;
 import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
-import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import {
+  InfoButtonActionsDirective,
   InfoButtonComponent,
   InfoButtonTaglineDirective,
-  InfoButtonActionsDirective,
 } from &#x27;@hra-ui/design-system/buttons/info-button&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 
 /** A filter chip representing a selected filter option */
 export interface FilterChip {
@@ -258,6 +259,7 @@ export interface FilterChip {
     InfoButtonComponent,
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
+    PlainTooltipDirective,
   ],
   templateUrl: &#x27;./filter-container.component.html&#x27;,
   styleUrl: &#x27;./filter-container.component.scss&#x27;,
@@ -266,6 +268,9 @@ export interface FilterChip {
 export class FilterContainerComponent&lt;T extends FilterChip&gt; {
   /** tagline for the filter category */
   readonly action &#x3D; input.required&lt;string&gt;();
+
+  /** Total count of filter options in the category */
+  readonly totalCount &#x3D; input&lt;number&gt;();
 
   /** Whether to show the info button with tooltip */
   readonly showTooltip &#x3D; input(false, { transform: booleanAttribute });

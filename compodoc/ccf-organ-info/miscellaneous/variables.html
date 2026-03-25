@@ -184,6 +184,7 @@
     provideAnalytics(withErrorHandler()),
     { provide: DataSourceService, useExisting: ApiEndpointDataSourceService },
     provideDesignSystem(),
+    provideZonelessChangeDetection(),
     importProvidersFrom(
       NgxsDataPluginModule.forRoot(),
       NgxsModule.forRoot(ROOT_STATES, {

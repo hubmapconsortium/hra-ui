@@ -1,3 +1,4 @@
 {
-  "module": "../../../fesm2022/hra-ui-common-analytics-plugins-hra-analytics.mjs"
+  "module": "../../../fesm2022/hra-ui-common-analytics-plugins-hra-analytics.mjs",
+  "typings": "../../../types/hra-ui-common-analytics-plugins-hra-analytics.d.ts"
 }

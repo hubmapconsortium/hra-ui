@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-buttons-info-button.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-buttons-info-button.mjs",
+  "typings": "../../types/hra-ui-design-system-buttons-info-button.d.ts"
 }

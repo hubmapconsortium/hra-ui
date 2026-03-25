@@ -2,7 +2,6 @@ import { EMPTY_LINK, LinkRegistrySelectors, LinkRegistryActions, LinkType } from
 export { EMPTY_LINK } from '@hra-ui/cdk/state';
 import * as i0 from '@angular/core';
 import { inject, Injector, ElementRef, Input, Directive } from '@angular/core';
-import '@angular/router';
 import { selectQuerySnapshot, dispatch } from '@hra-ui/cdk/injectors';
 import { createExternalUrl, createInternalUrl } from '@hra-ui/utils';
 
@@ -101,10 +100,10 @@ class LinkDirective {
         mergeKey('relativeTo');
         return result;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "20.3.15", type: LinkDirective, isStandalone: true, selector: "[hraLink]", inputs: { linkId: ["hraLink", "linkId"], queryParams: "queryParams", queryParamsHandling: "queryParamsHandling", fragment: "fragment", preserveFragment: "preserveFragment", relativeTo: "relativeTo" }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "href", "attr.rel": "rel", "attr.target": "target" } }, ngImport: i0 }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.1.5", type: LinkDirective, isStandalone: true, selector: "[hraLink]", inputs: { linkId: ["hraLink", "linkId"], queryParams: "queryParams", queryParamsHandling: "queryParamsHandling", fragment: "fragment", preserveFragment: "preserveFragment", relativeTo: "relativeTo" }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "href", "attr.rel": "rel", "attr.target": "target" } }, ngImport: i0 }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: LinkDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: LinkDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraLink]',

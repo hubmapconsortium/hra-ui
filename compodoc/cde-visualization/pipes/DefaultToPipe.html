@@ -330,12 +330,6 @@ export class MetadataComponent {
   /** Input for Metadata Component */
   readonly metadata &#x3D; input.required&lt;Metadata&gt;();
 
-  /** Defines a computed property for the title label */
-  readonly titleLabel &#x3D; computed(() &#x3D;&gt; {
-    const { sampleExtra } &#x3D; this.metadata();
-    return sampleExtra ? &#x60;Sample ${sampleExtra.type} Visualization (${sampleExtra.organ})&#x60; : &#x27;Title&#x27;;
-  });
-
   /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields &#x3D; signal(false);
 

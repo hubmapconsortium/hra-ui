@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/hra-ui-design-system-fullscreen.mjs"
+  "module": "../fesm2022/hra-ui-design-system-fullscreen.mjs",
+  "typings": "../types/hra-ui-design-system-fullscreen.d.ts"
 }

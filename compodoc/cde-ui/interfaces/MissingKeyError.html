@@ -287,6 +287,7 @@ import {
 } from &#x27;@hra-ui/cde-visualization&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { CsvFileLoaderOptions, CsvFileLoaderService } from &#x27;@hra-ui/common/fs&#x27;;
+import { assetUrl, cssUrl } from &#x27;@hra-ui/common/url&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { ErrorIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/error-indicator&#x27;;
 import { StepIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/step-indicator&#x27;;
@@ -343,6 +344,9 @@ function optionalValue&lt;T&gt;(): T | null {
   templateUrl: &#x27;./create-visualization-page.component.html&#x27;,
   styleUrl: &#x27;./create-visualization-page.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    &#x27;[style.background-image]&#x27;: &#x27;backgroundImageUrl()&#x27;,
+  },
 })
 export class CreateVisualizationPageComponent {
   /** Organ entries */
@@ -352,6 +356,11 @@ export class CreateVisualizationPageComponent {
   private readonly nodesFileUpload &#x3D; viewChild.required&lt;AnyFileUploadComponent&gt;(&#x27;nodesFileUpload&#x27;);
   /** Color map upload component */
   private readonly customColorMapFileUpload &#x3D; viewChild&lt;AnyFileUploadComponent&gt;(&#x27;customColorMapFileUpload&#x27;);
+
+  /** Resolved background image URL */
+  protected readonly backgroundImageUrl &#x3D; cssUrl(
+    assetUrl(&#x27;assets/backgrounds/create-visualization-page-background.png&#x27;),
+  );
 
   /** Form builder */
   private readonly fb &#x3D; inject(FormBuilder);
@@ -413,11 +422,7 @@ export class CreateVisualizationPageComponent {
     errorTolerance: 0, // Number of rows in the file that can be invalid before error is thrown
     papaparse: {
       header: true,
-      dynamicTyping: {
-        x: true,
-        y: true,
-        z: true,
-      },
+      dynamicTyping: true,
     },
   };
 

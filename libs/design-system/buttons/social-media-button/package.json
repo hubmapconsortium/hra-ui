@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-buttons-social-media-button.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-buttons-social-media-button.mjs",
+  "typings": "../../types/hra-ui-design-system-buttons-social-media-button.d.ts"
 }

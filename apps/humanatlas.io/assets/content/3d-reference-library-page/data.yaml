@@ -78,7 +78,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/united-male/v1.9/assets/crosswalk.csv
                     files: []
               - label: Blood Vasculature
-                icon: organ:blood-vasculature
+                icon: organ:vasculature-thick
                 cards:
                   - label: Female
                     alt: Blood Vasculature, Female
@@ -135,7 +135,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tube-left
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -294,7 +294,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Main Bronchus
-                icon: organ:extrapulmonaryBronchus
+                icon: organ:extrapulmonary-bronchus
                 cards:
                   - label: Female
                     alt: Main Bronchus, Female
@@ -348,7 +348,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mouth-male/v1.0/assets/crosswalk.csv
                     files: []
               - label: Ovary
-                icon: organ:ovary
+                icon: organ:ovaries
                 cards:
                   - label: Female, L
                     alt: Ovary, Female, Left
@@ -363,7 +363,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ovary-female-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Palatine Tonsil
-                icon: organ:palatineTonsil
+                icon: organ:palatine-tonsil
                 cards:
                   - label: Female, L
                     alt: Palatine Tonsil, Female, Left
@@ -405,7 +405,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-male/v1.3/assets/crosswalk.csv
                     files: []
               - label: Pelvis
-                icon: organ:bone-marrow
+                icon: organ:pelvis
                 cards:
                   - label: Female
                     alt: Pelvis, Female
@@ -438,7 +438,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/prostate-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Renal Pelvis
-                icon: organ:bone-marrow
+                icon: organ:renal-pelvis-right
                 cards:
                   - label: Female,, L
                     alt: Renal Pelvis, Female,, Left
@@ -564,7 +564,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter
+                icon: organ:ureter-right
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -591,7 +591,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ureter-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Urinary Bladder
-                icon: organ:urinary-bladder
+                icon: organ:bladder
                 cards:
                   - label: Female
                     alt: Urinary Bladder, Female
@@ -615,7 +615,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/uterus-female/v1.2/assets/crosswalk.csv
                     files: []
               - label: intervertebral discs
-                icon: organ:intervertebral-discs
+                icon: organ:intervertebral-disc
                 cards:
                   - label: Female
                     alt: intervertebral discs, Female
@@ -630,7 +630,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/intervertebral-disk-male/v1.0/assets/crosswalk.csv
                     files: []
               - label: subcutaneous adipose tissue
-                icon: organ:adipose
+                icon: organ:adipose-tissue
                 cards:
                   - label: Female
                     alt: subcutaneous adipose tissue, Female
@@ -935,7 +935,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mouth-male/v1.0/assets/crosswalk.csv
                     files: []
               - label: Ovary
-                icon: organ:ovary
+                icon: organ:ovaries
                 cards:
                   - label: Female, L
                     alt: Ovary, Female, Left
@@ -950,7 +950,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/ovary-female-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Palatine Tonsil
-                icon: organ:palatineTonsil
+                icon: organ:palatine-tonsil
                 cards:
                   - label: Female, L
                     alt: Palatine Tonsil, Female, Left
@@ -992,7 +992,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-male/v1.3/assets/crosswalk.csv
                     files: []
               - label: Pelvis
-                icon: organ:bone-marrow
+                icon: organ:pelvis
                 cards:
                   - label: Female
                     alt: Pelvis, Female
@@ -1025,7 +1025,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/prostate-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Renal Pelvis
-                icon: organ:bone-marrow
+                icon: organ:renal-pelvis-right
                 cards:
                   - label: Female,, L
                     alt: Renal Pelvis, Female,, Left
@@ -2011,7 +2011,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-right/v1.1/assets/crosswalk.csv
                     files: []
               - label: Ovary
-                icon: organ:ovary
+                icon: organ:ovaries
                 cards:
                   - label: Female, L
                     alt: Ovary, Female, Left
@@ -2523,7 +2523,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-right/v1.0/assets/crosswalk.csv
                     files: []
               - label: Ovary
-                icon: organ:ovary
+                icon: organ:ovaries
                 cards:
                   - label: Female L
                     alt: Ovary, Female, Left
@@ -3016,7 +3016,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-right/v1.0/assets/crosswalk.csv
                     files: []
               - label: Ovary
-                icon: organ:ovary
+                icon: organ:ovaries
                 cards:
                   - label: Female, L
                     alt: Ovary, Female, Left
@@ -3483,7 +3483,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-right/v1.0/assets/crosswalk.csv
                     files: []
               - label: Ovary
-                icon: organ:ovary
+                icon: organ:ovaries
                 cards:
                   - label: Female, L
                     alt: Ovary, Female, Left
@@ -3893,7 +3893,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Ovary
-                icon: organ:ovary
+                icon: organ:ovaries
                 cards:
                   - label: Female, L
                     alt: Ovary, Female, Left

@@ -300,9 +300,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="interfaces/SegmentWithMatrixParams.html" data-type="entity-link" >SegmentWithMatrixParams</a>
                             </li>
-                            <li class="link">
-                                <a href="interfaces/URLSearchParams.html" data-type="entity-link" >URLSearchParams</a>
-                            </li>
                         </ul>
                     </li>
                         <li class="chapter">

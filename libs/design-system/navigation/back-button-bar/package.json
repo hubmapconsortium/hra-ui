@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/hra-ui-design-system-navigation-back-button-bar.mjs"
+  "module": "../../fesm2022/hra-ui-design-system-navigation-back-button-bar.mjs",
+  "typings": "../../types/hra-ui-design-system-navigation-back-button-bar.d.ts"
 }
