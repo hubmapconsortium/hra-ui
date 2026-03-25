@@ -42,12 +42,12 @@ illustration.selectedIllustration = 'https://...';
 
 ### Available inputs
 
-| Attribute name          | Description                                                                  | Data format                         | Default |
-| ----------------------- | ---------------------------------------------------------------------------- | ----------------------------------- | ------- | ---- |
-| _selected-illustration_ | Active illustration                                                          | An id or object                     | None    |
-| _illustrations_         | All available illustrations. Must be set if _selected-illustration_ is an id | A json file url or a mapping object | None    |
-| _highlight_             |                                                                              | Purl id of node to highlight        | String  | None |
-| _base-href_             | Base url to fetch relative links                                             | An url                              | None    |
+| Attribute name          | Description                             | Data format                         | Default                                             |
+| ----------------------- | --------------------------------------- | ----------------------------------- | --------------------------------------------------- |
+| _selected-illustration_ | Active illustration                     | An id or object                     | None                                                |
+| _illustrations_         | All available illustrations             | A json file url or a mapping object | https://apps.humanatlas.io/api/v1/ftu-illustrations |
+| _highlight_             | Groups of cells to highlight            | One or more purl ids                | None                                                |
+| _base-href_             | Base url used to resolve relative links | An url                              | None                                                |
 
 ## Outputs
 
@@ -90,9 +90,19 @@ A `FtuIllustrationNode` is a plain object with at least the following properties
     <!-- The important bits -->
     <link href="https://cdn.humanatlas.io/ui/medical-illustration/styles.css" rel="stylesheet" />
     <script src="https://cdn.humanatlas.io/ui/medical-illustration/wc.js" defer></script>
+
+    <!-- Customize inputs and event handling -->
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const illustration = document.getElementById('illustration');
+
+        // Highlight cells
+        illustration.highlight = [
+          //  Centroacinar cells
+          'http://purl.obolibrary.org/obo/CL_0002080'
+          // Ductal epithelial cells
+          'http://purl.obolibrary.org/obo/CL_1001433'
+        ];
 
         // Listen to events
         illustration.addEventListener('cell-click', (event) => {

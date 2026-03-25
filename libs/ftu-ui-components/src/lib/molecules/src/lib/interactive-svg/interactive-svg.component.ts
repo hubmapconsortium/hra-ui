@@ -1,14 +1,14 @@
+import { coerceArray } from '@angular/cdk/coercion';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   inject,
-  Input,
+  input,
   OnChanges,
   OnDestroy,
-  Output,
+  output,
   Renderer2,
   SimpleChanges,
   ViewEncapsulation,
@@ -88,19 +88,19 @@ export interface NodeMapEntry {
 })
 export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChanges, OnDestroy {
   /** SVG url */
-  @Input() url?: string;
+  readonly url = input<string>();
 
   /** Mapping info */
-  @Input() mapping: T[] = [];
+  readonly mapping = input<T[]>([]);
 
   /** Highlighted ontology id */
-  @Input() highlightId?: string;
+  readonly highlightId = input<string | string[]>();
 
   /** Emits node id when hovered */
-  @Output() readonly nodeHover = new EventEmitter<T | undefined>();
+  readonly nodeHover = output<T | undefined>();
 
   /** Emits node id when clicked */
-  @Output() readonly nodeClick = new EventEmitter<T>();
+  readonly nodeClick = output<T>();
 
   /** SVG script eval mode */
   readonly NEVER_EVAL_SCRIPTS = 'never' as SVGScriptEvalMode;
@@ -144,22 +144,30 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
    * Highlights cells that match highlightId
    */
   private setHighlight() {
-    const { mapping, highlightId, crosswalkEl } = this;
-    const entry = mapping.find(({ ontologyId }) => ontologyId === highlightId);
-    if (!entry || !crosswalkEl) {
-      return;
+    const { crosswalkEl } = this;
+    const highlightIds = coerceArray(this.highlightId());
+    const mapping = this.mapping();
+    const result: Element[] = [];
+
+    for (const id of highlightIds) {
+      const entry = mapping.find(({ ontologyId }) => ontologyId === id);
+      if (!entry || !crosswalkEl) {
+        continue;
+      }
+
+      const elementId = entry.groupId || entry.id;
+      const element = crosswalkEl.querySelector(`#${elementId}, #${this.encodeId(elementId)}`);
+      if (!element) {
+        continue;
+      }
+
+      const gElement = element.nodeName === 'g' ? element : (element.parentElement as Element);
+      const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
+      elements.forEach((el) => el.classList.add('click-active'));
+      elements.forEach((el) => result.push(el));
     }
 
-    const id = entry.groupId || entry.id;
-    const element = crosswalkEl.querySelector(`#${id}, #${this.encodeId(id)}`);
-    if (!element) {
-      return;
-    }
-
-    const gElement = element.nodeName === 'g' ? element : (element.parentElement as Element);
-    const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
-    this.highlightedElements = Array.from(elements);
-    elements.forEach((el) => el.classList.add('click-active'));
+    this.highlightedElements = result;
   }
 
   /**
@@ -232,7 +240,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       }
     } else {
       this.nodeHoverData$.next(undefined);
-      this.nodeHover.emit();
+      this.nodeHover.emit(undefined);
     }
   }
 
@@ -277,13 +285,13 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     const idCollection = [targetId, parentId, grandparentId];
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
-      const cellMatch = this.mapping.find(
+      const cellMatch = this.mapping().find(
         (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry
       );
       if (cellMatch) {
         return cellMatch;
       }
-      const groupMatch = this.mapping.find(
+      const groupMatch = this.mapping().find(
         (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry
       );
       if (groupMatch) {
