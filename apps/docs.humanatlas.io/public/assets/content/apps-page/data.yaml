@@ -42,7 +42,7 @@ content:
 
       - component: Markdown
         data: |
-          The **ASCT+B Reporter** is a visualization tool that allows users to explore and compare Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables.
+          The **ASCT+B Reporter** is a visualization tool to explore and compare anatomical structures, cell types, and biomarkers (ASCT+B) tables.
           It provides insights into the relationships between different biological entities and supports the validation and refinement of the HRA's reference data.
 
       - component: TextHyperlink
@@ -160,7 +160,7 @@ content:
         icon: arrow_right_alt
 
   - component: PageSection
-    tagline: Functional Tissue Unit (FTU) Explorer
+    tagline: Functional Tissue Unit Explorer
     anchor: ftu
     level: 2
     content:

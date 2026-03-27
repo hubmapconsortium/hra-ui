@@ -94,7 +94,7 @@
             },
             {
               "tagline": "ASCT+B Reporter",
-              "description": "Construct, explore, and compare ASCT+B Tables and Organ Mapping Antibody Panels (OMAPs).",
+              "description": "Explore relationships between anatomical structures, cell types, and biomarkers.",
               "imagePath": "assets/ui-images/asctb-reporter.png",
               "logoPath": "product:asctb-reporter",
               "appUrl": "https://apps.humanatlas.io/asctb-reporter/",
@@ -111,7 +111,7 @@
           "tagline": "Developer applications",
           "cards": [
             {
-              "tagline": "Knowledge Graph",
+              "tagline": "Knowledge Graph Explorer",
               "description": "Query, filter, and download digital objects.",
               "imagePath": "assets/ui-images/knowledge-graph-metadata.png",
               "logoPath": "product:knowledge-graph",
