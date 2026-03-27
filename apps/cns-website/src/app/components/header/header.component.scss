@@ -48,8 +48,6 @@ $z-index: 900;
   }
 
   .menu-button {
-    height: 2.5rem;
-
     @include mat.button-overrides(
       (
         text-label-text-font: vars.$label-large-font,
@@ -70,6 +68,9 @@ $z-index: 900;
     );
 
     ::ng-deep .mat-button-toggle-label-content {
+      display: flex;
+      height: 2.5rem;
+      align-items: center;
       padding: 0 0.75rem !important;
     }
   }
