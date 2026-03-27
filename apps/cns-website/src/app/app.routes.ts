@@ -80,6 +80,18 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'exhibit',
+    children: [
+      {
+        path: 'envisioning-intelligences',
+        component: ContentPageComponent,
+        resolve: {
+          data: createYamlSpecResolver('assets/content/envisioning-intelligences/data.yaml', ContentPageDataSchema),
+        },
+      },
+    ],
+  },
+  {
     path: 'jobs',
     component: ContentPageComponent,
     resolve: {
