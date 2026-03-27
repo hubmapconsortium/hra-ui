@@ -46,7 +46,6 @@ import {
 import { ConfigService } from './app-config.service';
 import { CompareComponent } from './components/compare/compare.component';
 import { DebugLogsComponent } from './components/debug-logs/debug-logs.component';
-import { DoiComponent } from './components/doi/doi.component';
 import { IndentedListComponent } from './components/indented-list/indented-list.component';
 import { InfoComponent } from './components/info/info.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -70,6 +69,8 @@ import { LinksASCTBData } from './models/tree.model';
 import { Logs, OpenBottomSheetData, Snackbar } from './models/ui.model';
 import { BimodalService } from './modules/tree/bimodal.service';
 import { TreeService } from './modules/tree/tree.service';
+// import { SheetService } from './services/sheet/sheet.service';
+import { BottomSheetService } from '@hra-ui/design-system/bottom-sheet';
 import { SheetService } from './services/sheet/sheet.service';
 import { LogsState } from './store/logs.state';
 import { SheetState } from './store/sheet.state';
@@ -140,6 +141,7 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
 
   /** Bottom Sheet Service */
   private readonly infoSheet = inject(MatBottomSheet);
+  private readonly bottomSheetService = inject(BottomSheetService);
 
   /** State Store */
   protected readonly store = inject(Store);
@@ -423,14 +425,12 @@ export class AppComponent extends BaseApplicationComponent implements OnDestroy 
 
         this.bottomSheetDOI$.subscribe((data) => {
           if (data.length) {
-            this.infoSheetRef = this.infoSheet.open(DoiComponent, {
-              closeOnNavigation: true,
-              disableClose: false,
-              hasBackdrop: false,
-              autoFocus: false,
-              panelClass: 'bottom-sheet-style',
-              data,
-            });
+            this.infoSheetRef = this.bottomSheetService.openMultiplePageSectionsBottomSheet(
+              data.map((doi) => ({
+                tagline: `ID: ${doi.id}`,
+                content: `Notes: ${doi.notes}`,
+              })),
+            );
           } else if (this.infoSheetRef) {
             this.infoSheetRef.dismiss();
           }
