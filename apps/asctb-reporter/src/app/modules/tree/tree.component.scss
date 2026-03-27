@@ -10,10 +10,9 @@
     display: inline-block;
   }
 
-  .tree-vis {
+  .vis {
     background-color: vars.$on-primary;
     overflow: auto;
-    height: calc(100vh - 12.1rem);
 
     ::ng-deep .marks {
       width: 100%;
