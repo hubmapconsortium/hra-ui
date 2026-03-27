@@ -1,0 +1,72 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: 'Design and Update of a Classification System: The UCSD Map of Science'
+subtitle: |
+  Börner, Katy, Richard Klavans, Michael Patek, Angela Zoss, Joseph R. Biberstine, Robert Light, Vincent Larivière,
+  and Kevin W. Boyack (2012) Design and Update of a Classification System: The UCSD Map of Science. PLoS ONE 7(7):
+  e39464. [doi:10.1371/journal.pone.0039464](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0039464)
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: |
+      Design and Update of a Classification System: The UCSD Map of Science
+content:
+  - component: PageSection
+    tagline: Team
+    anchor: team
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The project is lead by [SciTech Strategies Inc](https://www.scitech-strategies.com/). in collaboration with the [Cyberinfrastructure
+          for Network Science Center](https://cns.iu.edu/) at Indiana University. There are subcontracts to different researchers
+          and one company. The full team comprises:
+
+          Katy Börner<sup>1</sup>, Richard Klavans<sup>2</sup>, Michael Patek<sup>2</sup>, Angela M. Zoss<sup>1</sup>, Joseph R. Biberstine<sup>1</sup>, Robert P. Light<sup>1</sup>, Vincent Larivière<sup>1,3</sup>, and Kevin W. Boyack<sup>5</sup>
+
+  - component: PageSection
+    tagline: Data
+    anchor: data
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The 2010 UCSD map of science and classification system covering 10 years (2001-2010) of Web of Science data and
+          8 years (2001-2008) of Scopus data with subdiscipline assignments by SciTech Strategies.
+          1. Data as [MS AccessDB](https://cns.iu.edu/docs/data/2012-UCSDMap/UCSDmapDatabase.accdb) and as
+          [MS Excel](https://cns.iu.edu/docs/data/2012-UCSDMap/UCSDmapDataTables.xlsx) file (identical info as MS AccessDB)
+          as well as [data dictionary](https://cns.iu.edu/docs/data/2012-UCSDMap/UCSDmapDataDictionary.xlsx) and
+          [database schema](https://cns.iu.edu/docs/data/2012-UCSDMap/UCSDmapDBSchema.pdf).
+          2. [Network .net](https://cns.iu.edu/docs/data/2012-UCSDMap/UCSDmap.net) file to visually render science map.
+          Also provided as [.net file](https://cns.iu.edu/docs/data/2012-UCSDMap/UCSDmap_with_disciplines.net) with discipline nodes and names.
+
+  - component: PageSection
+    tagline: Usage conditions
+    anchor: usage-conditions
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          This map is shared under the [Creative Commons, Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0) license](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+          That is, you are free to share, e.g., to copy, distribute and transmit the work, and to remix, i.e., to adapt the work under the following conditions:
+          - Attribution — You must attribute the work in the following manner (but not in any way that suggests that they endorse you or your use of the work):
+          Cite the above paper and use the following acknowledgment text: *"The authors wish to acknowledge The Regents of the University of California,
+          SciTech Strategies, Observatoire des Sciences et des Technologies, and the Cyberinfrastructure for Network Science Center for making the 2010
+          UCSD Map of Science and Classification System available for this work."*
+          - Noncommercial — You may not use this work for commercial purposes.
+
+  - component: PageSection
+    tagline: Affiliations
+    anchor: affiliations
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          <sup>1</sup> Cyberinfrastructure for Network Science Center, School of Library and Information Science, Indiana University, 10th Street & Jordan Avenue, Wells Library, Bloomington, IN 47405, USA
+          <br>
+          <sup>2</sup> SciTech Strategies, Inc., Berwyn, PA, 19312, USA
+          <br>
+          <sup>3</sup> École de bibliothéconomie et des sciences de l’information, Université de Montréal, C.P. 6128, Succ. Centre-ville, Montréal QC, H3C 3J7, Canada.
+          <br>
+          <sup>4</sup> Observatoire des Sciences et des Technologies (OST), Centre Interuniversitaire de Recherche sur la Science et la Technologie (CIRST), Université du Québec à Montréal, C.P. 8888, Succ. Centre-Ville, Montréal, QC H3C 3P8, Canada.
+          <br>
+          <sup>5</sup> SciTech Strategies, Inc., Albuquerque, NM 87122, USA

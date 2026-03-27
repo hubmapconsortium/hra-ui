@@ -59,6 +59,13 @@ export const appRoutes: Route[] = [
   // Content pages
   // Please try to keep sorted in alphabetical order
   {
+    path: '2012-ucsdmap',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/2012-ucsdmap/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'about',
     component: ContentPageComponent,
     resolve: {
@@ -71,6 +78,18 @@ export const appRoutes: Route[] = [
     resolve: {
       data: createYamlSpecResolver('assets/content/amatria/data.yaml', ContentPageDataSchema),
     },
+  },
+  {
+    path: 'exhibit',
+    children: [
+      {
+        path: 'envisioning-intelligences',
+        component: ContentPageComponent,
+        resolve: {
+          data: createYamlSpecResolver('assets/content/envisioning-intelligences/data.yaml', ContentPageDataSchema),
+        },
+      },
+    ],
   },
   {
     path: 'jobs',
@@ -131,6 +150,10 @@ export const appRoutes: Route[] = [
   },
 
   // Redirects
+  {
+    path: '2012-UCSDMap.html',
+    redirectTo: '/2012-ucsdmap',
+  },
   {
     path: 'all_news.html',
     redirectTo: '/research?category=news',

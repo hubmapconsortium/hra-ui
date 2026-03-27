@@ -1,0 +1,311 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: Envisioning Intelligences
+headerContent:
+  - component: Image
+    src: /assets/content/envisioning-intelligences/images/header-images.png
+  - component: Markdown
+    data: |
+      Intelligence has often been considered a uniquely human trait. However, recent developments in the study of plants and animals,
+      as well as breakthroughs in the realm of machine learning, have expanded our understanding of what is intelligent.
+      These days, it is not uncommon to read about the language of trees and the cognitive ability of cephalopods on devices we refer to as smart phones.
+
+      What does intelligence look like when exhibited by humans or machines, plants or animals?
+      <br>
+      How do different types of intelligence interact and cooperate in order to survive and thrive?
+
+      Looking at human intelligence alongside that of microbes, plants, animals, and machines can help us find ways to work together and identify
+      blind spots in our own ways of thinking. *Envisioning Intelligences* is curated by the Cyberinfrastructure for Network Science Center at Indiana University.
+subtitle: ''
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: 30-Year Exhibit
+    route: /exhibit
+  - name: Envisioning Intelligences
+content:
+  - component: PageSection
+    tagline: The Knowledge Cosmos, 2025
+    anchor: the-knowledge-cosmos
+    level: 2
+    content:
+      - component: Image
+        src: /assets/content/envisioning-intelligences/images/knowledge-cosmos.png
+      - component: PageSection
+        tagline: Artists and affiliations
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Nikita Sridhar, IBM Client Engineering
+              - Alec McGail, NASA
+              - Rifaa Tajani, Harvard University and IBM
+              - Jiabao Li, The University of Texas at Austin
+      - component: PageSection
+        tagline: Description
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The amount of scientific literature humanity produces is growing at an incredible rate, and it is difficult to stay current.
+              To make knowledge more manageable, it is often divided into disciplinary territories. But this solution prevents knowledge
+              from crossing borders to encounter the unfamiliar thoughts and practices that may spur new ideas and innovation.
+
+              *The Knowledge Cosmos* visualization is an interactive 3D universe where 17 million academic papers are located based on
+              similarity of content, not preconceived categories. This arrangement allows for the discovery of unexpected interdisciplinary
+              connections and under-explored gaps in knowledge.
+      - component: PageSection
+        tagline: References
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Börner, Katy. 2010. *Atlas of Science: Visualizing What We Know*. Cambridge, MA: The MIT Press.
+              - Cui, Weiwei, Shixia Liu, Li Tan, Conglei Shi, Yangqiu Song, and Zekai Gao. XXXX. “TextFlow: Towards Better Understanding
+              of Evolving Topics in Text.” *IEEE Transactions on Visualization and Computer Graphics* 17 (12): 2412–2421. Accessed February
+              23, 2026. https://ieeexplore.ieee.org/document/6065008.
+              - Davidson, George S., Bruce Hendrickson, David K. Johnson, Charles E. Meyers, and Brian N. Wylie. 1998. “Knowledge Mining
+              with VxInsight: Discovery through Interaction.” *Journal of Intelligent Information Systems* 11 (3): 259–285.
+              Accessed February 23, 2026. https://link.springer.com/article/10.1023/A:1008690008856.
+              - Kraker, Peter, and Najmeh Shaghaei. 2019. “Open Knowledge Maps: A Visual Interface to the World’s Scientific Knowledge. In *Proceedings
+              of LIBER 2019*. Accessed February 23, 2026. https://zenodo.org/records/3258106.
+              - Li, Zeyu, Changhong Zhang, Shichao Jia, and Jiawan Zhang. 2019. “Galex: Exploring the Evolution and Intersection of Disciplines.”
+              *IEEE Transactions on Visualization and Computer Graphics* 26 (1): 1182–1192. Accessed February 23, 2026.
+              https://ieeexplore.ieee.org/document/8807243.
+              - McGail, Alec, Rifaa Tajani, Nikita Sridhar, and Jiaobao Li. 2025. “The Knowledge Cosmos.” Accessed February 23, 2026.
+              https://www.theknowledgecosmos.com.
+              - McGail, Alec, Rifaa Tajani, Nikita Sridhar, and Jiaobao Li. 2025. *The Knowledge Cosmos*. In *Envisioning Intelligences 3.1* (2025),
+              edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+              - Rosvall, Martin, and Carl T. Bergstrom. 2008. “Maps of Random Walks on Complex Networks Reveal Community Structure.” *PNAS* 105 (4): 1118–1123.
+              Accessed February 23, 2026. https://www.pnas.org/doi/full/10.1073/pnas.0706851105.
+              - Wang, Xitang, Shixia Liu, Junlin Liu, Jianfei Chen, Jun Zhu, and Baining Guo. 2016. “TopicPanorama: A Full Picture of Relevant Topics.”
+              *IEEE Transactions on Visualization and Computer Graphics* 22 (12): 2508–2521. Accessed February 23, 2026. https://ieeexplore.ieee.org/document/7374750.
+
+  - component: PageSection
+    tagline: Zoonotic Web, 2024
+    anchor: zoonotic-web
+    level: 2
+    content:
+      - component: Image
+        src: /assets/content/envisioning-intelligences/images/zoonotic-web.png
+      - component: PageSection
+        tagline: Artists and affiliations
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Liuhuaying Yang, Complexity Science Hub
+              - Amélie Desvars-Larrive, Complexity Science Hub and University of Veterinary Medicine Vienna
+      - component: PageSection
+        tagline: Description
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              A rat carrying a virus is bitten by a tick. That now-infected tick bites a cow on a farm. A farmer slaughters the cow
+              and processes the meat for human consumption. The path taken by zoonoses—infectious diseases that spread from animal
+              to human—can be anything but straightforward, making them difficult to fully track, study, and prevent.
+
+              This interactive network shows how tiny pathogens navigate between species and environments. Visualizing otherwise hidden
+              relationships reveals how microscopic and macroscopic life co-shape disease dynamics.
+      - component: PageSection
+        tagline: References
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Amélie Desvars-Larrive, Amélie, Anna Elisabeth Vogl, Gavrila Amadea Puspitarani, Liuhuaying Yang, Anja Joachim, and Annemarie Käsbohrer. 2024.
+              “A One Health Framework for Exploring Zoonotic Interactions Demonstrated through a Case Study.” *Nature Communications* 15 (5650). Accessed February 20, 2026.
+              https://www.nature.com/articles/s41467-024-49967-7.
+              - Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024. “Zoonotic Web.” *Nature Communications* 15 (5650). Accessed February 23, 2026. https://vis.csh.ac.at/zoonotic-web.
+              - Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024. *Zoonotic Web*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+
+  - component: PageSection
+    tagline: The Emotional Echo of Cultural Intelligence, 2021
+    anchor: the-emotional-echo-of-cultural-intelligence
+    level: 2
+    content:
+      - component: Image
+        src: /assets/content/envisioning-intelligences/images/emotional-echo-of-cultural-intelligence.png
+      - component: PageSection
+        tagline: Artists and affiliations
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Christiane Hütter and Martin Chiettini, Ludwig Boltzmann Institute for Network Medicine and the Max Perutz Labs at the University of Vienna
+              - Felix Müller, Cristian Nogales, Iker Nuñez-Carpintero, and Jörg Menche, Ludwig Boltzmann Institute for Network Medicine, University of Vienna
+              - Sebastian Pirch, Ludwig Boltzmann Institute for Network Medicine at the University of Vienna and the CeMM Research Center for Molecular Medicine
+      - component: PageSection
+        tagline: Description
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              The internet serves as a vast repository of humanity’s collective intelligence. But it also contains our collective hopes, fears, loves, and prejudices.
+              Every day, those aspects of our culture that provoke strong emotions are spread quickly and widely across social media as memes. *The Emotional Echo of
+              Cultural Intelligence* can help us understand how such digital content forms, spreads, and influences public opinion and behavior.
+
+              Here, memes appear as dots in a complex web of connections based on shared topics and themes. Individual years can be extracted from the larger network
+              to examine how real-world events were depicted in the language of memes. In 2020, for instance, memes of Baby Yoda sipping tea represented feelings of
+              detachment from a world gripped by a global pandemic. In contrast, “Stop the Steal” memes represented the angry American political landscape and spread
+              of misinformation related to voter fraud that characterized that election year.
+      - component: PageSection
+        tagline: References
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Hütter, Christiane V.R., Felix Müller, Cristian Nogales, Iker Nuñez-Carpintero, Sebastian Pirch, Martin Chiettini, and Jörg Menche. 2021. *The Emotional
+              Echo of Cultural Intelligence*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+              - Hütter, Christiane V.R., Celine Sin, Felix Müller, and Jörg Menche. 2022. “Network Cartographs for Interpretable Visualizations.” *Nature Computational Science* 2.
+              84–89. Accessed February 23, 2026. https://www.nature.com/articles/s43588-022-00199-z.
+              - Literally Media Ltd. 2026. *Know Your Meme: Internet Meme Database*. Accessed February 23, 2026. https://knowyourmeme.com.
+              - Pirch, Sebastian, Felix Müller, Eugenia Iofinova, Julia Pazmandi, Christiane V.R. Hütter, Martin Chiettini, Celine Sin, Kaan Boztug, Iana Podkosova,
+              Hannes Kaufmann, and Jörg Menche. 2021. “The VRNetzer Platform Enables Interactive Network Analysis in Virtual Reality.” *Nature Communications* 12 (2432).
+              Accessed February 23, 2026. https://www.nature.com/articles/s41467-021-22570-w.
+
+  - component: PageSection
+    tagline: Intelligence Is Information Having Fun, 2024
+    anchor: intelligence-is-information-having-fun
+    level: 2
+    content:
+      - component: Image
+        src: /assets/content/envisioning-intelligences/images/intelligence-is-information-having-fun.png
+      - component: PageSection
+        tagline: Artists and affiliations
+        level: 3
+        content:
+          - component: Markdown
+            data: Santiago Ortiz, CDO & Founder at DrumWave and Head of Moebio Labs
+      - component: PageSection
+        tagline: Description
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              In simple terms, large language models (LLM) like ChatGPT are tools that predict what word is most likely to come next in a string of text.
+              By asking it many times to complete the same sentence opening, you can gather a range of possibilities and calculate which words are more
+              or less likely to follow. Visualizing this data would be akin to performing an MRI of ChatGPT’s neural pathways.
+
+              *Intelligence Is Information Having Fun* visualizes the results of asking ChatGPT to complete the sentence “Intelligence is….” The visualization
+              plots all the ways Chat GPT completes the sentence, starting with a few potential directions that branch off into longer, less likely continuations.
+              On the left, a network of possible word choices is completely highlighted at the sentence’s beginning but begins to fade as the sentence progresses
+              and potential directions are cut off.
+      - component: PageSection
+        tagline: References
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Ortiz, Santiago. 2024. “Mind.” Accessed February 19, 2026. https://moebio.com/mind.
+              - Ortiz, Santiago. 2024. *Intelligence Is Information Having Fun*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+
+  - component: PageSection
+    tagline: Artificial Worldviews, 2023
+    anchor: artificial-worldviews
+    level: 2
+    content:
+      - component: Image
+        src: /assets/content/envisioning-intelligences/images/artificial-worldviews.png
+      - component: PageSection
+        tagline: Artists and affiliations
+        level: 3
+        content:
+          - component: Markdown
+            data: Kim Albrecht, Center for Complex Network Research
+      - component: PageSection
+        tagline: Description
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              Large language models, created by humans and trained on human-produced work, reflect human beliefs and values. Given the widespread popularity and extraordinary influence of LLMs, programs like ChatGPT are likely to influence the way we write, think, and perceive the world for years to come. This makes it important to uncover the hidden biases and implicit values that shape AI’s operations.
+
+              Over the course of 1,764 requests, data artist Kim Albrecht coaxed ChatGPT into defining what constitutes “knowledge” and “power.” The answers it gave reveal a value system in which certain people, objects, and ideas are emphasized or marginalized, included or excluded. Explore the two networks to discover what kinds of knowledge and what types of power are valued by ChatGPT.
+      - component: PageSection
+        tagline: References
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Albrecht, Kim. 2023. “Artificial Worldviews.” Accessed February 19, 2026. https://artificial-worldviews.kimalbrecht.com.
+              - Albrecht, Kim. 2023\. *Artificial Worldviews*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+
+  - component: PageSection
+    tagline: 'ReCollection: You Only Have Seven Seconds, 2023'
+    anchor: recollection-you-only-have-seven-seconds
+    level: 2
+    content:
+      - component: Image
+        src: /assets/content/envisioning-intelligences/images/recollection.png
+      - component: PageSection
+        tagline: Artists and affiliations
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Weidi Zhang, Media and Immersive eXperience (MIX) Center, Arizona State University
+              - Jieliang (Rodger) Luo, Minus AI
+      - component: PageSection
+        tagline: Description
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              *ReCollection* is a poetic, AI-generated documentary that visualizes fading memory at the intersection of remembrance and imagination.
+              Against the backdrop of rising Alzheimer’s cases and the emergence of machine-generated false memories, the video reimagines remembrance
+              through the lens of artificial intelligence.
+
+              Inspired by her grandmother’s cognitive decline, the artist created a custom AI system that transforms fragmented spoken recollections into
+              synthetic visual sequences.
+
+              Originally presented as a public interactive AI art installation, *ReCollection* has welcomed thousands of visitors from around the world to whisper
+              their fading memories—each within seven seconds—into the artwork and generate visual memories in real time. These visual memories—constructed
+              through speech recognition, text auto-completion, and text-to-image generation—form the foundation of an evolving visual archive.
+      - component: PageSection
+        tagline: References
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Zhang, Weidi, and Rodger Luo. 2023. “ReCollection.” Accessed February 23, 2026. https://www.zhangweidi.com/recollection.
+              - Zhang, Weidi, and Rodger Luo. 2023. *ReCollection: You Only Have Seven Seconds*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
+
+  - component: PageSection
+    tagline: 'Responsibility: Visualizing AI for Google DeepMind, 2024'
+    anchor: responsibility-visualizing-ai-for-google-deepmind
+    level: 2
+    content:
+      - component: Image
+        src: /assets/content/envisioning-intelligences/images/responsibility-deepmind.png
+      - component: PageSection
+        tagline: Artists and affiliations
+        level: 3
+        content:
+          - component: Markdown
+            data: Aurora Mititelu, University of California, Los Angeles
+      - component: PageSection
+        tagline: Description
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              Whether they are collecting data, labeling content, or identifying images, humans play a substantial role in training artificial intelligence systems.
+              In an era of crowdsourced labor, some have voiced concerns about the fair treatment, payment, and recognition of freelance employees who are often
+              described as “ghost workers.”
+
+              *Responsibility* was created for Google DeepMind’s Visualizing AI, a collection of digital art imagining AI’s rewards, roles, and responsibilities.
+              It visualizes the push and pull, the mutual effort of humans and machines needed to create intelligent technologies. The clusters of particles
+              show how data is grouped and processed inside an unsupervised machine learning model as the computer begins to find patterns on its own.
+              At the same time, human hands enter the operation at various points, refining the data and adjusting the algorithm, guiding it in the desired direction.
+      - component: PageSection
+        tagline: References
+        level: 3
+        content:
+          - component: Markdown
+            data: |
+              - Google. 2026. Google DeepMind. Accessed February 23, 2026. https://deepmind.google.
+              - Hawkins, Will, and Brent Mittelstadt. 2023. “The Ethical Ambiguity of AI Data Enrichment: Measuring Gaps in Research Ethics Norms and Practices.”
+              In *Proceedings of the 2023 ACM Conference on Fairness, Accountability, and Transparency (FAccT ‘23)*. New York, NY: ACM Publications. 261–270. Accessed February 23, 2026. https://doi.org/10.1145/3593013.3593995.
+              - Mititelu, Aurora. 2024. “Visualising AI: Responsibility for Google DeepMind.” Accessed February 26, 2026. https://auroramititelu.com/visualising-ai-google-deepmind.
+              - Mititelu, Aurora. 2024. *Responsibility: Visualizing AI for Google DeepMind*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
