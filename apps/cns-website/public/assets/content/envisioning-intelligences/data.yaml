@@ -212,8 +212,7 @@ content:
         level: 3
         content:
           - component: Markdown
-            data: |
-              - Kim Albrecht, Center for Complex Network Research
+            data: Kim Albrecht, Center for Complex Network Research
       - component: PageSection
         tagline: Description
         level: 3
