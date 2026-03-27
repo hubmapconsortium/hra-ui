@@ -1,44 +1,35 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Envisioning Intelligences
-subtitle: |
-  <img class="header-image" src="/assets/content/envisioning-intelligences/images/header-images.png"/>
-  Intelligence has often been considered a uniquely human trait. However, recent developments in the study of plants and animals,
-  as well as breakthroughs in the realm of machine learning, have expanded our understanding of what is intelligent.
-  These days, it is not uncommon to read about the language of trees and the cognitive ability of cephalopods on devices we refer to as smart phones.
+headerContent:
+  - component: Image
+    src: /assets/content/envisioning-intelligences/images/header-images.png
+  - component: Markdown
+    data: |
+      Intelligence has often been considered a uniquely human trait. However, recent developments in the study of plants and animals,
+      as well as breakthroughs in the realm of machine learning, have expanded our understanding of what is intelligent.
+      These days, it is not uncommon to read about the language of trees and the cognitive ability of cephalopods on devices we refer to as smart phones.
 
-  What does intelligence look like when exhibited by humans or machines, plants or animals?
-  <br>
-  How do different types of intelligence interact and cooperate in order to survive and thrive?
+      What does intelligence look like when exhibited by humans or machines, plants or animals?
+      <br>
+      How do different types of intelligence interact and cooperate in order to survive and thrive?
 
-  Looking at human intelligence alongside that of microbes, plants, animals, and machines can help us find ways to work together and identify
-  blind spots in our own ways of thinking. *Envisioning Intelligences* is curated by the Cyberinfrastructure for Network Science Center at Indiana University.
+      Looking at human intelligence alongside that of microbes, plants, animals, and machines can help us find ways to work together and identify
+      blind spots in our own ways of thinking. *Envisioning Intelligences* is curated by the Cyberinfrastructure for Network Science Center at Indiana University.
+subtitle: ''
 breadcrumbs:
   - name: Home
     route: /
-  - name: 30-Year Exhibition
+  - name: 30-Year Exhibit
     route: /exhibit
   - name: Envisioning Intelligences
 content:
   - component: PageSection
-    tagline: The Knowledge Cosmos
+    tagline: The Knowledge Cosmos, 2025
     anchor: the-knowledge-cosmos
     level: 2
     content:
       - component: Image
         src: /assets/content/envisioning-intelligences/images/knowledge-cosmos.png
-      - component: PageSection
-        tagline: Year
-        level: 3
-        content:
-          - component: Markdown
-            data: '2025'
-      - component: PageSection
-        tagline: Intelligence types
-        level: 3
-        content:
-          - component: Markdown
-            data: |
-              - Human
       - component: PageSection
         tagline: Artists and affiliations
         level: 3
@@ -90,26 +81,12 @@ content:
               *IEEE Transactions on Visualization and Computer Graphics* 22 (12): 2508–2521. Accessed February 23, 2026. https://ieeexplore.ieee.org/document/7374750.
 
   - component: PageSection
-    tagline: Zoonotic Web
+    tagline: Zoonotic Web, 2024
     anchor: zoonotic-web
     level: 2
     content:
       - component: Image
         src: /assets/content/envisioning-intelligences/images/zoonotic-web.png
-      - component: PageSection
-        tagline: Year
-        level: 3
-        content:
-          - component: Markdown
-            data: '2024'
-      - component: PageSection
-        tagline: Intelligence types
-        level: 3
-        content:
-          - component: Markdown
-            data: |
-              - Animal
-              - Human
       - component: PageSection
         tagline: Artists and affiliations
         level: 3
@@ -143,25 +120,12 @@ content:
               - Yang, Liuhuaying, and Amélie Desvars-Larrive. 2024. *Zoonotic Web*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
 
   - component: PageSection
-    tagline: The Emotional Echo of Cultural Intelligence
+    tagline: The Emotional Echo of Cultural Intelligence, 2021
     anchor: the-emotional-echo-of-cultural-intelligence
     level: 2
     content:
       - component: Image
         src: /assets/content/envisioning-intelligences/images/emotional-echo-of-cultural-intelligence.png
-      - component: PageSection
-        tagline: Year
-        level: 3
-        content:
-          - component: Markdown
-            data: '2021'
-      - component: PageSection
-        tagline: Intelligence types
-        level: 3
-        content:
-          - component: Markdown
-            data: |
-              - Human
       - component: PageSection
         tagline: Artists and affiliations
         level: 3
@@ -201,26 +165,12 @@ content:
               Accessed February 23, 2026. https://www.nature.com/articles/s41467-021-22570-w.
 
   - component: PageSection
-    tagline: Intelligence Is Information Having Fun
+    tagline: Intelligence Is Information Having Fun, 2024
     anchor: intelligence-is-information-having-fun
     level: 2
     content:
       - component: Image
         src: /assets/content/envisioning-intelligences/images/intelligence-is-information-having-fun.png
-      - component: PageSection
-        tagline: Year
-        level: 3
-        content:
-          - component: Markdown
-            data: '2024'
-      - component: PageSection
-        tagline: Intelligence types
-        level: 3
-        content:
-          - component: Markdown
-            data: |
-              - Artificial/Machine
-              - Human
       - component: PageSection
         tagline: Artists and affiliations
         level: 3
@@ -251,26 +201,12 @@ content:
               - Ortiz, Santiago. 2024. *Intelligence Is Information Having Fun*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
 
   - component: PageSection
-    tagline: Artificial Worldviews
+    tagline: Artificial Worldviews, 2023
     anchor: artificial-worldviews
     level: 2
     content:
       - component: Image
         src: /assets/content/envisioning-intelligences/images/artificial-worldviews.png
-      - component: PageSection
-        tagline: Year
-        level: 3
-        content:
-          - component: Markdown
-            data: '2023'
-      - component: PageSection
-        tagline: Intelligence types
-        level: 3
-        content:
-          - component: Markdown
-            data: |
-              - Artificial/Machine
-              - Human
       - component: PageSection
         tagline: Artists and affiliations
         level: 3
@@ -297,26 +233,12 @@ content:
               - Albrecht, Kim. 2023\. *Artificial Worldviews*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
 
   - component: PageSection
-    tagline: 'ReCollection: You Only Have Seven Seconds'
+    tagline: 'ReCollection: You Only Have Seven Seconds, 2023'
     anchor: recollection-you-only-have-seven-seconds
     level: 2
     content:
       - component: Image
         src: /assets/content/envisioning-intelligences/images/recollection.png
-      - component: PageSection
-        tagline: Year
-        level: 3
-        content:
-          - component: Markdown
-            data: '2023'
-      - component: PageSection
-        tagline: Intelligence types
-        level: 3
-        content:
-          - component: Markdown
-            data: |
-              - Artificial/Machine
-              - Human
       - component: PageSection
         tagline: Artists and affiliations
         level: 3
@@ -351,26 +273,12 @@ content:
               - Zhang, Weidi, and Rodger Luo. 2023. *ReCollection: You Only Have Seven Seconds*. In *Envisioning Intelligences 3.1* (2025), edited by Katy Börner, Elizabeth G. Record, and Todd Theriault.
 
   - component: PageSection
-    tagline: 'Responsibility: Visualizing AI for Google DeepMind'
+    tagline: 'Responsibility: Visualizing AI for Google DeepMind, 2024'
     anchor: responsibility-visualizing-ai-for-google-deepmind
     level: 2
     content:
       - component: Image
         src: /assets/content/envisioning-intelligences/images/responsibility-deepmind.png
-      - component: PageSection
-        tagline: Year
-        level: 3
-        content:
-          - component: Markdown
-            data: '2024'
-      - component: PageSection
-        tagline: Intelligence types
-        level: 3
-        content:
-          - component: Markdown
-            data: |
-              - Artificial/Machine
-              - Human
       - component: PageSection
         tagline: Artists and affiliations
         level: 3

@@ -22,8 +22,6 @@ content:
           and one company. The full team comprises:
 
           Katy Börner<sup>1</sup>, Richard Klavans<sup>2</sup>, Michael Patek<sup>2</sup>, Angela M. Zoss<sup>1</sup>, Joseph R. Biberstine<sup>1</sup>, Robert P. Light<sup>1</sup>, Vincent Larivière<sup>1,3</sup>, and Kevin W. Boyack<sup>5</sup>
-      - component: Image
-        src: /assets/content/about-page/images/luddy-hall.png
 
   - component: PageSection
     tagline: Data
