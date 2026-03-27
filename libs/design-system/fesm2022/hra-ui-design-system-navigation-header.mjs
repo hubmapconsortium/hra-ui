@@ -334,7 +334,7 @@ var menus = [
 			},
 			{
 				type: "group",
-				label: "Knowledge Graph",
+				label: "Knowledge Graph Explorer",
 				url: "https://lod.humanatlas.io/",
 				description: "Query, filter, and download digital objects"
 			},
@@ -443,7 +443,7 @@ var menus = [
 							},
 							{
 								type: "item",
-								label: "Knowledge Graph",
+								label: "Knowledge Graph Explorer",
 								url: "https://lod.humanatlas.io/"
 							},
 							{

@@ -146,7 +146,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Knowledge Graph",
+				label: "Knowledge Graph Explorer",
 				url: "https://docs.humanatlas.io/apps/kg"
 			},
 			{

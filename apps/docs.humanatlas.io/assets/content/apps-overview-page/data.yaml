@@ -33,7 +33,7 @@ content:
             icons: product:asctb-reporter
             content:
               - component: Markdown
-                data: Construct, explore, and compare data visually.
+                data: Explore relationships between anatomical structures, cell types, and biomarkers.
             actionsLeft:
               component: TextHyperlink
               text: Learn more
@@ -119,7 +119,7 @@ content:
               url: https://apps.humanatlas.io/eui/
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Functional Tissue Unit (FTU) Explorer
+            tagline: Functional Tissue Unit Explorer
             icons: product:ftu
             content:
               - component: Markdown
@@ -149,7 +149,7 @@ content:
               url: https://www.meta.com/experiences/hra-organ-gallery/5696814507101529/
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Knowledge Graph
+            tagline: Knowledge Graph Explorer
             icons: product:knowledge-graph
             content:
               - component: Markdown
@@ -271,7 +271,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Explore
-              url: https://fusion.hubmapconsortium.org/?utm_source=hubmap
+              url: https://fusion.hubmapconsortium.org/
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Antibody Validation Reports
