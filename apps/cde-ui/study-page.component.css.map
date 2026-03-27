@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/cde-ui/src/app/pages/study-page/study-page.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n\n  mat-chip-set {\n    ::ng-deep .mdc-evolution-chip-set__chips {\n      gap: 0.25rem;\n      margin-left: 0;\n    }\n    mat-chip {\n      margin: 0;\n    }\n  }\n\n  .study-banner {\n    margin-top: 0.5rem;\n  }\n\n  hra-page-section {\n    p:first-child {\n      margin-top: 0;\n    }\n\n    .citations-list > markdown:first-child {\n      ::ng-deep p {\n        margin-top: 0;\n      }\n    }\n  }\n\n  .datasets-toolbar {\n    display: flex;\n    align-items: center;\n    gap: 0.25rem;\n    margin-bottom: 0.5rem;\n\n    .download-icon {\n      cursor: pointer;\n      height: 3rem;\n      width: 3rem;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n  }\n\n  hra-search-filter {\n    width: calc(100% - 3.25rem);\n\n    ::ng-deep mat-form-field {\n      min-width: 0 !important;\n    }\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;AAGE,MAAA,aAAA,UAAA,CAAA;AACE,OAAA;AACA,eAAA;;AAEF,MAAA,aAAA;AACE,UAAA;;AAIJ,MAAA,CAAA;AACE,cAAA;;AAIA,MAAA,iBAAA,CAAA;AACE,cAAA;;AAIA,MAAA,iBAAA,CAAA,eAAA,EAAA,QAAA,aAAA,UAAA;AACE,cAAA;;AAKN,MAAA,CAAA;AACE,WAAA;AACA,eAAA;AACA,OAAA;AACA,iBAAA;;AAEA,MAAA,CANF,iBAME,CAAA;AACE,UAAA;AACA,UAAA;AACA,SAAA;AACA,WAAA;AACA,eAAA;AACA,mBAAA;;AAIJ,MAAA;AACE,SAAA,KAAA,KAAA,EAAA;;AAEA,MAAA,kBAAA,UAAA;AACE,aAAA;;",
-  "names": []
-}
