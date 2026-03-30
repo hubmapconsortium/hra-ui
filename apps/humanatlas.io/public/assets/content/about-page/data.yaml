@@ -1,14 +1,18 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: About the Human Reference Atlas
 subtitle: |
-  The ultimate goal of the HIVE Mapping effort is to develop a common coordinate framework (CCF) for the healthy human body. This framework will support
-  cataloging different types of individual cells, understanding the functions of and relationships between those cell types, and modeling their
-  individual and collective function.
-  - A Common Coordinate Framework (CCF) for a human body provides a unique address for each cell in the human body. It is similar to the
-    latitude-longtitude system used to navigate a world map.
-  - The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures and cells in the healthy human
-    body. The HRA provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to
-    existing ontologies.
+  TThe Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures, cells, and biomarkers in the healthy, adult, human body. The effort uses experimental data from and is supported by more than 20 consortia including HuBMAP, SenNet, CFDE, KPMP, LungMAP, LungMAP, GUDMAP and the Human Cell Atlas (HCA) effort.
+
+  The HRA provides standard terminologies and data structures for describing specimens, biological structures, and spatial positions linked to existing ontologies. The HRA Common Coordinate Framework (CCF) provides a unique address for each cell in the human body—similar to the latitude-longtitude system used to navigate a world map.
+
+  Users can freely access HRA data and code to
+  - Register tissue data and explore it in the context of 8,500 other datasets already registered into the HRA.
+  - Access high-quality linked open data HRA data programmatically to advance research or train machine learning algorithms in support of clinical applications.
+  - Use open-source code and applications to compute and compare cell type populations and cell distance distributions for various cell types to characterize ageing and disease.
+
+  The [Visible Human Massive Open Online Course](https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc/) (VHMOOC) describes the compilation and coverage of HRA data, demonstrates new single-cell analysis and mapping techniques, and introduces major features of the HRA Portal.
+
+  New HRA releases are issued on June 15 and December 15 each year.
 content:
   - component: PageSection
     tagline: History
@@ -17,10 +21,9 @@ content:
     content:
       - component: Markdown
         data: |
-          During the initial four years of HuBMAP, the MC-IU team has built many elements of the CCF. We co-organized the construction of ASCT+B Tables and implemented a CCF Ontology.
-          We collaborated with NIAID at NIH on the design of a 3D Reference Object Library. Lastly, we developed three interactive user interfaces. The CCF ASCT+B Reporter supports the authoring and interactive review of ASCT+B Tables.
-          The CCF Registration User Interface (RUI) supports uniform tissue data registration across organs and labs. The CCF Exploration User Interface (EUI) supports exploration of semantically and spatially explicit data—from the whole body to the single cell level.
-          For an introduction to HuBMAP goals, data, and code visit the Visible Human MOOC (VHMOOC).
+          In March 2020, a meeting jointly organized by the National Institutes of Health (NIH) and HCA brought together leading experts to agree on major ontologies as well as associated 3D anatomical reference objects and to expand them as needed to capture the healthy, adult, human body. On the basis of ensuing discussions, more than 50 experts—including physicians, surgeons, anatomists, pathologists, experimentalists and representatives from the various consortia—have agreed on a reference framework to digitally represent relevant knowledge. The framework includes data structures, standard operating procedures, and visual user interfaces that can be used by anatomists, pathologists, surgeons and other domain experts to digitize, integrate and analyse massive amounts of heterogeneous data. Experts also agreed on the major ontologies that will be used to create a ‘Rosetta Stone’ across existing anatomy, cell, and biomarker ontologies. Learn more in our publication [Anatomical structures, cell types and biomarkers of the Human Reference Atlas in *Nature Cell Biology*](https://www.nature.com/articles/s41556-021-00788-6).
+
+          In March 2025, a Resources paper in *Nature Methods* was published, [Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage](https://www.nature.com/articles/s41592-024-02563-5), detailing how experts from 20+ consortia collaborate to develop a Common Coordinate Framework (CCF), knowledge graphs and tools that describe the multiscale structure of the human body. The paper details HRA v.2.0, released in December 2023 (see [release notes](https://humanatlas.io/release-notes/v2.0)), that covers 4,499 unique anatomical structures, 1,195 cell types and 2,089 biomarkers (such as genes, proteins and lipids) from 33 ASCT+B tables and 65 3D Reference Objects linked to ontologies. New experimental data can be mapped into the Human Reference Atlas using (1) cell type annotation tools (for example, [Azimuth](https://azimuth.hubmapconsortium.org/)), (2) validated antibody panels, or (3) by registering tissue data spatially. This publication describes Human Reference Atlas user stories, terminology, data formats, ontology validation, unified analysis workflows, user interfaces, instructional materials, application programming interfaces, flexible hybrid cloud infrastructure and previews atlas usage applications.
   - component: PageSection
     tagline: Contact
     anchor: contact
@@ -43,8 +46,7 @@ content:
           - component: ProfileCard
             name: Katy Börner
             description: |
-              Principal Investigator\
-              Director, Cyberinfrastructure for Network Science Center at Indiana University
+              Professor of Intelligent Systems Engineering, Director, Cyberinfrastructure for Network Science Center, Luddy School, Indiana University
             pictureUrl: assets/content/about-page/images/katy.png
             actions:
               component: TextHyperlink
@@ -54,7 +56,7 @@ content:
           - component: ProfileCard
             name: Bruce W. Herr II
             description: |
-              Technical Director, Cyberinfrastructure for Network Science Center at Indiana University
+              Technical Director, Cyberinfrastructure for Network Science Center, Luddy School, Indiana University
             pictureUrl: assets/content/about-page/images/bruce.png
             actions:
               component: TextHyperlink
@@ -64,7 +66,7 @@ content:
           - component: ProfileCard
             name: Andreas Bueckle
             description: |
-              Research Lead, Cyberinfrastructure for Network Science Center at Indiana University
+              Research Lead, Cyberinfrastructure for Network Science Center, Luddy School, Indiana University
             pictureUrl: assets/content/about-page/images/andreas.png
             actions:
               component: TextHyperlink
@@ -78,14 +80,14 @@ content:
     content:
       - component: Markdown
         data: |
-          The HRA editorial board is composed of interdisciplinary experts from pathology, surgery, and single cell experimentalists.
+          The HRA editorial board is composed of experts from pathology, surgery, and single cell research.
 
-          The board will meet virtually every six months—in Nov and May of each year—to
+          The board meets virtually every six months—in November and May of each year—to
           - advise on setting HRA editorial policies,
-          - suggest future HRA extensions (e.g., crosswalks between ASCT+B tables and Azimuth references or OMAPs),
-          - select organ-specific editors that invite high-quality submissions/revisions of HRA digital objects and administer the peer review of submissions,
-          - optimize incentive structures (e.g., HRA papers in major journals, awards for highest-quality contributions by organ teams/editors/reviewers),
-          - discuss commercial and other means to sustain the HRA effort beyond current NIH funding, and
+          - review HRA extensions (e.g., crosswalks between ASCT+B tables and Azimuth references or OMAPs),
+          - select lead organ experts that ensure high-quality submissions/revisions of HRA digital objects,
+          - optimize incentive structures (e.g., HRA papers in major journals, awards for high-quality contributions by organ teams/editors/reviewers),
+          - discuss commercial and other funding opportunities to sustain the HRA effort, and
           - act as ambassadors for the HRA—promoting the HRA at relevant conferences and within key communities.
       - component: GridContainer
         styles:
