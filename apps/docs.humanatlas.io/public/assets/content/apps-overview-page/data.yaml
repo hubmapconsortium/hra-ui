@@ -59,7 +59,7 @@ content:
               url: https://apps.humanatlas.io/cde/
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Cell Population Graphs
+            tagline: Cell Type Population Graphs
             icons: product:cell-population-graphs
             content:
               - component: Markdown
@@ -74,7 +74,7 @@ content:
               url: https://apps.humanatlas.io/cell-population-graphs
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Cell Population Predictor
+            tagline: Cell Type Population Predictor
             icons: product:cell-population-predictor
             content:
               - component: Markdown
