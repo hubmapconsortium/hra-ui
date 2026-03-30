@@ -1,5 +1,5 @@
 import { coerceArray } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
@@ -11,6 +11,7 @@ import { PageSectionComponent } from '@hra-ui/design-system/content-templates/pa
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { FooterComponent } from '../footer/footer.component';
+import { VenueData } from '../../schemas/venues.schema';
 
 /**
  * Content Page Component
@@ -37,9 +38,17 @@ export class ContentPageComponent {
   /** input data for content page */
   readonly data = input.required<ContentPageData>();
 
+  readonly venues = input<VenueData>();
+
   /** header content data */
   protected readonly headerContent = computed(() => coerceArray(this.data().headerContent ?? []));
 
   /** content data */
   protected readonly content = computed(() => coerceArray(this.data().content));
+
+  constructor() {
+    effect(() => {
+      console.log('venues', this.venues());
+    });
+  }
 }

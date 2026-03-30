@@ -16,7 +16,11 @@
   </hra-table-of-contents-layout-header>
 
   @for (item of content(); track $index) {
-    <ng-container *hraContentTemplateOutlet="item" />
+    @if (item['tagline'] === 'Venues and events') {
+      <div>Table goes here</div>
+    } @else {
+      <ng-container *hraContentTemplateOutlet="item" />
+    }
   }
 </hra-table-of-contents-layout>
 <cns-footer />

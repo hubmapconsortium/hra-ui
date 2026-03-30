@@ -318,6 +318,8 @@ export class TableComponent<T = TableRow> {
   constructor() {
     effect(() => {
       this.dataSource.data = this._rows();
+      console.log('Rows:', this.dataSource.data);
+      console.log('Columns:', this._columns());
     });
 
     effect(() => {
