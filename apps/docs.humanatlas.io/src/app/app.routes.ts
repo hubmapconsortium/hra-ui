@@ -5,6 +5,7 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
+import { createExternalRedirectRoute } from './utils/external-redirect';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -45,13 +46,6 @@ export const appRoutes: Route[] = [
     component: ContentPageComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/api-reference-page/data.yaml', ContentPageDataSchema),
-    },
-  },
-  {
-    path: 'dev/apps',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/apps-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
@@ -112,6 +106,10 @@ export const appRoutes: Route[] = [
   },
 
   // Error pages and redirects
+  {
+    path: 'dev/apps',
+    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps'),
+  },
   {
     path: '**',
     component: NotFoundPageComponent,
