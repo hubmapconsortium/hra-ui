@@ -25,4 +25,4 @@ export const VenueItemSchema = z
 export type VenueData = z.infer<typeof VenueDataSchema>;
 
 /** Venue data schema (array of items) */
-export const VenueDataSchema = z.array(VenueItemSchema);
+export const VenueDataSchema = z.array(VenueItemSchema).meta({ id: 'VenueData' });

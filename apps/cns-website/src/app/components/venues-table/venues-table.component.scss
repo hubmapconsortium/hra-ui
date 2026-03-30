@@ -1,0 +1,48 @@
+:host {
+  ::ng-deep hra-table {
+    // TODO: remove when colors are updated
+    --mat-sys-outline-variant: #bbc4b5;
+    --mat-sys-surface-container-highest: #e0e3dc;
+    --mat-sys-surface-bright: #f1f3ee;
+    --mat-sys-on-surface: #171e19;
+    --mat-sys-on-surface-variant: #3c463a;
+
+    --hra-table-max-height: 26.125rem;
+
+    border-radius: 0.5rem;
+    border-color: #869181;
+
+    thead {
+      background-color: var(--mat-sys-surface-container-highest);
+      color: var(--mat-sys-on-surface);
+
+      th {
+        border-bottom-color: #869181;
+      }
+    }
+
+    tbody {
+      color: var(--mat-sys-on-surface-variant);
+    }
+
+    [data-column-type='date'] {
+      min-width: 8rem;
+      max-width: 9.75rem;
+    }
+    [data-column-type='event'] {
+      min-width: 10rem;
+    }
+    [data-column-type='location'] {
+      min-width: 8.75rem;
+      max-width: 11.25rem;
+    }
+    [data-column-type='contact'] {
+      min-width: 10rem;
+      max-width: 13.5rem;
+    }
+    [data-column-type='links'] {
+      min-width: 8rem;
+      max-width: 0.8237rem;
+    }
+  }
+}

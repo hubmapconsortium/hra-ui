@@ -15,7 +15,6 @@ import { PeopleDataSchema } from './schemas/people.schema';
 import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
 import { TagsDataSchema } from './schemas/tags.schema';
-import { VenueDataSchema } from './schemas/venues.schema';
 import { createVenuesResolver } from './resolvers/venues.resolver';
 
 /** People index URL */
@@ -43,7 +42,7 @@ const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-
 /** Base URL for person content */
 const PERSON_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
 
-// const SCIMAPS_VENUES_URL = 'https://scimaps.org/assets/indexes/venues.json';
+// const SCIMAPS_VENUES_URL = 'https://scimaps.org/assets/indexes/venues.json'; TODO: Fix CORS issue
 const SCIMAPS_VENUES_URL = 'assets/venues.json';
 
 /** Application routes */

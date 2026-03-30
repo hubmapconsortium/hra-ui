@@ -17,7 +17,7 @@
 
   @for (item of content(); track $index) {
     @if (item['tagline'] === 'Venues and events') {
-      <div>Table goes here</div>
+      <cns-venues-table [venues]="venues()" />
     } @else {
       <ng-container *hraContentTemplateOutlet="item" />
     }
