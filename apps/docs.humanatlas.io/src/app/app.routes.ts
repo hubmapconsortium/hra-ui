@@ -5,7 +5,6 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LandingPageDataSchema } from './schemas/landing-page/landing-page.schema';
-import { createExternalRedirectRoute } from './utils/external-redirect';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -47,6 +46,10 @@ export const appRoutes: Route[] = [
     resolve: {
       data: createYamlSpecResolver('assets/content/api-reference-page/data.yaml', ContentPageDataSchema),
     },
+  },
+  {
+    path: 'dev/apps',
+    redirectTo: 'apps',
   },
   {
     path: 'dev/changelog',
@@ -106,10 +109,6 @@ export const appRoutes: Route[] = [
   },
 
   // Error pages and redirects
-  {
-    path: 'dev/apps',
-    redirectTo: 'apps',
-  },
   {
     path: '**',
     component: NotFoundPageComponent,
