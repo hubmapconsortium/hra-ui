@@ -40,7 +40,7 @@
               "documentLink": "https://humanatlas.io/hra-organ-gallery"
             },
             {
-              "tagline": "Cell Population Predictor",
+              "tagline": "Cell Type Population Predictor",
               "description": "Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this site.",
               "imagePath": "assets/ui-images/cell_population_predictor.png",
               "logoPath": "product:cell-population-predictor",
@@ -64,7 +64,7 @@
               "documentLink": "https://humanatlas.io/user-story/7"
             },
             {
-              "tagline": "Cell Population Graphs",
+              "tagline": "Cell Type Population Graphs",
               "description": "Explore organ-specific datasets from publications and data portals.",
               "imagePath": "assets/ui-images/cell_population_graphs.png",
               "logoPath": "product:cell-population-graphs",
