@@ -108,7 +108,7 @@ export const appRoutes: Route[] = [
   // Error pages and redirects
   {
     path: 'dev/apps',
-    ...createExternalRedirectRoute('https://docs.humanatlas.io/apps'),
+    redirectTo: 'apps',
   },
   {
     path: '**',
