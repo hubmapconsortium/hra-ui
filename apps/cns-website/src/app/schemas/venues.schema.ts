@@ -6,7 +6,6 @@ export type VenueItem = z.infer<typeof VenueItemSchema>;
 /** Venue item schema */
 export const VenueItemSchema = z
   .object({
-    slug: z.string().optional(),
     dateStart: z.string().transform((str) => new Date(str)),
     dateEnd: z.string().transform((str) => new Date(str)),
     title: z.string(),
@@ -17,6 +16,7 @@ export const VenueItemSchema = z
     state: z.string(),
     country: z.string(),
     pdfLink: z.string(),
+    websiteUrl: z.string(),
     venueImages: z.array(z.object({ sm: z.string(), lg: z.string() })),
   })
   .meta({ id: 'VenueItem' });

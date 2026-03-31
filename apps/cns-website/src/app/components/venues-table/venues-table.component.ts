@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
 import slugify from 'slugify';
-import { VenueData } from '../../schemas/venues.schema';
+import { VenueData, VenueItem } from '../../schemas/venues.schema';
 
 const columns: TableColumn[] = [
   {
@@ -31,7 +31,7 @@ const columns: TableColumn[] = [
   },
 ];
 
-const BASE_URL = 'https://scimaps.org/assets/content/venues';
+const BASE_URL = 'https://scimaps.org/';
 
 @Component({
   selector: 'cns-venues-table',
@@ -53,10 +53,7 @@ export class VenuesTableComponent {
       event: venue.title,
       location: [venue.city, venue.state, venue.country].filter((s) => !!s).join(', '),
       contact: venue.organizer || '',
-      // TODO: add photo gallery and website links
-      links: venue.pdfLink
-        ? `[PDF](${[BASE_URL, this.getSegmentedDate(venue.dateStart), this.toSlug(venue.title), venue.pdfLink].join('/')})`
-        : '',
+      links: this.createLinks(venue),
     }));
   }
 
@@ -71,4 +68,22 @@ export class VenuesTableComponent {
     const month = ('0' + (fullDate.getUTCMonth() + 1)).slice(-2);
     return `${year}/${month}-${day}`;
   };
+
+  private createLinks(venu: VenueItem): string {
+    const links = [];
+    if (venu.websiteUrl) {
+      links.push(`[Website](${venu.websiteUrl})`);
+    }
+    if (venu.venueImages) {
+      links.push(
+        `[Photo gallery](${[BASE_URL, 'venues/gallery', this.getSegmentedDate(venu.dateStart), this.toSlug(venu.title)].join('/')})`,
+      );
+    }
+    if (venu.pdfLink) {
+      links.push(
+        `[PDF](${[BASE_URL, 'assets/content/venues', this.getSegmentedDate(venu.dateStart), this.toSlug(venu.title), venu.pdfLink].join('/')})`,
+      );
+    }
+    return links.join(' | ');
+  }
 }
