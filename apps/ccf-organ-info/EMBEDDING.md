@@ -13,8 +13,6 @@ This component (`ccf-root-wc`) provides a visualization of a human reference atl
     <meta charset="utf-8" />
     <title>EUI Organ Info Web Component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ccf-organ-info/styles.css" rel="stylesheet" />
     <script src="https://cdn.humanatlas.io/ui/ccf-organ-info/wc.js" defer></script>
   </head>
