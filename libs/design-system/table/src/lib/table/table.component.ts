@@ -243,6 +243,7 @@ export class TableComponent<T = TableRow> {
   /** Enables sorting */
   readonly enableSort = input<boolean>(false);
 
+  /** Initial sort configuration */
   readonly initialSort = input<{ active: string; direction: 'asc' | 'desc' }>();
 
   /** Enables dividers between columns */

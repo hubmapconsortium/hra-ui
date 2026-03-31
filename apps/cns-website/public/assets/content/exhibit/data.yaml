@@ -78,22 +78,6 @@ content:
     content:
       - component: Markdown
         data: The exhibit has been on display at more that 480 venues in more than 160 cities.
-      - component: PageTable
-        styles:
-          --hra-table-max-height: 26.75rem
-        variant: alternating
-        enableSort: true
-        columns:
-          - column: dateStart
-            label: Date
-          - column: title
-            label: Event
-          - column: location
-            label: Location
-          - column: organizer
-            label: Contact
-          - column: links
-            label: Links
 
   - component: PageSection
     tagline: Talks and demos

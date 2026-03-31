@@ -37,14 +37,15 @@ import { VenuesTableComponent } from '../venues-table/venues-table.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentPageComponent {
-  /** input data for content page */
+  /** Input data for content page */
   readonly data = input.required<ContentPageData>();
 
+  /** Venues data for the venues table */
   readonly venues = input<VenueData>([]);
 
-  /** header content data */
+  /** Header content data */
   protected readonly headerContent = computed(() => coerceArray(this.data().headerContent ?? []));
 
-  /** content data */
+  /** Content data */
   protected readonly content = computed(() => coerceArray(this.data().content));
 }

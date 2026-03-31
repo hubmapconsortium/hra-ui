@@ -41,7 +41,7 @@ const VISUALIZATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/in
 const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-tags.json';
 /** Base URL for person content */
 const PERSON_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
-
+/** Base URL for Scimaps venues */
 const SCIMAPS_VENUES_URL = 'https://dev.scimaps.org/assets/indexes/venues.json';
 
 /** Application routes */
