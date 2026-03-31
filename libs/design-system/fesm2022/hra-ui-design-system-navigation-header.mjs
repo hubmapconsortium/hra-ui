@@ -376,12 +376,12 @@ var menus = [
 							},
 							{
 								type: "item",
-								label: "Cell Population Graphs",
+								label: "Cell Type Population Graphs",
 								url: "https://apps.humanatlas.io/cell-population-graphs/"
 							},
 							{
 								type: "item",
-								label: "Cell Population Predictor",
+								label: "Cell Type Population Predictor",
 								url: "https://apps.humanatlas.io/us1/"
 							},
 							{
