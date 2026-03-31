@@ -42,8 +42,7 @@ const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-
 /** Base URL for person content */
 const PERSON_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
 
-// const SCIMAPS_VENUES_URL = 'https://scimaps.org/assets/indexes/venues.json'; TODO: Fix CORS issue
-const SCIMAPS_VENUES_URL = 'assets/venues.json';
+const SCIMAPS_VENUES_URL = 'https://dev.scimaps.org/assets/indexes/venues.json';
 
 /** Application routes */
 export const appRoutes: Route[] = [
