@@ -27,6 +27,12 @@ $z-index: 900;
   }
 
   .header {
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 3rem,
+      )
+    );
+
     position: relative;
     z-index: $z-index + 2;
   }
@@ -44,7 +50,8 @@ $z-index: 900;
 
   .logo {
     display: flex;
-    padding: 0 0.5rem;
+    width: 5.75rem;
+    justify-content: center;
   }
 
   .menu-button {
@@ -54,7 +61,7 @@ $z-index: 900;
         text-label-text-size: vars.$label-large-size,
         text-label-text-weight: vars.$label-large-weight,
         text-label-text-tracking: vars.$label-large-tracking,
-        text-horizontal-padding: 0.75rem,
+        text-horizontal-padding: 0.625rem,
       )
     );
 
@@ -71,7 +78,7 @@ $z-index: 900;
       display: flex;
       height: 2.5rem;
       align-items: center;
-      padding: 0 0.75rem !important;
+      padding: 0 0.625rem !important;
     }
   }
 }
