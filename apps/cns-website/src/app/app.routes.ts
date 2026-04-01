@@ -16,30 +16,33 @@ import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
 import { TagsDataSchema } from './schemas/tags.schema';
 
+/** Base URL for content and indexes */
+const BASE_URL = 'https://cns.iu.edu/';
+
 /** People index URL */
-const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
+const PEOPLE_INDEX_URL = BASE_URL + 'assets/indexes/app-people.json';
 /** Featured content index URL */
-const FEATURED_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-featured.json';
+const FEATURED_INDEX_URL = BASE_URL + 'assets/indexes/app-featured.json';
 /** News content index URL */
-const NEWS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-news.json';
+const NEWS_INDEX_URL = BASE_URL + 'assets/indexes/app-news.json';
 /** Publications content index URL */
-const PUBLICATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publications.json';
+const PUBLICATIONS_INDEX_URL = BASE_URL + 'assets/indexes/app-publications.json';
 /** Publication types content index URL */
-const PUBLICATION_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-publication-types.json';
+const PUBLICATION_TYPES_INDEX_URL = BASE_URL + 'assets/indexes/app-publication-types.json';
 /** Events content index URL */
-const EVENT_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-events.json';
+const EVENT_INDEX_URL = BASE_URL + 'assets/indexes/app-events.json';
 /** Event types content index URL */
-const EVENT_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-event-types.json';
+const EVENT_TYPES_INDEX_URL = BASE_URL + 'assets/indexes/app-event-types.json';
 /** Funding content index URL */
-const FUNDING_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-funding.json';
+const FUNDING_INDEX_URL = BASE_URL + 'assets/indexes/app-funding.json';
 /** Funding types content index URL */
-const FUNDING_TYPES_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-funding-types.json';
+const FUNDING_TYPES_INDEX_URL = BASE_URL + 'assets/indexes/app-funding-types.json';
 /** Visualizations content index URL */
-const VISUALIZATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-visualizations.json';
+const VISUALIZATIONS_INDEX_URL = BASE_URL + 'assets/indexes/app-visualizations.json';
 /** Tags content index URL */
-const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-tags.json';
+const TAGS_INDEX_URL = BASE_URL + 'assets/indexes/app-tags.json';
 /** Base URL for person content */
-const PERSON_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
+const PERSON_BASE_URL = BASE_URL + 'content/people';
 
 /** Application routes */
 export const appRoutes: Route[] = [
