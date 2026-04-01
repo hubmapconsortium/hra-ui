@@ -126,6 +126,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'publications',
+    redirectTo: '/research?category=publication&view=list&group-by=year',
+  },
+  {
     path: 'research',
     component: ResearchPageComponent,
     resolve: {
