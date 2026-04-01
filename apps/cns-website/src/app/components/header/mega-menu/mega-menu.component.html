@@ -1,5 +1,5 @@
 @if (menu().featured; as featured) {
-  <div class="featured-section" tabindex="0" cdkFocusRegionStart cdkFocusInitial>
+  <div class="featured-section">
     <div class="featured-link">
       <div class="featured-content-container">
         @if (featured.imgSrc; as src) {
@@ -10,6 +10,8 @@
           hraClickEvent
           class="featured-bottom"
           tabindex="0"
+          cdkFocusRegionStart
+          cdkFocusInitial
           [hraLink]="featured.url"
           [hraLinkExternal]="featured.external"
           (click)="maybeScrollToTop(featured)"
