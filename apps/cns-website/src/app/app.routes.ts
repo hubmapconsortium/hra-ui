@@ -15,7 +15,7 @@ import { PeopleDataSchema } from './schemas/people.schema';
 import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
 import { TagsDataSchema } from './schemas/tags.schema';
-import { createVenuesResolver } from './resolvers/venues.resolver';
+import { VenueDataSchema } from './schemas/venues.schema';
 
 /** People index URL */
 const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
@@ -91,7 +91,7 @@ export const appRoutes: Route[] = [
         component: ContentPageComponent,
         resolve: {
           data: createYamlSpecResolver('assets/content/exhibit/data.yaml', ContentPageDataSchema),
-          venues: createVenuesResolver(SCIMAPS_VENUES_URL),
+          venues: createJsonSpecResolver(SCIMAPS_VENUES_URL, VenueDataSchema),
         },
       },
       {

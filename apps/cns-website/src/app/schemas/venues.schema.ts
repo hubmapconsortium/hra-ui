@@ -7,17 +7,20 @@ export type VenueItem = z.infer<typeof VenueItemSchema>;
 export const VenueItemSchema = z
   .object({
     dateStart: z.string().transform((str) => new Date(str)),
-    dateEnd: z.string().transform((str) => new Date(str)),
+    dateEnd: z
+      .string()
+      .transform((str) => new Date(str))
+      .nullish(),
     title: z.string(),
-    venue: z.string(),
-    organizer: z.string(),
-    credit: z.string(),
-    city: z.string(),
-    state: z.string(),
-    country: z.string(),
-    pdfLink: z.string(),
-    websiteUrl: z.string(),
-    venueImages: z.array(z.object({ sm: z.string(), lg: z.string() })),
+    venue: z.string().nullish(),
+    organizer: z.string().nullish(),
+    credit: z.string().nullish(),
+    city: z.string().nullish(),
+    state: z.string().nullish(),
+    country: z.string().nullish(),
+    pdfLink: z.string().nullish(),
+    websiteUrl: z.string().nullish(),
+    venueImages: z.array(z.object({ sm: z.string().optional(), lg: z.string().optional() })).nullish(),
   })
   .meta({ id: 'VenueItem' });
 
@@ -25,4 +28,4 @@ export const VenueItemSchema = z
 export type VenueData = z.infer<typeof VenueDataSchema>;
 
 /** Venue data schema (array of items) */
-export const VenueDataSchema = z.array(VenueItemSchema).meta({ id: 'VenueData' });
+export const VenueDataSchema = z.array(VenueItemSchema);
