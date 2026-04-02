@@ -93,7 +93,7 @@ content:
         content:
           - component: ActionCard
             variant: outlined
-            image: assets/content/envisioning-intelligences/images/zoonotic-web.png
+            image: assets/content/exhibit/images/EI2.png
             tagline: Envisioning Intelligences
             content:
               - component: Markdown
