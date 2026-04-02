@@ -26,6 +26,7 @@ export class BottomSheetService {
         columns,
         hideHeaders,
       },
+      hasBackdrop: false,
     });
   }
 
@@ -41,6 +42,7 @@ export class BottomSheetService {
         tagline,
         content,
       },
+      hasBackdrop: false,
     });
   }
 
@@ -54,6 +56,7 @@ export class BottomSheetService {
         variant: 'page-sections',
         sections,
       },
+      hasBackdrop: false,
     });
   }
 }

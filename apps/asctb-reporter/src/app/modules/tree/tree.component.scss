@@ -10,9 +10,13 @@
     display: inline-block;
   }
 
-  .scroll-bar-horizontal {
-    background-color: vars.$surface-container-lowest;
-    overflow: scroll;
-    height: calc(100vh - 12.1rem);
+  .vis {
+    background-color: vars.$on-primary;
+    overflow: auto;
+
+    ::ng-deep .marks {
+      width: 100%;
+      height: fit-content;
+    }
   }
 }
