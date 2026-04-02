@@ -121,7 +121,7 @@ content:
         type: cta
 
   - component: PageSection
-    tagline: Amatria’s 8th Birthday Party: April 17, 2026
+    tagline: 'Amatria’s 8th Birthday Party: April 17, 2026'
     anchor: 8th-birthday-party
     level: 3
     content:
