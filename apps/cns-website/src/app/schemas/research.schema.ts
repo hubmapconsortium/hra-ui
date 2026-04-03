@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { LocalDateSchema } from './date.schema';
 import { PeopleIdSchema } from './people.schema';
 import { ResearchTypeIdSchema } from './research-type.schema';
 import { TagIdSchema } from './tags.schema';
@@ -30,9 +31,9 @@ export const ResearchItemSchema = z
     /** Description of the research */
     description: z.string(),
     /** Start date of the research */
-    dateStart: z.coerce.date(),
+    dateStart: LocalDateSchema,
     /** End date of the research */
-    dateEnd: z.coerce.date(),
+    dateEnd: LocalDateSchema,
     /** Link associated with the research */
     link: z.string().optional(),
     /** People associated with the research */

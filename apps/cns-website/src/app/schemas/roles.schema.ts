@@ -1,9 +1,10 @@
 import * as z from 'zod';
+import { LocalDateSchema } from './date.schema';
 
 /** Base role schema with common fields */
 const BaseRoleSchema = z.object({
-  dateStart: z.coerce.date(),
-  dateEnd: z.union([z.literal('').transform(() => null), z.coerce.date()]).nullable(),
+  dateStart: LocalDateSchema,
+  dateEnd: z.union([z.literal('').transform(() => null), LocalDateSchema]).nullable(),
 });
 
 /** Type representing a team member role */
