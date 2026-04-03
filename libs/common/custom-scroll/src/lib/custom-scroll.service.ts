@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
+import { afterNextRender, inject, Injectable, Injector } from '@angular/core';
 import { Event, NavigationEnd, NavigationSkipped, Router, RouterEvent, Scroll } from '@angular/router';
 import { filter, pairwise, startWith } from 'rxjs/operators';
 
@@ -16,6 +16,9 @@ export class CustomScrollService {
    * Injects the ViewportScroller.
    */
   private viewportScroller = inject(ViewportScroller);
+
+  /** Injector reference */
+  private readonly injector = inject(Injector);
 
   /**
    * CustomScrollService constructor
@@ -48,7 +51,9 @@ export class CustomScrollService {
         if (current.position) {
           this.viewportScroller.scrollToPosition(current.position);
         } else if (current.anchor) {
-          this.viewportScroller.scrollToAnchor(current.anchor);
+          const { anchor } = current;
+          // Use afterNextRender to ensure the layout is stable before attempting to scroll to the anchor
+          afterNextRender({ write: () => this.viewportScroller.scrollToAnchor(anchor) }, { injector: this.injector });
         } else {
           const previousUrl = this.getUrlFromRouterEvent(previous.routerEvent);
           const currentUrl = this.getUrlFromRouterEvent(current.routerEvent);
