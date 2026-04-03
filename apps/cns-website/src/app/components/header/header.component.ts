@@ -10,6 +10,7 @@ import {
   input,
   signal,
   viewChild,
+  viewChildren,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
@@ -92,12 +93,22 @@ export class HeaderComponent {
   /** Currently open menu or undefined */
   private readonly activeMenu = signal<Menu | 'mobile' | undefined>(undefined);
 
-  /** Initialize the header */
+  /** Focus traps for the open menus. Used to manage focus when menus are opened and closed */
+  private readonly focusTraps = viewChildren(CdkTrapFocus);
+
+  /** Stores the last focused element before a menu was opened, so that focus can be returned to it when the menu is closed */
+  private lastFocusedElement?: HTMLElement;
+
+  /** Initialize the header and set cleanup behaviors */
   constructor() {
     effect((cleanup) => {
       if (this.activeMenu() !== undefined) {
         const observer = this.attachResizeObserver();
         cleanup(() => observer.disconnect());
+        cleanup(() => {
+          this.lastFocusedElement?.focus();
+          this.lastFocusedElement = undefined;
+        });
       }
     });
 
@@ -137,6 +148,20 @@ export class HeaderComponent {
    */
   closeMenu(menu?: Menu | 'mobile'): void {
     this.activeMenu.update((current) => (menu !== undefined && current !== menu ? current : undefined));
+  }
+
+  /**
+   * Moves focus to the specified menu if it is active
+   * @param menu Menu to move focus to
+   */
+  moveFocusToMenu(menu: Menu): void {
+    if (this.isMenuActive(menu)) {
+      const traps = this.focusTraps();
+      if (traps.length > 0) {
+        this.lastFocusedElement = document.activeElement as HTMLElement;
+        traps[0].focusTrap.focusInitialElementWhenReady();
+      }
+    }
   }
 
   /**

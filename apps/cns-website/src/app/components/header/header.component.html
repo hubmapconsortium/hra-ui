@@ -39,6 +39,7 @@
             [hraFeature]="category.id | slugify"
             [toggled]="isMenuActive(category)"
             (toggledChange)="toggleMenu(category)"
+            (keydown.tab)="moveFocusToMenu(category)"
           >
             {{ category.label }}
           </hra-navigation-category-toggle>
@@ -55,7 +56,7 @@
             (overlayOutsideClick)="closeMenu(category)"
             (detach)="closeMenu(category)"
           >
-            <cns-mega-menu cdkTrapFocus cdkTrapFocusAutoCapture [menu]="category" />
+            <cns-mega-menu cdkTrapFocus [menu]="category" />
           </ng-template>
         } @else {
           <a
