@@ -30,6 +30,7 @@
   .title {
     text-align: center;
     margin-bottom: 0.25rem;
+    color: vars.$on-background;
     @include utils.use-font(display, large);
   }
 
@@ -37,6 +38,7 @@
     margin-bottom: 2rem;
     max-width: 31.5rem;
     text-align: center;
+    color: vars.$on-surface;
     @include utils.use-font(body, xl);
   }
 
@@ -44,8 +46,7 @@
     margin-bottom: 3rem;
     @include mat.button-toggle-overrides(
       (
-        background-color: vars.$on-primary,
-        text-color: vars.$secondary,
+        shape: 2rem,
       )
     );
   }

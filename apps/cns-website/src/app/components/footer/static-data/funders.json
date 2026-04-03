@@ -11,37 +11,37 @@
       "id": "nih",
       "name": "National Institutes of Health",
       "link": "https://www.nih.gov/",
-      "image": "assets/logo/nih.svg"
+      "image": "assets/logo/nih_white.svg"
     },
     {
       "id": "cifar",
       "name": "The Canadian Institute for Advanced Research",
       "link": "https://cifar.ca/",
-      "image": "assets/logo/cifar.svg"
+      "image": "assets/logo/cifar_white.svg"
     },
     {
       "id": "iu",
       "name": "Indiana University",
       "link": "https://www.iu.edu/",
-      "image": "assets/logo/iu.svg"
+      "image": "assets/logo/iu_white.svg"
     },
     {
       "id": "ada",
       "name": "American Dental Association",
       "link": "https://www.ada.org/",
-      "image": "assets/logo/ada.svg"
+      "image": "assets/logo/ada_white.svg"
     },
     {
       "id": "jsmf",
       "name": "Indiana University",
       "link": "https://www.jsmf.org/",
-      "image": "assets/logo/jsmf.svg"
+      "image": "assets/logo/jsmf_white.svg"
     },
     {
       "id": "gates",
       "name": "Gates Foundation",
       "link": "https://www.gatesfoundation.org/",
-      "image": "assets/logo/gates.svg"
+      "image": "assets/logo/gates_white.svg"
     }
   ]
 }

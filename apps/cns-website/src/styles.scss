@@ -2,6 +2,8 @@
 @use 'theming';
 @use 'utils';
 @use 'animate.css';
+@use 'vars';
+@use '@angular/material' as mat;
 
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);
@@ -9,6 +11,29 @@
   // TODO: Fix in design system and remove this override
   hra-breadcrumbs .navigation .crumbs .crumb {
     @include utils.use-font('label', 'medium');
+  }
+
+  hra-page-section {
+    .content {
+      color: vars.$on-surface-variant;
+    }
+  }
+
+  mat-button-toggle-group {
+    @include mat.button-toggle-overrides(
+      (
+        background-color: vars.$surface-container-lowest,
+        selected-state-text-color: vars.$on-primary-fixed,
+        selected-state-background-color: vars.$primary-fixed,
+      )
+    );
+  }
+
+  .privacy-container {
+    .hra-text-button,
+    .hra-text-hyperlink {
+      color: vars.$on-tertiary !important;
+    }
   }
 }
 
