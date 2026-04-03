@@ -11,6 +11,7 @@ import { GridContainerSchema } from '@hra-ui/design-system/content-templates/gri
 import { ImageSchema } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownSchema } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionSchema } from '@hra-ui/design-system/content-templates/page-section';
+import { VenuesTableSchema } from '@hra-ui/design-system/content-templates/venues-table';
 import { YouTubePlayerSchema } from '@hra-ui/design-system/content-templates/youtube-player';
 import { IconSchema } from '@hra-ui/design-system/icons';
 import { PageTableSchema } from '@hra-ui/design-system/table';
@@ -31,6 +32,7 @@ export default z.lazy(() => {
     PageTableSchema,
     ProfileCardSchema,
     TextHyperlinkSchema,
+    VenuesTableSchema,
     YouTubePlayerSchema,
   ]);
 

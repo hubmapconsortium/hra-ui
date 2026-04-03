@@ -1,0 +1,141 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: 30-Year Exhibit
+subtitle: |
+  Explore the *Places & Spaces* (2005-2024) and *Envisioning Intelligences* exhibits (2025-2034).
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: 30-Year Exhibit
+headerContent:
+  - component: GridContainer
+    content:
+      - component: ActionCard
+        variant: outlined
+        image: assets/content/exhibit/images/envisioning-intelligences.png
+        tagline: Envisioning Intelligences (2025-2034)
+        content:
+          - component: Markdown
+            data: The third decade welcomes visualizations of linguistic, kinesthetic, emotional, and other intelligences with a focus on collaboration and coordination across life forms.
+        actionsLeft:
+          component: TextHyperlink
+          text: View visualizations
+          url: /exhibit/envisioning-intelligences
+        actionsRight:
+          component: TextHyperlink
+          text: Talks and demos
+          url: https://cns-iu.github.io/workshops/2025-24h
+      - component: ActionCard
+        variant: outlined
+        image: assets/content/exhibit/images/macroscopes.png
+        tagline: Macroscopes (2015-2024)
+        content:
+          - component: Markdown
+            data: Macroscopes refer to interactive data visualizations, allowing us to engage directly with large datasets in ways that empower discovery and direct our own lines of questioning.
+        actionsLeft:
+          component: TextHyperlink
+          text: View macroscopes
+          url: https://scimaps.org/macroscopes
+        actionsRight:
+          component: TextHyperlink
+          text: Talks and demos
+          url: https://cns-iu.github.io/workshops/2023-12-9_24hour_science_map/
+      - component: ActionCard
+        variant: outlined
+        image: assets/content/exhibit/images/maps.png
+        tagline: Maps (2005-2014)
+        content:
+          - component: Markdown
+            data: For centuries, cartographic maps of earth and water have guided human exploration. Maps of science showcase the contexts, relationships, and dynamism of science.
+        actionsLeft:
+          component: TextHyperlink
+          text: View maps
+          url: https://scimaps.org/maps
+        actionsRight:
+          component: TextHyperlink
+          text: Talks and demos
+          url: https://cns-iu.github.io/workshops/2021-12-10_24hour_science_map
+content:
+  - component: PageSection
+    tagline: About the exhibits
+    anchor: about-the-exhibits
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Since 2005, the *Places & Spaces* exhibit team has shared world-class examples of science maps and interactive
+          data visualizations via physical exhibits, 219 press items, and more than 8 million website visits. Together,
+          the different exhibit iterations aim to create ever more excitement for the power and value of science, share
+          the pleasures of scientific discovery, and give good energy to all on this planet.
+      - component: Button
+        label: Explore exhibit
+        href: https://scimaps.org
+        type: cta
+
+  - component: PageSection
+    tagline: Venues and events
+    anchor: venues-and-events
+    level: 2
+    content:
+      - component: Markdown
+        data: The exhibit has been on display at more that 480 venues in more than 160 cities.
+      - component: VenuesTable
+        venuesUrl: https://dev.scimaps.org/assets/indexes/venues.json
+        linkBaseHref: https://scimaps.org/
+
+  - component: PageSection
+    tagline: Talks and demos
+    anchor: talks-and-demos
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Over the course of 24 hours, scholars and practitioners from around the globe discussed their work, invited
+          viewers behind the scenes, and demonstrated valuable tools and methodologies.
+
+      - component: GridContainer
+        content:
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/exhibit/images/EI2.png
+            tagline: Envisioning Intelligences
+            content:
+              - component: Markdown
+                data: December 13-14, 2025
+            actionsLeft:
+              component: TextHyperlink
+              text: Event website
+              url: https://cns-iu.github.io/workshops/2025-24h/
+            actionsRight:
+              component: TextHyperlink
+              text: YouTube playlist
+              url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DPbiDhpt0M233PeVV9WVyDv
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/exhibit/images/atlas-of-inequality.png
+            tagline: Macroscopes
+            content:
+              - component: Markdown
+                data: December 9-10, 2023
+            actionsLeft:
+              component: TextHyperlink
+              text: Event website
+              url: https://cns-iu.github.io/workshops/2023-12-9_24hour_science_map/
+            actionsRight:
+              component: TextHyperlink
+              text: YouTube playlist
+              url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx
+          - component: ActionCard
+            variant: outlined
+            image: assets/content/exhibit/images/2pm.png
+            tagline: Maps
+            content:
+              - component: Markdown
+                data: December 11-12, 2021
+            actionsLeft:
+              component: TextHyperlink
+              text: Event website
+              url: https://cns-iu.github.io/workshops/2021-12-10_24hour_science_map/
+            actionsRight:
+              component: TextHyperlink
+              text: YouTube playlist
+              url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DO6TkNXWpHrxISnMf2Yny-f

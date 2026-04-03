@@ -89,6 +89,10 @@ export const Flat: Story = {
 };
 
 export const Outlined: Story = {
+  args: {
+    subtagline: 'Small f',
+  },
+
   render: render(
     'outlined',
     `<hra-action-card-action>

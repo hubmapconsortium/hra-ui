@@ -15,6 +15,7 @@ import { PeopleDataSchema } from './schemas/people.schema';
 import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
 import { TagsDataSchema } from './schemas/tags.schema';
+import { createMountRedirectRoute } from './utils/mount-redirect';
 
 /** Base URL for content and indexes */
 const BASE_URL = 'https://cns.iu.edu/';
@@ -85,6 +86,14 @@ export const appRoutes: Route[] = [
   {
     path: 'exhibit',
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ContentPageComponent,
+        resolve: {
+          data: createYamlSpecResolver('assets/content/exhibit/data.yaml', ContentPageDataSchema),
+        },
+      },
       {
         path: 'envisioning-intelligences',
         component: ContentPageComponent,
@@ -237,6 +246,10 @@ export const appRoutes: Route[] = [
     path: 'workshops.html',
     redirectTo: '/research?event=workshop',
   },
+
+  // Mount redirects
+  createMountRedirectRoute('docs'),
+  createMountRedirectRoute('images'),
 
   // Error pages
   {

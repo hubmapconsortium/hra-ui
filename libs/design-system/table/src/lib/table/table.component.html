@@ -15,11 +15,13 @@
           mat-table
           matSort
           aria-label="Table with sort function"
+          [matSortActive]="initialSort()?.active || ''"
+          [matSortDirection]="initialSort()?.direction || ''"
           [dataSource]="dataSource"
           [matSortDisabled]="!enableSort()"
           [class.vertical-divider]="verticalDividers()"
         >
-          @let templates = { text, numeric, markdown, link, icon, menu, dataExploration };
+          @let templates = { text, date, numeric, markdown, link, icon, menu, dataExploration };
 
           <!-- Selection Column (if enabled) -->
           @if (enableRowSelection()) {
@@ -109,6 +111,10 @@
 
   <ng-template let-text hraTextRowElement #text>
     <span class="text">{{ text }}</span>
+  </ng-template>
+
+  <ng-template let-date hraDateRowElement #date>
+    <span class="date">{{ date | date }}</span>
   </ng-template>
 
   <ng-template let-value hraNumericRowElement #numeric>

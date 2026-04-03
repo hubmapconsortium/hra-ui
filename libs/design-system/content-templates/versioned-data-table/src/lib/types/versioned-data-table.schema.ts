@@ -38,6 +38,7 @@ export type VersionedDataTable = z.infer<typeof VersionedDataTableSchema>;
 export const VersionedDataTableSchema = ContentTemplateSchema.merge(
   PageTableSchema.pick({
     columns: true,
+    rows: true,
     variant: true,
     enableSort: true,
     verticalDividers: true,
