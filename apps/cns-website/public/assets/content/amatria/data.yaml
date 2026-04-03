@@ -11,6 +11,10 @@ content:
     src: assets/content/amatria/images/amatria-1.png
     alt: Amatria Sentient Architecture installation at Luddy Hall
 
+  - component: Markdown
+    data: |
+      Photo by Ann Schertz.
+
   - component: PageSection
     tagline: 'Luddy Hall: Home to Amatria'
     anchor: luddy-hall
@@ -116,7 +120,7 @@ content:
         data: |
           Over the years, CNS has hosted public tours, birthday celebrations, workshops, and special tours showcasing _Amatria_'s interactive architecture.
       - component: Button
-        label: View past events
+        label: View events
         href: /research?view=list&group-by=year&search=amatria
         type: cta
 
