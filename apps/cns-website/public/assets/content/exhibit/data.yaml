@@ -78,6 +78,9 @@ content:
     content:
       - component: Markdown
         data: The exhibit has been on display at more that 480 venues in more than 160 cities.
+      - component: VenuesTable
+        venuesUrl: https://dev.scimaps.org/assets/indexes/venues.json
+        linkBaseHref: https://scimaps.org/
 
   - component: PageSection
     tagline: Talks and demos

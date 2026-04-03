@@ -1,3 +1,5 @@
+import { ContentTemplateSchema } from '@hra-ui/cdk/content-template';
+import { PageTableSchema } from '@hra-ui/design-system/table';
 import * as z from 'zod';
 
 /** Type for a single venue item */
@@ -26,3 +28,15 @@ export type VenueData = z.infer<typeof VenueDataSchema>;
 
 /** Venue data schema (array of items) */
 export const VenueDataSchema = z.array(VenueItemSchema);
+
+/** Type for Venues Table */
+export type VenuesTable = z.infer<typeof VenuesTableSchema>;
+
+/** Schema for Venues Table */
+export const VenuesTableSchema = ContentTemplateSchema.merge(PageTableSchema)
+  .extend({
+    component: z.literal('VenuesTable'),
+    venuesUrl: z.string(),
+    linkBaseHref: z.string().optional(),
+  })
+  .meta({ id: 'VenuesTable' });

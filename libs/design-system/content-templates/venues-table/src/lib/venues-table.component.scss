@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use 'vars';
+@use '../../../../styles/vars';
 
 :host {
   ::ng-deep hra-table {

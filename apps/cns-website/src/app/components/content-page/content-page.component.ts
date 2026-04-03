@@ -10,9 +10,7 @@ import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markd
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
-import { VenueData } from '../../schemas/venues.schema';
 import { FooterComponent } from '../footer/footer.component';
-import { VenuesTableComponent } from '../venues-table/venues-table.component';
 
 /**
  * Content Page Component
@@ -30,7 +28,6 @@ import { VenuesTableComponent } from '../venues-table/venues-table.component';
     TableOfContentsLayoutModule,
     NavigationModule,
     FooterComponent,
-    VenuesTableComponent,
   ],
   templateUrl: './content-page.component.html',
   styleUrl: './content-page.component.scss',
@@ -39,9 +36,6 @@ import { VenuesTableComponent } from '../venues-table/venues-table.component';
 export class ContentPageComponent {
   /** Input data for content page */
   readonly data = input.required<ContentPageData>();
-
-  /** Venues data for the venues table */
-  readonly venues = input<VenueData>([]);
 
   /** Header content data */
   protected readonly headerContent = computed(() => coerceArray(this.data().headerContent ?? []));

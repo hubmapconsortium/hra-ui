@@ -15,7 +15,6 @@ import { PeopleDataSchema } from './schemas/people.schema';
 import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
 import { TagsDataSchema } from './schemas/tags.schema';
-import { VenueDataSchema } from './schemas/venues.schema';
 
 /** People index URL */
 const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
@@ -41,8 +40,6 @@ const VISUALIZATIONS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/in
 const TAGS_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-tags.json';
 /** Base URL for person content */
 const PERSON_BASE_URL = 'https://cns-iu.github.io/cns-website/content/people';
-/** Base URL for Scimaps venues */
-const SCIMAPS_VENUES_URL = 'https://dev.scimaps.org/assets/indexes/venues.json';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -91,7 +88,6 @@ export const appRoutes: Route[] = [
         component: ContentPageComponent,
         resolve: {
           data: createYamlSpecResolver('assets/content/exhibit/data.yaml', ContentPageDataSchema),
-          venues: createJsonSpecResolver(SCIMAPS_VENUES_URL, VenueDataSchema),
         },
       },
       {

@@ -17,9 +17,6 @@
 
   @for (item of content(); track $index) {
     <ng-container *hraContentTemplateOutlet="item" />
-    @if (item['tagline'] === 'Venues and events') {
-      <cns-venues-table style="margin-top: -1rem" [venues]="venues()" />
-    }
   }
 </hra-table-of-contents-layout>
 <cns-footer />

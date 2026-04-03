@@ -1,26 +1,32 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
 import { SlugifyPipe } from '@hra-ui/common';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { VenueData, VenueItem } from '../../schemas/venues.schema';
-
-/** Base URL for Scimaps */
-const BASE_URL = 'https://scimaps.org/';
+import { VenueData, VenueDataSchema, VenueItem } from './types/venues-table.schema';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 /**
- * Component to display a table of venues
+ * Component to display a table of venues for Scimaps exhibit
  */
 @Component({
-  selector: 'cns-venues-table',
+  selector: 'hra-venues-table',
   imports: [TableComponent],
   templateUrl: './venues-table.component.html',
   styleUrl: './venues-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VenuesTableComponent {
-  /** Venues data to display in the table */
-  readonly venues = input<VenueData>([]);
+  /** HttpClient for making API requests */
+  readonly http = inject(HttpClient);
 
-  readonly linkBaseHref = input<string>(BASE_URL);
+  /** URL to fetch venues data from */
+  readonly venuesUrl = input.required<string>();
+
+  /** Base href for links in the table (e.g. website, photo gallery, PDF) */
+  readonly linkBaseHref = input<string>();
+
+  /** Venues data to display in the table */
+  readonly venues = signal<VenueData>([]);
 
   /** Columns for the venues table */
   readonly columns: TableColumn[] = [
@@ -53,6 +59,18 @@ export class VenuesTableComponent {
 
   /** Table rows computed from the venues data */
   readonly rows = computed(() => this.convertToTableRows(this.venues()));
+
+  /**
+   * Load venues data on init and update the venues signal with the fetched data
+   */
+  constructor() {
+    effect(() => {
+      this.http
+        .get(this.venuesUrl(), { responseType: 'json' })
+        .pipe(map((data) => VenueDataSchema.parse(data)))
+        .subscribe((venues) => this.venues.set(venues));
+    });
+  }
 
   /**
    * Converts venues data to table rows
@@ -100,6 +118,14 @@ export class VenuesTableComponent {
     return links.join(' | ');
   }
 
+  /**
+   * Builds a link URL for the venue based on the provided path, date, title, and optional extra segment
+   * @param path Base path for the link (e.g. 'venues/gallery' or 'assets/content/venues')
+   * @param date Date of the venue, used to create a segmented date string for the URL
+   * @param title Title of the venue, used to create a slugified segment for the URL
+   * @param [extra] Optional extra segment to append to the URL (e.g. PDF filename)
+   * @returns Constructed URL string combining the base href, path, segmented date, slugified title, and optional extra segment
+   */
   private buildLinkUrl(path: string, date: Date, title: string, extra?: string): string {
     const dateSegment = this.getSegmentedDate(date);
     const titleSegment = new SlugifyPipe().transform(title);
