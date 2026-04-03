@@ -23,13 +23,17 @@
       color: vars.$on-secondary-fixed;
     }
 
-    .tagline-link {
+    .tagline-link,
+    .tagline {
       color: vars.$tertiary;
-      text-decoration: underline;
-      cursor: pointer;
       margin-top: 0.5rem;
       @include utils.use-font(label, large);
       @include utils.line-clamp(2);
+    }
+
+    .tagline-link {
+      text-decoration: underline;
+      cursor: pointer;
     }
 
     .tags {

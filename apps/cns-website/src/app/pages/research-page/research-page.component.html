@@ -81,7 +81,7 @@
                   [imageSrc]="getImageUrl(item)"
                   [tagline]="item.title"
                   [date]="(item.dateStart | date) ?? ''"
-                  [link]="item.link || ''"
+                  [link]="item.link"
                   [external]="true"
                   [tags]="getTagItems(item.tags)"
                 />

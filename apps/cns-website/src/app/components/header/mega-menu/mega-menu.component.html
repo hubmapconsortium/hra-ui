@@ -10,7 +10,6 @@
           hraClickEvent
           class="featured-bottom"
           tabindex="0"
-          cdkFocusRegionStart
           cdkFocusInitial
           [hraLink]="featured.url"
           [hraLinkExternal]="featured.external"
@@ -35,7 +34,7 @@
 <div class="right-side">
   <div class="nav-items">
     <div class="groups">
-      @for (group of menu().items; track group; let outerFirst = $first) {
+      @for (group of menu().items; track group) {
         <div class="group">
           <div class="group-label">
             {{ group.label }}
@@ -44,15 +43,12 @@
           <mat-divider class="divider" />
           <div class="items">
             @for (item of group.items; track item) {
-              @let isFocusRegionStart = $first && outerFirst && !menu().featured;
               <a
                 mat-button
                 hraSecondaryButton
                 hraClickEvent
                 class="item-label"
                 tabindex="0"
-                [attr.cdkFocusRegionStart]="isFocusRegionStart ? '' : null"
-                [attr.cdkFocusInitial]="isFocusRegionStart ? '' : null"
                 [hraFeature]="item.label | slugify"
                 [hraLink]="item.url"
                 [hraLinkExternal]="item.external"
@@ -70,12 +66,7 @@
 
   <div class="socials">
     @for (id of socials(); track id) {
-      <hra-social-media-button
-        size="large"
-        variant="color"
-        [attr.cdkFocusRegionEnd]="$last ? '' : null"
-        [id]="$any(id)"
-      />
+      <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
     }
   </div>
 </div>

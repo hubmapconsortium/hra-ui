@@ -31,7 +31,7 @@ export class GalleryCardComponent {
   /** Date to display */
   readonly date = input.required<string>();
   /** URL for the tagline link */
-  readonly link = input.required<string>();
+  readonly link = input<string>();
   /** Whether the link opens in new tab */
   readonly external = input<boolean>(false);
   /** Tags to display */
