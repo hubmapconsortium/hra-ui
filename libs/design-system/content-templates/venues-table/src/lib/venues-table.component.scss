@@ -3,14 +3,6 @@
 
 :host {
   ::ng-deep hra-table {
-    // TODO: remove when colors are updated
-    --mat-sys-outline-variant: #bbc4b5;
-    --mat-sys-surface-container-highest: #e0e3dc;
-    --mat-sys-surface-bright: #f1f3ee;
-    --mat-sys-on-surface: #171e19;
-    --mat-sys-on-surface-variant: #3c463a;
-    --mat-sys-outline: #869181;
-
     --hra-table-max-height: 26.125rem;
     border-color: vars.$outline;
     border-radius: 0.5rem;
