@@ -22,9 +22,6 @@ export class SlugifyPipe implements PipeTransform {
       .toLowerCase()
       .trim()
       .replace(/\s+/g, '-') // Replace spaces with -
-      .replace(/&/g, 'and') // Replace '&' with 'and'
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Strip diacritics after transliteration
       .replace(/[^\w-]+/g, '') // Remove all non-word chars
       .replace(/--+/g, '-') // Replace multiple - with single -
       .replace(/^-+/, '') // Trim - from start of text
