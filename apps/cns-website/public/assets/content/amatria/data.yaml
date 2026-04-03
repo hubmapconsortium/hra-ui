@@ -6,13 +6,14 @@ breadcrumbs:
     route: /
   - name: |
       Amatria: Sentient Architecture
-content:
+headerContent:
   - component: Image
     src: assets/content/amatria/images/amatria-1.png
     alt: Amatria Sentient Architecture installation at Luddy Hall
   - component: Markdown
-    data: "<span style='font: var(--mat-sys-label-small); color: rgba(0,0,0,0.6); display: block; margin-top: 4px;'>Photo by Ann Schertz.</span>"
+    data: Photo by Ann Schertz.
 
+content:
   - component: PageSection
     tagline: 'Luddy Hall: Home to Amatria'
     anchor: luddy-hall
