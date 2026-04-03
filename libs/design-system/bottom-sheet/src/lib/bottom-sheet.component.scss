@@ -1,3 +1,5 @@
+@use '../../../styles/utils';
+
 :host {
   display: block;
   height: 100%;
@@ -18,7 +20,21 @@
     max-height: min(22.6rem, 80vh - 3rem - 2 * 0.5rem);
   }
 
-  ng-scrollbar {
-    height: calc(100% - 3.5rem);
+  .multiple-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  ::ng-deep hra-page-section {
+    section hra-page-label h1 {
+      @include utils.use-font(title, large);
+    }
+
+    section > .content {
+      font: var(--mat-sys-body-large) !important;
+      letter-spacing: var(--mat-sys-body-large-tracking) !important;
+      margin-top: 0.5rem !important;
+    }
   }
 }

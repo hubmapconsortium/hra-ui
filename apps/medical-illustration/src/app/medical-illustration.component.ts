@@ -1,14 +1,15 @@
 /* eslint-disable @angular-eslint/no-output-rename -- Allow rename for custom element events */
+import { coerceArray } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
+  computed,
   inject,
-  Input,
+  input,
   OnChanges,
   OnInit,
-  Output,
+  output,
   SimpleChanges,
 } from '@angular/core';
 import { BaseApplicationComponent } from '@hra-ui/application';
@@ -30,7 +31,6 @@ import {
 } from '@hra-ui/services';
 import { Observable, of, OperatorFunction, ReplaySubject, switchMap } from 'rxjs';
 import * as z from 'zod';
-
 import { environment } from '../environments/environment';
 
 /**
@@ -73,33 +73,33 @@ function selectData<T, Z extends z.ZodTypeAny>(
 })
 export class MedicalIllustrationComponent extends BaseApplicationComponent implements OnInit, OnChanges {
   /** Displayed illustration or an iri to lookup in either the illustrations or fetch from the remote api */
-  @Input() selectedIllustration?: string | RawIllustration;
+  readonly selectedIllustration = input<string | RawIllustration>();
 
   /** Optional set of all illustrations. Used when selectedIllustration is an iri */
-  @Input() illustrations?: string | RawIllustrationsJsonld = environment.illustrationsUrl;
+  readonly illustrations = input<string | RawIllustrationsJsonld>(environment.illustrationsUrl);
 
   /** A cell or id to highlight in the illustration */
-  @Input() highlight?: string | RawCellEntry;
+  readonly highlight = input<string | string[] | RawCellEntry | RawCellEntry[]>();
 
   /** Base href */
-  @Input() baseHref = '';
+  readonly baseHref = input('');
 
   /** Emits when the user hover into or out of a cell in the illustration */
-  @Output('cell-hover') readonly cellHover = new EventEmitter<RawCellEntry | undefined>();
+  readonly cellHover = output<RawCellEntry | undefined>({ alias: 'cell-hover' });
 
   /** Emits when the user clicks a cell in the illustration */
-  @Output('cell-click') readonly cellClick = new EventEmitter<RawCellEntry>();
+  readonly cellClick = output<RawCellEntry>({ alias: 'cell-click' });
 
-  /** Get the normalized id for the highlight input */
-  get highlightId(): string | undefined {
-    const { highlight } = this;
-    const parsed = tryParseJson<string | RawCellEntry>(highlight);
-    if (typeof parsed === 'object') {
-      return parsed.representation_of;
+  /** Array of IDs to highlight */
+  readonly highlightIds = computed(() => {
+    const highlight = this.highlight();
+    if (!highlight) {
+      return undefined;
     }
 
-    return parsed;
-  }
+    const parsed = tryParseJson<string | string[] | RawCellEntry | RawCellEntry[]>(highlight);
+    return coerceArray(parsed).map((item) => (typeof item === 'object' ? item.representation_of : item));
+  });
 
   /** Data endpoints */
   private readonly endpoints = inject(FTU_DATA_IMPL_ENDPOINTS) as ReplaySubject<FtuDataImplEndpoints>;
@@ -152,17 +152,16 @@ export class MedicalIllustrationComponent extends BaseApplicationComponent imple
    */
   ngOnChanges(changes: SimpleChanges): void {
     if ('baseHref' in changes || 'illustrations' in changes || !this.initialized) {
-      const { baseHref, illustrations } = this;
       this.endpoints.next({
-        baseHref,
-        illustrations: illustrationsInput(illustrations) ?? '',
+        baseHref: this.baseHref(),
+        illustrations: illustrationsInput(this.illustrations()) ?? '',
         datasets: '',
         summaries: '',
       });
     }
 
     if ('selectedIllustration' in changes) {
-      this.illustration$.next(selectedIllustrationInput(this.selectedIllustration));
+      this.illustration$.next(selectedIllustrationInput(this.selectedIllustration()));
     }
 
     this.initialized = true;
