@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { SlugifyPipe } from '@hra-ui/common';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import slugify from 'slugify';
 import { VenueData, VenueItem } from '../../schemas/venues.schema';
 
 /** Base URL for Scimaps */
@@ -20,8 +20,10 @@ export class VenuesTableComponent {
   /** Venues data to display in the table */
   readonly venues = input<VenueData>([]);
 
+  readonly linkBaseHref = input<string>(BASE_URL);
+
   /** Columns for the venues table */
-  readonly columns = signal<TableColumn[]>([
+  readonly columns: TableColumn[] = [
     {
       column: 'date',
       label: 'Date',
@@ -47,7 +49,7 @@ export class VenuesTableComponent {
       label: 'Links',
       type: 'markdown',
     },
-  ]);
+  ];
 
   /** Table rows computed from the venues data */
   readonly rows = computed(() => this.convertToTableRows(this.venues()));
@@ -68,24 +70,14 @@ export class VenuesTableComponent {
   }
 
   /**
-   * Converts a string to a URL-friendly slug (convert to lowercase, replace spaces with hyphens, and remove special characters)
-   * @param str String to convert to a slug
-   * @returns URL-friendly slug generated from the input string
-   */
-  private toSlug(str: string): string {
-    return slugify(str, { lower: true, strict: true });
-  }
-
-  /**
    * Formats a date as a segmented string (YYYY/MM-DD) for use in URLs
    * @param date Date to format
    * @returns Formatted date string in the format YYYY/MM-DD
    */
   private getSegmentedDate(date: Date): string {
-    const fullDate = new Date(date);
-    const year = fullDate.getUTCFullYear();
-    const day = ('0' + fullDate.getUTCDate()).slice(-2);
-    const month = ('0' + (fullDate.getUTCMonth() + 1)).slice(-2);
+    const year = date.getUTCFullYear();
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
     return `${year}/${month}-${day}`;
   }
 
@@ -100,15 +92,17 @@ export class VenuesTableComponent {
       links.push(`[Website](${venue.websiteUrl})`);
     }
     if (venue.venueImages) {
-      links.push(
-        `[Photo gallery](${[BASE_URL, 'venues/gallery', this.getSegmentedDate(venue.dateStart), this.toSlug(venue.title)].join('/')})`,
-      );
+      links.push(`[Photo gallery](${this.buildLinkUrl('venues/gallery', venue.dateStart, venue.title, '')})`);
     }
     if (venue.pdfLink) {
-      links.push(
-        `[PDF](${[BASE_URL, 'assets/content/venues', this.getSegmentedDate(venue.dateStart), this.toSlug(venue.title), venue.pdfLink].join('/')})`,
-      );
+      links.push(`[PDF](${this.buildLinkUrl('assets/content/venues', venue.dateStart, venue.title, venue.pdfLink)})`);
     }
     return links.join(' | ');
+  }
+
+  private buildLinkUrl(path: string, date: Date, title: string, extra?: string): string {
+    const dateSegment = this.getSegmentedDate(date);
+    const titleSegment = new SlugifyPipe().transform(title);
+    return [this.linkBaseHref(), path, dateSegment, titleSegment, extra].filter((s) => !!s).join('/');
   }
 }

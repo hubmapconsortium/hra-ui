@@ -105,7 +105,6 @@
     "qs": "^6.15.0",
     "rapidoc": "^9.3.8",
     "rxjs": "^7.8.2",
-    "slugify": "^1.6.8",
     "store2": "^2.14.4",
     "stream-browserify": "^3.0.0",
     "swiper": "^12.1.2",
