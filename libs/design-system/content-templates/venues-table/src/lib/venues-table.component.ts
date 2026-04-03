@@ -38,7 +38,7 @@ export class VenuesTableComponent {
     {
       column: 'event',
       label: 'Event',
-      type: 'text',
+      type: 'markdown',
     },
     {
       column: 'location',
@@ -80,7 +80,7 @@ export class VenuesTableComponent {
   private convertToTableRows(venues: VenueData): TableRow[] {
     return venues.map((venue) => ({
       date: venue.dateStart,
-      event: venue.title,
+      event: venue.title.replace(/Places\s*&\s*Spaces/g, '*Places & Spaces*'),
       location: [venue.city, venue.state, venue.country].filter((s) => !!s).join(', '),
       contact: venue.organizer || '',
       links: this.createLinks(venue),
