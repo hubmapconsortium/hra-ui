@@ -1,13 +1,14 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: 'Amatria: Sentient Architecture'
 subtitle: 'Amatria is a living sculpture that responds to her environment through light, sound, and movement.'
+content:
 headerContent:
   - component: Image
     src: assets/content/amatria/images/amatria-1.png
     alt: Amatria Sentient Architecture installation at Luddy Hall
   - component: Markdown
-    data: Caption
-      Photo by Ann Schertz.
+    data: Photo by Ann Schertz.
+      
 breadcrumbs:
   - name: Home
     route: /
