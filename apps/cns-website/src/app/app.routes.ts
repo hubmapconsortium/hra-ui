@@ -15,6 +15,7 @@ import { PeopleDataSchema } from './schemas/people.schema';
 import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
 import { TagsDataSchema } from './schemas/tags.schema';
+import { createMountRedirectRoute } from './utils/mount-redirect';
 
 /** People index URL */
 const PEOPLE_INDEX_URL = 'https://cns-iu.github.io/cns-website/assets/indexes/app-people.json';
@@ -230,6 +231,10 @@ export const appRoutes: Route[] = [
     path: 'workshops.html',
     redirectTo: '/research?event=workshop',
   },
+
+  // Mount redirects
+  createMountRedirectRoute('docs'),
+  createMountRedirectRoute('images'),
 
   // Error pages
   {
