@@ -116,9 +116,23 @@ content:
         data: |
           Over the years, CNS has hosted public tours, birthday celebrations, workshops, and special tours showcasing _Amatria_'s interactive architecture.
       - component: Button
-        label: View events
-        href: /research?filter=amatria
+        label: View past events
+        href: /research?view=list&group-by=year&search=amatria
         type: cta
+
+  - component: PageSection
+    tagline: 'Amatria’s 8th Birthday Party: April 17, 2026'
+    anchor: 8th-birthday-party
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          This is an annual birthday event to commemorate the ‘birth’ (installation)  of _Amatria_ in Luddy Hall. Installation was completed in 2018, months after the completion of Luddy Hall. She has been a friendly presence to all who use and visit the building, and represents the ambitions of the Luddy School of Informatics, Computing and Engineering to have human and artificial intelligences live, learn, and innovate together in harmony. This party celebrates the convergence of renaissance engineering, science, and art as they come together in _Amatria_, perhaps the most unique public sculpture on the IU Bloomington campus.
+
+          - **Location:** Luddy Hall, 4th floor lobby area
+          - **Date:** Friday, April 17, 2026
+          - **Time:** 10-11 am ET
+          - **Cost to attend:** Free
 
   - component: PageSection
     tagline: References

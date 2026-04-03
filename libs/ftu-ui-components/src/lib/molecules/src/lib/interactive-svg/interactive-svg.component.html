@@ -1,8 +1,8 @@
-@if (url) {
+@if (url(); as svgUrl) {
   <div
     class="svg"
     [class.hover-active]="nodeHoverData$ | async"
-    [inlineSVG]="url"
+    [inlineSVG]="svgUrl"
     [evalScripts]="NEVER_EVAL_SCRIPTS"
     (onSVGInserted)="setSvgElement($event)"
   ></div>
