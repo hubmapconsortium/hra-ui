@@ -33,6 +33,7 @@ import { NgScrollbar } from 'ngx-scrollbar';
 import { parse } from 'papaparse';
 import {
   DataExplorationColumnType,
+  DateColumnType,
   IconColumnType,
   LinkColumnType,
   MarkdownColumnType,
@@ -76,6 +77,22 @@ export class TextRowElementDirective {
     _dir: TextRowElementDirective,
     _ctx: unknown,
   ): _ctx is RowElementContext<string, TextColumnType> {
+    return true;
+  }
+}
+
+/** Directive for typing the context of Date Row Element */
+@Directive({
+  selector: 'ng-template[hraDateRowElement]',
+})
+export class DateRowElementDirective {
+  /* istanbul ignore next */
+
+  /** Guard for the context of Date Row Element */
+  static ngTemplateContextGuard(
+    _dir: DateRowElementDirective,
+    _ctx: unknown,
+  ): _ctx is RowElementContext<string, DateColumnType> {
     return true;
   }
 }
@@ -225,6 +242,9 @@ export class TableComponent<T = TableRow> {
 
   /** Enables sorting */
   readonly enableSort = input<boolean>(false);
+
+  /** Initial sort configuration */
+  readonly initialSort = input<{ active: string; direction: 'asc' | 'desc' }>();
 
   /** Enables dividers between columns */
   readonly verticalDividers = input<boolean>(false);
@@ -388,17 +408,17 @@ export class TableComponent<T = TableRow> {
    * @param options Menu options
    * @returns Menu options as an array of MenuOptionsType
    */
-  getMenuOptions(options: string | number | boolean | MenuOptionsType[]): MenuOptionsType[] {
+  getMenuOptions(options: string | Date | number | boolean | MenuOptionsType[]): MenuOptionsType[] {
     return options as MenuOptionsType[];
   }
 
   /** Emits a route as string when object label is clicked */
-  routeClick(url: string | number | boolean | (string | number | boolean)[]): void {
+  routeClick(url: string | Date | number | boolean | (string | Date | number | boolean)[]): void {
     this.routeClicked.emit(url as string);
   }
 
   /** Emits the id of a row when its download button is hovered */
-  downloadButtonHover(id: string | number | boolean | (string | number | boolean)[]): void {
+  downloadButtonHover(id: string | Date | number | boolean | (string | Date | number | boolean)[]): void {
     this.downloadHovered.emit(id as string);
   }
 

@@ -2,14 +2,22 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ErrorHandler, EnvironmentProviders, Provider } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { render, screen } from '@testing-library/angular';
 import { provideMarkdown } from 'ngx-markdown';
 import { unparse } from 'papaparse';
 import userEvent from '@testing-library/user-event';
+import saveAs from 'file-saver';
 import { TableColumn, TableRow } from '../types/page-table.schema';
 import { TableComponent } from './table.component';
 
+jest.mock('file-saver', () => jest.fn());
+
 describe('TableComponent', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   const TABLE_COLUMNS: TableColumn[] = [
     {
       column: 'serial_no',
@@ -134,5 +142,154 @@ describe('TableComponent', () => {
     expect(screen.getByText('Alice')).toBeInTheDocument();
     expect(screen.getByText('Bob')).toBeInTheDocument();
     expect(screen.getByText('Charlie')).toBeInTheDocument();
+  });
+
+  it('should infer columns when columns input is not provided', async () => {
+    await setup({
+      rows: [
+        { label: 'Alpha', count: 2 },
+        { label: 'Beta', count: 5 },
+      ],
+    });
+
+    expect(screen.getByText('label')).toBeInTheDocument();
+    expect(screen.getByText('count')).toBeInTheDocument();
+    expect(screen.getByText('Alpha')).toBeInTheDocument();
+    expect(screen.getByText('5')).toBeInTheDocument();
+  });
+
+  it('should toggle all rows from the header checkbox and emit selection', async () => {
+    const { fixture, user } = await setup({
+      rows: TABLE_ROWS,
+      columns: TABLE_COLUMNS,
+      enableRowSelection: true,
+    });
+
+    const selectionChangeSpy = jest.fn();
+    fixture.componentInstance.selectionChange.subscribe(selectionChangeSpy);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    await user.click(checkboxes[0]);
+
+    expect(selectionChangeSpy).toHaveBeenCalled();
+    const latestSelection = selectionChangeSpy.mock.calls.at(-1)?.[0] as TableRow[];
+    expect(latestSelection).toHaveLength(TABLE_ROWS.length);
+  });
+
+  it('should toggle a single row selection and emit selected row', async () => {
+    const { fixture, user } = await setup({
+      rows: TABLE_ROWS,
+      columns: TABLE_COLUMNS,
+      enableRowSelection: true,
+    });
+
+    const selectionChangeSpy = jest.fn();
+    fixture.componentInstance.selectionChange.subscribe(selectionChangeSpy);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    await user.click(checkboxes[1]);
+
+    expect(selectionChangeSpy).toHaveBeenCalled();
+    const latestSelection = selectionChangeSpy.mock.calls.at(-1)?.[0] as TableRow[];
+    expect(latestSelection).toEqual([TABLE_ROWS[0]]);
+  });
+
+  it('should emit routeClicked for internal links', async () => {
+    const routeColumns: TableColumn[] = [
+      {
+        column: 'name',
+        label: 'Name',
+        type: {
+          type: 'link',
+          urlColumn: 'route',
+          internal: true,
+        },
+      },
+    ];
+    const routeRows: TableRow[] = [{ name: 'Open Details', route: '/details/42' }];
+
+    const { fixture, user } = await setup({ rows: routeRows, columns: routeColumns });
+    const routeClickSpy = jest.fn();
+    fixture.componentInstance.routeClicked.subscribe(routeClickSpy);
+
+    await user.click(screen.getByText('Open Details'));
+
+    expect(routeClickSpy).toHaveBeenCalledWith('/details/42');
+  });
+
+  it('should emit downloadHovered when menu button is hovered', async () => {
+    const menuColumns: TableColumn[] = [
+      {
+        column: 'downloads',
+        label: 'Downloads',
+        type: {
+          type: 'menu',
+          icon: 'download',
+          options: 'downloadOptions',
+          tooltip: 'Download files',
+        },
+      },
+    ];
+    const menuRows: TableRow[] = [
+      {
+        id: 'row-1',
+        downloads: 'Open menu',
+        downloadOptions: [{ id: 'opt-1', name: 'CSV', icon: 'download', url: 'https://example.com/data.csv' }],
+      },
+    ];
+
+    const { fixture, user } = await setup({ rows: menuRows, columns: menuColumns });
+    const hoverSpy = jest.fn();
+    fixture.componentInstance.downloadHovered.subscribe(hoverSpy);
+
+    const menuButton = screen.getAllByRole('button')[0];
+    await user.hover(menuButton);
+
+    expect(hoverSpy).toHaveBeenCalledWith('row-1');
+  });
+
+  it('should download file with filename parsed from url', async () => {
+    const { fixture } = await setup({ rows: TABLE_ROWS, columns: TABLE_COLUMNS });
+
+    fixture.componentInstance.download('https://example.com/reports/export.csv');
+
+    expect(saveAs).toHaveBeenCalledWith('https://example.com/reports/export.csv', 'export.csv');
+  });
+
+  it('should open data exploration preview dialog with title and image url', async () => {
+    const open = jest.fn();
+    const close = jest.fn();
+    open.mockReturnValue({ close });
+
+    const explorationColumns: TableColumn[] = [
+      {
+        column: 'exploreUrl',
+        label: 'Explore',
+        type: {
+          type: 'dataExploration',
+          titleColumn: 'title',
+          imageUrlColumn: 'preview',
+          icon: 'preview',
+        },
+      },
+    ];
+    const explorationRows: TableRow[] = [
+      {
+        exploreUrl: 'https://example.com/explore/1',
+        title: 'Sample Dataset',
+        preview: 'https://example.com/image.png',
+      },
+    ];
+
+    const { user } = await setup({ rows: explorationRows, columns: explorationColumns }, [
+      { provide: MatDialog, useValue: { open } },
+    ]);
+
+    await user.click(screen.getByRole('button', { name: 'Preview Sample Dataset' }));
+
+    expect(open).toHaveBeenCalled();
+    const [, config] = open.mock.calls[0];
+    expect(config.data.title).toBe('Sample Dataset');
+    expect(config.data.url).toBe('https://example.com/image.png');
   });
 });

@@ -34,10 +34,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "label",
-            "url"
-          ],
+          "required": ["label", "url"],
           "additionalProperties": false
         },
         "headerContent": {
@@ -47,12 +44,7 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": [
-        "$schema",
-        "title",
-        "subtitle",
-        "content"
-      ],
+      "required": ["$schema", "title", "subtitle", "content"],
       "additionalProperties": false
     },
     "IconList": {
@@ -113,9 +105,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "name"
-      ],
+      "required": ["name"],
       "additionalProperties": false
     },
     "ProjectedContentTemplate": {
@@ -224,11 +214,7 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": [
-        "component",
-        "variant",
-        "tagline"
-      ],
+      "required": ["component", "variant", "tagline"],
       "additionalProperties": false
     },
     "Classes": {
@@ -275,20 +261,13 @@
           "type": "string"
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
       "additionalProperties": {}
     },
     "ActionCardVariant": {
       "id": "ActionCardVariant",
       "type": "string",
-      "enum": [
-        "elevated",
-        "flat",
-        "outlined",
-        "outlined-with-icons"
-      ]
+      "enum": ["elevated", "flat", "outlined", "outlined-with-icons"]
     },
     "ApiCommand": {
       "id": "ApiCommand",
@@ -315,21 +294,13 @@
         },
         "method": {
           "type": "string",
-          "enum": [
-            "GET",
-            "POST"
-          ]
+          "enum": ["GET", "POST"]
         },
         "rightButton": {
           "$ref": "#/$defs/ApiCommandButton"
         }
       },
-      "required": [
-        "component",
-        "request",
-        "method",
-        "rightButton"
-      ],
+      "required": ["component", "request", "method", "rightButton"],
       "additionalProperties": false
     },
     "ApiCommandButton": {
@@ -347,9 +318,7 @@
           "format": "uri"
         }
       },
-      "required": [
-        "label"
-      ],
+      "required": ["label"],
       "additionalProperties": false
     },
     "Button": {
@@ -380,26 +349,15 @@
         },
         "type": {
           "type": "string",
-          "enum": [
-            "default",
-            "flat",
-            "cta",
-            "fab"
-          ]
+          "enum": ["default", "flat", "cta", "fab"]
         },
         "variant": {
           "type": "string",
-          "enum": [
-            "primary",
-            "secondary"
-          ]
+          "enum": ["primary", "secondary"]
         },
         "size": {
           "type": "string",
-          "enum": [
-            "small",
-            "medium"
-          ]
+          "enum": ["small", "medium"]
         },
         "disabled": {
           "type": "boolean"
@@ -408,11 +366,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "component",
-        "label",
-        "href"
-      ],
+      "required": ["component", "label", "href"],
       "additionalProperties": false
     },
     "FlexContainer": {
@@ -448,10 +402,7 @@
           }
         }
       },
-      "required": [
-        "component",
-        "content"
-      ],
+      "required": ["component", "content"],
       "additionalProperties": false
     },
     "GoogleMaps": {
@@ -484,12 +435,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "component",
-        "url",
-        "externalUrl",
-        "fallbackImageUrl"
-      ],
+      "required": ["component", "url", "externalUrl", "fallbackImageUrl"],
       "additionalProperties": false
     },
     "GridContainer": {
@@ -522,10 +468,7 @@
           }
         }
       },
-      "required": [
-        "component",
-        "content"
-      ],
+      "required": ["component", "content"],
       "additionalProperties": false
     },
     "Icon": {
@@ -561,9 +504,7 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "component"
-      ],
+      "required": ["component"],
       "additionalProperties": false
     },
     "Image": {
@@ -593,10 +534,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "component",
-        "src"
-      ],
+      "required": ["component", "src"],
       "additionalProperties": false
     },
     "Markdown": {
@@ -626,9 +564,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "component"
-      ],
+      "required": ["component"],
       "additionalProperties": false
     },
     "PageSection": {
@@ -675,11 +611,7 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": [
-        "component",
-        "tagline",
-        "content"
-      ],
+      "required": ["component", "tagline", "content"],
       "additionalProperties": false
     },
     "Table": {
@@ -730,9 +662,7 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "component"
-      ],
+      "required": ["component"],
       "additionalProperties": false
     },
     "TableColumn": {
@@ -797,11 +727,7 @@
           ]
         }
       },
-      "required": [
-        "column",
-        "label",
-        "type"
-      ],
+      "required": ["column", "label", "type"],
       "additionalProperties": false
     },
     "TextColumnType": {
@@ -813,9 +739,7 @@
           "const": "text"
         }
       },
-      "required": [
-        "type"
-      ],
+      "required": ["type"],
       "additionalProperties": false
     },
     "NumericColumnType": {
@@ -830,9 +754,7 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "type"
-      ],
+      "required": ["type"],
       "additionalProperties": false
     },
     "MarkdownColumnType": {
@@ -844,9 +766,7 @@
           "const": "markdown"
         }
       },
-      "required": [
-        "type"
-      ],
+      "required": ["type"],
       "additionalProperties": false
     },
     "LinkColumnType": {
@@ -864,10 +784,7 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "type",
-        "urlColumn"
-      ],
+      "required": ["type", "urlColumn"],
       "additionalProperties": false
     },
     "IconColumnType": {
@@ -885,10 +802,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "type",
-        "icon"
-      ],
+      "required": ["type", "icon"],
       "additionalProperties": false
     },
     "MenuButtonColumnType": {
@@ -909,11 +823,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "type",
-        "icon",
-        "options"
-      ],
+      "required": ["type", "icon", "options"],
       "additionalProperties": false
     },
     "TableRow": {
@@ -943,11 +853,7 @@
     "TableVariant": {
       "id": "TableVariant",
       "type": "string",
-      "enum": [
-        "alternating",
-        "divider",
-        "basic"
-      ]
+      "enum": ["alternating", "divider", "basic"]
     },
     "ProfileCard": {
       "id": "ProfileCard",
@@ -985,12 +891,7 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": [
-        "component",
-        "name",
-        "description",
-        "pictureUrl"
-      ],
+      "required": ["component", "name", "description", "pictureUrl"],
       "additionalProperties": false
     },
     "TextHyperlink": {
@@ -1026,11 +927,7 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "component",
-        "text",
-        "url"
-      ],
+      "required": ["component", "text", "url"],
       "additionalProperties": false
     },
     "YouTubePlayer": {
@@ -1060,11 +957,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "component",
-        "videoId",
-        "label"
-      ],
+      "required": ["component", "videoId", "label"],
       "additionalProperties": false
     }
   }

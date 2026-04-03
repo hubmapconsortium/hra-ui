@@ -12,7 +12,7 @@ export type TableRow = z.infer<typeof TableRowSchema>;
 
 /** Schema for a single table row */
 export const TableRowSchema = z
-  .record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.array(z.any())]))
+  .record(z.string(), z.union([z.string(), z.date(), z.number(), z.boolean(), z.array(z.any())]))
   .meta({ id: 'TableRow' });
 
 /** Type for Text Column */
@@ -24,6 +24,16 @@ export const TextColumnTypeSchema = z
     type: z.literal('text'),
   })
   .meta({ id: 'TextColumnType' });
+
+/** Type for Date Column */
+export type DateColumnType = z.infer<typeof DateColumnTypeSchema>;
+
+/** Schema for Date Column */
+export const DateColumnTypeSchema = z
+  .object({
+    type: z.literal('date'),
+  })
+  .meta({ id: 'DateColumnType' });
 
 /** Type for Numeric Column */
 export type NumericColumnType = z.infer<typeof NumericColumnTypeSchema>;
@@ -116,6 +126,7 @@ export const MenuOptionsTypeSchema = z
 /** Union of Schema Types for Simple Columns */
 export const SimpleTableColumnTypeSchema = z.union([
   TextColumnTypeSchema.shape.type,
+  DateColumnTypeSchema.shape.type,
   NumericColumnTypeSchema.shape.type,
   MarkdownColumnTypeSchema.shape.type,
   IconColumnTypeSchema.shape.type,
@@ -129,6 +140,7 @@ export type TableColumnType = z.infer<typeof TableColumnTypeSchema>;
 /** Union of Schema Types for Table Columns */
 export const TableColumnTypeSchema = z.union([
   TextColumnTypeSchema,
+  DateColumnTypeSchema,
   NumericColumnTypeSchema,
   MarkdownColumnTypeSchema,
   LinkColumnTypeSchema,

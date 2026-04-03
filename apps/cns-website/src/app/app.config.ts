@@ -25,6 +25,7 @@ import { GridContainerDef } from '@hra-ui/design-system/content-templates/grid-c
 import { ImageDef } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
+import { VenuesTableDef } from '@hra-ui/design-system/content-templates/venues-table';
 import { YouTubePlayerDef } from '@hra-ui/design-system/content-templates/youtube-player';
 import { IconDef } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
@@ -65,6 +66,7 @@ export const appConfig: ApplicationConfig = {
       ApiCommandDef,
       ButtonDef,
       FlexContainerDef,
+      GoogleMapsDef,
       GridContainerDef,
       IconDef,
       ImageDef,
@@ -73,8 +75,8 @@ export const appConfig: ApplicationConfig = {
       PageTableDef,
       ProfileCardDef,
       TextHyperlinkDef,
+      VenuesTableDef,
       YouTubePlayerDef,
-      GoogleMapsDef,
     ]),
     provideDesignSystem(),
     provideMarkdown({ loader: HttpClient }),
