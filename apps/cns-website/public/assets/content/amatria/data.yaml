@@ -134,7 +134,7 @@ content:
           - **Cost to attend:** Free
 
   - component: PageSection
-    tagline: 2025
+    tagline: '2025'
     anchor: events-2025
     level: 3
     content:
@@ -143,7 +143,7 @@ content:
           - **Apr 18** *Amatria* 7th Birthday Celebration (10:00am–11:00am ET), Indiana University, Bloomington, IN [(Photos)](https://photos.app.goo.gl/paJNb2L1WjpnGsz77) ([Slides](https://cns-iu.github.io/workshops/2025-04-18-20y-cns/assets/amatria7th.pdf)) ([Press](https://news.iu.edu/luddy/live/news/45384-amatria-birthday-brings-hope-growth))
 
   - component: PageSection
-    tagline: 2024
+    tagline: '2024'
     anchor: events-2024
     level: 3
     content:
@@ -154,7 +154,7 @@ content:
           - **Apr 11** *Amatria* 6th Birthday Celebration (9:00am–10:00am), Indiana University, Bloomington, IN [(Photos)](https://luddybloomington.smugmug.com/2024-Events/Amatrias-6th-Birthday) ([Slides](https://docs.google.com/presentation/d/1IwGTyVR9_Vohu04YGt96I3ZVgxWW1NGh/edit#slide=id.g2c1aade4c23_1_0)) ([Videos](https://youtu.be/ZJwCq8reHQc?feature=shared))
 
   - component: PageSection
-    tagline: 2023
+    tagline: '2023'
     anchor: events-2023
     level: 3
     content:
@@ -164,7 +164,7 @@ content:
           - **Apr 11** *Amatria* 5th Birthday Celebration (9:00am–10:00am), Indiana University, Bloomington, IN [(Photos)](https://photos.app.goo.gl/n7zrro1Pj8gZYfWt6) ([Slides](https://docs.google.com/presentation/d/1sQYGiEX5tpap6WkWdj1olMHkRBbnTqTX/edit#slide=id.g214414a406b_0_0)) ([Video](https://youtu.be/0pPV7Lr2eC0?feature=shared))
 
   - component: PageSection
-    tagline: 2022
+    tagline: '2022'
     anchor: events-2022
     level: 3
     content:
@@ -180,7 +180,7 @@ content:
           - **Apr 7** First Thursday Festival (5:00pm-8:00pm), IU Auditorium, Bloomington, IN ([Photos](https://photos.app.goo.gl/8hYCF2DQzCUuSFff7))
 
   - component: PageSection
-    tagline: 2021
+    tagline: '2021'
     anchor: events-2021
     level: 3
     content:
@@ -196,7 +196,7 @@ content:
           - **Apr 7** First Thursday Festival (5:00pm-8:00pm), IU Auditorium, Bloomington, IN ([Photos](https://photos.app.goo.gl/8hYCF2DQzCUuSFff7))
 
   - component: PageSection
-    tagline: 2020
+    tagline: '2020'
     anchor: events-2020
     level: 3
     content:
@@ -208,7 +208,7 @@ content:
           - **Feb 7** IU ERI talk/Eric Mathis (LASG), Indiana University, Bloomington, IN
 
   - component: PageSection
-    tagline: 2019
+    tagline: '2019'
     anchor: events-2019
     level: 3
     content:
@@ -233,7 +233,7 @@ content:
           - **Jan 4** Meditation under *Amatria* with Philip Beesley, David Ebbinghouse, and Bo Choi (11:00am–11:30am), SICE LLC Innovative Space, Indiana University, Bloomington, IN ([Photos](https://photos.app.goo.gl/2YDuqHpiByXfyhgh7))
 
   - component: PageSection
-    tagline: 2018
+    tagline: '2018'
     anchor: events-2018
     level: 3
     content:
@@ -260,7 +260,7 @@ content:
           - **Mar 2-3** Fashion Technology Symposium, Indiana University, Bloomington, IN
 
   - component: PageSection
-    tagline: 2017
+    tagline: '2017'
     anchor: events-2017
     level: 3
     content:
