@@ -255,6 +255,9 @@ export const appRoutes: Route[] = [
   {
     path: '500',
     component: ServerErrorPageComponent,
+    data: {
+      reportIssueLink: 'https://github.com/cns-iu/cns-website/issues/new',
+    },
   },
   {
     path: '404',
