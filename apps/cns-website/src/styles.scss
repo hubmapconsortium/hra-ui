@@ -8,32 +8,265 @@
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);
 
+  @include mat.theme-overrides(
+    (
+      background: #ffffff,
+      outline: #869181,
+      surface: #f1f3ee,
+      surface-bright: #fcfdf9,
+      surface-container-low: #f7f8f4,
+      primary: #0b1300,
+      primary-container: #141f00,
+      on-primary-container: #ffffff,
+      secondary: #1d2a00,
+      secondary-container: #2e4100,
+      tertiary-container: #47663c,
+      on-tertiary-container: #ffffff,
+    )
+  );
+
+  ng-scrollbar {
+    --scrollbar-thumb-color: rgb(from #26282b r g b / 0.72) !important;
+  }
+
   // TODO: Fix in design system and remove this override
   hra-breadcrumbs .navigation .crumbs .crumb {
     @include utils.use-font('label', 'medium');
   }
 
-  hra-page-section {
-    .content {
+  hra-breadcrumbs {
+    a.hra-text-hyperlink {
+      color: vars.$on-surface !important;
+    }
+
+    .label {
       color: vars.$on-surface-variant;
+    }
+  }
+
+  hra-page-section {
+    color: vars.$on-surface;
+    section > .content {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-page-label {
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          elevated-container-color: vars.$surface-bright,
+        )
+      );
+    }
+  }
+
+  hra-list-view {
+    hra-markdown {
+      color: vars.$secondary !important;
+      a {
+        color: vars.$secondary !important;
+      }
+    }
+  }
+
+  hra-markdown {
+    a {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  .hra-text-hyperlink {
+    color: vars.$on-surface !important;
+
+    mat-icon {
+      color: vars.$on-surface !important;
+    }
+  }
+
+  hra-table-of-contents {
+    .tagline {
+      color: vars.$on-surface !important;
+    }
+    .link {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-action-card {
+    &.hra-action-card-variant-outlined {
+      background-color: vars.$background;
+
+      .content {
+        .tagline {
+          color: vars.$on-surface !important;
+        }
+        .description {
+          color: vars.$on-surface-variant !important;
+        }
+      }
+    }
+  }
+
+  hra-content-button {
+    --mat-button-text-state-layer-color: #0f0d2b;
+    --mat-button-text-pressed-state-layer-opacity: 0.1;
+
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          container-height: 1.625rem,
+          elevated-container-color: vars.$surface-bright,
+        )
+      );
+    }
+
+    .content-button {
+      background-color: vars.$background !important;
+
+      .date {
+        color: vars.$on-surface-variant !important;
+      }
+      .tagline {
+        color: vars.$on-surface !important;
+      }
+    }
+  }
+
+  hra-gallery-card {
+    .content {
+      .date {
+        color: vars.$tertiary-container !important;
+      }
+
+      .tagline,
+      .tagline-link {
+        color: vars.$on-surface !important;
+      }
+    }
+  }
+
+  hra-profile-card {
+    .content {
+      .name {
+        color: vars.$on-surface !important;
+      }
+    }
+  }
+
+  hra-navigation-category-toggle {
+    .toggle {
+      color: vars.$on-surface !important;
+    }
+  }
+
+  hra-social-media-button {
+    a[mat-icon-button].hra-icon-button-variant-color {
+      --mat-icon-button-icon-color: #{vars.$primary};
+      --mat-icon-button-state-layer-color: #{vars.$primary};
+    }
+  }
+
+  @include mat.button-overrides(
+    (
+      filled-label-text-color: vars.$on-primary-container,
+      filled-state-layer-color: vars.$on-primary-container,
+      filled-container-color: vars.$primary-container,
+    )
+  );
+
+  [mat-button] {
+    &.hra-button-variant-secondary:not(.hra-cta-button) {
+      --mat-button-text-label-text-color: #{vars.$on-surface};
+      --mat-button-text-state-layer-color: #{vars.$on-surface};
+    }
+
+    &.hra-cta-button:not(.hra-button-variant-secondary) {
+      background-color: vars.$primary-container;
+      --mat-button-text-label-text-color: #{vars.$on-primary-container};
+      --mat-button-text-state-layer-color: #{vars.$on-primary-container};
+    }
+  }
+
+  hra-results-indicator {
+    color: vars.$on-surface-variant;
+    background: vars.$surface-container-lowest;
+  }
+
+  hra-filter-menu {
+    color: vars.$on-surface;
+  }
+
+  hra-filter-container {
+    .top-row {
+      color: vars.$on-surface !important;
+    }
+
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          label-text-color: vars.$secondary,
+        )
+      );
+    }
+  }
+
+  hra-search-list {
+    @include mat.list-overrides(
+      (
+        list-item-container-color: vars.$surface-bright,
+      )
+    );
+
+    @include mat.checkbox-overrides(
+      (
+        selected-icon-color: vars.$secondary-container,
+        unselected-icon-color: vars.$secondary-container,
+        unselected-hover-icon-color: vars.$on-surface,
+        selected-hover-icon-color: vars.$on-surface,
+      )
+    );
+  }
+
+  hra-end-of-results-indicator {
+    .results-count,
+    .end-message {
+      color: vars.$on-surface-variant !important;
     }
   }
 
   mat-button-toggle-group {
     @include mat.button-toggle-overrides(
       (
-        background-color: vars.$surface-container-lowest,
+        background-color: vars.$background,
+        state-layer-color: #1c1b1e,
         selected-state-text-color: vars.$on-primary-fixed,
         selected-state-background-color: vars.$primary-fixed,
+        divider-color: vars.$outline,
       )
     );
   }
 
-  .privacy-container {
-    .hra-text-button,
-    .hra-text-hyperlink {
-      color: vars.$on-tertiary !important;
-    }
+  mat-form-field {
+    @include mat.form-field-overrides(
+      (
+        filled-caret-color: vars.$on-surface,
+        filled-input-text-color: vars.$on-surface,
+      )
+    );
+
+    @include mat.select-overrides(
+      (
+        enabled-trigger-text-color: vars.$on-surface,
+        enabled-arrow-color: vars.$on-surface,
+        focused-arrow-color: vars.$on-surface,
+      )
+    );
+  }
+
+  .hra-plain-tooltip {
+    --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
+    --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
   }
 }
 

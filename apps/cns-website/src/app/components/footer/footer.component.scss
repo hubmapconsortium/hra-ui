@@ -8,11 +8,9 @@
   align-items: center;
   width: 100%;
   background-color: vars.$on-primary-fixed;
-  color: vars.$on-primary;
 
   > * {
     width: 100%;
-    max-width: 106.25rem;
   }
 
   .content-container {
@@ -21,6 +19,7 @@
     justify-content: space-between;
     gap: 2rem;
     padding: 2.5rem;
+    color: vars.$on-primary;
 
     @media (max-width: 840px) {
       flex-direction: column;
@@ -54,7 +53,15 @@
     flex-wrap: wrap;
     padding: 2rem 2.5rem;
     gap: 1.5rem;
-    background-color: vars.$tertiary;
+    background-color: vars.$tertiary-container;
+    color: vars.$on-tertiary-container;
+
+    .privacy {
+      button,
+      a {
+        color: vars.$on-tertiary-container !important;
+      }
+    }
 
     @media (max-width: 840px) {
       flex-direction: column;
@@ -73,10 +80,4 @@
       text-align: center;
     }
   }
-
-  @include mat.divider-overrides(
-    (
-      color: vars.$outline,
-    )
-  );
 }

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { RouterExtModule } from '@hra-ui/common/router-ext';
@@ -23,7 +22,6 @@ import { FUNDER_IDS } from './static-data/parsed';
     BrandModule,
     ButtonsModule,
     FundingComponent,
-    MatDividerModule,
     InlineSVGModule,
   ],
   templateUrl: './footer.component.html',

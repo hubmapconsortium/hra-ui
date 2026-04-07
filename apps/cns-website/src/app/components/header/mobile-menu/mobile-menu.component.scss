@@ -21,17 +21,18 @@ $category-inner-horizontal-padding: 0.5rem;
     align-items: center;
     height: $header-height;
     padding: 0 $horizontal-padding;
-    color: vars.$secondary;
+
+    button {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$on-surface,
+        )
+      );
+    }
   }
 
   .divider {
     margin: 0 $horizontal-padding;
-
-    @include mat.divider-overrides(
-      (
-        color: vars.$outline,
-      )
-    );
   }
 
   .categories-container {
@@ -44,9 +45,10 @@ $category-inner-horizontal-padding: 0.5rem;
           container-shape: vars.$corner-none,
           container-background-color: vars.$surface-bright,
           container-elevation-shadow: none,
+          container-text-color: vars.$on-surface,
           header-collapsed-state-height: $category-height,
           header-expanded-state-height: $category-height,
-          header-text-color: vars.$secondary,
+          header-text-color: vars.$on-surface,
           header-text-font: vars.$title-medium-font,
           header-text-size: vars.$title-medium-size,
           header-text-weight: vars.$title-medium-weight,
@@ -109,6 +111,6 @@ $category-inner-horizontal-padding: 0.5rem;
     align-items: center;
     height: $socials-height;
     padding: 1rem $horizontal-padding;
-    background: vars.$surface-container;
+    background: vars.$surface;
   }
 }

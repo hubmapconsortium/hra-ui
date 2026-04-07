@@ -40,10 +40,22 @@
 }
 
 .contact-info-section {
+  color: vars.$on-background;
+
   ::ng-deep {
+    > section .content {
+      gap: 1rem;
+    }
+
     hra-page-label {
       h5 {
-        border-bottom: 1px solid vars.$outline-variant;
+        @include utils.use-font(headline, small);
+        border-bottom: 1px solid vars.$outline;
+        padding-bottom: 0.25rem;
+      }
+      h6 {
+        @include utils.use-font(title, large);
+        padding-bottom: 0.25rem;
       }
     }
 
