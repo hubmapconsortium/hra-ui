@@ -1,4 +1,5 @@
-@use 'cns-light-theme' as cns;
+@use 'cns-theme' as cns;
+
 @use 'theming';
 @use 'utils';
 @use 'animate.css';
@@ -7,7 +8,6 @@
 
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);
-
   @include mat.theme-overrides(
     (
       background: #ffffff,
@@ -25,249 +25,284 @@
     )
   );
 
-  ng-scrollbar {
-    --scrollbar-thumb-color: rgb(from #26282b r g b / 0.72) !important;
+  @media (prefers-color-scheme: dark) {
+    @include theming.theme(cns.$theme-dark);
+    @include mat.theme-overrides(
+      (
+        background: #000000,
+        on-background: #eff1eb,
+        surface: #0c0e0a,
+        surface-bright: #0e1511,
+        on-surface: #eff1eb,
+        surface-container-lowest: #000000,
+        surface-container-low: #09100c,
+        surface-container: #171e19,
+        surface-container-high: #18201c,
+        surface-container-highest: #232a25,
+        primary: #d7ff85,
+        primary-container: #c0f452,
+        on-primary: #0b1300,
+        on-primary-container: #0b1300,
+        secondary: #e0fba3,
+        secondary-container: #b6d07d,
+        on-secondary: #0b1300,
+        on-secondary-container: #0b1300,
+        tertiary: #d6fcc4,
+        tertiary-container: #add19c,
+        on-tertiary: #011500,
+        on-tertiary-container: #011500,
+      )
+    );
   }
 
-  // TODO: Fix in design system and remove this override
-  hra-breadcrumbs .navigation .crumbs .crumb {
-    @include utils.use-font('label', 'medium');
+  cns-header {
+    background: vars.$surface;
+  }
+}
+
+ng-scrollbar {
+  --scrollbar-thumb-color: rgb(from #26282b r g b / 0.72) !important;
+}
+
+// TODO: Fix in design system and remove this override
+hra-breadcrumbs .navigation .crumbs .crumb {
+  @include utils.use-font('label', 'medium');
+}
+
+hra-breadcrumbs {
+  a.hra-text-hyperlink {
+    color: vars.$on-surface !important;
   }
 
-  hra-breadcrumbs {
-    a.hra-text-hyperlink {
-      color: vars.$on-surface !important;
-    }
-
-    .label {
-      color: vars.$on-surface-variant;
-    }
+  .label {
+    color: vars.$on-surface-variant;
   }
+}
 
-  hra-page-section {
-    color: vars.$on-surface;
-    section > .content {
-      color: vars.$on-surface-variant !important;
-    }
+hra-page-section {
+  color: vars.$on-background;
+
+  section > .content {
+    color: vars.$on-surface-variant !important;
   }
+}
 
-  hra-page-label {
-    mat-chip {
-      @include mat.chips-overrides(
-        (
-          elevated-container-color: vars.$surface-bright,
-        )
-      );
-    }
+hra-page-label {
+  mat-chip {
+    @include mat.chips-overrides(
+      (
+        elevated-container-color: vars.$surface-bright,
+      )
+    );
   }
+}
 
-  hra-list-view {
-    hra-markdown {
-      color: vars.$secondary !important;
-      a {
-        color: vars.$secondary !important;
-      }
-    }
-  }
-
+hra-list-view {
   hra-markdown {
+    color: vars.$on-surface-variant !important;
     a {
       color: vars.$on-surface-variant !important;
     }
   }
+}
 
-  .hra-text-hyperlink {
+hra-markdown {
+  a {
+    color: vars.$on-surface-variant !important;
+  }
+}
+
+.hra-text-hyperlink {
+  color: vars.$on-surface !important;
+
+  mat-icon {
     color: vars.$on-surface !important;
-
-    mat-icon {
-      color: vars.$on-surface !important;
-    }
   }
+}
 
-  hra-table-of-contents {
-    .tagline {
-      color: vars.$on-surface !important;
-    }
-    .link {
-      color: vars.$on-surface-variant !important;
-    }
+hra-table-of-contents {
+  .tagline {
+    color: vars.$on-surface !important;
   }
-
-  hra-action-card {
-    &.hra-action-card-variant-outlined {
-      background-color: vars.$background;
-
-      .content {
-        .tagline {
-          color: vars.$on-surface !important;
-        }
-        .description {
-          color: vars.$on-surface-variant !important;
-        }
-      }
-    }
+  .link {
+    color: vars.$on-surface-variant !important;
   }
+}
 
-  hra-content-button {
-    --mat-button-text-state-layer-color: #0f0d2b;
-    --mat-button-text-pressed-state-layer-opacity: 0.1;
+hra-action-card {
+  &.hra-action-card-variant-outlined {
+    background-color: vars.$background;
 
-    mat-chip {
-      @include mat.chips-overrides(
-        (
-          container-height: 1.625rem,
-          elevated-container-color: vars.$surface-bright,
-        )
-      );
-    }
-
-    .content-button {
-      background-color: vars.$background !important;
-
-      .date {
-        color: vars.$on-surface-variant !important;
-      }
+    .content {
       .tagline {
         color: vars.$on-surface !important;
       }
-    }
-  }
-
-  hra-gallery-card {
-    .content {
-      .date {
-        color: vars.$tertiary-container !important;
-      }
-
-      .tagline,
-      .tagline-link {
-        color: vars.$on-surface !important;
+      .description {
+        color: vars.$on-surface-variant !important;
       }
     }
   }
+}
 
-  hra-profile-card {
-    .content {
-      .name {
-        color: vars.$on-surface !important;
-      }
-    }
+hra-content-button {
+  --mat-button-text-state-layer-color: #0f0d2b;
+  --mat-button-text-pressed-state-layer-opacity: 0.1;
+
+  mat-chip {
+    @include mat.chips-overrides(
+      (
+        container-height: 1.625rem,
+        elevated-container-color: vars.$surface-bright,
+      )
+    );
   }
 
-  hra-navigation-category-toggle {
-    .toggle {
+  .content-button {
+    background-color: vars.$background !important;
+
+    .date {
+      color: vars.$on-surface-variant !important;
+    }
+    .tagline {
       color: vars.$on-surface !important;
     }
   }
+}
 
-  hra-social-media-button {
-    a[mat-icon-button].hra-icon-button-variant-color {
-      --mat-icon-button-icon-color: #{vars.$primary};
-      --mat-icon-button-state-layer-color: #{vars.$primary};
+hra-gallery-card {
+  .content {
+    .date {
+      color: vars.$tertiary-container !important;
+    }
+
+    .tagline,
+    .tagline-link {
+      color: vars.$on-surface !important;
     }
   }
+}
 
-  @include mat.button-overrides(
+hra-profile-card {
+  .content {
+    .name {
+      color: vars.$on-surface !important;
+    }
+  }
+}
+
+hra-navigation-category-toggle {
+  .toggle {
+    color: vars.$on-surface !important;
+  }
+}
+
+hra-social-media-button {
+  a[mat-icon-button].hra-icon-button-variant-color {
+    --mat-icon-button-icon-color: #{vars.$primary};
+    --mat-icon-button-state-layer-color: #{vars.$primary};
+  }
+}
+
+@include mat.button-overrides(
+  (
+    filled-label-text-color: vars.$on-primary-container,
+    filled-state-layer-color: vars.$on-primary-container,
+    filled-container-color: vars.$primary-container,
+  )
+);
+
+[mat-button] {
+  &.hra-button-variant-secondary:not(.hra-cta-button) {
+    --mat-button-text-label-text-color: #{vars.$on-surface} !important;
+    --mat-button-text-state-layer-color: #{vars.$on-surface} !important;
+  }
+
+  &.hra-cta-button:not(.hra-button-variant-secondary) {
+    background-color: vars.$primary-container;
+    --mat-button-text-label-text-color: #{vars.$on-primary-container};
+    --mat-button-text-state-layer-color: #{vars.$on-primary-container};
+  }
+}
+
+hra-results-indicator {
+  color: vars.$on-surface-variant;
+  background: vars.$surface-container-lowest;
+}
+
+hra-filter-menu {
+  color: vars.$on-surface;
+}
+
+hra-filter-container {
+  .top-row {
+    color: vars.$on-surface !important;
+  }
+
+  mat-chip {
+    @include mat.chips-overrides(
+      (
+        label-text-color: vars.$secondary,
+      )
+    );
+  }
+}
+
+hra-search-list {
+  @include mat.list-overrides(
     (
-      filled-label-text-color: vars.$on-primary-container,
-      filled-state-layer-color: vars.$on-primary-container,
-      filled-container-color: vars.$primary-container,
+      list-item-container-color: vars.$surface-bright,
     )
   );
 
-  [mat-button] {
-    &.hra-button-variant-secondary:not(.hra-cta-button) {
-      --mat-button-text-label-text-color: #{vars.$on-surface};
-      --mat-button-text-state-layer-color: #{vars.$on-surface};
-    }
+  @include mat.checkbox-overrides(
+    (
+      selected-icon-color: vars.$secondary-container,
+      unselected-icon-color: vars.$secondary-container,
+      unselected-hover-icon-color: vars.$on-surface,
+      selected-hover-icon-color: vars.$on-surface,
+    )
+  );
+}
 
-    &.hra-cta-button:not(.hra-button-variant-secondary) {
-      background-color: vars.$primary-container;
-      --mat-button-text-label-text-color: #{vars.$on-primary-container};
-      --mat-button-text-state-layer-color: #{vars.$on-primary-container};
-    }
+hra-end-of-results-indicator {
+  .results-count,
+  .end-message {
+    color: vars.$on-surface-variant !important;
   }
+}
 
-  hra-results-indicator {
-    color: vars.$on-surface-variant;
-    background: vars.$surface-container-lowest;
-  }
+mat-button-toggle-group {
+  @include mat.button-toggle-overrides(
+    (
+      background-color: vars.$background,
+      state-layer-color: #1c1b1e,
+      selected-state-text-color: vars.$on-primary-fixed,
+      selected-state-background-color: vars.$primary-fixed,
+      divider-color: vars.$outline,
+    )
+  );
+}
 
-  hra-filter-menu {
-    color: vars.$on-surface;
-  }
+mat-form-field {
+  @include mat.form-field-overrides(
+    (
+      filled-caret-color: vars.$on-surface,
+      filled-input-text-color: vars.$on-surface,
+    )
+  );
 
-  hra-filter-container {
-    .top-row {
-      color: vars.$on-surface !important;
-    }
+  @include mat.select-overrides(
+    (
+      enabled-trigger-text-color: vars.$on-surface,
+      enabled-arrow-color: vars.$on-surface,
+      focused-arrow-color: vars.$on-surface,
+    )
+  );
+}
 
-    mat-chip {
-      @include mat.chips-overrides(
-        (
-          label-text-color: vars.$secondary,
-        )
-      );
-    }
-  }
-
-  hra-search-list {
-    @include mat.list-overrides(
-      (
-        list-item-container-color: vars.$surface-bright,
-      )
-    );
-
-    @include mat.checkbox-overrides(
-      (
-        selected-icon-color: vars.$secondary-container,
-        unselected-icon-color: vars.$secondary-container,
-        unselected-hover-icon-color: vars.$on-surface,
-        selected-hover-icon-color: vars.$on-surface,
-      )
-    );
-  }
-
-  hra-end-of-results-indicator {
-    .results-count,
-    .end-message {
-      color: vars.$on-surface-variant !important;
-    }
-  }
-
-  mat-button-toggle-group {
-    @include mat.button-toggle-overrides(
-      (
-        background-color: vars.$background,
-        state-layer-color: #1c1b1e,
-        selected-state-text-color: vars.$on-primary-fixed,
-        selected-state-background-color: vars.$primary-fixed,
-        divider-color: vars.$outline,
-      )
-    );
-  }
-
-  mat-form-field {
-    @include mat.form-field-overrides(
-      (
-        filled-caret-color: vars.$on-surface,
-        filled-input-text-color: vars.$on-surface,
-      )
-    );
-
-    @include mat.select-overrides(
-      (
-        enabled-trigger-text-color: vars.$on-surface,
-        enabled-arrow-color: vars.$on-surface,
-        focused-arrow-color: vars.$on-surface,
-      )
-    );
-  }
-
-  .hra-plain-tooltip {
-    --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
-    --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
-  }
+.hra-plain-tooltip {
+  --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
+  --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
 }
 
 body {

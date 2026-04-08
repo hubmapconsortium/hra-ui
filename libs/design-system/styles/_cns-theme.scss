@@ -165,3 +165,12 @@ $theme: (
   ),
   typography: typo.$typography,
 );
+
+$theme-dark: (
+  color: (
+    theme-type: dark,
+    primary: $_primary,
+    tertiary: $_tertiary,
+  ),
+  typography: typo.$typography,
+);
