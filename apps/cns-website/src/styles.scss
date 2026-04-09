@@ -70,7 +70,7 @@
     );
 
     cns-landing-page {
-      background: utils.with-alpha(vars.$primary, 0.08) !important;
+      background: utils.with-alpha(vars.$primary, 0.08);
 
       .content {
         background-color: rgba(0, 0, 0, 0.7);
@@ -79,7 +79,7 @@
     }
 
     cns-header {
-      background: vars.$surface;
+      background: linear-gradient(0deg, rgba(12, 14, 10, 0.48) 0%, rgba(12, 14, 10, 0.8) 12%, rgba(12, 14, 10, 1) 32%);
     }
   }
 
