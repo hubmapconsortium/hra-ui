@@ -12,7 +12,7 @@
     @include mat.sidenav-overrides(
       (
         container-background-color: vars.$surface-bright,
-        container-divider-color: vars.$outline-variant,
+        container-divider-color: vars.$outline,
         container-shape: vars.$corner-none,
         container-width: 20rem,
         content-background-color: vars.$background,

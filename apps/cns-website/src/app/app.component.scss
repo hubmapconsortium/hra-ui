@@ -1,3 +1,6 @@
+@use 'vars';
+
 :host {
   display: block;
+  background: vars.$background;
 }

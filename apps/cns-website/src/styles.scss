@@ -1,4 +1,5 @@
 @use 'cns-theme' as cns;
+@use 'sass:map';
 
 @use 'theming';
 @use 'utils';
@@ -12,16 +13,22 @@
     (
       background: #ffffff,
       outline: #869181,
-      surface: #f1f3ee,
-      surface-bright: #fcfdf9,
-      surface-container-low: #f7f8f4,
+      on-error-container: #410002,
+      on-primary-container: #ffffff,
+      on-secondary-container: #ffffff,
+      on-tertiary-container: #ffffff,
+      on-surface-variant: #303a2f,
       primary: #0b1300,
       primary-container: #141f00,
-      on-primary-container: #ffffff,
       secondary: #1d2a00,
       secondary-container: #2e4100,
+      surface: #f1f3ee,
+      surface-bright: #fcfdf9,
+      surface-container: #eff1eb,
+      surface-container-low: #f7f8f4,
+      surface-variant: #e1e8da,
+      tertiary: #304e26,
       tertiary-container: #47663c,
-      on-tertiary-container: #ffffff,
     )
   );
 
@@ -30,279 +37,326 @@
     @include mat.theme-overrides(
       (
         background: #000000,
-        on-background: #eff1eb,
-        surface: #0c0e0a,
-        surface-bright: #0e1511,
-        on-surface: #eff1eb,
-        surface-container-lowest: #000000,
-        surface-container-low: #09100c,
-        surface-container: #171e19,
-        surface-container-high: #18201c,
-        surface-container-highest: #232a25,
-        primary: #d7ff85,
-        primary-container: #c0f452,
-        on-primary: #0b1300,
-        on-primary-container: #0b1300,
-        secondary: #e0fba3,
-        secondary-container: #b6d07d,
-        on-secondary: #0b1300,
-        on-secondary-container: #0b1300,
-        tertiary: #d6fcc4,
-        tertiary-container: #add19c,
-        on-tertiary: #011500,
-        on-tertiary-container: #011500,
+        error: map.get(cns.$theme, color, primary, error, 90),
+        error-container: map.get(cns.$theme, color, primary, error, 80),
+        inverse-on-surface: map.get(cns.$theme, color, primary, neutral, 10),
+        inverse-primary: map.get(cns.$theme, color, primary, 30),
+        on-background: map.get(cns.$theme, color, primary, neutral, 95),
+        on-error: map.get(cns.$theme, color, primary, error, 5),
+        on-error-container: map.get(cns.$theme, color, primary, error, 5),
+        on-primary: map.get(cns.$theme, color, primary, 5),
+        on-primary-container: map.get(cns.$theme, color, primary, 5),
+        on-secondary: map.get(cns.$theme, color, primary, secondary, 5),
+        on-secondary-container: map.get(cns.$theme, color, primary, secondary, 5),
+        on-surface: map.get(cns.$theme, color, primary, neutral, 95),
+        on-tertiary: map.get(cns.$theme, color, tertiary, 5),
+        on-tertiary-container: map.get(cns.$theme, color, tertiary, 5),
+        primary: map.get(cns.$theme, color, primary, 95),
+        primary-container: map.get(cns.$theme, color, primary, 90),
+        secondary: map.get(cns.$theme, color, primary, secondary, 95),
+        secondary-container: map.get(cns.$theme, color, primary, secondary, 80),
+        surface: map.get(cns.$theme, color, primary, neutral, 5),
+        surface-bright: map.get(cns.$theme, color, primary, neutral, 6),
+        surface-container: map.get(cns.$theme, color, primary, neutral, 10),
+        surface-container-high: map.get(cns.$theme, color, primary, neutral, 12),
+        surface-container-highest: map.get(cns.$theme, color, primary, neutral, 17),
+        surface-container-low: map.get(cns.$theme, color, primary, neutral, 4),
+        surface-container-lowest: map.get(cns.$theme, color, primary, neutral, 0),
+        surface-dim: map.get(cns.$theme, color, primary, neutral, 24),
+        surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 25),
+        tertiary: map.get(cns.$theme, color, tertiary, 95),
+        tertiary-container: map.get(cns.$theme, color, tertiary, 80),
       )
     );
+
+    cns-landing-page {
+      background: utils.with-alpha(vars.$primary, 0.08) !important;
+
+      .content {
+        background-color: rgba(0, 0, 0, 0.7);
+        background-blend-mode: darken;
+      }
+    }
+
+    cns-header {
+      background: vars.$surface;
+    }
   }
 
-  cns-header {
-    background: vars.$surface;
-  }
-}
-
-ng-scrollbar {
-  --scrollbar-thumb-color: rgb(from #26282b r g b / 0.72) !important;
-}
-
-// TODO: Fix in design system and remove this override
-hra-breadcrumbs .navigation .crumbs .crumb {
-  @include utils.use-font('label', 'medium');
-}
-
-hra-breadcrumbs {
-  a.hra-text-hyperlink {
-    color: vars.$on-surface !important;
+  ng-scrollbar {
+    --scrollbar-thumb-color: #{utils.with-alpha(vars.$inverse-surface, 0.72)};
+    --hra-scroll-overflow-fade-color: #{vars.$background};
   }
 
-  .label {
-    color: vars.$on-surface-variant;
+  // TODO: Fix in design system and remove this override
+  hra-breadcrumbs .navigation .crumbs .crumb {
+    @include utils.use-font('label', 'medium');
   }
-}
 
-hra-page-section {
-  color: vars.$on-background;
+  hra-breadcrumbs {
+    a.hra-text-hyperlink {
+      color: vars.$on-surface !important;
+    }
 
-  section > .content {
-    color: vars.$on-surface-variant !important;
+    .label {
+      color: vars.$on-surface-variant;
+    }
   }
-}
 
-hra-page-label {
-  mat-chip {
-    @include mat.chips-overrides(
-      (
-        elevated-container-color: vars.$surface-bright,
-      )
-    );
-  }
-}
+  hra-page-section {
+    color: vars.$on-background;
 
-hra-list-view {
-  hra-markdown {
-    color: vars.$on-surface-variant !important;
-    a {
+    section > .content {
       color: vars.$on-surface-variant !important;
     }
   }
-}
 
-hra-markdown {
-  a {
-    color: vars.$on-surface-variant !important;
+  hra-page-label {
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          elevated-container-color: vars.$surface-bright,
+        )
+      );
+    }
   }
-}
 
-.hra-text-hyperlink {
-  color: vars.$on-surface !important;
-
-  mat-icon {
-    color: vars.$on-surface !important;
-  }
-}
-
-hra-table-of-contents {
-  .tagline {
-    color: vars.$on-surface !important;
-  }
-  .link {
-    color: vars.$on-surface-variant !important;
-  }
-}
-
-hra-action-card {
-  &.hra-action-card-variant-outlined {
-    background-color: vars.$background;
-
-    .content {
-      .tagline {
-        color: vars.$on-surface !important;
-      }
-      .description {
+  hra-list-view {
+    hra-markdown {
+      color: vars.$on-surface-variant !important;
+      a {
         color: vars.$on-surface-variant !important;
       }
     }
   }
-}
 
-hra-content-button {
-  --mat-button-text-state-layer-color: #0f0d2b;
-  --mat-button-text-pressed-state-layer-opacity: 0.1;
-
-  mat-chip {
-    @include mat.chips-overrides(
-      (
-        container-height: 1.625rem,
-        elevated-container-color: vars.$surface-bright,
-      )
-    );
-  }
-
-  .content-button {
-    background-color: vars.$background !important;
-
-    .date {
+  hra-markdown {
+    a {
       color: vars.$on-surface-variant !important;
     }
+  }
+
+  .hra-text-hyperlink {
+    color: vars.$on-surface !important;
+
+    mat-icon {
+      color: vars.$on-surface !important;
+    }
+  }
+
+  hra-table-of-contents {
     .tagline {
       color: vars.$on-surface !important;
     }
+    .link {
+      color: vars.$on-surface-variant !important;
+    }
   }
-}
 
-hra-gallery-card {
-  .content {
-    .date {
-      color: vars.$tertiary-container !important;
+  hra-action-card {
+    &.hra-action-card-variant-outlined {
+      background-color: vars.$background;
+
+      .content {
+        .tagline {
+          color: vars.$on-surface !important;
+        }
+        .description {
+          color: vars.$on-surface-variant !important;
+        }
+      }
+    }
+  }
+
+  hra-content-button {
+    --mat-button-text-state-layer-color: #0f0d2b;
+    --mat-button-text-pressed-state-layer-opacity: 0.1;
+
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          container-height: 1.625rem,
+          elevated-container-color: vars.$surface-bright,
+        )
+      );
     }
 
-    .tagline,
-    .tagline-link {
+    .content-button {
+      background-color: vars.$background !important;
+
+      .date {
+        color: vars.$on-surface-variant !important;
+      }
+      .tagline {
+        color: vars.$on-surface !important;
+      }
+    }
+  }
+
+  hra-gallery-card {
+    .content {
+      .date {
+        color: vars.$on-surface-variant !important;
+      }
+
+      .tagline,
+      .tagline-link {
+        color: vars.$on-surface !important;
+      }
+    }
+  }
+
+  hra-profile-card {
+    .content {
+      .name {
+        color: vars.$on-surface !important;
+      }
+    }
+  }
+
+  hra-navigation-category-toggle {
+    .toggle {
       color: vars.$on-surface !important;
     }
   }
-}
 
-hra-profile-card {
-  .content {
-    .name {
-      color: vars.$on-surface !important;
+  hra-social-media-button {
+    a[mat-icon-button].hra-icon-button-variant-color {
+      --mat-icon-button-icon-color: #{vars.$primary};
+      --mat-icon-button-state-layer-color: #{vars.$primary};
+    }
+
+    a[mat-icon-button].hra-icon-button-variant-light {
+      --mat-icon-button-icon-color: #ffffff;
+      --mat-icon-button-state-layer-color: #ffffff;
     }
   }
-}
 
-hra-navigation-category-toggle {
-  .toggle {
-    color: vars.$on-surface !important;
-  }
-}
+  @include mat.button-overrides(
+    (
+      filled-label-text-color: vars.$on-primary-container,
+      filled-state-layer-color: vars.$on-primary-container,
+      filled-container-color: vars.$primary-container,
+      text-label-text-color: vars.$on-surface,
+      text-state-layer-color: vars.$on-surface,
+    )
+  );
 
-hra-social-media-button {
-  a[mat-icon-button].hra-icon-button-variant-color {
-    --mat-icon-button-icon-color: #{vars.$primary};
-    --mat-icon-button-state-layer-color: #{vars.$primary};
-  }
-}
+  [mat-button] {
+    &.hra-button-variant-secondary:not(.hra-cta-button) {
+      --mat-button-text-label-text-color: #{vars.$on-surface} !important;
+      --mat-button-text-state-layer-color: #{vars.$on-surface} !important;
+    }
 
-@include mat.button-overrides(
-  (
-    filled-label-text-color: vars.$on-primary-container,
-    filled-state-layer-color: vars.$on-primary-container,
-    filled-container-color: vars.$primary-container,
-  )
-);
-
-[mat-button] {
-  &.hra-button-variant-secondary:not(.hra-cta-button) {
-    --mat-button-text-label-text-color: #{vars.$on-surface} !important;
-    --mat-button-text-state-layer-color: #{vars.$on-surface} !important;
+    &.hra-cta-button:not(.hra-button-variant-secondary) {
+      background-color: vars.$primary-container;
+      --mat-button-text-label-text-color: #{vars.$on-primary-container};
+      --mat-button-text-state-layer-color: #{vars.$on-primary-container};
+    }
   }
 
-  &.hra-cta-button:not(.hra-button-variant-secondary) {
-    background-color: vars.$primary-container;
-    --mat-button-text-label-text-color: #{vars.$on-primary-container};
-    --mat-button-text-state-layer-color: #{vars.$on-primary-container};
-  }
-}
-
-hra-results-indicator {
-  color: vars.$on-surface-variant;
-  background: vars.$surface-container-lowest;
-}
-
-hra-filter-menu {
-  color: vars.$on-surface;
-}
-
-hra-filter-container {
-  .top-row {
-    color: vars.$on-surface !important;
+  hra-results-indicator {
+    color: vars.$on-surface-variant;
+    background: vars.$surface-container-lowest;
   }
 
-  mat-chip {
-    @include mat.chips-overrides(
+  hra-filter-menu {
+    color: vars.$on-surface;
+  }
+
+  hra-filter-container {
+    .top-row {
+      color: vars.$on-surface !important;
+    }
+
+    .category-button {
+      --mat-button-toggle-text-color: #{vars.$on-surface} !important;
+    }
+
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          label-text-color: vars.$on-surface-variant,
+        )
+      );
+    }
+  }
+
+  mat-option {
+    --mat-option-label-text-color: #{vars.$on-surface} !important;
+    // --mat-option-selected-state-label-text-color: #{vars.$on-surface} !important;
+  }
+
+  hra-search-list {
+    @include mat.list-overrides(
       (
-        label-text-color: vars.$secondary,
+        list-item-container-color: vars.$surface-bright,
+      )
+    );
+
+    @include mat.checkbox-overrides(
+      (
+        selected-icon-color: vars.$secondary-container,
+        unselected-icon-color: vars.$secondary-container,
+        unselected-hover-icon-color: vars.$on-surface,
+        selected-hover-icon-color: vars.$on-surface,
       )
     );
   }
-}
 
-hra-search-list {
-  @include mat.list-overrides(
-    (
-      list-item-container-color: vars.$surface-bright,
-    )
-  );
-
-  @include mat.checkbox-overrides(
-    (
-      selected-icon-color: vars.$secondary-container,
-      unselected-icon-color: vars.$secondary-container,
-      unselected-hover-icon-color: vars.$on-surface,
-      selected-hover-icon-color: vars.$on-surface,
-    )
-  );
-}
-
-hra-end-of-results-indicator {
-  .results-count,
-  .end-message {
-    color: vars.$on-surface-variant !important;
+  hra-end-of-results-indicator {
+    .results-count,
+    .end-message {
+      color: vars.$on-surface-variant !important;
+    }
   }
-}
 
-mat-button-toggle-group {
-  @include mat.button-toggle-overrides(
-    (
-      background-color: vars.$background,
-      state-layer-color: #1c1b1e,
-      selected-state-text-color: vars.$on-primary-fixed,
-      selected-state-background-color: vars.$primary-fixed,
-      divider-color: vars.$outline,
-    )
-  );
-}
+  mat-button-toggle-group {
+    @include mat.button-toggle-overrides(
+      (
+        background-color: vars.$background,
+        state-layer-color: #1c1b1e,
+        selected-state-text-color: vars.$on-primary-fixed,
+        selected-state-background-color: vars.$primary-fixed,
+        divider-color: vars.$outline,
+      )
+    );
+  }
 
-mat-form-field {
-  @include mat.form-field-overrides(
-    (
-      filled-caret-color: vars.$on-surface,
-      filled-input-text-color: vars.$on-surface,
-    )
-  );
+  mat-form-field {
+    @include mat.form-field-overrides(
+      (
+        filled-caret-color: vars.$on-surface,
+        filled-input-text-color: vars.$on-surface,
+        filled-active-indicator-color: vars.$on-surface-variant,
+        filled-hover-active-indicator-color: vars.$on-surface-variant,
+        filled-focus-active-indicator-color: vars.$on-surface-variant,
+        filled-focus-label-text-color: vars.$on-surface-variant,
+        filled-hover-label-text-color: vars.$on-surface,
+        filled-label-text-color: vars.$on-surface,
+        leading-icon-color: vars.$on-surface-variant,
+      )
+    );
 
-  @include mat.select-overrides(
-    (
-      enabled-trigger-text-color: vars.$on-surface,
-      enabled-arrow-color: vars.$on-surface,
-      focused-arrow-color: vars.$on-surface,
-    )
-  );
-}
+    @include mat.option-overrides(
+      (
+        selected-state-label-text-color: vars.$on-surface,
+      )
+    );
 
-.hra-plain-tooltip {
-  --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
-  --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
+    @include mat.select-overrides(
+      (
+        enabled-trigger-text-color: vars.$on-surface,
+        enabled-arrow-color: vars.$on-surface,
+        focused-arrow-color: vars.$on-surface,
+      )
+    );
+  }
+
+  .hra-plain-tooltip {
+    --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
+    --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
+  }
 }
 
 body {
