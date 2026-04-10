@@ -40,8 +40,8 @@ const FUNDING_INDEX_URL = BASE_URL + 'assets/indexes/app-funding.json';
 const FUNDING_TYPES_INDEX_URL = BASE_URL + 'assets/indexes/app-funding-types.json';
 /** Visualizations content index URL */
 const VISUALIZATIONS_INDEX_URL = BASE_URL + 'assets/indexes/app-visualizations.json';
-/** Tags content index URL */
-const TAGS_INDEX_URL = BASE_URL + 'assets/indexes/app-tags.json';
+/** Display tags content index URL */
+const DISPLAY_TAGS_INDEX_URL = BASE_URL + 'assets/indexes/app-display-tags.json';
 /** Base URL for person content */
 const PERSON_BASE_URL = BASE_URL + 'content/people';
 
@@ -53,10 +53,7 @@ export const appRoutes: Route[] = [
     component: LandingPageComponent,
     resolve: {
       featuredContent: createJsonSpecResolver(FEATURED_INDEX_URL, FeaturedDataSchema),
-      eventTypes: createJsonSpecResolver(EVENT_TYPES_INDEX_URL, ResearchTypesDataSchema),
-      publicationTypes: createJsonSpecResolver(PUBLICATION_TYPES_INDEX_URL, ResearchTypesDataSchema),
-      fundingTypes: createJsonSpecResolver(FUNDING_TYPES_INDEX_URL, ResearchTypesDataSchema),
-      tags: createJsonSpecResolver(TAGS_INDEX_URL, TagsDataSchema),
+      tags: createJsonSpecResolver(DISPLAY_TAGS_INDEX_URL, TagsDataSchema),
     },
   },
 
@@ -154,7 +151,7 @@ export const appRoutes: Route[] = [
       publicationTypes: createJsonSpecResolver(PUBLICATION_TYPES_INDEX_URL, ResearchTypesDataSchema),
       eventTypes: createJsonSpecResolver(EVENT_TYPES_INDEX_URL, ResearchTypesDataSchema),
       fundingTypes: createJsonSpecResolver(FUNDING_TYPES_INDEX_URL, ResearchTypesDataSchema),
-      tags: createJsonSpecResolver(TAGS_INDEX_URL, TagsDataSchema),
+      tags: createJsonSpecResolver(DISPLAY_TAGS_INDEX_URL, TagsDataSchema),
     },
   },
   {

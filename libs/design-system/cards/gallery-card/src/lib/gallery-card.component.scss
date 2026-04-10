@@ -2,6 +2,8 @@
 @use '../../../../styles/vars';
 
 :host {
+  display: flex;
+  flex-direction: column;
   min-width: 17rem;
   max-width: 28rem;
   width: 100%;
@@ -16,6 +18,7 @@
   .content {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     padding-top: 1rem;
 
     .date {
@@ -38,6 +41,7 @@
 
     .tags {
       padding-top: 1.25rem;
+      margin-top: auto;
     }
   }
 

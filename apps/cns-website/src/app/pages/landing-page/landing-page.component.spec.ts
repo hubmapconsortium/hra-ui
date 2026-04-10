@@ -7,7 +7,7 @@ import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { FeaturedData } from '../../schemas/featured.schema';
-import { ResearchTypeId, ResearchTypesData } from '../../schemas/research-type.schema';
+import { ResearchTypeId } from '../../schemas/research-type.schema';
 import { ResearchCategoryId, ResearchId } from '../../schemas/research.schema';
 import { TagId, TagsData } from '../../schemas/tags.schema';
 import { LandingPageComponent } from './landing-page.component';
@@ -15,7 +15,7 @@ import { LandingPageComponent } from './landing-page.component';
 describe('LandingPageComponent', () => {
   const mockResearchItem = {
     slug: 'item-1' as ResearchId,
-    category: 'category-1' as ResearchCategoryId,
+    category: 'research' as ResearchCategoryId,
     type: 'event' as ResearchTypeId,
     title: 'Featured Item Title',
     description: 'Featured item description',
@@ -29,7 +29,7 @@ describe('LandingPageComponent', () => {
 
   const mockPublicationItem = {
     slug: 'pub-1' as ResearchId,
-    category: 'category-2' as ResearchCategoryId,
+    category: 'publication' as ResearchCategoryId,
     type: 'publication' as ResearchTypeId,
     title: 'Publication Title',
     description: 'Publication description',
@@ -42,7 +42,7 @@ describe('LandingPageComponent', () => {
 
   const mockNewsItem = {
     slug: 'news-1' as ResearchId,
-    category: 'category-3' as ResearchCategoryId,
+    category: 'news' as ResearchCategoryId,
     type: 'news' as ResearchTypeId,
     title: 'News Title',
     description: 'News description',
@@ -59,18 +59,6 @@ describe('LandingPageComponent', () => {
     news: [mockNewsItem],
   };
 
-  const mockEventTypes: ResearchTypesData = [
-    { value: 'event' as ResearchTypeId, label: 'Event' },
-    { value: 'conference' as ResearchTypeId, label: 'Conference' },
-  ];
-
-  const mockPublicationTypes: ResearchTypesData = [
-    { value: 'publication' as ResearchTypeId, label: 'Publication' },
-    { value: 'journal' as ResearchTypeId, label: 'Journal Article' },
-  ];
-
-  const mockFundingTypes: ResearchTypesData = [{ value: 'grant' as ResearchTypeId, label: 'Grant' }];
-
   const mockTags: TagsData = [
     { slug: 'tag1' as TagId, name: 'Research', description: 'Research related items' },
     { slug: 'tag2' as TagId, name: 'Publications', description: 'Publication items' },
@@ -78,20 +66,11 @@ describe('LandingPageComponent', () => {
   ];
 
   // Helper function to set up component with common providers and inputs
-  async function setupComponent(
-    featuredContent = mockFeaturedContent,
-    eventTypes = mockEventTypes,
-    publicationTypes = mockPublicationTypes,
-    fundingTypes = mockFundingTypes,
-    tags = mockTags,
-  ) {
+  async function setupComponent(featuredContent = mockFeaturedContent, tags = mockTags) {
     const renderResult = await render(LandingPageComponent, {
       providers: [provideHttpClient(), provideHttpClientTesting(), provideIcons()],
       inputs: {
         featuredContent,
-        eventTypes,
-        publicationTypes,
-        fundingTypes,
         tags,
       },
     });
@@ -214,7 +193,6 @@ describe('LandingPageComponent', () => {
       const card = getCardByTagline('Featured Item Title');
       const cardScope = within(card);
 
-      expect(cardScope.getByText('Event')).toBeInTheDocument();
       expect(cardScope.getByText('Research')).toBeInTheDocument();
     });
 
@@ -222,23 +200,6 @@ describe('LandingPageComponent', () => {
       await setupComponent();
       const card = getCardByTagline('Featured Item Title');
       expect(within(card).getByText('Jan 1, 2024')).toBeInTheDocument();
-    });
-
-    it('should use default value "Other" for unknown research type', async () => {
-      const customContent: FeaturedData = {
-        featured: [
-          {
-            ...mockResearchItem,
-            type: 'unknown-type' as ResearchTypeId,
-          },
-        ],
-        publications: [],
-        news: [],
-      };
-
-      await setupComponent(customContent);
-      const card = getCardByTagline('Featured Item Title');
-      expect(within(card).getByText('Other')).toBeInTheDocument();
     });
 
     it('should skip tags that do not have a matching label', async () => {
