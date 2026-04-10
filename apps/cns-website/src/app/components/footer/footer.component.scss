@@ -54,13 +54,11 @@
     padding: 2rem 2.5rem;
     gap: 1.5rem;
     background-color: vars.$tertiary-container;
-    color: vars.$on-tertiary-container;
+    color: vars.$on-tertiary-container !important;
 
-    .privacy {
-      button,
-      a {
-        color: vars.$on-tertiary-container !important;
-      }
+    button,
+    a {
+      color: vars.$on-tertiary-container !important;
     }
 
     @media (max-width: 840px) {
@@ -68,11 +66,18 @@
       align-items: center;
     }
 
-    span {
+    span,
+    .copyright {
       display: flex;
       @include utils.use-font(label, medium);
       align-items: center;
       width: fit-content;
+    }
+
+    hra-markdown {
+      ::ng-deep a {
+        color: vars.$on-tertiary-container !important;
+      }
     }
 
     .separator {

@@ -14,7 +14,7 @@
     min-width: 14.5rem;
     max-width: 19.75rem;
     padding: 1.5rem;
-    background: vars.$surface;
+    background: vars.$surface-container-highest;
   }
 
   .featured-link {
@@ -73,7 +73,7 @@
   }
 
   .right-side {
-    background: vars.$surface-bright;
+    background: vars.$surface;
     display: flex;
     flex-direction: column;
     min-width: 25.5rem;

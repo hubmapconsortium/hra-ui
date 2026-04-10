@@ -4,9 +4,9 @@
 
 :host {
   display: block;
-  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$on-background, 24%);
+  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$shadow, 16%);
   border-radius: 0.5rem;
-  background-color: vars.$surface-container-low;
+  background-color: vars.$surface-container-lowest;
 
   .header {
     display: flex;
@@ -16,10 +16,6 @@
 
     button[mat-icon-button] {
       color: vars.$on-surface;
-
-      mat-icon {
-        color: inherit;
-      }
     }
   }
 

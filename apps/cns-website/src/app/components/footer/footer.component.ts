@@ -9,6 +9,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CNS_SOCIAL_IDS } from '../static-data/parsed';
 import { FundingComponent } from './funding/funding.component';
 import { FUNDER_IDS } from './static-data/parsed';
+import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 
 /**
  * CNS footer component
@@ -23,6 +24,7 @@ import { FUNDER_IDS } from './static-data/parsed';
     ButtonsModule,
     FundingComponent,
     InlineSVGModule,
+    MarkdownComponent,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
@@ -38,7 +40,10 @@ export class FooterComponent {
 
   /** Copyright text (always uses current year) */
   readonly copyrightText = computed(
-    () => `© ${new Date().getFullYear()} Cyberinfrastructure for Network Science Center at Indiana University`,
+    () =>
+      `© ${new Date().getFullYear()}
+    <a hraHyperlink hraLink="https://cns.iu.edu/">Cyberinfrastructure for Network Science Center</a> at
+    <a hraHyperlink hraLink="https://iu.edu/"> Indiana University</a>`,
   );
 
   /** Open Privacy Preferences Modal */

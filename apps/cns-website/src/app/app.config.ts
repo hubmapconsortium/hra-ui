@@ -55,9 +55,9 @@ export const appConfig: ApplicationConfig = {
         },
         {
           size: 'small',
-          src: 'assets/brand/logo/cns-small.svg',
-          width: 84,
-          height: 28,
+          src: 'assets/brand/logo/cns-full-small.svg',
+          width: 228,
+          height: 39,
         },
       ],
     }),

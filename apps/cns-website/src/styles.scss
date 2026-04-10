@@ -221,9 +221,9 @@
   }
 
   hra-social-media-button {
-    a[mat-icon-button].hra-icon-button-variant-color {
-      --mat-icon-button-icon-color: #{vars.$primary};
-      --mat-icon-button-state-layer-color: #{vars.$primary};
+    a[mat-icon-button].hra-icon-button-variant-dark {
+      --mat-icon-button-icon-color: #{vars.$on-surface};
+      --mat-icon-button-state-layer-color: #{vars.$on-surface};
     }
 
     a[mat-icon-button].hra-icon-button-variant-light {
@@ -231,6 +231,13 @@
       --mat-icon-button-state-layer-color: #ffffff;
     }
   }
+
+  @include mat.icon-button-overrides(
+    (
+      icon-color: vars.$on-surface,
+      state-layer-color: vars.$on-surface,
+    )
+  );
 
   @include mat.button-overrides(
     (
@@ -284,7 +291,6 @@
 
   mat-option {
     --mat-option-label-text-color: #{vars.$on-surface} !important;
-    // --mat-option-selected-state-label-text-color: #{vars.$on-surface} !important;
   }
 
   hra-search-list {
@@ -328,9 +334,9 @@
       (
         filled-caret-color: vars.$on-surface,
         filled-input-text-color: vars.$on-surface,
-        filled-active-indicator-color: vars.$on-surface-variant,
-        filled-hover-active-indicator-color: vars.$on-surface-variant,
-        filled-focus-active-indicator-color: vars.$on-surface-variant,
+        filled-active-indicator-color: vars.$primary,
+        filled-hover-active-indicator-color: vars.$primary,
+        filled-focus-active-indicator-color: vars.$primary,
         filled-focus-label-text-color: vars.$on-surface-variant,
         filled-hover-label-text-color: vars.$on-surface,
         filled-label-text-color: vars.$on-surface,
@@ -356,6 +362,114 @@
   .hra-plain-tooltip {
     --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
     --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
+  }
+
+  .hra-consent-banner-panel {
+    @include mat.dialog-overrides(
+      (
+        container-shape: vars.$corner-none,
+      )
+    );
+  }
+
+  hra-consent-banner {
+    background-color: vars.$surface;
+    color: vars.$on-surface;
+
+    .text2 {
+      color: vars.$on-surface-variant;
+    }
+  }
+
+  hra-privacy-preferences {
+    color: vars.$on-surface;
+
+    > .header {
+      background: vars.$surface-container-low;
+    }
+
+    .privacy-details {
+      color: vars.$on-surface-variant !important;
+      background: vars.$on-secondary;
+
+      mat-icon {
+        color: vars.$on-surface;
+      }
+    }
+
+    mat-tab-group {
+      @include mat.tabs-overrides(
+        (
+          active-indicator-color: vars.$primary,
+          active-focus-indicator-color: vars.$primary,
+          active-hover-indicator-color: vars.$primary,
+          active-focus-label-text-color: vars.$on-surface,
+          inactive-label-text-color: vars.$on-surface-variant,
+        )
+      );
+    }
+
+    @include mat.slide-toggle-overrides(
+      (
+        selected-track-color: vars.$primary,
+        selected-focus-track-color: vars.$primary,
+        selected-hover-track-color: vars.$primary,
+        selected-pressed-track-color: vars.$primary,
+        selected-handle-color: vars.$on-primary,
+        selected-focus-handle-color: vars.$on-primary,
+        selected-hover-handle-color: vars.$on-primary,
+        selected-pressed-handle-color: vars.$on-primary,
+        selected-focus-state-layer-color: vars.$primary,
+        selected-hover-state-layer-color: vars.$primary,
+        selected-pressed-state-layer-color: vars.$primary,
+        selected-icon-color: vars.$primary,
+
+        unselected-track-color: vars.$surface-variant,
+        unselected-hover-track-color: vars.$surface-variant,
+        unselected-focus-track-color: vars.$surface-variant,
+        unselected-pressed-track-color: vars.$surface-variant,
+        track-outline-color: vars.$outline,
+        unselected-handle-color: vars.$outline,
+        unselected-focus-handle-color: vars.$outline,
+        unselected-hover-handle-color: vars.$outline,
+        unselected-pressed-handle-color: vars.$outline,
+        unselected-focus-state-layer-color: vars.$outline,
+        unselected-hover-state-layer-color: vars.$outline,
+        unselected-pressed-state-layer-color: vars.$outline,
+
+        disabled-track-opacity: 0.38,
+      )
+    );
+  }
+
+  hra-categories {
+    .description {
+      color: vars.$on-surface-variant;
+    }
+  }
+
+  hra-copyable-url-container {
+    .text {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-server-error-page {
+    height: calc(100vh - 3.5rem);
+    background-color: unset !important;
+
+    .title {
+      color: vars.$on-background;
+    }
+    .description {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-no-results-indicator {
+    .indicator-text {
+      color: vars.$primary !important;
+    }
   }
 }
 
