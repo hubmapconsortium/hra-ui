@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'cns-theme' as cns;
 @use 'sass:map';
 
@@ -5,30 +6,29 @@
 @use 'utils';
 @use 'animate.css';
 @use 'vars';
-@use '@angular/material' as mat;
 
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);
   @include mat.theme-overrides(
     (
-      background: #ffffff,
-      outline: #869181,
-      on-error-container: #410002,
-      on-primary-container: #ffffff,
-      on-secondary-container: #ffffff,
-      on-tertiary-container: #ffffff,
-      on-surface-variant: #303a2f,
-      primary: #0b1300,
-      primary-container: #141f00,
-      secondary: #1d2a00,
-      secondary-container: #2e4100,
-      surface: #f1f3ee,
-      surface-bright: #fcfdf9,
-      surface-container: #eff1eb,
-      surface-container-low: #f7f8f4,
-      surface-variant: #e1e8da,
-      tertiary: #304e26,
-      tertiary-container: #47663c,
+      background: map.get(cns.$theme, color, primary, 100),
+      outline: map.get(cns.$theme, color, primary, neutral, 60),
+      on-error-container: map.get(cns.$theme, color, primary, error, 10),
+      on-primary-container: map.get(cns.$theme, color, primary, 100),
+      on-secondary-container: map.get(cns.$theme, color, primary, secondary, 100),
+      on-tertiary-container: map.get(cns.$theme, color, tertiary, 100),
+      on-surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 25),
+      primary: map.get(cns.$theme, color, primary, 5),
+      primary-container: map.get(cns.$theme, color, primary, 10),
+      secondary: map.get(cns.$theme, color, primary, secondary, 15),
+      secondary-container: map.get(cns.$theme, color, primary, secondary, 25),
+      surface: map.get(cns.$theme, color, primary, neutral, 96),
+      surface-bright: map.get(cns.$theme, color, primary, neutral, 99),
+      surface-container: map.get(cns.$theme, color, primary, neutral, 95),
+      surface-container-low: map.get(cns.$theme, color, primary, neutral, 98),
+      surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 92),
+      tertiary: map.get(cns.$theme, color, tertiary, 30),
+      tertiary-container: map.get(cns.$theme, color, tertiary, 40),
     )
   );
 
@@ -68,29 +68,16 @@
         tertiary-container: map.get(cns.$theme, color, tertiary, 80),
       )
     );
+  }
 
-    cns-landing-page {
-      background: utils.with-alpha(vars.$primary, 0.08);
-
-      .content {
-        background-color: rgba(0, 0, 0, 0.7);
-        background-blend-mode: darken;
-      }
-    }
-
-    cns-header {
-      background: linear-gradient(0deg, rgba(12, 14, 10, 0.48) 0%, rgba(12, 14, 10, 0.8) 12%, rgba(12, 14, 10, 1) 32%);
-    }
+  body {
+    height: 100vh;
+    min-width: 20rem;
   }
 
   ng-scrollbar {
     --scrollbar-thumb-color: #{utils.with-alpha(vars.$inverse-surface, 0.72)};
     --hra-scroll-overflow-fade-color: #{vars.$background};
-  }
-
-  // TODO: Fix in design system and remove this override
-  hra-breadcrumbs .navigation .crumbs .crumb {
-    @include utils.use-font('label', 'medium');
   }
 
   hra-breadcrumbs {
@@ -120,9 +107,6 @@
   hra-list-view {
     hra-markdown {
       color: vars.$on-surface-variant !important;
-      a {
-        color: vars.$on-surface-variant !important;
-      }
     }
   }
 
@@ -132,7 +116,7 @@
     }
   }
 
-  .hra-text-hyperlink {
+  a.hra-text-hyperlink {
     color: vars.$on-surface !important;
 
     mat-icon {
@@ -172,14 +156,13 @@
   }
 
   hra-content-button {
-    --mat-button-text-state-layer-color: #0f0d2b;
     --mat-button-text-pressed-state-layer-opacity: 0.1;
 
     mat-chip {
       @include mat.chips-overrides(
         (
           container-height: 1.625rem,
-          elevated-container-color: vars.$surface-bright,
+          elevated-container-color: transparent,
         )
       );
     }
@@ -196,24 +179,26 @@
     }
   }
 
-  hra-gallery-card {
-    .content {
-      .date {
-        color: vars.$on-surface-variant !important;
-      }
+  hra-table {
+    .mat-sort-header-arrow {
+      color: unset !important;
+    }
+  }
 
-      .tagline,
-      .tagline-link {
-        color: vars.$on-surface !important;
-      }
+  hra-gallery-card {
+    .date {
+      color: vars.$on-surface-variant !important;
+    }
+
+    .tagline,
+    .tagline-link {
+      color: vars.$on-surface !important;
     }
   }
 
   hra-profile-card {
-    .content {
-      .name {
-        color: vars.$on-surface !important;
-      }
+    .name {
+      color: vars.$on-surface !important;
     }
   }
 
@@ -292,10 +277,6 @@
     }
   }
 
-  mat-option {
-    --mat-option-label-text-color: #{vars.$on-surface} !important;
-  }
-
   hra-search-list {
     mat-list-option {
       @include mat.list-overrides(
@@ -311,7 +292,6 @@
 
   @include mat.checkbox-overrides(
     (
-      // Unselected checkbox styles
       unselected-focus-icon-color: vars.$primary,
       unselected-hover-icon-color: vars.$primary,
       unselected-icon-color: vars.$on-surface-variant,
@@ -320,14 +300,13 @@
       unselected-hover-state-layer-color: vars.$on-surface-variant,
       unselected-pressed-state-layer-color: vars.$on-surface-variant,
 
-      // Selected checkbox styles
       selected-focus-icon-color: vars.$primary,
       selected-hover-icon-color: vars.$primary,
       selected-icon-color: vars.$primary,
 
       selected-focus-state-layer-color: vars.$primary,
       selected-hover-state-layer-color: vars.$primary,
-      selected-pressed-state-layer-color: vars.$primary
+      selected-pressed-state-layer-color: vars.$primary,
     )
   );
 
@@ -369,7 +348,11 @@
 
     @include mat.option-overrides(
       (
+        focus-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
+        hover-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
+        label-text-color: vars.$on-surface,
         selected-state-label-text-color: vars.$on-surface,
+        selected-state-layer-color: utils.with-alpha(vars.$tertiary, 16%),
       )
     );
 
@@ -378,19 +361,7 @@
         enabled-trigger-text-color: vars.$on-surface,
         enabled-arrow-color: vars.$on-surface,
         focused-arrow-color: vars.$on-surface,
-      )
-    );
-  }
-
-  .hra-plain-tooltip {
-    --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
-    --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
-  }
-
-  .hra-consent-banner-panel {
-    @include mat.dialog-overrides(
-      (
-        container-shape: vars.$corner-none,
+        panel-background-color: vars.$surface-container-low,
       )
     );
   }
@@ -406,6 +377,8 @@
 
   hra-privacy-preferences {
     color: vars.$on-surface;
+    box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$shadow, 16%);
+    background-color: vars.$surface-container-lowest;
 
     > .header {
       background: vars.$surface-container-low;
@@ -477,7 +450,8 @@
     }
   }
 
-  hra-server-error-page {
+  hra-server-error-page,
+  hra-not-found-page {
     height: calc(100vh - 3.5rem);
     background-color: unset !important;
 
@@ -494,9 +468,9 @@
       color: vars.$primary !important;
     }
   }
-}
 
-body {
-  height: 100vh;
-  min-width: 20rem;
+  .hra-plain-tooltip {
+    --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
+    --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
+  }
 }

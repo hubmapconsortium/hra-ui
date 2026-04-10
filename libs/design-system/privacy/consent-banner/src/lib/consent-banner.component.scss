@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils' as utils;
 @use '../../../../styles/vars' as vars;
 
@@ -164,6 +165,12 @@
 ::ng-deep .hra-consent-banner-panel {
   box-shadow: 0rem -0.75rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
   animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  @include mat.dialog-overrides(
+    (
+      container-shape: vars.$corner-none,
+    )
+  );
 }
 
 @keyframes slideUpFromBottom {

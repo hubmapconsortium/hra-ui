@@ -4,9 +4,9 @@
 
 :host {
   display: block;
-  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$shadow, 16%);
+  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$on-background, 24%);
   border-radius: 0.5rem;
-  background-color: vars.$surface-container-lowest;
+  background-color: vars.$surface-container-low;
 
   .header {
     display: flex;
