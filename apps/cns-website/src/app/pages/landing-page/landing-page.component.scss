@@ -44,11 +44,6 @@
 
   .content-filter {
     margin-bottom: 3rem;
-    @include mat.button-toggle-overrides(
-      (
-        shape: 2rem,
-      )
-    );
   }
 
   .content-grid {

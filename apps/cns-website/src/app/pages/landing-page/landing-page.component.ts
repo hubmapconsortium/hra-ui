@@ -10,6 +10,7 @@ import { ResearchTypeId, ResearchTypesData } from '../../schemas/research-type.s
 import { ResearchItem } from '../../schemas/research.schema';
 import { TagId, TagsData } from '../../schemas/tags.schema';
 import { getImageUrl } from '../../utils/research-item-images';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /** Content type item */
 interface ContentTypeItem {
@@ -56,6 +57,7 @@ const CONTENT_TYPE_ITEMS: ContentTypeItem[] = [
     GalleryGridComponent,
     ContentButtonComponent,
     GalleryGridItemDirective,
+    ButtonsModule,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',

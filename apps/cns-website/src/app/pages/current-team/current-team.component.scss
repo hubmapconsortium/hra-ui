@@ -24,12 +24,7 @@
       .filters {
         .team-toggle {
           width: min-content;
-
-          @include mat.button-toggle-overrides(
-            (
-              shape: vars.$corner-extra-small,
-            )
-          );
+          margin: -0.5rem 0 0.5rem;
         }
 
         .sort-by,
@@ -80,6 +75,7 @@
         max-width: 81.25rem;
         z-index: 10;
         padding: 2rem 2.5rem;
+        background: vars.$background;
 
         @media (max-width: 639px) {
           padding: 2rem 1.25rem;

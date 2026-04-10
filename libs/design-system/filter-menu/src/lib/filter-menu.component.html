@@ -23,7 +23,6 @@
 <ng-scrollbar hraScrollOverflowFade>
   <div class="customize section">
     <div class="header">
-      <hra-icon class="icon" fontIcon="tune" />
       <span class="title">Customize</span>
     </div>
     <div class="controls">
@@ -33,8 +32,7 @@
 
   <div hraFeature="filter-list" class="filters section">
     <div class="header">
-      <hra-icon class="icon" fontIcon="filter_list" />
-      <span class="title">Filters</span>
+      <span class="title">Filter</span>
     </div>
     @for (filter of filtersWithCounts(); track $index) {
       <hra-filter-container

@@ -48,17 +48,18 @@
   }
 
   .privacy-container {
+    @include utils.use-font(label, medium);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 2rem 2.5rem;
     gap: 1.5rem;
     background-color: vars.$tertiary-container;
-    color: vars.$on-tertiary-container !important;
+    color: vars.$on-tertiary-container;
 
     button,
     a {
-      color: vars.$on-tertiary-container !important;
+      color: vars.$on-tertiary-container;
     }
 
     @media (max-width: 840px) {
@@ -66,18 +67,10 @@
       align-items: center;
     }
 
-    span,
-    .copyright {
+    .privacy {
       display: flex;
-      @include utils.use-font(label, medium);
       align-items: center;
       width: fit-content;
-    }
-
-    hra-markdown {
-      ::ng-deep a {
-        color: vars.$on-tertiary-container !important;
-      }
     }
 
     .separator {
