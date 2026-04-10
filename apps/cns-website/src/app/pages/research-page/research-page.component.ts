@@ -21,7 +21,7 @@ import { NgScrollbar } from 'ngx-scrollbar';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { ResearchTypesData } from '../../schemas/research-type.schema';
-import { ResearchData } from '../../schemas/research.schema';
+import { ResearchCategoryId, ResearchData } from '../../schemas/research.schema';
 import { TagId, TagsData } from '../../schemas/tags.schema';
 import { ScrollbarStore } from '../../state/scrollbar/scrollbar.store';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
@@ -128,17 +128,15 @@ export class ResearchPageComponent {
 
   /**
    * Gets tag items from array of tag ids using the store's tags map
+   * @param category research category for the tags (e.g. 'publication', 'event')
    * @param ids tag ids
    * @returns tag items
    */
-  getTagItems(ids: TagId[]): TagItem[] {
-    return ids
-      .map((id) => {
-        const tag = this.store.tagsMap().get(id);
-        return tag
-          ? { slug: id, name: tag.name, description: tag.description }
-          : { slug: id, name: id, description: '' };
-      })
-      .filter((tag) => tag.slug !== 'featured');
+  getTagItems(category: ResearchCategoryId, ids: TagId[]): TagItem[] {
+    const tagsMap = this.store.tagsMap();
+    return [category, ...ids]
+      .map((id) => tagsMap.get(id))
+      .filter((tag) => tag !== undefined)
+      .slice(0, 2);
   }
 }

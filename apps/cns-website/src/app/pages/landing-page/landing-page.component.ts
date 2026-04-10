@@ -6,9 +6,8 @@ import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-butt
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { FeaturedData, FeaturedDataKey } from '../../schemas/featured.schema';
-import { ResearchTypeId, ResearchTypesData } from '../../schemas/research-type.schema';
 import { ResearchItem } from '../../schemas/research.schema';
-import { TagId, TagsData } from '../../schemas/tags.schema';
+import { TagsData } from '../../schemas/tags.schema';
 import { getImageUrl } from '../../utils/research-item-images';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
@@ -67,28 +66,8 @@ export class LandingPageComponent {
   /** Featured content data */
   readonly featuredContent = input.required<FeaturedData>();
 
-  /** Event types data */
-  readonly eventTypes = input.required<ResearchTypesData>();
-
-  /** Publication types data */
-  readonly publicationTypes = input.required<ResearchTypesData>();
-
-  /** Funding types data */
-  readonly fundingTypes = input.required<ResearchTypesData>();
-
   /** Tags data */
   readonly tags = input.required<TagsData>();
-
-  /** All types data in a single array */
-  private readonly allTypes = computed(() => [
-    {
-      label: 'News',
-      value: 'news' as ResearchTypeId,
-    },
-    ...this.eventTypes(),
-    ...this.publicationTypes(),
-    ...this.fundingTypes(),
-  ]);
 
   /** Currently selected content type */
   protected readonly contentType = signal<FeaturedDataKey>('featured');
@@ -126,31 +105,18 @@ export class LandingPageComponent {
    * @returns Mapped content card data
    */
   private toContentCard(item: ResearchItem): ContentCard {
-    const { slug, title: tagline, type, tags, dateStart: date, link } = item;
-    const typeLabel = this.getTypeLabel(type);
-    const tagLabels = this.getTagLabels(tags);
+    const { slug, title: tagline, category, tags, dateStart: date, link } = item;
+    const tagLabels = this.getTagLabels([category, ...tags]);
 
     return {
       slug,
       tagline,
-      tags: [typeLabel, ...tagLabels],
+      tags: tagLabels.slice(0, 2),
       date,
       image: getImageUrl(item),
       link: link ?? '#',
       external: link !== undefined && isAbsolute(link),
     };
-  }
-
-  /**
-   * Gets the label for a given research type slug
-   *
-   * @param slug ResearchItem type slug
-   * @returns The label for the research type, or 'Other' if not found
-   */
-  private getTypeLabel(slug: ResearchTypeId): string {
-    const types = this.allTypes();
-    const type = types.find((t) => t.value === slug);
-    return type?.label ?? 'Other';
   }
 
   /**
@@ -160,12 +126,12 @@ export class LandingPageComponent {
    * @param slugs Slugs to find labels for
    * @returns The labels for the given tag slugs
    */
-  private getTagLabels(slugs: TagId[]): string[] {
+  private getTagLabels(slugs: string[]): string[] {
     const tags = this.tags();
     const labels: string[] = [];
     for (const slug of slugs) {
       const tag = tags.find((t) => t.slug === slug);
-      if (tag && tag.slug !== 'featured') {
+      if (tag) {
         labels.push(tag.name);
       }
     }

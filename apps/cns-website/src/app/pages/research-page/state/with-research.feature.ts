@@ -43,9 +43,7 @@ export function withResearch() {
         /** Count of research items */
         numResearchItems: computed(() => store.researchItems().length),
         /** Map of tags for quick lookup */
-        tagsMap: computed(
-          () => new Map(store.tags().map((tag) => [tag.slug, { name: tag.name, description: tag.description }])),
-        ),
+        tagsMap: computed(() => new Map(store.tags().map((tag) => [tag.slug as string, tag]))),
       };
     }),
     withMethods((store) => ({
