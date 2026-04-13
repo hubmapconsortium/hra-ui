@@ -22,6 +22,12 @@ $category-inner-horizontal-padding: 0.5rem;
     height: $header-height;
     padding: 0 $horizontal-padding;
 
+    .logo {
+      display: flex;
+      justify-content: center;
+      color: vars.$on-surface;
+    }
+
     button {
       @include mat.icon-button-overrides(
         (
