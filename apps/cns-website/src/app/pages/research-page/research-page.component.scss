@@ -20,29 +20,6 @@
     );
   }
 
-  mat-form-field {
-    @include mat.form-field-overrides(
-      (
-        filled-active-indicator-color: vars.$on-surface,
-        filled-container-color: vars.$surface-container-high,
-        filled-focus-active-indicator-color: vars.$on-surface,
-        filled-hover-label-text-color: vars.$on-surface-variant,
-        filled-label-text-color: vars.$on-surface-variant,
-        filled-label-text-font: vars.$label-medium-font,
-        filled-label-text-size: vars.$label-medium-size,
-        filled-label-text-weight: vars.$label-medium-weight,
-        filled-label-text-tracking: vars.$label-medium-tracking,
-        leading-icon-color: vars.$on-surface,
-      )
-    );
-
-    @include mat.select-overrides(
-      (
-        enabled-trigger-text-color: vars.$on-surface,
-      )
-    );
-  }
-
   mat-sidenav-content {
     display: flex;
     flex-direction: column;

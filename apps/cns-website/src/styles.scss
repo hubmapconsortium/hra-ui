@@ -12,12 +12,12 @@
   @include mat.theme-overrides(
     (
       background: map.get(cns.$theme, color, primary, 100),
-      outline: map.get(cns.$theme, color, primary, neutral, 60),
       on-error-container: map.get(cns.$theme, color, primary, error, 10),
       on-primary-container: map.get(cns.$theme, color, primary, 100),
       on-secondary-container: map.get(cns.$theme, color, primary, secondary, 100),
       on-tertiary-container: map.get(cns.$theme, color, tertiary, 100),
       on-surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 25),
+      outline: map.get(cns.$theme, color, primary, neutral, 60),
       primary: map.get(cns.$theme, color, primary, 5),
       primary-container: map.get(cns.$theme, color, primary, 10),
       secondary: map.get(cns.$theme, color, primary, secondary, 15),
@@ -51,6 +51,7 @@
         on-surface: map.get(cns.$theme, color, primary, neutral, 95),
         on-tertiary: map.get(cns.$theme, color, tertiary, 5),
         on-tertiary-container: map.get(cns.$theme, color, tertiary, 5),
+        outline-variant: map.get(cns.$theme, color, primary, neutral-variant, 40),
         primary: map.get(cns.$theme, color, primary, 95),
         primary-container: map.get(cns.$theme, color, primary, 90),
         secondary: map.get(cns.$theme, color, primary, secondary, 95),
@@ -334,15 +335,26 @@
   mat-form-field {
     @include mat.form-field-overrides(
       (
-        filled-caret-color: vars.$on-surface,
+        filled-active-indicator-color: vars.$on-surface,
+        filled-container-color: vars.$surface-container-highest,
+        filled-focus-active-indicator-color: vars.$on-surface,
+        filled-hover-label-text-color: vars.$on-surface-variant,
         filled-input-text-color: vars.$on-surface,
-        filled-active-indicator-color: vars.$primary,
-        filled-hover-active-indicator-color: vars.$primary,
-        filled-focus-active-indicator-color: vars.$primary,
-        filled-focus-label-text-color: vars.$on-surface-variant,
-        filled-hover-label-text-color: vars.$on-surface,
-        filled-label-text-color: vars.$on-surface,
-        leading-icon-color: vars.$on-surface-variant,
+        filled-label-text-color: vars.$on-surface-variant,
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-weight: vars.$label-medium-weight,
+        filled-label-text-tracking: vars.$label-medium-tracking,
+        leading-icon-color: vars.$on-surface,
+      )
+    );
+
+    @include mat.select-overrides(
+      (
+        enabled-trigger-text-color: vars.$on-surface,
+        enabled-arrow-color: vars.$on-surface,
+        focused-arrow-color: vars.$on-surface,
+        panel-background-color: vars.$surface-container-low,
       )
     );
 
@@ -355,15 +367,16 @@
         selected-state-layer-color: utils.with-alpha(vars.$tertiary, 16%),
       )
     );
+  }
 
-    @include mat.select-overrides(
-      (
-        enabled-trigger-text-color: vars.$on-surface,
-        enabled-arrow-color: vars.$on-surface,
-        focused-arrow-color: vars.$on-surface,
-        panel-background-color: vars.$surface-container-low,
-      )
-    );
+  hra-search-filter {
+    mat-form-field {
+      @include mat.form-field-overrides(
+        (
+          leading-icon-color: vars.$on-surface-variant,
+        )
+      );
+    }
   }
 
   hra-consent-banner {

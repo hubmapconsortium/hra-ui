@@ -8,13 +8,12 @@
   max-width: 81.25rem;
   border-radius: 0.5rem;
   overflow: hidden;
-  width: calc(100vw - 2rem);
+  width: calc(100vw);
 
   .featured-section {
-    min-width: 14.5rem;
-    max-width: 19.75rem;
+    width: 19.75rem;
     padding: 1.5rem;
-    background: vars.$surface-container-highest;
+    background: vars.$surface-variant;
   }
 
   .featured-link {
@@ -73,7 +72,7 @@
   }
 
   .right-side {
-    background: vars.$surface;
+    background: vars.$surface-container;
     display: flex;
     flex-direction: column;
     min-width: 25.5rem;
