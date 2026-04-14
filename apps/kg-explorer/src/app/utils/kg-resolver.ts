@@ -1,22 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { DigitalObjectsJsonLd, HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
+import { HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
 import { catchError, map, of } from 'rxjs';
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
 import { injectMirrorUrl } from './endpoints';
 import { getDocumentationUrl, getProductLabel } from './utils';
-
-/**
- * Creates a resolver that fetches the digital object data from a url
- * @returns Resolver
- */
-export function kgResolver(): ResolveFn<DigitalObjectsJsonLd> {
-  return () => {
-    const kg = inject(HraKgService);
-    return kg.digitalObjects();
-  };
-}
 
 /**
  * Creates a resolver for digital object metadata from the current route

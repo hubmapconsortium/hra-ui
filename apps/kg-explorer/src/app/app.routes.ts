@@ -3,6 +3,8 @@ import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-fou
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { TableColumn } from '@hra-ui/design-system/table';
 
+import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
+import { DigitalObjectsJsonLdSchema } from './digital-objects-metadata.schema';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
 import {
@@ -11,7 +13,6 @@ import {
   cellTypeResolver,
   documentationUrlResolver,
   doMetadataResolver,
-  kgResolver,
   ontologyResolver,
   productLabelResolver,
 } from './utils/kg-resolver';
@@ -100,6 +101,8 @@ export interface HelpMenuOptions {
   icon?: string;
 }
 
+const DO_URL = 'https://cdn.humanatlas.io/digital-objects/kg/digital-objects.jsonld';
+
 /** Application routes */
 export const appRoutes: Route[] = [
   {
@@ -111,7 +114,7 @@ export const appRoutes: Route[] = [
       columns: DO_COLUMNS,
     },
     resolve: {
-      data: kgResolver(),
+      data: createJsonSpecResolver(DO_URL, DigitalObjectsJsonLdSchema),
       asctbTermOccurrences: asctbResolver(),
       ontologyTree: ontologyResolver(),
       cellTypeTree: cellTypeResolver(),
@@ -125,7 +128,7 @@ export const appRoutes: Route[] = [
       columns: METADATA_COLUMNS,
     },
     resolve: {
-      doData: kgResolver(),
+      doData: createJsonSpecResolver(DO_URL, DigitalObjectsJsonLdSchema),
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),

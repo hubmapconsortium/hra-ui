@@ -1,4 +1,4 @@
-import { DigitalObjectInfo } from '@hra-api/ng-client';
+import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
 
 /** Tooltip data interface */
 export interface TooltipData {

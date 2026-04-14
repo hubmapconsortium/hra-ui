@@ -4,7 +4,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
+import { V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
@@ -15,7 +15,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
-import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
+import { DigitalObjectsJsonLd, DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
 
@@ -142,14 +142,23 @@ export class MetadataPageComponent {
 
         this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
           if (pageItem) {
-            this.availableVersions.set(pageItem.versions);
+            if (Array.isArray(pageItem.versions)) {
+              this.availableVersions.set(pageItem.versions);
+            } else {
+              this.availableVersions.set([pageItem.versions]);
+            }
             const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
-            for (const organId of pageItem.organIds || []) {
-              tags.push({
-                id: organId,
-                label: sentenceCase(ontologyData.nodes[organId].label || ''),
-                type: 'organs',
-              });
+            if (pageItem.organIds) {
+              const ids = Array.isArray(pageItem.organIds) ? pageItem.organIds : [pageItem.organIds];
+              for (const organId of ids) {
+                if (ontologyData.nodes[organId]) {
+                  tags.push({
+                    id: organId,
+                    label: sentenceCase(ontologyData.nodes[organId].label || ''),
+                    type: 'organs',
+                  });
+                }
+              }
             }
             this.tags.set(tags);
           }

@@ -1,3 +1,4 @@
+import { DigitalObjectInfoTypeEnum } from '@hra-api/ng-client';
 import * as z from 'zod';
 
 /** Person info type */
@@ -81,3 +82,40 @@ export const DigitalObjectMetadataSchema = z
     }),
   })
   .meta({ id: 'DigitalObjectMetadata' });
+
+/** Digital object info type */
+export type DigitalObjectInfo = z.infer<typeof DigitalObjectInfoSchema>;
+
+/** Digital object schema */
+export const DigitalObjectInfoSchema = z
+  .object({
+    '@id': z.string(),
+    '@type': z.enum(DigitalObjectInfoTypeEnum),
+    title: z.string(),
+    doType: z.string(),
+    doName: z.string(),
+    doVersion: z.string(),
+    lastUpdated: z.object({
+      '@type': z.string(),
+      '@value': z.string(),
+    }),
+    hraVersions: z.union([z.string(), z.string().array()]).optional(),
+    versions: z.union([z.string(), z.string().array()]),
+    purl: z.string(),
+    datasets: z.union([z.string(), z.string().array()]),
+    lod: z.string(),
+    cell_count: z.string().optional(),
+    biomarker_count: z.string().optional(),
+    organs: z.union([z.string(), z.string().array()]).optional(),
+    organIds: z.union([z.string(), z.string().array()]).optional(),
+  })
+  .meta({ id: 'DigitalObjectInfo' });
+
+export type DigitalObjectsJsonLd = z.infer<typeof DigitalObjectsJsonLdSchema>;
+
+export const DigitalObjectsJsonLdSchema = z
+  .object({
+    '@context': z.record(z.string(), z.any()),
+    '@graph': z.array(DigitalObjectInfoSchema),
+  })
+  .meta({ id: 'DigitalObjectsJsonLd' });

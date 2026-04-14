@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { DigitalObjectInfo, DigitalObjectsJsonLd, HraKgService, OntologyTree } from '@hra-api/ng-client';
+import { HraKgService, OntologyTree } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BrandModule } from '@hra-ui/design-system/brand';
@@ -18,7 +18,7 @@ import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/tab
 import { fromEvent, Observable } from 'rxjs';
 
 import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
-import { DigitalObjectMetadata } from '../../digital-objects-metadata.schema';
+import { DigitalObjectInfo, DigitalObjectsJsonLd, DigitalObjectMetadata } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import {
   FILTER_CATEGORY_INFO,
@@ -501,7 +501,7 @@ export class MainPageComponent {
         organTooltip: sentenceCase(organLabel || 'All Organs'),
         cellCount: item.cell_count,
         biomarkerCount: item.biomarker_count,
-        lastPublished: this.formatDateToYYYYMM(item.lastUpdated),
+        lastPublished: this.formatDateToYYYYMM(item.lastUpdated['@value']),
       } as TableRow;
     });
   }
