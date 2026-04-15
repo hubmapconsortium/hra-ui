@@ -2,11 +2,11 @@
 @use 'utils';
 @use 'vars';
 
-$header-height: 4.5rem;
+$header-height: 6rem;
 $category-height: 4rem;
 $socials-height: 4.5rem;
-$horizontal-padding: 1.25rem;
-$category-inner-horizontal-padding: 0.5rem;
+$horizontal-padding: 1.5rem;
+$category-inner-horizontal-padding: 0.75rem;
 
 :host {
   display: flex;
@@ -39,6 +39,12 @@ $category-inner-horizontal-padding: 0.5rem;
 
   .divider {
     margin: 0 $horizontal-padding;
+
+    @include mat.divider-overrides(
+      (
+        color: vars.$outline,
+      )
+    );
   }
 
   .categories-container {
@@ -97,11 +103,12 @@ $category-inner-horizontal-padding: 0.5rem;
         }
 
         ::ng-deep .mat-expansion-panel-body {
-          padding: 0 0 1.25rem;
+          padding: 0;
         }
 
         .content {
-          margin: 0 $category-inner-horizontal-padding;
+          padding: 0.5rem 0 1.25rem;
+          border-top: 1px solid vars.$outline-variant;
         }
       }
 
@@ -117,6 +124,6 @@ $category-inner-horizontal-padding: 0.5rem;
     align-items: center;
     height: $socials-height;
     padding: 1rem $horizontal-padding;
-    background: vars.$surface;
+    background: vars.$surface-container-high;
   }
 }
