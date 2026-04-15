@@ -37,7 +37,11 @@
             <mat-label>Search</mat-label>
             <input matInput [formControl]="searchControl" />
           </mat-form-field>
-          <hra-results-indicator description="Viewing" [value]="filteredRows().length" [total]="allRows().length" />
+          <hra-results-indicator
+            description="Viewing"
+            [value]="filteredRows().length"
+            [total]="filter.allRows().length"
+          />
         </div>
         <hra-table
           variant="divider"

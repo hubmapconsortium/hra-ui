@@ -301,8 +301,9 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
  * @param item Digital object data item
  * @returns Organ id
  */
-export function getOrganId(item?: DigitalObjectInfo): string {
-  return item?.organIds && item.organIds.length === 1 ? item.organIds[0] : '';
+export function getOrganId(item?: DigitalObjectInfo): string | undefined {
+  const ids = handleValue(item?.organIds);
+  return ids && ids.length === 1 ? ids[0] : undefined;
 }
 
 /**
@@ -311,7 +312,11 @@ export function getOrganId(item?: DigitalObjectInfo): string {
  * @returns Organ name in design system format
  */
 export function getOrganIcon(item?: DigitalObjectInfo): string {
-  return `organ:${ORGAN_ICON_MAP[getOrganId(item)] ?? 'all-organs'}`;
+  if (getOrganId(item)) {
+    // console.warn(getOrganId(item));
+    return `organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? 'all-organs'}`;
+  }
+  return 'organ:all-organs';
 }
 
 /**
@@ -358,4 +363,11 @@ export function getDocumentationUrl(doType: string): string {
 export function sentenceCase(value: string): string {
   const processedValue = value.trim().toLowerCase();
   return processedValue.charAt(0).toUpperCase() + processedValue.slice(1);
+}
+
+export function handleValue(value: string | string[] | undefined): string[] | undefined {
+  if (typeof value === 'string') {
+    return [value];
+  }
+  return value;
 }

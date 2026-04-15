@@ -4,7 +4,7 @@ import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/serv
 import { TableColumn } from '@hra-ui/design-system/table';
 
 import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
-import { DigitalObjectsJsonLdSchema } from './digital-objects-metadata.schema';
+import { AsctbTermsSchema, DigitalObjectsJsonLdSchema, TermsIndexSchema } from './digital-objects-metadata.schema';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
 import {
@@ -102,6 +102,8 @@ export interface HelpMenuOptions {
 }
 
 const DO_URL = 'https://cdn.humanatlas.io/digital-objects/kg/digital-objects.jsonld';
+const ASCTB_TERMS_URL = 'https://cdn.humanatlas.io/digital-objects/kg/asctb-terms.json';
+const KG_TERMS_INDEX_URL = 'https://cdn.humanatlas.io/digital-objects/kg/kg-terms-index.json';
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -115,10 +117,12 @@ export const appRoutes: Route[] = [
     },
     resolve: {
       data: createJsonSpecResolver(DO_URL, DigitalObjectsJsonLdSchema),
-      asctbTermOccurrences: asctbResolver(),
-      ontologyTree: ontologyResolver(),
-      cellTypeTree: cellTypeResolver(),
-      biomarkerTree: biomarkersResolver(),
+      asctbTerms: createJsonSpecResolver(ASCTB_TERMS_URL, AsctbTermsSchema),
+      termsIndex: createJsonSpecResolver(KG_TERMS_INDEX_URL, TermsIndexSchema),
+      // asctbTermOccurrences: asctbResolver(),
+      // ontologyTree: ontologyResolver(),
+      // cellTypeTree: cellTypeResolver(),
+      // biomarkerTree: biomarkersResolver(),
     },
   },
   {

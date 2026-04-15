@@ -119,3 +119,25 @@ export const DigitalObjectsJsonLdSchema = z
     '@graph': z.array(DigitalObjectInfoSchema),
   })
   .meta({ id: 'DigitalObjectsJsonLd' });
+
+export type AsctbTerms = z.infer<typeof AsctbTermsSchema>;
+
+export const AsctbTermsSchema = z
+  .object({
+    asctb_type: z.string(),
+    iri: z.string(),
+    label: z.string(),
+  })
+  .array()
+  .meta({ id: 'AsctbTerms' });
+
+export type TermsIndex = z.infer<typeof TermsIndexSchema>;
+
+export const TermsIndexSchema = z
+  .object({
+    terms: z.string().array(),
+    purls: z.string().array(),
+    term_to_purls: z.number().array().array(),
+    purl_to_terms: z.number().array().array(),
+  })
+  .meta({ id: 'TermsIndex' });
