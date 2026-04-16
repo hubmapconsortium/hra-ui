@@ -28,6 +28,7 @@ import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-sec
 import { VenuesTableDef } from '@hra-ui/design-system/content-templates/venues-table';
 import { YouTubePlayerDef } from '@hra-ui/design-system/content-templates/youtube-player';
 import { IconDef } from '@hra-ui/design-system/icons';
+import { provideConsentBannerConfig } from '@hra-ui/design-system/privacy/consent-banner';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
@@ -60,6 +61,9 @@ export const appConfig: ApplicationConfig = {
           height: 39,
         },
       ],
+    }),
+    provideConsentBannerConfig({
+      privacyPolicyUrl: 'https://cns.iu.edu/privacy-policy',
     }),
     provideContentTemplateDefs([
       ActionCardDef,
