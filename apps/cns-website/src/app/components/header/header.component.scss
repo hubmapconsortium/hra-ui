@@ -9,12 +9,7 @@ $z-index: 900;
   position: sticky;
   top: 0;
   z-index: $z-index;
-  background: linear-gradient(
-    0deg,
-    rgba(235, 244, 235, 0.384) 0%,
-    rgba(235, 244, 235, 0.64) 12%,
-    rgba(235, 244, 235, 0.8) 32%
-  );
+  background: vars.$surface-variant;
 
   &::before {
     content: '';
@@ -30,6 +25,7 @@ $z-index: 900;
     @include mat.icon-button-overrides(
       (
         state-layer-size: 3rem,
+        icon-color: vars.$on-surface,
       )
     );
 
@@ -52,6 +48,7 @@ $z-index: 900;
     display: flex;
     width: 5.75rem;
     justify-content: center;
+    color: vars.$on-surface;
   }
 
   .menu-button {
@@ -90,7 +87,7 @@ $z-index: 900;
 
   .menu-open-backdrop {
     top: 3.5rem;
-    background-color: utils.with-alpha(vars.$on-secondary-fixed, 0.16);
+    background-color: utils.with-alpha(#405d40, 0.16);
     backdrop-filter: blur(0.5rem);
     mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
     transition: 0.3s;

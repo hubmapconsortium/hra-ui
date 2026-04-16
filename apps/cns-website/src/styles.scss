@@ -1,18 +1,489 @@
-@use 'cns-light-theme' as cns;
+@use '@angular/material' as mat;
+@use 'cns-theme' as cns;
+@use 'sass:map';
+
 @use 'theming';
 @use 'utils';
 @use 'animate.css';
+@use 'vars';
 
 @include utils.global-styles() {
   @include theming.theme(cns.$theme);
+  @include mat.theme-overrides(
+    (
+      background: map.get(cns.$theme, color, primary, 100),
+      on-error-container: map.get(cns.$theme, color, primary, error, 10),
+      on-primary-container: map.get(cns.$theme, color, primary, 100),
+      on-secondary-container: map.get(cns.$theme, color, primary, secondary, 100),
+      on-tertiary-container: map.get(cns.$theme, color, tertiary, 100),
+      on-surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 25),
+      outline: map.get(cns.$theme, color, primary, neutral, 60),
+      primary: map.get(cns.$theme, color, primary, 5),
+      primary-container: map.get(cns.$theme, color, primary, 10),
+      secondary: map.get(cns.$theme, color, primary, secondary, 15),
+      secondary-container: map.get(cns.$theme, color, primary, secondary, 25),
+      surface: map.get(cns.$theme, color, primary, neutral, 96),
+      surface-bright: map.get(cns.$theme, color, primary, neutral, 99),
+      surface-container: map.get(cns.$theme, color, primary, neutral, 95),
+      surface-container-low: map.get(cns.$theme, color, primary, neutral, 98),
+      surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 92),
+      tertiary: map.get(cns.$theme, color, tertiary, 30),
+      tertiary-container: map.get(cns.$theme, color, tertiary, 40),
+    )
+  );
 
-  // TODO: Fix in design system and remove this override
-  hra-breadcrumbs .navigation .crumbs .crumb {
-    @include utils.use-font('label', 'medium');
+  @media (prefers-color-scheme: dark) {
+    @include theming.theme(cns.$theme-dark);
+    @include mat.theme-overrides(
+      (
+        background: map.get(cns.$theme, color, primary, neutral, 0),
+        error: map.get(cns.$theme, color, primary, error, 90),
+        error-container: map.get(cns.$theme, color, primary, error, 80),
+        inverse-on-surface: map.get(cns.$theme, color, primary, neutral, 10),
+        inverse-primary: map.get(cns.$theme, color, primary, 30),
+        on-background: map.get(cns.$theme, color, primary, neutral, 95),
+        on-error: map.get(cns.$theme, color, primary, error, 5),
+        on-error-container: map.get(cns.$theme, color, primary, error, 5),
+        on-primary: map.get(cns.$theme, color, primary, 5),
+        on-primary-container: map.get(cns.$theme, color, primary, 5),
+        on-secondary: map.get(cns.$theme, color, primary, secondary, 5),
+        on-secondary-container: map.get(cns.$theme, color, primary, secondary, 5),
+        on-surface: map.get(cns.$theme, color, primary, neutral, 95),
+        on-tertiary: map.get(cns.$theme, color, tertiary, 5),
+        on-tertiary-container: map.get(cns.$theme, color, tertiary, 5),
+        outline-variant: map.get(cns.$theme, color, primary, neutral-variant, 40),
+        primary: map.get(cns.$theme, color, primary, 95),
+        primary-container: map.get(cns.$theme, color, primary, 90),
+        secondary: map.get(cns.$theme, color, primary, secondary, 95),
+        secondary-container: map.get(cns.$theme, color, primary, secondary, 80),
+        surface: map.get(cns.$theme, color, primary, neutral, 5),
+        surface-bright: map.get(cns.$theme, color, primary, neutral, 6),
+        surface-container: map.get(cns.$theme, color, primary, neutral, 10),
+        surface-container-high: map.get(cns.$theme, color, primary, neutral, 12),
+        surface-container-highest: map.get(cns.$theme, color, primary, neutral, 17),
+        surface-container-low: map.get(cns.$theme, color, primary, neutral, 4),
+        surface-container-lowest: map.get(cns.$theme, color, primary, neutral, 0),
+        surface-dim: map.get(cns.$theme, color, primary, neutral, 24),
+        surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 25),
+        tertiary: map.get(cns.$theme, color, tertiary, 95),
+        tertiary-container: map.get(cns.$theme, color, tertiary, 80),
+      )
+    );
   }
-}
 
-body {
-  height: 100vh;
-  min-width: 20rem;
+  body {
+    height: 100vh;
+    min-width: 20rem;
+  }
+
+  ng-scrollbar {
+    --scrollbar-thumb-color: #{utils.with-alpha(vars.$inverse-surface, 0.72)};
+    --hra-scroll-overflow-fade-color: #{vars.$background};
+  }
+
+  hra-breadcrumbs {
+    .label {
+      color: vars.$on-surface-variant;
+    }
+  }
+
+  hra-page-section {
+    color: vars.$on-background;
+
+    section > .content {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-page-label {
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          elevated-container-color: vars.$surface-bright,
+        )
+      );
+    }
+  }
+
+  hra-list-view {
+    hra-markdown {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-markdown {
+    a {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  a.hra-text-hyperlink {
+    color: vars.$on-surface !important;
+
+    mat-icon {
+      color: vars.$on-surface !important;
+    }
+  }
+
+  .privacy-container {
+    button,
+    a {
+      color: vars.$on-tertiary-container !important;
+    }
+  }
+
+  hra-table-of-contents {
+    .tagline {
+      color: vars.$on-surface !important;
+    }
+    .link {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-action-card {
+    &.hra-action-card-variant-outlined {
+      background-color: vars.$background;
+
+      .content {
+        .tagline {
+          color: vars.$on-surface !important;
+        }
+        .description {
+          color: vars.$on-surface-variant !important;
+        }
+      }
+    }
+  }
+
+  hra-content-button {
+    --mat-button-text-pressed-state-layer-opacity: 0.1;
+
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          container-height: 1.625rem,
+          elevated-container-color: transparent,
+        )
+      );
+    }
+
+    .content-button {
+      background-color: vars.$background !important;
+
+      .date {
+        color: vars.$on-surface-variant !important;
+      }
+      .tagline {
+        color: vars.$on-surface !important;
+      }
+    }
+  }
+
+  hra-table {
+    .mat-sort-header-arrow {
+      color: unset !important;
+    }
+  }
+
+  hra-gallery-card {
+    .date {
+      color: vars.$on-surface-variant !important;
+    }
+
+    .tagline,
+    .tagline-link {
+      color: vars.$on-surface !important;
+    }
+  }
+
+  hra-profile-card {
+    .name {
+      color: vars.$on-surface !important;
+    }
+  }
+
+  hra-navigation-category-toggle {
+    .toggle {
+      color: vars.$on-surface !important;
+    }
+  }
+
+  hra-social-media-button {
+    a[mat-icon-button].hra-icon-button-variant-dark {
+      --mat-icon-button-icon-color: #{vars.$on-surface};
+      --mat-icon-button-state-layer-color: #{vars.$on-surface};
+    }
+
+    a[mat-icon-button].hra-icon-button-variant-light {
+      --mat-icon-button-icon-color: #ffffff;
+      --mat-icon-button-state-layer-color: #ffffff;
+    }
+  }
+
+  @include mat.icon-button-overrides(
+    (
+      icon-color: vars.$on-surface,
+      state-layer-color: vars.$on-surface,
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      filled-label-text-color: vars.$on-primary-container,
+      filled-state-layer-color: vars.$on-primary-container,
+      filled-container-color: vars.$primary-container,
+      text-label-text-color: vars.$on-surface,
+      text-state-layer-color: vars.$on-surface,
+    )
+  );
+
+  [mat-button] {
+    &.hra-button-variant-secondary:not(.hra-cta-button) {
+      --mat-button-text-label-text-color: #{vars.$on-surface} !important;
+      --mat-button-text-state-layer-color: #{vars.$on-surface} !important;
+    }
+
+    &.hra-cta-button:not(.hra-button-variant-secondary) {
+      background-color: vars.$primary-container;
+      --mat-button-text-label-text-color: #{vars.$on-primary-container};
+      --mat-button-text-state-layer-color: #{vars.$on-primary-container};
+    }
+  }
+
+  hra-results-indicator {
+    color: vars.$on-surface-variant;
+    background: vars.$surface-container-lowest;
+  }
+
+  hra-filter-menu {
+    color: vars.$on-surface;
+  }
+
+  hra-filter-container {
+    .top-row {
+      color: vars.$on-surface !important;
+    }
+
+    .category-button {
+      --mat-button-toggle-text-color: #{vars.$on-surface} !important;
+    }
+
+    mat-chip {
+      @include mat.chips-overrides(
+        (
+          label-text-color: vars.$on-surface-variant,
+        )
+      );
+    }
+  }
+
+  hra-search-list {
+    mat-list-option {
+      @include mat.list-overrides(
+        (
+          list-item-container-color: vars.$surface-bright,
+        )
+      );
+    }
+    .option-count {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  @include mat.checkbox-overrides(
+    (
+      unselected-focus-icon-color: vars.$primary,
+      unselected-hover-icon-color: vars.$primary,
+      unselected-icon-color: vars.$on-surface-variant,
+
+      unselected-focus-state-layer-color: vars.$on-surface-variant,
+      unselected-hover-state-layer-color: vars.$on-surface-variant,
+      unselected-pressed-state-layer-color: vars.$on-surface-variant,
+
+      selected-focus-icon-color: vars.$primary,
+      selected-hover-icon-color: vars.$primary,
+      selected-icon-color: vars.$primary,
+
+      selected-focus-state-layer-color: vars.$primary,
+      selected-hover-state-layer-color: vars.$primary,
+      selected-pressed-state-layer-color: vars.$primary,
+    )
+  );
+
+  hra-end-of-results-indicator {
+    .results-count,
+    .end-message {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  mat-button-toggle-group.hra-button-toggle-size-medium,
+  mat-button-toggle-group.hra-button-toggle-size-large {
+    @include mat.button-toggle-overrides(
+      (
+        background-color: vars.$background,
+        selected-state-text-color: vars.$on-primary-fixed,
+        selected-state-background-color: vars.$primary-fixed,
+        divider-color: vars.$outline,
+        shape: 2rem,
+        height: 2.5rem,
+      )
+    );
+  }
+
+  mat-form-field {
+    @include mat.form-field-overrides(
+      (
+        filled-active-indicator-color: vars.$on-surface,
+        filled-container-color: vars.$surface-container-highest,
+        filled-focus-active-indicator-color: vars.$on-surface,
+        filled-hover-label-text-color: vars.$on-surface-variant,
+        filled-input-text-color: vars.$on-surface,
+        filled-label-text-color: vars.$on-surface-variant,
+        filled-label-text-font: vars.$label-medium-font,
+        filled-label-text-size: vars.$label-medium-size,
+        filled-label-text-weight: vars.$label-medium-weight,
+        filled-label-text-tracking: vars.$label-medium-tracking,
+        leading-icon-color: vars.$on-surface,
+      )
+    );
+
+    @include mat.select-overrides(
+      (
+        enabled-trigger-text-color: vars.$on-surface,
+        enabled-arrow-color: vars.$on-surface,
+        focused-arrow-color: vars.$on-surface,
+        panel-background-color: vars.$surface-container-low,
+      )
+    );
+
+    @include mat.option-overrides(
+      (
+        focus-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
+        hover-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
+        label-text-color: vars.$on-surface,
+        selected-state-label-text-color: vars.$on-surface,
+        selected-state-layer-color: utils.with-alpha(vars.$tertiary, 16%),
+      )
+    );
+  }
+
+  hra-search-filter {
+    mat-form-field {
+      @include mat.form-field-overrides(
+        (
+          leading-icon-color: vars.$on-surface-variant,
+        )
+      );
+    }
+  }
+
+  hra-consent-banner {
+    background-color: vars.$surface;
+    color: vars.$on-surface;
+
+    .text2 {
+      color: vars.$on-surface-variant;
+    }
+  }
+
+  hra-privacy-preferences {
+    color: vars.$on-surface;
+    box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$shadow, 16%);
+    background-color: vars.$surface-container-lowest;
+
+    > .header {
+      background: vars.$surface-container-low;
+    }
+
+    .privacy-details {
+      color: vars.$on-surface-variant !important;
+      background: vars.$on-secondary;
+
+      mat-icon {
+        color: vars.$on-surface;
+      }
+    }
+
+    mat-tab-group {
+      @include mat.tabs-overrides(
+        (
+          active-indicator-color: vars.$primary,
+          active-focus-indicator-color: vars.$primary,
+          active-hover-indicator-color: vars.$primary,
+          active-focus-label-text-color: vars.$on-surface,
+          inactive-label-text-color: vars.$on-surface-variant,
+        )
+      );
+    }
+
+    @include mat.slide-toggle-overrides(
+      (
+        selected-track-color: vars.$primary,
+        selected-focus-track-color: vars.$primary,
+        selected-hover-track-color: vars.$primary,
+        selected-pressed-track-color: vars.$primary,
+        selected-handle-color: vars.$on-primary,
+        selected-focus-handle-color: vars.$on-primary,
+        selected-hover-handle-color: vars.$on-primary,
+        selected-pressed-handle-color: vars.$on-primary,
+        selected-focus-state-layer-color: vars.$primary,
+        selected-hover-state-layer-color: vars.$primary,
+        selected-pressed-state-layer-color: vars.$primary,
+        selected-icon-color: vars.$primary,
+
+        unselected-track-color: vars.$surface-variant,
+        unselected-hover-track-color: vars.$surface-variant,
+        unselected-focus-track-color: vars.$surface-variant,
+        unselected-pressed-track-color: vars.$surface-variant,
+        track-outline-color: vars.$outline,
+        unselected-handle-color: vars.$outline,
+        unselected-focus-handle-color: vars.$outline,
+        unselected-hover-handle-color: vars.$outline,
+        unselected-pressed-handle-color: vars.$outline,
+        unselected-focus-state-layer-color: vars.$outline,
+        unselected-hover-state-layer-color: vars.$outline,
+        unselected-pressed-state-layer-color: vars.$outline,
+
+        disabled-track-opacity: 0.38,
+      )
+    );
+  }
+
+  hra-categories {
+    .description {
+      color: vars.$on-surface-variant;
+    }
+  }
+
+  hra-copyable-url-container {
+    .text {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-server-error-page,
+  hra-not-found-page {
+    height: calc(100vh - 3.5rem);
+    background-color: unset !important;
+
+    .title {
+      color: vars.$on-background;
+    }
+    .description {
+      color: vars.$on-surface-variant !important;
+    }
+  }
+
+  hra-no-results-indicator {
+    .indicator-text {
+      color: vars.$primary !important;
+    }
+  }
+
+  .hra-plain-tooltip {
+    --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
+    --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
+  }
 }

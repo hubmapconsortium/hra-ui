@@ -1,57 +1,16 @@
-@if (menu().featured; as featured) {
+@for (item of flattenedMenuItems(); track item) {
   <a
     mat-button
+    hraSecondaryButton
     hraClickEvent
-    class="featured-link"
+    class="item-label"
     tabindex="0"
-    [hraLink]="featured.url"
-    [hraLinkExternal]="featured.external"
-    (click)="maybeScrollToTop(featured)"
-    (keyup.enter)="maybeScrollToTop(featured)"
+    [hraFeature]="item.label | slugify"
+    [hraLink]="item.url"
+    [hraLinkExternal]="item.external"
+    (click)="maybeScrollToTop(item)"
+    (keyup.enter)="maybeScrollToTop(item)"
   >
-    <div class="featured-content-container">
-      <div class="featured-content">
-        <span class="label">{{ featured.label }}</span>
-        @if (featured.tagline) {
-          <span class="tagline">{{ featured.tagline }}</span>
-        }
-      </div>
-      <mat-icon>arrow_right_alt</mat-icon>
-    </div>
+    {{ item.label }}
   </a>
-}
-
-@for (group of menu().items; track group) {
-  <div class="group">
-    <div class="group-label">
-      {{ group.label }}
-    </div>
-
-    @if (group.description; as description) {
-      <div class="group-description">
-        {{ description }}
-      </div>
-    }
-
-    <mat-divider class="divider" />
-
-    <div class="items">
-      @for (item of group.items; track item) {
-        <a
-          mat-button
-          hraSecondaryButton
-          hraClickEvent
-          class="item-label"
-          tabindex="0"
-          [hraFeature]="item.label | slugify"
-          [hraLink]="item.url"
-          [hraLinkExternal]="item.external"
-          (click)="maybeScrollToTop(item)"
-          (keyup.enter)="maybeScrollToTop(item)"
-        >
-          {{ item.label }}
-        </a>
-      }
-    </div>
-  </div>
 }

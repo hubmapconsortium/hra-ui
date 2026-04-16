@@ -12,7 +12,7 @@
       </a>
       <div class="socials">
         @for (id of socials(); track id) {
-          <hra-social-media-button size="large" variant="color" [id]="$any(id)" />
+          <hra-social-media-button size="large" variant="light" [id]="$any(id)" />
         }
       </div>
     </div>
@@ -20,15 +20,18 @@
     <cns-funding [funders]="funders()" />
   </div>
 
-  <mat-divider />
-
   <div class="privacy-container">
     <span class="privacy">
       <button hraTextButton (click)="openPrivacyPreferences($event)">Privacy Preferences</button>
-      <div class="separator">&#183;</div>
+      <div class="separator">|</div>
       <a hraHyperlink hraFeature="hra-privacy-policy" hraLink="https://cns.iu.edu/privacy-policy">Privacy Policy</a>
     </span>
 
-    <span class="copyright"> {{ copyrightText() }} </span>
+    <p class="copyright">
+      {{ copyrightYear() }}
+      <a hraHyperlink hraLink="https://cns.iu.edu/">Cyberinfrastructure for Network Science Center</a>
+      at
+      <a hraHyperlink hraLink="https://iu.edu/"> Indiana University</a>
+    </p>
   </div>
 </footer>

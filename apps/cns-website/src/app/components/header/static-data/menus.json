@@ -18,18 +18,18 @@
           "items": [
             {
               "type": "item",
-              "label": "Our mission & history",
+              "label": "History & mission",
               "url": "https://cns.iu.edu/about/"
-            },
-            {
-              "type": "item",
-              "label": "Jobs",
-              "url": "https://cns.iu.edu/jobs/"
             },
             {
               "type": "item",
               "label": "People",
               "url": "https://cns.iu.edu/people/"
+            },
+            {
+              "type": "item",
+              "label": "Jobs",
+              "url": "https://cns.iu.edu/jobs/"
             }
           ]
         },
@@ -79,6 +79,11 @@
           "type": "group",
           "label": "Research at CNS",
           "items": [
+            {
+              "type": "item",
+              "label": "All research",
+              "url": "https://cns.iu.edu/research"
+            },
             {
               "type": "item",
               "label": "Events",

@@ -5,29 +5,42 @@
 :host {
   display: flex;
   flex-direction: column;
-  padding: 2.5rem;
-  background-color: vars.$surface-bright;
   align-items: center;
   width: 100%;
+  background-color: vars.$on-primary-fixed;
 
   > * {
     width: 100%;
-    max-width: 106.25rem;
   }
 
   .content-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    margin-bottom: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2.5rem;
+    color: #ffffff;
+
+    @media (min-width: 1100px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   .logo-and-socials {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
+
+    @media (min-width: 1100px) {
+      align-items: start;
+    }
+
+    .logo {
+      width: 16.25rem;
+      height: fit-content;
+    }
 
     .socials {
       display: flex;
@@ -36,30 +49,40 @@
   }
 
   .privacy-container {
+    @include utils.use-font(label, medium);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    padding: 2rem 2.5rem;
     gap: 1.5rem;
-    color: vars.$tertiary;
+    background-color: vars.$tertiary-container;
+    color: vars.$on-tertiary-container;
 
-    span {
+    @media (min-width: 1100px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    button,
+    a {
+      color: vars.$on-tertiary-container;
+    }
+
+    .privacy {
       display: flex;
-      @include utils.use-font(label, medium);
       align-items: center;
-      height: 2.5rem;
+      width: fit-content;
     }
 
     .separator {
       width: 21px;
       text-align: center;
-      font-size: 1.5rem;
+    }
+
+    .copyright {
+      text-align: center;
     }
   }
-
-  @include mat.divider-overrides(
-    (
-      color: vars.$outline,
-    )
-  );
 }

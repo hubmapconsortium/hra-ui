@@ -8,15 +8,12 @@
   max-width: 81.25rem;
   border-radius: 0.5rem;
   overflow: hidden;
-  background: vars.$surface;
-  box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$on-background, 0.24);
-  width: calc(100vw - 2rem);
+  width: calc(100vw);
 
   .featured-section {
-    min-width: 14.5rem;
-    max-width: 19.75rem;
+    width: 19.75rem;
     padding: 1.5rem;
-    background: #0000000a;
+    background: vars.$surface-variant;
   }
 
   .featured-link {
@@ -41,7 +38,7 @@
     text-align: start;
     padding: 1rem;
     min-height: 3.5rem;
-    background: vars.$surface-container-low;
+    background: vars.$surface-bright;
     border: 0.0625rem solid vars.$outline-variant;
     border-radius: 0.5rem;
     height: auto;
@@ -70,11 +67,12 @@
 
     .tagline {
       @include utils.use-font(label, medium);
+      color: vars.$on-surface-variant;
     }
   }
 
   .right-side {
-    background: vars.$surface-bright;
+    background: vars.$surface-container;
     display: flex;
     flex-direction: column;
     min-width: 25.5rem;
@@ -112,10 +110,11 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
+    gap: 0.125rem;
   }
 
   .group-label {
-    color: vars.$on-secondary-fixed;
+    color: vars.$on-surface-variant;
     height: 2rem;
     padding: 0 0.75rem;
     display: flex;
@@ -131,7 +130,7 @@
   }
 
   .divider {
-    margin: 6px 0;
+    margin: 0.375rem 0 0.5rem;
     color: vars.$outline-variant;
   }
 

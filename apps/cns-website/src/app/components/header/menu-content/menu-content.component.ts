@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
@@ -20,6 +20,9 @@ import { Menu } from '../types/menus.schema';
 export class MenuContentComponent {
   /** Menu data to display */
   readonly menu = input.required<Menu>();
+
+  /** Menu items with groups flattened */
+  readonly flattenedMenuItems = computed(() => this.menu().items?.flatMap((group) => group.items));
 
   /** Scrollbar store for managing viewport scrolling */
   private readonly scrollbarStore = inject(ScrollbarStore);

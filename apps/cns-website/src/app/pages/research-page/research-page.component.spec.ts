@@ -168,7 +168,7 @@ describe('ResearchPageComponent', () => {
 
     it('should render sidenav container with filter sidebar', async () => {
       await renderComponent();
-      expect(await screen.findByText('Filters')).toBeInTheDocument();
+      expect(await screen.findByText('Filter')).toBeInTheDocument();
     });
   });
 

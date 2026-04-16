@@ -2,11 +2,11 @@
 @use 'utils';
 @use 'vars';
 
-$header-height: 4.5rem;
+$header-height: 6rem;
 $category-height: 4rem;
 $socials-height: 4.5rem;
-$horizontal-padding: 1.25rem;
-$category-inner-horizontal-padding: 0.5rem;
+$horizontal-padding: 1.5rem;
+$category-inner-horizontal-padding: 0.75rem;
 
 :host {
   display: flex;
@@ -21,7 +21,20 @@ $category-inner-horizontal-padding: 0.5rem;
     align-items: center;
     height: $header-height;
     padding: 0 $horizontal-padding;
-    color: vars.$secondary;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      color: vars.$on-surface;
+    }
+
+    button {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$on-surface,
+        )
+      );
+    }
   }
 
   .divider {
@@ -44,9 +57,10 @@ $category-inner-horizontal-padding: 0.5rem;
           container-shape: vars.$corner-none,
           container-background-color: vars.$surface-bright,
           container-elevation-shadow: none,
+          container-text-color: vars.$on-surface,
           header-collapsed-state-height: $category-height,
           header-expanded-state-height: $category-height,
-          header-text-color: vars.$secondary,
+          header-text-color: vars.$on-surface,
           header-text-font: vars.$title-medium-font,
           header-text-size: vars.$title-medium-size,
           header-text-weight: vars.$title-medium-weight,
@@ -89,11 +103,12 @@ $category-inner-horizontal-padding: 0.5rem;
         }
 
         ::ng-deep .mat-expansion-panel-body {
-          padding: 0 0 1.25rem;
+          padding: 0;
         }
 
         .content {
-          margin: 0 $category-inner-horizontal-padding;
+          padding: 0.5rem 0 1.25rem;
+          border-top: 1px solid vars.$outline-variant;
         }
       }
 
@@ -109,6 +124,6 @@ $category-inner-horizontal-padding: 0.5rem;
     align-items: center;
     height: $socials-height;
     padding: 1rem $horizontal-padding;
-    background: vars.$surface-container;
+    background: vars.$surface-container-high;
   }
 }
