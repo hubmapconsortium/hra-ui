@@ -2,19 +2,18 @@
   <hra-brand-logo />
 </div>
 <div class="middle">
-  <div class="content">
-    <div class="text-area">
-      <span class="text1" [attr.id]="ariaLabelledbyId">Manage your privacy preferences</span>
-      <span class="text2">Cookies and similar technologies are used to play videos and to improve this website.</span>
-    </div>
-    <div class="hyperlink">
-      <a class="privacy-policy-button" hraHyperlink [hraLink]="config.privacyPolicyUrl">
-        Privacy Policy
-        <mat-icon>arrow_right_alt</mat-icon>
-      </a>
-    </div>
+  <div class="text-area">
+    <span class="text1" [attr.id]="ariaLabelledbyId">Manage your privacy preferences</span>
+    <span class="text2">Cookies and similar technologies are used to play videos and to improve this website.</span>
+  </div>
+  <div class="hyperlink">
+    <a class="privacy-policy-button" hraHyperlink [hraLink]="config.privacyPolicyUrl">
+      Privacy Policy
+      <mat-icon>arrow_right_alt</mat-icon>
+    </a>
   </div>
 </div>
+<div class="spacer"></div>
 <div class="right">
   <div class="consent-buttons">
     <button mat-flat-button mat-dialog-close="allow-all" hraButtonSize="large" hraButtonVariant="primary">
