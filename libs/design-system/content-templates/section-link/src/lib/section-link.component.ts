@@ -26,6 +26,7 @@ export class SectionLinkComponent {
   /** Whether to display the underline */
   readonly underlined = input(false, { transform: booleanAttribute });
 
+  /** Label id */
   protected readonly labelId = computed(() => {
     const anchor = this.anchor();
     return anchor ? `section-link-label--${stripLeadingHash(anchor)}` : null;
