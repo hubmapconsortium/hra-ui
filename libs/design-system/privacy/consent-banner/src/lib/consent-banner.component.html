@@ -16,19 +16,24 @@
 <div class="spacer"></div>
 <div class="right">
   <div class="consent-buttons">
-    <button mat-flat-button mat-dialog-close="allow-all" hraButtonSize="large" hraButtonVariant="primary">
+    <button mat-flat-button hraButtonSize="large" hraButtonVariant="primary" (click)="buttonClick.emit('allow-all')">
       Allow all
     </button>
-    <button mat-flat-button mat-dialog-close="allow-necessary" hraButtonSize="large" hraButtonVariant="primary">
+    <button
+      mat-flat-button
+      hraButtonSize="large"
+      hraButtonVariant="primary"
+      (click)="buttonClick.emit('allow-necessary')"
+    >
       Allow necessary only
     </button>
   </div>
   <button
     mat-button
-    mat-dialog-close="customize"
     class="customize-button"
     hraButtonSize="large"
     hraButtonVariant="primary"
+    (click)="buttonClick.emit('customize')"
   >
     Customize
   </button>

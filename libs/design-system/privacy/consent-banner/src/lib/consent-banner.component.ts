@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
@@ -45,6 +45,9 @@ export const provideConsentBannerConfig = CONSENT_BANNER_CONFIG_TOKEN[1];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConsentBannerComponent {
+  /** Emits when one of the actions is clicked */
+  readonly buttonClick = output<ConsentBannerResult>();
+
   /**
    * Aria labelledby id
    */

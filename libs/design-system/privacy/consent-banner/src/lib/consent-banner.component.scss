@@ -85,7 +85,7 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 639px) {
+@media (max-width: 639px) {
   :host {
     flex-direction: column;
     row-gap: 2rem;
@@ -150,6 +150,7 @@
 
 ::ng-deep .hra-consent-banner-panel {
   box-shadow: 0rem -0.75rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10rem);
   animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
   @include mat.dialog-overrides(
