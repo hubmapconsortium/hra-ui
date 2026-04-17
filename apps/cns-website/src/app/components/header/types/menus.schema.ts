@@ -12,6 +12,7 @@ export const MenuItemSchema = z
     imgSrc: z.string().optional(),
     external: z.boolean().optional(),
     target: z.string().optional(),
+    mobileOnly: z.boolean().optional(),
   })
   .meta({ id: 'CnsHeaderMenuItem' });
 

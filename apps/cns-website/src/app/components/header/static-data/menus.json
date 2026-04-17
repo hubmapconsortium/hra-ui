@@ -82,7 +82,8 @@
             {
               "type": "item",
               "label": "All research",
-              "url": "https://cns.iu.edu/research"
+              "url": "https://cns.iu.edu/research",
+              "mobileOnly": true
             },
             {
               "type": "item",

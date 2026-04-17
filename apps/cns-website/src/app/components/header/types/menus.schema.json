@@ -1,6 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "CnsHeaderMenus",
   "type": "object",
   "properties": {
     "$schema": {
@@ -25,9 +24,9 @@
     "options"
   ],
   "additionalProperties": false,
+  "id": "CnsHeaderMenus",
   "$defs": {
     "CnsHeaderMenu": {
-      "id": "CnsHeaderMenu",
       "type": "object",
       "properties": {
         "type": {
@@ -55,10 +54,10 @@
         "id",
         "label"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "CnsHeaderMenu"
     },
     "CnsHeaderMenuGroup": {
-      "id": "CnsHeaderMenuGroup",
       "type": "object",
       "properties": {
         "type": {
@@ -89,10 +88,10 @@
         "label",
         "items"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "CnsHeaderMenuGroup"
     },
     "CnsHeaderMenuItem": {
-      "id": "CnsHeaderMenuItem",
       "type": "object",
       "properties": {
         "type": {
@@ -117,6 +116,9 @@
         },
         "target": {
           "type": "string"
+        },
+        "mobileOnly": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -124,7 +126,8 @@
         "label",
         "url"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "CnsHeaderMenuItem"
     }
   }
 }
