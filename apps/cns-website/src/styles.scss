@@ -380,7 +380,6 @@
   }
 
   hra-consent-banner {
-    background-color: vars.$surface;
     color: vars.$on-surface;
 
     .text2 {
@@ -390,11 +389,9 @@
 
   hra-privacy-preferences {
     color: vars.$on-surface;
-    box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$shadow, 16%);
-    background-color: vars.$surface-container-lowest;
 
     > .header {
-      background: vars.$surface-container-low;
+      background: vars.$surface-container-highest;
     }
 
     .privacy-details {

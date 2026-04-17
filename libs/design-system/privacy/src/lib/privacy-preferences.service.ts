@@ -117,6 +117,7 @@ export class PrivacyPreferencesService {
         hasBackdrop: true,
         maxWidth: '46.75rem',
         minWidth: '20rem',
+        panelClass: 'hra-privacy-preferences-panel',
         restoreFocus: true,
       },
     );
