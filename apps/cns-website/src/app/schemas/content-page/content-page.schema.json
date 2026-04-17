@@ -3,7 +3,6 @@
   "$ref": "#/$defs/ContentPageData",
   "$defs": {
     "ContentPageData": {
-      "id": "ContentPageData",
       "type": "object",
       "properties": {
         "$schema": {
@@ -34,7 +33,10 @@
               "type": "string"
             }
           },
-          "required": ["label", "url"],
+          "required": [
+            "label",
+            "url"
+          ],
           "additionalProperties": false
         },
         "headerContent": {
@@ -44,11 +46,16 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": ["$schema", "title", "subtitle", "content"],
-      "additionalProperties": false
+      "required": [
+        "$schema",
+        "title",
+        "subtitle",
+        "content"
+      ],
+      "additionalProperties": false,
+      "id": "ContentPageData"
     },
     "IconList": {
-      "id": "IconList",
       "anyOf": [
         {
           "anyOf": [
@@ -73,10 +80,10 @@
             ]
           }
         }
-      ]
+      ],
+      "id": "IconList"
     },
     "IconData": {
-      "id": "IconData",
       "type": "object",
       "properties": {
         "svgIcon": {
@@ -92,10 +99,10 @@
           "type": "boolean"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "IconData"
     },
     "BreadcrumbItem": {
-      "id": "BreadcrumbItem",
       "type": "object",
       "properties": {
         "name": {
@@ -105,11 +112,13 @@
           "type": "string"
         }
       },
-      "required": ["name"],
-      "additionalProperties": false
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "id": "BreadcrumbItem"
     },
     "ProjectedContentTemplate": {
-      "id": "ProjectedContentTemplate",
       "anyOf": [
         {
           "$ref": "#/$defs/AnyContentTemplate"
@@ -120,11 +129,12 @@
             "$ref": "#/$defs/AnyContentTemplate"
           }
         }
-      ]
+      ],
+      "id": "ProjectedContentTemplate"
     },
     "AnyContentTemplate": {
       "id": "AnyContentTemplate",
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/$defs/ActionCard"
         },
@@ -165,12 +175,14 @@
           "$ref": "#/$defs/TextHyperlink"
         },
         {
+          "$ref": "#/$defs/VenuesTable"
+        },
+        {
           "$ref": "#/$defs/YouTubePlayer"
         }
       ]
     },
     "ActionCard": {
-      "id": "ActionCard",
       "type": "object",
       "properties": {
         "component": {
@@ -214,11 +226,15 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": ["component", "variant", "tagline"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "variant",
+        "tagline"
+      ],
+      "additionalProperties": false,
+      "id": "ActionCard"
     },
     "Classes": {
-      "id": "Classes",
       "anyOf": [
         {
           "type": "string"
@@ -236,10 +252,10 @@
           },
           "additionalProperties": {}
         }
-      ]
+      ],
+      "id": "Classes"
     },
     "Styles": {
-      "id": "Styles",
       "anyOf": [
         {
           "type": "string"
@@ -251,26 +267,33 @@
           },
           "additionalProperties": {}
         }
-      ]
+      ],
+      "id": "Styles"
     },
     "Controller": {
-      "id": "Controller",
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         }
       },
-      "required": ["id"],
-      "additionalProperties": {}
+      "required": [
+        "id"
+      ],
+      "additionalProperties": {},
+      "id": "Controller"
     },
     "ActionCardVariant": {
-      "id": "ActionCardVariant",
       "type": "string",
-      "enum": ["elevated", "flat", "outlined", "outlined-with-icons"]
+      "enum": [
+        "elevated",
+        "flat",
+        "outlined",
+        "outlined-with-icons"
+      ],
+      "id": "ActionCardVariant"
     },
     "ApiCommand": {
-      "id": "ApiCommand",
       "type": "object",
       "properties": {
         "component": {
@@ -294,17 +317,25 @@
         },
         "method": {
           "type": "string",
-          "enum": ["GET", "POST"]
+          "enum": [
+            "GET",
+            "POST"
+          ]
         },
         "rightButton": {
           "$ref": "#/$defs/ApiCommandButton"
         }
       },
-      "required": ["component", "request", "method", "rightButton"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "request",
+        "method",
+        "rightButton"
+      ],
+      "additionalProperties": false,
+      "id": "ApiCommand"
     },
     "ApiCommandButton": {
-      "id": "ApiCommandButton",
       "type": "object",
       "properties": {
         "label": {
@@ -318,11 +349,13 @@
           "format": "uri"
         }
       },
-      "required": ["label"],
-      "additionalProperties": false
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false,
+      "id": "ApiCommandButton"
     },
     "Button": {
-      "id": "Button",
       "type": "object",
       "properties": {
         "component": {
@@ -349,15 +382,26 @@
         },
         "type": {
           "type": "string",
-          "enum": ["default", "flat", "cta", "fab"]
+          "enum": [
+            "default",
+            "flat",
+            "cta",
+            "fab"
+          ]
         },
         "variant": {
           "type": "string",
-          "enum": ["primary", "secondary"]
+          "enum": [
+            "primary",
+            "secondary"
+          ]
         },
         "size": {
           "type": "string",
-          "enum": ["small", "medium"]
+          "enum": [
+            "small",
+            "medium"
+          ]
         },
         "disabled": {
           "type": "boolean"
@@ -366,11 +410,15 @@
           "type": "string"
         }
       },
-      "required": ["component", "label", "href"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "label",
+        "href"
+      ],
+      "additionalProperties": false,
+      "id": "Button"
     },
     "FlexContainer": {
-      "id": "FlexContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -402,11 +450,14 @@
           }
         }
       },
-      "required": ["component", "content"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "content"
+      ],
+      "additionalProperties": false,
+      "id": "FlexContainer"
     },
     "GoogleMaps": {
-      "id": "GoogleMaps",
       "type": "object",
       "properties": {
         "component": {
@@ -435,11 +486,16 @@
           "type": "string"
         }
       },
-      "required": ["component", "url", "externalUrl", "fallbackImageUrl"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "url",
+        "externalUrl",
+        "fallbackImageUrl"
+      ],
+      "additionalProperties": false,
+      "id": "GoogleMaps"
     },
     "GridContainer": {
-      "id": "GridContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -468,11 +524,14 @@
           }
         }
       },
-      "required": ["component", "content"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "content"
+      ],
+      "additionalProperties": false,
+      "id": "GridContainer"
     },
     "Icon": {
-      "id": "Icon",
       "type": "object",
       "properties": {
         "component": {
@@ -504,11 +563,13 @@
           "type": "boolean"
         }
       },
-      "required": ["component"],
-      "additionalProperties": false
+      "required": [
+        "component"
+      ],
+      "additionalProperties": false,
+      "id": "Icon"
     },
     "Image": {
-      "id": "Image",
       "type": "object",
       "properties": {
         "component": {
@@ -534,11 +595,14 @@
           "type": "string"
         }
       },
-      "required": ["component", "src"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "src"
+      ],
+      "additionalProperties": false,
+      "id": "Image"
     },
     "Markdown": {
-      "id": "Markdown",
       "type": "object",
       "properties": {
         "component": {
@@ -564,11 +628,13 @@
           "type": "string"
         }
       },
-      "required": ["component"],
-      "additionalProperties": false
+      "required": [
+        "component"
+      ],
+      "additionalProperties": false,
+      "id": "Markdown"
     },
     "PageSection": {
-      "id": "PageSection",
       "type": "object",
       "properties": {
         "component": {
@@ -611,11 +677,15 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": ["component", "tagline", "content"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "tagline",
+        "content"
+      ],
+      "additionalProperties": false,
+      "id": "PageSection"
     },
     "Table": {
-      "id": "Table",
       "type": "object",
       "properties": {
         "component": {
@@ -662,11 +732,13 @@
           "type": "boolean"
         }
       },
-      "required": ["component"],
-      "additionalProperties": false
+      "required": [
+        "component"
+      ],
+      "additionalProperties": false,
+      "id": "Table"
     },
     "TableColumn": {
-      "id": "TableColumn",
       "type": "object",
       "properties": {
         "column": {
@@ -686,6 +758,10 @@
                 },
                 {
                   "type": "string",
+                  "const": "date"
+                },
+                {
+                  "type": "string",
                   "const": "numeric"
                 },
                 {
@@ -699,6 +775,10 @@
                 {
                   "type": "string",
                   "const": "menu"
+                },
+                {
+                  "type": "string",
+                  "const": "dataExploration"
                 }
               ]
             },
@@ -706,6 +786,9 @@
               "anyOf": [
                 {
                   "$ref": "#/$defs/TextColumnType"
+                },
+                {
+                  "$ref": "#/$defs/DateColumnType"
                 },
                 {
                   "$ref": "#/$defs/NumericColumnType"
@@ -721,17 +804,24 @@
                 },
                 {
                   "$ref": "#/$defs/MenuButtonColumnType"
+                },
+                {
+                  "$ref": "#/$defs/DataExplorationColumnType"
                 }
               ]
             }
           ]
         }
       },
-      "required": ["column", "label", "type"],
-      "additionalProperties": false
+      "required": [
+        "column",
+        "label",
+        "type"
+      ],
+      "additionalProperties": false,
+      "id": "TableColumn"
     },
     "TextColumnType": {
-      "id": "TextColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -739,11 +829,27 @@
           "const": "text"
         }
       },
-      "required": ["type"],
-      "additionalProperties": false
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "id": "TextColumnType"
+    },
+    "DateColumnType": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "date"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "id": "DateColumnType"
     },
     "NumericColumnType": {
-      "id": "NumericColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -754,11 +860,13 @@
           "type": "boolean"
         }
       },
-      "required": ["type"],
-      "additionalProperties": false
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "id": "NumericColumnType"
     },
     "MarkdownColumnType": {
-      "id": "MarkdownColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -766,11 +874,13 @@
           "const": "markdown"
         }
       },
-      "required": ["type"],
-      "additionalProperties": false
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "id": "MarkdownColumnType"
     },
     "LinkColumnType": {
-      "id": "LinkColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -784,11 +894,14 @@
           "type": "boolean"
         }
       },
-      "required": ["type", "urlColumn"],
-      "additionalProperties": false
+      "required": [
+        "type",
+        "urlColumn"
+      ],
+      "additionalProperties": false,
+      "id": "LinkColumnType"
     },
     "IconColumnType": {
-      "id": "IconColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -802,11 +915,14 @@
           "type": "string"
         }
       },
-      "required": ["type", "icon"],
-      "additionalProperties": false
+      "required": [
+        "type",
+        "icon"
+      ],
+      "additionalProperties": false,
+      "id": "IconColumnType"
     },
     "MenuButtonColumnType": {
-      "id": "MenuButtonColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -823,11 +939,44 @@
           "type": "string"
         }
       },
-      "required": ["type", "icon", "options"],
-      "additionalProperties": false
+      "required": [
+        "type",
+        "icon",
+        "options"
+      ],
+      "additionalProperties": false,
+      "id": "MenuButtonColumnType"
+    },
+    "DataExplorationColumnType": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "dataExploration"
+        },
+        "label": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "titleColumn": {
+          "type": "string"
+        },
+        "imageUrlColumn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "id": "DataExplorationColumnType"
     },
     "TableRow": {
-      "id": "TableRow",
       "type": "object",
       "propertyNames": {
         "type": "string"
@@ -837,6 +986,7 @@
           {
             "type": "string"
           },
+          {},
           {
             "type": "number"
           },
@@ -848,15 +998,19 @@
             "items": {}
           }
         ]
-      }
+      },
+      "id": "TableRow"
     },
     "TableVariant": {
-      "id": "TableVariant",
       "type": "string",
-      "enum": ["alternating", "divider", "basic"]
+      "enum": [
+        "alternating",
+        "divider",
+        "basic"
+      ],
+      "id": "TableVariant"
     },
     "ProfileCard": {
-      "id": "ProfileCard",
       "type": "object",
       "properties": {
         "component": {
@@ -891,11 +1045,16 @@
           "$ref": "#/$defs/ProjectedContentTemplate"
         }
       },
-      "required": ["component", "name", "description", "pictureUrl"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "name",
+        "description",
+        "pictureUrl"
+      ],
+      "additionalProperties": false,
+      "id": "ProfileCard"
     },
     "TextHyperlink": {
-      "id": "TextHyperlink",
       "type": "object",
       "properties": {
         "component": {
@@ -927,11 +1086,75 @@
           "type": "boolean"
         }
       },
-      "required": ["component", "text", "url"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "text",
+        "url"
+      ],
+      "additionalProperties": false,
+      "id": "TextHyperlink"
+    },
+    "VenuesTable": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string",
+          "const": "VenuesTable"
+        },
+        "classes": {
+          "$ref": "#/$defs/Classes"
+        },
+        "styles": {
+          "$ref": "#/$defs/Styles"
+        },
+        "controllers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Controller"
+          }
+        },
+        "csvUrl": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TableColumn"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TableRow"
+          }
+        },
+        "variant": {
+          "$ref": "#/$defs/TableVariant"
+        },
+        "enableSort": {
+          "type": "boolean"
+        },
+        "verticalDividers": {
+          "type": "boolean"
+        },
+        "enableSelection": {
+          "type": "boolean"
+        },
+        "venuesUrl": {
+          "type": "string"
+        },
+        "linkBaseHref": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "venuesUrl"
+      ],
+      "additionalProperties": false,
+      "id": "VenuesTable"
     },
     "YouTubePlayer": {
-      "id": "YouTubePlayer",
       "type": "object",
       "properties": {
         "component": {
@@ -957,8 +1180,13 @@
           "type": "string"
         }
       },
-      "required": ["component", "videoId", "label"],
-      "additionalProperties": false
+      "required": [
+        "component",
+        "videoId",
+        "label"
+      ],
+      "additionalProperties": false,
+      "id": "YouTubePlayer"
     }
   }
 }

@@ -43,20 +43,22 @@
           <mat-divider class="divider" />
           <div class="items">
             @for (item of group.items; track item) {
-              <a
-                mat-button
-                hraSecondaryButton
-                hraClickEvent
-                class="item-label"
-                tabindex="0"
-                [hraFeature]="item.label | slugify"
-                [hraLink]="item.url"
-                [hraLinkExternal]="item.external"
-                (click)="maybeScrollToTop(item)"
-                (keyup.enter)="maybeScrollToTop(item)"
-              >
-                {{ item.label }}
-              </a>
+              @if (!item.mobileOnly) {
+                <a
+                  mat-button
+                  hraSecondaryButton
+                  hraClickEvent
+                  class="item-label"
+                  tabindex="0"
+                  [hraFeature]="item.label | slugify"
+                  [hraLink]="item.url"
+                  [hraLinkExternal]="item.external"
+                  (click)="maybeScrollToTop(item)"
+                  (keyup.enter)="maybeScrollToTop(item)"
+                >
+                  {{ item.label }}
+                </a>
+              }
             }
           </div>
         </div>
