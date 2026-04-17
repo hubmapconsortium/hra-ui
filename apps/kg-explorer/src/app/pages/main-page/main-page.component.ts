@@ -26,6 +26,7 @@ import {
 } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { DigitalObjectInfoWithHraVersions, FilterService } from '../../services/filter.service';
+import { FiltersStore } from '../../state/filters.store';
 import {
   FILTER_CATEGORY_INFO,
   FilterOptionCategory,
@@ -35,24 +36,6 @@ import {
   handleValue,
   sentenceCase,
 } from '../../utils/utils';
-
-/** Current filter interface (each category contains string of filter option IDs) */
-export interface CurrentFilters {
-  /** Digital object filters */
-  digitalObjects?: string[];
-  /** Release version filters */
-  releaseVersion?: string[];
-  /** Organ filters */
-  organs?: string[];
-  /** Anatomical structures filters */
-  anatomicalStructures?: string[];
-  /** Cell type filters */
-  cellTypes?: string[];
-  /** Biomarker filters */
-  biomarkers?: string[];
-  /** Search term filters */
-  searchTerm?: string;
-}
 
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
@@ -78,6 +61,7 @@ const SCROLLBAR_TOP_OFFSET = '86';
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
+  providers: [FiltersStore],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.filter-closed]': 'filterClosed()',
@@ -91,7 +75,6 @@ export class MainPageComponent {
   /** File download service */
   readonly download = inject(DownloadService);
 
-  readonly filter = inject(FilterService);
   /** Router service */
   readonly router = inject(Router);
 
@@ -117,8 +100,10 @@ export class MainPageComponent {
   readonly filterClosed = signal<boolean>(false);
   /** Filter categories */
   readonly filterCategories = signal<Record<string, FilterOptionCategory>>(FILTER_CATEGORY_INFO);
-  /** Currently selected filters */
-  readonly filters = signal<CurrentFilters>({});
+
+  readonly filter = inject(FilterService);
+  readonly store = inject(FiltersStore);
+
   /** Scroll viewport height for the digital object table */
   readonly scrollHeight = signal(0);
   /** Id of digital object to download */
@@ -160,7 +145,8 @@ export class MainPageComponent {
     effect(() => {
       this.populateFilterOptions();
       this.digitalObjectSearch().subscribe((results) => {
-        this.applyMoreFilters(results);
+        const newFilteredRows = this.filter.allRows().filter((row) => results.includes(row['purl'] as string));
+        this.filteredRows.set(newFilteredRows);
       });
     });
 
@@ -185,16 +171,16 @@ export class MainPageComponent {
     const b = queryParams['b'];
     const search = queryParams['search'];
 
-    this.filters.set({
+    this.store.updateFilters({
       digitalObjects: dObjects,
-      releaseVersion: handleValue(versions),
-      organs: handleValue(organs),
-      anatomicalStructures: handleValue(as),
-      cellTypes: handleValue(ct),
-      biomarkers: handleValue(b),
+      releaseVersion: handleValue(versions) || [],
+      organs: handleValue(organs) || [],
+      anatomicalStructures: handleValue(as) || [],
+      cellTypes: handleValue(ct) || [],
+      biomarkers: handleValue(b) || [],
       searchTerm: search ?? '',
     });
-    this.searchControl.patchValue(this.filters().searchTerm);
+    this.searchControl.patchValue(this.store.searchTerm());
   }
 
   /**
@@ -202,17 +188,7 @@ export class MainPageComponent {
    * @param formControls
    */
   handleFilterSelectionChanges(formValues: FilterFormValues) {
-    const updatedFilters: CurrentFilters = {
-      digitalObjects: formValues.digitalObjects?.map((obj) => obj.id) || undefined,
-      releaseVersion: formValues.releaseVersion?.map((obj) => obj.id) || undefined,
-      organs: formValues.organs?.map((obj) => obj.id) || undefined,
-      anatomicalStructures: formValues.anatomicalStructures?.map((obj) => obj.id) || undefined,
-      cellTypes: formValues.cellTypes?.map((obj) => obj.id) || undefined,
-      biomarkers: formValues.biomarkers?.map((obj) => obj.id) || undefined,
-      searchTerm: this.filters().searchTerm || undefined,
-    };
-
-    this.filters.set(updatedFilters);
+    this.store.updateFiltersFromForm(formValues);
     this.updateQueryParamsFromFilters();
   }
 
@@ -222,13 +198,13 @@ export class MainPageComponent {
   private updateQueryParamsFromFilters() {
     this.router.navigate([''], {
       queryParams: {
-        do: this.filters().digitalObjects,
-        versions: this.filters().releaseVersion,
-        organs: this.filters().organs,
-        as: this.filters().anatomicalStructures,
-        ct: this.filters().cellTypes,
-        b: this.filters().biomarkers,
-        search: this.filters().searchTerm,
+        do: this.store.digitalObjects(),
+        versions: this.store.releaseVersion(),
+        organs: this.store.organs(),
+        as: this.store.anatomicalStructures(),
+        ct: this.store.cellTypes(),
+        b: this.store.biomarkers(),
+        search: this.store.searchTerm(),
       },
     });
   }
@@ -268,56 +244,17 @@ export class MainPageComponent {
   }
 
   /**
-   * Applies additional filters to digital objects obtained from KG search and sets new filtered rows
-   */
-  private applyMoreFilters(searchResults: string[]) {
-    let newFilteredRows = this.filter.allRows();
-    newFilteredRows = newFilteredRows.filter((row) => searchResults.includes(row['purl'] as string));
-
-    if (this.filters().searchTerm && this.filters().searchTerm !== '') {
-      newFilteredRows = this.filterSearchFormResults(newFilteredRows);
-    }
-
-    if (this.filters().digitalObjects) {
-      newFilteredRows = this.filterDigitalObjectResults(newFilteredRows);
-    }
-    this.filteredRows.set(newFilteredRows);
-  }
-
-  /**
-   * Filters an array of results by the search form input
-   * @param currentResults Results to filter
-   * @returns Filtered results
-   */
-  private filterSearchFormResults(currentResults: TableRow[]): TableRow[] {
-    return currentResults.filter((row) => {
-      return (row['title'] as string).toLowerCase().includes((this.filters().searchTerm ?? '').toLowerCase());
-    });
-  }
-
-  /**
-   * Filters an array of results by selected digital object filters
-   * @param currentResults Results to filter
-   * @returns Filtered results
-   */
-  private filterDigitalObjectResults(currentResults: TableRow[]): TableRow[] {
-    const currentDigitalObjectsFilters = this.filters().digitalObjects;
-    if (currentDigitalObjectsFilters && currentDigitalObjectsFilters.length === 0) {
-      return currentResults;
-    }
-    return currentResults.filter((row) => currentDigitalObjectsFilters?.includes(row['doType'] as string));
-  }
-
-  /**
    * Performs KG DO search for selected ontology, cell type, biomarker, and HRA release version filters
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
-    const currentOrganFilters = this.filters().organs;
-    const currentAnatomicalStructuresFilters = this.filters().anatomicalStructures;
-    const currentCellTypesFilters = this.filters().cellTypes;
-    const currentBiomarkerFilters = this.filters().biomarkers;
-    const currentHraVersionFilters = this.filters().releaseVersion;
+    const currentOrganFilters = this.store.organs ? this.store.organs() : [];
+    const currentAnatomicalStructuresFilters = this.store.anatomicalStructures ? this.store.anatomicalStructures() : [];
+    const currentCellTypesFilters = this.store.cellTypes ? this.store.cellTypes() : [];
+    const currentBiomarkerFilters = this.store.biomarkers ? this.store.biomarkers() : [];
+    const currentHraVersionFilters = this.store.releaseVersion ? this.store.releaseVersion() : [];
+    const currentSearchTerm = this.store.searchTerm();
+    const digitalObjects = this.store.digitalObjects() ? this.store.digitalObjects() : [];
 
     return this.filter.doSearch({
       organs: currentOrganFilters || [],
@@ -325,6 +262,8 @@ export class MainPageComponent {
       ontologyTerms: currentAnatomicalStructuresFilters || [],
       cellTypeTerms: currentCellTypesFilters || [],
       biomarkerTerms: currentBiomarkerFilters || [],
+      searchTerm: currentSearchTerm,
+      digitalObjects: digitalObjects || [],
     });
   }
 
@@ -378,10 +317,7 @@ export class MainPageComponent {
    * @param searchTerm Search input
    */
   private onSearchChange(searchTerm?: string): void {
-    this.filters.set({
-      ...this.filters(),
-      searchTerm,
-    });
+    this.store.updateSearchTerm(searchTerm);
 
     this.updateQueryParamsFromFilters();
   }

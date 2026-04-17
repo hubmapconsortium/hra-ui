@@ -8,7 +8,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
-import { CurrentFilters } from '../../pages/main-page/main-page.component';
+import { CurrentFilters } from '../../state/with-filters.feature';
 import { FilterOption, FilterOptionCategory } from '../../utils/utils';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 

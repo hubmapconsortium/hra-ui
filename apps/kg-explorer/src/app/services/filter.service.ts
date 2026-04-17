@@ -1,6 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { TableRow } from '@hra-ui/design-system/table';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { AsctbTerms, DigitalObjectInfo, DigitalObjectsJsonLd, TermsIndex } from '../digital-objects-metadata.schema';
 import {
   FilterOption,
@@ -10,6 +10,7 @@ import {
   HRA_VERSION_DATA,
   sentenceCase,
 } from '../utils/utils';
+import { FiltersStore } from '../state/filters.store';
 
 /** Digital object info interface with hraVersions */
 export interface DigitalObjectInfoWithHraVersions extends DigitalObjectInfo {
@@ -27,6 +28,8 @@ export class FilterService {
   readonly termsIndex = signal<TermsIndex>({ terms: [], purls: [], term_to_purls: [], purl_to_terms: [] });
   /** Records HRA version counts for the version filter */
   readonly versionCounts = signal<Record<string, number>>({});
+
+  readonly store = inject(FiltersStore);
 
   /**
    * Sets the version filter counts from the data
@@ -148,39 +151,67 @@ export class FilterService {
     ontologyTerms: string[];
     cellTypeTerms: string[];
     biomarkerTerms: string[];
+    searchTerm: string | undefined;
+    digitalObjects: string[];
   }): Observable<string[]> {
-    const { organs, versions, ontologyTerms, cellTypeTerms, biomarkerTerms } = options;
-    return new Observable<string[]>((subscriber) => {
-      if (
-        organs.length === 0 &&
-        versions.length === 0 &&
-        ontologyTerms.length === 0 &&
-        cellTypeTerms.length === 0 &&
-        biomarkerTerms.length === 0
-      ) {
-        subscriber.next(this.allRows().map((row) => row['purl'] as string));
-        subscriber.complete();
-      } else {
-        const filteredByVersions = this.allRows().filter((row) => {
-          const rowVersions = handleValue(row['hraVersions'] as string[] | string | undefined);
-          if (rowVersions) {
-            return rowVersions?.some((version) => versions.includes(version));
-          }
-          return false;
-        });
-        const versionsSet = new Set(filteredByVersions.map((row) => row['purl'] as string));
-        const filteredPurls = new Set([
-          ...versionsSet,
-          ...this.getPurlsFromTerms(organs),
-          ...this.getPurlsFromTerms(ontologyTerms),
-          ...this.getPurlsFromTerms(cellTypeTerms),
-          ...this.getPurlsFromTerms(biomarkerTerms),
-        ]);
-        const filteredPurlsArray = Array.from(filteredPurls);
-        subscriber.next(filteredPurlsArray);
-        subscriber.complete();
-      }
+    const { organs, versions, ontologyTerms, cellTypeTerms, biomarkerTerms, searchTerm, digitalObjects } = options;
+    let result = [];
+    if (
+      organs.length === 0 &&
+      versions.length === 0 &&
+      ontologyTerms.length === 0 &&
+      cellTypeTerms.length === 0 &&
+      biomarkerTerms.length === 0 &&
+      digitalObjects.length === 0 &&
+      !searchTerm
+    ) {
+      result = this.allRows().map((row) => row['purl'] as string);
+    } else {
+      const filteredByDigitalObjects = this.allRows().filter((row) => {
+        const type = row['doType'] as string;
+        return digitalObjects.includes(type);
+      });
+      const filteredByVersions = this.allRows().filter((row) => {
+        const rowVersions = handleValue(row['hraVersions'] as string[] | string | undefined);
+        if (rowVersions) {
+          return rowVersions?.some((version) => versions.includes(version));
+        }
+        return false;
+      });
+      const filteredBySearchTerm = this.allRows().filter((row) => {
+        const title = row['title'] as string;
+        return searchTerm ? title.toLowerCase().includes((searchTerm || '').toLowerCase()) : false;
+      });
+      const doSet = new Set(filteredByDigitalObjects.map((row) => row['purl'] as string));
+      const versionsSet = new Set(filteredByVersions.map((row) => row['purl'] as string));
+      const searchResults = new Set(filteredBySearchTerm.map((row) => row['purl'] as string));
+
+      const filteredPurls = new Set([
+        ...doSet,
+        ...versionsSet,
+        ...searchResults,
+        ...this.getPurlsFromTerms(organs),
+        ...this.getPurlsFromTerms(ontologyTerms),
+        ...this.getPurlsFromTerms(cellTypeTerms),
+        ...this.getPurlsFromTerms(biomarkerTerms),
+      ]);
+      result = Array.from(filteredPurls);
+    }
+    return from([result]);
+  }
+
+  filterSearchFormResults(currentResults: string[], searchTerm: string | undefined): string[] {
+    return currentResults.filter((entry) => {
+      return entry.toLowerCase().includes((searchTerm || '').toLowerCase());
     });
+  }
+
+  filterDigitalObjectResults(currentResults: string[]): string[] {
+    const currentDigitalObjectsFilters = this.store.digitalObjects();
+    if (currentDigitalObjectsFilters && currentDigitalObjectsFilters.length === 0) {
+      return currentResults;
+    }
+    return currentResults.filter((row) => currentDigitalObjectsFilters?.includes(row as string));
   }
 
   getPurlsFromTerms(terms: string[]): Set<string> {
