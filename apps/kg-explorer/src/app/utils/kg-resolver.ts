@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { HraKgService, OntologyTree, V1Service } from '@hra-api/ng-client';
 import { catchError, map, of } from 'rxjs';
 import { DigitalObjectMetadata } from '../digital-objects-metadata.schema';
 import { injectMirrorUrl } from './endpoints';
@@ -22,50 +21,6 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
       .get(`${mirrorUrl()}/${type}/${name}/${version}/metadata.json`, { responseType: 'json' })
       .pipe(catchError(() => of(undefined)))
       .pipe(map((data) => data as DigitalObjectMetadata));
-  };
-}
-
-/**
- * Creates a resolver for ASCTB term counts
- * @returns resolver
- */
-export function asctbResolver(): ResolveFn<[string, number][]> {
-  return () => {
-    const kg = inject(HraKgService);
-    return kg.asctbTermOccurences({}).pipe(map((data) => Object.entries(data)));
-  };
-}
-
-/**
- * Creates a resolver for ontology tree
- * @returns resolver
- */
-export function ontologyResolver(): ResolveFn<OntologyTree> {
-  return () => {
-    const v1 = inject(V1Service);
-    return v1.ontologyTreeModel({});
-  };
-}
-
-/**
- * Creates a resolver for cell type ontology tree
- * @returns resolver
- */
-export function cellTypeResolver(): ResolveFn<OntologyTree> {
-  return () => {
-    const v1 = inject(V1Service);
-    return v1.cellTypeTreeModel({});
-  };
-}
-
-/**
- * Creates a resolver for biomarkers ontology tree
- * @returns resolver
- */
-export function biomarkersResolver(): ResolveFn<OntologyTree> {
-  return () => {
-    const v1 = inject(V1Service);
-    return v1.biomarkerTreeModel({});
   };
 }
 

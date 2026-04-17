@@ -7,15 +7,7 @@ import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/
 import { AsctbTermsSchema, DigitalObjectsJsonLdSchema, TermsIndexSchema } from './digital-objects-metadata.schema';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
-import {
-  asctbResolver,
-  biomarkersResolver,
-  cellTypeResolver,
-  documentationUrlResolver,
-  doMetadataResolver,
-  ontologyResolver,
-  productLabelResolver,
-} from './utils/kg-resolver';
+import { documentationUrlResolver, doMetadataResolver, productLabelResolver } from './utils/kg-resolver';
 
 /** Column info for digital object table */
 export const DO_COLUMNS: TableColumn[] = [
@@ -119,10 +111,6 @@ export const appRoutes: Route[] = [
       data: createJsonSpecResolver(DO_URL, DigitalObjectsJsonLdSchema),
       asctbTerms: createJsonSpecResolver(ASCTB_TERMS_URL, AsctbTermsSchema),
       termsIndex: createJsonSpecResolver(KG_TERMS_INDEX_URL, TermsIndexSchema),
-      // asctbTermOccurrences: asctbResolver(),
-      // ontologyTree: ontologyResolver(),
-      // cellTypeTree: cellTypeResolver(),
-      // biomarkerTree: biomarkersResolver(),
     },
   },
   {
@@ -133,6 +121,7 @@ export const appRoutes: Route[] = [
     },
     resolve: {
       doData: createJsonSpecResolver(DO_URL, DigitalObjectsJsonLdSchema),
+      asctbTerms: createJsonSpecResolver(ASCTB_TERMS_URL, AsctbTermsSchema),
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),

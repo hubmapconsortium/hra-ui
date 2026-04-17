@@ -313,7 +313,6 @@ export function getOrganId(item?: DigitalObjectInfo): string | undefined {
  */
 export function getOrganIcon(item?: DigitalObjectInfo): string {
   if (getOrganId(item)) {
-    // console.warn(getOrganId(item));
     return `organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? 'all-organs'}`;
   }
   return 'organ:all-organs';

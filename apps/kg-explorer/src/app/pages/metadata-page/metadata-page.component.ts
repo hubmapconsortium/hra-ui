@@ -4,7 +4,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
-import { V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
@@ -15,9 +14,14 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
-import { DigitalObjectsJsonLd, DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
+import {
+  AsctbTerms,
+  DigitalObjectMetadata,
+  DigitalObjectsJsonLd,
+  PersonInfo,
+} from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
+import { getOrganIcon, getProductIcon, getProductLabel, handleValue, sentenceCase } from '../../utils/utils';
 
 /**
  * Metadata page for a digital object
@@ -45,11 +49,11 @@ export class MetadataPageComponent {
   private readonly route = inject(ActivatedRoute);
   /** File download service */
   private readonly download = inject(DownloadService);
-  /** HRA V1 API service */
-  private readonly v1 = inject(V1Service);
 
   /** Raw digital object data from API */
   readonly doData = input.required<DigitalObjectsJsonLd>();
+  readonly asctbTerms = input.required<AsctbTerms>();
+
   /** Column data for metadata table */
   readonly columns = input.required<TableColumn[]>();
   /** Metadata for the digital object */
@@ -140,29 +144,25 @@ export class MetadataPageComponent {
         }
         this.icons.set(icons);
 
-        this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
-          if (pageItem) {
-            if (Array.isArray(pageItem.versions)) {
-              this.availableVersions.set(pageItem.versions);
-            } else {
-              this.availableVersions.set([pageItem.versions]);
-            }
-            const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
-            if (pageItem.organIds) {
-              const ids = Array.isArray(pageItem.organIds) ? pageItem.organIds : [pageItem.organIds];
-              for (const organId of ids) {
-                if (ontologyData.nodes[organId]) {
-                  tags.push({
-                    id: organId,
-                    label: sentenceCase(ontologyData.nodes[organId].label || ''),
-                    type: 'organs',
-                  });
-                }
-              }
-            }
-            this.tags.set(tags);
+        if (pageItem) {
+          if (Array.isArray(pageItem.versions)) {
+            this.availableVersions.set(pageItem.versions);
+          } else {
+            this.availableVersions.set([pageItem.versions]);
           }
-        });
+          const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
+          if (pageItem.organIds) {
+            const ids = handleValue(pageItem.organIds) || [];
+            for (const organId of ids) {
+              tags.push({
+                id: organId,
+                label: sentenceCase(this.asctbTerms().find((term) => term.iri === organId)?.label || ''),
+                type: 'organs',
+              });
+            }
+          }
+          this.tags.set(tags);
+        }
       }
     });
   }

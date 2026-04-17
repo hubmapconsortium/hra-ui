@@ -1,24 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  ElementRef,
-  inject,
-  Signal,
-  signal,
-} from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { DigitalObjectsJsonLd, HraKgService } from '@hra-api/ng-client';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { MarkdownModule } from 'ngx-markdown';
 import { HelpMenuOptions } from './app.routes';
+import { DigitalObjectsJsonLd } from './digital-objects-metadata.schema';
 import { setMirrorUrl, setRemoteApiEndpoint } from './utils/endpoints';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
@@ -76,8 +68,7 @@ export class AppComponent extends BaseApplicationComponent {
   /** Activated route service */
   private readonly route = inject(ActivatedRoute);
 
-  /** HRA KG API service */
-  private readonly kg = inject(HraKgService);
+  private readonly http = inject(HttpClient);
 
   /** Page title to display on the breadcrumbs */
   private readonly pageTitle = signal<string>('');
@@ -119,7 +110,7 @@ export class AppComponent extends BaseApplicationComponent {
   readonly objectId = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
 
   /** Digital objects */
-  private readonly digitalObjects: Signal<DigitalObjectsJsonLd>;
+  private readonly digitalObjects = signal<DigitalObjectsJsonLd>({ '@context': {}, '@graph': [] });
 
   /**
    * Gets the page title for breadcrumbs
@@ -149,13 +140,6 @@ export class AppComponent extends BaseApplicationComponent {
       }
     });
 
-    effect(() => {
-      const id = this.objectId();
-      const objects = this.digitalObjects();
-      const match = objects['@graph']?.find((object) => object['@id'] === id);
-      this.pageTitle.set(match?.title || '');
-    });
-
     this.router.events.pipe(takeUntilDestroyed()).subscribe(() => {
       const type = this.route.snapshot.root.firstChild?.params['type'];
       const name = this.route.snapshot.root.firstChild?.params['name'];
@@ -164,6 +148,8 @@ export class AppComponent extends BaseApplicationComponent {
       } else {
         this.params.set([]);
       }
+
+      this.setPageTitle();
     });
 
     const el = inject(ElementRef).nativeElement as HTMLElement;
@@ -175,7 +161,15 @@ export class AppComponent extends BaseApplicationComponent {
     if (mirrorUrl) {
       setMirrorUrl(mirrorUrl);
     }
+  }
 
-    this.digitalObjects = toSignal(this.kg.digitalObjects(), { initialValue: {} });
+  private setPageTitle() {
+    this.http.get('https://cdn.humanatlas.io/digital-objects/kg/digital-objects.jsonld').subscribe((data) => {
+      this.digitalObjects.set(data as DigitalObjectsJsonLd);
+      const id = this.objectId();
+      const objects = this.digitalObjects();
+      const match = objects['@graph']?.find((object) => object['@id'] === id);
+      this.pageTitle.set(match?.title || '');
+    });
   }
 }
