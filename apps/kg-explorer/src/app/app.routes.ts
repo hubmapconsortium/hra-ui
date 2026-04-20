@@ -1,4 +1,4 @@
-import { Route } from '@angular/router';
+import { ActivatedRouteSnapshot, Route, RouterStateSnapshot } from '@angular/router';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { TableColumn } from '@hra-ui/design-system/table';
@@ -8,6 +8,7 @@ import { AsctbTermsSchema, DigitalObjectsJsonLdSchema, TermsIndexSchema } from '
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
 import { documentationUrlResolver, doMetadataResolver, productLabelResolver } from './utils/kg-resolver';
+import { injectMirrorUrl } from './utils/endpoints';
 
 /** Column info for digital object table */
 export const DO_COLUMNS: TableColumn[] = [
@@ -93,10 +94,6 @@ export interface HelpMenuOptions {
   icon?: string;
 }
 
-const DO_URL = 'https://cdn.humanatlas.io/digital-objects/kg/digital-objects.jsonld';
-const ASCTB_TERMS_URL = 'https://cdn.humanatlas.io/digital-objects/kg/asctb-terms.json';
-const KG_TERMS_INDEX_URL = 'https://cdn.humanatlas.io/digital-objects/kg/kg-terms-index.json';
-
 /** Application routes */
 export const appRoutes: Route[] = [
   {
@@ -108,9 +105,21 @@ export const appRoutes: Route[] = [
       columns: DO_COLUMNS,
     },
     resolve: {
-      data: createJsonSpecResolver(DO_URL, DigitalObjectsJsonLdSchema),
-      asctbTerms: createJsonSpecResolver(ASCTB_TERMS_URL, AsctbTermsSchema),
-      termsIndex: createJsonSpecResolver(KG_TERMS_INDEX_URL, TermsIndexSchema),
+      data: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+        const mirrorUrl = injectMirrorUrl();
+        return createJsonSpecResolver(`${mirrorUrl()}/kg/digital-objects.jsonld`, DigitalObjectsJsonLdSchema)(
+          route,
+          state,
+        );
+      },
+      asctbTerms: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+        const mirrorUrl = injectMirrorUrl();
+        return createJsonSpecResolver(`${mirrorUrl()}/kg/asctb-terms.json`, AsctbTermsSchema)(route, state);
+      },
+      termsIndex: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+        const mirrorUrl = injectMirrorUrl();
+        return createJsonSpecResolver(`${mirrorUrl()}/kg/kg-terms-index.json`, TermsIndexSchema)(route, state);
+      },
     },
   },
   {
@@ -120,8 +129,17 @@ export const appRoutes: Route[] = [
       columns: METADATA_COLUMNS,
     },
     resolve: {
-      doData: createJsonSpecResolver(DO_URL, DigitalObjectsJsonLdSchema),
-      asctbTerms: createJsonSpecResolver(ASCTB_TERMS_URL, AsctbTermsSchema),
+      doData: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+        const mirrorUrl = injectMirrorUrl();
+        return createJsonSpecResolver(`${mirrorUrl()}/kg/digital-objects.jsonld`, DigitalObjectsJsonLdSchema)(
+          route,
+          state,
+        );
+      },
+      asctbTerms: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+        const mirrorUrl = injectMirrorUrl();
+        return createJsonSpecResolver(`${mirrorUrl()}/kg/asctb-terms.json`, AsctbTermsSchema)(route, state);
+      },
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
@@ -11,7 +11,7 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { MarkdownModule } from 'ngx-markdown';
 import { HelpMenuOptions } from './app.routes';
 import { DigitalObjectsJsonLd } from './digital-objects-metadata.schema';
-import { setMirrorUrl, setRemoteApiEndpoint } from './utils/endpoints';
+import { injectMirrorUrl, setMirrorUrl, setRemoteApiEndpoint } from './utils/endpoints';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
 
@@ -70,6 +70,10 @@ export class AppComponent extends BaseApplicationComponent {
 
   private readonly http = inject(HttpClient);
 
+  readonly customMirror = input<string>();
+
+  readonly mirrorUrl = injectMirrorUrl();
+
   /** Page title to display on the breadcrumbs */
   private readonly pageTitle = signal<string>('');
 
@@ -118,6 +122,16 @@ export class AppComponent extends BaseApplicationComponent {
   constructor() {
     super({ screenSizeNotice: { width: 864, height: 486 } });
 
+    const el = inject(ElementRef).nativeElement as HTMLElement;
+    const apiEndpoint = el.getAttribute('remote-api-endpoint');
+    if (apiEndpoint) {
+      setRemoteApiEndpoint(apiEndpoint);
+    }
+    const mirrorUrl = el.getAttribute('custom-mirror') || el.getAttribute('mirror-url');
+    if (mirrorUrl) {
+      setMirrorUrl(mirrorUrl);
+    }
+
     effect(() => {
       if (this.typeLabel() && this.documentationUrl()) {
         this.extraMenuOption.set({
@@ -151,20 +165,10 @@ export class AppComponent extends BaseApplicationComponent {
 
       this.setPageTitle();
     });
-
-    const el = inject(ElementRef).nativeElement as HTMLElement;
-    const apiEndpoint = el.getAttribute('remote-api-endpoint');
-    if (apiEndpoint) {
-      setRemoteApiEndpoint(apiEndpoint);
-    }
-    const mirrorUrl = el.getAttribute('mirror-url');
-    if (mirrorUrl) {
-      setMirrorUrl(mirrorUrl);
-    }
   }
 
   private setPageTitle() {
-    this.http.get('https://cdn.humanatlas.io/digital-objects/kg/digital-objects.jsonld').subscribe((data) => {
+    this.http.get(`${this.mirrorUrl()}/kg/digital-objects.jsonld`).subscribe((data) => {
       this.digitalObjects.set(data as DigitalObjectsJsonLd);
       const id = this.objectId();
       const objects = this.digitalObjects();
