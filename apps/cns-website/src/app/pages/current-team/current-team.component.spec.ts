@@ -177,7 +177,7 @@ describe('CurrentTeamComponent', () => {
     const user = userEvent.setup();
     await renderComponent();
 
-    const searchInput = await screen.findByRole('textbox', { name: /search/i });
+    const searchInput = await screen.findByRole('searchbox', { name: /search/i });
     await user.type(searchInput, 'Katy');
 
     expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
@@ -248,7 +248,7 @@ describe('CurrentTeamComponent', () => {
     const user = userEvent.setup();
     await renderComponent();
 
-    const searchInput = await screen.findByRole('textbox', { name: /search/i });
+    const searchInput = await screen.findByRole('searchbox', { name: /search/i });
     await user.type(searchInput, 'NonExistentPerson');
 
     const clearFiltersButton = await screen.findByRole('button', { name: /clear filters/i });
@@ -268,7 +268,7 @@ describe('CurrentTeamComponent', () => {
 
     expect(screen.getByText((content) => content.includes('4') && content.includes('/'))).toBeInTheDocument();
 
-    const searchInput = await screen.findByRole('textbox', { name: /search/i });
+    const searchInput = await screen.findByRole('searchbox', { name: /search/i });
     await user.type(searchInput, 'Katy');
 
     await screen.findByText('Katy Börner');
@@ -319,7 +319,7 @@ describe('CurrentTeamComponent', () => {
     const user = userEvent.setup();
     await renderComponent();
 
-    const searchInput = await screen.findByRole('textbox', { name: /search/i });
+    const searchInput = await screen.findByRole('searchbox', { name: /search/i });
     await user.type(searchInput, 'Former');
 
     expect(await screen.findByText(/no results/i)).toBeInTheDocument();
