@@ -1,4 +1,4 @@
-<a hraHyperlink [hraLink]="url()" [hraLinkExternal]="external()">
+<a hraHyperlink [attr.aria-label]="ariaLabel()" [hraLink]="url()" [hraLinkExternal]="external()">
   {{ text() }}
   @if (icon(); as fontIcon) {
     <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>
