@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -19,23 +18,15 @@ import { fromEvent, Observable } from 'rxjs';
 import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import {
   AsctbTerms,
-  DigitalObjectInfo,
   DigitalObjectMetadata,
   DigitalObjectsJsonLd,
   TermsIndex,
 } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { DigitalObjectInfoWithHraVersions, FilterService } from '../../services/filter.service';
+import { SearchService } from '../../services/search.service';
 import { FiltersStore } from '../../state/filters.store';
-import {
-  FILTER_CATEGORY_INFO,
-  FilterOptionCategory,
-  getOrganIcon,
-  getProductIcon,
-  getProductLabel,
-  handleValue,
-  sentenceCase,
-} from '../../utils/utils';
+import { FILTER_CATEGORY_INFO, FilterOptionCategory, FilterOptions, FilterType, handleValue } from '../../utils/utils';
+import { ca } from 'zod/v4/locales';
 
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
@@ -61,7 +52,6 @@ const SCROLLBAR_TOP_OFFSET = '86';
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
-  providers: [FiltersStore],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.filter-closed]': 'filterClosed()',
@@ -72,11 +62,14 @@ const SCROLLBAR_TOP_OFFSET = '86';
 export class MainPageComponent {
   /** Http service */
   private readonly http = inject(HttpClient);
-  /** File download service */
-  readonly download = inject(DownloadService);
-
   /** Router service */
   readonly router = inject(Router);
+  /** File download service */
+  readonly download = inject(DownloadService);
+  /** Search service */
+  readonly search = inject(SearchService);
+  /** Filters store */
+  readonly store = inject(FiltersStore);
 
   /** Form control for search input */
   readonly searchControl = new UntypedFormControl();
@@ -99,18 +92,11 @@ export class MainPageComponent {
   /** Whether or not the filter menu is closed */
   readonly filterClosed = signal<boolean>(false);
   /** Filter categories */
-  readonly filterCategories = signal<Record<string, FilterOptionCategory>>(FILTER_CATEGORY_INFO);
-
-  readonly filter = inject(FilterService);
-  readonly store = inject(FiltersStore);
-
+  readonly filterCategories = signal<FilterOptionCategory[]>([]);
   /** Scroll viewport height for the digital object table */
   readonly scrollHeight = signal(0);
   /** Id of digital object to download */
   readonly downloadId = signal<string | undefined>(undefined);
-
-  /** Filter categories as an array */
-  readonly filterCategoriesArray = computed<FilterOptionCategory[]>(() => Object.values(this.filterCategories()));
 
   /**
    * Sets the initial filters according to query params
@@ -123,35 +109,27 @@ export class MainPageComponent {
    */
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
-    queryParams$.subscribe((queryParams) => this.setFiltersFomParams(queryParams));
-
-    toObservable(this.data).subscribe((items) => {
-      const objectData = this.resolveData(items['@graph']);
-      this.filter.allRows.set(objectData);
-      this.filteredRows.set(this.filter.allRows());
-      this.filter.setVersionCounts(items['@graph'] as DigitalObjectInfoWithHraVersions[]);
-    });
-
-    toObservable(this.termsIndex).subscribe((index) => {
-      this.filter.data.set(this.data());
-      this.filter.asctbTerms.set(this.asctbTerms());
-      this.filter.termsIndex.set(index);
-    });
+    queryParams$.subscribe((queryParams) => this.setFiltersFromQueryParams(queryParams));
+    this.store.setData(this.data);
+    this.store.setAsctbTerms(this.asctbTerms);
+    this.store.setTermsIndex(this.termsIndex);
 
     this.searchControl.valueChanges.subscribe((result?: string) => {
-      this.onSearchChange(result === '' ? undefined : result);
+      this.store.updateFilters({ ...this.store.filters(), searchTerm: result === '' ? undefined : result });
+      this.updateQueryParamsFromFilters();
     });
 
     effect(() => {
+      this.filteredRows.set(this.store.allRows());
       this.populateFilterOptions();
+      this.attachDownloadOptions();
+    });
+
+    effect(() => {
       this.digitalObjectSearch().subscribe((results) => {
-        const newFilteredRows = this.filter.allRows().filter((row) => results.includes(row['purl'] as string));
+        const newFilteredRows = this.store.allRows().filter((row) => results.includes(row['purl'] as string));
         this.filteredRows.set(newFilteredRows);
       });
-    });
-
-    effect(() => {
-      this.attachDownloadOptions();
     });
 
     this.setScrollViewportHeight();
@@ -162,7 +140,7 @@ export class MainPageComponent {
    * Sets filters from query params in the url
    * @param queryParams Query params from the route
    */
-  private setFiltersFomParams(queryParams: Params) {
+  private setFiltersFromQueryParams(queryParams: Params) {
     const dObjects = queryParams['do'];
     const versions = queryParams['versions'];
     const organs = queryParams['organs'];
@@ -180,7 +158,24 @@ export class MainPageComponent {
       biomarkers: handleValue(b) || [],
       searchTerm: search ?? '',
     });
-    this.searchControl.patchValue(this.store.searchTerm());
+    this.searchControl.patchValue(this.store.filters().searchTerm);
+  }
+
+  /**
+   * Updates query params based on current filters
+   */
+  private updateQueryParamsFromFilters() {
+    this.router.navigate([''], {
+      queryParams: {
+        do: this.store.filters().digitalObjects,
+        versions: this.store.filters().releaseVersion,
+        organs: this.store.filters().organs,
+        as: this.store.filters().anatomicalStructures,
+        ct: this.store.filters().cellTypes,
+        b: this.store.filters().biomarkers,
+        search: this.store.filters().searchTerm,
+      },
+    });
   }
 
   /**
@@ -193,109 +188,17 @@ export class MainPageComponent {
   }
 
   /**
-   * Updates query params based on current filters
-   */
-  private updateQueryParamsFromFilters() {
-    this.router.navigate([''], {
-      queryParams: {
-        do: this.store.digitalObjects(),
-        versions: this.store.releaseVersion(),
-        organs: this.store.organs(),
-        as: this.store.anatomicalStructures(),
-        ct: this.store.cellTypes(),
-        b: this.store.biomarkers(),
-        search: this.store.searchTerm(),
-      },
-    });
-  }
-
-  /**
    * Populates filter categories with options
    */
   private populateFilterOptions() {
-    this.filterCategories.update((categories) => {
-      return {
-        digitalObjects: {
-          ...categories['digitalObjects'],
-          options: this.filter.digitalObjectsOptions(),
-        },
-        releaseVersions: {
-          ...categories['releaseVersions'],
-          options: this.filter.hraVersionsOptions(),
-        },
-        organs: {
-          ...categories['organs'],
-          options: this.filter.generateOrganOptions(),
-        },
-        anatomicalStructures: {
-          ...categories['anatomicalStructures'],
-          options: this.filter.generateAsctbOptions('AS', this.asctbTerms()),
-        },
-        cellTypes: {
-          ...categories['cellTypes'],
-          options: this.filter.generateAsctbOptions('CT', this.asctbTerms()),
-        },
-        biomarkers: {
-          ...categories['biomarkers'],
-          options: this.filter.generateAsctbOptions('BM', this.asctbTerms()),
-        },
-      };
-    });
-  }
+    const keys = Object.keys(FILTER_CATEGORY_INFO);
+    const values = Object.values(FILTER_CATEGORY_INFO);
+    const categories = values.map((categoryInfo, index) => ({
+      ...categoryInfo,
+      options: this.store.allFilters()[keys[index] as FilterType],
+    }));
 
-  /**
-   * Performs KG DO search for selected ontology, cell type, biomarker, and HRA release version filters
-   * @returns object search
-   */
-  private digitalObjectSearch(): Observable<string[]> {
-    const currentOrganFilters = this.store.organs ? this.store.organs() : [];
-    const currentAnatomicalStructuresFilters = this.store.anatomicalStructures ? this.store.anatomicalStructures() : [];
-    const currentCellTypesFilters = this.store.cellTypes ? this.store.cellTypes() : [];
-    const currentBiomarkerFilters = this.store.biomarkers ? this.store.biomarkers() : [];
-    const currentHraVersionFilters = this.store.releaseVersion ? this.store.releaseVersion() : [];
-    const currentSearchTerm = this.store.searchTerm();
-    const digitalObjects = this.store.digitalObjects() ? this.store.digitalObjects() : [];
-
-    return this.filter.doSearch({
-      organs: currentOrganFilters || [],
-      versions: currentHraVersionFilters || [],
-      ontologyTerms: currentAnatomicalStructuresFilters || [],
-      cellTypeTerms: currentCellTypesFilters || [],
-      biomarkerTerms: currentBiomarkerFilters || [],
-      searchTerm: currentSearchTerm,
-      digitalObjects: digitalObjects || [],
-    });
-  }
-
-  /**
-   * Resolves raw digital object data into array of TableRow
-   * @param data Raw digital object data
-   * @returns Data as TableRow[]
-   */
-  private resolveData(data?: DigitalObjectInfo[]): TableRow[] {
-    if (!data) {
-      return [];
-    }
-    return data.map((item) => {
-      const organLabel = item.organs ? handleValue(item.organs)?.[0] : undefined;
-      return {
-        id: item.lod,
-        purl: item.purl,
-        doType: item.doType,
-        hraVersions: item.hraVersions,
-        doVersion: item.doVersion,
-        organIds: item.organIds,
-        title: item.title,
-        objectUrl: `${item.doType}/${item.doName}/latest`,
-        typeIcon: getProductIcon(item.doType),
-        typeTooltip: getProductLabel(item.doType),
-        organIcon: getOrganIcon(item),
-        organTooltip: sentenceCase(organLabel || 'All Organs'),
-        cellCount: item.cell_count,
-        biomarkerCount: item.biomarker_count,
-        lastPublished: this.formatDateToYYYYMM(item.lastUpdated['@value']),
-      } as TableRow;
-    });
+    this.filterCategories.update(() => categories);
   }
 
   /**
@@ -304,7 +207,7 @@ export class MainPageComponent {
   private attachDownloadOptions() {
     if (this.downloadId()) {
       this.http.get(this.downloadId() || '', { responseType: 'json' }).subscribe((data) => {
-        const match = this.filter.allRows().find((row) => row['id'] === this.downloadId());
+        const match = this.store.allRows().find((row) => row['id'] === this.downloadId());
         if (match) {
           match['downloadOptions'] = this.download.getDownloadOptions(data as DigitalObjectMetadata);
         }
@@ -313,25 +216,19 @@ export class MainPageComponent {
   }
 
   /**
-   * Updates filteredRows on searchTerm input
-   * @param searchTerm Search input
+   * Performs KG DO search for selected ontology, cell type, biomarker, and HRA release version filters
+   * @returns object search
    */
-  private onSearchChange(searchTerm?: string): void {
-    this.store.updateSearchTerm(searchTerm);
-
-    this.updateQueryParamsFromFilters();
-  }
-
-  /**
-   * Formats Date to yyyy-mm
-   * @param dateString Date string
-   * @returns Date as yyyy-mm
-   */
-  private formatDateToYYYYMM(dateString: string): string {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    return `${year}-${month}`;
+  private digitalObjectSearch(): Observable<string[]> {
+    return this.search.doSearch({
+      digitalObjects: this.store.filters().digitalObjects ?? [],
+      versions: this.store.filters().releaseVersion ?? [],
+      organs: this.store.filters().organs ?? [],
+      ontologyTerms: this.store.filters().anatomicalStructures ?? [],
+      cellTypeTerms: this.store.filters().cellTypes ?? [],
+      biomarkerTerms: this.store.filters().biomarkers ?? [],
+      searchTerm: this.store.filters().searchTerm,
+    });
   }
 
   /**

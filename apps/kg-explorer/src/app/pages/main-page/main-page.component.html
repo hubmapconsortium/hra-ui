@@ -22,7 +22,7 @@
     >
       <hra-filter-menu
         hraFeature="filter-menu"
-        [filterCategories]="filterCategoriesArray()"
+        [filterCategories]="filterCategories()"
         [formClosed]="!sidenav.opened"
         [currentFilters]="store.filters()"
         (toggleForm)="sidenav.toggle()"
@@ -40,7 +40,7 @@
           <hra-results-indicator
             description="Viewing"
             [value]="filteredRows().length"
-            [total]="filter.allRows().length"
+            [total]="store.allRows().length"
           />
         </div>
         <hra-table

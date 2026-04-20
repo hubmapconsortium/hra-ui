@@ -9,7 +9,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 import { CurrentFilters } from '../../state/with-filters.feature';
-import { FilterOption, FilterOptionCategory } from '../../utils/utils';
+import { FilterOption, FilterOptionCategory, FilterType } from '../../utils/utils';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
 /** Filter form values */
@@ -27,9 +27,6 @@ export interface FilterFormValues {
   /** Biomarkers form control */
   biomarkers: FilterOption[] | null;
 }
-
-/** Filter types for the filter form */
-type FilterType = 'digitalObjects' | 'releaseVersion' | 'organs' | 'anatomicalStructures' | 'cellTypes' | 'biomarkers';
 
 /**
  * Filter menu for the KG Explorer

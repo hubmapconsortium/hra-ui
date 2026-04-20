@@ -46,8 +46,26 @@ export interface FilterOption {
   tooltip?: TooltipData;
 }
 
+export interface FilterOptions {
+  /** Digital object filters */
+  digitalObjects: FilterOption[];
+  /** Release version filters */
+  releaseVersion: FilterOption[];
+  /** Organ filters */
+  organs: FilterOption[];
+  /** Anatomical structures filters */
+  anatomicalStructures: FilterOption[];
+  /** Cell type filters */
+  cellTypes: FilterOption[];
+  /** Biomarker filters */
+  biomarkers: FilterOption[];
+}
+
+/** Filter types for the filter form */
+export type FilterType = keyof FilterOptions;
+
 /** Filter category info */
-export const FILTER_CATEGORY_INFO: Record<string, FilterOptionCategory> = {
+export const FILTER_CATEGORY_INFO: Record<FilterType, FilterOptionCategory> = {
   digitalObjects: {
     label: 'Digital objects',
     tooltip: {
@@ -56,7 +74,7 @@ export const FILTER_CATEGORY_INFO: Record<string, FilterOptionCategory> = {
       actionUrl: 'https://humanatlas.io/overview-data',
     },
   },
-  releaseVersions: {
+  releaseVersion: {
     label: 'HRA release version',
     tooltip: {
       description: 'New and updated data is released twice a year on June 15 and December 15.',
@@ -369,4 +387,16 @@ export function handleValue(value: string | string[] | undefined): string[] | un
     return [value];
   }
   return value;
+}
+
+/**
+ * Formats Date to yyyy-mm
+ * @param dateString Date string
+ * @returns Date as yyyy-mm
+ */
+export function formatDateToYYYYMM(dateString: string): string {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  return `${year}-${month}`;
 }
