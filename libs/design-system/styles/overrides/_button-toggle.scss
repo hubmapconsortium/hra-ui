@@ -8,9 +8,9 @@
       height: 2.5rem,
       shape: vars.$corner-extra-small,
       background-color: transparent,
-      divider-color: vars.$primary,
-      selected-state-background-color: utils.with-alpha(vars.$tertiary, 20%),
-      selected-state-text-color: vars.$secondary,
+      divider-color: vars.$outline,
+      selected-state-background-color: vars.$primary-fixed,
+      selected-state-text-color: vars.$on-primary-fixed,
     )
   );
 
@@ -62,6 +62,26 @@
 
     .mat-button-toggle-label-content {
       padding: 0 1rem;
+    }
+  }
+
+  mat-button-toggle-group {
+    &:focus-within {
+      outline: 2px solid vars.$tertiary;
+
+      @include mat.button-toggle-overrides(
+        (
+          selected-state-background-color: color-mix(in srgb, vars.$on-primary-fixed 10%, vars.$primary-fixed),
+        )
+      );
+    }
+
+    &:hover {
+      @include mat.button-toggle-overrides(
+        (
+          selected-state-background-color: color-mix(in srgb, vars.$on-primary-fixed 8%, vars.$primary-fixed),
+        )
+      );
     }
   }
 }

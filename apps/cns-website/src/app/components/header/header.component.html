@@ -1,4 +1,6 @@
 <header hraFeature="header" class="header" cdkOverlayOrigin data-testid="header" #mobileMenuOrigin="cdkOverlayOrigin">
+  <hra-skip-to-content-button anchorId="main-content" />
+
   <div hraFeature="navigation" class="header-content" #desktopMenuOrigin>
     @if (sidebarStore.hasSidebar()) {
       <button mat-icon-button aria-label="Toggle sidebar menu" (click)="sidebarStore.toggle()">

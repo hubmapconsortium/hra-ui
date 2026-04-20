@@ -1,0 +1,47 @@
+@use '../../../../styles/vars';
+
+:host {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+
+  .link {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+    border-radius: 0.5rem;
+    clip-path: inset(50%);
+  }
+
+  &:active,
+  &:focus,
+  &:focus-within {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+
+    .link:focus,
+    .link:focus-visible {
+      top: 3rem;
+      min-height: 4rem;
+      transform: translateX(-50%);
+      z-index: 2000;
+      opacity: 1;
+      color: vars.$on-surface;
+      background-color: vars.$surface-container-low;
+      border-color: vars.$on-surface;
+      box-shadow: 0px 0.3125rem 1rem 0px vars.$tertiary-container;
+      clip-path: none;
+    }
+  }
+}
