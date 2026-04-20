@@ -233,7 +233,7 @@ describe('ResearchPageComponent', () => {
       const user = userEvent.setup();
       await renderComponent();
 
-      const searchInput = await screen.findByRole('textbox', { name: /search/i });
+      const searchInput = await screen.findByRole('searchbox', { name: /search/i });
       await user.type(searchInput, 'Network Science');
 
       const results = await screen.findAllByText(/Research on Network Science/i);

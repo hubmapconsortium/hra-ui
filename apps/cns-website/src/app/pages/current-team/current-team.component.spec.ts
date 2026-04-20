@@ -437,7 +437,7 @@ describe('CurrentTeamComponent', () => {
     const user = userEvent.setup();
     await renderComponent();
 
-    const searchInput = await screen.findByRole('textbox', { name: /search/i });
+    const searchInput = await screen.findByRole('searchbox', { name: /search/i });
     await user.type(searchInput, 'Borner');
 
     expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
