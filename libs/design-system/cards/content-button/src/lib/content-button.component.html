@@ -6,9 +6,9 @@
   <div class="content">
     <span class="date">{{ date() | date }}</span>
     <span class="tagline">{{ tagline() }}</span>
-    <mat-chip-set class="tags">
+    <mat-chip-set class="tags" role="list" aria-label="Tags">
       @for (tag of tags(); track $index) {
-        <mat-chip class="tag">{{ tag }}</mat-chip>
+        <mat-chip class="tag" role="listitem">{{ tag }}</mat-chip>
       }
     </mat-chip-set>
   </div>
