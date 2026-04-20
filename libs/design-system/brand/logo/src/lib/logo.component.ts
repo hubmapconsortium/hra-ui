@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { findOrThrow } from '@hra-ui/common/array-util';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { InlineSVGModule, type SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 
@@ -9,7 +10,7 @@ import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 /** Brand Logo Component */
 @Component({
   selector: 'hra-brand-logo',
-  imports: [HraCommonModule, InlineSVGModule],
+  imports: [HraCommonModule, InlineSVGModule, RouterExtModule],
   templateUrl: './logo.component.html',
   styleUrl: './logo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

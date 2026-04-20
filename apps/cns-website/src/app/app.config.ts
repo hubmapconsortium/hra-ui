@@ -46,7 +46,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideBrandLogos({
       label: 'CNS Website',
-      url: 'https://cns.iu.edu',
+      url: 'https://cns.iu.edu/',
       logos: [
         {
           size: 'regular',
