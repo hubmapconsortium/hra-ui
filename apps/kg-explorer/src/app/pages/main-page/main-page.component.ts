@@ -25,8 +25,7 @@ import {
 import { DownloadService } from '../../services/download.service';
 import { SearchService } from '../../services/search.service';
 import { FiltersStore } from '../../state/filters.store';
-import { FILTER_CATEGORY_INFO, FilterOptionCategory, FilterOptions, FilterType, handleValue } from '../../utils/utils';
-import { ca } from 'zod/v4/locales';
+import { FILTER_CATEGORY_INFO, FilterOptionCategory, FilterType, handleValue } from '../../utils/utils';
 
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
@@ -220,7 +219,7 @@ export class MainPageComponent {
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
-    return this.search.doSearch({
+    return this.search.doSearch(this.store.allRows(), this.store.termsIndex(), {
       digitalObjects: this.store.filters().digitalObjects ?? [],
       versions: this.store.filters().releaseVersion ?? [],
       organs: this.store.filters().organs ?? [],
