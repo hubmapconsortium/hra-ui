@@ -1,6 +1,7 @@
 <mat-sidenav-container class="container" hraFeature="research-page">
   <mat-sidenav
     class="sidebar"
+    role="search"
     aria-label="Filter research"
     [mode]="sidebarStore.mode()"
     [opened]="sidebarStore.isOpen()"
@@ -52,7 +53,7 @@
     </hra-filter-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content role="main">
+  <mat-sidenav-content id="main-content" role="main" tabindex="-1">
     <hra-search-filter
       hraFeature="search"
       label="Search"

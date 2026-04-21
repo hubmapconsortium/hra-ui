@@ -20,10 +20,12 @@ headerContent:
           component: TextHyperlink
           text: View visualizations
           url: /exhibit/envisioning-intelligences
+          ariaLabel: View visualizations from the Envisioning Intelligences exhibit
         actionsRight:
           component: TextHyperlink
           text: Talks and demos
           url: https://cns-iu.github.io/workshops/2025-24h
+          ariaLabel: View talks and demos from the Envisioning Intelligences exhibit
       - component: ActionCard
         variant: outlined
         image: assets/content/exhibit/images/macroscopes.png
@@ -35,10 +37,12 @@ headerContent:
           component: TextHyperlink
           text: View macroscopes
           url: https://scimaps.org/macroscopes
+          ariaLabel: View macroscopes from the Macroscopes exhibit
         actionsRight:
           component: TextHyperlink
           text: Talks and demos
           url: https://cns-iu.github.io/workshops/2023-12-9_24hour_science_map/
+          ariaLabel: View talks and demos from the Macroscopes exhibit
       - component: ActionCard
         variant: outlined
         image: assets/content/exhibit/images/maps.png
@@ -50,10 +54,12 @@ headerContent:
           component: TextHyperlink
           text: View maps
           url: https://scimaps.org/maps
+          ariaLabel: View maps from the Maps exhibit
         actionsRight:
           component: TextHyperlink
           text: Talks and demos
           url: https://cns-iu.github.io/workshops/2021-12-10_24hour_science_map
+          ariaLabel: View talks and demos from the Maps exhibit
 content:
   - component: PageSection
     tagline: About the exhibits
@@ -105,10 +111,12 @@ content:
               component: TextHyperlink
               text: Event website
               url: https://cns-iu.github.io/workshops/2025-24h/
+              ariaLabel: View event website for Envisioning Intelligences talks and demos
             actionsRight:
               component: TextHyperlink
               text: YouTube playlist
               url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DPbiDhpt0M233PeVV9WVyDv
+              ariaLabel: View YouTube playlist for Envisioning Intelligences talks and demos
           - component: ActionCard
             variant: outlined
             image: assets/content/exhibit/images/atlas-of-inequality.png
@@ -120,10 +128,12 @@ content:
               component: TextHyperlink
               text: Event website
               url: https://cns-iu.github.io/workshops/2023-12-9_24hour_science_map/
+              ariaLabel: View event website for Macroscopes talks and demos
             actionsRight:
               component: TextHyperlink
               text: YouTube playlist
               url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DNM0EMoeWvIn-pHD2-QmPhx
+              ariaLabel: View YouTube playlist for Macroscopes talks and demos
           - component: ActionCard
             variant: outlined
             image: assets/content/exhibit/images/2pm.png
@@ -135,7 +145,9 @@ content:
               component: TextHyperlink
               text: Event website
               url: https://cns-iu.github.io/workshops/2021-12-10_24hour_science_map/
+              ariaLabel: View event website for Maps talks and demos
             actionsRight:
               component: TextHyperlink
               text: YouTube playlist
               url: https://www.youtube.com/playlist?list=PL-CUnYVIy7DO6TkNXWpHrxISnMf2Yny-f
+              ariaLabel: View YouTube playlist for Maps talks and demos

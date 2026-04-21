@@ -3,12 +3,6 @@ import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/c
 import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
-import { ContentPageComponent } from './components/content-page/content-page.component';
-import { ArchiveRedirectComponent } from './pages/archive-redirect/archive-redirect.component';
-import { CurrentTeamComponent } from './pages/current-team/current-team.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { PeopleProfileComponent } from './pages/people-profile/people-profile.component';
-import { ResearchPageComponent } from './pages/research-page/research-page.component';
 import { createPersonResolver } from './resolvers/person.resolver';
 import { FeaturedDataSchema } from './schemas/featured.schema';
 import { PeopleDataSchema } from './schemas/people.schema';
@@ -45,12 +39,16 @@ const DISPLAY_TAGS_INDEX_URL = BASE_URL + 'assets/indexes/app-display-tags.json'
 /** Base URL for person content */
 const PERSON_BASE_URL = BASE_URL + 'content/people';
 
+/** Helper function to load the content component */
+const loadContentComponent = () =>
+  import('./components/content-page/content-page.component').then((m) => m.ContentPageComponent);
+
 /** Application routes */
 export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    component: LandingPageComponent,
+    loadComponent: () => import('./pages/landing-page/landing-page.component').then((m) => m.LandingPageComponent),
     resolve: {
       featuredContent: createJsonSpecResolver(FEATURED_INDEX_URL, FeaturedDataSchema),
       tags: createJsonSpecResolver(DISPLAY_TAGS_INDEX_URL, TagsDataSchema),
@@ -61,21 +59,21 @@ export const appRoutes: Route[] = [
   // Please try to keep sorted in alphabetical order
   {
     path: '2012-ucsdmap',
-    component: ContentPageComponent,
+    loadComponent: loadContentComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/2012-ucsdmap/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'about',
-    component: ContentPageComponent,
+    loadComponent: loadContentComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/about-page/data.yaml', ContentPageDataSchema),
     },
   },
   {
     path: 'amatria',
-    component: ContentPageComponent,
+    loadComponent: loadContentComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/amatria/data.yaml', ContentPageDataSchema),
     },
@@ -86,14 +84,14 @@ export const appRoutes: Route[] = [
       {
         path: '',
         pathMatch: 'full',
-        component: ContentPageComponent,
+        loadComponent: loadContentComponent,
         resolve: {
           data: createYamlSpecResolver('assets/content/exhibit/data.yaml', ContentPageDataSchema),
         },
       },
       {
         path: 'envisioning-intelligences',
-        component: ContentPageComponent,
+        loadComponent: loadContentComponent,
         resolve: {
           data: createYamlSpecResolver('assets/content/envisioning-intelligences/data.yaml', ContentPageDataSchema),
         },
@@ -102,7 +100,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'jobs',
-    component: ContentPageComponent,
+    loadComponent: loadContentComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/jobs-page/data.yaml', ContentPageDataSchema),
     },
@@ -113,14 +111,15 @@ export const appRoutes: Route[] = [
       {
         path: '',
         pathMatch: 'full',
-        component: CurrentTeamComponent,
+        loadComponent: () => import('./pages/current-team/current-team.component').then((m) => m.CurrentTeamComponent),
         resolve: {
           data: createJsonSpecResolver(PEOPLE_INDEX_URL, PeopleDataSchema),
         },
       },
       {
         path: ':slug',
-        component: PeopleProfileComponent,
+        loadComponent: () =>
+          import('./pages/people-profile/people-profile.component').then((m) => m.PeopleProfileComponent),
         resolve: {
           data: createPersonResolver(PERSON_BASE_URL),
         },
@@ -129,7 +128,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'privacy-policy',
-    component: ContentPageComponent,
+    loadComponent: loadContentComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
     },
@@ -140,7 +139,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'research',
-    component: ResearchPageComponent,
+    loadComponent: () => import('./pages/research-page/research-page.component').then((m) => m.ResearchPageComponent),
     resolve: {
       news: createJsonSpecResolver(NEWS_INDEX_URL, ResearchDataSchema),
       publications: createJsonSpecResolver(PUBLICATIONS_INDEX_URL, ResearchDataSchema),
@@ -156,7 +155,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'visitor-info',
-    component: ContentPageComponent,
+    loadComponent: loadContentComponent,
     resolve: {
       data: createYamlSpecResolver('assets/content/visitor-info-page/data.yaml', ContentPageDataSchema),
     },
@@ -262,6 +261,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: '**',
-    component: ArchiveRedirectComponent,
+    loadComponent: () =>
+      import('./pages/archive-redirect/archive-redirect.component').then((m) => m.ArchiveRedirectComponent),
   },
 ];

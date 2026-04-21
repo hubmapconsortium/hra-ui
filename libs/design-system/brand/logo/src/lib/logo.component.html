@@ -4,7 +4,7 @@
   hraClickEvent
   target="_self"
   [attr.aria-label]="`Visit ${brandConfig().label}`"
-  [href]="brandConfig().url"
+  [hraLink]="brandConfig().url"
   [inlineSVG]="data().src | assetUrl"
   [evalScripts]="NEVER_EVAL_SCRIPTS"
   [style.width.px]="data().width"

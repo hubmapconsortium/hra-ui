@@ -19,6 +19,7 @@ import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { injectRouter, RouterExtModule } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { SkipToContentButtonComponent } from '@hra-ui/design-system/buttons/skip-to-content-button';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { filter } from 'rxjs';
@@ -46,13 +47,14 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
   imports: [
     HraCommonModule,
     RouterExtModule,
+    CdkTrapFocus,
     OverlayModule,
     MatIconModule,
     ButtonsModule,
     InlineSVGModule,
     MobileMenuComponent,
     MegaMenuComponent,
-    CdkTrapFocus,
+    SkipToContentButtonComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

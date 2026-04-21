@@ -323,8 +323,8 @@
     @include mat.button-toggle-overrides(
       (
         background-color: vars.$background,
-        selected-state-text-color: vars.$on-primary-fixed,
-        selected-state-background-color: vars.$primary-fixed,
+        // focus-state-layer-opacity: 0.1,
+        hover-state-layer-opacity: 0.08,
         divider-color: vars.$outline,
         shape: 2rem,
         height: 2.5rem,

@@ -61,10 +61,12 @@ content:
               component: TextHyperlink
               text: View manual
               url: https://cns.iu.edu/docs/handouts/dendrite-kit.pdf
+              ariaLabel: View manual for Amatria Dendrite kit
             actionsRight:
               component: TextHyperlink
               text: View GitHub
               url: https://github.com/pbarch/1714-IU-Summer-Camp
+              ariaLabel: View GitHub repository for Amatria Dendrite kit
           - component: ActionCard
             variant: outlined
             image: assets/content/amatria/images/moths.png
@@ -76,6 +78,7 @@ content:
               component: TextHyperlink
               text: View manual
               url: https://cns.iu.edu/docs/research/workshops/amatria/18-amatria-moth-manual.pdf
+              ariaLabel: View manual for Amatria Moth kit
           - component: ActionCard
             variant: outlined
             image: assets/content/amatria/images/fascinators.png
@@ -87,6 +90,7 @@ content:
               component: TextHyperlink
               text: View handout
               url: https://cns.iu.edu/docs/research/workshops/amatria/Handout-Fascinator.pdf
+              ariaLabel: View handout for Amatria Fascinator kit
           - component: ActionCard
             variant: outlined
             image: assets/content/amatria/images/amaria.png
@@ -98,6 +102,7 @@ content:
               component: TextHyperlink
               text: View handout
               url: https://cns.iu.edu/docs/research/workshops/amatria/Handout-Amaria.pdf
+              ariaLabel: View handout for Amatria Amaria kit
 
   - component: PageSection
     tagline: 'Tavola app: Making sense of Amatria'

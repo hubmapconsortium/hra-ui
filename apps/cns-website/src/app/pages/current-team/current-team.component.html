@@ -1,6 +1,7 @@
 <mat-sidenav-container hraFeature="teams-page" class="container">
   <mat-sidenav
     class="sidebar"
+    role="search"
     aria-label="Filter team members"
     [mode]="sidebarStore.mode()"
     [opened]="sidebarStore.isOpen()"
@@ -54,7 +55,7 @@
     </hra-filter-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content role="main">
+  <mat-sidenav-content id="main-content" role="main" tabindex="-1">
     <ng-scrollbar hraScrollOverflowFade>
       <div class="content">
         <div class="search-bar">

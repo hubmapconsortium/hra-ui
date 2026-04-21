@@ -22,15 +22,15 @@ $z-index: 900;
   }
 
   .header {
+    position: relative;
+    z-index: $z-index + 2;
+
     @include mat.icon-button-overrides(
       (
         state-layer-size: 3rem,
         icon-color: vars.$on-surface,
       )
     );
-
-    position: relative;
-    z-index: $z-index + 2;
   }
 
   .header-content {
@@ -46,9 +46,19 @@ $z-index: 900;
 
   .logo {
     display: flex;
-    width: 5.75rem;
     justify-content: center;
+    height: 2.5rem;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
     color: vars.$on-surface;
+
+    ::ng-deep svg {
+      height: 2rem;
+    }
+
+    &:focus-visible {
+      @include utils.inset-outline(vars.$tertiary);
+    }
   }
 
   .menu-button {

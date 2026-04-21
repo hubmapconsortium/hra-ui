@@ -38,8 +38,17 @@
     }
 
     .logo {
-      width: 16.25rem;
-      height: fit-content;
+      height: 3rem;
+      padding: 4px;
+      border-radius: 0.25rem;
+
+      ::ng-deep svg {
+        height: 2.5rem;
+      }
+
+      &:focus-visible {
+        @include utils.inset-outline(vars.$tertiary);
+      }
     }
 
     .socials {

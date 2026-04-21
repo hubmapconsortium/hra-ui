@@ -19,7 +19,8 @@
             "glob": "**/*",
             "output": "./assets"
           }
-        ]
+        ],
+        "plugins": []
       },
       "configurations": {
         "production": {
