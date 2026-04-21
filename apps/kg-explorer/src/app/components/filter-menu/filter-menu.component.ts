@@ -8,7 +8,6 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
-import { CurrentFilters } from '../../state/with-filters.feature';
 import { FilterOption, FilterOptionCategory, FilterType } from '../../utils/utils';
 import { FilterMenuOverlayComponent } from './filter-menu-overlay/filter-menu-overlay.component';
 
@@ -26,6 +25,24 @@ export interface FilterFormValues {
   cellTypes: FilterOption[] | null;
   /** Biomarkers form control */
   biomarkers: FilterOption[] | null;
+}
+
+/** Current filter interface (each category contains string of filter option IDs) */
+export interface CurrentFilters {
+  /** Digital object filters */
+  digitalObjects: string[] | null;
+  /** Release version filters */
+  releaseVersion: string[] | null;
+  /** Organ filters */
+  organs: string[] | null;
+  /** Anatomical structures filters */
+  anatomicalStructures: string[] | null;
+  /** Cell type filters */
+  cellTypes: string[] | null;
+  /** Biomarker filters */
+  biomarkers: string[] | null;
+  /** Search term filters */
+  searchTerm: string | null;
 }
 
 /**

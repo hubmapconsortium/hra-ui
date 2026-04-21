@@ -17,8 +17,8 @@ export class SearchService {
       ontologyTerms: string[];
       cellTypeTerms: string[];
       biomarkerTerms: string[];
-      searchTerm: string | undefined;
       digitalObjects: string[];
+      searchTerm: string | null;
     },
   ): Observable<string[]> {
     const { organs, versions, ontologyTerms, cellTypeTerms, biomarkerTerms, searchTerm, digitalObjects } = options;

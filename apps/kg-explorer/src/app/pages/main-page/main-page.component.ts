@@ -25,7 +25,7 @@ import {
 import { DownloadService } from '../../services/download.service';
 import { SearchService } from '../../services/search.service';
 import { FiltersStore } from '../../state/filters.store';
-import { FILTER_CATEGORY_INFO, FilterOptionCategory, FilterType, handleValue } from '../../utils/utils';
+import { FILTER_CATEGORY_INFO, FilterOptionCategory, FilterType } from '../../utils/utils';
 
 /** Amount in pixels to move scrollbar downwards so it doesn't start at the header */
 const SCROLLBAR_TOP_OFFSET = '86';
@@ -114,7 +114,7 @@ export class MainPageComponent {
     this.store.setTermsIndex(this.termsIndex);
 
     this.searchControl.valueChanges.subscribe((result?: string) => {
-      this.store.updateFilters({ ...this.store.filters(), searchTerm: result === '' ? undefined : result });
+      this.store.setSearchTerm(result && result.length > 0 ? result : null);
       this.updateQueryParamsFromFilters();
     });
 
@@ -148,16 +148,14 @@ export class MainPageComponent {
     const b = queryParams['b'];
     const search = queryParams['search'];
 
-    this.store.updateFilters({
-      digitalObjects: dObjects,
-      releaseVersion: handleValue(versions) || [],
-      organs: handleValue(organs) || [],
-      anatomicalStructures: handleValue(as) || [],
-      cellTypes: handleValue(ct) || [],
-      biomarkers: handleValue(b) || [],
-      searchTerm: search ?? '',
-    });
-    this.searchControl.patchValue(this.store.filters().searchTerm);
+    this.store.setDigitalObjects(dObjects);
+    this.store.setReleaseVersion(versions);
+    this.store.setOrgans(organs);
+    this.store.setAnatomicalStructures(as);
+    this.store.setCellTypes(ct);
+    this.store.setBiomarkers(b);
+    this.store.setSearchTerm(search);
+    this.searchControl.patchValue(search);
   }
 
   /**
@@ -166,13 +164,13 @@ export class MainPageComponent {
   private updateQueryParamsFromFilters() {
     this.router.navigate([''], {
       queryParams: {
-        do: this.store.filters().digitalObjects,
-        versions: this.store.filters().releaseVersion,
-        organs: this.store.filters().organs,
-        as: this.store.filters().anatomicalStructures,
-        ct: this.store.filters().cellTypes,
-        b: this.store.filters().biomarkers,
-        search: this.store.filters().searchTerm,
+        do: this.store.digitalObjects(),
+        versions: this.store.releaseVersion(),
+        organs: this.store.organs(),
+        as: this.store.anatomicalStructures(),
+        ct: this.store.cellTypes(),
+        b: this.store.biomarkers(),
+        search: this.store.searchTerm(),
       },
     });
   }
@@ -220,13 +218,13 @@ export class MainPageComponent {
    */
   private digitalObjectSearch(): Observable<string[]> {
     return this.search.doSearch(this.store.allRows(), this.store.termsIndex(), {
-      digitalObjects: this.store.filters().digitalObjects ?? [],
-      versions: this.store.filters().releaseVersion ?? [],
-      organs: this.store.filters().organs ?? [],
-      ontologyTerms: this.store.filters().anatomicalStructures ?? [],
-      cellTypeTerms: this.store.filters().cellTypes ?? [],
-      biomarkerTerms: this.store.filters().biomarkers ?? [],
-      searchTerm: this.store.filters().searchTerm,
+      digitalObjects: this.store.digitalObjects() ?? [],
+      versions: this.store.releaseVersion() ?? [],
+      organs: this.store.organs() ?? [],
+      ontologyTerms: this.store.anatomicalStructures() ?? [],
+      cellTypeTerms: this.store.cellTypes() ?? [],
+      biomarkerTerms: this.store.biomarkers() ?? [],
+      searchTerm: this.store.searchTerm(),
     });
   }
 

@@ -108,7 +108,7 @@ export class FilterMenuOverlayComponent implements OnInit {
   readonly filterOptionCategory = input.required<FilterOptionCategory>();
 
   /** Currently selected filter IDs */
-  readonly currentFilters = input<string[] | undefined>();
+  readonly currentFilters = input<string[] | null>();
 
   /** Currently selected options */
   readonly selectedOptions = signal<FilterOption[]>([]);

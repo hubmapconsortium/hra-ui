@@ -24,7 +24,7 @@
         hraFeature="filter-menu"
         [filterCategories]="filterCategories()"
         [formClosed]="!sidenav.opened"
-        [currentFilters]="store.filters()"
+        [currentFilters]="store.currentFilters()"
         (toggleForm)="sidenav.toggle()"
         (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
       />

@@ -5,7 +5,6 @@ import { FilterFormValues } from '../components/filter-menu/filter-menu.componen
 import { AsctbTerms, DigitalObjectInfo, DigitalObjectsJsonLd, TermsIndex } from '../digital-objects-metadata.schema';
 import {
   FilterOption,
-  FilterOptions,
   formatDateToYYYYMM,
   getOrganIcon,
   getProductIcon,
@@ -16,31 +15,17 @@ import {
   sentenceCase,
 } from '../utils/utils';
 
-/** Current filter interface (each category contains string of filter option IDs) */
-export interface CurrentFilters {
-  /** Digital object filters */
-  digitalObjects: string[];
-  /** Release version filters */
-  releaseVersion: string[];
-  /** Organ filters */
-  organs: string[];
-  /** Anatomical structures filters */
-  anatomicalStructures: string[];
-  /** Cell type filters */
-  cellTypes: string[];
-  /** Biomarker filters */
-  biomarkers: string[];
-  /** Search term filters */
-  searchTerm: string | undefined;
-}
-
 export interface FiltersState {
   data: DigitalObjectsJsonLd;
   asctbTerms: AsctbTerms;
   termsIndex: TermsIndex;
-  allFilters: FilterOptions;
-  allRows: TableRow[];
-  filters: CurrentFilters;
+  digitalObjects: string[] | null;
+  releaseVersion: string[] | null;
+  organs: string[] | null;
+  anatomicalStructures: string[] | null;
+  cellTypes: string[] | null;
+  biomarkers: string[] | null;
+  searchTerm: string | null;
 }
 
 /**
@@ -116,32 +101,31 @@ function generateAsctbOptions(type: string, objects: AsctbTerms, termsIndex: Ter
 /** Initial state for the filters store */
 const initialState: FiltersState = {
   data: { '@context': {}, '@graph': [] },
-  allRows: [],
   asctbTerms: [],
   termsIndex: { terms: [], purls: [], term_to_purls: [], purl_to_terms: [] },
-  filters: {
-    digitalObjects: [],
-    releaseVersion: [],
-    organs: [],
-    anatomicalStructures: [],
-    cellTypes: [],
-    biomarkers: [],
-    searchTerm: undefined,
-  },
-  allFilters: {
-    digitalObjects: [],
-    releaseVersion: [],
-    organs: [],
-    anatomicalStructures: [],
-    cellTypes: [],
-    biomarkers: [],
-  },
+  digitalObjects: null,
+  releaseVersion: null,
+  organs: null,
+  anatomicalStructures: null,
+  cellTypes: null,
+  biomarkers: null,
+  searchTerm: null,
 };
 
 export function withFilters() {
   return signalStoreFeature(
     withState(initialState),
     withComputed((store) => {
+      const currentFilters = computed(() => ({
+        digitalObjects: store.digitalObjects(),
+        releaseVersion: store.releaseVersion(),
+        organs: store.organs(),
+        anatomicalStructures: store.anatomicalStructures(),
+        cellTypes: store.cellTypes(),
+        biomarkers: store.biomarkers(),
+        searchTerm: store.searchTerm(),
+      }));
+
       const allRows = computed(() => {
         return resolveData(store.data()['@graph'] as DigitalObjectInfo[]);
       });
@@ -228,28 +212,34 @@ export function withFilters() {
       return {
         allRows,
         allFilters,
+        currentFilters,
       };
     }),
     withMethods((store) => ({
-      updateFilters: signalMethod((filters: CurrentFilters) => {
-        patchState(store, { filters });
-      }),
+      setDigitalObjects: signalMethod((digitalObjects: string[]) => patchState(store, { digitalObjects })),
+      setReleaseVersion: signalMethod((releaseVersion: string[]) => patchState(store, { releaseVersion })),
+      setOrgans: signalMethod((organs: string[]) => patchState(store, { organs })),
+      setAnatomicalStructures: signalMethod((anatomicalStructures: string[]) =>
+        patchState(store, { anatomicalStructures }),
+      ),
+      setCellTypes: signalMethod((cellTypes: string[]) => patchState(store, { cellTypes })),
+      setBiomarkers: signalMethod((biomarkers: string[]) => patchState(store, { biomarkers })),
+      setSearchTerm: signalMethod((searchTerm: string | null) => patchState(store, { searchTerm })),
 
       setData: signalMethod((data: DigitalObjectsJsonLd) => patchState(store, { data })),
       setAsctbTerms: signalMethod((asctbTerms: AsctbTerms) => patchState(store, { asctbTerms })),
       setTermsIndex: signalMethod((termsIndex: TermsIndex) => patchState(store, { termsIndex })),
 
       updateFiltersFromForm: signalMethod((formValues: FilterFormValues) => {
-        const updatedFilters: CurrentFilters = {
-          digitalObjects: formValues.digitalObjects?.map((obj) => obj.id) || [],
-          releaseVersion: formValues.releaseVersion?.map((obj) => obj.id) || [],
-          organs: formValues.organs?.map((obj) => obj.id) || [],
-          anatomicalStructures: formValues.anatomicalStructures?.map((obj) => obj.id) || [],
-          cellTypes: formValues.cellTypes?.map((obj) => obj.id) || [],
-          biomarkers: formValues.biomarkers?.map((obj) => obj.id) || [],
-          searchTerm: store.filters().searchTerm,
-        };
-        patchState(store, { filters: updatedFilters });
+        patchState(store, {
+          digitalObjects: formValues.digitalObjects?.map((obj) => obj.id),
+          releaseVersion: formValues.releaseVersion?.map((obj) => obj.id),
+          organs: formValues.organs?.map((obj) => obj.id),
+          anatomicalStructures: formValues.anatomicalStructures?.map((obj) => obj.id),
+          cellTypes: formValues.cellTypes?.map((obj) => obj.id),
+          biomarkers: formValues.biomarkers?.map((obj) => obj.id),
+          searchTerm: store.searchTerm(),
+        });
       }),
     })),
   );
