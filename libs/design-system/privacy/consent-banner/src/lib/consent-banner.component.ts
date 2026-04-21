@@ -43,6 +43,10 @@ export const provideConsentBannerConfig = CONSENT_BANNER_CONFIG_TOKEN[1];
   templateUrl: './consent-banner.component.html',
   styleUrl: './consent-banner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'region',
+    'aria-labelledby': CONSENT_BANNER_ARIA_LABELLEDBY_ID,
+  },
 })
 export class ConsentBannerComponent {
   /** Emits when one of the actions is clicked */
