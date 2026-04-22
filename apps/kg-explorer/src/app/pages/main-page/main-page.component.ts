@@ -217,7 +217,7 @@ export class MainPageComponent {
    * @returns object search
    */
   private digitalObjectSearch(): Observable<string[]> {
-    return this.search.doSearch(this.store.allRows(), this.store.termsIndex(), {
+    return this.search.search(this.store.allRows(), this.store.termsIndex(), {
       digitalObjects: this.store.digitalObjects() ?? [],
       versions: this.store.releaseVersion() ?? [],
       organs: this.store.organs() ?? [],
