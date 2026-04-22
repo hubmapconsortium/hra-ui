@@ -1,7 +1,6 @@
 import '@google/model-viewer';
 
-import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
@@ -16,12 +15,13 @@ import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
 import {
   AsctbTerms,
+  DigitalObjectInfo,
   DigitalObjectMetadata,
   DigitalObjectsJsonLd,
   PersonInfo,
 } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { getOrganIcon, getProductIcon, getProductLabel, coerceArray, sentenceCase } from '../../utils/utils';
+import { coerceArray, getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
 
 /**
  * Metadata page for a digital object
@@ -58,6 +58,8 @@ export class MetadataPageComponent {
   readonly columns = input.required<TableColumn[]>();
   /** Metadata for the digital object */
   readonly metadata = input.required<DigitalObjectMetadata>();
+
+  readonly allItems = computed(() => this.doData()['@graph']);
 
   /** Versions available for this digital object */
   readonly availableVersions = signal<string[]>([]);
@@ -98,71 +100,24 @@ export class MetadataPageComponent {
       this.router.navigate([type, name, this.currentVersion()]);
     });
 
-    toObservable(this.metadata).subscribe((metadata) => {
-      if (metadata) {
-        this.downloadOptions.set(this.download.getDownloadOptions(metadata));
-        this.rows.set(
-          [
-            { provenance: 'Creator(s)', metadata: this.createMarkdownList(metadata.was_derived_from.creators) },
-            {
-              provenance: 'Project lead(s)',
-              metadata: this.createMarkdownList(metadata.was_derived_from.project_leads),
-            },
-            {
-              provenance: 'Internal reviewer(s)',
-              metadata: this.createMarkdownList(metadata.was_derived_from.reviewers),
-            },
-            {
-              provenance: 'External reviewer(s)',
-              metadata: this.createMarkdownList(metadata.was_derived_from.externalReviewers),
-            },
-            {
-              provenance: 'DOI',
-              metadata: metadata.was_derived_from.doi
-                ? `[${metadata.was_derived_from.doi}](${metadata.was_derived_from.doi})`
-                : '',
-            },
-            { provenance: 'Data ID', metadata: metadata.was_derived_from.hubmapId ?? '' },
-            { provenance: 'Date published', metadata: metadata.was_derived_from.creation_date ?? '' },
-            { provenance: 'Date last processed', metadata: metadata.creation_date ?? '' },
-          ].filter((item) => item.metadata !== ''),
-        );
+    effect(() => {
+      if (this.metadata()) {
+        this.setProvenanceData();
       } else {
         this.router.navigate([`404`]);
       }
     });
 
-    toObservable(this.doData).subscribe((data: DigitalObjectsJsonLd) => {
-      if (data['@graph']) {
-        const pageItem = data['@graph'].find((item) => {
-          return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
-        });
-        this.purl.set(pageItem?.purl || '');
-        const icons = [getProductIcon(type)];
-        if (pageItem?.organIds) {
-          icons.push(getOrganIcon(pageItem));
-        }
-        this.icons.set(icons);
+    effect(() => {
+      const pageItem = this.allItems().find((item) => {
+        return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
+      }) as DigitalObjectInfo;
 
-        if (pageItem) {
-          if (Array.isArray(pageItem.versions)) {
-            this.availableVersions.set(pageItem.versions);
-          } else {
-            this.availableVersions.set([pageItem.versions]);
-          }
-          const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
-          if (pageItem.organIds) {
-            const ids = coerceArray(pageItem.organIds);
-            for (const organId of ids) {
-              tags.push({
-                id: organId,
-                label: sentenceCase(this.asctbTerms().find((term) => term.iri === organId)?.label || ''),
-                type: 'organs',
-              });
-            }
-          }
-          this.tags.set(tags);
-        }
+      if (pageItem) {
+        this.purl.set(pageItem.purl || '');
+        this.setIcons(pageItem, type);
+        this.availableVersions.set(coerceArray(pageItem.versions).sort((a, b) => b.localeCompare(a)));
+        this.setTags(pageItem, type);
       }
     });
   }
@@ -221,5 +176,58 @@ export class MetadataPageComponent {
    */
   tagClick(id: string, type: string) {
     this.router.navigate([''], { queryParams: { [type]: id } });
+  }
+
+  private setProvenanceData() {
+    this.downloadOptions.set(this.download.getDownloadOptions(this.metadata()));
+    this.rows.set(
+      [
+        { provenance: 'Creator(s)', metadata: this.createMarkdownList(this.metadata().was_derived_from.creators) },
+        {
+          provenance: 'Project lead(s)',
+          metadata: this.createMarkdownList(this.metadata().was_derived_from.project_leads),
+        },
+        {
+          provenance: 'Internal reviewer(s)',
+          metadata: this.createMarkdownList(this.metadata().was_derived_from.reviewers),
+        },
+        {
+          provenance: 'External reviewer(s)',
+          metadata: this.createMarkdownList(this.metadata().was_derived_from.externalReviewers),
+        },
+        {
+          provenance: 'DOI',
+          metadata: this.metadata().was_derived_from.doi
+            ? `[${this.metadata().was_derived_from.doi}](${this.metadata().was_derived_from.doi})`
+            : '',
+        },
+        { provenance: 'Data ID', metadata: this.metadata().was_derived_from.hubmapId ?? '' },
+        { provenance: 'Date published', metadata: this.metadata().was_derived_from.creation_date ?? '' },
+        { provenance: 'Date last processed', metadata: this.metadata().creation_date ?? '' },
+      ].filter((item) => item.metadata !== ''),
+    );
+  }
+
+  private setIcons(item: DigitalObjectInfo, type: string) {
+    const icons = [getProductIcon(type)];
+    if (item.organIds) {
+      icons.push(getOrganIcon(item));
+    }
+    this.icons.set(icons);
+  }
+
+  private setTags(item: DigitalObjectInfo, type: string) {
+    const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
+    if (item.organIds) {
+      const ids = coerceArray(item.organIds);
+      for (const organId of ids) {
+        tags.push({
+          id: organId,
+          label: sentenceCase(this.asctbTerms().find((term) => term.iri === organId)?.label || ''),
+          type: 'organs',
+        });
+      }
+    }
+    this.tags.set(tags);
   }
 }
