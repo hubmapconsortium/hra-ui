@@ -13,8 +13,9 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { fromEvent, Observable } from 'rxjs';
+import { fromEvent } from 'rxjs';
 
+import { rxResource } from '@angular/core/rxjs-interop';
 import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
 import {
   AsctbTerms,
@@ -97,6 +98,43 @@ export class MainPageComponent {
   /** Id of digital object to download */
   readonly downloadId = signal<string | undefined>(undefined);
 
+  readonly searchResults = rxResource({
+    params: () => ({
+      allRows: this.store.allRows(),
+      termsIndex: this.store.termsIndex(),
+      digitalObjects: this.store.digitalObjects(),
+      versions: this.store.releaseVersion(),
+      organs: this.store.organs(),
+      ontologyTerms: this.store.anatomicalStructures(),
+      cellTypeTerms: this.store.cellTypes(),
+      biomarkerTerms: this.store.biomarkers(),
+      searchTerm: this.store.searchTerm(),
+    }),
+    stream: (params) => {
+      const {
+        allRows,
+        termsIndex,
+        digitalObjects,
+        versions,
+        organs,
+        ontologyTerms,
+        cellTypeTerms,
+        biomarkerTerms,
+        searchTerm,
+      } = params.params;
+
+      return this.search.search(allRows, termsIndex, {
+        digitalObjects: digitalObjects ?? [],
+        versions: versions ?? [],
+        organs: organs ?? [],
+        ontologyTerms: ontologyTerms ?? [],
+        cellTypeTerms: cellTypeTerms ?? [],
+        biomarkerTerms: biomarkerTerms ?? [],
+        searchTerm: searchTerm ?? null,
+      });
+    },
+  });
+
   /**
    * Sets the initial filters according to query params
    * Sets filtered rows to all rows on init
@@ -127,10 +165,11 @@ export class MainPageComponent {
     });
 
     effect(() => {
-      this.digitalObjectSearch().subscribe((results) => {
-        const newFilteredRows = this.store.allRows().filter((row) => results.includes(row['purl'] as string));
+      const searchResults = this.searchResults.value();
+      if (searchResults) {
+        const newFilteredRows = this.store.allRows().filter((row) => searchResults.includes(row['purl'] as string));
         this.filteredRows.set(newFilteredRows);
-      });
+      }
     });
 
     this.setScrollViewportHeight();
@@ -212,22 +251,6 @@ export class MainPageComponent {
         }
       });
     }
-  }
-
-  /**
-   * Performs KG DO search for selected ontology, cell type, biomarker, and HRA release version filters
-   * @returns object search
-   */
-  private digitalObjectSearch(): Observable<string[]> {
-    return this.search.search(this.store.allRows(), this.store.termsIndex(), {
-      digitalObjects: this.store.digitalObjects() ?? [],
-      versions: this.store.releaseVersion() ?? [],
-      organs: this.store.organs() ?? [],
-      ontologyTerms: this.store.anatomicalStructures() ?? [],
-      cellTypeTerms: this.store.cellTypes() ?? [],
-      biomarkerTerms: this.store.biomarkers() ?? [],
-      searchTerm: this.store.searchTerm(),
-    });
   }
 
   /**

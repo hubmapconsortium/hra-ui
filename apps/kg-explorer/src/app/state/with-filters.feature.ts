@@ -1,6 +1,7 @@
 import { computed } from '@angular/core';
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
 import { FilterFormValues } from '../components/filter-menu/filter-menu.component';
+import { coerceArray } from '../utils/utils';
 
 export interface FiltersState {
   digitalObjects: string[] | null;
@@ -42,14 +43,22 @@ export function withFilters() {
       };
     }),
     withMethods((store) => ({
-      setDigitalObjects: signalMethod((digitalObjects: string[]) => patchState(store, { digitalObjects })),
-      setReleaseVersion: signalMethod((releaseVersion: string[]) => patchState(store, { releaseVersion })),
-      setOrgans: signalMethod((organs: string[]) => patchState(store, { organs })),
-      setAnatomicalStructures: signalMethod((anatomicalStructures: string[]) =>
-        patchState(store, { anatomicalStructures }),
+      setDigitalObjects: signalMethod((digitalObjects: string | string[]) =>
+        patchState(store, { digitalObjects: coerceArray(digitalObjects) }),
       ),
-      setCellTypes: signalMethod((cellTypes: string[]) => patchState(store, { cellTypes })),
-      setBiomarkers: signalMethod((biomarkers: string[]) => patchState(store, { biomarkers })),
+      setReleaseVersion: signalMethod((releaseVersion: string | string[]) =>
+        patchState(store, { releaseVersion: coerceArray(releaseVersion) }),
+      ),
+      setOrgans: signalMethod((organs: string | string[]) => patchState(store, { organs: coerceArray(organs) })),
+      setAnatomicalStructures: signalMethod((anatomicalStructures: string | string[]) =>
+        patchState(store, { anatomicalStructures: coerceArray(anatomicalStructures) }),
+      ),
+      setCellTypes: signalMethod((cellTypes: string | string[]) =>
+        patchState(store, { cellTypes: coerceArray(cellTypes) }),
+      ),
+      setBiomarkers: signalMethod((biomarkers: string | string[]) =>
+        patchState(store, { biomarkers: coerceArray(biomarkers) }),
+      ),
       setSearchTerm: signalMethod((searchTerm: string | null) => patchState(store, { searchTerm })),
 
       updateFiltersFromForm: signalMethod((formValues: FilterFormValues) => {
