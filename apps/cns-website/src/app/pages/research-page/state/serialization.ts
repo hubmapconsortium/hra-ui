@@ -1,4 +1,11 @@
-import { CATEGORY_OPTIONS, CategoryOption, YEAR_OPTIONS, YearOption } from './with-filters.feature';
+import {
+  CATEGORY_OPTIONS,
+  CategoryOption,
+  PROJECT_OPTIONS,
+  ProjectsOption,
+  YEAR_OPTIONS,
+  YearOption,
+} from './with-filters.feature';
 import { GroupBy, SortBy } from './with-ordering.feature';
 import { View } from './with-view.feature';
 
@@ -65,6 +72,10 @@ export function parseView(value: unknown): View | null {
  */
 export function parseCategories(value: unknown): CategoryOption[] | null {
   return parseOptions(CATEGORY_OPTIONS, value);
+}
+
+export function parseProjects(value: unknown): ProjectsOption[] | null {
+  return parseOptions(PROJECT_OPTIONS, value);
 }
 
 /**
@@ -156,6 +167,10 @@ export function parseGroupBy(value: unknown): string | null {
  * @param options Selected categories
  */
 export function serializeCategories(options: CategoryOption[] | null): string | null {
+  return serializeOptions(options);
+}
+
+export function serializeProjects(options: ProjectsOption[] | null): string | null {
   return serializeOptions(options);
 }
 
