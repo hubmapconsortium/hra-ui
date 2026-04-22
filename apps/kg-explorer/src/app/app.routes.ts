@@ -1,14 +1,17 @@
-import { ActivatedRouteSnapshot, Route, RouterStateSnapshot } from '@angular/router';
+import { Route } from '@angular/router';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
 import { TableColumn } from '@hra-ui/design-system/table';
 
-import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { AsctbTermsSchema, DigitalObjectsJsonLdSchema, TermsIndexSchema } from './digital-objects-metadata.schema';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
-import { documentationUrlResolver, doMetadataResolver, productLabelResolver } from './utils/kg-resolver';
-import { injectMirrorUrl } from './utils/endpoints';
+import {
+  documentationUrlResolver,
+  doMetadataResolver,
+  kgJsonResolver,
+  productLabelResolver,
+} from './utils/kg-resolver';
 
 /** Column info for digital object table */
 export const DO_COLUMNS: TableColumn[] = [
@@ -105,21 +108,9 @@ export const appRoutes: Route[] = [
       columns: DO_COLUMNS,
     },
     resolve: {
-      data: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-        const mirrorUrl = injectMirrorUrl();
-        return createJsonSpecResolver(`${mirrorUrl()}/kg/digital-objects.jsonld`, DigitalObjectsJsonLdSchema)(
-          route,
-          state,
-        );
-      },
-      asctbTerms: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-        const mirrorUrl = injectMirrorUrl();
-        return createJsonSpecResolver(`${mirrorUrl()}/kg/asctb-terms.json`, AsctbTermsSchema)(route, state);
-      },
-      termsIndex: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-        const mirrorUrl = injectMirrorUrl();
-        return createJsonSpecResolver(`${mirrorUrl()}/kg/kg-terms-index.json`, TermsIndexSchema)(route, state);
-      },
+      data: kgJsonResolver('/kg/digital-objects.jsonld', DigitalObjectsJsonLdSchema),
+      asctbTerms: kgJsonResolver('/kg/asctb-terms.json', AsctbTermsSchema),
+      termsIndex: kgJsonResolver('/kg/kg-terms-index.json', TermsIndexSchema),
     },
   },
   {
@@ -129,17 +120,8 @@ export const appRoutes: Route[] = [
       columns: METADATA_COLUMNS,
     },
     resolve: {
-      doData: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-        const mirrorUrl = injectMirrorUrl();
-        return createJsonSpecResolver(`${mirrorUrl()}/kg/digital-objects.jsonld`, DigitalObjectsJsonLdSchema)(
-          route,
-          state,
-        );
-      },
-      asctbTerms: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-        const mirrorUrl = injectMirrorUrl();
-        return createJsonSpecResolver(`${mirrorUrl()}/kg/asctb-terms.json`, AsctbTermsSchema)(route, state);
-      },
+      doData: kgJsonResolver('/kg/digital-objects.jsonld', DigitalObjectsJsonLdSchema),
+      asctbTerms: kgJsonResolver('/kg/asctb-terms.json', AsctbTermsSchema),
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),
