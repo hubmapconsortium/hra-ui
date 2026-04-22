@@ -109,7 +109,9 @@ export class MainPageComponent {
   constructor() {
     const queryParams$ = inject(ActivatedRoute).queryParams;
     queryParams$.subscribe((queryParams) => this.setFiltersFromQueryParams(queryParams));
-    this.store.setData(this.data);
+
+    this.store.setAllRows(this.data);
+    this.store.setVersionCounts(this.data);
     this.store.setAsctbTerms(this.asctbTerms);
     this.store.setTermsIndex(this.termsIndex);
 
