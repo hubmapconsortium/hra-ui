@@ -315,13 +315,13 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
 };
 
 /**
- * Gets organ id from a digital object. If more than one organ is listed return blank string
+ * Gets organ id from a digital object. If more than one organ is listed return undefined
  * @param item Digital object data item
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string | undefined {
-  const ids = handleValue(item?.organIds);
-  return ids && ids.length === 1 ? ids[0] : undefined;
+  const ids = coerceArray(item?.organIds);
+  return ids.length === 1 ? ids[0] : undefined;
 }
 
 /**
@@ -382,11 +382,15 @@ export function sentenceCase(value: string): string {
   return processedValue.charAt(0).toUpperCase() + processedValue.slice(1);
 }
 
-export function handleValue(value: string | string[] | undefined): string[] | undefined {
-  if (typeof value === 'string') {
-    return [value];
+export function coerceArray(value: string | string[] | undefined): string[] {
+  switch (typeof value) {
+    case 'undefined':
+      return [];
+    case 'string':
+      return [value];
+    default:
+      return value;
   }
-  return value;
 }
 
 /**

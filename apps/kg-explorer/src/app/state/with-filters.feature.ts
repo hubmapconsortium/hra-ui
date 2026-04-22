@@ -4,13 +4,13 @@ import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods
 import { FilterFormValues } from '../components/filter-menu/filter-menu.component';
 import { AsctbTerms, DigitalObjectInfo, DigitalObjectsJsonLd, TermsIndex } from '../digital-objects-metadata.schema';
 import {
+  coerceArray,
   FilterOption,
   formatDateToYYYYMM,
   getOrganIcon,
   getProductIcon,
   getProductLabel,
   getProductTooltip,
-  handleValue,
   HRA_VERSION_DATA,
   sentenceCase,
 } from '../utils/utils';
@@ -38,7 +38,7 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
     return [];
   }
   return data.map((item) => {
-    const organLabel = item.organs ? handleValue(item.organs)?.[0] : undefined;
+    const organLabel = item.organs ? coerceArray(item.organs)[0] : undefined;
     return {
       id: item.lod,
       purl: item.purl,
@@ -77,11 +77,11 @@ function getVersionCounts(data: DigitalObjectInfo[]): Record<string, number> {
 
 function calculateCount(filterOption: string, category: string, rows: TableRow[]): number {
   return rows.filter((row) => {
-    const cat = handleValue(row[category] as string[] | string | undefined);
+    const cat = coerceArray(row[category] as string[] | string | undefined);
     if (cat) {
       return cat.some((value) => String(value).toLowerCase().includes(filterOption.toLowerCase()));
     }
-    return cat === filterOption;
+    return false;
   }).length;
 }
 
@@ -139,12 +139,10 @@ export function withFilters() {
         const organFilterOptions = new Set<string>();
         allRows().forEach((row) => {
           const type = row['doType'];
+          const organs = coerceArray(row['organIds'] as string[] | string | undefined);
           objectFilterOptions.add(type as string);
-          const organs = handleValue(row['organIds'] as string[] | string | undefined);
-          if (organs) {
-            for (const organ of organs) {
-              organFilterOptions.add(organ);
-            }
+          for (const organ of organs) {
+            organFilterOptions.add(organ);
           }
         });
         return {

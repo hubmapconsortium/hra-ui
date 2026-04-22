@@ -21,7 +21,7 @@ import {
   PersonInfo,
 } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { getOrganIcon, getProductIcon, getProductLabel, handleValue, sentenceCase } from '../../utils/utils';
+import { getOrganIcon, getProductIcon, getProductLabel, coerceArray, sentenceCase } from '../../utils/utils';
 
 /**
  * Metadata page for a digital object
@@ -152,7 +152,7 @@ export class MetadataPageComponent {
           }
           const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
           if (pageItem.organIds) {
-            const ids = handleValue(pageItem.organIds) || [];
+            const ids = coerceArray(pageItem.organIds);
             for (const organId of ids) {
               tags.push({
                 id: organId,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TableRow } from '@hra-ui/design-system/table';
 import { from, Observable } from 'rxjs';
 import { TermsIndex } from '../digital-objects-metadata.schema';
-import { handleValue } from '../utils/utils';
+import { coerceArray } from '../utils/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -33,11 +33,11 @@ export class SearchService {
 
     const filteredByVersions = filteredByDigitalObjects
       .filter((row) => {
-        const rowVersions = handleValue(row['hraVersions'] as string[] | string | undefined);
+        const rowVersions = coerceArray(row['hraVersions'] as string[] | string | undefined);
         if (versions.length === 0) {
           return true;
         }
-        if (rowVersions) {
+        if (rowVersions.length > 0) {
           return rowVersions?.some((version) => versions.includes(version));
         }
         return false;
