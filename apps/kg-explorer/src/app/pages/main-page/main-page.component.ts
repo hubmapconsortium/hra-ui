@@ -149,6 +149,7 @@ export class MainPageComponent {
     queryParams$.subscribe((queryParams) => this.setFiltersFromQueryParams(queryParams));
 
     this.store.setAllRows(this.data);
+    this.filteredRows.set(this.store.allRows());
     this.store.setVersionCounts(this.data);
     this.store.setAsctbTerms(this.asctbTerms);
     this.store.setTermsIndex(this.termsIndex);
@@ -159,7 +160,6 @@ export class MainPageComponent {
     });
 
     effect(() => {
-      this.filteredRows.set(this.store.allRows());
       this.populateFilterOptions();
       this.attachDownloadOptions();
     });

@@ -73,7 +73,7 @@ function calculateCount(filterOption: string, category: string, rows: TableRow[]
   return rows.filter((row) => {
     const cat = coerceArray(row[category] as string[] | string | undefined);
     if (cat) {
-      return cat.some((value) => String(value).toLowerCase().includes(filterOption.toLowerCase()));
+      return cat.some((value) => String(value).toLowerCase() === filterOption.toLowerCase());
     }
     return false;
   }).length;
