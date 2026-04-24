@@ -21,8 +21,8 @@ import {
   PersonInfo,
 } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { coerceArray, getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
 import { injectMirrorUrl } from '../../utils/endpoints';
+import { coerceArray, getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
 
 /**
  * Metadata page for a digital object
@@ -90,6 +90,7 @@ export class MetadataPageComponent {
   /** For these DoTypes the corresponding image types will be displayed on the page */
   readonly imageTypes: Record<string, string> = {
     '2d-ftu': 'image/svg+xml',
+    '3d-ftu': 'model/gltf-binary',
     'ref-organ': 'model/gltf-binary',
     landmark: 'model/gltf-binary',
     schema: 'image/svg+xml',

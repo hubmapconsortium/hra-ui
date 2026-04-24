@@ -13,7 +13,7 @@ import { IconsModule } from '@hra-ui/design-system/icons';
 import { ResultsIndicatorComponent } from '@hra-ui/design-system/indicators/results-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { TableColumn, TableComponent, TableRow } from '@hra-ui/design-system/table';
-import { fromEvent } from 'rxjs';
+import { catchError, fromEvent, of } from 'rxjs';
 
 import { rxResource } from '@angular/core/rxjs-interop';
 import { FilterFormValues, FilterMenuComponent } from '../../components/filter-menu/filter-menu.component';
@@ -243,14 +243,29 @@ export class MainPageComponent {
    * Makes metadata request for the object matching downloadId and attaches download options to the row
    */
   private attachDownloadOptions() {
-    if (this.downloadId()) {
-      this.http.get(this.downloadId() || '', { responseType: 'json' }).subscribe((data) => {
-        const match = this.store.allRows().find((row) => row['id'] === this.downloadId());
-        if (match) {
+    const downloadId = this.downloadId();
+    if (!downloadId) {
+      return;
+    }
+
+    this.http
+      .get(this.getMetadataUrl(downloadId), { responseType: 'json' })
+      .pipe(catchError(() => of(undefined)))
+      .subscribe((data) => {
+        const match = this.store.allRows().find((row) => row['id'] === downloadId);
+        if (match && data) {
           match['downloadOptions'] = this.download.getDownloadOptions(data as DigitalObjectMetadata);
         }
       });
-    }
+  }
+
+  /**
+   * Returns the metadata endpoint for a digital object id.
+   * @param downloadId Digital object dataset id
+   * @returns Metadata url
+   */
+  private getMetadataUrl(downloadId: string): string {
+    return `${downloadId.replace(/\/$/, '')}/metadata.json`;
   }
 
   /**

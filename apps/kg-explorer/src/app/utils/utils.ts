@@ -171,6 +171,17 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
     icon: 'ftu',
     documentationUrl: 'https://humanatlas.io/2d-ftu-illustrations',
   },
+  '3d-ftu': {
+    label: '3D Functional Tissue Unit Illustrations',
+    tooltip: {
+      description:
+        'A functional tissue unit is the smallest tissue organization, i.e. a set of cells, that performs a unique physiologic function and is replicated multiple times in a whole organ. Functional Tissue Unit (FTU) Illustrations are linked to ASCT+B Tables.',
+      actionText: 'Learn more',
+      actionUrl: 'https://humanatlas.io/2d-ftu-illustrations',
+    },
+    icon: '3d-ftu',
+    documentationUrl: 'https://humanatlas.io/2d-ftu-illustrations',
+  },
   graph: {
     label: 'Graphs',
     tooltip: {
