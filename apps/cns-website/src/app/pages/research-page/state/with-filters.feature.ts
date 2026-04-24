@@ -393,9 +393,12 @@ export function withFilters() {
       );
 
       const _selectedProjects = optionsToSet(store.projects);
-      const _filteredByProject = createFilteredBy(_filteredByPeople, _selectedProjects, (item, selectedProjects) =>
-        item.tags.some((tag) => selectedProjects.has(tag)),
-      );
+      const _filteredByProject = createFilteredBy(_filteredByPeople, _selectedProjects, (item, selectedProjects) => {
+        if (item.projects) {
+          return item.projects.some((project) => selectedProjects.has(project));
+        }
+        return item.tags.some((tag) => selectedProjects.has(tag));
+      });
 
       const _selectedYears = computed(() => new Set(store.years()?.map((option) => option.year) ?? []));
       const _filteredByYear = createFilteredBy(_filteredByProject, _selectedYears, (item, selectedYears) =>
@@ -434,7 +437,7 @@ export function withFilters() {
         (item) => item.category === 'publication',
       );
       const countsByPeople = countsByKey(store.researchItems, (item) => item.people);
-      const countsByProject = countsByKey(store.researchItems, (item) => item.tags);
+      const countsByProject = countsByKey(store.researchItems, (item) => item.projects || item.tags);
       const countsByYear = countsByKey(store.researchItems, (item) => item.dateStart.getFullYear().toString());
 
       const counts = computed(() => [
