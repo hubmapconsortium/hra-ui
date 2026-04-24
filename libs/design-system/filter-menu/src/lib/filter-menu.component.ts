@@ -1,5 +1,5 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, model, output, signal } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -67,7 +67,7 @@ export class FilterMenuComponent<T extends SearchListOption> {
   readonly filters = model.required<FilterOptionCategory<T>[]>();
 
   /** Counts for each filter option */
-  readonly counts = input<Record<string, number>[]>();
+  readonly counts = input<Record<string, number>[]>([]);
 
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
@@ -91,6 +91,10 @@ export class FilterMenuComponent<T extends SearchListOption> {
     }
     return this.filters();
   });
+
+  isExtraCategory(category: FilterOptionCategory<T>): boolean {
+    return Object.keys(this.counts()[this.filters().indexOf(category)]).length < 2;
+  }
 
   /**
    * Updates filters on filter selection

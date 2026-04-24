@@ -35,39 +35,40 @@
       <span class="title">Filter</span>
     </div>
     @for (filter of filtersWithCounts(); track $index) {
-      <hra-filter-container
-        cdkOverlayOrigin
-        [hraFeature]="filter.id | slugify"
-        [enableDivider]="!$last"
-        [action]="filter.label"
-        [totalCount]="filter.totalCount"
-        [active]="activeFilter() === filter"
-        [chips]="filter.selected ?? []"
-        (chipsChange)="updateFilterSelection(filter, $event)"
-        (actionClick)="toggleFilterMenu(filter)"
-        #filterMenuOrigin="cdkOverlayOrigin"
-      />
-
-      <ng-template
-        cdkConnectedOverlay
-        cdkConnectedOverlayHasBackdrop="false"
-        cdkConnectedOverlayLockPosition="true"
-        cdkConnectedOverlayPush="true"
-        [cdkConnectedOverlayOpen]="activeFilterId() === filter.id"
-        [cdkConnectedOverlayOrigin]="filterMenuOrigin"
-        [cdkConnectedOverlayPositions]="filterMenuPositions"
-        (overlayOutsideClick)="closeFilterMenu(filter)"
-        (detach)="closeFilterMenu(filter)"
-      >
-        <hra-search-list
-          [hraFeature]="`${(filter.id | slugify)}.menu`"
-          [options]="filter.options"
-          [selected]="filter.selected ?? []"
-          [counts]="counts()?.[$index]"
-          [disableSearch]="filter.disableSearch ?? false"
-          (selectedChange)="updateFilterSelection(filter, $event)"
+      @if (!isExtraCategory(filter)) {
+        <hra-filter-container
+          cdkOverlayOrigin
+          [hraFeature]="filter.id | slugify"
+          [enableDivider]="!$last"
+          [action]="filter.label"
+          [totalCount]="filter.totalCount"
+          [active]="activeFilter() === filter"
+          [chips]="filter.selected ?? []"
+          (chipsChange)="updateFilterSelection(filter, $event)"
+          (actionClick)="toggleFilterMenu(filter)"
+          #filterMenuOrigin="cdkOverlayOrigin"
         />
-      </ng-template>
+        <ng-template
+          cdkConnectedOverlay
+          cdkConnectedOverlayHasBackdrop="false"
+          cdkConnectedOverlayLockPosition="true"
+          cdkConnectedOverlayPush="true"
+          [cdkConnectedOverlayOpen]="activeFilterId() === filter.id"
+          [cdkConnectedOverlayOrigin]="filterMenuOrigin"
+          [cdkConnectedOverlayPositions]="filterMenuPositions"
+          (overlayOutsideClick)="closeFilterMenu(filter)"
+          (detach)="closeFilterMenu(filter)"
+        >
+          <hra-search-list
+            [hraFeature]="`${(filter.id | slugify)}.menu`"
+            [options]="filter.options"
+            [selected]="filter.selected ?? []"
+            [counts]="counts()[$index]"
+            [disableSearch]="filter.disableSearch ?? false"
+            (selectedChange)="updateFilterSelection(filter, $event)"
+          />
+        </ng-template>
+      }
     }
   </div>
 </ng-scrollbar>
