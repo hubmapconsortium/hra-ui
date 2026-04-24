@@ -221,6 +221,7 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0014455': 'adipose',
   'http://purl.obolibrary.org/obo/UBERON_0000467': 'anatomical-systems',
   'http://purl.obolibrary.org/obo/UBERON_0000955': 'brain',
+  'http://purl.org/sig/ont/fma/fma15046': 'adipose', // TODO: get icon
   'http://purl.obolibrary.org/obo/UBERON_0002182': 'extrapulmonary-bronchus',
   'http://purl.obolibrary.org/obo/UBERON_0000970': 'eye',
   'http://purl.obolibrary.org/obo/UBERON_0003889': 'fallopian-tube-left', //fallopian tube
@@ -235,6 +236,7 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-node', //lymph vasculature
   'http://purl.obolibrary.org/obo/UBERON_0000165': 'mouth',
   'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
+  'http://purl.obolibrary.org/obo/UBERON_0003688': 'omentum', // TODO: get icon
   'http://purl.obolibrary.org/obo/UBERON_0000992': 'ovaries', //ovary
   'http://purl.obolibrary.org/obo/UBERON_0001264': 'pancreas',
   'http://purl.obolibrary.org/obo/UBERON_0001270': 'pelvis',

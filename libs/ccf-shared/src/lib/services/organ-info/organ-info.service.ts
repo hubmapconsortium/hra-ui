@@ -42,6 +42,13 @@ export const ALL_POSSIBLE_ORGANS = (
       id: 'http://purl.obolibrary.org/obo/UBERON_0002509',
     },
     {
+      src: 'app:adipose', // TODO: get icon
+      organ: 'Epiploic appendage of transverse colon',
+      name: 'Epiploic appendage of transverse colon',
+      hasSex: true,
+      id: 'http://purl.org/sig/ont/fma/fma15046',
+    },
+    {
       disabled: true,
       src: 'app:eye',
       organ: 'Eye',
@@ -222,6 +229,13 @@ export const ALL_POSSIBLE_ORGANS = (
       name: 'Mouth',
       hasSex: true,
       id: 'http://purl.obolibrary.org/obo/UBERON_0000165',
+    },
+    {
+      src: 'app:adipose', // TODO: get icon
+      organ: 'Omentum',
+      name: 'Omentum',
+      hasSex: true,
+      id: 'http://purl.obolibrary.org/obo/UBERON_0003688',
     },
     {
       disabled: true,
