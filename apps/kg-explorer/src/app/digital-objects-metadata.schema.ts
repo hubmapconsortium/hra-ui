@@ -95,10 +95,7 @@ export const DigitalObjectInfoSchema = z
     doType: z.string(),
     doName: z.string(),
     doVersion: z.string(),
-    lastUpdated: z.object({
-      '@type': z.string(),
-      '@value': z.string(),
-    }),
+    lastUpdated: z.string(),
     hraVersions: z.union([z.string(), z.string().array()]).optional(),
     versions: z.union([z.string(), z.string().array()]),
     purl: z.string(),

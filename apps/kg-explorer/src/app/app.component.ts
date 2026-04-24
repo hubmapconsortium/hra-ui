@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
@@ -70,8 +70,6 @@ export class AppComponent extends BaseApplicationComponent {
 
   private readonly http = inject(HttpClient);
 
-  readonly customMirror = input<string>();
-
   readonly mirrorUrl = injectMirrorUrl();
 
   /** Page title to display on the breadcrumbs */
@@ -111,7 +109,12 @@ export class AppComponent extends BaseApplicationComponent {
   readonly params = signal<string[]>([]);
 
   /** Id of digital object computed from params */
-  readonly objectId = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
+  readonly objectId = computed(() => [this.baseUrl()].concat(this.params()).join('/'));
+
+  readonly baseUrl = computed(() => {
+    const lod = 'https://lod.humanatlas.io';
+    return this.mirrorUrl() === 'https://cdn.humanatlas.io/digital-objects' ? lod : this.mirrorUrl();
+  });
 
   /** Digital objects */
   private readonly digitalObjects = signal<DigitalObjectsJsonLd>({ '@context': {}, '@graph': [] });
@@ -127,9 +130,9 @@ export class AppComponent extends BaseApplicationComponent {
     if (apiEndpoint) {
       setRemoteApiEndpoint(apiEndpoint);
     }
-    const mirrorUrl = el.getAttribute('custom-mirror') || el.getAttribute('mirror-url');
-    if (mirrorUrl) {
-      setMirrorUrl(mirrorUrl);
+    const customMirrorUrl = el.getAttribute('mirror-url');
+    if (customMirrorUrl) {
+      setMirrorUrl(customMirrorUrl);
     }
 
     effect(() => {

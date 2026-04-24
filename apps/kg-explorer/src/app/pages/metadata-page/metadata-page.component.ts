@@ -22,6 +22,7 @@ import {
 } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import { coerceArray, getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
+import { injectMirrorUrl } from '../../utils/endpoints';
 
 /**
  * Metadata page for a digital object
@@ -50,6 +51,8 @@ export class MetadataPageComponent {
   /** File download service */
   private readonly download = inject(DownloadService);
 
+  readonly mirrorUrl = injectMirrorUrl();
+
   /** Raw digital object data from API */
   readonly doData = input.required<DigitalObjectsJsonLd>();
   readonly asctbTerms = input.required<AsctbTerms>();
@@ -60,6 +63,11 @@ export class MetadataPageComponent {
   readonly metadata = input.required<DigitalObjectMetadata>();
 
   readonly allItems = computed(() => this.doData()['@graph']);
+
+  readonly baseUrl = computed(() => {
+    const lod = 'https://lod.humanatlas.io';
+    return this.mirrorUrl() === 'https://cdn.humanatlas.io/digital-objects' ? lod : this.mirrorUrl();
+  });
 
   /** Versions available for this digital object */
   readonly availableVersions = signal<string[]>([]);
@@ -110,9 +118,8 @@ export class MetadataPageComponent {
 
     effect(() => {
       const pageItem = this.allItems().find((item) => {
-        return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
+        return item['@id'] === `${this.baseUrl()}/${type}/${name}`;
       }) as DigitalObjectInfo;
-
       if (pageItem) {
         this.purl.set(pageItem.purl || '');
         this.setIcons(pageItem, type);

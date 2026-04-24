@@ -48,7 +48,7 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
       organTooltip: sentenceCase(organLabel || 'All Organs'),
       cellCount: item.cell_count,
       biomarkerCount: item.biomarker_count,
-      lastPublished: formatDateToYYYYMM(item.lastUpdated['@value']),
+      lastPublished: formatDateToYYYYMM(item.lastUpdated),
     } as TableRow;
   });
 }
