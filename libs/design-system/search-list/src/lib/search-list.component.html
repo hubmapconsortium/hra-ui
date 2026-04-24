@@ -12,27 +12,27 @@
     (selectionChange)="selectionUpdate($event.source.selectedOptions.selected)"
   >
     @for (option of filteredOptions(); track option.id) {
-      <mat-list-option
-        togglePosition="before"
-        hraClickEvent
-        [hraFeature]="option.label | slugify"
-        [value]="option"
-        [selected]="selected().includes(option)"
-        [attr.aria-label]="`Toggle ${option.label}`"
-      >
-        <mat-label class="labels-count">
-          <span class="option-labels">
-            <div class="option-primary-label">{{ option.label }}</div>
-            @if (option.secondaryLabel) {
-              <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
-            }
-          </span>
-          @let count = getCount(option);
-          @if (count !== undefined) {
+      @let count = getCount(option);
+      @if (count) {
+        <mat-list-option
+          togglePosition="before"
+          hraClickEvent
+          [hraFeature]="option.label | slugify"
+          [value]="option"
+          [selected]="selected().includes(option)"
+          [attr.aria-label]="`Toggle ${option.label}`"
+        >
+          <mat-label class="labels-count">
+            <span class="option-labels">
+              <div class="option-primary-label">{{ option.label }}</div>
+              @if (option.secondaryLabel) {
+                <div class="option-secondary-label">{{ option.secondaryLabel }}</div>
+              }
+            </span>
             <span class="option-count">{{ count | number }}</span>
-          }
-        </mat-label>
-      </mat-list-option>
+          </mat-label>
+        </mat-list-option>
+      }
     }
   </mat-selection-list>
 </ng-scrollbar>
