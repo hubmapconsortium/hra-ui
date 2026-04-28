@@ -474,6 +474,15 @@
     )
   );
 
+  h2 {
+    font: var(--mat-sys-display-small) !important;
+    letter-spacing: var(--mat-sys-display-small-tracking) !important;
+  }
+  h3 {
+    font: var(--mat-sys-headline-large) !important;
+    letter-spacing: var(--mat-sys-headline-large-tracking) !important;
+  }
+
   hra-filter-menu {
     .tagline .title {
       font: vars.$title-medium-emphasized !important;
@@ -493,12 +502,6 @@
   }
 
   hra-page-section {
-    h2 {
-      @include utils.use-font(display, small);
-    }
-    h3 {
-      @include utils.use-font(headline, large);
-    }
     section > .content {
       font: vars.$body-large !important;
       letter-spacing: vars.$body-large-tracking !important;
