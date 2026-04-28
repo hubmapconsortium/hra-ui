@@ -49,7 +49,7 @@
     max-width: 360px;
     padding: 2rem;
     border: 1px solid vars.$outline-variant;
-    border-radius: 0.75rem;
+    border-radius: vars.$corner-medium;
 
     &.large {
       max-width: 28rem;

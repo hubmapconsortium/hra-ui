@@ -53,7 +53,7 @@ content:
           - component: ActionCard
             variant: outlined
             image: assets/content/amatria/images/denrites.png
-            tagline: Dendrite
+            tagline: Dendrites
             content:
               - component: Markdown
                 data: Each _Amatria_ Dendrite has one light sensor (the eye) and actuators, such as lights and a strand of shape memory alloy, that makes the sculpture move. Software controls the sensor and actuators. Dendrite fields were built in the [2017 ISE Summer Camp](https://cns.iu.edu/assets/content/amatria/2017-iu-summer-camp-dendrite.pdf).

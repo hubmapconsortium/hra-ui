@@ -140,3 +140,14 @@ $overrides: (
   mono-small-tracking: 0rem,
   mono-small-weight: 400,
 );
+
+@mixin custom-variants() {
+  & {
+    --mat-sys-title-medium-emphasized: 700 1rem / 1.5rem #{$_plain};
+    --mat-sys-title-medium-emphasized-font: #{$_plain};
+    --mat-sys-title-medium-emphasized-line-height: 1.5rem;
+    --mat-sys-title-medium-emphasized-size: 1rem;
+    --mat-sys-title-medium-emphasized-tracking: 0.0094rem;
+    --mat-sys-title-medium-emphasized-weight: 700;
+  }
+}

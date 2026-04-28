@@ -10,7 +10,6 @@
 
   .title {
     @include utils.use-font(body, medium);
-    letter-spacing: vars.$label-medium-tracking;
   }
 
   .funders {

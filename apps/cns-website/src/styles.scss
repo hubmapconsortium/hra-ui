@@ -1,14 +1,16 @@
 @use '@angular/material' as mat;
 @use 'cns-theme' as cns;
+@use 'cns-typography';
 @use 'sass:map';
 
-@use 'cns-theming';
+@use 'theming';
 @use 'utils';
 @use 'animate.css';
 @use 'vars';
 
 @include utils.global-styles() {
-  @include cns-theming.theme(cns.$theme);
+  @include theming.theme(cns.$theme, cns-typography.$overrides);
+  @include cns-typography.custom-variants();
   @include mat.theme-overrides(
     (
       background: map.get(cns.$theme, color, primary, 100),
@@ -33,7 +35,8 @@
   );
 
   @media (prefers-color-scheme: dark) {
-    @include cns-theming.theme(cns.$theme-dark);
+    @include theming.theme(cns.$theme-dark, cns-typography.$overrides);
+    @include cns-typography.custom-variants();
     @include mat.theme-overrides(
       (
         background: map.get(cns.$theme, color, primary, neutral, 0),
@@ -81,6 +84,77 @@
     --hra-scroll-overflow-fade-color: #{vars.$background};
   }
 
+  @include mat.form-field-overrides(
+    (
+      container-height: 3.5rem,
+
+      filled-active-indicator-color: vars.$on-surface-variant,
+      filled-container-color: vars.$surface-container-highest,
+      filled-focus-active-indicator-color: vars.$on-surface,
+      filled-hover-label-text-color: vars.$on-surface-variant,
+      filled-input-text-color: vars.$on-surface,
+      filled-label-text-color: vars.$on-surface,
+
+      leading-icon-color: vars.$on-surface,
+    )
+  );
+
+  @include mat.select-overrides(
+    (
+      enabled-trigger-text-color: vars.$on-surface,
+      enabled-arrow-color: vars.$on-surface,
+      focused-arrow-color: vars.$on-surface,
+      panel-background-color: vars.$surface-container-low,
+    )
+  );
+
+  @include mat.option-overrides(
+    (
+      focus-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
+      hover-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
+      label-text-color: vars.$on-surface,
+      selected-state-label-text-color: vars.$on-surface,
+      selected-state-layer-color: utils.with-alpha(vars.$tertiary, 16%),
+    )
+  );
+
+  @include mat.checkbox-overrides(
+    (
+      unselected-focus-icon-color: vars.$primary,
+      unselected-hover-icon-color: vars.$primary,
+      unselected-icon-color: vars.$on-surface-variant,
+
+      unselected-focus-state-layer-color: vars.$on-surface-variant,
+      unselected-hover-state-layer-color: vars.$on-surface-variant,
+      unselected-pressed-state-layer-color: vars.$on-surface-variant,
+
+      selected-focus-icon-color: vars.$primary,
+      selected-hover-icon-color: vars.$primary,
+      selected-icon-color: vars.$primary,
+
+      selected-focus-state-layer-color: vars.$primary,
+      selected-hover-state-layer-color: vars.$primary,
+      selected-pressed-state-layer-color: vars.$primary,
+    )
+  );
+
+  @include mat.icon-button-overrides(
+    (
+      icon-color: vars.$on-surface,
+      state-layer-color: vars.$on-surface,
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      filled-label-text-color: vars.$on-primary-container,
+      filled-state-layer-color: vars.$on-primary-container,
+      filled-container-color: vars.$primary-container,
+      text-label-text-color: vars.$on-surface,
+      text-state-layer-color: vars.$on-surface,
+    )
+  );
+
   hra-breadcrumbs {
     .label {
       color: vars.$on-surface-variant;
@@ -111,10 +185,8 @@
     }
   }
 
-  hra-markdown {
-    a {
-      color: vars.$on-surface-variant !important;
-    }
+  hra-markdown a {
+    color: vars.$on-surface-variant !important;
   }
 
   a.hra-text-hyperlink {
@@ -180,24 +252,12 @@
     }
   }
 
-  @include mat.icon-button-overrides(
-    (
-      icon-color: vars.$on-surface,
-      state-layer-color: vars.$on-surface,
-    )
-  );
-
-  @include mat.button-overrides(
-    (
-      filled-label-text-color: vars.$on-primary-container,
-      filled-state-layer-color: vars.$on-primary-container,
-      filled-container-color: vars.$primary-container,
-      text-label-text-color: vars.$on-surface,
-      text-state-layer-color: vars.$on-surface,
-    )
-  );
-
   [mat-button] {
+    &.hra-button-variant-secondary.hra-cta-button {
+      --mat-button-text-label-text-color: #{vars.$primary};
+      --mat-button-text-state-layer-color: #{vars.$primary};
+    }
+
     &.hra-button-variant-secondary:not(.hra-cta-button) {
       --mat-button-text-label-text-color: #{vars.$on-surface} !important;
       --mat-button-text-state-layer-color: #{vars.$on-surface} !important;
@@ -229,25 +289,13 @@
     }
   }
 
-  @include mat.checkbox-overrides(
-    (
-      unselected-focus-icon-color: vars.$primary,
-      unselected-hover-icon-color: vars.$primary,
-      unselected-icon-color: vars.$on-surface-variant,
-
-      unselected-focus-state-layer-color: vars.$on-surface-variant,
-      unselected-hover-state-layer-color: vars.$on-surface-variant,
-      unselected-pressed-state-layer-color: vars.$on-surface-variant,
-
-      selected-focus-icon-color: vars.$primary,
-      selected-hover-icon-color: vars.$primary,
-      selected-icon-color: vars.$primary,
-
-      selected-focus-state-layer-color: vars.$primary,
-      selected-hover-state-layer-color: vars.$primary,
-      selected-pressed-state-layer-color: vars.$primary,
-    )
-  );
+  hra-search-filter {
+    @include mat.form-field-overrides(
+      (
+        leading-icon-color: vars.$on-surface-variant,
+      )
+    );
+  }
 
   hra-end-of-results-indicator {
     .results-count,
@@ -262,50 +310,8 @@
         background-color: vars.$background,
         hover-state-layer-opacity: 0.08,
         divider-color: vars.$outline,
-        shape: 2rem,
+        shape: vars.$corner-full,
         height: 2.5rem,
-      )
-    );
-  }
-
-  mat-form-field {
-    @include mat.form-field-overrides(
-      (
-        container-text-font: vars.$body-large-font,
-        container-text-size: vars.$body-large-size,
-        container-text-line-height: vars.$body-large-line-height,
-        container-text-weight: vars.$body-large-weight,
-        container-text-tracking: vars.$body-large-tracking,
-
-        filled-active-indicator-color: vars.$on-surface-variant,
-        filled-container-color: vars.$surface-container-highest,
-        filled-focus-active-indicator-color: vars.$on-surface,
-        filled-hover-label-text-color: vars.$on-surface-variant,
-        filled-input-text-color: vars.$on-surface,
-        filled-label-text-color: vars.$on-surface,
-        filled-label-text-font: vars.$body-large-font,
-        filled-label-text-size: vars.$body-large-size,
-        filled-label-text-weight: vars.$body-large-weight,
-        filled-label-text-tracking: vars.$body-large-tracking,
-      )
-    );
-
-    @include mat.select-overrides(
-      (
-        enabled-trigger-text-color: vars.$on-surface,
-        enabled-arrow-color: vars.$on-surface,
-        focused-arrow-color: vars.$on-surface,
-        panel-background-color: vars.$surface-container-low,
-      )
-    );
-
-    @include mat.option-overrides(
-      (
-        focus-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
-        hover-state-layer-color: color-mix(in srgb, vars.$on-surface 12%, transparent),
-        label-text-color: vars.$on-surface,
-        selected-state-label-text-color: vars.$on-surface,
-        selected-state-layer-color: utils.with-alpha(vars.$tertiary, 16%),
       )
     );
   }
@@ -316,6 +322,22 @@
     .text2 {
       color: vars.$on-surface-variant;
     }
+
+    .customize-button {
+      @include mat.button-overrides(
+        (
+          text-label-text-color: vars.$primary,
+        )
+      );
+    }
+  }
+
+  .hra-privacy-preferences-panel {
+    @include mat.dialog-overrides(
+      (
+        container-shape: vars.$corner-small,
+      )
+    );
   }
 
   hra-privacy-preferences {
@@ -417,6 +439,21 @@
 
   //Typography overrides
 
+  @include mat.form-field-overrides(
+    (
+      container-text-font: vars.$body-large-font,
+      container-text-size: vars.$body-large-size,
+      container-text-line-height: vars.$body-large-line-height,
+      container-text-weight: vars.$body-large-weight,
+      container-text-tracking: vars.$body-large-tracking,
+
+      filled-label-text-font: vars.$body-large-font,
+      filled-label-text-size: vars.$body-large-size,
+      filled-label-text-weight: vars.$body-large-weight,
+      filled-label-text-tracking: vars.$body-large-tracking,
+    )
+  );
+
   @include mat.select-overrides(
     (
       trigger-text-font: vars.$body-large-font,
@@ -437,6 +474,13 @@
     )
   );
 
+  hra-filter-menu {
+    .tagline .title {
+      font: vars.$title-medium-emphasized !important;
+      letter-spacing: vars.$title-medium-emphasized-tracking !important;
+    }
+  }
+
   hra-list-view {
     hra-markdown {
       font: vars.$body-large !important;
@@ -445,13 +489,16 @@
   }
 
   hra-results-indicator {
-    font: vars.$body-medium !important;
-    letter-spacing: vars.$body-medium-tracking !important;
+    @include utils.use-font(body, medium);
   }
 
   hra-page-section {
-    color: vars.$on-background;
-
+    h2 {
+      @include utils.use-font(display, small);
+    }
+    h3 {
+      @include utils.use-font(headline, large);
+    }
     section > .content {
       font: vars.$body-large !important;
       letter-spacing: vars.$body-large-tracking !important;
@@ -464,8 +511,129 @@
       letter-spacing: vars.$title-medium-tracking !important;
     }
     .link {
-      font: vars.$body-large !important;
-      letter-spacing: vars.$body-large-tracking !important;
+      @include utils.use-font(body, medium);
+    }
+  }
+
+  hra-consent-banner {
+    .text1 {
+      font: vars.$title-medium !important;
+      letter-spacing: vars.$title-medium-tracking !important;
+    }
+
+    .text2 {
+      font: vars.$body-medium !important;
+      letter-spacing: vars.$body-medium-tracking !important;
+    }
+
+    .privacy-policy-button {
+      font: vars.$body-medium !important;
+      letter-spacing: vars.$body-medium-tracking !important;
+    }
+  }
+
+  hra-privacy-preferences {
+    .consent-content {
+      font: vars.$body-medium !important;
+      letter-spacing: vars.$body-medium-tracking;
+    }
+
+    .privacy-details {
+      .provider-title {
+        @include utils.use-font(title, small);
+      }
+      .provider-link-container {
+        a {
+          @include utils.use-font(body, medium);
+        }
+      }
+    }
+  }
+
+  hra-categories {
+    .title {
+      font: vars.$title-small !important;
+      letter-spacing: vars.$title-small-tracking;
+    }
+    .description {
+      font: vars.$body-medium !important;
+      letter-spacing: vars.$body-medium-tracking;
+    }
+  }
+
+  hra-breadcrumbs {
+    .label {
+      @include utils.use-font(body, medium);
+    }
+  }
+
+  hra-profile-card {
+    .content .description {
+      font: vars.$body-medium !important;
+      letter-spacing: vars.$body-medium-tracking !important;
+    }
+
+    .actions {
+      @include mat.button-overrides(
+        (
+          text-label-text-font: vars.$body-medium-font,
+          text-label-text-size: vars.$body-medium-size,
+          text-label-text-weight: vars.$body-medium-weight,
+          text-label-text-tracking: vars.$body-medium-tracking,
+        )
+      );
+    }
+  }
+
+  hra-action-card {
+    .content {
+      .actions {
+        font: var(--mat-sys-body-medium) !important;
+        letter-spacing: var(--mat-sys-body-medium-tracking) !important;
+      }
+    }
+
+    &.hra-action-card-variant-elevated,
+    &.hra-action-card-variant-flat,
+    &.hra-action-card-variant-outlined,
+    &.hra-action-card-variant-outlined-with-icons {
+      .content {
+        .description {
+          font: var(--mat-sys-body-medium) !important;
+          letter-spacing: var(--mat-sys-body-medium-tracking) !important;
+        }
+      }
+    }
+
+    &.hra-action-card-variant-outlined,
+    &.hra-action-card-variant-outlined-with-icons {
+      .content {
+        .tagline {
+          font: var(--mat-sys-title-medium) !important;
+          letter-spacing: var(--mat-sys-title-medium-tracking) !important;
+        }
+      }
+    }
+  }
+
+  hra-search-list {
+    @include mat.form-field-overrides(
+      (
+        container-height: 3rem,
+        leading-icon-color: vars.$on-surface-variant,
+      )
+    );
+
+    .search-label {
+      font: var(--mat-sys-body-large) !important;
+      letter-spacing: var(--mat-sys-body-large-tracking) !important;
+    }
+
+    .option-primary-label {
+      @include utils.use-font(body, large);
+    }
+    .option-count {
+      @include utils.use-font(label, small);
     }
   }
 }

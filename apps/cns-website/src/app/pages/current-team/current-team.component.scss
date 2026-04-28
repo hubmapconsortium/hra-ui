@@ -31,21 +31,6 @@
         .group-by {
           width: 100%;
 
-          @include mat.form-field-overrides(
-            (
-              filled-active-indicator-color: vars.$on-surface,
-              filled-container-color: vars.$surface-container-high,
-              filled-focus-active-indicator-color: vars.$on-surface,
-              filled-hover-label-text-color: vars.$on-surface-variant,
-              filled-label-text-color: vars.$on-surface-variant,
-              filled-label-text-font: vars.$body-large-font,
-              filled-label-text-size: vars.$body-large-size,
-              filled-label-text-weight: vars.$body-large-weight,
-              filled-label-text-tracking: vars.$body-large-tracking,
-              leading-icon-color: vars.$on-surface,
-            )
-          );
-
           @include mat.select-overrides(
             (
               enabled-trigger-text-color: vars.$on-surface,
