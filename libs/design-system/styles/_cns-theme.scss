@@ -1,9 +1,5 @@
 @use 'sass:map';
-@use '@angular/material' as mat;
-@use 'theming';
-@use 'typography' as typo;
-@use 'utils';
-@use 'vars';
+@use 'cns-typography' as typo;
 
 $_palettes: (
   primary: (

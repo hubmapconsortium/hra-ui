@@ -12,14 +12,14 @@
   );
 
   .toggle {
-    color: vars.$secondary;
+    color: vars.$on-surface;
     border: none;
     border-radius: 0.25rem;
 
     .text {
       display: inline-block;
       margin-right: 0.125rem;
-      @include utils.use-font(label, large);
+      @include utils.use-font(title, medium);
     }
 
     :is(&.mat-button-toggle-checked, &:hover, &:active) .text {

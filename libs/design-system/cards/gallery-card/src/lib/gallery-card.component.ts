@@ -3,6 +3,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { AssetUrlPipe } from '@hra-ui/common/url';
 import { TextHyperlinkDirective } from '@hra-ui/design-system/buttons/text-hyperlink';
+import { ChipSizeDirective } from '@hra-ui/design-system/chips';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** Tag item interface for gallery card tags */
@@ -18,7 +19,14 @@ export interface TagItem {
  */
 @Component({
   selector: 'hra-gallery-card',
-  imports: [AssetUrlPipe, LinkDirective, MatChipsModule, PlainTooltipDirective, TextHyperlinkDirective],
+  imports: [
+    AssetUrlPipe,
+    LinkDirective,
+    MatChipsModule,
+    PlainTooltipDirective,
+    TextHyperlinkDirective,
+    ChipSizeDirective,
+  ],
   templateUrl: './gallery-card.component.html',
   styleUrl: './gallery-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -61,10 +61,6 @@
     justify-content: center;
     width: 12.5rem;
 
-    .label {
-      @include utils.use-font(label, large);
-    }
-
     .tagline {
       @include utils.use-font(label, medium);
       color: vars.$on-surface-variant;

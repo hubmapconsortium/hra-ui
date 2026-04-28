@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
@@ -22,15 +23,15 @@
     padding-top: 1rem;
 
     .date {
-      @include utils.use-font(label, medium);
-      color: vars.$on-secondary-fixed;
+      color: vars.$on-surface-variant;
+      @include utils.use-font(title, small);
     }
 
     .tagline-link,
     .tagline {
-      color: vars.$tertiary;
+      color: vars.$on-surface;
       margin-top: 0.5rem;
-      @include utils.use-font(label, large);
+      @include utils.use-font(title, medium);
       @include utils.line-clamp(2);
     }
 

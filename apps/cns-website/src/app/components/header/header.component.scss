@@ -64,20 +64,20 @@ $z-index: 900;
   .menu-button {
     @include mat.button-overrides(
       (
-        text-label-text-font: vars.$label-large-font,
-        text-label-text-size: vars.$label-large-size,
-        text-label-text-weight: vars.$label-large-weight,
-        text-label-text-tracking: vars.$label-large-tracking,
+        text-label-text-font: vars.$title-medium-font,
+        text-label-text-size: vars.$title-medium-size,
+        text-label-text-weight: vars.$title-medium-weight,
+        text-label-text-tracking: vars.$title-medium-tracking,
         text-horizontal-padding: 0.625rem,
       )
     );
 
     @include mat.button-toggle-overrides(
       (
-        label-text-font: vars.$label-large-font,
-        label-text-size: vars.$label-large-size,
-        label-text-weight: vars.$label-large-weight,
-        label-text-tracking: vars.$label-large-tracking,
+        label-text-font: vars.$title-medium-font,
+        label-text-size: vars.$title-medium-size,
+        label-text-weight: vars.$title-medium-weight,
+        label-text-tracking: vars.$title-medium-tracking,
       )
     );
 

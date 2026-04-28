@@ -2,13 +2,13 @@
 @use 'cns-theme' as cns;
 @use 'sass:map';
 
-@use 'theming';
+@use 'cns-theming';
 @use 'utils';
 @use 'animate.css';
 @use 'vars';
 
 @include utils.global-styles() {
-  @include theming.theme(cns.$theme);
+  @include cns-theming.theme(cns.$theme);
   @include mat.theme-overrides(
     (
       background: map.get(cns.$theme, color, primary, 100),
@@ -33,7 +33,7 @@
   );
 
   @media (prefers-color-scheme: dark) {
-    @include theming.theme(cns.$theme-dark);
+    @include cns-theming.theme(cns.$theme-dark);
     @include mat.theme-overrides(
       (
         background: map.get(cns.$theme, color, primary, neutral, 0),
@@ -156,55 +156,14 @@
     }
   }
 
-  hra-content-button {
-    --mat-button-text-pressed-state-layer-opacity: 0.1;
-
-    mat-chip {
-      @include mat.chips-overrides(
-        (
-          container-height: 1.625rem,
-          elevated-container-color: transparent,
-        )
-      );
-    }
-
-    .content-button {
-      background-color: vars.$background !important;
-
-      .date {
-        color: vars.$on-surface-variant !important;
-      }
-      .tagline {
-        color: vars.$on-surface !important;
-      }
-    }
-  }
-
   hra-table {
     .mat-sort-header-arrow {
       color: unset !important;
     }
   }
 
-  hra-gallery-card {
-    .date {
-      color: vars.$on-surface-variant !important;
-    }
-
-    .tagline,
-    .tagline-link {
-      color: vars.$on-surface !important;
-    }
-  }
-
   hra-profile-card {
     .name {
-      color: vars.$on-surface !important;
-    }
-  }
-
-  hra-navigation-category-toggle {
-    .toggle {
       color: vars.$on-surface !important;
     }
   }
@@ -252,30 +211,9 @@
   }
 
   hra-results-indicator {
+    --hra-results-indicator-height: 3.5rem;
     color: vars.$on-surface-variant;
-    background: vars.$surface-container-lowest;
-  }
-
-  hra-filter-menu {
-    color: vars.$on-surface;
-  }
-
-  hra-filter-container {
-    .top-row {
-      color: vars.$on-surface !important;
-    }
-
-    .category-button {
-      --mat-button-toggle-text-color: #{vars.$on-surface} !important;
-    }
-
-    mat-chip {
-      @include mat.chips-overrides(
-        (
-          label-text-color: vars.$on-surface-variant,
-        )
-      );
-    }
+    background: vars.$surface-bright;
   }
 
   hra-search-list {
@@ -318,12 +256,10 @@
     }
   }
 
-  mat-button-toggle-group.hra-button-toggle-size-medium,
-  mat-button-toggle-group.hra-button-toggle-size-large {
+  mat-button-toggle-group {
     @include mat.button-toggle-overrides(
       (
         background-color: vars.$background,
-        // focus-state-layer-opacity: 0.1,
         hover-state-layer-opacity: 0.08,
         divider-color: vars.$outline,
         shape: 2rem,
@@ -335,17 +271,22 @@
   mat-form-field {
     @include mat.form-field-overrides(
       (
-        filled-active-indicator-color: vars.$on-surface,
+        container-text-font: vars.$body-large-font,
+        container-text-size: vars.$body-large-size,
+        container-text-line-height: vars.$body-large-line-height,
+        container-text-weight: vars.$body-large-weight,
+        container-text-tracking: vars.$body-large-tracking,
+
+        filled-active-indicator-color: vars.$on-surface-variant,
         filled-container-color: vars.$surface-container-highest,
         filled-focus-active-indicator-color: vars.$on-surface,
         filled-hover-label-text-color: vars.$on-surface-variant,
         filled-input-text-color: vars.$on-surface,
-        filled-label-text-color: vars.$on-surface-variant,
-        filled-label-text-font: vars.$label-medium-font,
-        filled-label-text-size: vars.$label-medium-size,
-        filled-label-text-weight: vars.$label-medium-weight,
-        filled-label-text-tracking: vars.$label-medium-tracking,
-        leading-icon-color: vars.$on-surface,
+        filled-label-text-color: vars.$on-surface,
+        filled-label-text-font: vars.$body-large-font,
+        filled-label-text-size: vars.$body-large-size,
+        filled-label-text-weight: vars.$body-large-weight,
+        filled-label-text-tracking: vars.$body-large-tracking,
       )
     );
 
@@ -367,16 +308,6 @@
         selected-state-layer-color: utils.with-alpha(vars.$tertiary, 16%),
       )
     );
-  }
-
-  hra-search-filter {
-    mat-form-field {
-      @include mat.form-field-overrides(
-        (
-          leading-icon-color: vars.$on-surface-variant,
-        )
-      );
-    }
   }
 
   hra-consent-banner {
@@ -482,5 +413,59 @@
   .hra-plain-tooltip {
     --mat-tooltip-supporting-text-color: #{vars.$inverse-on-surface} !important;
     --mat-tooltip-container-color: #{vars.$inverse-surface} !important;
+  }
+
+  //Typography overrides
+
+  @include mat.select-overrides(
+    (
+      trigger-text-font: vars.$body-large-font,
+      trigger-text-size: vars.$body-large-size,
+      trigger-text-tracking: vars.$body-large-tracking,
+      trigger-text-weight: vars.$body-large-weight,
+      trigger-text-line-height: vars.$body-large-line-height,
+    )
+  );
+
+  @include mat.option-overrides(
+    (
+      label-text-font: vars.$label-large-font,
+      label-text-line-height: vars.$label-large-line-height,
+      label-text-tracking: vars.$label-large-tracking,
+      label-text-size: vars.$label-large-size,
+      label-text-weight: vars.$label-large-weight,
+    )
+  );
+
+  hra-list-view {
+    hra-markdown {
+      font: vars.$body-large !important;
+      letter-spacing: vars.$body-large-tracking !important;
+    }
+  }
+
+  hra-results-indicator {
+    font: vars.$body-medium !important;
+    letter-spacing: vars.$body-medium-tracking !important;
+  }
+
+  hra-page-section {
+    color: vars.$on-background;
+
+    section > .content {
+      font: vars.$body-large !important;
+      letter-spacing: vars.$body-large-tracking !important;
+    }
+  }
+
+  hra-table-of-contents {
+    .tagline {
+      font: vars.$title-medium !important;
+      letter-spacing: vars.$title-medium-tracking !important;
+    }
+    .link {
+      font: vars.$body-large !important;
+      letter-spacing: vars.$body-large-tracking !important;
+    }
   }
 }

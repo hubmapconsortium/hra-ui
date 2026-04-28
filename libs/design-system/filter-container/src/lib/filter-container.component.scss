@@ -14,7 +14,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      color: vars.$secondary;
+      color: vars.$on-surface;
 
       .info-icon {
         padding: 0.5rem;
@@ -26,14 +26,14 @@
         min-width: fit-content;
         width: auto;
         justify-content: flex-start;
+        border: none;
 
-        @include mat.button-overrides(
+        @include mat.button-toggle-overrides(
           (
-            text-horizontal-padding: 0.75rem,
-            text-label-text-font: vars.$label-medium-font,
-            text-label-text-size: vars.$label-medium-size,
-            text-label-text-tracking: vars.$label-medium-tracking,
-            text-label-text-weight: vars.$label-medium-weight,
+            label-text-font: vars.$body-medium-font,
+            label-text-size: vars.$body-medium-size,
+            label-text-tracking: vars.$body-medium-tracking,
+            label-text-weight: vars.$body-medium-weight,
           )
         );
       }
@@ -45,41 +45,12 @@
       }
     }
 
-    .category-button {
-      flex: 0 1 auto;
-      min-width: fit-content;
-      justify-content: flex-start;
-      border: none;
-
-      @include mat.button-toggle-overrides(
-        (
-          label-text-font: vars.$label-medium-font,
-          label-text-size: vars.$label-medium-size,
-          label-text-line-height: vars.$label-medium-line-height,
-          label-text-weight: vars.$label-medium-weight,
-          label-text-tracking: vars.$label-medium-tracking,
-          text-color: vars.$secondary,
-        )
-      );
-    }
-
     .chips-container {
       display: flex;
       flex-wrap: wrap;
       gap: 0.25rem;
 
       mat-chip {
-        @include mat.chips-overrides(
-          (
-            label-text-font: vars.$label-medium-font,
-            label-text-line-height: vars.$label-medium-line-height,
-            label-text-size: vars.$label-medium-size,
-            label-text-tracking: vars.$label-medium-tracking,
-            label-text-weight: vars.$label-medium-weight,
-            container-height: 2rem,
-          )
-        );
-
         button[matChipRemove] {
           mat-icon {
             font-size: 1.25rem;
