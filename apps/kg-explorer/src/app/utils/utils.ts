@@ -249,10 +249,11 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0004537': 'vasculature-thick', //blood vasculature
   'http://purl.obolibrary.org/obo/UBERON_0014455': 'adipose',
   'http://purl.obolibrary.org/obo/UBERON_0000467': 'anatomical-systems',
+  'http://purl.obolibrary.org/obo/UBERON_0002371': 'bone-marrow',
   'http://purl.obolibrary.org/obo/UBERON_0000955': 'brain',
   'http://purl.obolibrary.org/obo/UBERON_0002182': 'extrapulmonary-bronchus',
   'http://purl.obolibrary.org/obo/UBERON_0000970': 'eye',
-  'http://purl.obolibrary.org/obo/UBERON_0003889': 'fallopian-tube-left', //fallopian tube
+  'http://purl.obolibrary.org/obo/UBERON_0003889': 'fallopian-tube',
   'http://purl.obolibrary.org/obo/UBERON_0000948': 'heart',
   'http://purl.obolibrary.org/obo/UBERON_0001066': 'intervertebral-disk',
   'http://purl.obolibrary.org/obo/UBERON_0002113': 'kidneys', //kidney
@@ -260,24 +261,25 @@ export const ORGAN_ICON_MAP: Record<string, string> = {
   'http://purl.obolibrary.org/obo/UBERON_0000059': 'large-intestine',
   'http://purl.obolibrary.org/obo/UBERON_0002107': 'liver',
   'http://purl.obolibrary.org/obo/UBERON_0002048': 'lungs', //lung
-  'http://purl.obolibrary.org/obo/UBERON_0000029': 'lymph-node', //lymph node
-  'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-node', //lymph vasculature
+  'http://purl.obolibrary.org/obo/UBERON_0000029': 'lymph-node',
+  'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-node', //lymph-vasculature
   'http://purl.obolibrary.org/obo/UBERON_0000165': 'mouth',
   'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
   'http://purl.obolibrary.org/obo/UBERON_0000992': 'ovaries', //ovary
+  'http://purl.obolibrary.org/obo/UBERON_0002373': 'palatine-tonsil',
   'http://purl.obolibrary.org/obo/UBERON_0001264': 'pancreas',
-  'http://purl.obolibrary.org/obo/UBERON_0001270': 'pelvis',
+  'http://purl.obolibrary.org/obo/UBERON_0001270': 'pelvis', //blood-pelvis
   'http://purl.obolibrary.org/obo/UBERON_0001987': 'placenta',
-  'http://purl.obolibrary.org/obo/UBERON_0002367': 'prostate', //prostate gland
+  'http://purl.obolibrary.org/obo/UBERON_0002367': 'prostate',
   'http://purl.obolibrary.org/obo/UBERON_0004288': 'sternum', //skeleton
   'http://purl.obolibrary.org/obo/UBERON_0002097': 'skin',
   'http://purl.obolibrary.org/obo/UBERON_0002108': 'small-intestine',
   'http://purl.obolibrary.org/obo/UBERON_0002240': 'spinal-cord',
   'http://purl.obolibrary.org/obo/UBERON_0002106': 'spleen',
-  'http://purl.obolibrary.org/obo/UBERON_0002370': 'thymus', //thoracic thymus
+  'http://purl.obolibrary.org/obo/UBERON_0002370': 'thymus',
   'http://purl.obolibrary.org/obo/UBERON_0003126': 'trachea',
-  'http://purl.obolibrary.org/obo/UBERON_0000056': 'ureter-right', //ureter
-  'http://purl.obolibrary.org/obo/UBERON_0001255': 'bladder', //urinary bladder
+  'http://purl.obolibrary.org/obo/UBERON_0000056': 'ureters', //ureter
+  'http://purl.obolibrary.org/obo/UBERON_0001255': 'bladder', //urinary-bladder
   'http://purl.obolibrary.org/obo/UBERON_0000995': 'uterus',
 };
 
@@ -330,13 +332,13 @@ export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> =
 };
 
 /**
- * Gets organ id from a digital object. If more than one organ is listed return undefined
+ * Gets organ id from a digital object. If more than one organ is listed return the first one, if no organs are listed return undefined
  * @param item Digital object data item
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string | undefined {
   const ids = coerceArray(item?.organIds);
-  return ids.length === 1 ? ids[0] : undefined;
+  return ids.length > 0 ? ids[0] : undefined;
 }
 
 /**
