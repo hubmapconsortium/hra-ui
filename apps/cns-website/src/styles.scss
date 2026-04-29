@@ -147,6 +147,8 @@
 
   @include mat.button-overrides(
     (
+      text-container-height: 3rem,
+      text-icon-spacing: 0.375rem,
       filled-label-text-color: vars.$on-primary-container,
       filled-state-layer-color: vars.$on-primary-container,
       filled-container-color: vars.$primary-container,
@@ -638,5 +640,25 @@
     .option-count {
       @include utils.use-font(label, small);
     }
+  }
+
+  hra-table {
+    thead th {
+      vertical-align: middle;
+    }
+
+    @include mat.table-overrides(
+      (
+        header-headline-font: vars.$title-small-font,
+        header-headline-size: vars.$title-small-size,
+        header-headline-weight: vars.$title-small-weight,
+        header-headline-tracking: vars.$title-small-tracking,
+
+        row-item-label-text-font: vars.$body-medium-font,
+        row-item-label-text-size: vars.$body-medium-size,
+        row-item-label-text-weight: vars.$body-medium-weight,
+        row-item-label-text-tracking: vars.$body-medium-tracking,
+      )
+    );
   }
 }
