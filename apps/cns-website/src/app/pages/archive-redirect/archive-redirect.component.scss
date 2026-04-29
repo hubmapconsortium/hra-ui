@@ -35,7 +35,7 @@
     color: vars.$on-surface-variant;
     margin-bottom: 2rem;
     text-align: center;
-    @include utils.use-font(title, medium);
+    @include utils.use-font(body, large);
   }
 
   .copy-url:has(+ .card) {
@@ -68,7 +68,7 @@
     .spinner-text {
       color: vars.$on-surface-variant;
       text-align: center;
-      @include utils.use-font(title, medium);
+      @include utils.use-font(body, large);
 
       .line-1 {
         margin-bottom: 1rem;

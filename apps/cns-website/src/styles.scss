@@ -476,19 +476,22 @@
     )
   );
 
-  h2 {
-    font: var(--mat-sys-display-small) !important;
-    letter-spacing: var(--mat-sys-display-small-tracking) !important;
-  }
-  h3 {
-    font: var(--mat-sys-headline-large) !important;
-    letter-spacing: var(--mat-sys-headline-large-tracking) !important;
-  }
-
   hra-filter-menu {
     .tagline .title {
       font: vars.$title-medium-emphasized !important;
       letter-spacing: vars.$title-medium-emphasized-tracking !important;
+    }
+  }
+
+  hra-page-label,
+  .gallery-group,
+  .list-view-group {
+    h2 {
+      @include utils.use-font(display, small);
+    }
+
+    h3 {
+      @include utils.use-font(headline, large);
     }
   }
 
@@ -660,5 +663,20 @@
         row-item-label-text-tracking: vars.$body-medium-tracking,
       )
     );
+  }
+
+  hra-copyable-url-container {
+    .link {
+      font: var(--mat-sys-body-large) !important;
+      letter-spacing: var(--mat-sys-body-large-tracking) !important;
+    }
+  }
+
+  hra-server-error-page,
+  hra-not-found-page {
+    .description {
+      font: var(--mat-sys-body-large) !important;
+      letter-spacing: var(--mat-sys-body-large-tracking) !important;
+    }
   }
 }
