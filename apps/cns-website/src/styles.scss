@@ -30,7 +30,7 @@
       surface-container-low: map.get(cns.$theme, color, primary, neutral, 98),
       surface-variant: map.get(cns.$theme, color, primary, neutral-variant, 92),
       tertiary: map.get(cns.$theme, color, tertiary, 30),
-      tertiary-container: map.get(cns.$theme, color, tertiary, 40),
+      tertiary-container: map.get(cns.$theme, color, tertiary, 35),
     )
   );
 
