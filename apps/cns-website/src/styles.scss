@@ -87,6 +87,8 @@
   @include mat.form-field-overrides(
     (
       container-height: 3.5rem,
+      filled-with-label-container-padding-top: 1.5rem,
+      filled-with-label-container-padding-bottom: 0.5rem,
 
       filled-active-indicator-color: vars.$on-surface-variant,
       filled-container-color: vars.$surface-container-highest,
@@ -316,6 +318,16 @@
         height: 2.5rem,
       )
     );
+
+    .mat-button-toggle-label-content {
+      padding: 0 0.75rem !important;
+    }
+
+    mat-button-toggle.mat-button-toggle-checked {
+      .mat-button-toggle-label-content {
+        padding: 0 0.75rem 0 0.375rem !important;
+      }
+    }
   }
 
   hra-consent-banner {
@@ -628,6 +640,8 @@
     @include mat.form-field-overrides(
       (
         container-height: 3rem,
+        filled-with-label-container-padding-top: 1.25rem,
+        filled-with-label-container-padding-bottom: 0.25rem,
         leading-icon-color: vars.$on-surface-variant,
       )
     );
