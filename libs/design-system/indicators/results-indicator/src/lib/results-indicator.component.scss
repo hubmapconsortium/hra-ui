@@ -11,6 +11,6 @@
   color: vars.$primary;
   padding: 0.5rem 0.75rem;
   border: 0.0625rem solid vars.$outline-variant;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   @include utils.use-font(label, small);
 }

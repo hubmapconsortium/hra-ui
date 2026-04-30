@@ -10,6 +10,7 @@
   max-width: 100%;
   box-sizing: border-box;
   background-color: vars.$surface-variant;
+  border-radius: vars.$corner-large vars.$corner-large 0 0;
 
   hra-brand-logo {
     --hra-brand-logo-text-color: vars.$secondary;
@@ -152,12 +153,7 @@
   box-shadow: 0rem -1rem 2rem 2rem utils.with-alpha(vars.$tertiary, 24%);
   backdrop-filter: blur(10rem);
   animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
-
-  @include mat.dialog-overrides(
-    (
-      container-shape: vars.$corner-none,
-    )
-  );
+  border-radius: vars.$corner-large vars.$corner-large 0 0;
 }
 
 @keyframes slideUpFromBottom {

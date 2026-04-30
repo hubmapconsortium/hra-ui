@@ -2,13 +2,21 @@ import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@ang
 import { MatChipsModule } from '@angular/material/chips';
 import { HraCommonModule } from '@hra-ui/common';
 import { BreadcrumbItem, BreadcrumbsComponent } from '@hra-ui/design-system/buttons/breadcrumbs';
+import { ChipSizeDirective } from '@hra-ui/design-system/chips';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { coerceIconList, IconsModule } from '@hra-ui/design-system/icons';
 
 /** Label for a page section. Can also be used standalone */
 @Component({
   selector: 'hra-page-label',
-  imports: [HraCommonModule, IconsModule, SectionLinkComponent, BreadcrumbsComponent, MatChipsModule],
+  imports: [
+    HraCommonModule,
+    IconsModule,
+    SectionLinkComponent,
+    BreadcrumbsComponent,
+    MatChipsModule,
+    ChipSizeDirective,
+  ],
   templateUrl: './page-label.component.html',
   styleUrl: './page-label.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,7 +6,7 @@
   display: flex;
   min-width: 40rem;
   max-width: 81.25rem;
-  border-radius: 0.5rem;
+  border-radius: vars.$corner-small;
   overflow: hidden;
   width: calc(100vw);
 
@@ -18,7 +18,7 @@
 
   .featured-link {
     width: 100%;
-    border-radius: 0.5rem;
+    border-radius: vars.$corner-small;
     overflow: hidden;
     height: fit-content;
   }
@@ -30,7 +30,7 @@
   }
 
   .featured-image {
-    border-radius: 0.5rem;
+    border-radius: vars.$corner-small;
   }
 
   .featured-bottom {
@@ -40,7 +40,7 @@
     min-height: 3.5rem;
     background: vars.$surface-bright;
     border: 0.0625rem solid vars.$outline-variant;
-    border-radius: 0.5rem;
+    border-radius: vars.$corner-small;
     height: auto;
 
     ::ng-deep .mdc-button__label {
@@ -60,10 +60,6 @@
     gap: 0.25rem;
     justify-content: center;
     width: 12.5rem;
-
-    .label {
-      @include utils.use-font(label, large);
-    }
 
     .tagline {
       @include utils.use-font(label, medium);
@@ -125,7 +121,7 @@
     min-height: 2.75rem;
     justify-content: start;
     padding: 0.5rem 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: vars.$corner-small;
     height: auto;
   }
 

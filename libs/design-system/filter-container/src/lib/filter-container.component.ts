@@ -10,6 +10,7 @@ import {
   InfoButtonComponent,
   InfoButtonTaglineDirective,
 } from '@hra-ui/design-system/buttons/info-button';
+import { ChipSizeDirective } from '@hra-ui/design-system/chips';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** A filter chip representing a selected filter option */
@@ -34,6 +35,7 @@ export interface FilterChip {
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
     PlainTooltipDirective,
+    ChipSizeDirective,
   ],
   templateUrl: './filter-container.component.html',
   styleUrl: './filter-container.component.scss',
