@@ -92,7 +92,15 @@ export class FilterMenuComponent<T extends SearchListOption> {
     return this.filters();
   });
 
+  /**
+   * Checks if a filter category is an "extra" category (i.e., has fewer than 2 options)
+   * @param category The filter category to check
+   * @returns True if the category is extra, false otherwise
+   */
   isExtraCategory(category: FilterOptionCategory<T>): boolean {
+    if (this.counts().length === 0) {
+      return false;
+    }
     return Object.keys(this.counts()[this.filters().indexOf(category)]).length < 2;
   }
 

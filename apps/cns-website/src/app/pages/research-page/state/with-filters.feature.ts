@@ -13,8 +13,8 @@ import {
 import { PeopleId } from '../../../schemas/people.schema';
 import { ResearchTypeId, ResearchTypeItem } from '../../../schemas/research-type.schema';
 import { ResearchCategoryId, ResearchItem } from '../../../schemas/research.schema';
-import { ResearchState } from './with-research.feature';
 import { TagId } from '../../../schemas/tags.schema';
+import { ResearchState } from './with-research.feature';
 
 /** Generic search list option with a typed id */
 type TypedSearchListOption<T extends string> = SearchListOption & { id: T };
@@ -34,6 +34,7 @@ export type PublicationOption = TypedSearchListOption<ResearchTypeId>;
 /** Filter option for people */
 export type PeopleOption = TypedSearchListOption<PeopleId>;
 
+/** Filter option for projects */
 export type ProjectsOption = TypedSearchListOption<TagId>;
 
 /** Year option with numeric year value */
@@ -121,6 +122,7 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
   { id: 'visualization' as ResearchCategoryId, label: 'Visualizations' },
 ];
 
+/** Project filter options */
 export const PROJECT_OPTIONS: ProjectsOption[] = [
   { id: 'amatria' as TagId, label: 'Amatria' },
   { id: 'envisioning-intelligences' as TagId, label: 'Envisioning Intelligences' },

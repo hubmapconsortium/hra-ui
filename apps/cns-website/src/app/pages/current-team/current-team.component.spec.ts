@@ -429,8 +429,8 @@ describe('CurrentTeamComponent', () => {
   it('should have filter buttons available', async () => {
     await renderComponent();
 
-    expect(await screen.findByRole('button', { name: /^role$/i })).toBeInTheDocument();
-    expect(await screen.findByRole('button', { name: /^active year$/i })).toBeInTheDocument();
+    expect(await screen.findByText(/^Role$/i)).toBeInTheDocument();
+    expect(await screen.findByText(/^Active year$/i)).toBeInTheDocument();
   });
 
   it('should search with diacritics normalization', async () => {

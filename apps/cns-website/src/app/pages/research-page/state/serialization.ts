@@ -74,6 +74,10 @@ export function parseCategories(value: unknown): CategoryOption[] | null {
   return parseOptions(CATEGORY_OPTIONS, value);
 }
 
+/**
+ * Parses projects query parameter into projects options.
+ * @param value Raw query value
+ */
 export function parseProjects(value: unknown): ProjectsOption[] | null {
   return parseOptions(PROJECT_OPTIONS, value);
 }
@@ -170,6 +174,11 @@ export function serializeCategories(options: CategoryOption[] | null): string | 
   return serializeOptions(options);
 }
 
+/**
+ * Serializes selected projects to query parameter format.
+ * @param options Selected projects
+ * @returns projects in query parameter format
+ */
 export function serializeProjects(options: ProjectsOption[] | null): string | null {
   return serializeOptions(options);
 }
