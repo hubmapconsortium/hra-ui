@@ -20,7 +20,7 @@
         aria-label="Select team"
         hraFeature="team"
         hraModelChangeEvent
-        hraButtonToggleSize="medium"
+        hraButtonToggleSize="large"
         [ngModel]="store.team()"
         (ngModelChange)="store.setTeam($event)"
       >
@@ -56,7 +56,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content id="main-content" role="main" tabindex="-1">
-    <ng-scrollbar hraScrollOverflowFade>
+    <ng-scrollbar>
       <div class="content">
         <div class="search-bar">
           <hra-search-filter

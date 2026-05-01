@@ -1,6 +1,6 @@
-@use 'vars' as vars;
-@use 'utils';
 @use '@angular/material' as mat;
+@use 'vars';
+@use 'utils';
 
 :host {
   display: block;
@@ -31,21 +31,6 @@
         .group-by {
           width: 100%;
 
-          @include mat.form-field-overrides(
-            (
-              filled-active-indicator-color: vars.$on-surface,
-              filled-container-color: vars.$surface-container-high,
-              filled-focus-active-indicator-color: vars.$on-surface,
-              filled-hover-label-text-color: vars.$on-surface-variant,
-              filled-label-text-color: vars.$on-surface-variant,
-              filled-label-text-font: vars.$label-medium-font,
-              filled-label-text-size: vars.$label-medium-size,
-              filled-label-text-weight: vars.$label-medium-weight,
-              filled-label-text-tracking: vars.$label-medium-tracking,
-              leading-icon-color: vars.$on-surface,
-            )
-          );
-
           @include mat.select-overrides(
             (
               enabled-trigger-text-color: vars.$on-surface,
@@ -74,11 +59,11 @@
         width: 100%;
         max-width: 81.25rem;
         z-index: 10;
-        padding: 2rem 1.25rem;
+        padding: 1.5rem 1.25rem 2rem;
         background: vars.$background;
 
         @media (min-width: 640px) {
-          padding: 2rem 2.5rem;
+          padding: 1.5rem 2.5rem 2rem;
         }
       }
 

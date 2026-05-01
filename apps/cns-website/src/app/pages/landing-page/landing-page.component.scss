@@ -48,7 +48,7 @@
     max-width: 31.5rem;
     text-align: center;
     color: vars.$on-surface;
-    @include utils.use-font(body, xl);
+    @include utils.use-font(body, large);
   }
 
   .content-filter {

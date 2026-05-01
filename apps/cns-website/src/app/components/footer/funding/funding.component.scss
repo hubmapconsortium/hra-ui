@@ -1,4 +1,5 @@
-@use 'vars' as vars;
+@use 'vars';
+@use 'utils';
 
 :host {
   display: flex;
@@ -8,8 +9,7 @@
   justify-content: flex-end;
 
   .title {
-    font: vars.$label-medium;
-    letter-spacing: vars.$label-medium-tracking;
+    @include utils.use-font(body, medium);
   }
 
   .funders {
