@@ -217,11 +217,7 @@ export class MetadataPageComponent {
   }
 
   private setIcons(item: DigitalObjectInfo, type: string) {
-    const icons = [getProductIcon(type)];
-    if (item.organIds) {
-      icons.push(getOrganIcon(item));
-    }
-    this.icons.set(icons);
+    this.icons.set([getProductIcon(type), getOrganIcon(item)]);
   }
 
   private setTags(item: DigitalObjectInfo, type: string) {

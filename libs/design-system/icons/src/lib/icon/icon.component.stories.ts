@@ -99,7 +99,7 @@ export const OrganIcons: Story = {
         'organ:palatine-tonsil',
         'organ:pancreas',
         'organ:pelvis',
-        'organ:peripehral-nervous-system',
+        'organ:peripheral-nervous-system',
         'organ:placenta',
         'organ:prostate',
         'organ:renal-pelvis-left',

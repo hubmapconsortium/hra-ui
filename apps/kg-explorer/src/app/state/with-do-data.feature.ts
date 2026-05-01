@@ -7,6 +7,7 @@ import {
   FilterOption,
   formatDateToYYYYMM,
   getOrganIcon,
+  getOrganTooltip,
   getProductIcon,
   getProductLabel,
   getProductTooltip,
@@ -32,7 +33,6 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
     return [];
   }
   return data.map((item) => {
-    const organLabel = item.organs ? coerceArray(item.organs)[0] : undefined;
     return {
       id: item.lod,
       purl: item.purl,
@@ -45,7 +45,7 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
       typeIcon: getProductIcon(item.doType),
       typeTooltip: getProductLabel(item.doType),
       organIcon: getOrganIcon(item),
-      organTooltip: sentenceCase(organLabel || 'All Organs'),
+      organTooltip: getOrganTooltip(item),
       cellCount: item.cell_count,
       biomarkerCount: item.biomarker_count,
       lastPublished: formatDateToYYYYMM(item.lastUpdated),

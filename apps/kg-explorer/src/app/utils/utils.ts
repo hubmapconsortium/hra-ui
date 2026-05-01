@@ -1,4 +1,7 @@
 import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
+import asctbIconMapJson from './asctb-icon-map.json';
+import organIconMapJson from './organ-icon-map.json';
+import iconTooltipMapJson from './icon-tooltip-map.json';
 
 /** Tooltip data interface */
 export interface TooltipData {
@@ -245,43 +248,13 @@ export const DO_INFO: Record<string, ObjectTypeData> = {
 };
 
 /** Maps UBERON id to the correct icon in the design system */
-export const ORGAN_ICON_MAP: Record<string, string> = {
-  'http://purl.obolibrary.org/obo/UBERON_0004537': 'vasculature-thick', //blood vasculature
-  'http://purl.obolibrary.org/obo/UBERON_0014455': 'adipose',
-  'http://purl.obolibrary.org/obo/UBERON_0000467': 'anatomical-systems',
-  'http://purl.obolibrary.org/obo/UBERON_0002371': 'bone-marrow',
-  'http://purl.obolibrary.org/obo/UBERON_0000955': 'brain',
-  'http://purl.obolibrary.org/obo/UBERON_0002182': 'extrapulmonary-bronchus',
-  'http://purl.obolibrary.org/obo/UBERON_0000970': 'eye',
-  'http://purl.obolibrary.org/obo/UBERON_0003889': 'fallopian-tube',
-  'http://purl.obolibrary.org/obo/UBERON_0000948': 'heart',
-  'http://purl.obolibrary.org/obo/UBERON_0001066': 'intervertebral-disk',
-  'http://purl.obolibrary.org/obo/UBERON_0002113': 'kidneys', //kidney
-  'http://purl.obolibrary.org/obo/UBERON_0001465': 'knee',
-  'http://purl.obolibrary.org/obo/UBERON_0000059': 'large-intestine',
-  'http://purl.obolibrary.org/obo/UBERON_0002107': 'liver',
-  'http://purl.obolibrary.org/obo/UBERON_0002048': 'lungs', //lung
-  'http://purl.obolibrary.org/obo/UBERON_0000029': 'lymph-node',
-  'http://purl.obolibrary.org/obo/UBERON_0004536': 'lymph-node', //lymph-vasculature
-  'http://purl.obolibrary.org/obo/UBERON_0000165': 'mouth',
-  'http://purl.obolibrary.org/obo/UBERON_0000383': 'muscular-system',
-  'http://purl.obolibrary.org/obo/UBERON_0000992': 'ovaries', //ovary
-  'http://purl.obolibrary.org/obo/UBERON_0002373': 'palatine-tonsil',
-  'http://purl.obolibrary.org/obo/UBERON_0001264': 'pancreas',
-  'http://purl.obolibrary.org/obo/UBERON_0001270': 'pelvis', //blood-pelvis
-  'http://purl.obolibrary.org/obo/UBERON_0001987': 'placenta',
-  'http://purl.obolibrary.org/obo/UBERON_0002367': 'prostate',
-  'http://purl.obolibrary.org/obo/UBERON_0004288': 'sternum', //skeleton
-  'http://purl.obolibrary.org/obo/UBERON_0002097': 'skin',
-  'http://purl.obolibrary.org/obo/UBERON_0002108': 'small-intestine',
-  'http://purl.obolibrary.org/obo/UBERON_0002240': 'spinal-cord',
-  'http://purl.obolibrary.org/obo/UBERON_0002106': 'spleen',
-  'http://purl.obolibrary.org/obo/UBERON_0002370': 'thymus',
-  'http://purl.obolibrary.org/obo/UBERON_0003126': 'trachea',
-  'http://purl.obolibrary.org/obo/UBERON_0000056': 'ureters', //ureter
-  'http://purl.obolibrary.org/obo/UBERON_0001255': 'bladder', //urinary-bladder
-  'http://purl.obolibrary.org/obo/UBERON_0000995': 'uterus',
-};
+export const ORGAN_ICON_MAP: Record<string, string> = organIconMapJson;
+
+/** Maps ASCT+B purls to the correct organ icons in the design system */
+export const ASCTB_ICON_MAP: Record<string, string> = asctbIconMapJson;
+
+/** If the icon tooltip is different from the icon name, this map provides the correct tooltip */
+export const ICON_TOOLTIP_MAP: Record<string, string> = iconTooltipMapJson;
 
 /** HRA version data info */
 export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
@@ -347,10 +320,34 @@ export function getOrganId(item?: DigitalObjectInfo): string | undefined {
  * @returns Organ name in design system format
  */
 export function getOrganIcon(item?: DigitalObjectInfo): string {
+  if (item?.doType === 'asct-b') {
+    const purl = item?.purl;
+    if (purl && ASCTB_ICON_MAP[purl]) {
+      return `organ:${ASCTB_ICON_MAP[purl]}`;
+    }
+  }
   if (getOrganId(item)) {
     return `organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? 'all-organs'}`;
   }
   return 'organ:all-organs';
+}
+
+export function getOrganTooltip(item: DigitalObjectInfo): string {
+  let organLabel = 'All organs';
+  const organId = getOrganId(item);
+  if (organId && ORGAN_ICON_MAP[organId]) {
+    organLabel = ORGAN_ICON_MAP[organId];
+  }
+  if (item.doType === 'asct-b') {
+    const purl = item.purl;
+    if (ASCTB_ICON_MAP[purl]) {
+      organLabel = ASCTB_ICON_MAP[purl];
+    }
+  }
+  if (ICON_TOOLTIP_MAP[organLabel as string]) {
+    organLabel = ICON_TOOLTIP_MAP[organLabel as string];
+  }
+  return sentenceCase(organLabel).replace(/-/g, ' ');
 }
 
 /**
