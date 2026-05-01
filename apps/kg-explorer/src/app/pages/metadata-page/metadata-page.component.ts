@@ -51,10 +51,12 @@ export class MetadataPageComponent {
   /** File download service */
   private readonly download = inject(DownloadService);
 
+  /** Mirror URL for the application */
   readonly mirrorUrl = injectMirrorUrl();
 
   /** Raw digital object data from API */
   readonly doData = input.required<DigitalObjectsJsonLd>();
+  /** ASCTB terms info */
   readonly asctbTerms = input.required<AsctbTerms>();
 
   /** Column data for metadata table */
@@ -62,8 +64,10 @@ export class MetadataPageComponent {
   /** Metadata for the digital object */
   readonly metadata = input.required<DigitalObjectMetadata>();
 
+  /** All digital objects in the data */
   readonly allItems = computed(() => this.doData()['@graph']);
 
+  /** Base URL for the digital object */
   readonly baseUrl = computed(() => {
     const lod = 'https://lod.humanatlas.io';
     return this.mirrorUrl() === 'https://cdn.humanatlas.io/digital-objects' ? lod : this.mirrorUrl();
@@ -186,6 +190,9 @@ export class MetadataPageComponent {
     this.router.navigate([''], { queryParams: { [type]: id } });
   }
 
+  /**
+   * Sets the provenance data for the digital object.
+   */
   private setProvenanceData() {
     this.downloadOptions.set(this.download.getDownloadOptions(this.metadata()));
     this.rows.set(
@@ -216,10 +223,20 @@ export class MetadataPageComponent {
     );
   }
 
+  /**
+   * Sets the icons for the digital object [product, organ].
+   * @param item The digital object information
+   * @param type Digital object type
+   */
   private setIcons(item: DigitalObjectInfo, type: string) {
     this.icons.set([getProductIcon(type), getOrganIcon(item)]);
   }
 
+  /**
+   * Sets the tags for the digital object to display at bottom of the page.
+   * @param item The digital object information
+   * @param type Digital object type
+   */
   private setTags(item: DigitalObjectInfo, type: string) {
     const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
     if (item.organIds) {

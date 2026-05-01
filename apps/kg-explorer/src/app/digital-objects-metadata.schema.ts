@@ -108,8 +108,10 @@ export const DigitalObjectInfoSchema = z
   })
   .meta({ id: 'DigitalObjectInfo' });
 
+/** Digital objects JSON-LD type */
 export type DigitalObjectsJsonLd = z.infer<typeof DigitalObjectsJsonLdSchema>;
 
+/** Digital objects JSON-LD schema */
 export const DigitalObjectsJsonLdSchema = z
   .object({
     '@context': z.record(z.string(), z.any()),
@@ -117,8 +119,10 @@ export const DigitalObjectsJsonLdSchema = z
   })
   .meta({ id: 'DigitalObjectsJsonLd' });
 
+/** ASCTB terms type */
 export type AsctbTerms = z.infer<typeof AsctbTermsSchema>;
 
+/** ASCTB terms schema */
 export const AsctbTermsSchema = z
   .object({
     asctb_type: z.string(),
@@ -128,8 +132,10 @@ export const AsctbTermsSchema = z
   .array()
   .meta({ id: 'AsctbTerms' });
 
+/** Terms index type */
 export type TermsIndex = z.infer<typeof TermsIndexSchema>;
 
+/** Terms index schema */
 export const TermsIndexSchema = z
   .object({
     terms: z.string().array(),

@@ -4,10 +4,20 @@ import { Observable, of } from 'rxjs';
 import { TermsIndex } from '../digital-objects-metadata.schema';
 import { coerceArray } from '../utils/utils';
 
+/**
+ * Service for searching digital objects by filters
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
+  /**
+   * Searches digital objects by the provided filters
+   * @param rows The rows to search
+   * @param termsIndex The terms index
+   * @param options The search options
+   * @returns The search results
+   */
   search(
     rows: TableRow[],
     termsIndex: TermsIndex,
@@ -40,6 +50,12 @@ export class SearchService {
     return of(result);
   }
 
+  /**
+   * Gets related purl ids from terms
+   * @param terms The terms to get purls for
+   * @param termsIndex The terms index
+   * @returns The related purl ids
+   */
   private getPurlsFromTerms(terms: string[], termsIndex: TermsIndex): Set<string> {
     const purls = new Set<string>();
     terms.forEach((term) => {
@@ -51,6 +67,11 @@ export class SearchService {
     return purls;
   }
 
+  /**
+   * Returns a function for filtering table rows by search term
+   * @param searchTerm The search term
+   * @returns The search filter
+   */
   private createSearchFilter(searchTerm: string | null): (item: TableRow) => boolean {
     if (!searchTerm || searchTerm === '') {
       return () => true;
@@ -61,6 +82,11 @@ export class SearchService {
     };
   }
 
+  /**
+   * Returns a function for filtering table rows by digital object types
+   * @param options The digital object options
+   * @returns The digital object filter
+   */
   private createDigitalObjectFilter(options: string[]): (item: TableRow) => boolean {
     const ids = new Set(options);
     if (ids.size === 0) {
@@ -68,6 +94,12 @@ export class SearchService {
     }
     return (item) => ids.has(item['doType'] as string);
   }
+
+  /**
+   * Returns a function for filtering table rows by HRA versions
+   * @param options The version options
+   * @returns The HRA version filter
+   */
   private createVersionFilter(options: string[]): (item: TableRow) => boolean {
     const ids = new Set(options);
     if (ids.size === 0) {
@@ -81,6 +113,13 @@ export class SearchService {
       return false;
     };
   }
+
+  /**
+   * Returns a function for filtering table rows by ASCTB terms
+   * @param options The ASCTB term options
+   * @param termsIndex The terms index
+   * @returns The ASCTB filter
+   */
   private createAsctbFilter(options: string[], termsIndex: TermsIndex): (item: string) => boolean {
     const ids = new Set(options);
     if (ids.size === 0) {

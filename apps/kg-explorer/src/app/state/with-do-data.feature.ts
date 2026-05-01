@@ -15,11 +15,17 @@ import {
   sentenceCase,
 } from '../utils/utils';
 
+/** Interface for the digital objects data state */
 export interface DigitalObjectsDataState {
+  /** Raw digital object data */
   data: DigitalObjectsJsonLd;
+  /** ASCTB terms */
   asctbTerms: AsctbTerms;
+  /** Index of ASCTB terms */
   termsIndex: TermsIndex;
+  /** All rows of digital object data */
   allRows: TableRow[];
+  /** Version counts */
   versionCounts: Record<string, number>;
 }
 
@@ -53,6 +59,11 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
   });
 }
 
+/**
+ * Gets HRA version counts from digital object data
+ * @param data The digital object data
+ * @returns Record of HRA versions with their counts
+ */
 function getVersionCounts(data: DigitalObjectInfo[]): Record<string, number> {
   const result: Record<string, number> = {};
   const allVersions = data.map((object) => object.hraVersions);
@@ -69,6 +80,13 @@ function getVersionCounts(data: DigitalObjectInfo[]): Record<string, number> {
   return result;
 }
 
+/**
+ * Calculates count for a given filter option in a specific category
+ * @param filterOption The filter option to count
+ * @param category The category to count in
+ * @param rows The rows to filter
+ * @returns The count of the filter option in the specified category
+ */
 function calculateCount(filterOption: string, category: string, rows: TableRow[]): number {
   return rows.filter((row) => {
     const cat = coerceArray(row[category] as string[] | string | undefined);
@@ -79,6 +97,13 @@ function calculateCount(filterOption: string, category: string, rows: TableRow[]
   }).length;
 }
 
+/**
+ * Generates ASCTB options for a given ASCTB type
+ * @param asctbType The ASCTB type
+ * @param objects The ASCTB objects
+ * @param termsIndex The terms index
+ * @returns The ASCTB options
+ */
 function generateAsctbOptions(asctbType: string, objects: AsctbTerms, termsIndex: TermsIndex): FilterOption[] {
   return objects
     .filter((term) => term.asctb_type === asctbType)
@@ -92,6 +117,7 @@ function generateAsctbOptions(asctbType: string, objects: AsctbTerms, termsIndex
     .sort((o1, o2) => o1.label.localeCompare(o2.label));
 }
 
+/** Initial state for the digital objects data store */
 const initialState: DigitalObjectsDataState = {
   data: { '@context': {}, '@graph': [] },
   asctbTerms: [],
@@ -100,6 +126,10 @@ const initialState: DigitalObjectsDataState = {
   versionCounts: {},
 };
 
+/**
+ * Creates a feature for managing digital objects filter options
+ * @returns The digital objects data feature
+ */
 export function withDigitalObjectsData() {
   return signalStoreFeature(
     withState(initialState),

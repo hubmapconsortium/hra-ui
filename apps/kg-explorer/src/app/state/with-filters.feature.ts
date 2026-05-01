@@ -3,13 +3,21 @@ import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods
 import { FilterFormValues } from '../components/filter-menu/filter-menu.component';
 import { coerceArray } from '../utils/utils';
 
+/** Filters state interface */
 export interface FiltersState {
+  /** The digital objects filter */
   digitalObjects: string[] | null;
+  /** The release version filter */
   releaseVersion: string[] | null;
+  /** The organs filter */
   organs: string[] | null;
+  /** The anatomical structures filter */
   anatomicalStructures: string[] | null;
+  /** The cell types filter */
   cellTypes: string[] | null;
+  /** The biomarkers filter */
   biomarkers: string[] | null;
+  /** The search term filter */
   searchTerm: string | null;
 }
 
@@ -24,6 +32,10 @@ const initialState: FiltersState = {
   searchTerm: null,
 };
 
+/**
+ * Creates a feature for managing filters
+ * @returns The filters feature
+ */
 export function withFilters() {
   return signalStoreFeature(
     withState(initialState),

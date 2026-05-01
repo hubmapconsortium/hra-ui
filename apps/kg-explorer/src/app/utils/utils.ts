@@ -51,6 +51,7 @@ export interface FilterOption {
   tooltip?: TooltipData;
 }
 
+/** Interface for filter categories containing filter options */
 export interface FilterOptions {
   /** Digital object filters */
   digitalObjects: FilterOption[];
@@ -146,8 +147,10 @@ export function getOrganId(item?: DigitalObjectInfo): string | undefined {
 }
 
 /**
- * Returns formatted organ name from digital object, if id is not in ORGAN_ICON_MAP use the All Organs icon
- * @param organ Organ UBERON id
+ * Returns the correct organ icon for a digital object.
+ * If the digital object has a purl and it's in the DO_ICON_MAP, use that value for the icon.
+ * Otherwise, use the organ id if it's in the ORGAN_ICON_MAP, or default to 'all-organs'.
+ * @param item Digital object data item
  * @returns Organ name in design system format
  */
 export function getOrganIcon(item?: DigitalObjectInfo): string {
@@ -162,6 +165,13 @@ export function getOrganIcon(item?: DigitalObjectInfo): string {
   return 'organ:all-organs';
 }
 
+/**
+ * Gets organ tooltip from a digital object (for when user hovers over the icon on the digital objects table).
+ * If the digital object has a purl and it's in the DO_ICON_MAP, use that icon name as the tooltip unless it's in the ICON_TOOLTIP_MAP.
+ * If the icon name is in the ICON_TOOLTIP_MAP, use that value as the tooltip.
+ * @param item Digital object data item
+ * @returns Tooltip for the organ icon
+ */
 export function getOrganTooltip(item: DigitalObjectInfo): string {
   let organLabel = 'All organs';
   const organId = getOrganId(item);
@@ -225,6 +235,11 @@ export function sentenceCase(value: string): string {
   return processedValue.charAt(0).toUpperCase() + processedValue.slice(1);
 }
 
+/**
+ * Coerces a string or array of strings to an array of strings
+ * @param value
+ * @returns array
+ */
 export function coerceArray(value: string | string[] | undefined): string[] {
   switch (typeof value) {
     case 'undefined':

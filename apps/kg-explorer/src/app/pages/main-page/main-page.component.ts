@@ -83,8 +83,9 @@ export class MainPageComponent {
   readonly data = input.required<DigitalObjectsJsonLd>();
   /** Column info */
   readonly columns = input.required<TableColumn[]>();
-
+  /** Information about ASCTB terms */
   readonly asctbTerms = input.required<AsctbTerms>();
+  /** Information for mapping terms to purls and vice versa */
   readonly termsIndex = input.required<TermsIndex>();
 
   /** Filtered rows to display */
@@ -98,6 +99,7 @@ export class MainPageComponent {
   /** Id of digital object to download */
   readonly downloadId = signal<string | undefined>(undefined);
 
+  /** Resource for retrieving search results after filtering */
   readonly searchResults = rxResource({
     params: () => ({
       allRows: this.store.allRows(),
@@ -139,7 +141,7 @@ export class MainPageComponent {
    * Sets the initial filters according to query params
    * Sets filtered rows to all rows on init
    * Fetches file download metadata for each object
-   * Update filter when searchbar input changes
+   * Subscribe to searchbar input and update results when changed
    * Populates all filter options
    * Get download options for an object whenever the download button is clicked
    * Set scroll viewport height when window is resized
@@ -218,7 +220,7 @@ export class MainPageComponent {
 
   /**
    * Updates current filter selections when changed
-   * @param formControls
+   * @param formValues The values from the filter form
    */
   handleFilterSelectionChanges(formValues: FilterFormValues) {
     this.store.updateFiltersFromForm(formValues);
@@ -269,8 +271,7 @@ export class MainPageComponent {
   }
 
   /**
-   * Returns table scrollbar viewport height
-   * @returns viewport height
+   * Sets the table scrollbar viewport height according to the screen size.
    */
   private setScrollViewportHeight(): void {
     this.scrollHeight.set(window.innerHeight - (this.isSmallScreen() ? 259 : 299));

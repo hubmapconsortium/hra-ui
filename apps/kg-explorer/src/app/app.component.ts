@@ -67,9 +67,10 @@ export class AppComponent extends BaseApplicationComponent {
   private readonly router = inject(Router);
   /** Activated route service */
   private readonly route = inject(ActivatedRoute);
-
+  /** HTTP client for making API requests */
   private readonly http = inject(HttpClient);
 
+  /** Mirror URL for the application */
   readonly mirrorUrl = injectMirrorUrl();
 
   /** Page title to display on the breadcrumbs */
@@ -111,6 +112,7 @@ export class AppComponent extends BaseApplicationComponent {
   /** Id of digital object computed from params */
   readonly objectId = computed(() => [this.baseUrl()].concat(this.params()).join('/'));
 
+  /** Base URL for the digital object */
   readonly baseUrl = computed(() => {
     const lod = 'https://lod.humanatlas.io';
     return this.mirrorUrl() === 'https://cdn.humanatlas.io/digital-objects' ? lod : this.mirrorUrl();
@@ -170,6 +172,9 @@ export class AppComponent extends BaseApplicationComponent {
     });
   }
 
+  /**
+   * Sets the page title based on the current digital object (for metadata pages).
+   */
   private setPageTitle() {
     this.http.get(`${this.mirrorUrl()}/kg/digital-objects.jsonld`).subscribe((data) => {
       this.digitalObjects.set(data as DigitalObjectsJsonLd);
