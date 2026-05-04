@@ -1,11 +1,5 @@
 import * as z from 'zod';
 
-/** Type for tag identifiers */
-export type TagId = z.infer<typeof TagIdSchema>;
-
-/** Branded type for tag identifiers */
-export const TagIdSchema = z.string().brand('TagId');
-
 /** Type for a single tag item */
 export type TagItem = z.infer<typeof TagItemSchema>;
 
@@ -13,11 +7,11 @@ export type TagItem = z.infer<typeof TagItemSchema>;
 export const TagItemSchema = z
   .object({
     /** Tag identifier */
-    slug: TagIdSchema,
+    slug: z.string(),
     /** Display name of the tag */
     name: z.string(),
     /** Description of the tag */
-    description: z.string(),
+    description: z.string().default(''),
   })
   .meta({ id: 'TagItem' });
 
