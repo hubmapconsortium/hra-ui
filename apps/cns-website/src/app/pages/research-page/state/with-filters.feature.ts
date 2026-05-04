@@ -126,7 +126,7 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
 export const PROJECT_OPTIONS: ProjectsOption[] = [
   { id: 'amatria' as ResearchProjectId, label: 'Amatria' },
   { id: 'envisioning-intelligences' as ResearchProjectId, label: 'Envisioning Intelligences' },
-  { id: 'hra' as ResearchProjectId, label: 'Human Reference Atlas' },
+  { id: 'human-reference-atlas' as ResearchProjectId, label: 'Human Reference Atlas' },
   { id: 'macroscopes' as ResearchProjectId, label: 'Macroscopes' },
   { id: 'maps' as ResearchProjectId, label: 'Maps' },
   { id: 'whole-person-physiome' as ResearchProjectId, label: 'Whole Person Physiome' },
