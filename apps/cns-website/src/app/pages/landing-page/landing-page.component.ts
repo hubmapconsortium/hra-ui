@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { HraCommonModule } from '@hra-ui/common';
 import { isAbsolute } from '@hra-ui/common/url';
+import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ContentButtonComponent } from '@hra-ui/design-system/cards/content-button';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { FeaturedData, FeaturedDataKey } from '../../schemas/featured.schema';
 import { ResearchItem } from '../../schemas/research.schema';
-import { TagsData } from '../../schemas/tags.schema';
-import { getImageUrl } from '../../utils/research-item-images';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { TagsStore } from '../../state/tags/tags.store';
+import { getDefaultThumbnail } from '../../utils/default-thumbnail';
 
 /** Content type item */
 interface ContentTypeItem {
@@ -66,9 +66,6 @@ export class LandingPageComponent {
   /** Featured content data */
   readonly featuredContent = input.required<FeaturedData>();
 
-  /** Tags data */
-  readonly tags = input.required<TagsData>();
-
   /** Currently selected content type */
   protected readonly contentType = signal<FeaturedDataKey>('featured');
 
@@ -85,6 +82,9 @@ export class LandingPageComponent {
       {} as Record<FeaturedDataKey, ContentCard[]>,
     );
   });
+
+  /** Tags store for resolving tag labels */
+  private readonly tagsStore = inject(TagsStore);
 
   /**
    * Converts a list of ResearchItems to ContentCards, sorted by date descending and filtered to exclude items without valid links.
@@ -105,37 +105,17 @@ export class LandingPageComponent {
    * @returns Mapped content card data
    */
   private toContentCard(item: ResearchItem): ContentCard {
-    const { slug, title: tagline, category, tags, dateStart: date, link } = item;
-    const tagLabels = this.getTagLabels([category, ...tags]);
+    const { slug, category, type, title: tagline, dateStart: date, link, thumbnail, projects } = item;
+    const tagLabels = this.tagsStore.getLabelsByIds([category, ...projects]);
 
     return {
       slug,
       tagline,
       tags: tagLabels.slice(0, 2),
       date,
-      image: getImageUrl(item),
+      image: thumbnail ?? getDefaultThumbnail(category, type),
       link: link ?? '#',
-      external: link !== undefined && isAbsolute(link),
+      external: !!link && isAbsolute(link),
     };
-  }
-
-  /**
-   * Gets the labels for a list of tag slugs.
-   * Slugs without a matching tag are skipped.
-   *
-   * @param slugs Slugs to find labels for
-   * @returns The labels for the given tag slugs
-   */
-  private getTagLabels(slugs: string[]): string[] {
-    const tags = this.tags();
-    const labels: string[] = [];
-    for (const slug of slugs) {
-      const tag = tags.find((t) => t.slug === slug);
-      if (tag) {
-        labels.push(tag.name);
-      }
-    }
-
-    return labels;
   }
 }

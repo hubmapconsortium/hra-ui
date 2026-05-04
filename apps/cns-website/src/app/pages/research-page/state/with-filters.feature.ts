@@ -12,8 +12,8 @@ import {
 } from '@ngrx/signals';
 import { PeopleId } from '../../../schemas/people.schema';
 import { ResearchTypeId, ResearchTypeItem } from '../../../schemas/research-type.schema';
-import { ResearchCategoryId, ResearchItem } from '../../../schemas/research.schema';
-import { TagId } from '../../../schemas/tags.schema';
+import { ResearchCategoryId, ResearchItem, ResearchProjectId } from '../../../schemas/research.schema';
+
 import { ResearchState } from './with-research.feature';
 
 /** Generic search list option with a typed id */
@@ -35,7 +35,7 @@ export type PublicationOption = TypedSearchListOption<ResearchTypeId>;
 export type PeopleOption = TypedSearchListOption<PeopleId>;
 
 /** Filter option for projects */
-export type ProjectsOption = TypedSearchListOption<TagId>;
+export type ProjectsOption = TypedSearchListOption<ResearchProjectId>;
 
 /** Year option with numeric year value */
 export interface YearOption extends SearchListOption {
@@ -124,12 +124,12 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
 
 /** Project filter options */
 export const PROJECT_OPTIONS: ProjectsOption[] = [
-  { id: 'amatria' as TagId, label: 'Amatria' },
-  { id: 'envisioning-intelligences' as TagId, label: 'Envisioning Intelligences' },
-  { id: 'hra' as TagId, label: 'Human Reference Atlas' },
-  { id: 'macroscopes' as TagId, label: 'Macroscopes' },
-  { id: 'maps' as TagId, label: 'Maps' },
-  { id: 'whole-person-physiome' as TagId, label: 'Whole Person Physiome' },
+  { id: 'amatria' as ResearchProjectId, label: 'Amatria' },
+  { id: 'envisioning-intelligences' as ResearchProjectId, label: 'Envisioning Intelligences' },
+  { id: 'hra' as ResearchProjectId, label: 'Human Reference Atlas' },
+  { id: 'macroscopes' as ResearchProjectId, label: 'Macroscopes' },
+  { id: 'maps' as ResearchProjectId, label: 'Maps' },
+  { id: 'whole-person-physiome' as ResearchProjectId, label: 'Whole Person Physiome' },
 ];
 
 /** Year filter options from 1991 to current year */
@@ -395,12 +395,9 @@ export function withFilters() {
       );
 
       const _selectedProjects = optionsToSet(store.projects);
-      const _filteredByProject = createFilteredBy(_filteredByPeople, _selectedProjects, (item, selectedProjects) => {
-        if (item.projects) {
-          return item.projects.some((project) => selectedProjects.has(project));
-        }
-        return item.tags.some((tag) => selectedProjects.has(tag));
-      });
+      const _filteredByProject = createFilteredBy(_filteredByPeople, _selectedProjects, (item, selectedProjects) =>
+        item.projects.some((project) => selectedProjects.has(project)),
+      );
 
       const _selectedYears = computed(() => new Set(store.years()?.map((option) => option.year) ?? []));
       const _filteredByYear = createFilteredBy(_filteredByProject, _selectedYears, (item, selectedYears) =>
@@ -439,7 +436,7 @@ export function withFilters() {
         (item) => item.category === 'publication',
       );
       const countsByPeople = countsByKey(store.researchItems, (item) => item.people);
-      const countsByProject = countsByKey(store.researchItems, (item) => item.projects || item.tags);
+      const countsByProject = countsByKey(store.researchItems, (item) => item.projects);
       const countsByYear = countsByKey(store.researchItems, (item) => item.dateStart.getFullYear().toString());
 
       const counts = computed(() => [

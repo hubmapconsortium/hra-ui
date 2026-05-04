@@ -8,7 +8,7 @@ import { FeaturedDataSchema } from './schemas/featured.schema';
 import { PeopleDataSchema } from './schemas/people.schema';
 import { ResearchTypesDataSchema } from './schemas/research-type.schema';
 import { ResearchDataSchema } from './schemas/research.schema';
-import { TagsDataSchema } from './schemas/tags.schema';
+import { createTagsResolver } from './state/tags/tags.store';
 import { createMountRedirectRoute } from './utils/mount-redirect';
 
 /** Base URL for content and indexes */
@@ -34,8 +34,10 @@ const FUNDING_INDEX_URL = BASE_URL + 'assets/indexes/app-funding.json';
 const FUNDING_TYPES_INDEX_URL = BASE_URL + 'assets/indexes/app-funding-types.json';
 /** Visualizations content index URL */
 const VISUALIZATIONS_INDEX_URL = BASE_URL + 'assets/indexes/app-visualizations.json';
-/** Display tags content index URL */
-const DISPLAY_TAGS_INDEX_URL = BASE_URL + 'assets/indexes/app-display-tags.json';
+/** Research categories index URL */
+const RESEARCH_CATEGORIES_INDEX_URL = BASE_URL + 'assets/indexes/app-category-tags.json';
+/** Projects content index URL */
+const PROJECTS_INDEX_URL = BASE_URL + 'assets/indexes/app-projects.json';
 /** Base URL for person content */
 const PERSON_BASE_URL = BASE_URL + 'content/people';
 
@@ -51,7 +53,10 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/landing-page/landing-page.component').then((m) => m.LandingPageComponent),
     resolve: {
       featuredContent: createJsonSpecResolver(FEATURED_INDEX_URL, FeaturedDataSchema),
-      tags: createJsonSpecResolver(DISPLAY_TAGS_INDEX_URL, TagsDataSchema),
+      tags: createTagsResolver({
+        categoriesUrl: RESEARCH_CATEGORIES_INDEX_URL,
+        projectsUrl: PROJECTS_INDEX_URL,
+      }),
     },
   },
 
@@ -150,7 +155,10 @@ export const appRoutes: Route[] = [
       publicationTypes: createJsonSpecResolver(PUBLICATION_TYPES_INDEX_URL, ResearchTypesDataSchema),
       eventTypes: createJsonSpecResolver(EVENT_TYPES_INDEX_URL, ResearchTypesDataSchema),
       fundingTypes: createJsonSpecResolver(FUNDING_TYPES_INDEX_URL, ResearchTypesDataSchema),
-      tags: createJsonSpecResolver(DISPLAY_TAGS_INDEX_URL, TagsDataSchema),
+      tags: createTagsResolver({
+        categoriesUrl: RESEARCH_CATEGORIES_INDEX_URL,
+        projectsUrl: PROJECTS_INDEX_URL,
+      }),
     },
   },
   {

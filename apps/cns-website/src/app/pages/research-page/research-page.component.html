@@ -79,12 +79,12 @@
                 <hra-gallery-card
                   *hraGalleryGridItem="let item"
                   [hraFeature]="item.slug"
-                  [imageSrc]="getImageUrl(item)"
+                  [imageSrc]="getThumbnail(item)"
                   [tagline]="item.title"
                   [date]="(item.dateStart | date) ?? ''"
                   [link]="item.link"
                   [external]="true"
-                  [tags]="getTagItems(item.category, item.tags)"
+                  [tags]="getTagItems(item.category, item.projects)"
                 />
               </hra-gallery-grid>
             </section>

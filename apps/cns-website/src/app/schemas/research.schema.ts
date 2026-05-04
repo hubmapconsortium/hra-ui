@@ -2,7 +2,6 @@ import * as z from 'zod';
 import { LocalDateSchema } from './date.schema';
 import { PeopleIdSchema } from './people.schema';
 import { ResearchTypeIdSchema } from './research-type.schema';
-import { TagIdSchema } from './tags.schema';
 
 /** Type for research identifiers */
 export type ResearchId = z.infer<typeof ResearchIdSchema>;
@@ -13,6 +12,12 @@ export const ResearchIdSchema = z.string().brand('ResearchId');
 export type ResearchCategoryId = z.infer<typeof ResearchCategoryIdSchema>;
 /** Type for research category identifier */
 export const ResearchCategoryIdSchema = z.string().brand('ResearchCategoryId');
+
+/** Type for project identifiers */
+export type ResearchProjectId = z.infer<typeof ResearchProjectIdSchema>;
+
+/** Branded type for project identifiers */
+export const ResearchProjectIdSchema = z.string().brand('ResearchProjectId');
 
 /** Type for a single research item */
 export type ResearchItem = z.infer<typeof ResearchItemSchema>;
@@ -27,26 +32,23 @@ export const ResearchItemSchema = z
     /** Research type identifier */
     type: ResearchTypeIdSchema,
     /** Title of the research */
-    title: z.string(),
-    /** Description of the research */
-    description: z.string(),
+    title: z.string().default(''),
+    /** Link associated with the research */
+    link: z.string().optional(),
     /** Start date of the research */
     dateStart: LocalDateSchema,
     /** End date of the research */
     dateEnd: LocalDateSchema,
-    /** Link associated with the research */
-    link: z.string().optional(),
+    /** Thumbnail image for the research */
+    thumbnail: z.string().optional(),
+    /** Description of the research */
+    description: z.string().default(''),
     /** People associated with the research */
-    people: z.array(PeopleIdSchema),
-    /** Tags for categorizing the research */
-    tags: z.array(TagIdSchema).transform((tags) => uniqueValues(tags)),
-    /** Projects associated with the research (uses tag ids) */
-    projects: z
-      .array(TagIdSchema)
-      .transform((projects) => uniqueValues(projects))
-      .optional(),
-    /** Image source URL */
-    image: z.string().optional(),
+    people: z.array(PeopleIdSchema).default(() => []),
+    /** Whether to feature this on the homepage */
+    featured: z.boolean().default(false),
+    /** Projects associated with the research */
+    projects: z.array(ResearchProjectIdSchema).default(() => []),
   })
   .meta({ id: 'Research' });
 
@@ -55,13 +57,3 @@ export type ResearchData = z.infer<typeof ResearchDataSchema>;
 
 /** Research data schema - array of research items */
 export const ResearchDataSchema = z.array(ResearchItemSchema).meta({ id: 'ResearchData' });
-
-/**
- * Remove duplicate items from an array
- *
- * @param items Array of items
- * @returns Array with unique items
- */
-function uniqueValues<T>(items: T[]): T[] {
-  return Array.from(new Set(items));
-}
