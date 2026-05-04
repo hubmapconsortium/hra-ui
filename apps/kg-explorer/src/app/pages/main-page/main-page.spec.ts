@@ -1,45 +1,39 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { HttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DigitalObjectsJsonLd, HraKgService, OntologyTree } from '@hra-api/ng-client';
 import { TableColumn } from '@hra-ui/design-system/table';
 import { render } from '@testing-library/angular';
 import { of } from 'rxjs';
 
+import { AsctbTerms, DigitalObjectsJsonLd, TermsIndex } from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import * as mockData from '../../testing/mock-data.json';
 import * as mockMetadata from '../../testing/mock-metadata.json';
 import { MainPageComponent } from './main-page.component';
 
 describe('MainPageComponent', () => {
+  const emptyTermsIndex: TermsIndex = { terms: [], purls: [], term_to_purls: [], purl_to_terms: [] };
+
   async function setup(
     doData?: DigitalObjectsJsonLd,
-    asctbTermOccurrences?: [string, number][],
-    ontologyTree?: OntologyTree,
-    cellTypeTree?: OntologyTree,
-    biomarkerTree?: OntologyTree,
+    asctbTerms?: AsctbTerms,
+    termsIndex?: TermsIndex,
     actRoute?: ActivatedRoute,
-    kgService?: HraKgService,
     httpService?: HttpClient,
     mobile?: boolean,
   ) {
     return render(MainPageComponent, {
       componentInputs: {
-        data: doData,
+        data: doData ?? ({ '@context': {}, '@graph': [] } as DigitalObjectsJsonLd),
         columns: columns as TableColumn[],
-        asctbTermOccurrences,
-        ontologyTree,
-        cellTypeTree,
-        biomarkerTree,
+        asctbTerms: asctbTerms ?? [],
+        termsIndex: termsIndex ?? emptyTermsIndex,
       },
       providers: [
         { provide: Router, useValue: mockRouter },
         { provide: ActivatedRoute, useValue: actRoute },
         { provide: DownloadService, useValue: mockDownloadService },
-        { provide: HraKgService, useValue: kgService },
-        { provide: HttpClient, useValue: httpService },
-        provideHttpClientTesting(),
+        { provide: HttpClient, useValue: httpService ?? defaultMockHttpService },
         mobile ? mobileBreakpointsProvider : screenBreakpointsProvider,
       ],
     });
@@ -120,8 +114,8 @@ describe('MainPageComponent', () => {
     getDownloadOptions: jest.fn().mockReturnValue([]),
   };
 
-  const mockKgService = {
-    doSearch: jest.fn().mockReturnValue(of([])),
+  const defaultMockHttpService = {
+    get: jest.fn().mockReturnValue(of({})),
   };
 
   const mobileBreakpointsProvider = {
@@ -148,14 +142,11 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
     const instance = fixture.componentInstance;
-    const filters = instance.filters();
+    const filters = instance.store.currentFilters();
 
     expect(filters.digitalObjects).toEqual(['2d-ftu']);
     expect(filters.releaseVersion).toEqual(['v1.2', 'v2.2']);
@@ -168,13 +159,10 @@ describe('MainPageComponent', () => {
 
   it('should handle no data', async () => {
     const { fixture } = await setup(
-      {} as DigitalObjectsJsonLd,
+      { '@context': {}, '@graph': [] } as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
     const instance = fixture.componentInstance;
     expect(instance.filteredRows()).toEqual([]);
@@ -196,15 +184,12 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute2 as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
-    const filters = instance.filters();
+    const filters = instance.store.currentFilters();
 
     expect(filters.digitalObjects).toEqual(['2d-ftu']);
     expect(filters.releaseVersion).toEqual(['v1.2']);
@@ -225,23 +210,20 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute3 as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
 
-    expect(instance.filters()).toEqual({
-      anatomicalStructures: undefined,
-      biomarkers: undefined,
-      cellTypes: undefined,
-      digitalObjects: '2d-ftu',
-      organs: 'http://purl.obolibrary.org/obo/UBERON_0002113',
-      releaseVersion: undefined,
-      searchTerm: '',
+    expect(instance.store.currentFilters()).toEqual({
+      anatomicalStructures: [],
+      biomarkers: [],
+      cellTypes: [],
+      digitalObjects: ['2d-ftu'],
+      organs: ['http://purl.obolibrary.org/obo/UBERON_0002113'],
+      releaseVersion: [],
+      searchTerm: undefined,
     });
   });
 
@@ -249,15 +231,12 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
-    const versionCounts = instance.versionCounts();
+    const versionCounts = instance.store.versionCounts();
     expect(versionCounts['v2.3']).toBe(2);
   });
 
@@ -265,11 +244,8 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
@@ -300,33 +276,25 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
 
     instance.searchControl.setValue('brain');
-    expect(instance.filters().searchTerm).toBe('brain');
+    expect(instance.store.currentFilters().searchTerm).toBe('brain');
   });
 
   it('should handle empty filter fields in handleFilterSelectionChanges', async () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
-
-    instance.filters().searchTerm = undefined;
 
     instance.handleFilterSelectionChanges({
       digitalObjects: null,
@@ -337,108 +305,78 @@ describe('MainPageComponent', () => {
       biomarkers: null,
     });
 
-    expect(instance.filters()).toEqual({
-      anatomicalStructures: undefined,
-      biomarkers: undefined,
-      cellTypes: undefined,
-      digitalObjects: undefined,
-      organs: undefined,
-      releaseVersion: undefined,
-      searchTerm: undefined,
-    });
+    const filters = instance.store.currentFilters();
+    expect(filters.digitalObjects).toBeUndefined();
+    expect(filters.releaseVersion).toBeUndefined();
+    expect(filters.organs).toBeUndefined();
+    expect(filters.anatomicalStructures).toBeUndefined();
+    expect(filters.cellTypes).toBeUndefined();
+    expect(filters.biomarkers).toBeUndefined();
+    // searchTerm is preserved from the initial route
+    expect(filters.searchTerm).toBe('kidney');
   });
 
   it('applies ontology filters', async () => {
+    const asctbTerms: AsctbTerms = [
+      { asctb_type: 'AS', iri: 'http://purl.obolibrary.org/obo/UBERON_0002113', label: 'kidney' },
+      { asctb_type: 'AS', iri: 'http://purl.obolibrary.org/obo/UBERON_0001678', label: 'outer cortex of kidney' },
+    ];
+
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
-      [
-        ['http://purl.obolibrary.org/obo/UBERON_0002113', 5],
-        ['http://purl.obolibrary.org/obo/UBERON_0001678', 2],
-        ['foo', 6],
-      ],
-      {
-        root: 'root',
-        nodes: {
-          'http://purl.obolibrary.org/obo/UBERON_0002113': {
-            '@id': 'http://purl.obolibrary.org/obo/UBERON_0002113',
-            '@type': 'OntologyTreeNode',
-            id: 'http://purl.obolibrary.org/obo/UBERON_0002113',
-            parent: 'http://purl.obolibrary.org/obo/UBERON_0013702',
-            children: [],
-            synonymLabels: [],
-            label: 'kidney',
-          },
-          'http://purl.obolibrary.org/obo/UBERON_0001678': {
-            '@id': 'http://purl.obolibrary.org/obo/UBERON_0001678',
-            '@type': 'OntologyTreeNode',
-            id: 'http://purl.obolibrary.org/obo/UBERON_0001678',
-            parent: 'http://purl.obolibrary.org/obo/UBERON_0001703',
-            children: [],
-            synonymLabels: [],
-          },
-        },
-      },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      asctbTerms,
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
-    expect(instance.filterCategories()['anatomicalStructures'].options?.length).toEqual(2);
+    const anatomicalStructuresCategory = instance.filterCategories().find((c) => c.label === 'Anatomical structures');
+    expect(anatomicalStructuresCategory?.options?.length).toEqual(2);
   });
 
   it('applies more filters', async () => {
-    const mockKgService2 = {
-      doSearch: jest
-        .fn()
-        .mockReturnValue(
-          of([
-            'https://purl.humanatlas.io/2d-ftu/asct-b-2d-models-crosswalk',
-            'https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle',
-          ]),
-        ),
-    } as unknown as HraKgService;
+    const routeWithDoAndSearch = {
+      queryParams: of({
+        do: ['2d-ftu'],
+        search: 'kidney',
+      }),
+    };
 
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService2,
+      emptyTermsIndex,
+      routeWithDoAndSearch as unknown as ActivatedRoute,
     );
 
     const instance = fixture.componentInstance;
+    // Trigger an extra CD cycle so rxResource resolves
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    // Only the 2d-ftu row with 'kidney' in the title should survive both filters
     expect(instance.filteredRows().length).toEqual(1);
   });
 
-  it('sets search filter to undefined if blank', async () => {
+  it('sets search filter to null if blank', async () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
 
     const instance = fixture.componentInstance;
     instance.searchControl.setValue('');
-    expect(instance.filters().searchTerm).toBeUndefined();
+    expect(instance.store.currentFilters().searchTerm).toBeNull();
   });
 
   it('should calculate scroll height based on screen size', async () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
       undefined,
       false,
     );
@@ -455,11 +393,8 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
       undefined,
       true,
     );
@@ -481,11 +416,8 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
       mockHttpService,
     );
     const instance = fixture.componentInstance;
@@ -510,11 +442,8 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute2 as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
     const instance = fixture.componentInstance;
     expect(instance.filteredRows()).toEqual([]);
@@ -536,11 +465,8 @@ describe('MainPageComponent', () => {
     const { fixture } = await setup(
       mockData as DigitalObjectsJsonLd,
       [],
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
-      { root: '', nodes: {} },
+      emptyTermsIndex,
       mockActivatedRoute3 as unknown as ActivatedRoute,
-      mockKgService as unknown as HraKgService,
     );
     const instance = fixture.componentInstance;
     expect(instance.filteredRows()).toEqual([]);
