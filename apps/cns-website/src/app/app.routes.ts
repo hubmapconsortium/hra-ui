@@ -12,8 +12,7 @@ import { createTagsResolver } from './state/tags/tags.store';
 import { createMountRedirectRoute } from './utils/mount-redirect';
 
 /** Base URL for content and indexes */
-// const BASE_URL = 'https://cns.iu.edu/';
-const BASE_URL = 'http://localhost:5500/';
+const BASE_URL = 'https://cns.iu.edu/';
 
 /** People index URL */
 const PEOPLE_INDEX_URL = BASE_URL + 'assets/indexes/app-people.json';
