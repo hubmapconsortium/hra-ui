@@ -1,10 +1,8 @@
 import '@google/model-viewer';
 
-import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, inject, input, signal } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
@@ -15,9 +13,16 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
-import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
+import {
+  AsctbTerms,
+  DigitalObjectInfo,
+  DigitalObjectMetadata,
+  DigitalObjectsJsonLd,
+  PersonInfo,
+} from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
-import { getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
+import { injectMirrorUrl } from '../../utils/endpoints';
+import { coerceArray, getOrganIcon, getProductIcon, getProductLabel, sentenceCase } from '../../utils/utils';
 
 /**
  * Metadata page for a digital object
@@ -45,15 +50,28 @@ export class MetadataPageComponent {
   private readonly route = inject(ActivatedRoute);
   /** File download service */
   private readonly download = inject(DownloadService);
-  /** HRA V1 API service */
-  private readonly v1 = inject(V1Service);
+
+  /** Mirror URL for the application */
+  readonly mirrorUrl = injectMirrorUrl();
 
   /** Raw digital object data from API */
   readonly doData = input.required<DigitalObjectsJsonLd>();
+  /** ASCTB terms info */
+  readonly asctbTerms = input.required<AsctbTerms>();
+
   /** Column data for metadata table */
   readonly columns = input.required<TableColumn[]>();
   /** Metadata for the digital object */
   readonly metadata = input.required<DigitalObjectMetadata>();
+
+  /** All digital objects in the data */
+  readonly allItems = computed(() => this.doData()['@graph']);
+
+  /** Base URL for the digital object */
+  readonly baseUrl = computed(() => {
+    const lod = 'https://lod.humanatlas.io';
+    return this.mirrorUrl() === 'https://cdn.humanatlas.io/digital-objects' ? lod : this.mirrorUrl();
+  });
 
   /** Versions available for this digital object */
   readonly availableVersions = signal<string[]>([]);
@@ -76,6 +94,7 @@ export class MetadataPageComponent {
   /** For these DoTypes the corresponding image types will be displayed on the page */
   readonly imageTypes: Record<string, string> = {
     '2d-ftu': 'image/svg+xml',
+    '3d-ftu': 'model/gltf-binary',
     'ref-organ': 'model/gltf-binary',
     landmark: 'model/gltf-binary',
     schema: 'image/svg+xml',
@@ -94,66 +113,23 @@ export class MetadataPageComponent {
       this.router.navigate([type, name, this.currentVersion()]);
     });
 
-    toObservable(this.metadata).subscribe((metadata) => {
-      if (metadata) {
-        this.downloadOptions.set(this.download.getDownloadOptions(metadata));
-        this.rows.set(
-          [
-            { provenance: 'Creator(s)', metadata: this.createMarkdownList(metadata.was_derived_from.creators) },
-            {
-              provenance: 'Project lead(s)',
-              metadata: this.createMarkdownList(metadata.was_derived_from.project_leads),
-            },
-            {
-              provenance: 'Internal reviewer(s)',
-              metadata: this.createMarkdownList(metadata.was_derived_from.reviewers),
-            },
-            {
-              provenance: 'External reviewer(s)',
-              metadata: this.createMarkdownList(metadata.was_derived_from.externalReviewers),
-            },
-            {
-              provenance: 'DOI',
-              metadata: metadata.was_derived_from.doi
-                ? `[${metadata.was_derived_from.doi}](${metadata.was_derived_from.doi})`
-                : '',
-            },
-            { provenance: 'Data ID', metadata: metadata.was_derived_from.hubmapId ?? '' },
-            { provenance: 'Date published', metadata: metadata.was_derived_from.creation_date ?? '' },
-            { provenance: 'Date last processed', metadata: metadata.creation_date ?? '' },
-          ].filter((item) => item.metadata !== ''),
-        );
+    effect(() => {
+      if (this.metadata()) {
+        this.setProvenanceData();
       } else {
         this.router.navigate([`404`]);
       }
     });
 
-    toObservable(this.doData).subscribe((data: DigitalObjectsJsonLd) => {
-      if (data['@graph']) {
-        const pageItem = data['@graph'].find((item) => {
-          return item['@id'] === `https://lod.humanatlas.io/${type}/${name}`;
-        });
-        this.purl.set(pageItem?.purl || '');
-        const icons = [getProductIcon(type)];
-        if (pageItem?.organIds) {
-          icons.push(getOrganIcon(pageItem));
-        }
-        this.icons.set(icons);
-
-        this.v1.ontologyTreeModel({}).subscribe((ontologyData) => {
-          if (pageItem) {
-            this.availableVersions.set(pageItem.versions);
-            const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
-            for (const organId of pageItem.organIds || []) {
-              tags.push({
-                id: organId,
-                label: sentenceCase(ontologyData.nodes[organId].label || ''),
-                type: 'organs',
-              });
-            }
-            this.tags.set(tags);
-          }
-        });
+    effect(() => {
+      const pageItem = this.allItems().find((item) => {
+        return item['@id'] === `${this.baseUrl()}/${type}/${name}`;
+      }) as DigitalObjectInfo;
+      if (pageItem) {
+        this.purl.set(pageItem.purl || '');
+        this.setIcons(pageItem, type);
+        this.availableVersions.set(coerceArray(pageItem.versions).sort((a, b) => b.localeCompare(a)));
+        this.setTags(pageItem, type);
       }
     });
   }
@@ -212,5 +188,67 @@ export class MetadataPageComponent {
    */
   tagClick(id: string, type: string) {
     this.router.navigate([''], { queryParams: { [type]: id } });
+  }
+
+  /**
+   * Sets the provenance data for the digital object.
+   */
+  private setProvenanceData() {
+    this.downloadOptions.set(this.download.getDownloadOptions(this.metadata()));
+    this.rows.set(
+      [
+        { provenance: 'Creator(s)', metadata: this.createMarkdownList(this.metadata().was_derived_from.creators) },
+        {
+          provenance: 'Project lead(s)',
+          metadata: this.createMarkdownList(this.metadata().was_derived_from.project_leads),
+        },
+        {
+          provenance: 'Internal reviewer(s)',
+          metadata: this.createMarkdownList(this.metadata().was_derived_from.reviewers),
+        },
+        {
+          provenance: 'External reviewer(s)',
+          metadata: this.createMarkdownList(this.metadata().was_derived_from.externalReviewers),
+        },
+        {
+          provenance: 'DOI',
+          metadata: this.metadata().was_derived_from.doi
+            ? `[${this.metadata().was_derived_from.doi}](${this.metadata().was_derived_from.doi})`
+            : '',
+        },
+        { provenance: 'Data ID', metadata: this.metadata().was_derived_from.hubmapId ?? '' },
+        { provenance: 'Date published', metadata: this.metadata().was_derived_from.creation_date ?? '' },
+        { provenance: 'Date last processed', metadata: this.metadata().creation_date ?? '' },
+      ].filter((item) => item.metadata !== ''),
+    );
+  }
+
+  /**
+   * Sets the icons for the digital object [product, organ].
+   * @param item The digital object information
+   * @param type Digital object type
+   */
+  private setIcons(item: DigitalObjectInfo, type: string) {
+    this.icons.set([getProductIcon(type), getOrganIcon(item)]);
+  }
+
+  /**
+   * Sets the tags for the digital object to display at bottom of the page.
+   * @param item The digital object information
+   * @param type Digital object type
+   */
+  private setTags(item: DigitalObjectInfo, type: string) {
+    const tags = [{ id: type, label: getProductLabel(type), type: 'do' }];
+    if (item.organIds) {
+      const ids = coerceArray(item.organIds);
+      for (const organId of ids) {
+        tags.push({
+          id: organId,
+          label: sentenceCase(this.asctbTerms().find((term) => term.iri === organId)?.label || ''),
+          type: 'organs',
+        });
+      }
+    }
+    this.tags.set(tags);
   }
 }

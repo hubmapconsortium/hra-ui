@@ -43,7 +43,8 @@
     <hra-rich-tooltip-content class="filter-menu-content">
       <mat-form-field hraFeature="search" hraClickEvent class="search field" subscriptSizing="dynamic">
         <mat-icon class="search-icon" matPrefix>search</mat-icon>
-        <input matInput type="text" placeholder="Search" [formControl]="searchControl" />
+        <mat-label class="search-label">Search</mat-label>
+        <input matInput type="text" [formControl]="searchControl" />
       </mat-form-field>
 
       <ng-scrollbar>
