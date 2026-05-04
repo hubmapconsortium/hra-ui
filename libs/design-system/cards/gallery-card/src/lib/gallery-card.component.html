@@ -1,4 +1,4 @@
-<img class="image" alt="" [attr.src]="imageSrc() | assetUrl" />
+<img class="image" loading="lazy" alt="" [attr.src]="imageSrc() | assetUrl" />
 <div class="content">
   <div class="date">{{ date() }}</div>
   @if (link(); as link) {
