@@ -65,6 +65,7 @@
             [selected]="filter.selected ?? []"
             [counts]="counts()[$index]"
             [disableSearch]="filter.disableSearch ?? false"
+            [showEmptyOptions]="showEmptyOptions()"
             (selectedChange)="updateFilterSelection(filter, $event)"
           />
         </ng-template>

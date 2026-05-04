@@ -9,6 +9,7 @@ import { SearchListOption } from '@hra-ui/design-system/search-list';
 import { FilterMenuComponent, FilterOptionCategory } from './filter-menu.component';
 
 const FILTER_OPTIONS = [
+  { id: 'zero', label: 'Zero' },
   { id: 'a', label: 'A', count: 9999 },
   { id: 'ab', label: 'AB', count: 4299 },
   { id: 'abc', label: 'ABC', count: 1799 },
@@ -110,6 +111,7 @@ const meta: Meta = {
     description: 'Supporting text here, if needed, but make it short and straightforward',
     enableClose: true,
     enableTotalCount: false,
+    showEmptyOptions: false,
     filters: FILTER_CATEGORIES,
     toggleOptions: [
       { id: 'option1', label: 'Option 1' },
@@ -149,6 +151,7 @@ type Story = StoryObj;
 export const Default: Story = {
   args: {
     enableTotalCount: true,
+    showEmptyOptions: true,
   },
 
   render: (args) => ({
@@ -160,6 +163,7 @@ export const Default: Story = {
         [description]="description"
         [enableClose]="enableClose"
         [enableTotalCount]="enableTotalCount"
+        [showEmptyOptions]="showEmptyOptions"
       >
         ${CUSTOM_CONTROLS}
       </hra-filter-menu>

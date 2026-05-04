@@ -1,5 +1,5 @@
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
-import { ChangeDetectionStrategy, Component, computed, effect, input, model, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -62,6 +62,9 @@ export class FilterMenuComponent<T extends SearchListOption> {
 
   /** Whether to enable total count display */
   readonly enableTotalCount = input<boolean>(false);
+
+  /** Whether to show options with zero count */
+  readonly showEmptyOptions = input<boolean>();
 
   /** List of all filters with options */
   readonly filters = model.required<FilterOptionCategory<T>[]>();
