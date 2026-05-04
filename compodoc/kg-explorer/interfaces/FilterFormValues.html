@@ -461,8 +461,7 @@ import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
 import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 
-import { CurrentFilters } from &#x27;../../pages/main-page/main-page.component&#x27;;
-import { FilterOption, FilterOptionCategory } from &#x27;../../utils/utils&#x27;;
+import { FilterOption, FilterOptionCategory, FilterType } from &#x27;../../utils/utils&#x27;;
 import { FilterMenuOverlayComponent } from &#x27;./filter-menu-overlay/filter-menu-overlay.component&#x27;;
 
 /** Filter form values */
@@ -481,8 +480,23 @@ export interface FilterFormValues {
   biomarkers: FilterOption[] | null;
 }
 
-/** Filter types for the filter form */
-type FilterType &#x3D; &#x27;digitalObjects&#x27; | &#x27;releaseVersion&#x27; | &#x27;organs&#x27; | &#x27;anatomicalStructures&#x27; | &#x27;cellTypes&#x27; | &#x27;biomarkers&#x27;;
+/** Current filter interface (each category contains string of filter option IDs) */
+export interface CurrentFilters {
+  /** Digital object filters */
+  digitalObjects: string[] | null;
+  /** Release version filters */
+  releaseVersion: string[] | null;
+  /** Organ filters */
+  organs: string[] | null;
+  /** Anatomical structures filters */
+  anatomicalStructures: string[] | null;
+  /** Cell type filters */
+  cellTypes: string[] | null;
+  /** Biomarker filters */
+  biomarkers: string[] | null;
+  /** Search term filters */
+  searchTerm: string | null;
+}
 
 /**
  * Filter menu for the KG Explorer

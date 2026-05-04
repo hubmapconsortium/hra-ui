@@ -234,10 +234,6 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#allRows" >allRows</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#download" >download</a>
                             </li>
                             <li>
@@ -250,19 +246,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#filterCategoriesArray" >filterCategoriesArray</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#filterClosed" >filterClosed</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#filteredRows" >filteredRows</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#filters" >filters</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -282,11 +270,19 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#search" >search</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#searchControl" >searchControl</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#versionCounts" >versionCounts</a>
+                                <a href="#searchResults" >searchResults</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#store" >store</a>
                             </li>
                         </ul>
                     </td>
@@ -316,13 +312,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#asctbTermOccurrences" >asctbTermOccurrences</a>
-                            </li>
-                            <li>
-                                <a href="#biomarkerTree" >biomarkerTree</a>
-                            </li>
-                            <li>
-                                <a href="#cellTypeTree" >cellTypeTree</a>
+                                <a href="#asctbTerms" >asctbTerms</a>
                             </li>
                             <li>
                                 <a href="#columns" >columns</a>
@@ -331,7 +321,7 @@
                                 <a href="#data" >data</a>
                             </li>
                             <li>
-                                <a href="#ontologyTree" >ontologyTree</a>
+                                <a href="#termsIndex" >termsIndex</a>
                             </li>
                         </ul>
                     </td>
@@ -355,7 +345,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:140</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:138</a></div>
                             </td>
                         </tr>
 
@@ -364,7 +354,7 @@
                             <div class="io-description"><p>Sets the initial filters according to query params
 Sets filtered rows to all rows on init
 Fetches file download metadata for each object
-Update filter when searchbar input changes
+Subscribe to searchbar input and update results when changed
 Populates all filter options
 Get download options for an object whenever the download button is clicked
 Set scroll viewport height when window is resized</p>
@@ -381,13 +371,13 @@ Set scroll viewport height when window is resized</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="asctbTermOccurrences"></a>
-                        <b>asctbTermOccurrences</b>
+                        <a name="asctbTerms"></a>
+                        <b>asctbTerms</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>[string, number][]</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#AsctbTerms" target="_self" >AsctbTerms</a></code>
 
                     </td>
                 </tr>
@@ -398,76 +388,12 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:87</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>ASCT+B term occurence data</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="biomarkerTree"></a>
-                        <b>biomarkerTree</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>OntologyTree</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Required : </i>&nbsp;<b>true</b>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:120</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Biomarker tree data</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="cellTypeTree"></a>
-                        <b>cellTypeTree</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>OntologyTree</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Required : </i>&nbsp;<b>true</b>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:118</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Cell type tree data</p>
+                        <div class="io-description"><p>Information about ASCTB terms</p>
 </div>
                     </td>
                 </tr>
@@ -494,7 +420,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:85</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -515,7 +441,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>DigitalObjectsJsonLd</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DigitalObjectsJsonLd" target="_self" >DigitalObjectsJsonLd</a></code>
 
                     </td>
                 </tr>
@@ -526,7 +452,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:83</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -541,13 +467,13 @@ Set scroll viewport height when window is resized</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="ontologyTree"></a>
-                        <b>ontologyTree</b>
+                        <a name="termsIndex"></a>
+                        <b>termsIndex</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>OntologyTree</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#TermsIndex" target="_self" >TermsIndex</a></code>
 
                     </td>
                 </tr>
@@ -558,12 +484,12 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:89</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Ontology tree data</p>
+                        <div class="io-description"><p>Information for mapping terms to purls and vice versa</p>
 </div>
                     </td>
                 </tr>
@@ -598,8 +524,8 @@ Set scroll viewport height when window is resized</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="228"
-                                    class="link-to-prism">src/app/pages/main-page/main-page.component.ts:228</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/pages/main-page/main-page.component.ts:225</a></div>
                         </td>
                     </tr>
 
@@ -618,6 +544,7 @@ Set scroll viewport height when window is resized</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -632,6 +559,10 @@ Set scroll viewport height when window is resized</p>
                                             </td>
 
 
+                                            <td>
+                                                    <p>The values from the filter form</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -657,44 +588,6 @@ Set scroll viewport height when window is resized</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="allRows"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>allRows</b></span>
-                        <a href="#allRows"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;TableRow[]&gt;([])</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:123</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>All rows in the data</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="download"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
@@ -716,7 +609,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -754,7 +647,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:137</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -787,56 +680,18 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;Record&lt;string, FilterOptionCategory&gt;&gt;(FILTER_CATEGORY_INFO)</code>
+                        <i>Default value : </i><code>signal&lt;FilterOptionCategory[]&gt;([])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:129</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:96</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Filter categories</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="filterCategoriesArray"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>filterCategoriesArray</b></span>
-                        <a href="#filterCategoriesArray"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;FilterOptionCategory[]&gt;(() &#x3D;&gt; Object.values(this.filterCategories()))</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:140</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Filter categories as an array</p>
 </div>
                 </td>
             </tr>
@@ -868,7 +723,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -906,51 +761,13 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:92</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Filtered rows to display</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="filters"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>filters</b></span>
-                        <a href="#filters"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;CurrentFilters&gt;({})</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:131</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Currently selected filters</p>
 </div>
                 </td>
             </tr>
@@ -982,7 +799,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -1020,7 +837,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -1058,7 +875,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -1096,13 +913,51 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:133</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:98</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Scroll viewport height for the digital object table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="search"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>search</b></span>
+                        <a href="#search"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SearchService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search service</p>
 </div>
                 </td>
             </tr>
@@ -1134,7 +989,7 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -1151,11 +1006,11 @@ Set scroll viewport height when window is resized</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="versionCounts"></a>
+                    <a name="searchResults"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>versionCounts</b></span>
-                        <a href="#versionCounts"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>searchResults</b></span>
+                        <a href="#searchResults"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1167,18 +1022,91 @@ Set scroll viewport height when window is resized</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;Record&lt;string, number&gt;&gt;({})</code>
+                        <i>Default value : </i><code>rxResource({
+    params: () &#x3D;&gt; ({
+      allRows: this.store.allRows(),
+      termsIndex: this.store.termsIndex(),
+      digitalObjects: this.store.digitalObjects(),
+      versions: this.store.releaseVersion(),
+      organs: this.store.organs(),
+      ontologyTerms: this.store.anatomicalStructures(),
+      cellTypeTerms: this.store.cellTypes(),
+      biomarkerTerms: this.store.biomarkers(),
+      searchTerm: this.store.searchTerm(),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const {
+        allRows,
+        termsIndex,
+        digitalObjects,
+        versions,
+        organs,
+        ontologyTerms,
+        cellTypeTerms,
+        biomarkerTerms,
+        searchTerm,
+      } &#x3D; params.params;
+
+      return this.search.search(allRows, termsIndex, {
+        digitalObjects: digitalObjects ?? [],
+        versions: versions ?? [],
+        organs: organs ?? [],
+        ontologyTerms: ontologyTerms ?? [],
+        cellTypeTerms: cellTypeTerms ?? [],
+        biomarkerTerms: biomarkerTerms ?? [],
+        searchTerm: searchTerm ?? null,
+      });
+    },
+  })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:135</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:103</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Records HRA version counts for the version filter</p>
+                    <div class="io-description"><p>Resource for retrieving search results after filtering</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="store"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>store</b></span>
+                        <a href="#store"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FiltersStore)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/main-page/main-page.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filters store</p>
 </div>
                 </td>
             </tr>
@@ -1192,14 +1120,12 @@ Set scroll viewport height when window is resized</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from &#x27;@angular/core&#x27;;
-import { toObservable } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from &#x27;@angular/core&#x27;;
 import { ReactiveFormsModule, UntypedFormControl } from &#x27;@angular/forms&#x27;;
 import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
 import { MatInputModule } from &#x27;@angular/material/input&#x27;;
 import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
 import { ActivatedRoute, Params, Router } from &#x27;@angular/router&#x27;;
-import { DigitalObjectInfo, DigitalObjectsJsonLd, HraKgService, OntologyTree } from &#x27;@hra-api/ng-client&#x27;;
 import { watchBreakpoint } from &#x27;@hra-ui/cdk/breakpoints&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { BrandModule } from &#x27;@hra-ui/design-system/brand&#x27;;
@@ -1208,47 +1134,20 @@ import { IconsModule } from &#x27;@hra-ui/design-system/icons&#x27;;
 import { ResultsIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/results-indicator&#x27;;
 import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
 import { TableColumn, TableComponent, TableRow } from &#x27;@hra-ui/design-system/table&#x27;;
-import { fromEvent, Observable } from &#x27;rxjs&#x27;;
+import { catchError, fromEvent, of } from &#x27;rxjs&#x27;;
 
+import { rxResource } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { FilterFormValues, FilterMenuComponent } from &#x27;../../components/filter-menu/filter-menu.component&#x27;;
-import { DigitalObjectMetadata } from &#x27;../../digital-objects-metadata.schema&#x27;;
-import { DownloadService } from &#x27;../../services/download.service&#x27;;
 import {
-  FILTER_CATEGORY_INFO,
-  FilterOption,
-  FilterOptionCategory,
-  getOrganIcon,
-  getOrganId,
-  getProductIcon,
-  getProductLabel,
-  getProductTooltip,
-  HRA_VERSION_DATA,
-  sentenceCase,
-} from &#x27;../../utils/utils&#x27;;
-
-/** Digital object info interface with hraVersions */
-interface DigitalObjectInfoWithHraVersions extends DigitalObjectInfo {
-  /** List of HRA versions for the object */
-  hraVersions: string[];
-}
-
-/** Current filter interface (each category contains string of filter option IDs) */
-export interface CurrentFilters {
-  /** Digital object filters */
-  digitalObjects?: string[];
-  /** Release version filters */
-  releaseVersion?: string[];
-  /** Organ filters */
-  organs?: string[];
-  /** Anatomical structures filters */
-  anatomicalStructures?: string[];
-  /** Cell type filters */
-  cellTypes?: string[];
-  /** Biomarker filters */
-  biomarkers?: string[];
-  /** Search term filters */
-  searchTerm?: string;
-}
+  AsctbTerms,
+  DigitalObjectMetadata,
+  DigitalObjectsJsonLd,
+  TermsIndex,
+} from &#x27;../../digital-objects-metadata.schema&#x27;;
+import { DownloadService } from &#x27;../../services/download.service&#x27;;
+import { SearchService } from &#x27;../../services/search.service&#x27;;
+import { FiltersStore } from &#x27;../../state/filters.store&#x27;;
+import { FILTER_CATEGORY_INFO, FilterOptionCategory, FilterType } from &#x27;../../utils/utils&#x27;;
 
 /** Amount in pixels to move scrollbar downwards so it doesn&#x27;t start at the header */
 const SCROLLBAR_TOP_OFFSET &#x3D; &#x27;86&#x27;;
@@ -1284,12 +1183,14 @@ const SCROLLBAR_TOP_OFFSET &#x3D; &#x27;86&#x27;;
 export class MainPageComponent {
   /** Http service */
   private readonly http &#x3D; inject(HttpClient);
-  /** HRA KG API service */
-  private readonly kg &#x3D; inject(HraKgService);
-  /** File download service */
-  readonly download &#x3D; inject(DownloadService);
   /** Router service */
   readonly router &#x3D; inject(Router);
+  /** File download service */
+  readonly download &#x3D; inject(DownloadService);
+  /** Search service */
+  readonly search &#x3D; inject(SearchService);
+  /** Filters store */
+  readonly store &#x3D; inject(FiltersStore);
 
   /** Form control for search input */
   readonly searchControl &#x3D; new UntypedFormControl();
@@ -1303,68 +1204,95 @@ export class MainPageComponent {
   readonly data &#x3D; input.required&lt;DigitalObjectsJsonLd&gt;();
   /** Column info */
   readonly columns &#x3D; input.required&lt;TableColumn[]&gt;();
-  /** ASCT+B term occurence data */
-  readonly asctbTermOccurrences &#x3D; input.required&lt;[string, number][]&gt;();
-  /** Ontology tree data */
-  readonly ontologyTree &#x3D; input.required&lt;OntologyTree&gt;();
-  /** Cell type tree data */
-  readonly cellTypeTree &#x3D; input.required&lt;OntologyTree&gt;();
-  /** Biomarker tree data */
-  readonly biomarkerTree &#x3D; input.required&lt;OntologyTree&gt;();
+  /** Information about ASCTB terms */
+  readonly asctbTerms &#x3D; input.required&lt;AsctbTerms&gt;();
+  /** Information for mapping terms to purls and vice versa */
+  readonly termsIndex &#x3D; input.required&lt;TermsIndex&gt;();
 
-  /** All rows in the data */
-  readonly allRows &#x3D; signal&lt;TableRow[]&gt;([]);
   /** Filtered rows to display */
   readonly filteredRows &#x3D; signal&lt;TableRow[]&gt;([]);
   /** Whether or not the filter menu is closed */
   readonly filterClosed &#x3D; signal&lt;boolean&gt;(false);
   /** Filter categories */
-  readonly filterCategories &#x3D; signal&lt;Record&lt;string, FilterOptionCategory&gt;&gt;(FILTER_CATEGORY_INFO);
-  /** Currently selected filters */
-  readonly filters &#x3D; signal&lt;CurrentFilters&gt;({});
+  readonly filterCategories &#x3D; signal&lt;FilterOptionCategory[]&gt;([]);
   /** Scroll viewport height for the digital object table */
   readonly scrollHeight &#x3D; signal(0);
-  /** Records HRA version counts for the version filter */
-  readonly versionCounts &#x3D; signal&lt;Record&lt;string, number&gt;&gt;({});
   /** Id of digital object to download */
   readonly downloadId &#x3D; signal&lt;string | undefined&gt;(undefined);
 
-  /** Filter categories as an array */
-  readonly filterCategoriesArray &#x3D; computed&lt;FilterOptionCategory[]&gt;(() &#x3D;&gt; Object.values(this.filterCategories()));
+  /** Resource for retrieving search results after filtering */
+  readonly searchResults &#x3D; rxResource({
+    params: () &#x3D;&gt; ({
+      allRows: this.store.allRows(),
+      termsIndex: this.store.termsIndex(),
+      digitalObjects: this.store.digitalObjects(),
+      versions: this.store.releaseVersion(),
+      organs: this.store.organs(),
+      ontologyTerms: this.store.anatomicalStructures(),
+      cellTypeTerms: this.store.cellTypes(),
+      biomarkerTerms: this.store.biomarkers(),
+      searchTerm: this.store.searchTerm(),
+    }),
+    stream: (params) &#x3D;&gt; {
+      const {
+        allRows,
+        termsIndex,
+        digitalObjects,
+        versions,
+        organs,
+        ontologyTerms,
+        cellTypeTerms,
+        biomarkerTerms,
+        searchTerm,
+      } &#x3D; params.params;
+
+      return this.search.search(allRows, termsIndex, {
+        digitalObjects: digitalObjects ?? [],
+        versions: versions ?? [],
+        organs: organs ?? [],
+        ontologyTerms: ontologyTerms ?? [],
+        cellTypeTerms: cellTypeTerms ?? [],
+        biomarkerTerms: biomarkerTerms ?? [],
+        searchTerm: searchTerm ?? null,
+      });
+    },
+  });
 
   /**
    * Sets the initial filters according to query params
    * Sets filtered rows to all rows on init
    * Fetches file download metadata for each object
-   * Update filter when searchbar input changes
+   * Subscribe to searchbar input and update results when changed
    * Populates all filter options
    * Get download options for an object whenever the download button is clicked
    * Set scroll viewport height when window is resized
    */
   constructor() {
     const queryParams$ &#x3D; inject(ActivatedRoute).queryParams;
-    queryParams$.subscribe((queryParams) &#x3D;&gt; this.setFiltersFomParams(queryParams));
+    queryParams$.subscribe((queryParams) &#x3D;&gt; this.setFiltersFromQueryParams(queryParams));
 
-    toObservable(this.data).subscribe((items) &#x3D;&gt; {
-      const objectData &#x3D; this.resolveData(items[&#x27;@graph&#x27;]);
-      this.allRows.set(objectData);
-      this.filteredRows.set(this.allRows());
-      this.setVersionCounts(items[&#x27;@graph&#x27;] as DigitalObjectInfoWithHraVersions[]);
-    });
+    this.store.setAllRows(this.data);
+    this.filteredRows.set(this.store.allRows());
+    this.store.setVersionCounts(this.data);
+    this.store.setAsctbTerms(this.asctbTerms);
+    this.store.setTermsIndex(this.termsIndex);
 
     this.searchControl.valueChanges.subscribe((result?: string) &#x3D;&gt; {
-      this.onSearchChange(result &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? undefined : result);
+      this.store.setSearchTerm(result &amp;&amp; result.length &gt; 0 ? result : null);
+      this.updateQueryParamsFromFilters();
     });
 
     effect(() &#x3D;&gt; {
       this.populateFilterOptions();
-      this.digitalObjectSearch().subscribe((results) &#x3D;&gt; {
-        this.applyMoreFilters(results);
-      });
+      this.attachDownloadOptions();
     });
 
     effect(() &#x3D;&gt; {
-      this.attachDownloadOptions();
+      const searchResults &#x3D; this.searchResults.value();
+      if (searchResults) {
+        const newFilteredRows &#x3D; this.store.allRows().filter((row) &#x3D;&gt; searchResults.includes(row[&#x27;purl&#x27;] as string));
+        this.filteredRows.set(newFilteredRows);
+      }
     });
 
     this.setScrollViewportHeight();
@@ -1375,7 +1303,7 @@ export class MainPageComponent {
    * Sets filters from query params in the url
    * @param queryParams Query params from the route
    */
-  private setFiltersFomParams(queryParams: Params) {
+  private setFiltersFromQueryParams(queryParams: Params) {
     const dObjects &#x3D; queryParams[&#x27;do&#x27;];
     const versions &#x3D; queryParams[&#x27;versions&#x27;];
     const organs &#x3D; queryParams[&#x27;organs&#x27;];
@@ -1384,53 +1312,14 @@ export class MainPageComponent {
     const b &#x3D; queryParams[&#x27;b&#x27;];
     const search &#x3D; queryParams[&#x27;search&#x27;];
 
-    this.filters.set({
-      digitalObjects: dObjects,
-      releaseVersion: versions ? (Array.isArray(versions) ? versions : [versions]) : undefined,
-      organs: organs,
-      anatomicalStructures: as ? (Array.isArray(as) ? as : [as]) : undefined,
-      cellTypes: ct ? (Array.isArray(ct) ? ct : [ct]) : undefined,
-      biomarkers: b ? (Array.isArray(b) ? b : [b]) : undefined,
-      searchTerm: search ?? &#x27;&#x27;,
-    });
-    this.searchControl.patchValue(this.filters().searchTerm);
-  }
-
-  /**
-   * Sets the version filter counts from the data
-   * @param data Digital object data
-   */
-  private setVersionCounts(data: DigitalObjectInfoWithHraVersions[]) {
-    const result: Record&lt;string, number&gt; &#x3D; {};
-    const allVersions &#x3D; data.map((object) &#x3D;&gt; object.hraVersions);
-    const flatVersions &#x3D; allVersions.flat();
-    for (const version of flatVersions) {
-      if (result[version]) {
-        result[version] +&#x3D; 1;
-      } else {
-        result[version] &#x3D; 1;
-      }
-    }
-    this.versionCounts.set(result);
-  }
-
-  /**
-   * Updates current filter selections when changed
-   * @param formControls
-   */
-  handleFilterSelectionChanges(formValues: FilterFormValues) {
-    const updatedFilters: CurrentFilters &#x3D; {
-      digitalObjects: formValues.digitalObjects?.map((obj) &#x3D;&gt; obj.id) || undefined,
-      releaseVersion: formValues.releaseVersion?.map((obj) &#x3D;&gt; obj.id) || undefined,
-      organs: formValues.organs?.map((obj) &#x3D;&gt; obj.id) || undefined,
-      anatomicalStructures: formValues.anatomicalStructures?.map((obj) &#x3D;&gt; obj.id) || undefined,
-      cellTypes: formValues.cellTypes?.map((obj) &#x3D;&gt; obj.id) || undefined,
-      biomarkers: formValues.biomarkers?.map((obj) &#x3D;&gt; obj.id) || undefined,
-      searchTerm: this.filters().searchTerm || undefined,
-    };
-
-    this.filters.set(updatedFilters);
-    this.updateQueryParamsFromFilters();
+    this.store.setDigitalObjects(dObjects);
+    this.store.setReleaseVersion(versions);
+    this.store.setOrgans(organs);
+    this.store.setAnatomicalStructures(as);
+    this.store.setCellTypes(ct);
+    this.store.setBiomarkers(b);
+    this.store.setSearchTerm(search);
+    this.searchControl.patchValue(search);
   }
 
   /**
@@ -1439,308 +1328,71 @@ export class MainPageComponent {
   private updateQueryParamsFromFilters() {
     this.router.navigate([&#x27;&#x27;], {
       queryParams: {
-        do: this.filters().digitalObjects,
-        versions: this.filters().releaseVersion,
-        organs: this.filters().organs,
-        as: this.filters().anatomicalStructures,
-        ct: this.filters().cellTypes,
-        b: this.filters().biomarkers,
-        search: this.filters().searchTerm,
+        do: this.store.digitalObjects(),
+        versions: this.store.releaseVersion(),
+        organs: this.store.organs(),
+        as: this.store.anatomicalStructures(),
+        ct: this.store.cellTypes(),
+        b: this.store.biomarkers(),
+        search: this.store.searchTerm(),
       },
     });
   }
 
   /**
-   * Calculates number of results for a filter option
-   * @param filterOption Name of filter option
-   * @param category
-   * @returns Number of results
+   * Updates current filter selections when changed
+   * @param formValues The values from the filter form
    */
-  private calculateCount(filterOption: string, category: string): number {
-    return this.allRows().filter((row) &#x3D;&gt; {
-      if (Array.isArray(row[category])) {
-        return row[category].some((value) &#x3D;&gt; String(value).toLowerCase().includes(filterOption.toLowerCase()));
-      }
-      return row[category] &#x3D;&#x3D;&#x3D; filterOption;
-    }).length;
-  }
-
-  /**
-   * Returns list of digital objects in the data as filter options
-   * @returns Filter options
-   */
-  private digitalObjectsOptions(): FilterOption[] {
-    return Array.from(this.kgFilterOptions().doOptions)
-      .map((filterOption) &#x3D;&gt; {
-        return {
-          id: filterOption,
-          label: getProductLabel(filterOption),
-          count: this.calculateCount(filterOption, &#x27;doType&#x27;),
-          tooltip: getProductTooltip(filterOption),
-        };
-      })
-      .sort((o1, o2) &#x3D;&gt; o1.label.localeCompare(o2.label));
-  }
-
-  /**
-   * Returns HRA version data as filter options
-   * @returns Filter options
-   */
-  private hraVersionsOptions(): FilterOption[] {
-    return Object.keys(HRA_VERSION_DATA)
-      .map((filterOption) &#x3D;&gt; {
-        const versionData &#x3D; HRA_VERSION_DATA[filterOption];
-        return {
-          id: filterOption,
-          label: versionData ? versionData.label : filterOption,
-          count: this.versionCounts()[filterOption],
-          secondaryLabel: versionData ? versionData.date : undefined,
-        };
-      })
-      .sort((o1, o2) &#x3D;&gt; o2.id.localeCompare(o1.id)); //Reverse order
-  }
-
-  /**
-   * Returns list of organs in the data as filter options
-   * @returns Filter options
-   */
-  private organsOptions(): FilterOption[] {
-    return Array.from(this.kgFilterOptions().organOptions)
-      .map((organOption) &#x3D;&gt; {
-        return {
-          id: organOption,
-          label: sentenceCase(this.ontologyTree()?.nodes[organOption]?.label || &#x27;&#x27;),
-          count: this.calculateCount(organOption, &#x27;organIds&#x27;),
-        };
-      })
-      .sort((o1, o2) &#x3D;&gt; o1.label.localeCompare(o2.label));
-  }
-
-  /**
-   * Returns ontology option data as filter options
-   * @param data Tree data
-   * @returns Filter options
-   */
-  private ontologyOptions(data: OntologyTree): FilterOption[] {
-    return this.asctbTermOccurrences()
-      .filter((occurrence) &#x3D;&gt; data.nodes[occurrence[0]])
-      .map((occurrence) &#x3D;&gt; {
-        return {
-          id: occurrence[0],
-          label: data.nodes[occurrence[0]].label || &#x27;&#x27;,
-          count: occurrence[1],
-        };
-      })
-      .sort((o1, o2) &#x3D;&gt; o1.label.localeCompare(o2.label));
+  handleFilterSelectionChanges(formValues: FilterFormValues) {
+    this.store.updateFiltersFromForm(formValues);
+    this.updateQueryParamsFromFilters();
   }
 
   /**
    * Populates filter categories with options
    */
   private populateFilterOptions() {
-    this.filterCategories.update((categories) &#x3D;&gt; {
-      return {
-        digitalObjects: {
-          ...categories[&#x27;digitalObjects&#x27;],
-          options: this.digitalObjectsOptions(),
-        },
-        releaseVersions: {
-          ...categories[&#x27;releaseVersions&#x27;],
-          options: this.hraVersionsOptions(),
-        },
-        organs: {
-          ...categories[&#x27;organs&#x27;],
-          options: this.organsOptions(),
-        },
-        anatomicalStructures: {
-          ...categories[&#x27;anatomicalStructures&#x27;],
-          options: this.ontologyOptions(this.ontologyTree()),
-        },
-        cellTypes: {
-          ...categories[&#x27;cellTypes&#x27;],
-          options: this.ontologyOptions(this.cellTypeTree()),
-        },
-        biomarkers: {
-          ...categories[&#x27;biomarkers&#x27;],
-          options: this.ontologyOptions(this.biomarkerTree()),
-        },
-      };
-    });
-  }
+    const keys &#x3D; Object.keys(FILTER_CATEGORY_INFO);
+    const values &#x3D; Object.values(FILTER_CATEGORY_INFO);
+    const categories &#x3D; values.map((categoryInfo, index) &#x3D;&gt; ({
+      ...categoryInfo,
+      options: this.store.allFilters()[keys[index] as FilterType],
+    }));
 
-  /**
-   * Applies additional filters to digital objects obtained from KG search and sets new filtered rows
-   */
-  private applyMoreFilters(searchResults: string[]) {
-    let newFilteredRows &#x3D; this.allRows();
-    newFilteredRows &#x3D; newFilteredRows.filter((row) &#x3D;&gt; searchResults.includes(row[&#x27;purl&#x27;] as string));
-
-    if (this.filters().searchTerm &amp;&amp; this.filters().searchTerm !&#x3D;&#x3D; &#x27;&#x27;) {
-      newFilteredRows &#x3D; this.filterSearchFormResults(newFilteredRows);
-    }
-
-    if (this.filters().digitalObjects) {
-      newFilteredRows &#x3D; this.filterDigitalObjectResults(newFilteredRows);
-    }
-
-    if (this.filters().organs) {
-      newFilteredRows &#x3D; this.filterOrganResults(newFilteredRows);
-    }
-    this.filteredRows.set(newFilteredRows);
-  }
-
-  /**
-   * Filters an array of results by the search form input
-   * @param currentResults Results to filter
-   * @returns Filtered results
-   */
-  private filterSearchFormResults(currentResults: TableRow[]): TableRow[] {
-    return currentResults.filter((row) &#x3D;&gt; {
-      return (row[&#x27;title&#x27;] as string).toLowerCase().includes((this.filters().searchTerm ?? &#x27;&#x27;).toLowerCase());
-    });
-  }
-
-  /**
-   * Filters an array of results by selected digital object filters
-   * @param currentResults Results to filter
-   * @returns Filtered results
-   */
-  private filterDigitalObjectResults(currentResults: TableRow[]): TableRow[] {
-    const currentDigitalObjectsFilters &#x3D; this.filters().digitalObjects;
-    if (currentDigitalObjectsFilters &amp;&amp; currentDigitalObjectsFilters.length &#x3D;&#x3D;&#x3D; 0) {
-      return currentResults;
-    }
-    return currentResults.filter((row) &#x3D;&gt; currentDigitalObjectsFilters?.includes(row[&#x27;doType&#x27;] as string));
-  }
-
-  /**
-   * Filters an array of results by selected organ filters
-   * @param currentResults Results to filter
-   * @returns Filtered results
-   */
-  private filterOrganResults(currentResults: TableRow[]): TableRow[] {
-    const currentOrganFilters &#x3D; this.filters().organs;
-    if (currentOrganFilters &amp;&amp; currentOrganFilters.length &#x3D;&#x3D;&#x3D; 0) {
-      return currentResults;
-    }
-    return currentResults.filter((row) &#x3D;&gt;
-      ((row[&#x27;organIds&#x27;] as string[]) ?? []).some((value) &#x3D;&gt; currentOrganFilters?.includes(value)),
-    );
-  }
-
-  /**
-   * Performs KG DO search for selected ontology, cell type, biomarker, and HRA release version filters
-   * @returns object search
-   */
-  private digitalObjectSearch(): Observable&lt;string[]&gt; {
-    const currentAnatomicalStructuresFilters &#x3D; this.filters().anatomicalStructures;
-    const currentCellTypesFilters &#x3D; this.filters().cellTypes;
-    const currentBiomarkerFilters &#x3D; this.filters().biomarkers;
-    const currentHraVersionFilters &#x3D; this.filters().releaseVersion;
-
-    return this.kg.doSearch({
-      ontologyTerms: currentAnatomicalStructuresFilters,
-      cellTypeTerms: currentCellTypesFilters,
-      biomarkerTerms: currentBiomarkerFilters,
-      hraVersions: currentHraVersionFilters,
-    });
-  }
-
-  /**
-   * Returns unique filter options for digital objects, versions, and organs from KG API data
-   */
-  private kgFilterOptions() {
-    const objectFilterOptions &#x3D; new Set&lt;string&gt;();
-    const organFilterOptions &#x3D; new Set&lt;string&gt;();
-    this.allRows().forEach((row) &#x3D;&gt; {
-      const type &#x3D; row[&#x27;doType&#x27;];
-      objectFilterOptions.add(type as string);
-      const organs &#x3D; row[&#x27;organIds&#x27;] as string[];
-      if (organs) {
-        for (const organ of organs) {
-          organFilterOptions.add(organ);
-        }
-      }
-    });
-    return {
-      doOptions: objectFilterOptions,
-      organOptions: organFilterOptions,
-    };
-  }
-
-  /**
-   * Resolves raw digital object data into array of TableRow
-   * @param data Raw digital object data
-   * @returns Data as TableRow[]
-   */
-  private resolveData(data?: DigitalObjectInfo[]): TableRow[] {
-    if (!data) {
-      return [];
-    }
-    return data.map((item) &#x3D;&gt; {
-      const organId &#x3D; getOrganId(item);
-      const organLabel &#x3D; this.ontologyTree()?.nodes[organId]?.label;
-      return {
-        id: item.lod,
-        purl: item.purl,
-        doType: item.doType,
-        doVersion: item.doVersion,
-        organIds: item.organIds,
-        title: item.title,
-        objectUrl: &#x60;${item.doType}/${item.doName}/latest&#x60;,
-        typeIcon: getProductIcon(item.doType),
-        typeTooltip: getProductLabel(item.doType),
-        organIcon: getOrganIcon(item),
-        organTooltip: sentenceCase(organLabel || &#x27;All Organs&#x27;),
-        cellCount: item.cell_count,
-        biomarkerCount: item.biomarker_count,
-        lastPublished: this.formatDateToYYYYMM(item.lastUpdated),
-      } as TableRow;
-    });
+    this.filterCategories.update(() &#x3D;&gt; categories);
   }
 
   /**
    * Makes metadata request for the object matching downloadId and attaches download options to the row
    */
   private attachDownloadOptions() {
-    if (this.downloadId()) {
-      this.http.get(this.downloadId() || &#x27;&#x27;, { responseType: &#x27;json&#x27; }).subscribe((data) &#x3D;&gt; {
-        const match &#x3D; this.allRows().find((row) &#x3D;&gt; row[&#x27;id&#x27;] &#x3D;&#x3D;&#x3D; this.downloadId());
-        if (match) {
+    const downloadId &#x3D; this.downloadId();
+    if (!downloadId) {
+      return;
+    }
+
+    this.http
+      .get(this.getMetadataUrl(downloadId), { responseType: &#x27;json&#x27; })
+      .pipe(catchError(() &#x3D;&gt; of(undefined)))
+      .subscribe((data) &#x3D;&gt; {
+        const match &#x3D; this.store.allRows().find((row) &#x3D;&gt; row[&#x27;id&#x27;] &#x3D;&#x3D;&#x3D; downloadId);
+        if (match &amp;&amp; data) {
           match[&#x27;downloadOptions&#x27;] &#x3D; this.download.getDownloadOptions(data as DigitalObjectMetadata);
         }
       });
-    }
   }
 
   /**
-   * Updates filteredRows on searchTerm input
-   * @param searchTerm Search input
+   * Returns the metadata endpoint for a digital object id.
+   * @param downloadId Digital object dataset id
+   * @returns Metadata url
    */
-  private onSearchChange(searchTerm?: string): void {
-    this.filters.set({
-      ...this.filters(),
-      searchTerm,
-    });
-
-    this.updateQueryParamsFromFilters();
+  private getMetadataUrl(downloadId: string): string {
+    return &#x60;${downloadId.replace(/\/$/, &#x27;&#x27;)}/metadata.json&#x60;;
   }
 
   /**
-   * Formats Date to yyyy-mm
-   * @param dateString Date string
-   * @returns Date as yyyy-mm
-   */
-  private formatDateToYYYYMM(dateString: string): string {
-    const date &#x3D; new Date(dateString);
-    const year &#x3D; date.getFullYear();
-    const month &#x3D; String(date.getMonth() + 1).padStart(2, &#x27;0&#x27;);
-    return &#x60;${year}-${month}&#x60;;
-  }
-
-  /**
-   * Returns table scrollbar viewport height
-   * @returns viewport height
+   * Sets the table scrollbar viewport height according to the screen size.
    */
   private setScrollViewportHeight(): void {
     this.scrollHeight.set(window.innerHeight - (this.isSmallScreen() ? 259 : 299));
@@ -1774,9 +1426,9 @@ export class MainPageComponent {
     &gt;
       &lt;hra-filter-menu
         hraFeature&#x3D;&quot;filter-menu&quot;
-        [filterCategories]&#x3D;&quot;filterCategoriesArray()&quot;
+        [filterCategories]&#x3D;&quot;filterCategories()&quot;
         [formClosed]&#x3D;&quot;!sidenav.opened&quot;
-        [currentFilters]&#x3D;&quot;filters()&quot;
+        [currentFilters]&#x3D;&quot;store.currentFilters()&quot;
         (toggleForm)&#x3D;&quot;sidenav.toggle()&quot;
         (formChanges)&#x3D;&quot;handleFilterSelectionChanges($event); table.scrollToTop()&quot;
       /&gt;
@@ -1789,7 +1441,11 @@ export class MainPageComponent {
             &lt;mat-label&gt;Search&lt;/mat-label&gt;
             &lt;input matInput [formControl]&#x3D;&quot;searchControl&quot; /&gt;
           &lt;/mat-form-field&gt;
-          &lt;hra-results-indicator description&#x3D;&quot;Viewing&quot; [value]&#x3D;&quot;filteredRows().length&quot; [total]&#x3D;&quot;allRows().length&quot; /&gt;
+          &lt;hra-results-indicator
+            description&#x3D;&quot;Viewing&quot;
+            [value]&#x3D;&quot;filteredRows().length&quot;
+            [total]&#x3D;&quot;store.allRows().length&quot;
+          /&gt;
         &lt;/div&gt;
         &lt;hra-table
           variant&#x3D;&quot;divider&quot;
@@ -1835,7 +1491,7 @@ export class MainPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="main-page">  @if (isSmallScreen() && !sidenav.opened) {    <button hraFeature="filter-fab" hraClickEvent mat-fab extended class="filter-button" (click)="sidenav.toggle()">      <mat-icon>filter_list</mat-icon>      Filters    </button>  }  <mat-sidenav-container    autosize    [hasBackdrop]="!isWideScreen()"    [class.small]="isSmallScreen()"    [class.filter-closed]="!sidenav.opened"  >    <mat-sidenav      hraFeature="sidenav"      [mode]="!isWideScreen() ? \'over\' : \'side\'"      [opened]="isWideScreen()"      [fixedInViewport]="true"      [fixedTopGap]="isSmallScreen() ? 73 : 113"      #sidenav    >      <hra-filter-menu        hraFeature="filter-menu"        [filterCategories]="filterCategoriesArray()"        [formClosed]="!sidenav.opened"        [currentFilters]="filters()"        (toggleForm)="sidenav.toggle()"        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"      />    </mat-sidenav>    <mat-sidenav-content hraFeature="digital-objects">      <div class="page-content">        <div class="search-header">          <mat-form-field hraFeature="search" hraClickEvent class="object-search">            <hra-icon matPrefix>search</hra-icon>            <mat-label>Search</mat-label>            <input matInput [formControl]="searchControl" />          </mat-form-field>          <hra-results-indicator description="Viewing" [value]="filteredRows().length" [total]="allRows().length" />        </div>        <hra-table          variant="divider"          [enableSort]="true"          [rows]="filteredRows()"          [columns]="columns()"          (routeClicked)="router.navigate([$event])"          (downloadHovered)="downloadId.set($event)"          #table        >          <hra-footer />        </hra-table>      </div>    </mat-sidenav-content>  </mat-sidenav-container></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="main-page">  @if (isSmallScreen() && !sidenav.opened) {    <button hraFeature="filter-fab" hraClickEvent mat-fab extended class="filter-button" (click)="sidenav.toggle()">      <mat-icon>filter_list</mat-icon>      Filters    </button>  }  <mat-sidenav-container    autosize    [hasBackdrop]="!isWideScreen()"    [class.small]="isSmallScreen()"    [class.filter-closed]="!sidenav.opened"  >    <mat-sidenav      hraFeature="sidenav"      [mode]="!isWideScreen() ? \'over\' : \'side\'"      [opened]="isWideScreen()"      [fixedInViewport]="true"      [fixedTopGap]="isSmallScreen() ? 73 : 113"      #sidenav    >      <hra-filter-menu        hraFeature="filter-menu"        [filterCategories]="filterCategories()"        [formClosed]="!sidenav.opened"        [currentFilters]="store.currentFilters()"        (toggleForm)="sidenav.toggle()"        (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"      />    </mat-sidenav>    <mat-sidenav-content hraFeature="digital-objects">      <div class="page-content">        <div class="search-header">          <mat-form-field hraFeature="search" hraClickEvent class="object-search">            <hra-icon matPrefix>search</hra-icon>            <mat-label>Search</mat-label>            <input matInput [formControl]="searchControl" />          </mat-form-field>          <hra-results-indicator            description="Viewing"            [value]="filteredRows().length"            [total]="store.allRows().length"          />        </div>        <hra-table          variant="divider"          [enableSort]="true"          [rows]="filteredRows()"          [columns]="columns()"          (routeClicked)="router.navigate([$event])"          (downloadHovered)="downloadId.set($event)"          #table        >          <hra-footer />        </hra-table>      </div>    </mat-sidenav-content>  </mat-sidenav-container></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-kg-explorer'},{'name': 'FilterMenuComponent', 'selector': 'hra-filter-menu'},{'name': 'FilterMenuOverlayComponent', 'selector': 'hra-filter-menu-overlay'},{'name': 'MainPageComponent', 'selector': 'hra-kg-main-page'},{'name': 'MetadataLayoutComponent', 'selector': 'hra-metadata-layout'},{'name': 'MetadataLayoutContentComponent', 'selector': 'hra-metadata-layout-content'},{'name': 'MetadataLayoutHeaderComponent', 'selector': 'hra-metadata-layout-header'},{'name': 'MetadataPageComponent', 'selector': 'hra-metadata-page'},{'name': 'ProvenanceMenuComponent', 'selector': 'hra-provenance-menu'},{'name': 'VersionSelectorComponent', 'selector': 'hra-version-selector'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MainPageComponent'};

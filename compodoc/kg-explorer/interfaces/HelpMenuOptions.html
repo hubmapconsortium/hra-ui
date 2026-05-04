@@ -429,16 +429,13 @@ import { NotFoundPageComponent } from &#x27;@hra-ui/design-system/error-pages/no
 import { ServerErrorPageComponent } from &#x27;@hra-ui/design-system/error-pages/server-error-page&#x27;;
 import { TableColumn } from &#x27;@hra-ui/design-system/table&#x27;;
 
+import { AsctbTermsSchema, DigitalObjectsJsonLdSchema, TermsIndexSchema } from &#x27;./digital-objects-metadata.schema&#x27;;
 import { MainPageComponent } from &#x27;./pages/main-page/main-page.component&#x27;;
 import { MetadataPageComponent } from &#x27;./pages/metadata-page/metadata-page.component&#x27;;
 import {
-  asctbResolver,
-  biomarkersResolver,
-  cellTypeResolver,
   documentationUrlResolver,
   doMetadataResolver,
-  kgResolver,
-  ontologyResolver,
+  kgJsonResolver,
   productLabelResolver,
 } from &#x27;./utils/kg-resolver&#x27;;
 
@@ -537,11 +534,9 @@ export const appRoutes: Route[] &#x3D; [
       columns: DO_COLUMNS,
     },
     resolve: {
-      data: kgResolver(),
-      asctbTermOccurrences: asctbResolver(),
-      ontologyTree: ontologyResolver(),
-      cellTypeTree: cellTypeResolver(),
-      biomarkerTree: biomarkersResolver(),
+      data: kgJsonResolver(&#x27;/kg/digital-objects.jsonld&#x27;, DigitalObjectsJsonLdSchema),
+      asctbTerms: kgJsonResolver(&#x27;/kg/asctb-terms.json&#x27;, AsctbTermsSchema),
+      termsIndex: kgJsonResolver(&#x27;/kg/kg-terms-index.json&#x27;, TermsIndexSchema),
     },
   },
   {
@@ -551,7 +546,8 @@ export const appRoutes: Route[] &#x3D; [
       columns: METADATA_COLUMNS,
     },
     resolve: {
-      doData: kgResolver(),
+      doData: kgJsonResolver(&#x27;/kg/digital-objects.jsonld&#x27;, DigitalObjectsJsonLdSchema),
+      asctbTerms: kgJsonResolver(&#x27;/kg/asctb-terms.json&#x27;, AsctbTermsSchema),
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),
