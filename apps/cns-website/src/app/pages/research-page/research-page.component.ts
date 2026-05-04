@@ -21,11 +21,11 @@ import { NgScrollbar } from 'ngx-scrollbar';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { ResearchTypesData } from '../../schemas/research-type.schema';
-import { ResearchCategoryId, ResearchData } from '../../schemas/research.schema';
-import { TagId, TagsData } from '../../schemas/tags.schema';
+import { ResearchCategoryId, ResearchData, ResearchItem, ResearchProjectId } from '../../schemas/research.schema';
 import { ScrollbarStore } from '../../state/scrollbar/scrollbar.store';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
-import { getImageUrl } from '../../utils/research-item-images';
+import { TagsStore } from '../../state/tags/tags.store';
+import { getDefaultThumbnail } from '../../utils/default-thumbnail';
 import { ResearchStore } from './state/research.store';
 
 /**
@@ -79,8 +79,6 @@ export class ResearchPageComponent {
   readonly eventTypes = input.required<ResearchTypesData>();
   /** Funding type definitions */
   readonly fundingTypes = input.required<ResearchTypesData>();
-  /** Tags data from resolver */
-  readonly tags = input.required<TagsData>();
 
   /** Research store for state management */
   protected readonly store = inject(ResearchStore);
@@ -94,6 +92,9 @@ export class ResearchPageComponent {
   /** Scrollbar component reference */
   private readonly scrollbar = viewChild.required(NgScrollbar);
 
+  /** Tags store for resolving tag labels */
+  private readonly tagsStore = inject(TagsStore);
+
   /** Combined research items from news, publications, events, funding, and visualizations */
   private readonly researchItems = computed(() => [
     ...this.news(),
@@ -103,9 +104,6 @@ export class ResearchPageComponent {
     ...this.visualizations(),
   ]);
 
-  /** Utility to get image URL for a research item */
-  protected readonly getImageUrl = getImageUrl;
-
   /** Initializes store with data and registers sidebar */
   constructor() {
     this.store.setResearchItems(this.researchItems);
@@ -113,7 +111,6 @@ export class ResearchPageComponent {
     this.store.setPublicationTypes(this.publicationTypes);
     this.store.setEventTypes(this.eventTypes);
     this.store.setFundingTypes(this.fundingTypes);
-    this.store.setTags(this.tags);
 
     effect((onCleanup) => {
       this.sidebarStore.setSidebar(this.sidebar());
@@ -127,16 +124,22 @@ export class ResearchPageComponent {
   }
 
   /**
+   * Gets the thumbnail URL for a research item, using the default thumbnail if not provided
+   *
+   * @param item research item to get thumbnail for
+   * @returns thumbnail URL
+   */
+  getThumbnail(item: ResearchItem): string {
+    return item.thumbnail || getDefaultThumbnail(item.category, item.type);
+  }
+
+  /**
    * Gets tag items from array of tag ids using the store's tags map
    * @param category research category for the tags (e.g. 'publication', 'event')
-   * @param ids tag ids
-   * @returns tag items
+   * @param projects tag ids
+   * @returns tag items (limited to 2 for display purposes)
    */
-  getTagItems(category: ResearchCategoryId, ids: TagId[]): TagItem[] {
-    const tagsMap = this.store.tagsMap();
-    return [category, ...ids]
-      .map((id) => tagsMap.get(id))
-      .filter((tag) => tag !== undefined)
-      .slice(0, 2);
+  getTagItems(category: ResearchCategoryId, projects: ResearchProjectId[]): TagItem[] {
+    return this.tagsStore.getItemsByIds([category, ...projects]).slice(0, 2);
   }
 }

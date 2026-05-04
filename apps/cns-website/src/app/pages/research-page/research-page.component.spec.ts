@@ -1,15 +1,20 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
+import { provideMarkdown } from 'ngx-markdown';
 import { PeopleData, PeopleId } from '../../schemas/people.schema';
 import { ResearchTypeId, ResearchTypesData } from '../../schemas/research-type.schema';
-import { ResearchCategoryId, ResearchData, ResearchId, ResearchItem } from '../../schemas/research.schema';
-import { TagId, TagsData } from '../../schemas/tags.schema';
+import {
+  ResearchCategoryId,
+  ResearchData,
+  ResearchId,
+  ResearchItem,
+  ResearchProjectId,
+} from '../../schemas/research.schema';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
 import { ResearchPageComponent } from './research-page.component';
-import { MatIconTestingModule } from '@angular/material/icon/testing';
-import { provideMarkdown } from 'ngx-markdown';
 
 const mockResearchItem = (overrides?: Partial<ResearchItem>): ResearchItem => ({
   slug: 'test-research-1' as ResearchId,
@@ -21,7 +26,8 @@ const mockResearchItem = (overrides?: Partial<ResearchItem>): ResearchItem => ({
   dateEnd: new Date('2024-01-20'),
   link: 'https://example.com/research',
   people: ['person-1' as PeopleId],
-  tags: ['method-computational' as TagId, 'organ-brain' as TagId],
+  featured: false,
+  projects: ['method-computational' as ResearchProjectId, 'organ-brain' as ResearchProjectId],
   ...overrides,
 });
 
@@ -52,11 +58,6 @@ const mockFundingTypes: ResearchTypesData = [
   { label: 'Interactive Visualization', value: 'interactive-visualization' as ResearchTypeId },
 ];
 
-const mockTags: TagsData = [
-  { slug: 'method-computational' as TagId, name: 'Computational Method', description: 'Methods involving computation' },
-  { slug: 'organ-brain' as TagId, name: 'Brain', description: 'Research related to the brain' },
-];
-
 describe('ResearchPageComponent', () => {
   const renderComponent = async (overrides?: {
     news?: ResearchData;
@@ -68,7 +69,6 @@ describe('ResearchPageComponent', () => {
     publicationTypes?: ResearchTypesData;
     eventTypes?: ResearchTypesData;
     fundingTypes?: ResearchTypesData;
-    tags?: TagsData;
   }) => {
     const news = overrides?.news ?? [
       mockResearchItem({
@@ -155,7 +155,6 @@ describe('ResearchPageComponent', () => {
         publicationTypes: overrides?.publicationTypes ?? mockPublicationTypes,
         eventTypes: overrides?.eventTypes ?? mockEventTypes,
         fundingTypes: overrides?.fundingTypes ?? mockFundingTypes,
-        tags: overrides?.tags ?? mockTags,
       },
     });
   };

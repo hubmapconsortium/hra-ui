@@ -8,8 +8,9 @@ import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { FeaturedData } from '../../schemas/featured.schema';
 import { ResearchTypeId } from '../../schemas/research-type.schema';
-import { ResearchCategoryId, ResearchId } from '../../schemas/research.schema';
-import { TagId, TagsData } from '../../schemas/tags.schema';
+import { ResearchCategoryId, ResearchId, ResearchProjectId } from '../../schemas/research.schema';
+import { TagItem } from '../../schemas/tags.schema';
+import { TagsStore } from '../../state/tags/tags.store';
 import { LandingPageComponent } from './landing-page.component';
 
 describe('LandingPageComponent', () => {
@@ -23,8 +24,9 @@ describe('LandingPageComponent', () => {
     dateEnd: new Date(2024, 0, 15),
     link: '/featured',
     people: [],
-    tags: ['tag1'] as TagId[],
-    image: 'featured-image.jpg',
+    featured: false,
+    projects: ['project-publications'] as ResearchProjectId[],
+    thumbnail: 'featured-image.jpg',
   };
 
   const mockPublicationItem = {
@@ -37,7 +39,8 @@ describe('LandingPageComponent', () => {
     dateEnd: new Date(2024, 0, 2),
     link: 'https://external-domain.com/publication',
     people: [],
-    tags: ['tag2'] as TagId[],
+    featured: false,
+    projects: [] as ResearchProjectId[],
   };
 
   const mockNewsItem = {
@@ -50,7 +53,8 @@ describe('LandingPageComponent', () => {
     dateEnd: new Date(2024, 0, 3),
     link: 'http://news.example.com/story',
     people: [],
-    tags: ['tag3'] as TagId[],
+    featured: false,
+    projects: [] as ResearchProjectId[],
   };
 
   const mockFeaturedContent: FeaturedData = {
@@ -59,19 +63,31 @@ describe('LandingPageComponent', () => {
     news: [mockNewsItem],
   };
 
-  const mockTags: TagsData = [
-    { slug: 'tag1' as TagId, name: 'Research', description: 'Research related items' },
-    { slug: 'tag2' as TagId, name: 'Publications', description: 'Publication items' },
-    { slug: 'tag3' as TagId, name: 'Other', description: 'Other items' },
+  const mockTags: TagItem[] = [
+    { slug: 'research', name: 'Research', description: 'Research category' },
+    { slug: 'publication', name: 'Publications', description: 'Publication category' },
+    { slug: 'news', name: 'Other', description: 'News category' },
+    { slug: 'project-publications', name: 'Publications', description: 'Project label' },
   ];
 
+  const mockTagsStore: Pick<InstanceType<typeof TagsStore>, 'getLabelsByIds'> = {
+    getLabelsByIds: (ids: string[]) => {
+      const tagsMap = new Map(mockTags.map((item) => [item.slug, item.name]));
+      return ids.map((id) => tagsMap.get(id)).filter((name): name is string => !!name);
+    },
+  };
+
   // Helper function to set up component with common providers and inputs
-  async function setupComponent(featuredContent = mockFeaturedContent, tags = mockTags) {
+  async function setupComponent(featuredContent = mockFeaturedContent) {
     const renderResult = await render(LandingPageComponent, {
-      providers: [provideHttpClient(), provideHttpClientTesting(), provideIcons()],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideIcons(),
+        { provide: TagsStore, useValue: mockTagsStore },
+      ],
       inputs: {
         featuredContent,
-        tags,
       },
     });
 
@@ -207,7 +223,7 @@ describe('LandingPageComponent', () => {
         featured: [
           {
             ...mockResearchItem,
-            tags: ['tag1', 'unknown-tag'] as TagId[],
+            projects: ['project-publications', 'unknown-tag'] as ResearchProjectId[],
           },
         ],
         publications: [],
@@ -227,7 +243,7 @@ describe('LandingPageComponent', () => {
         featured: [
           {
             ...mockResearchItem,
-            tags: ['tag1', 'tag2'] as TagId[],
+            projects: ['project-publications'] as ResearchProjectId[],
           },
         ],
         publications: [],
