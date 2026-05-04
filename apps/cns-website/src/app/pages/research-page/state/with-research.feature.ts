@@ -3,7 +3,6 @@ import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods
 import { PeopleItem } from '../../../schemas/people.schema';
 import { ResearchTypeId, ResearchTypeItem } from '../../../schemas/research-type.schema';
 import { ResearchItem } from '../../../schemas/research.schema';
-import { TagItem } from '../../../schemas/tags.schema';
 
 /** Core research page state containing all research data */
 export interface ResearchState {
@@ -17,8 +16,6 @@ export interface ResearchState {
   eventTypes: ResearchTypeItem[];
   /** Funding type definitions */
   fundingTypes: ResearchTypeItem[];
-  /** Tag items */
-  tags: TagItem[];
 }
 
 /** Initial empty research state */
@@ -28,7 +25,6 @@ const initialState: ResearchState = {
   pubTypes: [],
   eventTypes: [],
   fundingTypes: [],
-  tags: [],
 };
 
 /**
@@ -42,8 +38,6 @@ export function withResearch() {
       return {
         /** Count of research items */
         numResearchItems: computed(() => store.researchItems().length),
-        /** Map of tags for quick lookup */
-        tagsMap: computed(() => new Map(store.tags().map((tag) => [tag.slug as string, tag]))),
       };
     }),
     withMethods((store) => ({
@@ -64,7 +58,6 @@ export function withResearch() {
       ),
       setEventTypes: signalMethod((eventTypes: ResearchTypeItem[]) => patchState(store, { eventTypes })),
       setFundingTypes: signalMethod((fundingTypes: ResearchTypeItem[]) => patchState(store, { fundingTypes })),
-      setTags: signalMethod((tags: TagItem[]) => patchState(store, { tags })),
     })),
   );
 }
