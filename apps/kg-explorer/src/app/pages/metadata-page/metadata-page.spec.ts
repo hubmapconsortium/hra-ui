@@ -107,6 +107,7 @@ describe('MetadataPageComponent', () => {
           versions: ['v1.0', 'v2.0'],
           purl: 'https://example.com/purl',
           organIds: ['aaaaaa'],
+          title: 'Heart',
         },
       ],
     } as DigitalObjectsJsonLd;
@@ -135,6 +136,7 @@ describe('MetadataPageComponent', () => {
           '@id': `${mirrorBase}/ref-organ/heart`,
           versions: ['v1.0', 'v2.0'],
           purl: 'https://example.com/purl',
+          title: 'Heart',
         },
       ],
     } as DigitalObjectsJsonLd;
