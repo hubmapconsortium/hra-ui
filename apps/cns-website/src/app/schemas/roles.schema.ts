@@ -17,13 +17,13 @@ export const MemberRoleSchema = z
     type: z.literal('member'),
     title: z.string(),
     displayOrder: z.number().nullish(),
-    office: z.string(),
-    phone: z.string(),
-    fax: z.string(),
-    email: z.string(),
-    education: z.string(),
-    background: z.string(),
-    interests: z.string(),
+    office: z.string().optional(),
+    phone: z.string().optional(),
+    fax: z.string().optional(),
+    email: z.string().optional(),
+    education: z.string().optional(),
+    background: z.string().optional(),
+    interests: z.string().optional(),
   })
   .meta({ id: 'RoleMember' });
 
