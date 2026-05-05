@@ -164,11 +164,15 @@ export function getOrganIcon(item: DigitalObjectInfo): string {
 
 /**
  * Gets organ tooltip for an organ icon
- * If the icon tooltip is different from the icon name, this function will return the correct tooltip.
- * @param icon Organ icon id
+ * If icon is All Organs and there are organ IDs, it will show the number of organs.
+ * @param item Digital object data item
  * @returns Organ tooltip
  */
-export function getOrganTooltip(icon: string): string {
+export function getOrganTooltip(item: DigitalObjectInfo): string {
+  const icon = getOrganIcon(item);
+  if (icon === 'organ:all-organs') {
+    return `${item.organIds ? coerceArray(item?.organIds).length : 'Multiple'} organs`;
+  }
   return ICON_TOOLTIP_MAP[icon] ?? sentenceCase(icon.replace(/^organ:/, '').replace(/-/g, ' '));
 }
 
