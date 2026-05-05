@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/design-system/content-templates/content-page/src/lib/content-page.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  .action {\n    width: fit-content;\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA,CAAA;AACE,SAAA;;",
+  "names": []
+}

@@ -36,7 +36,7 @@ carouselItems:
     imageSrc: assets/content/landing-page/images/carousel5.png
     action: Read
     link:
-      url: https://doi.org/10.1101/2025.08.14.670406
+      url: https://www.nature.com/articles/s41597-026-06642-4
 
 countInfo:
   - count: 26
