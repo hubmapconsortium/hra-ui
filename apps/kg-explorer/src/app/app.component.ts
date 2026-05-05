@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
+import { joinWithSlash } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { MarkdownModule } from 'ngx-markdown';
@@ -176,7 +177,7 @@ export class AppComponent extends BaseApplicationComponent {
    * Sets the page title based on the current digital object (for metadata pages).
    */
   private setPageTitle() {
-    this.http.get(`${this.mirrorUrl()}/kg/digital-objects.jsonld`).subscribe((data) => {
+    this.http.get(joinWithSlash(this.mirrorUrl(), 'kg/digital-objects.jsonld')).subscribe((data) => {
       this.digitalObjects.set(data as DigitalObjectsJsonLd);
       const id = this.objectId();
       const objects = this.digitalObjects();

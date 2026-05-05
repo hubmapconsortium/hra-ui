@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
+import { joinWithSlash } from '@hra-ui/common/url';
 import { createJsonSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { catchError, map, of } from 'rxjs';
 import * as z from 'zod';
@@ -17,7 +18,7 @@ import { getDocumentationUrl, getProductLabel } from './utils';
 export function kgJsonResolver<T extends z.ZodTypeAny>(url: string, spec: T): ResolveFn<z.infer<T>> {
   return (route, state) => {
     const mirrorUrl = injectMirrorUrl();
-    return createJsonSpecResolver(`${mirrorUrl()}${url}`, spec)(route, state);
+    return createJsonSpecResolver(joinWithSlash(mirrorUrl(), url), spec)(route, state);
   };
 }
 
@@ -32,8 +33,9 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
     const version = route.paramMap.get('version') || '';
     const http = inject(HttpClient);
     const mirrorUrl = injectMirrorUrl();
+    const url = `${type}/${name}/${version}/metadata.json`;
     return http
-      .get(`${mirrorUrl()}/${type}/${name}/${version}/metadata.json`, { responseType: 'json' })
+      .get(joinWithSlash(mirrorUrl(), url), { responseType: 'json' })
       .pipe(catchError(() => of(undefined)))
       .pipe(map((data) => data as DigitalObjectMetadata));
   };
