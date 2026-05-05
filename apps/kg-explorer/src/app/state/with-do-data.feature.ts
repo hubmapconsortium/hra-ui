@@ -51,7 +51,7 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
       typeIcon: getProductIcon(item.doType),
       typeTooltip: getProductLabel(item.doType),
       organIcon: getOrganIcon(item),
-      organTooltip: getOrganTooltip(item),
+      organTooltip: getOrganTooltip(getOrganIcon(item)),
       cellCount: item.cell_count,
       biomarkerCount: item.biomarker_count,
       lastPublished: formatDateToYYYYMM(item.lastUpdated),

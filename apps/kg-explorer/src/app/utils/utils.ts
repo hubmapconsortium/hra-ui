@@ -92,7 +92,7 @@ export const ICON_TOOLTIP_MAP: Record<string, string> = iconTooltipMapJson;
 export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
   'v2.5': {
     label: '11th Release (v2.5)',
-    date: 'June 2025',
+    date: 'June 2026',
   },
   'v2.4': {
     label: '10th Release (v2.4)',
@@ -147,46 +147,29 @@ export function getOrganId(item?: DigitalObjectInfo): string | undefined {
 }
 
 /**
- * Returns the correct organ icon for a digital object.
- * If the digital object has a purl and it's in the DO_ICON_MAP, use that value for the icon.
- * Otherwise, use the organ id if it's in the ORGAN_ICON_MAP, or default to 'all-organs'.
+ * Gets organ icon from a digital object
  * @param item Digital object data item
- * @returns Organ name in design system format
+ * @returns Organ icon
  */
-export function getOrganIcon(item?: DigitalObjectInfo): string {
-  const purl = item?.purl;
+export function getOrganIcon(item: DigitalObjectInfo): string {
+  const purl = item.purl;
   if (purl && DO_ICON_MAP[purl]) {
     return `organ:${DO_ICON_MAP[purl]}`;
   }
-
-  if (getOrganId(item)) {
+  if (item.organIds?.length === 1) {
     return `organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? 'all-organs'}`;
   }
   return 'organ:all-organs';
 }
 
 /**
- * Gets organ tooltip from a digital object (for when user hovers over the icon on the digital objects table).
- * If the digital object has a purl and it's in the DO_ICON_MAP, use that icon name as the tooltip unless it's in the ICON_TOOLTIP_MAP.
- * If the icon name is in the ICON_TOOLTIP_MAP, use that value as the tooltip.
- * @param item Digital object data item
- * @returns Tooltip for the organ icon
+ * Gets organ tooltip for an organ icon
+ * If the icon tooltip is different from the icon name, this function will return the correct tooltip.
+ * @param icon Organ icon id
+ * @returns Organ tooltip
  */
-export function getOrganTooltip(item: DigitalObjectInfo): string {
-  let organLabel = 'All organs';
-  const organId = getOrganId(item);
-  const purl = item.purl;
-
-  if (DO_ICON_MAP[purl]) {
-    organLabel = DO_ICON_MAP[purl];
-  } else if (organId && ORGAN_ICON_MAP[organId]) {
-    organLabel = ORGAN_ICON_MAP[organId];
-  }
-
-  if (ICON_TOOLTIP_MAP[organLabel as string]) {
-    organLabel = ICON_TOOLTIP_MAP[organLabel as string];
-  }
-  return sentenceCase(organLabel).replace(/-/g, ' ');
+export function getOrganTooltip(icon: string): string {
+  return ICON_TOOLTIP_MAP[icon] ?? sentenceCase(icon.replace(/^organ:/, '').replace(/-/g, ' '));
 }
 
 /**

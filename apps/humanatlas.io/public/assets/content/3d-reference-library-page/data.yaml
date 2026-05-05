@@ -4,7 +4,7 @@ subtitle: 3D human organ files mapped with ontological terminology.
 action:
   label: Get data
   url: https://purl.humanatlas.io/ref-organ
-icons: product:ftu
+icons: product:3d-organ
 content:
   - component: PageSection
     tagline: Overview

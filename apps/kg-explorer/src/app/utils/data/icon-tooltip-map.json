@@ -1,9 +1,10 @@
 {
-  "vasculature-thick": "blood vasculature",
-  "ovaries": "ovary",
-  "ureters": "ureter",
-  "bladder": "urinary bladder",
-  "kidneys": "kidney",
-  "lungs": "lung",
-  "sternum": "skeleton"
+  "organ:all-organs": "Multiple organs",
+  "organ:vasculature-thick": "Blood vasculature",
+  "organ:ovaries": "Ovary",
+  "organ:ureters": "Ureter",
+  "organ:bladder": "Urinary bladder",
+  "organ:kidneys": "Kidney",
+  "organ:lungs": "Lung",
+  "organ:sternum": "Skeleton"
 }
