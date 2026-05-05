@@ -11,6 +11,7 @@ import { FooterComponent } from '@hra-ui/design-system/navigation/footer';
 import { MenuOptionsType, TableColumn } from '@hra-ui/design-system/table';
 import { MarkdownComponent } from 'ngx-markdown';
 
+import { joinWithSlash } from '@hra-ui/common/url';
 import { MetadataLayoutModule } from '../../components/metadata-layout/metadata-layout.module';
 import { ProvenanceMenuComponent } from '../../components/provenance-menu/provenance-menu.component';
 import {
@@ -123,7 +124,7 @@ export class MetadataPageComponent {
 
     effect(() => {
       const pageItem = this.allItems().find((item) => {
-        return item['@id'] === `${this.baseUrl()}/${type}/${name}`;
+        return item['@id'] === joinWithSlash(this.baseUrl(), `${type}/${name}`);
       }) as DigitalObjectInfo;
       if (pageItem) {
         this.purl.set(pageItem.purl || '');
