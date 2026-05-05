@@ -18,6 +18,40 @@
     )
   );
 
+  @include mat.form-field-overrides(
+    (
+      container-vertical-padding: 0.75rem,
+
+      filled-label-text-font: vars.$body-large-font,
+      filled-label-text-size: vars.$body-large-size,
+      filled-label-text-tracking: vars.$body-large-tracking,
+      filled-label-text-weight: vars.$body-large-weight,
+
+      container-text-font: vars.$body-large-font,
+      container-text-size: vars.$body-large-size,
+      container-text-line-height: vars.$body-large-line-height,
+      container-text-tracking: vars.$body-large-tracking,
+      container-text-weight: vars.$body-large-weight,
+    )
+  );
+
+  @include mat.select-overrides(
+    (
+      trigger-text-font: vars.$body-large-font,
+      trigger-text-size: vars.$body-large-size,
+      trigger-text-line-height: vars.$body-large-line-height,
+      trigger-text-tracking: vars.$body-large-tracking,
+      trigger-text-weight: vars.$body-large-weight,
+    )
+  );
+
+  mat-form-field {
+    label.mdc-floating-label--float-above {
+      letter-spacing: 0.4px !important;
+      transform: translateY(-85%) scale(0.75) !important;
+    }
+  }
+
   mat-chip {
     max-width: calc(100% - 0.5rem) !important;
   }
