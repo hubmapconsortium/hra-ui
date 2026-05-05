@@ -1,9 +1,9 @@
 import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
-import digitalObjectIconMapJson from './data/digital-object-icon-map.json';
 import doInfoJson from './data/do-info.json';
+import doOrganNameMapJson from './data/do-organ-name-map.json';
+import doOrganToIconsJson from './data/do-organ-to-icons.json';
+import doOrganTooltipOverridesJson from './data/do-organ-tooltip-overrides.json';
 import filterCategoryInfoJson from './data/filter-category-info.json';
-import iconTooltipMapJson from './data/icon-tooltip-map.json';
-import organIconMapJson from './data/organ-icon-map.json';
 
 /** Tooltip data interface */
 export interface TooltipData {
@@ -79,14 +79,14 @@ export const FILTER_CATEGORY_INFO: Record<FilterType, FilterOptionCategory> = fi
   FilterOptionCategory
 >;
 
-/** Maps UBERON id to the correct icon in the design system */
-export const ORGAN_ICON_MAP: Record<string, string> = organIconMapJson;
+/** Maps certain organ names to their associated organ name in the design system */
+export const DO_ORGAN_NAME_MAP: Record<string, string> = doOrganNameMapJson;
 
-/** Maps digital object purls to the correct organ icons in the design system */
-export const DO_ICON_MAP: Record<string, string> = digitalObjectIconMapJson;
+/** Maps organ names to the correct organ icon name in the design system */
+export const DO_ICON_MAP: Record<string, string> = doOrganToIconsJson;
 
-/** If the icon tooltip is different from the icon name, this map provides the correct tooltip */
-export const ICON_TOOLTIP_MAP: Record<string, string> = iconTooltipMapJson;
+/** If an organ's tooltip differs from the default, this will override it */
+export const DO_ORGAN_TOOLTIP_OVERRIDES: Record<string, string> = doOrganTooltipOverridesJson;
 
 /** HRA version data info */
 export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
@@ -147,33 +147,54 @@ export function getOrganId(item?: DigitalObjectInfo): string | undefined {
 }
 
 /**
+ * Finds the name of the organ from a digital object
+ * @param item Digital object data item
+ * @returns Organ name
+ */
+function findOrganName(item: DigitalObjectInfo): string | undefined {
+  let title = item.title.toLowerCase();
+  const overrideKeys = Object.keys(DO_ORGAN_NAME_MAP);
+  const overrideOrganMatch = overrideKeys.find((key) => title.includes(key));
+  if (overrideOrganMatch) {
+    title = DO_ORGAN_NAME_MAP[overrideOrganMatch];
+  }
+
+  const organKeys = Object.keys(DO_ICON_MAP);
+  return organKeys.find((key) => title.includes(key));
+}
+
+/**
  * Gets organ icon from a digital object
+ * Will return the icon if the organ name is found in DO_ICON_MAP
+ * Otherwise will return the default "all organs" icon.
  * @param item Digital object data item
  * @returns Organ icon
  */
 export function getOrganIcon(item: DigitalObjectInfo): string {
-  const purl = item.purl;
-  if (purl && DO_ICON_MAP[purl]) {
-    return `organ:${DO_ICON_MAP[purl]}`;
-  }
-  if (item.organIds?.length === 1) {
-    return `organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? 'all-organs'}`;
+  const name = findOrganName(item);
+  if (name) {
+    return `organ:${DO_ICON_MAP[name] ?? 'all-organs'}`;
   }
   return 'organ:all-organs';
 }
 
 /**
  * Gets organ tooltip for an organ icon
- * If icon is All Organs and there are organ IDs, it will show the number of organs.
  * @param item Digital object data item
  * @returns Organ tooltip
  */
 export function getOrganTooltip(item: DigitalObjectInfo): string {
-  const icon = getOrganIcon(item);
-  if (icon === 'organ:all-organs') {
-    return `${item.organIds ? coerceArray(item?.organIds).length : 'Multiple'} organs`;
+  let label = findOrganName(item);
+  const idsLength = coerceArray(item.organIds).length;
+  if (!label) {
+    return `${idsLength > 1 ? idsLength : 'Multiple'} organs`;
   }
-  return ICON_TOOLTIP_MAP[icon] ?? sentenceCase(icon.replace(/^organ:/, '').replace(/-/g, ' '));
+  if (DO_ORGAN_TOOLTIP_OVERRIDES[label]) {
+    label = DO_ORGAN_TOOLTIP_OVERRIDES[label];
+  }
+  const mainOrganLabel = sentenceCase(label);
+  const otherOrgansLabel = ` + ${idsLength - 1} organ${idsLength > 2 ? 's' : ''}`;
+  return mainOrganLabel + (idsLength > 1 ? otherOrgansLabel : '');
 }
 
 /**
