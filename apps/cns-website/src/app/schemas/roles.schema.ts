@@ -4,7 +4,7 @@ import { LocalDateSchema } from './date.schema';
 /** Base role schema with common fields */
 const BaseRoleSchema = z.object({
   dateStart: LocalDateSchema,
-  dateEnd: z.union([z.literal('').transform(() => null), LocalDateSchema]).nullable(),
+  dateEnd: z.union([z.literal('').transform(() => null), LocalDateSchema]).nullish(),
 });
 
 /** Type representing a team member role */
@@ -36,7 +36,7 @@ export const StudentRoleSchema = z
     ...BaseRoleSchema.shape,
     type: z.literal('student'),
     topic: z.string(),
-    degree: z.enum(['Ph.D.', 'Masters']).nullable(),
+    degree: z.enum(['Ph.D.', 'Masters']).nullish(),
     department: z.string(),
   })
   .meta({ id: 'RoleStudent' });
