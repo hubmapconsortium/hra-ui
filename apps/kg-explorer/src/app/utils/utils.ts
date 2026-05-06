@@ -128,7 +128,7 @@ function findOrganName(item: DigitalObjectInfo): string | undefined {
   if (DO_ORGAN_OVERRIDES[purl]) {
     return DO_ORGAN_OVERRIDES[purl];
   }
-  //Only look up organ if the title contains an organ name
+  // Only look up organ if the title contains an organ name
   if (organId && organByTitle) {
     const organName = DO_ORGAN_ID_TO_ORGANS[organId];
     const mainOrganName = DO_ORGAN_LOOKUP[organName];
