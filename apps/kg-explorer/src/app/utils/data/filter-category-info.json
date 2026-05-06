@@ -1,0 +1,40 @@
+{
+  "digitalObjects": {
+    "label": "Digital objects",
+    "tooltip": {
+      "description": "Categories of unique data structures that construct the evolving Human Reference Atlas.",
+      "actionText": "Learn more",
+      "actionUrl": "https://humanatlas.io/overview-data"
+    }
+  },
+  "releaseVersion": {
+    "label": "HRA release version",
+    "tooltip": {
+      "description": "New and updated data is released twice a year on June 15 and December 15."
+    }
+  },
+  "organs": {
+    "label": "Organs",
+    "tooltip": {
+      "description": "Organs are distinct body structures made of specialized cells and tissues that work together to perform specific biological functions."
+    }
+  },
+  "anatomicalStructures": {
+    "label": "Anatomical structures",
+    "tooltip": {
+      "description": "A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell."
+    }
+  },
+  "cellTypes": {
+    "label": "Cell types",
+    "tooltip": {
+      "description": "Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. Tissue is composed of different (resident and transitory) cell types that are characterized or identified via biomarkers."
+    }
+  },
+  "biomarkers": {
+    "label": "Biomarkers",
+    "tooltip": {
+      "description": "Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type. They include genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL)."
+    }
+  }
+}
