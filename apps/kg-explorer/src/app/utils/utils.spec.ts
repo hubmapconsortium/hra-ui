@@ -1,6 +1,8 @@
 import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
 import { getDocumentationUrl, getOrganIcon, getOrganId, getOrganTooltip } from './utils';
 
+const HEART_ID = 'http://purl.obolibrary.org/obo/UBERON_0000948';
+
 /** Minimal DigitalObjectInfo fixture — only fields relevant to the tested functions are meaningful */
 function makeItem(overrides: Partial<DigitalObjectInfo>): DigitalObjectInfo {
   return {
@@ -72,22 +74,22 @@ describe('getOrganTooltip', () => {
   });
 
   it('returns sentence-cased label for a known organ with no override', () => {
-    expect(getOrganTooltip(makeItem({ title: 'Heart Reference Object', organIds: 'id1' }))).toBe('Heart');
+    expect(getOrganTooltip(makeItem({ title: 'Heart Reference Object', organIds: HEART_ID }))).toBe('Heart');
   });
 
   it('uses the tooltip override when one exists', () => {
     // "adipose" in title → findOrganName returns "adipose" → DO_ORGAN_TOOLTIP_OVERRIDES maps to "adipose tissue"
-    expect(getOrganTooltip(makeItem({ title: 'Adipose Tissue FTU', organIds: 'id1' }))).toBe('Adipose tissue');
+    expect(getOrganTooltip(makeItem({ title: 'Adipose Tissue FTU' }))).toBe('Adipose tissue');
   });
 
   it('appends singular "+ 1 organ" suffix when organ found and 2 organIds', () => {
-    expect(getOrganTooltip(makeItem({ title: 'Heart Reference Object', organIds: ['id1', 'id2'] }))).toBe(
+    expect(getOrganTooltip(makeItem({ title: 'Heart Reference Object', organIds: [HEART_ID, 'id2'] }))).toBe(
       'Heart + 1 organ',
     );
   });
 
   it('appends plural "+ N organs" suffix when organ found and 3 or more organIds', () => {
-    expect(getOrganTooltip(makeItem({ title: 'Heart Reference Object', organIds: ['id1', 'id2', 'id3'] }))).toBe(
+    expect(getOrganTooltip(makeItem({ title: 'Heart Reference Object', organIds: [HEART_ID, 'id2', 'id3'] }))).toBe(
       'Heart + 2 organs',
     );
   });

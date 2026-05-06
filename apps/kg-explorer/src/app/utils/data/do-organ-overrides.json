@@ -1,0 +1,20 @@
+{
+  "https://purl.humanatlas.io/asct-b/anatomical-systems": "anatomical systems",
+  "https://purl.humanatlas.io/asct-b/ovary": "ovary",
+  "https://purl.humanatlas.io/asct-b/prostate": "prostate",
+  "https://purl.humanatlas.io/ref-organ/blood-vasculature-female": "blood vasculature",
+  "https://purl.humanatlas.io/ref-organ/eye-female-left": "eye",
+  "https://purl.humanatlas.io/ref-organ/eye-male-left": "eye",
+  "https://purl.humanatlas.io/ref-organ/intervertebral-disk-female": "intervertebral disc",
+  "https://purl.humanatlas.io/ref-organ/intervertebral-disk-male": "intervertebral disc",
+  "https://purl.humanatlas.io/ref-organ/pelvis-female": "pelvis",
+  "https://purl.humanatlas.io/ref-organ/pelvis-male": "pelvis",
+  "https://purl.humanatlas.io/ref-organ/spinal-cord-female": "spinal cord",
+  "https://purl.humanatlas.io/ref-organ/spinal-cord-male": "spinal cord",
+  "https://purl.humanatlas.io/ref-organ/renal-pelvis-female-left": "renal pelvis",
+  "https://purl.humanatlas.io/ref-organ/renal-pelvis-female-right": "renal pelvis",
+  "https://purl.humanatlas.io/ref-organ/renal-pelvis-male-left": "renal pelvis",
+  "https://purl.humanatlas.io/ref-organ/renal-pelvis-male-right": "renal pelvis",
+  "https://purl.humanatlas.io/ref-organ/united-male": "all organs",
+  "https://purl.humanatlas.io/ref-organ/united-female": "all organs"
+}

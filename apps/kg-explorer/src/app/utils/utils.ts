@@ -1,9 +1,12 @@
 import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
 import doInfoJson from './data/do-info.json';
-import doOrganNameMapJson from './data/do-organ-name-map.json';
+import doOrganLookupJson from './data/do-organ-lookup.json';
+import doOrganOverridesJson from './data/do-organ-overrides.json';
 import doOrganToIconsJson from './data/do-organ-to-icons.json';
 import doOrganTooltipOverridesJson from './data/do-organ-tooltip-overrides.json';
+import doOrganIdToOrgansJson from './data/do-organid-to-organs.json';
 import filterCategoryInfoJson from './data/filter-category-info.json';
+import hraVersionDataJson from './data/hra-version-data.json';
 
 /** Tooltip data interface */
 export interface TooltipData {
@@ -79,62 +82,23 @@ export const FILTER_CATEGORY_INFO: Record<FilterType, FilterOptionCategory> = fi
   FilterOptionCategory
 >;
 
+/** If a digital object has a specific organ that is specified, this will be used */
+export const DO_ORGAN_OVERRIDES: Record<string, string> = doOrganOverridesJson;
+
+/** Maps organ IDs to their associated organ names */
+export const DO_ORGAN_ID_TO_ORGANS: Record<string, string> = doOrganIdToOrgansJson;
+
 /** Maps certain organ names to their associated organ name in the design system */
-export const DO_ORGAN_NAME_MAP: Record<string, string> = doOrganNameMapJson;
+export const DO_ORGAN_LOOKUP: Record<string, string> = doOrganLookupJson;
 
 /** Maps organ names to the correct organ icon name in the design system */
-export const DO_ICON_MAP: Record<string, string> = doOrganToIconsJson;
+export const ORGAN_TO_ICONS: Record<string, string> = doOrganToIconsJson;
 
 /** If an organ's tooltip differs from the default, this will override it */
 export const DO_ORGAN_TOOLTIP_OVERRIDES: Record<string, string> = doOrganTooltipOverridesJson;
 
 /** HRA version data info */
-export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
-  'v2.5': {
-    label: '11th Release (v2.5)',
-    date: 'June 2026',
-  },
-  'v2.4': {
-    label: '10th Release (v2.4)',
-    date: 'December 2025',
-  },
-  'v2.3': {
-    label: '9th Release (v2.3)',
-    date: 'June 2025',
-  },
-  'v2.2': {
-    label: '8th Release (v2.2)',
-    date: 'December 2024',
-  },
-  'v2.1': {
-    label: '7th Release (v2.1)',
-    date: 'June 2024',
-  },
-  'v2.0': {
-    label: '6th Release (v2.0)',
-    date: 'December 2023',
-  },
-  'v1.4': {
-    label: '5th Release (v1.4)',
-    date: 'June 2023',
-  },
-  'v1.3': {
-    label: '4th Release (v1.3)',
-    date: 'December 2022',
-  },
-  'v1.2': {
-    label: '3rd Release (v1.2)',
-    date: 'June 2022',
-  },
-  'v1.1': {
-    label: '2rd Release (v1.1)',
-    date: 'December 2021',
-  },
-  'v1.0': {
-    label: '1st Release (v1.0)',
-    date: 'June 2021',
-  },
-};
+export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = hraVersionDataJson;
 
 /**
  * Gets organ id from a digital object. If more than one organ is listed return the first one, if no organs are listed return undefined
@@ -148,24 +112,51 @@ export function getOrganId(item?: DigitalObjectInfo): string | undefined {
 
 /**
  * Finds the name of the organ from a digital object
+ * If the item purl is in DO_ORGAN_OVERRIDES, use the organ name from it
+ * Otherwise if organ id is present, look up the organ name from DO_ORGAN_ID_TO_ORGANS using the organ id
+ * If there is another organ that is used in place of that organ, use that instead (look up from DO_ORGAN_LOOKUP)
+ * Finally search for the organ by title
  * @param item Digital object data item
  * @returns Organ name
  */
 function findOrganName(item: DigitalObjectInfo): string | undefined {
-  let title = item.title.toLowerCase();
-  const overrideKeys = Object.keys(DO_ORGAN_NAME_MAP);
-  const overrideOrganMatch = overrideKeys.find((key) => title.includes(key));
-  if (overrideOrganMatch) {
-    title = DO_ORGAN_NAME_MAP[overrideOrganMatch];
-  }
+  const title = item.title.toLowerCase();
+  const purl = item.purl;
+  const organId = getOrganId(item);
+  const organByTitle = findOrganNameByTitle(title);
 
-  const organKeys = Object.keys(DO_ICON_MAP);
-  return organKeys.find((key) => title.includes(key));
+  if (DO_ORGAN_OVERRIDES[purl]) {
+    return DO_ORGAN_OVERRIDES[purl];
+  }
+  //Only look up organ if the title contains an organ name
+  if (organId && organByTitle) {
+    const organName = DO_ORGAN_ID_TO_ORGANS[organId];
+    const mainOrganName = DO_ORGAN_LOOKUP[organName];
+    return mainOrganName ?? organName;
+  }
+  return organByTitle;
+}
+
+/**
+ * Looks up organ name from a digital object title
+ * If the title contains an organ name to be overridden, look up the actual organ name and use it
+ * @param title Digital object title
+ * @returns organ name by title
+ */
+function findOrganNameByTitle(title: string): string | undefined {
+  const namesToReplace = Object.keys(DO_ORGAN_LOOKUP);
+  const organNames = Object.keys(ORGAN_TO_ICONS);
+  const overrideOrganMatch = namesToReplace.find((key) => title.includes(key));
+
+  if (overrideOrganMatch) {
+    return DO_ORGAN_LOOKUP[overrideOrganMatch];
+  }
+  return organNames.find((key) => title.includes(key));
 }
 
 /**
  * Gets organ icon from a digital object
- * Will return the icon if the organ name is found in DO_ICON_MAP
+ * Will return the icon if the organ name is found in ORGAN_TO_ICONS
  * Otherwise will return the default "all organs" icon.
  * @param item Digital object data item
  * @returns Organ icon
@@ -173,7 +164,7 @@ function findOrganName(item: DigitalObjectInfo): string | undefined {
 export function getOrganIcon(item: DigitalObjectInfo): string {
   const name = findOrganName(item);
   if (name) {
-    return `organ:${DO_ICON_MAP[name] ?? 'all-organs'}`;
+    return `organ:${ORGAN_TO_ICONS[name] ?? 'all-organs'}`;
   }
   return 'organ:all-organs';
 }
@@ -186,7 +177,8 @@ export function getOrganIcon(item: DigitalObjectInfo): string {
 export function getOrganTooltip(item: DigitalObjectInfo): string {
   let label = findOrganName(item);
   const idsLength = coerceArray(item.organIds).length;
-  if (!label) {
+
+  if (label === 'all organs' || !label) {
     return `${idsLength > 1 ? idsLength : 'Multiple'} organs`;
   }
   if (DO_ORGAN_TOOLTIP_OVERRIDES[label]) {

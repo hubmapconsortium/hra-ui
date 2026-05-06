@@ -3,6 +3,7 @@
   "bone marrow": "bone-marrow",
   "renal pelvis": "renal-pelvis",
 
+  "all organs": "all-organs",
   "adipose": "adipose-tissue",
   "anatomical systems": "anatomical-systems",
   "blood vasculature": "vasculature-thick",
@@ -39,5 +40,14 @@
   "trachea": "trachea",
   "ureter": "ureters",
   "urinary bladder": "bladder",
-  "uterus": "uterus"
+  "uterus": "uterus",
+
+  "lymph vasculature": "lymph-node",
+  "colon": "large-intestine",
+  "musculoskeletal": "muscular-system",
+  "retina": "eye",
+  "breast": "mammary-gland",
+  "salivary gland": "mouth",
+  "intestines": "small-intestine",
+  "omentum": "adipose-tissue"
 }
