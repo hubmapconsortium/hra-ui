@@ -136,16 +136,28 @@
                             <a href="#appRoutes" title="src/app/app.routes.ts" ><b>appRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
                         </li>
                         <li>
+                            <a href="#AsctbTermsSchema" title="src/app/digital-objects-metadata.schema.ts" ><b>AsctbTermsSchema</b>&nbsp;&nbsp;&nbsp;(src/.../digital-objects-metadata.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#DEFAULT_HELP_OPTIONS" title="src/app/app.component.ts" ><b>DEFAULT_HELP_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../app.component.ts)</a>
                         </li>
                         <li>
+                            <a href="#DigitalObjectInfoSchema" title="src/app/digital-objects-metadata.schema.ts" ><b>DigitalObjectInfoSchema</b>&nbsp;&nbsp;&nbsp;(src/.../digital-objects-metadata.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#DigitalObjectMetadataSchema" title="src/app/digital-objects-metadata.schema.ts" ><b>DigitalObjectMetadataSchema</b>&nbsp;&nbsp;&nbsp;(src/.../digital-objects-metadata.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DigitalObjectsJsonLdSchema" title="src/app/digital-objects-metadata.schema.ts" ><b>DigitalObjectsJsonLdSchema</b>&nbsp;&nbsp;&nbsp;(src/.../digital-objects-metadata.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#DistributionsInfoSchema" title="src/app/digital-objects-metadata.schema.ts" ><b>DistributionsInfoSchema</b>&nbsp;&nbsp;&nbsp;(src/.../digital-objects-metadata.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#DO_COLUMNS" title="src/app/app.routes.ts" ><b>DO_COLUMNS</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DO_ICON_MAP" title="src/app/utils/utils.ts" ><b>DO_ICON_MAP</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
                             <a href="#DO_INFO" title="src/app/utils/utils.ts" ><b>DO_INFO</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
@@ -166,7 +178,19 @@
                             <a href="#FILTER_CATEGORY_INFO" title="src/app/utils/utils.ts" ><b>FILTER_CATEGORY_INFO</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
+                            <a href="#FiltersStore" title="src/app/state/filters.store.ts" ><b>FiltersStore</b>&nbsp;&nbsp;&nbsp;(src/.../filters.store.ts)</a>
+                        </li>
+                        <li>
                             <a href="#HRA_VERSION_DATA" title="src/app/utils/utils.ts" ><b>HRA_VERSION_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ICON_TOOLTIP_MAP" title="src/app/utils/utils.ts" ><b>ICON_TOOLTIP_MAP</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#initialState" title="src/app/state/with-do-data.feature.ts" ><b>initialState</b>&nbsp;&nbsp;&nbsp;(src/.../with-do-data.feature.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#initialState" title="src/app/state/with-filters.feature.ts" ><b>initialState</b>&nbsp;&nbsp;&nbsp;(src/.../with-filters.feature.ts)</a>
                         </li>
                         <li>
                             <a href="#METADATA_COLUMNS" title="src/app/app.routes.ts" ><b>METADATA_COLUMNS</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
@@ -182,6 +206,9 @@
                         </li>
                         <li>
                             <a href="#SCROLLBAR_TOP_OFFSET" title="src/app/pages/main-page/main-page.component.ts" ><b>SCROLLBAR_TOP_OFFSET</b>&nbsp;&nbsp;&nbsp;(src/.../main-page.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TermsIndexSchema" title="src/app/digital-objects-metadata.schema.ts" ><b>TermsIndexSchema</b>&nbsp;&nbsp;&nbsp;(src/.../digital-objects-metadata.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#TOOLTIP_POSITIONS" title="src/app/components/filter-menu/filter-menu-overlay/filter-menu-overlay.component.ts" ><b>TOOLTIP_POSITIONS</b>&nbsp;&nbsp;&nbsp;(src/.../filter-menu-overlay.component.ts)</a>
@@ -279,11 +306,9 @@
       columns: DO_COLUMNS,
     },
     resolve: {
-      data: kgResolver(),
-      asctbTermOccurrences: asctbResolver(),
-      ontologyTree: ontologyResolver(),
-      cellTypeTree: cellTypeResolver(),
-      biomarkerTree: biomarkersResolver(),
+      data: kgJsonResolver(&#x27;/kg/digital-objects.jsonld&#x27;, DigitalObjectsJsonLdSchema),
+      asctbTerms: kgJsonResolver(&#x27;/kg/asctb-terms.json&#x27;, AsctbTermsSchema),
+      termsIndex: kgJsonResolver(&#x27;/kg/kg-terms-index.json&#x27;, TermsIndexSchema),
     },
   },
   {
@@ -293,7 +318,8 @@
       columns: METADATA_COLUMNS,
     },
     resolve: {
-      doData: kgResolver(),
+      doData: kgJsonResolver(&#x27;/kg/digital-objects.jsonld&#x27;, DigitalObjectsJsonLdSchema),
+      asctbTerms: kgJsonResolver(&#x27;/kg/asctb-terms.json&#x27;, AsctbTermsSchema),
       metadata: doMetadataResolver(),
       documentationUrl: documentationUrlResolver(),
       typeLabel: productLabelResolver(),
@@ -454,67 +480,99 @@
         </tbody>
     </table>
 </section>
-    <h3>src/app/app.component.ts</h3>
+    <h3>src/app/digital-objects-metadata.schema.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="DEFAULT_HELP_OPTIONS"></a>
+                    <a name="AsctbTermsSchema"></a>
                     <span class="name">
-                        <span ><b>DEFAULT_HELP_OPTIONS</b></span>
-                        <a href="#DEFAULT_HELP_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>AsctbTermsSchema</b></span>
+                        <a href="#AsctbTermsSchema"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/HelpMenuOptions.html" target="_self" >HelpMenuOptions[]</a></code>
+                        <i>Type : </i>    <code>unknown</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  {
-    label: &#x27;Data Overview&#x27;,
-    url: &#x27;https://humanatlas.io/overview-data&#x27;,
-  },
-  {
-    label: &#x27;Knowledge Graph&#x27;,
-    url: &#x27;https://docs.humanatlas.io/apps/kg&#x27;,
-    description: &#x27;App guide &amp; documentation&#x27;,
-  },
-  {
-    label: &#x27;Knowledge Graph for Developers&#x27;,
-    url: &#x27;https://docs.humanatlas.io/dev/kg&#x27;,
-    description: &#x27;Developer documentation&#x27;,
-    icon: &#x27;code&#x27;,
-    divider: true,
-  },
-  {
-    label: &#x27;Read publication&#x27;,
-    url: &#x27;https://doi.org/10.1038/s41597-025-05183-6&#x27;,
-    icon: &#x27;open_in_new&#x27;,
-    divider: true,
-  },
-]</code>
+                        <i>Default value : </i><code>z
+  .object({
+    asctb_type: z.string(),
+    iri: z.string(),
+    label: z.string(),
+  })
+  .array()
+  .meta({ id: &#x27;AsctbTerms&#x27; })</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Default help menu options</p>
+                    <div class="io-description"><p>ASCTB terms schema</p>
 </div>
                 </td>
             </tr>
 
         </tbody>
     </table>
-</section>
-    <h3>src/app/digital-objects-metadata.schema.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DigitalObjectInfoSchema"></a>
+                    <span class="name">
+                        <span ><b>DigitalObjectInfoSchema</b></span>
+                        <a href="#DigitalObjectInfoSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    &#x27;@id&#x27;: z.string(),
+    &#x27;@type&#x27;: z.enum(DigitalObjectInfoTypeEnum),
+    title: z.string(),
+    doType: z.string(),
+    doName: z.string(),
+    doVersion: z.string(),
+    lastUpdated: z.string(),
+    hraVersions: z.union([z.string(), z.string().array()]).optional(),
+    versions: z.union([z.string(), z.string().array()]),
+    purl: z.string(),
+    datasets: z.union([z.string(), z.string().array()]),
+    lod: z.string(),
+    cell_count: z.string().optional(),
+    biomarker_count: z.string().optional(),
+    organs: z.union([z.string(), z.string().array()]).optional(),
+    organIds: z.union([z.string(), z.string().array()]).optional(),
+  })
+  .meta({ id: &#x27;DigitalObjectInfo&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Digital object schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -584,6 +642,43 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Digital object metadata schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DigitalObjectsJsonLdSchema"></a>
+                    <span class="name">
+                        <span ><b>DigitalObjectsJsonLdSchema</b></span>
+                        <a href="#DigitalObjectsJsonLdSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    &#x27;@context&#x27;: z.record(z.string(), z.any()),
+    &#x27;@graph&#x27;: z.array(DigitalObjectInfoSchema),
+  })
+  .meta({ id: &#x27;DigitalObjectsJsonLd&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Digital objects JSON-LD schema</p>
 </div>
                 </td>
             </tr>
@@ -674,10 +769,139 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TermsIndexSchema"></a>
+                    <span class="name">
+                        <span ><b>TermsIndexSchema</b></span>
+                        <a href="#TermsIndexSchema"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>z
+  .object({
+    terms: z.string().array(),
+    purls: z.string().array(),
+    term_to_purls: z.number().array().array(),
+    purl_to_terms: z.number().array().array(),
+  })
+  .meta({ id: &#x27;TermsIndex&#x27; })</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Terms index schema</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_HELP_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_HELP_OPTIONS</b></span>
+                        <a href="#DEFAULT_HELP_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/HelpMenuOptions.html" target="_self" >HelpMenuOptions[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    label: &#x27;Data Overview&#x27;,
+    url: &#x27;https://humanatlas.io/overview-data&#x27;,
+  },
+  {
+    label: &#x27;Knowledge Graph&#x27;,
+    url: &#x27;https://docs.humanatlas.io/apps/kg&#x27;,
+    description: &#x27;App guide &amp; documentation&#x27;,
+  },
+  {
+    label: &#x27;Knowledge Graph for Developers&#x27;,
+    url: &#x27;https://docs.humanatlas.io/dev/kg&#x27;,
+    description: &#x27;Developer documentation&#x27;,
+    icon: &#x27;code&#x27;,
+    divider: true,
+  },
+  {
+    label: &#x27;Read publication&#x27;,
+    url: &#x27;https://doi.org/10.1038/s41597-025-05183-6&#x27;,
+    icon: &#x27;open_in_new&#x27;,
+    divider: true,
+  },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Default help menu options</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
     <h3>src/app/utils/utils.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DO_ICON_MAP"></a>
+                    <span class="name">
+                        <span ><b>DO_ICON_MAP</b></span>
+                        <a href="#DO_ICON_MAP"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;string, string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>digitalObjectIconMapJson</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maps digital object purls to the correct organ icons in the design system</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -696,127 +920,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{
-  &#x27;ref-organ&#x27;: {
-    label: &#x27;3D Reference Objects&#x27;,
-    tooltip: {
-      description:
-        &#x27;3D models of human organ structures, complete with accurate size and position data, to support the creation of a comprehensive 3D model of the human body, with each 3D model object carefully annotated with a proper label and an identifier from the Uberon and FMA ontologies.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/3d-reference-library&#x27;,
-    },
-    icon: &#x27;3d-organ&#x27;,
-    documentationUrl: &#x27;https://humanatlas.io/3d-reference-library&#x27;,
-  },
-  &#x27;asct-b&#x27;: {
-    label: &#x27;ASCT+B Tables&#x27;,
-    tooltip: {
-      description:
-        &#x27;Anatomical Structures, Cell Types and Biomarkers (ASCT+B) Tables are authored by multiple experts across many consortia. Tables capture the partonomy of anatomical structures, cell types, and major biomarkers (e.g., gene, protein, lipid, or metabolic markers). Cellular identity is supported by scientific evidence and linked to ontologies.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/asctb-tables&#x27;,
-    },
-    icon: &#x27;asctb-reporter&#x27;,
-    documentationUrl: &#x27;https://humanatlas.io/asctb-tables&#x27;,
-  },
-  ctann: {
-    label: &#x27;Cell Type Annotation Crosswalks&#x27;,
-    tooltip: {
-      description:
-        &#x27;Azimuth and other cell type annotation tools are used to assign cell types to cells from sc/snRNA-seq studies. Manually compiled crosswalks are used to assign ontology IDs to cell types.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/cell-type-annotations&#x27;,
-    },
-    icon: &#x27;cell-type-annotations&#x27;,
-    documentationUrl: &#x27;https://humanatlas.io/cell-type-annotations&#x27;,
-  },
-  collection: {
-    label: &#x27;Collections&#x27;,
-    tooltip: {
-      description: &#x27;Multiple digital objects that create a collection of data.&#x27;,
-    },
-    icon: &#x27;collections&#x27;,
-  },
-  &#x27;ds-graph&#x27;: {
-    label: &#x27;Dataset Graphs&#x27;,
-    tooltip: {
-      description:
-        &quot;Sample registration information submitted by consortium members in HuBMAP or other efforts, including accurate sample sizes and positions. When combined with 3D Organ data, this information helps create 3D visual tissue sample placements. Additionally, the sample information is linked to datasets from researchers&#x27; assay analyses that offer deeper insights into the tissue samples.&quot;,
-    },
-    icon: &#x27;dataset-graphs&#x27;,
-  },
-  &#x27;2d-ftu&#x27;: {
-    label: &#x27;Functional Tissue Unit Illustrations&#x27;,
-    tooltip: {
-      description:
-        &#x27;A functional tissue unit is the smallest tissue organization, i.e. a set of cells, that performs a unique physiologic function and is replicated multiple times in a whole organ. Functional Tissue Unit (FTU) Illustrations are linked to ASCT+B Tables.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/2d-ftu-illustrations&#x27;,
-    },
-    icon: &#x27;ftu&#x27;,
-    documentationUrl: &#x27;https://humanatlas.io/2d-ftu-illustrations&#x27;,
-  },
-  graph: {
-    label: &#x27;Graphs&#x27;,
-    tooltip: {
-      description: &#x27;Externally created RDF graph data.&#x27;,
-    },
-    icon: &#x27;graphs&#x27;,
-  },
-  landmark: {
-    label: &#x27;Landmarks&#x27;,
-    tooltip: {
-      description:
-        &#x27;3D model shapes representing features near organs of interest (e.g., an artery or pelvis bone near a kidney) to help experts accurately orient themselves when registering tissue blocks into a 3D Organ.&#x27;,
-    },
-    icon: &#x27;landmark&#x27;,
-  },
-  millitome: {
-    label: &#x27;Millitomes&#x27;,
-    tooltip: {
-      description:
-        &#x27;Data for cutting tissue samples using a millitome device. A digital data package that includes an STL file and a spreadsheet for assigning spatial locations to HuBMAP IDs and gathering metadata with information about the size, dimensions, donor sex, and laterality of the reference organ for which the millitome is fitted.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/millitome&#x27;,
-    },
-    icon: &#x27;millitome&#x27;,
-    documentationUrl: &#x27;https://humanatlas.io/millitome&#x27;,
-  },
-  omap: {
-    label: &#x27;Organ Mapping Antibody Panels&#x27;,
-    tooltip: {
-      description: &#x27;Collections of antibodies spatially mapping anatomical structures and cell types.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/omap&#x27;,
-    },
-    icon: &#x27;omaps&#x27;,
-    documentationUrl: &#x27;https://humanatlas.io/omap&#x27;,
-  },
-  schema: {
-    label: &#x27;Schema&#x27;,
-    tooltip: {
-      description:
-        &#x27;Describes the structure, i.e., the schema, of the normalized form of a single data type, its metadata, or shared concepts between data types.&#x27;,
-    },
-    icon: &#x27;schema&#x27;,
-  },
-  &#x27;vascular-geometry&#x27;: {
-    label: &#x27;Vascular Geometry&#x27;,
-    tooltip: {
-      description:
-        &#x27;Geometry information on the human blood vascular system capturing key attributes of different vessels, such as diameter and length, population, sample size, and reference to the source of data.&#x27;,
-    },
-    icon: &#x27;vascular-geometry&#x27;,
-  },
-  vocab: {
-    label: &#x27;Vocabulary&#x27;,
-    tooltip: {
-      description:
-        &#x27;Various reference ontologies and vocabularies that hold standard concepts and relationships used to construct data components. Vocabularies are typically external biomedical ontologies, like CL and Uberon, and they provide a convenient mechanism for querying reference ontologies alongside HRA-curated data.&#x27;,
-    },
-    icon: &#x27;vocabulary&#x27;,
-  },
-}</code>
+                        <i>Default value : </i><code>doInfoJson</code>
                     </td>
                 </tr>
 
@@ -842,56 +946,16 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Record&lt;string, FilterOptionCategory&gt;</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#FilterType" target="_self" >Record&lt;FilterType, FilterOptionCategory&gt;</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{
-  digitalObjects: {
-    label: &#x27;Digital objects&#x27;,
-    tooltip: {
-      description: &#x27;Categories of unique data structures that construct the evolving Human Reference Atlas.&#x27;,
-      actionText: &#x27;Learn more&#x27;,
-      actionUrl: &#x27;https://humanatlas.io/overview-data&#x27;,
-    },
-  },
-  releaseVersions: {
-    label: &#x27;HRA release version&#x27;,
-    tooltip: {
-      description: &#x27;New and updated data is released twice a year on June 15 and December 15.&#x27;,
-    },
-  },
-  organs: {
-    label: &#x27;Organs&#x27;,
-    tooltip: {
-      description:
-        &#x27;Organs are distinct body structures made of specialized cells and tissues that work together to perform specific biological functions.&#x27;,
-    },
-  },
-  anatomicalStructures: {
-    label: &#x27;Anatomical structures&#x27;,
-    tooltip: {
-      description:
-        &#x27;A distinct biological entity with a 3D volume and shape, e.g., an organ, functional tissue unit, or cell.&#x27;,
-    },
-  },
-  cellTypes: {
-    label: &#x27;Cell types&#x27;,
-    tooltip: {
-      description:
-        &#x27;Mammalian cells are biological units with a defined function that typically have a nucleus and cytoplasm surrounded by a membrane. Each cell type may have broad common functions across organs and specialized functions or morphological or molecular features within each organ or region. Tissue is composed of different (resident and transitory) cell types that are characterized or identified via biomarkers.&#x27;,
-    },
-  },
-  biomarkers: {
-    label: &#x27;Biomarkers&#x27;,
-    tooltip: {
-      description:
-        &#x27;Molecular, histological, morphological, radiological, physiological or anatomical features that help to characterize the biological state of the body. Here we focus on the molecular markers that can be measured to characterize a cell type. They include genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).&#x27;,
-    },
-  },
-}</code>
+                        <i>Default value : </i><code>filterCategoryInfoJson as Record&lt;
+  FilterType,
+  FilterOptionCategory
+&gt;</code>
                     </td>
                 </tr>
 
@@ -924,6 +988,10 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
+  &#x27;v2.5&#x27;: {
+    label: &#x27;11th Release (v2.5)&#x27;,
+    date: &#x27;June 2025&#x27;,
+  },
   &#x27;v2.4&#x27;: {
     label: &#x27;10th Release (v2.4)&#x27;,
     date: &#x27;December 2025&#x27;,
@@ -981,6 +1049,38 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ICON_TOOLTIP_MAP"></a>
+                    <span class="name">
+                        <span ><b>ICON_TOOLTIP_MAP</b></span>
+                        <a href="#ICON_TOOLTIP_MAP"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;string, string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>iconTooltipMapJson</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If the icon tooltip is different from the icon name, this map provides the correct tooltip</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ORGAN_ICON_MAP"></a>
                     <span class="name">
                         <span ><b>ORGAN_ICON_MAP</b></span>
@@ -996,41 +1096,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0004537&#x27;: &#x27;vasculature-thick&#x27;, //blood vasculature
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0014455&#x27;: &#x27;adipose&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000467&#x27;: &#x27;anatomical-systems&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000955&#x27;: &#x27;brain&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002182&#x27;: &#x27;extrapulmonary-bronchus&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000970&#x27;: &#x27;eye&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0003889&#x27;: &#x27;fallopian-tube-left&#x27;, //fallopian tube
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000948&#x27;: &#x27;heart&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001066&#x27;: &#x27;intervertebral-disk&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002113&#x27;: &#x27;kidneys&#x27;, //kidney
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001465&#x27;: &#x27;knee&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000059&#x27;: &#x27;large-intestine&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002107&#x27;: &#x27;liver&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002048&#x27;: &#x27;lungs&#x27;, //lung
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000029&#x27;: &#x27;lymph-node&#x27;, //lymph node
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0004536&#x27;: &#x27;lymph-node&#x27;, //lymph vasculature
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000165&#x27;: &#x27;mouth&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000383&#x27;: &#x27;muscular-system&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000992&#x27;: &#x27;ovaries&#x27;, //ovary
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001264&#x27;: &#x27;pancreas&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001270&#x27;: &#x27;pelvis&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001987&#x27;: &#x27;placenta&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002367&#x27;: &#x27;prostate&#x27;, //prostate gland
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0004288&#x27;: &#x27;sternum&#x27;, //skeleton
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002097&#x27;: &#x27;skin&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002108&#x27;: &#x27;small-intestine&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002240&#x27;: &#x27;spinal-cord&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002106&#x27;: &#x27;spleen&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0002370&#x27;: &#x27;thymus&#x27;, //thoracic thymus
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0003126&#x27;: &#x27;trachea&#x27;,
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000056&#x27;: &#x27;ureter-right&#x27;, //ureter
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0001255&#x27;: &#x27;bladder&#x27;, //urinary bladder
-  &#x27;http://purl.obolibrary.org/obo/UBERON_0000995&#x27;: &#x27;uterus&#x27;,
-}</code>
+                        <i>Default value : </i><code>organIconMapJson</code>
                     </td>
                 </tr>
 
@@ -1259,6 +1325,125 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Maps mediaType to file type data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/state/filters.store.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FiltersStore"></a>
+                    <span class="name">
+                        <span ><b>FiltersStore</b></span>
+                        <a href="#FiltersStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signalStore({ providedIn: &#x27;root&#x27; }, withDigitalObjectsData(), withFilters())</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Store for managing the application&#39;s filters</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/state/with-do-data.feature.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initialState"></a>
+                    <span class="name">
+                        <span ><b>initialState</b></span>
+                        <a href="#initialState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DigitalObjectsDataState.html" target="_self" >DigitalObjectsDataState</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  data: { &#x27;@context&#x27;: {}, &#x27;@graph&#x27;: [] },
+  asctbTerms: [],
+  termsIndex: { terms: [], purls: [], term_to_purls: [], purl_to_terms: [] },
+  allRows: [],
+  versionCounts: {},
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initial state for the digital objects data store</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/state/with-filters.feature.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initialState"></a>
+                    <span class="name">
+                        <span ><b>initialState</b></span>
+                        <a href="#initialState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/FiltersState.html" target="_self" >FiltersState</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  digitalObjects: null,
+  releaseVersion: null,
+  organs: null,
+  anatomicalStructures: null,
+  cellTypes: null,
+  biomarkers: null,
+  searchTerm: null,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initial state for the filters store</p>
 </div>
                 </td>
             </tr>

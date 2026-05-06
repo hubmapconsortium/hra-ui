@@ -131,6 +131,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="injectables/DownloadService.html" data-type="entity-link" >DownloadService</a>
                                 </li>
+                                <li class="link">
+                                    <a href="injectables/SearchService.html" data-type="entity-link" >SearchService</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -145,7 +148,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/CurrentFilters.html" data-type="entity-link" >CurrentFilters</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/DigitalObjectInfoWithHraVersions.html" data-type="entity-link" >DigitalObjectInfoWithHraVersions</a>
+                                <a href="interfaces/DigitalObjectsDataState.html" data-type="entity-link" >DigitalObjectsDataState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/FileTypeData.html" data-type="entity-link" >FileTypeData</a>
@@ -158,6 +161,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/FilterOptionCategory.html" data-type="entity-link" >FilterOptionCategory</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FilterOptions.html" data-type="entity-link" >FilterOptions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FiltersState.html" data-type="entity-link" >FiltersState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/HelpMenuOptions.html" data-type="entity-link" >HelpMenuOptions</a>

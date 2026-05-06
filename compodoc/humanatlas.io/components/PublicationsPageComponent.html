@@ -432,19 +432,25 @@ export class PublicationsPageComponent {
   }
 
   /**
-   * Groups publications by year
+   * Groups publications by year and sorts contents within each year by date in descending order
    * @param publications Raw publication data array
    * @returns Mapping from year to publication contents
    */
   private groupPublicationsByYear(publications: PublicationData): Record&lt;string, string[]&gt; {
-    return publications.reduce(
+    const groups &#x3D; publications.reduce(
       (acc, pub) &#x3D;&gt; {
         const year &#x3D; pub.dateStart.getFullYear();
-        const description &#x3D; pub.description;
-        if (!acc[year]) {
-          acc[year] &#x3D; [];
-        }
-        acc[year].push(description);
+        acc[year] ??&#x3D; [];
+        acc[year].push(pub);
+        return acc;
+      },
+      {} as Record&lt;string, PublicationData&gt;,
+    );
+
+    return Object.entries(groups).reduce(
+      (acc, [year, pubs]) &#x3D;&gt; {
+        pubs.sort((a, b) &#x3D;&gt; b.dateStart.getTime() - a.dateStart.getTime());
+        acc[year] &#x3D; pubs.map((pub) &#x3D;&gt; pub.description);
         return acc;
       },
       {} as Record&lt;string, string[]&gt;,

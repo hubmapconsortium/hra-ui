@@ -1,0 +1,717 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for kg-explorer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for kg-explorer</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  DigitalObjectsDataState</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/state/with-do-data.feature.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Interface for the digital objects data state</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#allRows" 
+>
+                                            allRows
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#asctbTerms" 
+>
+                                            asctbTerms
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#data" 
+>
+                                            data
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#termsIndex" 
+>
+                                            termsIndex
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#versionCounts" 
+>
+                                            versionCounts
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="allRows"></a>
+                                        <span class="name "><b>allRows</b>
+                                            <a href="#allRows">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>allRows:     <code>TableRow[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>TableRow[]</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>All rows of digital object data</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="asctbTerms"></a>
+                                        <span class="name "><b>asctbTerms</b>
+                                            <a href="#asctbTerms">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>asctbTerms:         <code><a href="../miscellaneous/typealiases.html#AsctbTerms" target="_self" >AsctbTerms</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#AsctbTerms" target="_self" >AsctbTerms</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>ASCTB terms</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="data"></a>
+                                        <span class="name "><b>data</b>
+                                            <a href="#data">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>data:         <code><a href="../miscellaneous/typealiases.html#DigitalObjectsJsonLd" target="_self" >DigitalObjectsJsonLd</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DigitalObjectsJsonLd" target="_self" >DigitalObjectsJsonLd</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Raw digital object data</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="termsIndex"></a>
+                                        <span class="name "><b>termsIndex</b>
+                                            <a href="#termsIndex">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>termsIndex:         <code><a href="../miscellaneous/typealiases.html#TermsIndex" target="_self" >TermsIndex</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#TermsIndex" target="_self" >TermsIndex</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Index of ASCTB terms</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="versionCounts"></a>
+                                        <span class="name "><b>versionCounts</b>
+                                            <a href="#versionCounts">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>versionCounts:     <code>Record&lt;string | number&gt;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>Record&lt;string | number&gt;</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Version counts</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { computed } from &#x27;@angular/core&#x27;;
+import { TableRow } from &#x27;@hra-ui/design-system/table&#x27;;
+import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from &#x27;@ngrx/signals&#x27;;
+import { AsctbTerms, DigitalObjectInfo, DigitalObjectsJsonLd, TermsIndex } from &#x27;../digital-objects-metadata.schema&#x27;;
+import {
+  coerceArray,
+  FilterOption,
+  formatDateToYYYYMM,
+  getOrganIcon,
+  getOrganTooltip,
+  getProductIcon,
+  getProductLabel,
+  getProductTooltip,
+  HRA_VERSION_DATA,
+  sentenceCase,
+} from &#x27;../utils/utils&#x27;;
+
+/** Interface for the digital objects data state */
+export interface DigitalObjectsDataState {
+  /** Raw digital object data */
+  data: DigitalObjectsJsonLd;
+  /** ASCTB terms */
+  asctbTerms: AsctbTerms;
+  /** Index of ASCTB terms */
+  termsIndex: TermsIndex;
+  /** All rows of digital object data */
+  allRows: TableRow[];
+  /** Version counts */
+  versionCounts: Record&lt;string, number&gt;;
+}
+
+/**
+ * Resolves raw digital object data into array of TableRow
+ * @param data Raw digital object data
+ * @returns Data as TableRow[]
+ */
+function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
+  if (!data) {
+    return [];
+  }
+  return data.map((item) &#x3D;&gt; {
+    return {
+      id: item.lod,
+      purl: item.purl,
+      doType: item.doType,
+      hraVersions: item.hraVersions,
+      doVersion: item.doVersion,
+      organIds: item.organIds,
+      title: item.title,
+      objectUrl: &#x60;${item.doType}/${item.doName}/latest&#x60;,
+      typeIcon: getProductIcon(item.doType),
+      typeTooltip: getProductLabel(item.doType),
+      organIcon: getOrganIcon(item),
+      organTooltip: getOrganTooltip(item),
+      cellCount: item.cell_count,
+      biomarkerCount: item.biomarker_count,
+      lastPublished: formatDateToYYYYMM(item.lastUpdated),
+    } as TableRow;
+  });
+}
+
+/**
+ * Gets HRA version counts from digital object data
+ * @param data The digital object data
+ * @returns Record of HRA versions with their counts
+ */
+function getVersionCounts(data: DigitalObjectInfo[]): Record&lt;string, number&gt; {
+  const result: Record&lt;string, number&gt; &#x3D; {};
+  const allVersions &#x3D; data.map((object) &#x3D;&gt; object.hraVersions);
+  const flatVersions &#x3D; allVersions.flat();
+  for (const version of flatVersions) {
+    if (version) {
+      if (result[version]) {
+        result[version] +&#x3D; 1;
+      } else {
+        result[version] &#x3D; 1;
+      }
+    }
+  }
+  return result;
+}
+
+/**
+ * Calculates count for a given filter option in a specific category
+ * @param filterOption The filter option to count
+ * @param category The category to count in
+ * @param rows The rows to filter
+ * @returns The count of the filter option in the specified category
+ */
+function calculateCount(filterOption: string, category: string, rows: TableRow[]): number {
+  return rows.filter((row) &#x3D;&gt; {
+    const cat &#x3D; coerceArray(row[category] as string[] | string | undefined);
+    if (cat) {
+      return cat.some((value) &#x3D;&gt; String(value).toLowerCase() &#x3D;&#x3D;&#x3D; filterOption.toLowerCase());
+    }
+    return false;
+  }).length;
+}
+
+/**
+ * Generates ASCTB options for a given ASCTB type
+ * @param asctbType The ASCTB type
+ * @param objects The ASCTB objects
+ * @param termsIndex The terms index
+ * @returns The ASCTB options
+ */
+function generateAsctbOptions(asctbType: string, objects: AsctbTerms, termsIndex: TermsIndex): FilterOption[] {
+  return objects
+    .filter((term) &#x3D;&gt; term.asctb_type &#x3D;&#x3D;&#x3D; asctbType)
+    .map((term) &#x3D;&gt; {
+      return {
+        id: term.iri,
+        label: term.label,
+        count: termsIndex.term_to_purls[termsIndex.terms.indexOf(term.iri)]?.length ?? 0,
+      };
+    })
+    .sort((o1, o2) &#x3D;&gt; o1.label.localeCompare(o2.label));
+}
+
+/** Initial state for the digital objects data store */
+const initialState: DigitalObjectsDataState &#x3D; {
+  data: { &#x27;@context&#x27;: {}, &#x27;@graph&#x27;: [] },
+  asctbTerms: [],
+  termsIndex: { terms: [], purls: [], term_to_purls: [], purl_to_terms: [] },
+  allRows: [],
+  versionCounts: {},
+};
+
+/**
+ * Creates a feature for managing digital objects filter options
+ * @returns The digital objects data feature
+ */
+export function withDigitalObjectsData() {
+  return signalStoreFeature(
+    withState(initialState),
+    withComputed((store) &#x3D;&gt; {
+      const kgFilterOptions &#x3D; computed(() &#x3D;&gt; {
+        const objectFilterOptions &#x3D; new Set&lt;string&gt;();
+        const organFilterOptions &#x3D; new Set&lt;string&gt;();
+        store.allRows().forEach((row) &#x3D;&gt; {
+          const doType &#x3D; row[&#x27;doType&#x27;];
+          const organs &#x3D; coerceArray(row[&#x27;organIds&#x27;] as string[] | string | undefined);
+          objectFilterOptions.add(doType as string);
+          for (const organ of organs) {
+            organFilterOptions.add(organ);
+          }
+        });
+        return {
+          doOptions: objectFilterOptions,
+          organOptions: organFilterOptions,
+        };
+      });
+
+      const _digitalObjectsOptions &#x3D; computed(() &#x3D;&gt; {
+        return Array.from(kgFilterOptions().doOptions)
+          .map((filterOption) &#x3D;&gt; {
+            return {
+              id: filterOption,
+              label: getProductLabel(filterOption),
+              count: calculateCount(filterOption, &#x27;doType&#x27;, store.allRows()),
+              tooltip: getProductTooltip(filterOption),
+            };
+          })
+          .sort((o1, o2) &#x3D;&gt; o1.label.localeCompare(o2.label)) as FilterOption[];
+      });
+
+      const _hraVersionsOptions &#x3D; computed(() &#x3D;&gt; {
+        return Object.keys(HRA_VERSION_DATA)
+          .map((filterOption) &#x3D;&gt; {
+            const versionData &#x3D; HRA_VERSION_DATA[filterOption];
+            return {
+              id: filterOption,
+              label: versionData ? versionData.label : filterOption,
+              count: store.versionCounts()[filterOption],
+              secondaryLabel: versionData ? versionData.date : undefined,
+            };
+          })
+          .sort((o1, o2) &#x3D;&gt; o2.id.localeCompare(o1.id)) as FilterOption[]; //Reverse order
+      });
+
+      const _organOptions &#x3D; computed(() &#x3D;&gt; {
+        return Array.from(kgFilterOptions().organOptions)
+          .map((organOption) &#x3D;&gt; {
+            return {
+              id: organOption,
+              label: sentenceCase(store.asctbTerms().find((term) &#x3D;&gt; term.iri &#x3D;&#x3D;&#x3D; organOption)?.label ?? organOption),
+              count: calculateCount(organOption, &#x27;organIds&#x27;, store.allRows()),
+            };
+          })
+          .sort((o1, o2) &#x3D;&gt; o1.label.localeCompare(o2.label)) as FilterOption[];
+      });
+
+      const _anatomicalStructuresOptions &#x3D; computed(() &#x3D;&gt;
+        generateAsctbOptions(&#x27;AS&#x27;, store.asctbTerms(), store.termsIndex()),
+      );
+      const _cellTypesOptions &#x3D; computed(() &#x3D;&gt; generateAsctbOptions(&#x27;CT&#x27;, store.asctbTerms(), store.termsIndex()));
+      const _biomarkerOptions &#x3D; computed(() &#x3D;&gt; generateAsctbOptions(&#x27;BM&#x27;, store.asctbTerms(), store.termsIndex()));
+
+      const allFilters &#x3D; computed(() &#x3D;&gt; {
+        return {
+          digitalObjects: _digitalObjectsOptions(),
+          releaseVersion: _hraVersionsOptions(),
+          organs: _organOptions(),
+          anatomicalStructures: _anatomicalStructuresOptions(),
+          cellTypes: _cellTypesOptions(),
+          biomarkers: _biomarkerOptions(),
+        };
+      });
+
+      return {
+        allFilters,
+      };
+    }),
+    withMethods((store) &#x3D;&gt; {
+      const setAllRows &#x3D; signalMethod((data: DigitalObjectsJsonLd) &#x3D;&gt;
+        patchState(store, { allRows: resolveData(data[&#x27;@graph&#x27;] as DigitalObjectInfo[]) }),
+      );
+      const setVersionCounts &#x3D; signalMethod((data: DigitalObjectsJsonLd) &#x3D;&gt;
+        patchState(store, { versionCounts: getVersionCounts(data[&#x27;@graph&#x27;] as DigitalObjectInfo[]) }),
+      );
+      const setAsctbTerms &#x3D; signalMethod((asctbTerms: AsctbTerms) &#x3D;&gt; patchState(store, { asctbTerms }));
+      const setTermsIndex &#x3D; signalMethod((termsIndex: TermsIndex) &#x3D;&gt; patchState(store, { termsIndex }));
+
+      return { setAllRows, setVersionCounts, setAsctbTerms, setTermsIndex };
+    }),
+  );
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'DigitalObjectsDataState.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

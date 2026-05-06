@@ -1,0 +1,799 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for kg-explorer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for kg-explorer</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  FilterOptions</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/utils/utils.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Interface for filter categories containing filter options</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#anatomicalStructures" 
+>
+                                            anatomicalStructures
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#biomarkers" 
+>
+                                            biomarkers
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#cellTypes" 
+>
+                                            cellTypes
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#digitalObjects" 
+>
+                                            digitalObjects
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#organs" 
+>
+                                            organs
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#releaseVersion" 
+>
+                                            releaseVersion
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="anatomicalStructures"></a>
+                                        <span class="name "><b>anatomicalStructures</b>
+                                            <a href="#anatomicalStructures">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>anatomicalStructures:         <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Anatomical structures filters</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="biomarkers"></a>
+                                        <span class="name "><b>biomarkers</b>
+                                            <a href="#biomarkers">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>biomarkers:         <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Biomarker filters</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="cellTypes"></a>
+                                        <span class="name "><b>cellTypes</b>
+                                            <a href="#cellTypes">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>cellTypes:         <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Cell type filters</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="digitalObjects"></a>
+                                        <span class="name "><b>digitalObjects</b>
+                                            <a href="#digitalObjects">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>digitalObjects:         <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Digital object filters</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="organs"></a>
+                                        <span class="name "><b>organs</b>
+                                            <a href="#organs">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>organs:         <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Organ filters</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="releaseVersion"></a>
+                                        <span class="name "><b>releaseVersion</b>
+                                            <a href="#releaseVersion">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>releaseVersion:         <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/FilterOption.html" target="_self" >FilterOption[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Release version filters</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DigitalObjectInfo } from &#x27;../digital-objects-metadata.schema&#x27;;
+import digitalObjectIconMapJson from &#x27;./data/digital-object-icon-map.json&#x27;;
+import doInfoJson from &#x27;./data/do-info.json&#x27;;
+import filterCategoryInfoJson from &#x27;./data/filter-category-info.json&#x27;;
+import iconTooltipMapJson from &#x27;./data/icon-tooltip-map.json&#x27;;
+import organIconMapJson from &#x27;./data/organ-icon-map.json&#x27;;
+
+/** Tooltip data interface */
+export interface TooltipData {
+  /** Tooltip description */
+  description: string;
+  /** Text on action button */
+  actionText?: string;
+  /** Url on action button */
+  actionUrl?: string;
+}
+
+/** Interface for digital object type data */
+export interface ObjectTypeData {
+  /** Object type label */
+  label: string;
+  /** Design system icon to use for the object type */
+  icon: string;
+  /** Tooltip data for the digital object type */
+  tooltip: TooltipData;
+  /** Documentation url, if available for the object type */
+  documentationUrl?: string;
+}
+
+/** Filter option category interface */
+export interface FilterOptionCategory {
+  /** Category label */
+  label: string;
+  /** Filter options for the category */
+  options?: FilterOption[];
+  /** Tooltip data */
+  tooltip?: TooltipData;
+}
+
+/** Filter option interface */
+export interface FilterOption {
+  /** Option id */
+  id: string;
+  /** Option label */
+  label: string;
+  /** Secondary label (for release version options) */
+  secondaryLabel?: string;
+  /** Number of results for the filter option in the data */
+  count: number;
+  /** Tooltip data for the filter option (for digital objects category) */
+  tooltip?: TooltipData;
+}
+
+/** Interface for filter categories containing filter options */
+export interface FilterOptions {
+  /** Digital object filters */
+  digitalObjects: FilterOption[];
+  /** Release version filters */
+  releaseVersion: FilterOption[];
+  /** Organ filters */
+  organs: FilterOption[];
+  /** Anatomical structures filters */
+  anatomicalStructures: FilterOption[];
+  /** Cell type filters */
+  cellTypes: FilterOption[];
+  /** Biomarker filters */
+  biomarkers: FilterOption[];
+}
+
+/** Filter types for the filter form */
+export type FilterType &#x3D; keyof FilterOptions;
+
+/** Stores data for a doType */
+export const DO_INFO: Record&lt;string, ObjectTypeData&gt; &#x3D; doInfoJson;
+
+/** Filter category info */
+export const FILTER_CATEGORY_INFO: Record&lt;FilterType, FilterOptionCategory&gt; &#x3D; filterCategoryInfoJson as Record&lt;
+  FilterType,
+  FilterOptionCategory
+&gt;;
+
+/** Maps UBERON id to the correct icon in the design system */
+export const ORGAN_ICON_MAP: Record&lt;string, string&gt; &#x3D; organIconMapJson;
+
+/** Maps digital object purls to the correct organ icons in the design system */
+export const DO_ICON_MAP: Record&lt;string, string&gt; &#x3D; digitalObjectIconMapJson;
+
+/** If the icon tooltip is different from the icon name, this map provides the correct tooltip */
+export const ICON_TOOLTIP_MAP: Record&lt;string, string&gt; &#x3D; iconTooltipMapJson;
+
+/** HRA version data info */
+export const HRA_VERSION_DATA: Record&lt;string, { label: string; date: string }&gt; &#x3D; {
+  &#x27;v2.5&#x27;: {
+    label: &#x27;11th Release (v2.5)&#x27;,
+    date: &#x27;June 2025&#x27;,
+  },
+  &#x27;v2.4&#x27;: {
+    label: &#x27;10th Release (v2.4)&#x27;,
+    date: &#x27;December 2025&#x27;,
+  },
+  &#x27;v2.3&#x27;: {
+    label: &#x27;9th Release (v2.3)&#x27;,
+    date: &#x27;June 2025&#x27;,
+  },
+  &#x27;v2.2&#x27;: {
+    label: &#x27;8th Release (v2.2)&#x27;,
+    date: &#x27;December 2024&#x27;,
+  },
+  &#x27;v2.1&#x27;: {
+    label: &#x27;7th Release (v2.1)&#x27;,
+    date: &#x27;June 2024&#x27;,
+  },
+  &#x27;v2.0&#x27;: {
+    label: &#x27;6th Release (v2.0)&#x27;,
+    date: &#x27;December 2023&#x27;,
+  },
+  &#x27;v1.4&#x27;: {
+    label: &#x27;5th Release (v1.4)&#x27;,
+    date: &#x27;June 2023&#x27;,
+  },
+  &#x27;v1.3&#x27;: {
+    label: &#x27;4th Release (v1.3)&#x27;,
+    date: &#x27;December 2022&#x27;,
+  },
+  &#x27;v1.2&#x27;: {
+    label: &#x27;3rd Release (v1.2)&#x27;,
+    date: &#x27;June 2022&#x27;,
+  },
+  &#x27;v1.1&#x27;: {
+    label: &#x27;2rd Release (v1.1)&#x27;,
+    date: &#x27;December 2021&#x27;,
+  },
+  &#x27;v1.0&#x27;: {
+    label: &#x27;1st Release (v1.0)&#x27;,
+    date: &#x27;June 2021&#x27;,
+  },
+};
+
+/**
+ * Gets organ id from a digital object. If more than one organ is listed return the first one, if no organs are listed return undefined
+ * @param item Digital object data item
+ * @returns Organ id
+ */
+export function getOrganId(item?: DigitalObjectInfo): string | undefined {
+  const ids &#x3D; coerceArray(item?.organIds);
+  return ids.length &gt; 0 ? ids[0] : undefined;
+}
+
+/**
+ * Returns the correct organ icon for a digital object.
+ * If the digital object has a purl and it&#x27;s in the DO_ICON_MAP, use that value for the icon.
+ * Otherwise, use the organ id if it&#x27;s in the ORGAN_ICON_MAP, or default to &#x27;all-organs&#x27;.
+ * @param item Digital object data item
+ * @returns Organ name in design system format
+ */
+export function getOrganIcon(item?: DigitalObjectInfo): string {
+  const purl &#x3D; item?.purl;
+  if (purl &amp;&amp; DO_ICON_MAP[purl]) {
+    return &#x60;organ:${DO_ICON_MAP[purl]}&#x60;;
+  }
+
+  if (getOrganId(item)) {
+    return &#x60;organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? &#x27;all-organs&#x27;}&#x60;;
+  }
+  return &#x27;organ:all-organs&#x27;;
+}
+
+/**
+ * Gets organ tooltip from a digital object (for when user hovers over the icon on the digital objects table).
+ * If the digital object has a purl and it&#x27;s in the DO_ICON_MAP, use that icon name as the tooltip unless it&#x27;s in the ICON_TOOLTIP_MAP.
+ * If the icon name is in the ICON_TOOLTIP_MAP, use that value as the tooltip.
+ * @param item Digital object data item
+ * @returns Tooltip for the organ icon
+ */
+export function getOrganTooltip(item: DigitalObjectInfo): string {
+  let organLabel &#x3D; &#x27;All organs&#x27;;
+  const organId &#x3D; getOrganId(item);
+  const purl &#x3D; item.purl;
+
+  if (DO_ICON_MAP[purl]) {
+    organLabel &#x3D; DO_ICON_MAP[purl];
+  } else if (organId &amp;&amp; ORGAN_ICON_MAP[organId]) {
+    organLabel &#x3D; ORGAN_ICON_MAP[organId];
+  }
+
+  if (ICON_TOOLTIP_MAP[organLabel as string]) {
+    organLabel &#x3D; ICON_TOOLTIP_MAP[organLabel as string];
+  }
+  return sentenceCase(organLabel).replace(/-/g, &#x27; &#x27;);
+}
+
+/**
+ * Gets product icon from digital object type
+ * @param doType Digital object type
+ * @returns Product icon string
+ */
+export function getProductIcon(doType: string): string {
+  return &#x60;product:${DO_INFO[doType]?.icon}&#x60;;
+}
+
+/**
+ * Gets product label from digital object type
+ * @param doType Digital object type
+ * @returns Product label string
+ */
+export function getProductLabel(doType: string): string {
+  return DO_INFO[doType]?.label || &#x27;&#x27;;
+}
+
+/**
+ * Gets product tooltip from digital object type
+ * @param doType Digital object type
+ * @returns Product tooltip data object
+ */
+export function getProductTooltip(doType: string): TooltipData {
+  return DO_INFO[doType]?.tooltip || &#x27;&#x27;;
+}
+
+/**
+ * Gets product documentation url from digital object type
+ * @param doType Digital object type
+ * @returns Documentation url
+ */
+export function getDocumentationUrl(doType: string): string {
+  return DO_INFO[doType]?.documentationUrl || &#x27;&#x27;;
+}
+
+/**
+ * Converts a string to sentence case
+ * @param value String to convert
+ * @returns String in sentence case
+ */
+export function sentenceCase(value: string): string {
+  const processedValue &#x3D; value.trim().toLowerCase();
+  return processedValue.charAt(0).toUpperCase() + processedValue.slice(1);
+}
+
+/**
+ * Coerces a string or array of strings to an array of strings
+ * @param value
+ * @returns array
+ */
+export function coerceArray(value: string | string[] | undefined): string[] {
+  switch (typeof value) {
+    case &#x27;undefined&#x27;:
+      return [];
+    case &#x27;string&#x27;:
+      return [value];
+    default:
+      return value;
+  }
+}
+
+/**
+ * Formats Date to yyyy-mm
+ * @param dateString Date string
+ * @returns Date as yyyy-mm
+ */
+export function formatDateToYYYYMM(dateString: string): string {
+  const date &#x3D; new Date(dateString);
+  const year &#x3D; date.getFullYear();
+  const month &#x3D; String(date.getMonth() + 1).padStart(2, &#x27;0&#x27;);
+  return &#x60;${year}-${month}&#x60;;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'FilterOptions.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
