@@ -59,6 +59,8 @@
   }
 
   @media (min-width: 640px) {
+    --hra-table-max-height: calc(100vh - 23.5rem);
+
     position: sticky;
     top: 10rem;
     max-width: 18rem;
