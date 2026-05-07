@@ -1,6 +1,12 @@
 @use 'vars';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background: vars.$background;
+
+  ::ng-deep .primary-outlet + * {
+    flex: 1;
+  }
 }

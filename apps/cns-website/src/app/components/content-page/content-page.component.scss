@@ -3,7 +3,9 @@
 @use 'utils';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .action {
     width: fit-content;
