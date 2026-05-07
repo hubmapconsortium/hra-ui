@@ -21,6 +21,8 @@
 }
 
 ::ng-deep .container {
+  max-width: 21.5rem !important;
+
   .content {
     width: 21.5rem;
   }
@@ -33,6 +35,7 @@
 
 .filter-menu-content {
   width: calc(100% + 2rem);
+  height: 19.25rem;
   display: flex;
   flex-direction: column;
   left: -16px;
@@ -101,8 +104,6 @@
   }
 
   ng-scrollbar {
-    height: 15.75rem;
-
     ::ng-deep .ng-scroll-content {
       max-width: 100%;
     }
