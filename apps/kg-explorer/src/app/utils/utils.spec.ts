@@ -2,6 +2,7 @@ import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
 import { getDocumentationUrl, getOrganIcon, getOrganId, getOrganTooltip } from './utils';
 
 const HEART_ID = 'http://purl.obolibrary.org/obo/UBERON_0000948';
+const LUNG_ID = 'http://purl.obolibrary.org/obo/UBERON_0002048';
 
 /** Minimal DigitalObjectInfo fixture — only fields relevant to the tested functions are meaningful */
 function makeItem(overrides: Partial<DigitalObjectInfo>): DigitalObjectInfo {
@@ -41,11 +42,11 @@ describe('getOrganId', () => {
   });
 
   it('returns the single organ id', () => {
-    expect(getOrganId(makeItem({ organIds: 'heart-id' }))).toBe('heart-id');
+    expect(getOrganId(makeItem({ organIds: HEART_ID }))).toBe(HEART_ID);
   });
 
   it('returns the first organ id when multiple are present', () => {
-    expect(getOrganId(makeItem({ organIds: ['first-id', 'second-id'] }))).toBe('first-id');
+    expect(getOrganId(makeItem({ organIds: [LUNG_ID, HEART_ID] }))).toBe(LUNG_ID);
   });
 });
 

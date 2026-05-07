@@ -101,21 +101,18 @@ export const DO_ORGAN_TOOLTIP_OVERRIDES: Record<string, string> = doOrganTooltip
 export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = hraVersionDataJson;
 
 /**
- * Gets organ id from a digital object. If more than one organ is listed return the first one, if no organs are listed return undefined
+ * Gets organ id from a digital object.
+ * Returns the first valid organ id from organIds
  * @param item Digital object data item
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string | undefined {
   const ids = coerceArray(item?.organIds);
-  return ids.length > 0 ? ids[0] : undefined;
+  return ids.find((id) => !!DO_ORGAN_ID_TO_ORGANS[id]);
 }
 
 /**
- * Finds the name of the organ from a digital object
- * If the item purl is in DO_ORGAN_OVERRIDES, use the organ name from it
- * Otherwise if organ id is present, look up the organ name from DO_ORGAN_ID_TO_ORGANS using the organ id
- * If there is another organ that is used in place of that organ, use that instead (look up from DO_ORGAN_LOOKUP)
- * Finally search for the organ by title
+ * Returns the organ name from a digital object
  * @param item Digital object data item
  * @returns Organ name
  */
@@ -125,16 +122,24 @@ function findOrganName(item: DigitalObjectInfo): string | undefined {
   const organId = getOrganId(item);
   const organByTitle = findOrganNameByTitle(title);
 
+  // If the item purl is in DO_ORGAN_OVERRIDES, use the organ name from it
   if (DO_ORGAN_OVERRIDES[purl]) {
     return DO_ORGAN_OVERRIDES[purl];
   }
-  // Only look up organ if the title contains an organ name
-  if (organId && organByTitle) {
+  // Next search for the organ by title
+  if (organByTitle) {
+    return organByTitle;
+  }
+  // If organ can't be found using the title, look up the organ name from DO_ORGAN_ID_TO_ORGANS using the organ id
+  // If there is another organ name that is used in place of that organ (ex. "lymph vasculature" => "lymph node"),
+  // use that instead (look up from DO_ORGAN_LOOKUP)
+  if (organId) {
     const organName = DO_ORGAN_ID_TO_ORGANS[organId];
     const mainOrganName = DO_ORGAN_LOOKUP[organName];
     return mainOrganName ?? organName;
   }
-  return organByTitle;
+
+  return undefined;
 }
 
 /**
@@ -178,7 +183,7 @@ export function getOrganTooltip(item: DigitalObjectInfo): string {
   let label = findOrganName(item);
   const idsLength = coerceArray(item.organIds).length;
 
-  if (label === 'all organs' || !label) {
+  if (label === 'all organs' || label === 'anatomical systems' || !label) {
     return `${idsLength > 1 ? idsLength : 'Multiple'} organs`;
   }
   if (DO_ORGAN_TOOLTIP_OVERRIDES[label]) {
