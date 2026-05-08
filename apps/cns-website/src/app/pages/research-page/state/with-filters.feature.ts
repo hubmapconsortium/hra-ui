@@ -334,12 +334,12 @@ export function withFilters() {
     withState(initialState),
     withComputed((store) => {
       const tagsStore = inject(TagsStore);
-      const projectItems = tagsStore.projectItems() || [];
-      const _projectOptions = computed(() =>
-        projectItems
+      const _projectOptions = computed(() => {
+        const projectItems = tagsStore.projectItems() ?? [];
+        return projectItems
           .map((item) => ({ id: item.slug, label: item.name }))
-          .sort((a, b) => a.label.localeCompare(b.label)),
-      );
+          .sort((a, b) => a.label.localeCompare(b.label));
+      });
       const projects = filterOptionsByIds(_projectOptions, store.projects);
 
       const _peopleOptions = computed(() =>
