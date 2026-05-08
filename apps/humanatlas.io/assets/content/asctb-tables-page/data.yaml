@@ -245,8 +245,8 @@ content:
     content:
       - component: Markdown
         data: |
-          -  [SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables](https://zenodo.org/records/7382751)
-          -  [SOP: ASCT+B Table Communications](https://zenodo.org/records/11625313)
+          -  [SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables](https://doi.org/10.5281/zenodo.5746152)
+          -  [SOP: ASCT+B Table Communications](https://doi.org/10.5281/zenodo.5639622)
   - component: PageSection
     tagline: Use app to visualize ASCT+B tables
     anchor: app-visualize-asctb-tables

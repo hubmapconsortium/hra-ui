@@ -30,17 +30,6 @@ content:
               url: dev/api
           - component: ActionCard
             variant: outlined
-            tagline: Apps
-            content:
-              - component: Markdown
-                data: |
-                  Explore interactive applications built on the HRA platform.
-            actionsLeft:
-              component: TextHyperlink
-              text: Learn more
-              url: dev/apps
-          - component: ActionCard
-            variant: outlined
             tagline: Changelog
             content:
               - component: Markdown
