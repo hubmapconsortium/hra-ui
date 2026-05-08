@@ -14,11 +14,17 @@
       font: vars.$label-medium;
     }
   }
+
+  mat-chip {
+    max-width: 263px;
+  }
 }
 
 ::ng-deep .container {
+  max-width: 21.5rem !important;
+
   .content {
-    width: 19.5rem;
+    width: 21.5rem;
   }
 
   .actions button {
@@ -29,6 +35,7 @@
 
 .filter-menu-content {
   width: calc(100% + 2rem);
+  height: 19.25rem;
   display: flex;
   flex-direction: column;
   left: -16px;
@@ -97,8 +104,6 @@
   }
 
   ng-scrollbar {
-    height: 15.75rem;
-
     ::ng-deep .ng-scroll-content {
       max-width: 100%;
     }
