@@ -233,11 +233,11 @@ export function getDocumentationUrl(doType: string): string {
 /**
  * Gets default version for a digital object
  * @param item Digital object data item
- * @returns default version ("draft" if available, otherwise "latest")
+ * @returns default version ("draft" if it is the only version, otherwise "latest")
  */
 export function getDefaultVersion(item: DigitalObjectInfo): string {
   const versions = coerceArray(item.versions);
-  return versions.includes('draft') ? 'draft' : 'latest';
+  return versions.length === 1 && versions[0] === 'draft' ? 'draft' : 'latest';
 }
 
 /**

@@ -33,7 +33,7 @@ export function doMetadataResolver(): ResolveFn<DigitalObjectMetadata> {
     const version = route.paramMap.get('version') || '';
     const http = inject(HttpClient);
     const mirrorUrl = injectMirrorUrl();
-    const url = `${type}/${name}/${version}/${version === 'draft' ? '' : 'metadata.json'}`;
+    const url = `${type}/${name}/${version}/metadata.json`;
     return http
       .get(joinWithSlash(mirrorUrl(), url), { responseType: 'json' })
       .pipe(catchError(() => of(undefined)))

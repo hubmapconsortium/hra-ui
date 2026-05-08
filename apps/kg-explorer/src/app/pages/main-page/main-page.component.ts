@@ -267,8 +267,7 @@ export class MainPageComponent {
    * @returns Metadata url
    */
   private getMetadataUrl(downloadId: string): string {
-    const isDraft = downloadId.endsWith('/draft');
-    return `${downloadId.replace(/\/$/, '')}/${isDraft ? '' : 'metadata.json'}`;
+    return `${downloadId.replace(/\/$/, '')}/metadata.json`;
   }
 
   /**
