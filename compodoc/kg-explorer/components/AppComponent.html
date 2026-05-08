@@ -302,7 +302,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/app.component.ts:123</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/app.component.ts:127</a></div>
                             </td>
                         </tr>
 
@@ -354,7 +354,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/app.component.ts:117</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/app.component.ts:121</a></div>
                         </td>
                     </tr>
 
@@ -628,7 +628,11 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed(() &#x3D;&gt; [this.baseUrl()].concat(this.params()).join(&#x27;/&#x27;))</code>
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const base &#x3D; this.baseUrl();
+    const params &#x3D; this.params().join(&#x27;/&#x27;);
+    return joinWithSlash(base, params);
+  })</code>
                     </td>
                 </tr>
                     <tr>
@@ -842,7 +846,11 @@ export class AppComponent extends BaseApplicationComponent {
   readonly params &#x3D; signal&lt;string[]&gt;([]);
 
   /** Id of digital object computed from params */
-  readonly objectId &#x3D; computed(() &#x3D;&gt; [this.baseUrl()].concat(this.params()).join(&#x27;/&#x27;));
+  readonly objectId &#x3D; computed(() &#x3D;&gt; {
+    const base &#x3D; this.baseUrl();
+    const params &#x3D; this.params().join(&#x27;/&#x27;);
+    return joinWithSlash(base, params);
+  });
 
   /** Base URL for the digital object */
   readonly baseUrl &#x3D; computed(() &#x3D;&gt; {

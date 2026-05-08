@@ -411,6 +411,7 @@ import { TableRow } from &#x27;@hra-ui/design-system/table&#x27;;
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from &#x27;@ngrx/signals&#x27;;
 import { AsctbTerms, DigitalObjectInfo, DigitalObjectsJsonLd, TermsIndex } from &#x27;../digital-objects-metadata.schema&#x27;;
 import {
+  getDefaultVersion,
   coerceArray,
   FilterOption,
   formatDateToYYYYMM,
@@ -455,7 +456,7 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
       doVersion: item.doVersion,
       organIds: item.organIds,
       title: item.title,
-      objectUrl: &#x60;${item.doType}/${item.doName}/latest&#x60;,
+      objectUrl: &#x60;${item.doType}/${item.doName}/${getDefaultVersion(item)}&#x60;,
       typeIcon: getProductIcon(item.doType),
       typeTooltip: getProductLabel(item.doType),
       organIcon: getOrganIcon(item),

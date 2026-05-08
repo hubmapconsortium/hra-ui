@@ -578,7 +578,7 @@ export function getProductIcon(doType: string): string {
  * @returns Product label string
  */
 export function getProductLabel(doType: string): string {
-  return DO_INFO[doType]?.label || &#x27;&#x27;;
+  return DO_INFO[doType]?.label || sentenceCase(doType);
 }
 
 /**
@@ -587,7 +587,7 @@ export function getProductLabel(doType: string): string {
  * @returns Product tooltip data object
  */
 export function getProductTooltip(doType: string): TooltipData {
-  return DO_INFO[doType]?.tooltip || &#x27;&#x27;;
+  return DO_INFO[doType]?.tooltip || { description: sentenceCase(doType) };
 }
 
 /**
@@ -597,6 +597,16 @@ export function getProductTooltip(doType: string): TooltipData {
  */
 export function getDocumentationUrl(doType: string): string {
   return DO_INFO[doType]?.documentationUrl || &#x27;&#x27;;
+}
+
+/**
+ * Gets default version for a digital object
+ * @param item Digital object data item
+ * @returns default version (&quot;draft&quot; if it is the only version, otherwise &quot;latest&quot;)
+ */
+export function getDefaultVersion(item: DigitalObjectInfo): string {
+  const versions &#x3D; coerceArray(item.versions);
+  return versions.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; versions[0] &#x3D;&#x3D;&#x3D; &#x27;draft&#x27; ? &#x27;draft&#x27; : &#x27;latest&#x27;;
 }
 
 /**
