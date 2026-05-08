@@ -63,11 +63,14 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Whether to enable total count display */
   readonly enableTotalCount = input<boolean>(false);
 
+  /** Whether to show options with zero count */
+  readonly showEmptyOptions = input<boolean>();
+
   /** List of all filters with options */
   readonly filters = model.required<FilterOptionCategory<T>[]>();
 
   /** Counts for each filter option */
-  readonly counts = input<Record<string, number>[]>();
+  readonly counts = input<Record<string, number>[]>([]);
 
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
@@ -91,6 +94,18 @@ export class FilterMenuComponent<T extends SearchListOption> {
     }
     return this.filters();
   });
+
+  /**
+   * Checks if a filter category is an "extra" category (i.e., has fewer than 2 options)
+   * @param category The filter category to check
+   * @returns True if the category is extra, false otherwise
+   */
+  isExtraCategory(category: FilterOptionCategory<T>): boolean {
+    if (this.counts().length === 0) {
+      return false;
+    }
+    return Object.keys(this.counts()[this.filters().indexOf(category)]).length < 2;
+  }
 
   /**
    * Updates filters on filter selection

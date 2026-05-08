@@ -68,6 +68,19 @@ export function parseCategories(value: unknown): CategoryOption[] | null {
 }
 
 /**
+ * Parses project names query parameter into an array of strings.
+ * @param value Raw query value
+ */
+export function parseProjectNames(value: unknown): string[] | null {
+  if (!value) {
+    return [];
+  }
+
+  const strValue = String(value).toLowerCase().trim();
+  return strValue.split(',').map((part) => part.trim());
+}
+
+/**
  * Parses event query parameter into event options.
  * @param value Raw query value
  */
@@ -157,6 +170,15 @@ export function parseGroupBy(value: unknown): string | null {
  */
 export function serializeCategories(options: CategoryOption[] | null): string | null {
   return serializeOptions(options);
+}
+
+/**
+ * Serializes selected projects to query parameter format.
+ * @param options Selected projects
+ * @returns projects in query parameter format
+ */
+export function serializeProjects(options: string[] | null): string | null {
+  return options?.join(',') || null;
 }
 
 /**

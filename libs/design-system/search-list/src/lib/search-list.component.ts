@@ -51,6 +51,9 @@ export class SearchListComponent<T extends SearchListOption> {
   /** Whether to disable the ripple effect for list items */
   readonly disableRipple = input(false, { transform: booleanAttribute });
 
+  /** Whether to show options with zero count */
+  readonly showEmptyOptions = input(false, { transform: booleanAttribute });
+
   /** All filter options */
   readonly options = input.required<T[]>();
 

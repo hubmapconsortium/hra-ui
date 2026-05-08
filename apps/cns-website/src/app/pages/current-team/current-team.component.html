@@ -13,6 +13,7 @@
       hraFeature="filters"
       tagline="People at the Cyberinfrastructure for Network Science Center"
       [filters]="store.filters()"
+      [showEmptyOptions]="true"
       (filtersChange)="store.setFilters($event)"
     >
       <mat-button-toggle-group
