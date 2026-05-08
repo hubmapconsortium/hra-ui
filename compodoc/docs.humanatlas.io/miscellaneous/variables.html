@@ -317,7 +317,10 @@
   },
   {
     path: &#x27;dev/apps&#x27;,
-    redirectTo: &#x27;apps&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/apps-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
   },
   {
     path: &#x27;dev/changelog&#x27;,

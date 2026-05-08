@@ -116,12 +116,12 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Cell Type Population Graphs",
+				label: "Cell Population Graphs",
 				url: "https://humanatlas.io/cell-population-graphs"
 			},
 			{
 				type: "item",
-				label: "Cell Type Population Predictor",
+				label: "Cell Population Predictor",
 				url: "https://humanatlas.io/user-story/1"
 			},
 			{
@@ -146,7 +146,7 @@ var menuItems = [
 			},
 			{
 				type: "item",
-				label: "Knowledge Graph Explorer",
+				label: "Knowledge Graph",
 				url: "https://docs.humanatlas.io/apps/kg"
 			},
 			{
@@ -227,6 +227,11 @@ var menuItems = [
 				type: "item",
 				label: "API Reference",
 				url: "https://docs.humanatlas.io/dev/api"
+			},
+			{
+				type: "item",
+				label: "Apps",
+				url: "https://docs.humanatlas.io/dev/apps"
 			},
 			{
 				type: "item",

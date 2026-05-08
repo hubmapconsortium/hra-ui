@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/brand/logo/src/lib/logo.component.scss"],
-  "sourcesContent": ["@use '../../../../../../libs/design-system/styles/vars' as vars;\n\n:host {\n  display: block;\n  color: var(--hra-brand-logo-text-color, vars.$on-surface);\n\n  .logo {\n    display: block;\n    color: inherit;\n  }\n}\n"],
-  "mappings": ";AAEA;AACE,WAAA;AACA,SAAA,IAAA,2BAAA,EAAA,IAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,SAAA;;",
-  "names": []
-}

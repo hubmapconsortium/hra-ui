@@ -33,7 +33,7 @@ content:
             icons: product:asctb-reporter
             content:
               - component: Markdown
-                data: Explore relationships between anatomical structures, cell types, and biomarkers.
+                data: Construct, explore, and compare data visually.
             actionsLeft:
               component: TextHyperlink
               text: Learn more
@@ -59,7 +59,7 @@ content:
               url: https://apps.humanatlas.io/cde/
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Cell Type Population Graphs
+            tagline: Cell Population Graphs
             icons: product:cell-population-graphs
             content:
               - component: Markdown
@@ -74,7 +74,7 @@ content:
               url: https://apps.humanatlas.io/cell-population-graphs
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Cell Type Population Predictor
+            tagline: Cell Population Predictor
             icons: product:cell-population-predictor
             content:
               - component: Markdown
@@ -119,7 +119,7 @@ content:
               url: https://apps.humanatlas.io/eui/
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Functional Tissue Unit Explorer
+            tagline: Functional Tissue Unit (FTU) Explorer
             icons: product:ftu
             content:
               - component: Markdown
@@ -149,7 +149,7 @@ content:
               url: https://www.meta.com/experiences/hra-organ-gallery/5696814507101529/
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Knowledge Graph Explorer
+            tagline: Knowledge Graph
             icons: product:knowledge-graph
             content:
               - component: Markdown
@@ -271,7 +271,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Explore
-              url: https://fusion.hubmapconsortium.org/
+              url: https://fusion.hubmapconsortium.org/?utm_source=hubmap
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Antibody Validation Reports

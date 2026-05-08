@@ -334,7 +334,7 @@ var menus = [
 			},
 			{
 				type: "group",
-				label: "Knowledge Graph Explorer",
+				label: "Knowledge Graph",
 				url: "https://lod.humanatlas.io/",
 				description: "Query, filter, and download digital objects"
 			},
@@ -376,12 +376,12 @@ var menus = [
 							},
 							{
 								type: "item",
-								label: "Cell Type Population Graphs",
+								label: "Cell Population Graphs",
 								url: "https://apps.humanatlas.io/cell-population-graphs/"
 							},
 							{
 								type: "item",
-								label: "Cell Type Population Predictor",
+								label: "Cell Population Predictor",
 								url: "https://apps.humanatlas.io/us1/"
 							},
 							{
@@ -443,7 +443,7 @@ var menus = [
 							},
 							{
 								type: "item",
-								label: "Knowledge Graph Explorer",
+								label: "Knowledge Graph",
 								url: "https://lod.humanatlas.io/"
 							},
 							{
