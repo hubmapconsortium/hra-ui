@@ -23,10 +23,14 @@
         { "type": "item", "label": "API", "url": "https://humanatlas.io/api" },
         { "type": "item", "label": "ASCT+B Reporter", "url": "https://humanatlas.io/asctb-reporter" },
         { "type": "item", "label": "Cell Distance Explorer", "url": "https://humanatlas.io/user-story/5" },
-        { "type": "item", "label": "Cell Population Graphs", "url": "https://humanatlas.io/cell-population-graphs" },
         {
           "type": "item",
-          "label": "Cell Population Predictor",
+          "label": "Cell Type Population Graphs",
+          "url": "https://humanatlas.io/cell-population-graphs"
+        },
+        {
+          "type": "item",
+          "label": "Cell Type Population Predictor",
           "url": "https://humanatlas.io/user-story/1"
         },
         { "type": "item", "label": "Dashboard", "url": "https://humanatlas.io/user-story/7" },
@@ -37,7 +41,7 @@
         },
         { "type": "item", "label": "Functional Tissue Unit Explorer", "url": "https://humanatlas.io/user-story/4" },
         { "type": "item", "label": "HRA Organ Gallery", "url": "https://humanatlas.io/hra-organ-gallery" },
-        { "type": "item", "label": "Knowledge Graph", "url": "https://docs.humanatlas.io/apps/kg" },
+        { "type": "item", "label": "Knowledge Graph Explorer", "url": "https://docs.humanatlas.io/apps/kg" },
         {
           "type": "item",
           "label": "Registration User Interface",
@@ -81,7 +85,6 @@
           "url": "https://docs.humanatlas.io/dev"
         },
         { "type": "item", "label": "API Reference", "url": "https://docs.humanatlas.io/dev/api" },
-        { "type": "item", "label": "Apps", "url": "https://docs.humanatlas.io/dev/apps" },
         { "type": "item", "label": "Change Log", "url": "https://docs.humanatlas.io/dev/changelog" },
         { "type": "item", "label": "Design System", "url": "https://docs.humanatlas.io/dev/design-system" },
         { "type": "item", "label": "Digital Objects", "url": "https://docs.humanatlas.io/dev/digital-objects" },

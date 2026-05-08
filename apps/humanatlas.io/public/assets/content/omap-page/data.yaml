@@ -229,34 +229,22 @@ content:
     content:
       - component: Markdown
         data: |
-          Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021.
-          "Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas." Nature Cell Biology 23 (11): 1117-28.
+          Börner, Katy, Sarah A. Teichmann, Ellen M. Quardokus, James C. Gee, Kristen Browne, David Osumi-Sutherland, Bruce W. Herr, et al. 2021. “Anatomical Structures, Cell Types and Biomarkers of the Human Reference Atlas.” *Nature Cell Biology* 23 (11): 1117–1128. https://doi.org/10.1038/s41556-021-00788-6.
 
-          Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019.
-          "Qualifying Antibodies for Image-Based Immune Profiling and Multiplexed Tissue Imaging." Nature Protocols 14 (10): 2900-2930.
+          Du, Ziming, Jia-Ren Lin, Rumana Rashid, Zoltan Maliga, Shu Wang, Jon C. Aster, Benjamin Izar, Peter K. Sorger, and Sandro Santagata. 2019. “Qualifying Antibodies for Image-Based Immune Profiling and Multiplexed Tissue Imaging.” *Nature Protocols* 14 (10): 2900–2930. https://doi.org/10.1038/s41596-019-0206-y.
 
-          Galis, Zorina S. 2019. "Common Coordinate Framework (CCF) Workshop Anatomical Mapping: Using the Vasculature for CCF."
-          Cyberinfrastructure for Network Science YouTube Channel. Accessed June 12, 2023.
+          Galis, Zorina S. 2019. “Common Coordinate Framework (CCF) Workshop Anatomical Mapping: Using the Vasculature for CCF.” *Cyberinfrastructure for Network Science YouTube Channel*. Accessed June 12, 2023.
 
-          Galis, Zorina S. 2020. "Editorial: Where Is Waldo: Contextualizing the Endothelial Cell in the Era of Precision Biology."
-          Frontiers in Cardiovascular Medicine 7: 127. doi: 10.3389/fcvm.2020.00127.
+          Galis, Zorina S. 2020. “Editorial: Where Is Waldo: Contextualizing the Endothelial Cell in the Era of Precision Biology.” *Frontiers in Cardiovascular Medicine* 7: 127. https://doi.org/10.3389/fcvm.2020.00127.
 
-          Mahnke, Yolanda, Pratip Chattopadhyay, and Mario Roederer. 2010. "Publication of Optimized Multicolor Immunofluorescence Panels."
-          Cytometry. Part A: The Journal of the International Society for Analytical Cytology 77 (9): 814-18.
+          Hickey, John W., Elizabeth K. Neumann, Andrea J. Radtke, Jeannie M. Camarillo, Rebecca T. Beuschel, Alexandre Albanese, Elizabeth McDonough, Julia Hatler, Anne E. Wiblin, Jeremy Fisher, Josh Croteau, Eliza C. Small, Anup Sood, Richard M. Caprioli, R. Michael Angelo, Garry P. Nolan, Kwanghun Chung, Stephen M. Hewitt, Ronald N. Germain, Jeffrey M. Spraggins, Emma Lundberg, Michael P. Snyder, Neil L. Kelleher, and Sinem K. Saka. 2022. “Spatial mapping of protein composition and tissue organization: a primer for multiplexed antibody-based imaging.” *Nature Methods* 19: 284–295. https://doi.org/10.1038/s41592-021-01316-y.
 
-          Quardokus, E. M., Saunders, D. C., McDonough, E., Hickey, J. W., Werlein, C., Surrette, C., Rajbhandari, P., Casals, A. M., Tian, H.,
-          Lowery, L., Neumann, E. K., Björklund, F., Neelakantan, T. V., Croteau, J., Wiblin, A. E., Fisher, J., Livengood, A. J., Dowell, K. G.,
-          Silverstein, J. C., Spraggins, J. M., Pryhuber, G. S., Deutsch, G., Ginty, F., Nolan, G. P., Melov, S., Jonigk, D., Caldwell, M. A.,
-          Vlachos, I. S., Muller, W., Gehlenborg, N., Stockwell, B. R., Lundberg, E., Snyder, M. P., Germain, R. N., Camarillo, J. M., Kelleher,
-          N. L., Börner, K. & Radtke, A. J. Organ Mapping Antibody Panels: a community resource for standardized multiplexed tissue imaging.
-          Nat Methods (2023).
+          Mahnke, Yolanda, Pratip Chattopadhyay, and Mario Roederer. 2010. “Publication of Optimized Multicolor Immunofluorescence Panels.” *Cytometry Part A: The Journal of the International Society for Analytical Cytology* 77 (9): 814–818. https://doi.org/10.1002/cyto.a.20916.
 
-          Radtke Andrea J., Chu Colin J, Yaniv Ziv, Yao Li, Marr James, Beuschel Rebecca T, Ichise Hiroshi, et al. 2021.
-          "Accompanying Dataset for: 'IBEX: An Iterative Immunolabeling and Chemical Bleaching Method for High-Content Imaging of Diverse Tissues.
-          '" doi: 10.5281/zenodo.5244551.
+          Quardokus, E. M., D. C. Saunders, E. McDonough, J. W. Hickey, C. Werlein, C. Surrette, P. Rajbhandari, A. M. Casals, H. Tian, L. Lowery, E. K. Neumann, F. Björklund, T. V. Neelakantan, J. Croteau, A. E. Wiblin, J. Fisher, A. J. Livengood, K. G. Dowell, J. C. Silverstein, J. M. Spraggins, G. S. Pryhuber, G. Deutsch, F. Ginty, G. P. Nolan, S. Melov, D. Jonigk, M. A. Caldwell, I. S. Vlachos, W. Muller, N. Gehlenborg, B. R. Stockwell, E. Lundberg, M. P. Snyder, R. N. Germain, J. M. Camarillo, N. L. Kelleher, Katy Börner, and A. J. Radtke. 2023. “Organ Mapping Antibody Panels: a community resource for standardized multiplexed tissue imaging.” *Nature Methods*. https://doi.org/10.1038/s41592-023-01846-7.
 
-          Roederer, Mario, and Attila Tárnok. 2010. "OMIPs—Orchestrating Multiplexity in Polychromatic Science."
-          Cytometry Part A 77A (9): 811-12.
+          Radtke, Andrea J., Colin J. Chu, Ziv Yaniv, Li Yao, James Marr, Rebecca T. Beuschel, Hiroshi Ichise, et al. 2021. “Accompanying Dataset for: ‘IBEX: An Iterative Immunolabeling and Chemical Bleaching Method for High-Content Imaging of Diverse Tissues.’” https://doi.org/10.5281/zenodo.5244551.
 
-          Weber Griffin M., Yingnan Ju, and Katy Börner. 2020. "Considerations for Using the Vasculature as a Coordinate System to
-          Map All the Cells in the Human Body." Frontiers in Cardiovascular Medicine 7: 29. https://doi.org/10.3389/fcvm.2020.00029.
+          Roederer, Mario, and Attila Tárnok. 2010. “OMIPs—Orchestrating Multiplexity in Polychromatic Science.” *Cytometry Part A* 77A (9): 811–812.
+
+          Weber, Griffin M., Yingnan Ju, and Katy Börner. 2020. “Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body.” *Frontiers in Cardiovascular Medicine* 7: 29. https://doi.org/10.3389/fcvm.2020.00029.

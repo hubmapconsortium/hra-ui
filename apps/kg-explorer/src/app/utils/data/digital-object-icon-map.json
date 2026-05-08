@@ -1,0 +1,14 @@
+{
+  "https://purl.humanatlas.io/asct-b/anatomical-systems": "anatomical-systems",
+  "https://purl.humanatlas.io/asct-b/bone-marrow": "bone-marrow",
+  "https://purl.humanatlas.io/asct-b/muscular-system": "muscular-system",
+  "https://purl.humanatlas.io/asct-b/palatine-tonsil": "palatine-tonsil",
+  "https://purl.humanatlas.io/asct-b/peripheral-nervous-system": "peripheral-nervous-system",
+  "https://purl.humanatlas.io/asct-b/ovary": "ovaries",
+  "https://purl.humanatlas.io/asct-b/prostate": "prostate",
+  "https://purl.humanatlas.io/asct-b/uterus": "uterus",
+  "https://purl.humanatlas.io/asct-b/blood-vasculature-organ-crosswalk": "vasculature-thick",
+  "https://purl.humanatlas.io/asct-b/lymph-vasculature-organ-crosswalk": "lymph-node",
+  "https://purl.humanatlas.io/asct-b/musculoskeletal-crosswalk": "muscular-system",
+  "https://purl.humanatlas.io/asct-b/peripheral-nervous-system-organ-crosswalk": "peripheral-nervous-system"
+}

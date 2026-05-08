@@ -39,8 +39,6 @@ content:
               <meta charset="utf-8" />
               <title>RUI Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-              <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
               <link href="https://cdn.humanatlas.io/ui/ccf-rui/styles.css" rel="stylesheet" />
               <script src="https://cdn.humanatlas.io/ui/ccf-rui/wc.js" defer></script>
             </head>
@@ -85,8 +83,6 @@ content:
               <meta charset="utf-8" />
               <title>EUI Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-              <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
               <link href="https://cdn.humanatlas.io/ui/ccf-eui/styles.css" rel="stylesheet" />
               <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" defer></script>
             </head>
@@ -133,8 +129,6 @@ content:
               <meta charset="utf-8" />
               <title>EUI Organ Info Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-              <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
               <link href="https://cdn.humanatlas.io/ui/ccf-organ-info/styles.css" rel="stylesheet" />
               <script src="https://cdn.humanatlas.io/ui/ccf-organ-info/wc.js" defer></script>
             </head>
@@ -237,9 +231,6 @@ content:
               <!-- The important bits -->
               <base href="https://cdn.humanatlas.io/ui/ftu-ui/" />
               <link rel="preconnect" href="https://fonts.gstatic.com" />
-              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-              <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-              <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
               <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
               <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" defer></script>
               <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" defer></script>
@@ -285,12 +276,6 @@ content:
               <meta charset="utf-8" />
               <title>FTU Ui Small Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-              <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-              <link
-                rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-              />
               <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
               <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" type="module"></script>
               <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" type="module"></script>

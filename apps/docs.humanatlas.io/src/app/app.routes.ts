@@ -49,10 +49,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'dev/apps',
-    component: ContentPageComponent,
-    resolve: {
-      data: createYamlSpecResolver('assets/content/apps-page/data.yaml', ContentPageDataSchema),
-    },
+    redirectTo: 'apps',
   },
   {
     path: 'dev/changelog',

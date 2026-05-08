@@ -33,9 +33,7 @@ describe('FooterComponent', () => {
     ).toBeInTheDocument();
   });
 
-  it('should display a data notice', async () => {
-    expect(screen.getByRole('link', { name: /HuBMAP/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Data Portal/i })).toBeInTheDocument();
+  it('should display FAIR principles', async () => {
     expect(screen.getByRole('link', { name: /FAIR principles/i })).toBeInTheDocument();
   });
 });
