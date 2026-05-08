@@ -1,6 +1,6 @@
 <form class="content" hraFeature="create-visualization-page" [formGroup]="visualizationForm">
   <div class="page-nav">
-    <h1 class="title">Create a Cell Distance Visualization</h1>
+    <h1 class="title">Create a Distance Visualization</h1>
   </div>
 
   <hra-workflow-card
@@ -11,7 +11,7 @@
   >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="1" />
-      <span class="card-title">Upload Data</span>
+      <span class="card-title">Upload data</span>
       <hra-info-button>
         Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
         damage and proliferation markers.
@@ -33,9 +33,9 @@
     </h2>
     <table aria-label="data upload requirements">
       <tr>
-        <th>Required Columns</th>
-        <th>Optional Columns</th>
-        <th>Supported Format</th>
+        <th>Required columns</th>
+        <th>Optional columns</th>
+        <th>Supported format</th>
       </tr>
 
       <tr>
@@ -45,10 +45,10 @@
       </tr>
       <tr>
         <td>• <span>Y</span></td>
-        <td>• <span>Cell Ontology ID</span></td>
+        <td>• <span>Cell ontology ID</span></td>
       </tr>
       <tr>
-        <td>• <span>Cell Type</span></td>
+        <td>• <span>Cell type</span></td>
       </tr>
     </table>
 
@@ -71,7 +71,7 @@
   <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="2" />
-      <span class="card-title">Organize Data</span>
+      <span class="card-title">Organize data</span>
       <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>
     </h2>
 
@@ -83,7 +83,7 @@
       <span class="subheader">Required: Verify column headers</span>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="x-axis-selector">
-        <mat-label>X Axis</mat-label>
+        <mat-label>X axis</mat-label>
         <mat-select
           disableRipple
           formControlName="xAxis"
@@ -99,7 +99,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="y-axis-selector">
-        <mat-label>Y Axis</mat-label>
+        <mat-label>Y axis</mat-label>
         <mat-select
           disableRipple
           formControlName="yAxis"
@@ -115,7 +115,7 @@
       </mat-form-field>
 
       <mat-form-field class="cell-type-select" subscriptSizing="dynamic" hraFeature="cell-type-selector">
-        <mat-label>Cell Type</mat-label>
+        <mat-label>Cell type</mat-label>
         <mat-select
           disableRipple
           formControlName="cellType"
@@ -139,7 +139,7 @@
       <span class="subheader">Optional: Add column headers</span>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="z-axis-selector">
-        <mat-label>Z Axis</mat-label>
+        <mat-label>Z axis</mat-label>
         <mat-select
           disableRipple
           formControlName="zAxis"
@@ -155,7 +155,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="cell-ontology-selector">
-        <mat-label>Cell Ontology ID</mat-label>
+        <mat-label>Cell ontology ID</mat-label>
         <mat-select
           disableRipple
           formControlName="ontologyId"
@@ -175,7 +175,7 @@
   <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="3" />
-      <div class="card-title">Configure Parameters</div>
+      <div class="card-title">Configure parameters</div>
       <hra-info-button>
         The anchor cell type represents the cell type to which the nearest cell distance distributions should be
         computed and visualized. Euclidian distance is used to compute the distance between two cells. "Endothelial" is
@@ -195,7 +195,7 @@
 
     <div class="parameters-1">
       <mat-form-field subscriptSizing="dynamic" hraFeature="anchor-cell-type-selector">
-        <mat-label>Anchor Cell Type</mat-label>
+        <mat-label>Anchor cell type</mat-label>
         <mat-select
           disableRipple
           formControlName="nodeTargetValue"
@@ -211,7 +211,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="distance-threshold">
-        <mat-label>Distance Threshold</mat-label>
+        <mat-label>Distance threshold</mat-label>
         <input matInput formControlName="distanceThreshold" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
@@ -237,7 +237,7 @@
   <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="4" />
-      <div class="card-title">Optional: Add Metadata</div>
+      <div class="card-title">Optional: Add metadata</div>
       <hra-info-button>
         Information in these fields will not change the visualization output. Metadata may be helpful for taking
         screenshots of the uploaded data and resulting visualizations in the Visualization App.
@@ -246,12 +246,12 @@
 
     <div class="row">
       <mat-form-field subscriptSizing="dynamic" hraFeature="visualization-title">
-        <mat-label>Visualization Title</mat-label>
+        <mat-label>Visualization title</mat-label>
         <input matInput formControlName="title" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="imaging-technology">
-        <mat-label>Imaging Technology</mat-label>
+        <mat-label>Imaging technology</mat-label>
         <input matInput formControlName="technology" hraClickEvent cdeMarkEmptyFormControl />
       </mat-form-field>
     </div>
@@ -311,7 +311,7 @@
   >
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="5" />
-      <div class="card-title">Optional: Configure Colors</div>
+      <div class="card-title">Optional: Configure colors</div>
       <hra-info-button>
         Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
         may be changed individually while exploring the visualization in the Visualization App.
@@ -339,7 +339,7 @@
       hraButtonToggleSize="large"
     >
       <mat-button-toggle disableRipple value="default" hraFeature="toggle.default" hraClickEvent
-        >Use Default Colors</mat-button-toggle
+        >Use default colors</mat-button-toggle
       >
       <mat-button-toggle
         disableRipple
@@ -347,20 +347,20 @@
         data-testid="upload-custom"
         hraFeature="toggle.custom"
         hraClickEvent
-        >Upload Color Map</mat-button-toggle
+        >Upload color map</mat-button-toggle
       >
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
       <table aria-label="custom color map requirements">
         <tr>
-          <th>Required Columns</th>
-          <th>Supported Format</th>
+          <th>Required columns</th>
+          <th>Supported format</th>
           <th></th>
           <th></th>
         </tr>
         <tr>
-          <td>• <span>Cell Type</span></td>
+          <td>• <span>Cell type</span></td>
           <td>• <span>CSV</span></td>
         </tr>
         <tr>
@@ -387,7 +387,7 @@
   <hra-workflow-card class="card visualize" hraFeature="visualize-data">
     <h2 class="header">
       <hra-step-indicator class="step-number" [value]="6" />
-      <div class="card-title">Visualize Cell Distance Data</div>
+      <div class="card-title">Visualize cell distance data</div>
       <hra-info-button>
         <div hraInfoButtonTooltipContent>
           Data on the Create Visualization page cannot be modified after a visualization is generated.
