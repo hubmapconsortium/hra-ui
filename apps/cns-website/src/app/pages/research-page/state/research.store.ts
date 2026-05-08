@@ -7,7 +7,7 @@ import {
   parseFundingIds,
   parseGroupBy,
   parsePeopleIds,
-  parseProjects,
+  parseProjectNames,
   parsePublicationIds,
   parseSearch,
   parseSortBy,
@@ -57,7 +57,7 @@ export const ResearchStore = signalStore(
       const funding = createWritableStateSlice(store.fundingIds, store.setFundingIds);
       const publications = createWritableStateSlice(store.publicationIds, store.setPublicationIds);
       const people = createWritableStateSlice(store.peopleIds, store.setPeopleIds);
-      const projects = createWritableStateSlice(store.projects, store.setProjects);
+      const projects = createWritableStateSlice(store.projects, store.setProjectNames);
       const years = createWritableStateSlice(store.years, store.setYears);
       const search = createWritableStateSlice(store.search, store.setSearch);
       const sortBy = createWritableStateSlice(store._sortBy, store.setSortBy);
@@ -96,7 +96,7 @@ export const ResearchStore = signalStore(
       });
       linkedQueryParam('project', {
         source: projects,
-        parse: parseProjects,
+        parse: parseProjectNames,
         stringify: serializeProjects,
         ...commonOptions,
       });

@@ -1,4 +1,4 @@
-import { computed, Signal } from '@angular/core';
+import { computed, inject, Signal } from '@angular/core';
 import { FilterOptionCategory } from '@hra-ui/design-system/filter-menu';
 import { SearchListOption } from '@hra-ui/design-system/search-list';
 import {
@@ -14,6 +14,7 @@ import { PeopleId } from '../../../schemas/people.schema';
 import { ResearchTypeId, ResearchTypeItem } from '../../../schemas/research-type.schema';
 import { ResearchCategoryId, ResearchItem, ResearchProjectId } from '../../../schemas/research.schema';
 
+import { TagsStore } from '../../../state/tags/tags.store';
 import { ResearchState } from './with-research.feature';
 
 /** Generic search list option with a typed id */
@@ -86,8 +87,8 @@ interface FilterState {
   fundingIds: string[] | null;
   /** Selected people IDs */
   peopleIds: string[] | null;
-  /** Selected project */
-  projects: ProjectsOption[] | null;
+  /** Selected project names */
+  projects: string[] | null;
   /** Selected years */
   years: YearOption[] | null;
   /** Search text */
@@ -120,16 +121,6 @@ export const CATEGORY_OPTIONS: CategoryOption[] = [
   { id: 'software' as ResearchCategoryId, label: 'Software Products' },
   { id: 'teaching' as ResearchCategoryId, label: 'Teaching' },
   { id: 'visualization' as ResearchCategoryId, label: 'Visualizations' },
-];
-
-/** Project filter options */
-export const PROJECT_OPTIONS: ProjectsOption[] = [
-  { id: 'amatria' as ResearchProjectId, label: 'Amatria' },
-  { id: 'envisioning-intelligences' as ResearchProjectId, label: 'Envisioning Intelligences' },
-  { id: 'human-reference-atlas' as ResearchProjectId, label: 'Human Reference Atlas' },
-  { id: 'macroscopes' as ResearchProjectId, label: 'Macroscopes' },
-  { id: 'maps' as ResearchProjectId, label: 'Maps' },
-  { id: 'whole-person-physiome' as ResearchProjectId, label: 'Whole Person Physiome' },
 ];
 
 /** Year filter options from 1991 to current year */
@@ -183,7 +174,7 @@ const PEOPLE_FILTER: FilterOptionCategory<PeopleOption> = {
 const PROJECTS_FILTER: FilterOptionCategory<ProjectsOption> = {
   id: 'project',
   label: 'Project',
-  options: PROJECT_OPTIONS,
+  options: [],
   selected: [],
 };
 
@@ -342,6 +333,15 @@ export function withFilters() {
     { state: type<ResearchState>() },
     withState(initialState),
     withComputed((store) => {
+      const tagsStore = inject(TagsStore);
+      const projectItems = tagsStore.projectItems() || [];
+      const _projectOptions = computed(() =>
+        projectItems
+          .map((item) => ({ id: item.slug, label: item.name }))
+          .sort((a, b) => a.label.localeCompare(b.label)),
+      );
+      const projects = filterOptionsByIds(_projectOptions, store.projects);
+
       const _peopleOptions = computed(() =>
         store
           .peopleItems()
@@ -364,7 +364,7 @@ export function withFilters() {
       const _fundingFilter = optionsToFilter(FUNDING_FILTER, funding, _fundingOptions);
       const _publicationsFilter = optionsToFilter(PUBLICATIONS_FILTER, publications, _publicationOptions);
       const _peopleFilter = optionsToFilter(PEOPLE_FILTER, people, _peopleOptions);
-      const _projectsFilter = optionsToFilter(PROJECTS_FILTER, store.projects);
+      const _projectsFilter = optionsToFilter(PROJECTS_FILTER, projects, _projectOptions);
       const _yearsFilter = optionsToFilter(YEARS_FILTER, store.years);
 
       const filters = computed((): FilterOptionCategory<SearchListOption>[] => [
@@ -394,7 +394,7 @@ export function withFilters() {
         item.people.some((person) => selectedPeople.has(person)),
       );
 
-      const _selectedProjects = optionsToSet(store.projects);
+      const _selectedProjects = optionsToSet(projects);
       const _filteredByProject = createFilteredBy(_filteredByPeople, _selectedProjects, (item, selectedProjects) =>
         item.projects.some((project) => selectedProjects.has(project)),
       );
@@ -487,7 +487,14 @@ export function withFilters() {
       setPeople: signalMethod((people: PeopleOption[] | null) =>
         patchState(store, { peopleIds: people?.map((p) => p.id) ?? null }),
       ),
-      setProjects: signalMethod((projects: ProjectsOption[] | null) => patchState(store, { projects })),
+      /** Sets selected project names */
+      setProjectNames: signalMethod((projects: string[] | null) => patchState(store, { projects })),
+      /** Sets selected project options.
+       * @param projects Selected project options
+       */
+      setProjects: signalMethod((projects: ProjectsOption[] | null) =>
+        patchState(store, { projects: projects?.map((p) => p.id) ?? null }),
+      ),
       /**
        * Sets selected years.
        * @param years Selected year options
@@ -517,7 +524,7 @@ export function withFilters() {
           eventIds: events.length > 0 ? events.map((e) => e.id) : null,
           fundingIds: funding.length > 0 ? funding.map((f) => f.id) : null,
           peopleIds: people.length > 0 ? people.map((p) => p.id) : null,
-          projects: projects.length > 0 ? projects : null,
+          projects: projects.length > 0 ? projects.map((p) => p.id) : null,
           years: years.length > 0 ? years : null,
         });
       }),

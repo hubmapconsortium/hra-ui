@@ -1,11 +1,4 @@
-import {
-  CATEGORY_OPTIONS,
-  CategoryOption,
-  PROJECT_OPTIONS,
-  ProjectsOption,
-  YEAR_OPTIONS,
-  YearOption,
-} from './with-filters.feature';
+import { CATEGORY_OPTIONS, CategoryOption, YEAR_OPTIONS, YearOption } from './with-filters.feature';
 import { GroupBy, SortBy } from './with-ordering.feature';
 import { View } from './with-view.feature';
 
@@ -75,11 +68,16 @@ export function parseCategories(value: unknown): CategoryOption[] | null {
 }
 
 /**
- * Parses projects query parameter into projects options.
+ * Parses project names query parameter into an array of strings.
  * @param value Raw query value
  */
-export function parseProjects(value: unknown): ProjectsOption[] | null {
-  return parseOptions(PROJECT_OPTIONS, value);
+export function parseProjectNames(value: unknown): string[] | null {
+  if (!value) {
+    return [];
+  }
+
+  const strValue = String(value).toLowerCase().trim();
+  return strValue.split(',').map((part) => part.trim());
 }
 
 /**
@@ -179,8 +177,8 @@ export function serializeCategories(options: CategoryOption[] | null): string | 
  * @param options Selected projects
  * @returns projects in query parameter format
  */
-export function serializeProjects(options: ProjectsOption[] | null): string | null {
-  return serializeOptions(options);
+export function serializeProjects(options: string[] | null): string | null {
+  return options?.join(',') || null;
 }
 
 /**
