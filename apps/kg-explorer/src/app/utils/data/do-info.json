@@ -117,5 +117,12 @@
       "description": "Various reference ontologies and vocabularies that hold standard concepts and relationships used to construct data components. Vocabularies are typically external biomedical ontologies, like CL and Uberon, and they provide a convenient mechanism for querying reference ontologies alongside HRA-curated data."
     },
     "icon": "vocabulary"
+  },
+  "wpp": {
+    "label": "Whole Person Physiome (WPP) Tables",
+    "tooltip": {
+      "description": "Whole Person Physiome (WPP) Tables"
+    },
+    "icon": "asctb-reporter"
   }
 }

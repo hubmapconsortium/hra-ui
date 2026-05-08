@@ -3,6 +3,7 @@ import { TableRow } from '@hra-ui/design-system/table';
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
 import { AsctbTerms, DigitalObjectInfo, DigitalObjectsJsonLd, TermsIndex } from '../digital-objects-metadata.schema';
 import {
+  getDefaultVersion,
   coerceArray,
   FilterOption,
   formatDateToYYYYMM,
@@ -47,7 +48,7 @@ function resolveData(data?: DigitalObjectInfo[]): TableRow[] {
       doVersion: item.doVersion,
       organIds: item.organIds,
       title: item.title,
-      objectUrl: `${item.doType}/${item.doName}/latest`,
+      objectUrl: `${item.doType}/${item.doName}/${getDefaultVersion(item)}`,
       typeIcon: getProductIcon(item.doType),
       typeTooltip: getProductLabel(item.doType),
       organIcon: getOrganIcon(item),
