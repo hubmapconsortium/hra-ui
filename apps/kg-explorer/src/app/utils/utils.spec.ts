@@ -1,5 +1,5 @@
 import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
-import { getDocumentationUrl, getOrganIcon, getOrganId, getOrganTooltip } from './utils';
+import { getDocumentationUrl, getOrganIcon, getOrganId, getOrganTooltip, ORGAN_TO_ICONS } from './utils';
 
 const HEART_ID = 'http://purl.obolibrary.org/obo/UBERON_0000948';
 const LUNG_ID = 'http://purl.obolibrary.org/obo/UBERON_0002048';
@@ -53,6 +53,20 @@ describe('getOrganId', () => {
 describe('findOrganName (via getOrganIcon)', () => {
   it('returns all-organs icon when title matches nothing', () => {
     expect(getOrganIcon(makeItem({ title: 'Completely unknown structure' }))).toBe('organ:all-organs');
+  });
+
+  it('returns all-organs icon when title matches an organ name but ORGAN_TO_ICONS has no entry', () => {
+    const heartIcon = 'heart';
+    const originalValue = ORGAN_TO_ICONS[heartIcon];
+    delete ORGAN_TO_ICONS[heartIcon];
+
+    try {
+      expect(getOrganIcon(makeItem({ title: 'Heart Reference Object' }))).toBe('organ:all-organs');
+    } finally {
+      if (originalValue) {
+        ORGAN_TO_ICONS[heartIcon] = originalValue;
+      }
+    }
   });
 
   it('returns correct icon when title directly matches a DO_ICON_MAP key', () => {
