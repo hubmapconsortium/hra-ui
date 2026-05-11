@@ -111,7 +111,11 @@ export class AppComponent extends BaseApplicationComponent {
   readonly params = signal<string[]>([]);
 
   /** Id of digital object computed from params */
-  readonly objectId = computed(() => [this.baseUrl()].concat(this.params()).join('/'));
+  readonly objectId = computed(() => {
+    const base = this.baseUrl();
+    const params = this.params().join('/');
+    return joinWithSlash(base, params);
+  });
 
   /** Base URL for the digital object */
   readonly baseUrl = computed(() => {

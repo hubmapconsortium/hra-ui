@@ -1,9 +1,12 @@
 import { DigitalObjectInfo } from '../digital-objects-metadata.schema';
-import digitalObjectIconMapJson from './data/digital-object-icon-map.json';
 import doInfoJson from './data/do-info.json';
+import doOrganLookupJson from './data/do-organ-lookup.json';
+import doOrganOverridesJson from './data/do-organ-overrides.json';
+import doOrganToIconsJson from './data/do-organ-to-icons.json';
+import doOrganTooltipOverridesJson from './data/do-organ-tooltip-overrides.json';
+import doOrganIdToOrgansJson from './data/do-organid-to-organs.json';
 import filterCategoryInfoJson from './data/filter-category-info.json';
-import iconTooltipMapJson from './data/icon-tooltip-map.json';
-import organIconMapJson from './data/organ-icon-map.json';
+import hraVersionDataJson from './data/hra-version-data.json';
 
 /** Tooltip data interface */
 export interface TooltipData {
@@ -79,114 +82,116 @@ export const FILTER_CATEGORY_INFO: Record<FilterType, FilterOptionCategory> = fi
   FilterOptionCategory
 >;
 
-/** Maps UBERON id to the correct icon in the design system */
-export const ORGAN_ICON_MAP: Record<string, string> = organIconMapJson;
+/** If a digital object has a specific organ that is specified, this will be used */
+export const DO_ORGAN_OVERRIDES: Record<string, string> = doOrganOverridesJson;
 
-/** Maps digital object purls to the correct organ icons in the design system */
-export const DO_ICON_MAP: Record<string, string> = digitalObjectIconMapJson;
+/** Maps organ IDs to their associated organ names */
+export const DO_ORGAN_ID_TO_ORGANS: Record<string, string> = doOrganIdToOrgansJson;
 
-/** If the icon tooltip is different from the icon name, this map provides the correct tooltip */
-export const ICON_TOOLTIP_MAP: Record<string, string> = iconTooltipMapJson;
+/** Maps certain organ names to their associated organ name in the design system */
+export const DO_ORGAN_LOOKUP: Record<string, string> = doOrganLookupJson;
+
+/** Maps organ names to the correct organ icon name in the design system */
+export const ORGAN_TO_ICONS: Record<string, string> = doOrganToIconsJson;
+
+/** If an organ's tooltip differs from the default, this will override it */
+export const DO_ORGAN_TOOLTIP_OVERRIDES: Record<string, string> = doOrganTooltipOverridesJson;
 
 /** HRA version data info */
-export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = {
-  'v2.5': {
-    label: '11th Release (v2.5)',
-    date: 'June 2025',
-  },
-  'v2.4': {
-    label: '10th Release (v2.4)',
-    date: 'December 2025',
-  },
-  'v2.3': {
-    label: '9th Release (v2.3)',
-    date: 'June 2025',
-  },
-  'v2.2': {
-    label: '8th Release (v2.2)',
-    date: 'December 2024',
-  },
-  'v2.1': {
-    label: '7th Release (v2.1)',
-    date: 'June 2024',
-  },
-  'v2.0': {
-    label: '6th Release (v2.0)',
-    date: 'December 2023',
-  },
-  'v1.4': {
-    label: '5th Release (v1.4)',
-    date: 'June 2023',
-  },
-  'v1.3': {
-    label: '4th Release (v1.3)',
-    date: 'December 2022',
-  },
-  'v1.2': {
-    label: '3rd Release (v1.2)',
-    date: 'June 2022',
-  },
-  'v1.1': {
-    label: '2rd Release (v1.1)',
-    date: 'December 2021',
-  },
-  'v1.0': {
-    label: '1st Release (v1.0)',
-    date: 'June 2021',
-  },
-};
+export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = hraVersionDataJson;
 
 /**
- * Gets organ id from a digital object. If more than one organ is listed return the first one, if no organs are listed return undefined
+ * Gets organ id from a digital object.
+ * Returns the first valid organ id from organIds
  * @param item Digital object data item
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string | undefined {
   const ids = coerceArray(item?.organIds);
-  return ids.length > 0 ? ids[0] : undefined;
+  return ids.find((id) => !!DO_ORGAN_ID_TO_ORGANS[id]);
 }
 
 /**
- * Returns the correct organ icon for a digital object.
- * If the digital object has a purl and it's in the DO_ICON_MAP, use that value for the icon.
- * Otherwise, use the organ id if it's in the ORGAN_ICON_MAP, or default to 'all-organs'.
+ * Returns the organ name from a digital object
  * @param item Digital object data item
- * @returns Organ name in design system format
+ * @returns Organ name
  */
-export function getOrganIcon(item?: DigitalObjectInfo): string {
-  const purl = item?.purl;
-  if (purl && DO_ICON_MAP[purl]) {
-    return `organ:${DO_ICON_MAP[purl]}`;
+function findOrganName(item: DigitalObjectInfo): string | undefined {
+  const title = item.title.toLowerCase();
+  const purl = item.purl;
+  const organId = getOrganId(item);
+  const organByTitle = findOrganNameByTitle(title);
+
+  // If the item purl is in DO_ORGAN_OVERRIDES, use the organ name from it
+  if (DO_ORGAN_OVERRIDES[purl]) {
+    return DO_ORGAN_OVERRIDES[purl];
+  }
+  // Next search for the organ by title
+  if (organByTitle) {
+    return organByTitle;
+  }
+  // If organ can't be found using the title, look up the organ name from DO_ORGAN_ID_TO_ORGANS using the organ id
+  // If there is another organ name that is used in place of that organ (ex. "lymph vasculature" => "lymph node"),
+  // use that instead (look up from DO_ORGAN_LOOKUP)
+  if (organId) {
+    const organName = DO_ORGAN_ID_TO_ORGANS[organId];
+    const mainOrganName = DO_ORGAN_LOOKUP[organName];
+    return mainOrganName ?? organName;
   }
 
-  if (getOrganId(item)) {
-    return `organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? 'all-organs'}`;
+  return undefined;
+}
+
+/**
+ * Looks up organ name from a digital object title
+ * If the title contains an organ name to be overridden, look up the actual organ name and use it
+ * @param title Digital object title
+ * @returns organ name by title
+ */
+function findOrganNameByTitle(title: string): string | undefined {
+  const namesToReplace = Object.keys(DO_ORGAN_LOOKUP);
+  const organNames = Object.keys(ORGAN_TO_ICONS);
+  const overrideOrganMatch = namesToReplace.find((key) => title.includes(key));
+
+  if (overrideOrganMatch) {
+    return DO_ORGAN_LOOKUP[overrideOrganMatch];
+  }
+  return organNames.find((key) => title.includes(key));
+}
+
+/**
+ * Gets organ icon from a digital object
+ * Will return the icon if the organ name is found in ORGAN_TO_ICONS
+ * Otherwise will return the default "all organs" icon.
+ * @param item Digital object data item
+ * @returns Organ icon
+ */
+export function getOrganIcon(item: DigitalObjectInfo): string {
+  const name = findOrganName(item);
+  if (name) {
+    return `organ:${ORGAN_TO_ICONS[name] ?? 'all-organs'}`;
   }
   return 'organ:all-organs';
 }
 
 /**
- * Gets organ tooltip from a digital object (for when user hovers over the icon on the digital objects table).
- * If the digital object has a purl and it's in the DO_ICON_MAP, use that icon name as the tooltip unless it's in the ICON_TOOLTIP_MAP.
- * If the icon name is in the ICON_TOOLTIP_MAP, use that value as the tooltip.
+ * Gets organ tooltip for an organ icon
  * @param item Digital object data item
- * @returns Tooltip for the organ icon
+ * @returns Organ tooltip
  */
 export function getOrganTooltip(item: DigitalObjectInfo): string {
-  let organLabel = 'All organs';
-  const organId = getOrganId(item);
-  const purl = item.purl;
+  let label = findOrganName(item);
+  const idsLength = coerceArray(item.organIds).length;
 
-  if (DO_ICON_MAP[purl]) {
-    organLabel = DO_ICON_MAP[purl];
-  } else if (organId && ORGAN_ICON_MAP[organId]) {
-    organLabel = ORGAN_ICON_MAP[organId];
+  if (label === 'all organs' || label === 'anatomical systems' || !label) {
+    return `${idsLength > 1 ? idsLength : 'Multiple'} organs`;
   }
-
-  if (ICON_TOOLTIP_MAP[organLabel as string]) {
-    organLabel = ICON_TOOLTIP_MAP[organLabel as string];
+  if (DO_ORGAN_TOOLTIP_OVERRIDES[label]) {
+    label = DO_ORGAN_TOOLTIP_OVERRIDES[label];
   }
-  return sentenceCase(organLabel).replace(/-/g, ' ');
+  const mainOrganLabel = sentenceCase(label);
+  const otherOrgansLabel = ` + ${idsLength - 1} organ${idsLength > 2 ? 's' : ''}`;
+  return mainOrganLabel + (idsLength > 1 ? otherOrgansLabel : '');
 }
 
 /**
@@ -204,7 +209,7 @@ export function getProductIcon(doType: string): string {
  * @returns Product label string
  */
 export function getProductLabel(doType: string): string {
-  return DO_INFO[doType]?.label || '';
+  return DO_INFO[doType]?.label || sentenceCase(doType);
 }
 
 /**
@@ -213,7 +218,7 @@ export function getProductLabel(doType: string): string {
  * @returns Product tooltip data object
  */
 export function getProductTooltip(doType: string): TooltipData {
-  return DO_INFO[doType]?.tooltip || '';
+  return DO_INFO[doType]?.tooltip || { description: sentenceCase(doType) };
 }
 
 /**
@@ -223,6 +228,16 @@ export function getProductTooltip(doType: string): TooltipData {
  */
 export function getDocumentationUrl(doType: string): string {
   return DO_INFO[doType]?.documentationUrl || '';
+}
+
+/**
+ * Gets default version for a digital object
+ * @param item Digital object data item
+ * @returns default version ("draft" if it is the only version, otherwise "latest")
+ */
+export function getDefaultVersion(item: DigitalObjectInfo): string {
+  const versions = coerceArray(item.versions);
+  return versions.length === 1 && versions[0] === 'draft' ? 'draft' : 'latest';
 }
 
 /**

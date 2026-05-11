@@ -75,7 +75,7 @@
               "tagline": "HRApop Visualizer",
               "description": "Explore cell type populations.",
               "imagePath": "assets/ui-images/hra-pop-visualizer.png",
-              "logoPath": "product:cell-population-predictor",
+              "logoPath": "product:hra-pop",
               "appUrl": "/hra-pop-visualizer",
               "documentLink": "https://doi.org/10.1101/2025.08.14.670406"
             }
