@@ -3,10 +3,10 @@ import { TableRow } from '@hra-ui/design-system/table';
 import { patchState, signalMethod, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
 import { AsctbTerms, DigitalObjectInfo, DigitalObjectsJsonLd, TermsIndex } from '../digital-objects-metadata.schema';
 import {
-  getDefaultVersion,
   coerceArray,
   FilterOption,
   formatDateToYYYYMM,
+  getDefaultVersion,
   getOrganIcon,
   getOrganTooltip,
   getProductIcon,
