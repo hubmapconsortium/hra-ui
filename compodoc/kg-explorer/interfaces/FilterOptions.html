@@ -452,11 +452,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DigitalObjectInfo } from &#x27;../digital-objects-metadata.schema&#x27;;
-import digitalObjectIconMapJson from &#x27;./data/digital-object-icon-map.json&#x27;;
 import doInfoJson from &#x27;./data/do-info.json&#x27;;
+import doOrganLookupJson from &#x27;./data/do-organ-lookup.json&#x27;;
+import doOrganOverridesJson from &#x27;./data/do-organ-overrides.json&#x27;;
+import doOrganToIconsJson from &#x27;./data/do-organ-to-icons.json&#x27;;
+import doOrganTooltipOverridesJson from &#x27;./data/do-organ-tooltip-overrides.json&#x27;;
+import doOrganIdToOrgansJson from &#x27;./data/do-organid-to-organs.json&#x27;;
 import filterCategoryInfoJson from &#x27;./data/filter-category-info.json&#x27;;
-import iconTooltipMapJson from &#x27;./data/icon-tooltip-map.json&#x27;;
-import organIconMapJson from &#x27;./data/organ-icon-map.json&#x27;;
+import hraVersionDataJson from &#x27;./data/hra-version-data.json&#x27;;
 
 /** Tooltip data interface */
 export interface TooltipData {
@@ -532,114 +535,116 @@ export const FILTER_CATEGORY_INFO: Record&lt;FilterType, FilterOptionCategory&gt
   FilterOptionCategory
 &gt;;
 
-/** Maps UBERON id to the correct icon in the design system */
-export const ORGAN_ICON_MAP: Record&lt;string, string&gt; &#x3D; organIconMapJson;
+/** If a digital object has a specific organ that is specified, this will be used */
+export const DO_ORGAN_OVERRIDES: Record&lt;string, string&gt; &#x3D; doOrganOverridesJson;
 
-/** Maps digital object purls to the correct organ icons in the design system */
-export const DO_ICON_MAP: Record&lt;string, string&gt; &#x3D; digitalObjectIconMapJson;
+/** Maps organ IDs to their associated organ names */
+export const DO_ORGAN_ID_TO_ORGANS: Record&lt;string, string&gt; &#x3D; doOrganIdToOrgansJson;
 
-/** If the icon tooltip is different from the icon name, this map provides the correct tooltip */
-export const ICON_TOOLTIP_MAP: Record&lt;string, string&gt; &#x3D; iconTooltipMapJson;
+/** Maps certain organ names to their associated organ name in the design system */
+export const DO_ORGAN_LOOKUP: Record&lt;string, string&gt; &#x3D; doOrganLookupJson;
+
+/** Maps organ names to the correct organ icon name in the design system */
+export const ORGAN_TO_ICONS: Record&lt;string, string&gt; &#x3D; doOrganToIconsJson;
+
+/** If an organ&#x27;s tooltip differs from the default, this will override it */
+export const DO_ORGAN_TOOLTIP_OVERRIDES: Record&lt;string, string&gt; &#x3D; doOrganTooltipOverridesJson;
 
 /** HRA version data info */
-export const HRA_VERSION_DATA: Record&lt;string, { label: string; date: string }&gt; &#x3D; {
-  &#x27;v2.5&#x27;: {
-    label: &#x27;11th Release (v2.5)&#x27;,
-    date: &#x27;June 2025&#x27;,
-  },
-  &#x27;v2.4&#x27;: {
-    label: &#x27;10th Release (v2.4)&#x27;,
-    date: &#x27;December 2025&#x27;,
-  },
-  &#x27;v2.3&#x27;: {
-    label: &#x27;9th Release (v2.3)&#x27;,
-    date: &#x27;June 2025&#x27;,
-  },
-  &#x27;v2.2&#x27;: {
-    label: &#x27;8th Release (v2.2)&#x27;,
-    date: &#x27;December 2024&#x27;,
-  },
-  &#x27;v2.1&#x27;: {
-    label: &#x27;7th Release (v2.1)&#x27;,
-    date: &#x27;June 2024&#x27;,
-  },
-  &#x27;v2.0&#x27;: {
-    label: &#x27;6th Release (v2.0)&#x27;,
-    date: &#x27;December 2023&#x27;,
-  },
-  &#x27;v1.4&#x27;: {
-    label: &#x27;5th Release (v1.4)&#x27;,
-    date: &#x27;June 2023&#x27;,
-  },
-  &#x27;v1.3&#x27;: {
-    label: &#x27;4th Release (v1.3)&#x27;,
-    date: &#x27;December 2022&#x27;,
-  },
-  &#x27;v1.2&#x27;: {
-    label: &#x27;3rd Release (v1.2)&#x27;,
-    date: &#x27;June 2022&#x27;,
-  },
-  &#x27;v1.1&#x27;: {
-    label: &#x27;2rd Release (v1.1)&#x27;,
-    date: &#x27;December 2021&#x27;,
-  },
-  &#x27;v1.0&#x27;: {
-    label: &#x27;1st Release (v1.0)&#x27;,
-    date: &#x27;June 2021&#x27;,
-  },
-};
+export const HRA_VERSION_DATA: Record&lt;string, { label: string; date: string }&gt; &#x3D; hraVersionDataJson;
 
 /**
- * Gets organ id from a digital object. If more than one organ is listed return the first one, if no organs are listed return undefined
+ * Gets organ id from a digital object.
+ * Returns the first valid organ id from organIds
  * @param item Digital object data item
  * @returns Organ id
  */
 export function getOrganId(item?: DigitalObjectInfo): string | undefined {
   const ids &#x3D; coerceArray(item?.organIds);
-  return ids.length &gt; 0 ? ids[0] : undefined;
+  return ids.find((id) &#x3D;&gt; !!DO_ORGAN_ID_TO_ORGANS[id]);
 }
 
 /**
- * Returns the correct organ icon for a digital object.
- * If the digital object has a purl and it&#x27;s in the DO_ICON_MAP, use that value for the icon.
- * Otherwise, use the organ id if it&#x27;s in the ORGAN_ICON_MAP, or default to &#x27;all-organs&#x27;.
+ * Returns the organ name from a digital object
  * @param item Digital object data item
- * @returns Organ name in design system format
+ * @returns Organ name
  */
-export function getOrganIcon(item?: DigitalObjectInfo): string {
-  const purl &#x3D; item?.purl;
-  if (purl &amp;&amp; DO_ICON_MAP[purl]) {
-    return &#x60;organ:${DO_ICON_MAP[purl]}&#x60;;
+function findOrganName(item: DigitalObjectInfo): string | undefined {
+  const title &#x3D; item.title.toLowerCase();
+  const purl &#x3D; item.purl;
+  const organId &#x3D; getOrganId(item);
+  const organByTitle &#x3D; findOrganNameByTitle(title);
+
+  // If the item purl is in DO_ORGAN_OVERRIDES, use the organ name from it
+  if (DO_ORGAN_OVERRIDES[purl]) {
+    return DO_ORGAN_OVERRIDES[purl];
+  }
+  // Next search for the organ by title
+  if (organByTitle) {
+    return organByTitle;
+  }
+  // If organ can&#x27;t be found using the title, look up the organ name from DO_ORGAN_ID_TO_ORGANS using the organ id
+  // If there is another organ name that is used in place of that organ (ex. &quot;lymph vasculature&quot; &#x3D;&gt; &quot;lymph node&quot;),
+  // use that instead (look up from DO_ORGAN_LOOKUP)
+  if (organId) {
+    const organName &#x3D; DO_ORGAN_ID_TO_ORGANS[organId];
+    const mainOrganName &#x3D; DO_ORGAN_LOOKUP[organName];
+    return mainOrganName ?? organName;
   }
 
-  if (getOrganId(item)) {
-    return &#x60;organ:${ORGAN_ICON_MAP[getOrganId(item) as string] ?? &#x27;all-organs&#x27;}&#x60;;
+  return undefined;
+}
+
+/**
+ * Looks up organ name from a digital object title
+ * If the title contains an organ name to be overridden, look up the actual organ name and use it
+ * @param title Digital object title
+ * @returns organ name by title
+ */
+function findOrganNameByTitle(title: string): string | undefined {
+  const namesToReplace &#x3D; Object.keys(DO_ORGAN_LOOKUP);
+  const organNames &#x3D; Object.keys(ORGAN_TO_ICONS);
+  const overrideOrganMatch &#x3D; namesToReplace.find((key) &#x3D;&gt; title.includes(key));
+
+  if (overrideOrganMatch) {
+    return DO_ORGAN_LOOKUP[overrideOrganMatch];
+  }
+  return organNames.find((key) &#x3D;&gt; title.includes(key));
+}
+
+/**
+ * Gets organ icon from a digital object
+ * Will return the icon if the organ name is found in ORGAN_TO_ICONS
+ * Otherwise will return the default &quot;all organs&quot; icon.
+ * @param item Digital object data item
+ * @returns Organ icon
+ */
+export function getOrganIcon(item: DigitalObjectInfo): string {
+  const name &#x3D; findOrganName(item);
+  if (name) {
+    return &#x60;organ:${ORGAN_TO_ICONS[name] ?? &#x27;all-organs&#x27;}&#x60;;
   }
   return &#x27;organ:all-organs&#x27;;
 }
 
 /**
- * Gets organ tooltip from a digital object (for when user hovers over the icon on the digital objects table).
- * If the digital object has a purl and it&#x27;s in the DO_ICON_MAP, use that icon name as the tooltip unless it&#x27;s in the ICON_TOOLTIP_MAP.
- * If the icon name is in the ICON_TOOLTIP_MAP, use that value as the tooltip.
+ * Gets organ tooltip for an organ icon
  * @param item Digital object data item
- * @returns Tooltip for the organ icon
+ * @returns Organ tooltip
  */
 export function getOrganTooltip(item: DigitalObjectInfo): string {
-  let organLabel &#x3D; &#x27;All organs&#x27;;
-  const organId &#x3D; getOrganId(item);
-  const purl &#x3D; item.purl;
+  let label &#x3D; findOrganName(item);
+  const idsLength &#x3D; coerceArray(item.organIds).length;
 
-  if (DO_ICON_MAP[purl]) {
-    organLabel &#x3D; DO_ICON_MAP[purl];
-  } else if (organId &amp;&amp; ORGAN_ICON_MAP[organId]) {
-    organLabel &#x3D; ORGAN_ICON_MAP[organId];
+  if (label &#x3D;&#x3D;&#x3D; &#x27;all organs&#x27; || label &#x3D;&#x3D;&#x3D; &#x27;anatomical systems&#x27; || !label) {
+    return &#x60;${idsLength &gt; 1 ? idsLength : &#x27;Multiple&#x27;} organs&#x60;;
   }
-
-  if (ICON_TOOLTIP_MAP[organLabel as string]) {
-    organLabel &#x3D; ICON_TOOLTIP_MAP[organLabel as string];
+  if (DO_ORGAN_TOOLTIP_OVERRIDES[label]) {
+    label &#x3D; DO_ORGAN_TOOLTIP_OVERRIDES[label];
   }
-  return sentenceCase(organLabel).replace(/-/g, &#x27; &#x27;);
+  const mainOrganLabel &#x3D; sentenceCase(label);
+  const otherOrgansLabel &#x3D; &#x60; + ${idsLength - 1} organ${idsLength &gt; 2 ? &#x27;s&#x27; : &#x27;&#x27;}&#x60;;
+  return mainOrganLabel + (idsLength &gt; 1 ? otherOrgansLabel : &#x27;&#x27;);
 }
 
 /**
@@ -657,7 +662,7 @@ export function getProductIcon(doType: string): string {
  * @returns Product label string
  */
 export function getProductLabel(doType: string): string {
-  return DO_INFO[doType]?.label || &#x27;&#x27;;
+  return DO_INFO[doType]?.label || sentenceCase(doType);
 }
 
 /**
@@ -666,7 +671,7 @@ export function getProductLabel(doType: string): string {
  * @returns Product tooltip data object
  */
 export function getProductTooltip(doType: string): TooltipData {
-  return DO_INFO[doType]?.tooltip || &#x27;&#x27;;
+  return DO_INFO[doType]?.tooltip || { description: sentenceCase(doType) };
 }
 
 /**
@@ -676,6 +681,16 @@ export function getProductTooltip(doType: string): TooltipData {
  */
 export function getDocumentationUrl(doType: string): string {
   return DO_INFO[doType]?.documentationUrl || &#x27;&#x27;;
+}
+
+/**
+ * Gets default version for a digital object
+ * @param item Digital object data item
+ * @returns default version (&quot;draft&quot; if it is the only version, otherwise &quot;latest&quot;)
+ */
+export function getDefaultVersion(item: DigitalObjectInfo): string {
+  const versions &#x3D; coerceArray(item.versions);
+  return versions.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; versions[0] &#x3D;&#x3D;&#x3D; &#x27;draft&#x27; ? &#x27;draft&#x27; : &#x27;latest&#x27;;
 }
 
 /**

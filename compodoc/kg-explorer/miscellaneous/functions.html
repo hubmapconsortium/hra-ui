@@ -145,10 +145,19 @@
                             <a href="#extractData" title="src/app/utils/route-data.ts" ><b>extractData</b>&nbsp;&nbsp;&nbsp;(src/.../route-data.ts)</a>
                         </li>
                         <li>
+                            <a href="#findOrganName" title="src/app/utils/utils.ts" ><b>findOrganName</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#findOrganNameByTitle" title="src/app/utils/utils.ts" ><b>findOrganNameByTitle</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#formatDateToYYYYMM" title="src/app/utils/utils.ts" ><b>formatDateToYYYYMM</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
                             <a href="#generateAsctbOptions" title="src/app/state/with-do-data.feature.ts" ><b>generateAsctbOptions</b>&nbsp;&nbsp;&nbsp;(src/.../with-do-data.feature.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getDefaultVersion" title="src/app/utils/utils.ts" ><b>getDefaultVersion</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
                             <a href="#getDocumentationUrl" title="src/app/utils/utils.ts" ><b>getDocumentationUrl</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
@@ -648,6 +657,145 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOrganName"></a>
+                    <span class="name">
+                        <span ><b>findOrganName</b></span>
+                        <a href="#findOrganName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findOrganName(item: <a href="../miscellaneous/typealiases.html#DigitalObjectInfo" target="_self">DigitalObjectInfo</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns the organ name from a digital object</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DigitalObjectInfo" target="_self" >DigitalObjectInfo</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Digital object data item</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Organ name</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOrganNameByTitle"></a>
+                    <span class="name">
+                        <span ><b>findOrganNameByTitle</b></span>
+                        <a href="#findOrganNameByTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findOrganNameByTitle(title: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Looks up organ name from a digital object title
+If the title contains an organ name to be overridden, look up the actual organ name and use it</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>title</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Digital object title</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>organ name by title</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="formatDateToYYYYMM"></a>
                     <span class="name">
                         <span ><b>formatDateToYYYYMM</b></span>
@@ -707,6 +855,75 @@
                         </div>
                             <div class="io-description">
                                 <p>Date as yyyy-mm</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultVersion"></a>
+                    <span class="name">
+                        <span ><b>getDefaultVersion</b></span>
+                        <a href="#getDefaultVersion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDefaultVersion(item: <a href="../miscellaneous/typealiases.html#DigitalObjectInfo" target="_self">DigitalObjectInfo</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Gets default version for a digital object</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DigitalObjectInfo" target="_self" >DigitalObjectInfo</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Digital object data item</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>default version (&quot;draft&quot; if it is the only version, otherwise &quot;latest&quot;)</p>
 
                             </div>
                 </td>
@@ -795,7 +1012,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getOrganIcon(item?: <a href="../miscellaneous/typealiases.html#DigitalObjectInfo" target="_self">DigitalObjectInfo</a>)</code>
+<code>getOrganIcon(item: <a href="../miscellaneous/typealiases.html#DigitalObjectInfo" target="_self">DigitalObjectInfo</a>)</code>
                 </td>
             </tr>
 
@@ -804,9 +1021,9 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Returns the correct organ icon for a digital object.
-If the digital object has a purl and it&#39;s in the DO_ICON_MAP, use that value for the icon.
-Otherwise, use the organ id if it&#39;s in the ORGAN_ICON_MAP, or default to &#39;all-organs&#39;.</p>
+                        <div class="io-description"><p>Gets organ icon from a digital object
+Will return the icon if the organ name is found in ORGAN_TO_ICONS
+Otherwise will return the default &quot;all organs&quot; icon.</p>
 </div>
 
                             <div class="io-description">
@@ -829,7 +1046,7 @@ Otherwise, use the organ id if it&#39;s in the ORGAN_ICON_MAP, or default to &#3
                                             </td>
 
                                             <td>
-                                                    Yes
+                                                    No
                                             </td>
 
 
@@ -846,7 +1063,7 @@ Otherwise, use the organ id if it&#39;s in the ORGAN_ICON_MAP, or default to &#3
 
                         </div>
                             <div class="io-description">
-                                <p>Organ name in design system format</p>
+                                <p>Organ icon</p>
 
                             </div>
                 </td>
@@ -875,7 +1092,8 @@ Otherwise, use the organ id if it&#39;s in the ORGAN_ICON_MAP, or default to &#3
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Gets organ id from a digital object. If more than one organ is listed return the first one, if no organs are listed return undefined</p>
+                        <div class="io-description"><p>Gets organ id from a digital object.
+Returns the first valid organ id from organIds</p>
 </div>
 
                             <div class="io-description">
@@ -944,9 +1162,7 @@ Otherwise, use the organ id if it&#39;s in the ORGAN_ICON_MAP, or default to &#3
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Gets organ tooltip from a digital object (for when user hovers over the icon on the digital objects table).
-If the digital object has a purl and it&#39;s in the DO_ICON_MAP, use that icon name as the tooltip unless it&#39;s in the ICON_TOOLTIP_MAP.
-If the icon name is in the ICON_TOOLTIP_MAP, use that value as the tooltip.</p>
+                        <div class="io-description"><p>Gets organ tooltip for an organ icon</p>
 </div>
 
                             <div class="io-description">
@@ -986,7 +1202,7 @@ If the icon name is in the ICON_TOOLTIP_MAP, use that value as the tooltip.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Tooltip for the organ icon</p>
+                                <p>Organ tooltip</p>
 
                             </div>
                 </td>
