@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/ccf-shared/src/lib/components/xyz-position/xyz-position.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: column;\n\n  .line {\n    font-size: 1rem;\n    font-weight: 400;\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;;AAEA,MAAA,CAAA;AACE,aAAA;AACA,eAAA;;",
+  "names": []
+}

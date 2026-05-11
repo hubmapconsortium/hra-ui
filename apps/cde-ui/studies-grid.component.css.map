@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/cde-ui/src/app/components/studies-grid/studies-grid.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  .left-actions {\n    display: flex;\n    gap: 0.5rem;\n    align-items: center;\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA,CAAA;AACE,WAAA;AACA,OAAA;AACA,eAAA;;",
+  "names": []
+}

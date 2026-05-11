@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["libs/ftu-ui-components/src/lib/molecules/src/lib/biomarker-table-data-icon/biomarker-table-data-icon.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n  border-radius: 50%;\n  --radius: 0.625rem;\n  width: var(--radius);\n  height: var(--radius);\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,iBAAA;AACA,YAAA;AACA,SAAA,IAAA;AACA,UAAA,IAAA;;",
+  "names": []
+}
