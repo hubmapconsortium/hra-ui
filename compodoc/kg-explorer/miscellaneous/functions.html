@@ -745,7 +745,8 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Looks up organ name from a digital object title
-If the title contains an organ name to be overridden, look up the actual organ name and use it</p>
+If there is a different organ name that is used for the organ, (ex. &quot;colon&quot; =&gt; &quot;large intestine&quot;),
+use that instead (look up alternate organs from DO_ORGAN_LOOKUP)</p>
 </div>
 
                             <div class="io-description">
@@ -1023,6 +1024,7 @@ If the title contains an organ name to be overridden, look up the actual organ n
                 <td class="col-md-4">
                         <div class="io-description"><p>Gets organ icon from a digital object
 Will return the icon if the organ name is found in ORGAN_TO_ICONS
+If the organ has a side (left vs right) and is in ORGANS_WITH_SIDES, will return the icon with the side specified (ex. &quot;kidney-left&quot; vs &quot;kidney-right&quot;)
 Otherwise will return the default &quot;all organs&quot; icon.</p>
 </div>
 

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/search-filter/src/lib/search-filter.component.scss"],
-  "sourcesContent": ["@use '@angular/material' as mat;\n@use '../../../styles/utils';\n@use '../../../styles/vars';\n\n:host {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  gap: 0.5rem;\n\n  .search-field {\n    flex: 1;\n    min-width: 10rem;\n    max-width: 36.25rem;\n  }\n\n  .results-counter {\n    min-width: 5.25rem;\n    max-width: 7.5rem;\n    white-space: nowrap;\n  }\n}\n"],
-  "mappings": ";AAIA;AACE,WAAA;AACA,eAAA;AACA,mBAAA;AACA,SAAA;AACA,OAAA;;AAEA,MAAA,CAAA;AACE,QAAA;AACA,aAAA;AACA,aAAA;;AAGF,MAAA,CAAA;AACE,aAAA;AACA,aAAA;AACA,eAAA;;",
-  "names": []
-}
