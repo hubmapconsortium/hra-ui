@@ -100,6 +100,9 @@ export const DO_ORGAN_TOOLTIP_OVERRIDES: Record<string, string> = doOrganTooltip
 /** HRA version data info */
 export const HRA_VERSION_DATA: Record<string, { label: string; date: string }> = hraVersionDataJson;
 
+/** List of organ names that have left/right icons */
+const ORGANS_WITH_SIDES = ['fallopian tube', 'kidney', 'lung', 'ovary', 'renal pelvis', 'ureter'];
+
 /**
  * Gets organ id from a digital object.
  * Returns the first valid organ id from organIds
@@ -159,16 +162,27 @@ function findOrganNameByTitle(title: string): string | undefined {
 /**
  * Gets organ icon from a digital object
  * Will return the icon if the organ name is found in ORGAN_TO_ICONS
+ * If the organ has a side (left vs right) and is in ORGANS_WITH_SIDES, will return the icon with the side specified (ex. "kidney-left" vs "kidney-right")
  * Otherwise will return the default "all organs" icon.
  * @param item Digital object data item
  * @returns Organ icon
  */
 export function getOrganIcon(item: DigitalObjectInfo): string {
   const name = findOrganName(item);
-  if (name) {
-    return `organ:${ORGAN_TO_ICONS[name] ?? 'all-organs'}`;
+  let iconName = name ? ORGAN_TO_ICONS[name] : 'all-organs';
+  const side = item.title.toLowerCase().includes('left')
+    ? 'left'
+    : item.title.toLowerCase().includes('right')
+      ? 'right'
+      : undefined;
+
+  if (side) {
+    const organ = ORGANS_WITH_SIDES.find((o) => name === o);
+    if (organ) {
+      iconName = `${organ.split(' ').join('-')}-${side}`;
+    }
   }
-  return 'organ:all-organs';
+  return `organ:${iconName}`;
 }
 
 /**
