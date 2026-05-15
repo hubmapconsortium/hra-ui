@@ -131,12 +131,8 @@ function findOrganName(item: DigitalObjectInfo): string | undefined {
     return organByTitle;
   }
   // If organ can't be found using the title, look up the organ name from DO_ORGAN_ID_TO_ORGANS using the organ id
-  // If there is another organ name that is used in place of that organ (ex. "lymph vasculature" => "lymph node"),
-  // use that instead (look up from DO_ORGAN_LOOKUP)
   if (organId) {
-    const organName = DO_ORGAN_ID_TO_ORGANS[organId];
-    const mainOrganName = DO_ORGAN_LOOKUP[organName];
-    return mainOrganName ?? organName;
+    return DO_ORGAN_ID_TO_ORGANS[organId];
   }
 
   return undefined;
@@ -144,7 +140,8 @@ function findOrganName(item: DigitalObjectInfo): string | undefined {
 
 /**
  * Looks up organ name from a digital object title
- * If the title contains an organ name to be overridden, look up the actual organ name and use it
+ * If there is a different organ name that is used for the organ, (ex. "colon" => "large intestine"),
+ * use that instead (look up alternate organs from DO_ORGAN_LOOKUP)
  * @param title Digital object title
  * @returns organ name by title
  */
