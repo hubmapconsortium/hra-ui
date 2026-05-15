@@ -1,11 +1,9 @@
 {
   "colon": "large intestine",
-  "musculoskeletal": "muscular system",
-  "retina": "eye",
-  "lymph vasculature": "lymph node",
-  "breast": "mammary gland",
-  "salivary gland": "mouth",
   "intestines": "small intestine",
+  "mammary gland": "breast",
+  "musculoskeletal": "muscular system",
   "omentum": "adipose",
-  "extrapulmonary bronchus": "main bronchus"
+  "retina": "eye",
+  "salivary gland": "mouth"
 }
