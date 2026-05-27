@@ -399,6 +399,7 @@ class VegaContainerComponent {
             await this.ensureFontsLoaded();
             const { finalize } = await embed(el, this.spec().specUrl, {
                 actions: false,
+                renderer: 'canvas',
             });
             onCleanup(finalize);
         }, ...(ngDevMode ? [{ debugName: "embedRef" }] : []));

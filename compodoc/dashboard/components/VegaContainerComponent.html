@@ -380,6 +380,7 @@
     await this.ensureFontsLoaded();
     const { finalize } &#x3D; await embed(el, this.spec().specUrl, {
       actions: false,
+      renderer: &#x27;canvas&#x27;,
     });
 
     onCleanup(finalize);
@@ -493,6 +494,7 @@ export class VegaContainerComponent implements DashboardComponent&lt;typeof Vega
     await this.ensureFontsLoaded();
     const { finalize } &#x3D; await embed(el, this.spec().specUrl, {
       actions: false,
+      renderer: &#x27;canvas&#x27;,
     });
 
     onCleanup(finalize);

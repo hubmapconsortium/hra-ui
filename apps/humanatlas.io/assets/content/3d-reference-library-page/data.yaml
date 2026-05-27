@@ -135,7 +135,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -279,7 +279,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -309,7 +309,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -722,7 +722,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -866,7 +866,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -896,7 +896,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -1279,7 +1279,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -1423,7 +1423,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -1453,7 +1453,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -1821,7 +1821,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -1965,7 +1965,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -1995,7 +1995,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -2348,7 +2348,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -2492,7 +2492,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.3/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -2507,7 +2507,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female L
                     alt: Mammary Gland, Female, Left
@@ -2841,7 +2841,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -2985,7 +2985,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.3/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -3000,7 +3000,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -3323,7 +3323,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.1/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -3452,7 +3452,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -3467,7 +3467,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -3748,7 +3748,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.1/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -3877,7 +3877,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
