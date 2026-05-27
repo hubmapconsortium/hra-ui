@@ -45,6 +45,7 @@ export class VegaContainerComponent implements DashboardComponent<typeof VegaCon
     await this.ensureFontsLoaded();
     const { finalize } = await embed(el, this.spec().specUrl, {
       actions: false,
+      renderer: 'canvas',
     });
 
     onCleanup(finalize);
