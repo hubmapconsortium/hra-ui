@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/buttons/text-hyperlink/src/lib/text-hyperlink.component.scss"],
-  "sourcesContent": ["@use '@angular/material' as mat;\n\n:host {\n  a {\n    display: inline-flex;\n    gap: 0.375rem;\n    align-items: center;\n  }\n\n  mat-icon {\n    width: 1.5rem;\n    height: 1.5rem;\n    font-size: 1.5rem;\n  }\n}\n"],
-  "mappings": ";AAGE,MAAA;AACE,WAAA;AACA,OAAA;AACA,eAAA;;AAGF,MAAA;AACE,SAAA;AACA,UAAA;AACA,aAAA;;",
-  "names": []
-}

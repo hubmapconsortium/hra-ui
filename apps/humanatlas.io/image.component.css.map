@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/content-templates/image/src/lib/image.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n\n  img {\n    width: 100%;\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;AAEA,MAAA;AACE,SAAA;;",
-  "names": []
-}
