@@ -2,7 +2,6 @@
   "renal pelvis": "renal-pelvis",
   "pelvis": "pelvis",
   "bone marrow": "bone-marrow",
-
   "all organs": "all-organs",
   "adipose": "adipose-tissue",
   "anatomical systems": "anatomical-systems",
@@ -26,6 +25,7 @@
   "manubrium": "manubrium",
   "mouth": "mouth",
   "muscular system": "muscular-system",
+  "omentum": "omentum",
   "ovary": "ovaries",
   "palatine tonsil": "palatine-tonsil",
   "pancreas": "pancreas",
