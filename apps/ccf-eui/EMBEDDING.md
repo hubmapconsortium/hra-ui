@@ -16,8 +16,6 @@ The following code snippet can be used to get started with the _CCF-EUI_.
 
     <!-- The important bits -->
     <base href="https://cdn.humanatlas.io/ui/ccf-eui/" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ccf-eui/styles.css" rel="stylesheet" />
     <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" type="module"></script>
   </head>
@@ -100,8 +98,6 @@ This application does not emit any output events.
 
     <!-- The important bits -->
     <base href="https://cdn.humanatlas.io/ui/ccf-eui/" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
     <link href="https://cdn.humanatlas.io/ui/ccf-eui/styles.css" rel="stylesheet" />
     <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" type="module"></script>
   </head>

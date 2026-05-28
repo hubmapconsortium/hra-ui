@@ -1,37 +1,43 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DigitalObjectsJsonLd, V1Service } from '@hra-api/ng-client';
 import { render } from '@testing-library/angular';
 import { provideMarkdown } from 'ngx-markdown';
-import { of } from 'rxjs';
 
-import { DigitalObjectMetadata, PersonInfo } from '../../digital-objects-metadata.schema';
+import {
+  AsctbTerms,
+  DigitalObjectMetadata,
+  DigitalObjectsJsonLd,
+  PersonInfo,
+} from '../../digital-objects-metadata.schema';
 import { DownloadService } from '../../services/download.service';
 import * as mockDoData from '../../testing/mock-data.json';
 import * as mockMetadata from '../../testing/mock-metadata.json';
+import { environment } from '../../../environments/environment';
 import { MetadataPageComponent } from './metadata-page.component';
 
 jest.mock('@google/model-viewer', () => ({}));
 
 describe('MetadataPageComponent', () => {
+  const mirrorBase = environment.mirrorUrl.replace(/\/$/, '');
+
   async function setup(
     metadata?: DigitalObjectMetadata,
     doData?: DigitalObjectsJsonLd,
     actRoute?: ActivatedRoute,
-    v1Service?: V1Service,
+    asctbTerms?: AsctbTerms,
   ) {
     return render(MetadataPageComponent, {
       componentInputs: {
         metadata,
-        doData: doData,
+        doData,
+        asctbTerms: asctbTerms ?? [],
         columns: [],
       },
       providers: [
         { provide: Router, useValue: mockRouter },
         { provide: ActivatedRoute, useValue: actRoute },
         { provide: DownloadService, useValue: mockDownloadService },
-        { provide: V1Service, useValue: v1Service },
         provideMarkdown(),
         provideHttpClient(),
         provideHttpClientTesting(),
@@ -61,28 +67,13 @@ describe('MetadataPageComponent', () => {
     getDownloadOptions: jest.fn().mockReturnValue([{ label: 'Download CSV', value: 'csv' }]),
   };
 
-  const mockV1Service = {
-    ontologyTreeModel: jest.fn().mockReturnValue(
-      of({
-        nodes: {
-          heart: { label: 'Heart' },
-        },
-      }),
-    ),
-  } as unknown as V1Service;
-
   it('should navigate to a 404 page if no metadata', async () => {
-    await setup(undefined, mockDoData as DigitalObjectsJsonLd, mockActivatedRoute, mockV1Service);
+    await setup(undefined, mockDoData as DigitalObjectsJsonLd, mockActivatedRoute);
     expect(mockRouter.navigate).toHaveBeenCalledWith(['404']);
   });
 
   it('should navigate to the correct version route', async () => {
-    const { fixture } = await setup(
-      mockMetadata,
-      mockDoData as DigitalObjectsJsonLd,
-      mockActivatedRoute,
-      mockV1Service,
-    );
+    const { fixture } = await setup(mockMetadata, mockDoData as DigitalObjectsJsonLd, mockActivatedRoute);
     component = fixture.componentInstance;
     expect(component.currentVersion()).toBe('v1.0');
     component.currentVersion.set('v2.0');
@@ -102,43 +93,26 @@ describe('MetadataPageComponent', () => {
       },
     } as unknown as ActivatedRoute;
 
-    const { fixture } = await setup(
-      mockMetadata,
-      mockDoData as DigitalObjectsJsonLd,
-      emptyParamsActivatedRoute,
-      mockV1Service,
-    );
+    const { fixture } = await setup(mockMetadata, mockDoData as DigitalObjectsJsonLd, emptyParamsActivatedRoute);
     component = fixture.componentInstance;
     expect(mockRouter.navigate).toHaveBeenCalledWith(['', '', '']);
   });
 
   it('should handle missing label in ontology node', async () => {
     const mockDoData2 = {
+      '@context': {},
       '@graph': [
         {
-          '@id': 'https://lod.humanatlas.io/ref-organ/heart',
+          '@id': `${mirrorBase}/ref-organ/heart`,
           versions: ['v1.0', 'v2.0'],
           purl: 'https://example.com/purl',
           organIds: ['aaaaaa'],
+          title: 'Heart',
         },
       ],
-    };
-    const mockV1Service2 = {
-      ontologyTreeModel: jest.fn().mockReturnValue(
-        of({
-          nodes: {
-            aaaaaa: {},
-          },
-        }),
-      ),
-    } as unknown as V1Service;
+    } as DigitalObjectsJsonLd;
 
-    const { fixture } = await setup(
-      mockMetadata,
-      mockDoData2 as DigitalObjectsJsonLd,
-      mockActivatedRoute,
-      mockV1Service2,
-    );
+    const { fixture } = await setup(mockMetadata, mockDoData2, mockActivatedRoute, []);
     const instance = fixture.componentInstance;
     expect(instance.tags()).toEqual([
       {
@@ -156,16 +130,18 @@ describe('MetadataPageComponent', () => {
 
   it('should handle no organIds', async () => {
     const mockDoData3 = {
+      '@context': {},
       '@graph': [
         {
-          '@id': 'https://lod.humanatlas.io/ref-organ/heart',
+          '@id': `${mirrorBase}/ref-organ/heart`,
           versions: ['v1.0', 'v2.0'],
           purl: 'https://example.com/purl',
+          title: 'Heart',
         },
       ],
     } as DigitalObjectsJsonLd;
 
-    const { fixture } = await setup(mockMetadata, mockDoData3, mockActivatedRoute, mockV1Service);
+    const { fixture } = await setup(mockMetadata, mockDoData3, mockActivatedRoute);
     const instance = fixture.componentInstance;
     expect(instance.tags()).toEqual([
       {
@@ -197,12 +173,7 @@ describe('MetadataPageComponent', () => {
       },
     } as unknown as DigitalObjectMetadata;
 
-    const { fixture } = await setup(
-      mockMetadata2,
-      mockDoData as DigitalObjectsJsonLd,
-      mockActivatedRoute,
-      mockV1Service,
-    );
+    const { fixture } = await setup(mockMetadata2, mockDoData as DigitalObjectsJsonLd, mockActivatedRoute);
 
     component = fixture.componentInstance;
     expect(mockRouter.navigate).toHaveBeenCalledWith(['ref-organ', 'heart', 'v1.0']);

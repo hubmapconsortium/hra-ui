@@ -1,25 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  ElementRef,
-  inject,
-  Signal,
-  signal,
-} from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { DigitalObjectsJsonLd, HraKgService } from '@hra-api/ng-client';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
+import { joinWithSlash } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { MarkdownModule } from 'ngx-markdown';
 import { HelpMenuOptions } from './app.routes';
-import { setMirrorUrl, setRemoteApiEndpoint } from './utils/endpoints';
+import { DigitalObjectsJsonLd } from './digital-objects-metadata.schema';
+import { injectMirrorUrl, setMirrorUrl, setRemoteApiEndpoint } from './utils/endpoints';
 import { isNavigating } from './utils/navigation';
 import { routeData } from './utils/route-data';
 
@@ -75,9 +68,11 @@ export class AppComponent extends BaseApplicationComponent {
   private readonly router = inject(Router);
   /** Activated route service */
   private readonly route = inject(ActivatedRoute);
+  /** HTTP client for making API requests */
+  private readonly http = inject(HttpClient);
 
-  /** HRA KG API service */
-  private readonly kg = inject(HraKgService);
+  /** Mirror URL for the application */
+  readonly mirrorUrl = injectMirrorUrl();
 
   /** Page title to display on the breadcrumbs */
   private readonly pageTitle = signal<string>('');
@@ -116,16 +111,36 @@ export class AppComponent extends BaseApplicationComponent {
   readonly params = signal<string[]>([]);
 
   /** Id of digital object computed from params */
-  readonly objectId = computed(() => ['https://lod.humanatlas.io'].concat(this.params()).join('/'));
+  readonly objectId = computed(() => {
+    const base = this.baseUrl();
+    const params = this.params().join('/');
+    return joinWithSlash(base, params);
+  });
+
+  /** Base URL for the digital object */
+  readonly baseUrl = computed(() => {
+    const lod = 'https://lod.humanatlas.io';
+    return this.mirrorUrl() === 'https://cdn.humanatlas.io/digital-objects' ? lod : this.mirrorUrl();
+  });
 
   /** Digital objects */
-  private readonly digitalObjects: Signal<DigitalObjectsJsonLd>;
+  private readonly digitalObjects = signal<DigitalObjectsJsonLd>({ '@context': {}, '@graph': [] });
 
   /**
    * Gets the page title for breadcrumbs
    */
   constructor() {
     super({ screenSizeNotice: { width: 864, height: 486 } });
+
+    const el = inject(ElementRef).nativeElement as HTMLElement;
+    const apiEndpoint = el.getAttribute('remote-api-endpoint');
+    if (apiEndpoint) {
+      setRemoteApiEndpoint(apiEndpoint);
+    }
+    const customMirrorUrl = el.getAttribute('mirror-url');
+    if (customMirrorUrl) {
+      setMirrorUrl(customMirrorUrl);
+    }
 
     effect(() => {
       if (this.typeLabel() && this.documentationUrl()) {
@@ -149,13 +164,6 @@ export class AppComponent extends BaseApplicationComponent {
       }
     });
 
-    effect(() => {
-      const id = this.objectId();
-      const objects = this.digitalObjects();
-      const match = objects['@graph']?.find((object) => object['@id'] === id);
-      this.pageTitle.set(match?.title || '');
-    });
-
     this.router.events.pipe(takeUntilDestroyed()).subscribe(() => {
       const type = this.route.snapshot.root.firstChild?.params['type'];
       const name = this.route.snapshot.root.firstChild?.params['name'];
@@ -164,18 +172,21 @@ export class AppComponent extends BaseApplicationComponent {
       } else {
         this.params.set([]);
       }
+
+      this.setPageTitle();
     });
+  }
 
-    const el = inject(ElementRef).nativeElement as HTMLElement;
-    const apiEndpoint = el.getAttribute('remote-api-endpoint');
-    if (apiEndpoint) {
-      setRemoteApiEndpoint(apiEndpoint);
-    }
-    const mirrorUrl = el.getAttribute('mirror-url');
-    if (mirrorUrl) {
-      setMirrorUrl(mirrorUrl);
-    }
-
-    this.digitalObjects = toSignal(this.kg.digitalObjects(), { initialValue: {} });
+  /**
+   * Sets the page title based on the current digital object (for metadata pages).
+   */
+  private setPageTitle() {
+    this.http.get(joinWithSlash(this.mirrorUrl(), 'kg/digital-objects.jsonld')).subscribe((data) => {
+      this.digitalObjects.set(data as DigitalObjectsJsonLd);
+      const id = this.objectId();
+      const objects = this.digitalObjects();
+      const match = objects['@graph']?.find((object) => object['@id'] === id);
+      this.pageTitle.set(match?.title || '');
+    });
   }
 }

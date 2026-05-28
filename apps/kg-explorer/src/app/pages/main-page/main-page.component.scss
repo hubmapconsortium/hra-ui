@@ -77,10 +77,6 @@
   .object-search {
     width: 100%;
 
-    mat-label {
-      font: vars.$label-medium;
-    }
-
     @media (min-width: 640px) {
       max-width: 36.25rem;
       flex-grow: 1;

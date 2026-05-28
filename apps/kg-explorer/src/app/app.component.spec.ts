@@ -1,129 +1,151 @@
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import {
-  ActivatedRouteSnapshot,
-  provideRouter,
-  withComponentInputBinding,
-  withInMemoryScrolling,
-} from '@angular/router';
-import { HraKgService, V1Service } from '@hra-api/ng-client';
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { HraApiConfiguration } from '@hra-api/ng-client';
+import { By } from '@angular/platform-browser';
+import { provideRouter, Router, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { render, screen } from '@testing-library/angular';
 import { of } from 'rxjs';
 
 import { AppComponent } from './app.component';
-import { DO_COLUMNS, METADATA_COLUMNS } from './app.routes';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import { MetadataPageComponent } from './pages/metadata-page/metadata-page.component';
-import {
-  asctbResolver,
-  biomarkersResolver,
-  cellTypeResolver,
-  documentationUrlResolver,
-  doMetadataResolver,
-  kgResolver,
-  ontologyResolver,
-  productLabelResolver,
-} from './utils/kg-resolver';
 
 jest.mock('@google/model-viewer', () => ({}));
 
+@Component({
+  standalone: true,
+  template: '',
+})
+class TestMainPageComponent {}
+
+@Component({
+  standalone: true,
+  template: '',
+})
+class TestMetadataPageComponent {}
+
+@Component({
+  imports: [AppComponent],
+  standalone: true,
+  template: '<hra-kg-explorer remote-api-endpoint="https://api.test" mirror-url="https://custom-mirror.test" />',
+})
+class TestAppWithAttributesHostComponent {}
+
 describe('AppComponent', () => {
-  const mockKgService = {
-    doSearch: jest.fn().mockReturnValue(of([])),
-    digitalObjects: jest.fn().mockReturnValue(
+  const mockApiConfig = {
+    basePath: undefined,
+  } as HraApiConfiguration;
+
+  const mockHttpClient = {
+    get: jest.fn(),
+  };
+
+  const defaultGraph = [
+    {
+      '@id': 'https://cdn.humanatlas.io/hra-kg--staging/ref-organ/heart',
+      title: 'Heart Object',
+    },
+  ];
+
+  function setMockGraph(graph = defaultGraph) {
+    mockHttpClient.get.mockReturnValue(
       of({
-        '@graph': [
-          {
-            '@id': 'https://lod.humanatlas.io/ref-organ/heart',
-            title: 'Heart Object',
-          },
-        ],
+        '@context': {},
+        '@graph': graph,
       }),
-    ),
-    asctbTermOccurences: jest.fn().mockReturnValue(of({ root: '', nodes: [] })),
-  };
+    );
+  }
 
-  const mockV1Service = {
-    asctbTermOccurences: jest.fn().mockReturnValue(of([])),
-    ontologyTreeModel: jest.fn().mockReturnValue(of({ root: '', nodes: {} })),
-    cellTypeTreeModel: jest.fn().mockReturnValue(of({ root: '', nodes: {} })),
-    biomarkerTreeModel: jest.fn().mockReturnValue(of({ root: '', nodes: {} })),
-  };
+  async function setup(options?: {
+    metadataRouteData?: Record<string, string>;
+    hostWithAttributes?: boolean;
+    graph?: unknown[];
+  }) {
+    mockHttpClient.get.mockClear();
+    mockApiConfig.basePath = undefined;
+    setMockGraph(options?.graph as typeof defaultGraph | undefined);
 
-  const mockActivatedRouteSnapshot = {
-    params: {
-      type: 'ref-organ',
-      name: 'heart',
-      version: '1.0',
-    },
-    paramMap: {
-      get: jest.fn().mockImplementation((key: string) => {
-        const params: Record<string, string> = { type: 'ref-organ', name: 'heart', version: 'v1.0' };
-        return params[key];
-      }),
-    },
-  };
-
-  async function setup(kg: HraKgService) {
-    return render(AppComponent, {
+    const renderResult = await render(options?.hostWithAttributes ? TestAppWithAttributesHostComponent : AppComponent, {
       providers: [
-        { provide: HraKgService, useValue: kg },
-        { provide: V1Service, useValue: mockV1Service },
-        { provide: ActivatedRouteSnapshot, useValue: mockActivatedRouteSnapshot },
+        { provide: HttpClient, useValue: mockHttpClient },
+        { provide: HraApiConfiguration, useValue: mockApiConfig },
         provideRouter(
           [
             {
               path: '',
               pathMatch: 'full',
-              component: MainPageComponent,
-              data: {
-                reuse: true,
-                columns: DO_COLUMNS,
-              },
-              resolve: {
-                data: kgResolver(),
-                asctbTermOccurrences: asctbResolver(),
-                ontologyTree: ontologyResolver(),
-                cellTypeTree: cellTypeResolver(),
-                biomarkerTree: biomarkersResolver(),
-              },
+              component: TestMainPageComponent,
             },
             {
               path: ':type/:name/:version',
-              component: MetadataPageComponent,
-              data: {
-                columns: METADATA_COLUMNS,
-              },
-              resolve: {
-                doData: kgResolver(),
-                metadata: jest.mocked(doMetadataResolver),
-                documentationUrl: documentationUrlResolver(),
-                typeLabel: jest.mocked(productLabelResolver()),
-              },
+              component: TestMetadataPageComponent,
+              data: options?.metadataRouteData,
             },
           ],
           withComponentInputBinding(),
           withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'enabled' }),
         ),
-        provideHttpClient(),
-        provideHttpClientTesting(),
       ],
     });
+
+    return {
+      router: TestBed.inject(Router),
+      app: options?.hostWithAttributes
+        ? (renderResult.fixture.debugElement.query(By.directive(AppComponent)).componentInstance as AppComponent)
+        : (renderResult.fixture.componentInstance as AppComponent),
+    };
   }
 
-  it('should render the component and compute breadcrumbs', async () => {
-    const { fixture } = await setup(mockKgService as unknown as HraKgService);
-    const component = fixture.componentInstance;
-    component.params.set(['ref-organ', 'heart']);
-    fixture.detectChanges();
-    expect(mockKgService.digitalObjects).toHaveBeenCalled();
-    expect(screen.getByText('Heart Object')).toBeInTheDocument();
+  it('renders metadata page title in breadcrumbs for object routes', async () => {
+    const { router } = await setup();
+    await router.navigateByUrl('/ref-organ/heart/v1.0');
+
+    expect(await screen.findByText('Heart Object')).toBeInTheDocument();
+    expect(mockHttpClient.get).toHaveBeenCalled();
   });
 
-  it('uses default breadcrumbs if there are no params', async () => {
-    await setup(mockKgService as unknown as HraKgService);
+  it('uses default breadcrumbs when route has no object params', async () => {
+    await setup();
 
-    expect(mockKgService.digitalObjects).toHaveBeenCalled();
     expect(screen.getByText('Knowledge Graph')).toBeInTheDocument();
+  });
+
+  it('adds type documentation menu option when documentationUrl and typeLabel are in route data', async () => {
+    const { router, app } = await setup({
+      metadataRouteData: {
+        documentationUrl: 'https://docs.test/ref-organ',
+        typeLabel: 'Reference Docs',
+      },
+    });
+
+    await router.navigateByUrl('/ref-organ/heart/v1.0');
+    await screen.findByText('Heart Object');
+
+    expect(app.helpMenuOptions()).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          label: 'Reference Docs',
+          url: 'https://docs.test/ref-organ',
+          description: 'Data documentation for this digital object type',
+        }),
+      ]),
+    );
+  });
+
+  it('uses remote-api-endpoint and custom mirror-url host attributes when present', async () => {
+    const { router } = await setup({
+      hostWithAttributes: true,
+      graph: [
+        {
+          '@id': 'https://custom-mirror.test/ref-organ/heart',
+          title: 'Heart Object',
+        },
+      ],
+    });
+
+    await router.navigateByUrl('/ref-organ/heart/v1.0');
+
+    expect(mockApiConfig.basePath).toBe('https://api.test');
+    expect(mockHttpClient.get).toHaveBeenCalledWith('https://custom-mirror.test/kg/digital-objects.jsonld');
+    expect(await screen.findByText('Heart Object')).toBeInTheDocument();
   });
 });

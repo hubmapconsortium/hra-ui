@@ -4,7 +4,7 @@ subtitle: 3D human organ files mapped with ontological terminology.
 action:
   label: Get data
   url: https://purl.humanatlas.io/ref-organ
-icons: product:ftu
+icons: product:3d-organ
 content:
   - component: PageSection
     tagline: Overview
@@ -135,7 +135,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -279,7 +279,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -309,7 +309,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -438,7 +438,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/prostate-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Renal Pelvis
-                icon: organ:renal-pelvis-right
+                icon: organ:renal-pelvis
                 cards:
                   - label: Female,, L
                     alt: Renal Pelvis, Female,, Left
@@ -564,7 +564,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -722,7 +722,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -866,7 +866,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -896,7 +896,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -1025,7 +1025,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/prostate-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Renal Pelvis
-                icon: organ:renal-pelvis-right
+                icon: organ:renal-pelvis
                 cards:
                   - label: Female,, L
                     alt: Renal Pelvis, Female,, Left
@@ -1151,7 +1151,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -1201,7 +1201,6 @@ content:
                     sourceDataUrl: https://purl.humanatlas.io/ref-organ/uterus-female/v1.2
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/uterus-female/v1.2/assets/crosswalk.csv
                     files: []
-
           - version: '8'
             label: 8th Release (v2.2)
             date: December 2024
@@ -1280,7 +1279,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -1424,7 +1423,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -1454,7 +1453,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -1568,7 +1567,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/prostate-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Renal Pelvis
-                icon: organ:renal-pelvis-right
+                icon: organ:renal-pelvis
                 cards:
                   - label: Female, L
                     alt: Renal Pelvis, Female, Left
@@ -1694,7 +1693,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -1822,7 +1821,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.3/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -1966,7 +1965,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -1996,7 +1995,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/main-bronchus-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -2191,7 +2190,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.1/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -2349,7 +2348,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -2493,7 +2492,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.3/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -2508,7 +2507,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female L
                     alt: Mammary Gland, Female, Left
@@ -2688,7 +2687,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.0/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female L
                     alt: Ureter, Female, Left
@@ -2842,7 +2841,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.2/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -2986,7 +2985,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.3/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -3001,7 +3000,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -3181,7 +3180,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/trachea-male/v1.0/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -3324,7 +3323,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.1/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -3453,7 +3452,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -3468,7 +3467,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lymph-node-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Mammary Gland
-                icon: organ:mammary-gland
+                icon: organ:breast
                 cards:
                   - label: Female, L
                     alt: Mammary Gland, Female, Left
@@ -3606,7 +3605,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/thymus-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female, L
                     alt: Ureter, Female, Left
@@ -3749,7 +3748,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/eye-male-right/v1.1/assets/crosswalk.csv
                     files: []
               - label: Fallopian Tube
-                icon: organ:fallopian-tube-left
+                icon: organ:fallopian-tubes
                 cards:
                   - label: Female, L
                     alt: Fallopian Tube, Female, Left
@@ -3878,7 +3877,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Lymph Node
-                icon: organ:lymph-node
+                icon: organ:lymph-nodes
                 cards:
                   - label: Female
                     alt: Lymph Node, Female
@@ -4016,7 +4015,7 @@ content:
                     crosswalkUrl: https://cdn.humanatlas.io/digital-objects/ref-organ/thymus-male/v1.2/assets/crosswalk.csv
                     files: []
               - label: Ureter
-                icon: organ:ureter-right
+                icon: organ:ureters
                 cards:
                   - label: Female L
                     alt: Ureter, Female, Left

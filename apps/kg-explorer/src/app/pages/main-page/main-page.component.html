@@ -22,9 +22,9 @@
     >
       <hra-filter-menu
         hraFeature="filter-menu"
-        [filterCategories]="filterCategoriesArray()"
+        [filterCategories]="filterCategories()"
         [formClosed]="!sidenav.opened"
-        [currentFilters]="filters()"
+        [currentFilters]="store.currentFilters()"
         (toggleForm)="sidenav.toggle()"
         (formChanges)="handleFilterSelectionChanges($event); table.scrollToTop()"
       />
@@ -37,7 +37,11 @@
             <mat-label>Search</mat-label>
             <input matInput [formControl]="searchControl" />
           </mat-form-field>
-          <hra-results-indicator description="Viewing" [value]="filteredRows().length" [total]="allRows().length" />
+          <hra-results-indicator
+            description="Viewing"
+            [value]="filteredRows().length"
+            [total]="store.allRows().length"
+          />
         </div>
         <hra-table
           variant="divider"

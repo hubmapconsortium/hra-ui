@@ -40,7 +40,7 @@
               "documentLink": "https://humanatlas.io/hra-organ-gallery"
             },
             {
-              "tagline": "Cell Population Predictor",
+              "tagline": "Cell Type Population Predictor",
               "description": "Select a 3D tissue extraction site and use the Human Reference Atlas API to predict cell type populations for this site.",
               "imagePath": "assets/ui-images/cell_population_predictor.png",
               "logoPath": "product:cell-population-predictor",
@@ -64,7 +64,7 @@
               "documentLink": "https://humanatlas.io/user-story/7"
             },
             {
-              "tagline": "Cell Population Graphs",
+              "tagline": "Cell Type Population Graphs",
               "description": "Explore organ-specific datasets from publications and data portals.",
               "imagePath": "assets/ui-images/cell_population_graphs.png",
               "logoPath": "product:cell-population-graphs",
@@ -75,7 +75,7 @@
               "tagline": "HRApop Visualizer",
               "description": "Explore cell type populations.",
               "imagePath": "assets/ui-images/hra-pop-visualizer.png",
-              "logoPath": "product:cell-population-predictor",
+              "logoPath": "product:hra-pop",
               "appUrl": "/hra-pop-visualizer",
               "documentLink": "https://doi.org/10.1101/2025.08.14.670406"
             }
@@ -94,7 +94,7 @@
             },
             {
               "tagline": "ASCT+B Reporter",
-              "description": "Construct, explore, and compare ASCT+B Tables and Organ Mapping Antibody Panels (OMAPs).",
+              "description": "Explore relationships between anatomical structures, cell types, and biomarkers.",
               "imagePath": "assets/ui-images/asctb-reporter.png",
               "logoPath": "product:asctb-reporter",
               "appUrl": "https://apps.humanatlas.io/asctb-reporter/",
@@ -111,7 +111,7 @@
           "tagline": "Developer applications",
           "cards": [
             {
-              "tagline": "Knowledge Graph",
+              "tagline": "Knowledge Graph Explorer",
               "description": "Query, filter, and download digital objects.",
               "imagePath": "assets/ui-images/knowledge-graph-metadata.png",
               "logoPath": "product:knowledge-graph",

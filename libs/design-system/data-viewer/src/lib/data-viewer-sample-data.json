@@ -632,7 +632,7 @@
         },
         {
           "label": "Fallopian Tube",
-          "icon": "organ:fallopian-tube-left",
+          "icon": "organ:fallopian-tubes",
           "cards": [
             {
               "label": "Female, L",
