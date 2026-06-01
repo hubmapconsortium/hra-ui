@@ -3,7 +3,7 @@ title: 3D Reference Objects
 subtitle: 3D human organ files mapped with ontological terminology.
 action:
   label: Get data
-  url: https://purl.humanatlas.io/ref-organ
+  url: https://apps.humanatlas.io/kg-explorer/?do=ref-organ
 icons: product:3d-organ
 content:
   - component: PageSection
