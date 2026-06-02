@@ -239,8 +239,12 @@ export const appRoutes: Route[] = [
     redirectTo: '/research?category=publication',
   },
   {
+    path: 'visitor_info',
+    redirectTo: '/visitor-info',
+  },
+  {
     path: 'visitor_info.html',
-    redirectTo: '/visitor_info',
+    redirectTo: '/visitor-info',
   },
   {
     path: 'visualizations.html',
