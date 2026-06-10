@@ -485,6 +485,11 @@ var menus = [
 					},
 					{
 						type: "item",
+						label: "Videos",
+						url: "https://humanatlas.io/overview-training-outreach#human-atlas-videos"
+					},
+					{
+						type: "item",
 						label: "Kaggle Competitions",
 						url: "https://humanatlas.io/overview-training-outreach#kaggle-competitions"
 					},
