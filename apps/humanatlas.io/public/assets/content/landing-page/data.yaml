@@ -50,22 +50,22 @@ countInfo:
     label: publications
     suffix: +
     icon: misc:publications
-  - count: 77
+  - count: 79
     label: organs
     icon: misc:heart
-  - count: 4810
+  - count: 4807
     label: anatomical structures
     icon: misc:asctb-reporter
-  - count: 1334
+  - count: 2215
     label: cell types
     icon: misc:cell-type
-  - count: 2070
+  - count: 1347
     label: biomarkers
     icon: misc:biomarker
-  - count: 37
+  - count: 38
     label: organ mapping antibody panels
     icon: misc:omaps
-  - count: 26
+  - count: 29
     label: functional tissue units
     icon: misc:ftu
 
