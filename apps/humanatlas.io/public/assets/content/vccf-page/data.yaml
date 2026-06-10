@@ -83,6 +83,15 @@ content:
             csvUrl: assets/content/vccf-page/table-data/version1_0.csv
 
   - component: PageSection
+    tagline: 'Video: Vasculature Common Coordinate Framework (VCCF)'
+    anchor: vccf-video
+    level: 3
+    content:
+      - component: YouTubePlayer
+        videoId: zQeMgxo8n_U
+        label: 'Human Reference Atlas: Vasculature Common Coordinate Framework (VCCF)'
+
+  - component: PageSection
     tagline: Terms of use
     anchor: terms-of-use
     level: 2

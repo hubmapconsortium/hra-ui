@@ -13,7 +13,7 @@ content:
         [Introduction to Standard Operating Procedures](https://docs.google.com/document/d/1bHi61R2T2GqwgRGH2OtlimWtz2HL_5KyH5tQpzzH898/edit?tab=t.0#heading=h.6ys5lo962o6b)<br>
         &emsp;&emsp;&emsp;[Managing SOPs](https://docs.google.com/document/d/1FNERIQqn8sZVfIaqtg5VKjoTfogmLAVNYIR5mM-4TjE/edit?tab=t.0#heading=h.lpsf90jpnlzf)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Section Overview Template](https://docs.google.com/document/d/18c9OZ8glq7Avgef9yuf5bzSMQ_p12EuxmPr0vW01Wck/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[SOP Template](https://docs.google.com/document/d/1LxC74bJqpF7WuuxcensALPnmURcjxmt6DTm7F9xiJDU/edit?tab=t.0#heading=h.lpsf90jpnlzf)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[SOP Template](https://doi.org/10.5281/zenodo.20040620)<br>
         &emsp;&emsp;&emsp;[Glossary](https://doi.org/10.5281/zenodo.17664992)<br>
         &emsp;&emsp;&emsp;[Human Reference Atlas Design Style Guide](https://doi.org/10.5281/zenodo.14343078)<br>
         &emsp;&emsp;&emsp;[Human Reference Atlas Prose and Editorial Style Guide](https://doi.org/10.5281/zenodo.14347049)<br>
@@ -30,6 +30,7 @@ content:
         &emsp;&emsp;&emsp;[Using the Embedded Registration User Interface](https://doi.org/10.5281/zenodo.14346341)<br>
         &emsp;&emsp;&emsp;[Constructing a Millitome and Generating Virtual Tissue Blocks](https://doi.org/10.5281/zenodo.7901004)<br>
         &emsp;&emsp;&emsp;[Using a Millitome](https://doi.org/10.5281/zenodo.7382703)<br>
+        &emsp;&emsp;&emsp;[Mapping Virtual Millitomes to Reference Organs](https://doi.org/10.5281/zenodo.20039935)<br>
   - component: PageSection
     tagline: Anatomical Structures and Cell-Type Segmentation
     anchor: anatomical-structures-and-cell-type-segmentation
@@ -64,7 +65,7 @@ content:
         &emsp;&emsp;&emsp;Computing Vessel Properties<br>
         &emsp;&emsp;&emsp;[Computing Cell Type to Vasculature Distance Distributions](https://doi.org/10.5281/zenodo.10371472)<br>
   - component: PageSection
-    tagline: Anatomical Structures, Cell Types, Plus Biomarkers (ASCT+B) Tables
+    tagline: Anatomical Structures, Cell Types, Plus Biomarkers Tables
     anchor: anatomical-structures-cell-types-plus-biomarkers-asctb-tables
     level: 2
     content:
@@ -77,7 +78,6 @@ content:
         &emsp;&emsp;&emsp;[Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://docs.hubmapconsortium.org/avr/avr-faq.html)<br>
         &emsp;&emsp;&emsp;[Authoring Cell Type Annotation Crosswalks](https://doi.org/10.5281/zenodo.17873777)<br>
-        &emsp;&emsp;&emsp;[Human Reference Atlas Working Group Communications](https://doi.org/10.5281/zenodo.5639622)<br>
   - component: PageSection
     tagline: 3D Reference Object Library
     anchor: 3d-reference-object-library
@@ -90,7 +90,7 @@ content:
         &emsp;&emsp;&emsp;[3D Reference Object Approval](https://doi.org/10.5281/zenodo.5944196)<br>
         &emsp;&emsp;&emsp;[Adding 3D Reference Objects to the Human Reference Atlas](https://doi.org/10.5281/zenodo.5639651)<br>
   - component: PageSection
-    tagline: 2D Functional Tissue Unit (FTU) Reference Object Library
+    tagline: 2D Functional Tissue Unit Reference Object Library
     anchor: 2d-functional-tissue-unit-ftu-reference-object-library
     level: 2
     content:
@@ -101,31 +101,31 @@ content:
         &emsp;&emsp;&emsp;[Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)<br>
         &emsp;&emsp;&emsp;[Authoring Crosswalk Tables Between Functional Tissue Unit Illustrations and ASCT+B Tables](https://doi.org/10.5281/zenodo.5748154)<br>
   - component: PageSection
-    tagline: Human Reference Atlas Validation and Review
-    anchor: human-reference-atlas-validation-and-review
+    tagline: Cell Type Populations for Transcriptomics and Spatial Omics Data
+    anchor: cell-type-populations-for-transcriptomics-and-spatial-omics-data
     level: 2
     content:
       component: Markdown
       data: |
-        [Human Reference Atlas Validation and Review](https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
-        &emsp;&emsp;&emsp;Internal Validation of ASCT+B Tables, and 2D and 3D Reference Objects<br>
-        &emsp;&emsp;&emsp;External Review of ASCT+B Tables<br>
-        &emsp;&emsp;&emsp;ASCT+B Table Validation with CCF Tools<br>
-        &emsp;&emsp;&emsp;ASCT+B Reporter Validation Checks<br>
-        &emsp;&emsp;&emsp;[Human Reference Atlas (HRA) Editorial Board Procedures](https://doi.org/10.5281/zenodo.7577520)<br>
+        [Cell Type Populations for Transcriptomics and Spatial Omics Data](https://docs.google.com/document/d/1QdM6neW2zAaQGY9CalGQkQh9ZURfiZM10eyPpoaWfAg/edit)<br>
+        &emsp;&emsp;&emsp;[Authoring Cell Type Annotation Crosswalks](https://doi.org/10.5281/zenodo.17873777)<br>
+        &emsp;&emsp;&emsp;[Using the Cell Type Population Predictor](https://doi.org/10.5281/zenodo.20040289)<br>
+        &emsp;&emsp;&emsp;[Using the Tissue Origin Predictor](https://doi.org/10.5281/zenodo.20543106)<br>
+        &emsp;&emsp;&emsp;[Generating 3D Cells Inside Anatomical Structures](https://doi.org/10.5281/zenodo.20040793)<br>
   - component: PageSection
-    tagline: Human Reference Atlas Tracking and Publication
-    anchor: human-reference-atlas-tracking-and-publication
+    tagline: Human Reference Atlas Validation and Publication
+    anchor: human-reference-atlas-validation-and-publication
     level: 2
     content:
       component: Markdown
       data: |
-        Human Reference Atlas Tracking and Publication<br>
-        &emsp;&emsp;&emsp;Tracking Digital Object Status<br>
-        &emsp;&emsp;&emsp;[HRA Release Process](https://doi.org/10.5281/zenodo.17884703)<br>
+        [Human Reference Atlas Validation and Publication](https://docs.google.com/document/d/1zT_BTZ3v31juq0hhRMG2Ya36DdZp_9P5muyxWFdOyIU/edit?tab=t.0#heading=h.4ou04n97ttbd)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas Editorial Board Procedures](https://doi.org/10.5281/zenodo.7577520)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas Release Process](https://doi.org/10.5281/zenodo.17884703)<br>
+        &emsp;&emsp;&emsp;[Serving as a Lead Organ Contact](https://doi.org/10.5281/zenodo.15977281)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas Working Group Communications](https://doi.org/10.5281/zenodo.5639622)<br>
         &emsp;&emsp;&emsp;[Registering Digital Object Identifiers](https://doi.org/10.5281/zenodo.7384461)<br>
+        &emsp;&emsp;&emsp;[Adding New Datasets to the Human Reference Atlas Organ Gallery](https://doi.org/10.5281/zenodo.20027446)<br>
         &emsp;&emsp;&emsp;[Setting Up a Mirror Site for the Human Reference Atlas](https://doi.org/10.5281/zenodo.17873664)<br>
-        &emsp;&emsp;&emsp;Publishing CCF.OWL on BioPortal and OLS<br>
         &emsp;&emsp;&emsp;[Adding and Updating Assets in NIH BioArt Source](https://doi.org/10.5281/zenodo.17873834)<br>
         &emsp;&emsp;&emsp;[Adding and Updating 3D Reference Objects in the NIH3D Portal](https://doi.org/10.5281/zenodo.17873902)<br>
-        &emsp;&emsp;&emsp;[Serving as a Lead Organ Contact](https://doi.org/10.5281/zenodo.15977281)<br>
