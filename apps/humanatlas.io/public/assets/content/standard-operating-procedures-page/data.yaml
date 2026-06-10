@@ -40,7 +40,6 @@ content:
       data: |
         Anatomical Structures and Cell-Type Segmentation<br>
         &emsp;&emsp;&emsp;[Manual Segmentation of Tissue](https://doi.org/10.5281/zenodo.5565027)<br>
-        &emsp;&emsp;&emsp;Segmentation of Single Cells and Anatomical Structures<br>
         &emsp;&emsp;&emsp;[Running a Kaggle Competition](https://doi.org/10.5281/zenodo.10019549)<br>
   - component: PageSection
     tagline: Vasculature Common Coordinate Framework
@@ -62,7 +61,6 @@ content:
       component: Markdown
       data: |
         Vasculature Computations<br>
-        &emsp;&emsp;&emsp;Computing Vessel Properties<br>
         &emsp;&emsp;&emsp;[Computing Cell Type to Vasculature Distance Distributions](https://doi.org/10.5281/zenodo.10371472)<br>
   - component: PageSection
     tagline: Anatomical Structures, Cell Types, Plus Biomarkers Tables
