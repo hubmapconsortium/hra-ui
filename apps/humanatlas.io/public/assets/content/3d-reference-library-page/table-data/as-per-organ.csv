@@ -1,4 +1,6 @@
 organ,sex,as_count,uberon_id,url
+epiploic appendage of transverse colon,Female,1,FMA:15046,https://purl.humanatlas.io/ref-organ/epiploic-appendage-of-transverse-colon-female/v1.0
+epiploic appendage of transverse colon,Male,1,FMA:15046,https://purl.humanatlas.io/ref-organ/epiploic-appendage-of-transverse-colon-male/v1.0
 left palatine tonsil,Female,1,FMA:54974,https://purl.humanatlas.io/ref-organ/palatine-tonsil-female-left/v1.2
 left palatine tonsil,Male,1,FMA:54974,https://purl.humanatlas.io/ref-organ/palatine-tonsil-male-left/v1.2
 right palatine tonsil,Female,1,FMA:54973,https://purl.humanatlas.io/ref-organ/palatine-tonsil-female-right/v1.2
@@ -7,14 +9,14 @@ set of lactiferous glands in left breast,Female,9,FMA:57991,https://purl.humanat
 set of lactiferous glands in right breast,Female,9,FMA:57987,https://purl.humanatlas.io/ref-organ/mammary-gland-female-right/v1.1
 blood vasculature,Female,125,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3
 blood vasculature,Male,123,UBERON:0004537,https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3
-body proper,Female,723,UBERON:0013702,https://purl.humanatlas.io/ref-organ/united-female/v1.9
-body proper,Male,761,UBERON:0013702,https://purl.humanatlas.io/ref-organ/united-male/v1.9
 brain,Female,108,UBERON:0000955,https://purl.humanatlas.io/ref-organ/brain-female/v1.4
 brain,Male,108,UBERON:0000955,https://purl.humanatlas.io/ref-organ/brain-male/v1.4
 extrapulmonary bronchus,Female,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-female/v1.1
 extrapulmonary bronchus,Male,5,UBERON:0002182,https://purl.humanatlas.io/ref-organ/main-bronchus-male/v1.1
 heart,Female,17,UBERON:0000948,https://purl.humanatlas.io/ref-organ/heart-female/v1.3
 heart,Male,17,UBERON:0000948,https://purl.humanatlas.io/ref-organ/heart-male/v1.3
+integumentary system layer,Female,21,UBERON:0013754,https://purl.humanatlas.io/ref-organ/united-female/v1.10
+integumentary system layer,Male,6,UBERON:0013754,https://purl.humanatlas.io/ref-organ/united-male/v1.10
 intervertebral disk,Female,55,UBERON:0001066,https://purl.humanatlas.io/ref-organ/intervertebral-disk-female/v1.0
 intervertebral disk,Male,50,UBERON:0001066,https://purl.humanatlas.io/ref-organ/intervertebral-disk-male/v1.0
 large intestine,Female,11,UBERON:0000059,https://purl.humanatlas.io/ref-organ/large-intestine-female/v1.3
@@ -43,6 +45,8 @@ mesenteric lymph node,Female,8,UBERON:0002509,https://purl.humanatlas.io/ref-org
 mesenteric lymph node,Male,8,UBERON:0002509,https://purl.humanatlas.io/ref-organ/lymph-node-male/v1.4
 mouth,Female,32,UBERON:0000165,https://purl.humanatlas.io/ref-organ/mouth-female/v1.0
 mouth,Male,29,UBERON:0000165,https://purl.humanatlas.io/ref-organ/mouth-male/v1.0
+omentum,Female,1,UBERON:0003688,https://purl.humanatlas.io/ref-organ/omentum-female/v1.0
+omentum,Male,1,UBERON:0003688,https://purl.humanatlas.io/ref-organ/omentum-male/v1.0
 pancreas,Female,6,UBERON:0001264,https://purl.humanatlas.io/ref-organ/pancreas-female/v1.3
 pancreas,Male,6,UBERON:0001264,https://purl.humanatlas.io/ref-organ/pancreas-male/v1.3
 pelvis,Female,24,UBERON:0001270,https://purl.humanatlas.io/ref-organ/pelvis-female/v1.3
