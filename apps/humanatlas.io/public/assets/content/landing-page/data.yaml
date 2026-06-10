@@ -50,7 +50,7 @@ countInfo:
     label: publications
     suffix: +
     icon: misc:publications
-  - count: 79
+  - count: 85
     label: organs
     icon: misc:heart
   - count: 4807
