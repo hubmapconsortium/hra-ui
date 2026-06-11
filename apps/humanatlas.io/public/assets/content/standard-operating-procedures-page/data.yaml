@@ -1,5 +1,5 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
-title: Standard Operating Procedures (SOPs)
+title: Standard Operating Procedures
 subtitle: Standard operating procedures (SOPs) for Human Reference Atlas construction, visualization, and usage.
 content:
   - component: PageSection
@@ -64,7 +64,7 @@ content:
         &emsp;&emsp;&emsp;[Computing Cell Type to Vasculature Distance Distributions](https://doi.org/10.5281/zenodo.10371472)<br>
   - component: PageSection
     tagline: Anatomical Structures, Cell Types, Plus Biomarkers Tables
-    anchor: anatomical-structures-cell-types-plus-biomarkers-asctb-tables
+    anchor: anatomical-structures-cell-types-plus-biomarkers-tables
     level: 2
     content:
       component: Markdown
@@ -75,7 +75,6 @@ content:
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Organ Mapping Antibody Panels (OMAPs)](https://humanatlas.io/faq/omap)<br>
         &emsp;&emsp;&emsp;[Constructing Antibody Validation Reports (AVRs)](https://doi.org/10.5281/zenodo.7418623)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[FAQ: Frequently Asked Questions (FAQ) for Antibody Validation Report (AVR)](https://docs.hubmapconsortium.org/avr/avr-faq.html)<br>
-        &emsp;&emsp;&emsp;[Authoring Cell Type Annotation Crosswalks](https://doi.org/10.5281/zenodo.17873777)<br>
   - component: PageSection
     tagline: 3D Reference Object Library
     anchor: 3d-reference-object-library
@@ -89,14 +88,14 @@ content:
         &emsp;&emsp;&emsp;[Adding 3D Reference Objects to the Human Reference Atlas](https://doi.org/10.5281/zenodo.5639651)<br>
   - component: PageSection
     tagline: 2D Functional Tissue Unit Reference Object Library
-    anchor: 2d-functional-tissue-unit-ftu-reference-object-library
+    anchor: 2d-functional-tissue-unit-reference-object-library
     level: 2
     content:
       component: Markdown
       data: |
         2D Functional Tissue Unit (FTU) Reference Object Library<br>
         &emsp;&emsp;&emsp;[Creating 2D Illustrations of Functional Tissue Units](https://doi.org/10.5281/zenodo.6703107)<br>
-        &emsp;&emsp;&emsp;[Style Guide: Human Reference Atlas 2D Functional Tissue Unit (FTU) Illustrations](https://doi.org/10.5281/zenodo.6703376)<br>
+        &emsp;&emsp;&emsp;[Human Reference Atlas 2D Functional Tissue Unit Illustration Style Guide](https://doi.org/10.5281/zenodo.6703376)<br>
         &emsp;&emsp;&emsp;[Authoring Crosswalk Tables Between Functional Tissue Unit Illustrations and ASCT+B Tables](https://doi.org/10.5281/zenodo.5748154)<br>
   - component: PageSection
     tagline: Cell Type Populations for Transcriptomics and Spatial Omics Data
