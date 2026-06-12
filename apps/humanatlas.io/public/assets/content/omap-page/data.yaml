@@ -84,31 +84,31 @@ content:
               - column: bp
                 label: '#BP'
                 type: numeric
-          - label: 10th release (v2.4)
+          - label: 10th Release (v2.4)
             version: v2.4
             csvUrl: assets/content/omap-page/table-data/omaps_release10.csv
             columns: *table_columns
-          - label: 9th release (v2.3)
+          - label: 9th Release (v2.3)
             version: v2.3
             csvUrl: assets/content/omap-page/table-data/omaps_release9.csv
             columns: *table_columns
-          - label: 8th release (v2.2)
+          - label: 8th Release (v2.2)
             version: v2.2
             csvUrl: assets/content/omap-page/table-data/omaps_release8.csv
             columns: *table_columns
-          - label: 7th release (v2.1)
+          - label: 7th Release (v2.1)
             version: v2.1
             csvUrl: assets/content/omap-page/table-data/omaps_release7.csv
             columns: *table_columns
-          - label: 6th release (v2.0)
+          - label: 6th Release (v2.0)
             version: v2.0
             csvUrl: assets/content/omap-page/table-data/omaps_release6.csv
             columns: *table_columns
-          - label: 5th release (v1.4)
+          - label: 5th Release (v1.4)
             version: v1.4
             csvUrl: assets/content/omap-page/table-data/omaps_release5.csv
             columns: *table_columns
-          - label: 4th release (v1.3)
+          - label: 4th Release (v1.3)
             version: v1.3
             csvUrl: assets/content/omap-page/table-data/omaps_release4.csv
             columns:
