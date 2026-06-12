@@ -4711,7 +4711,7 @@ content:
           - column: uberon_id
             label: Uberon ID
         items:
-          - label: 11h Release (v2.5)
+          - label: 11th Release (v2.5)
             version: '11'
             csvUrl: assets/content/3d-reference-library-page/table-data/as-per-organ.csv
   - component: PageSection
