@@ -123,6 +123,6 @@ describe('kg resolver functions', () => {
       ),
     );
 
-    expect(result).toBe('3D Reference Objects');
+    expect(result).toBe('3D reference objects');
   });
 });

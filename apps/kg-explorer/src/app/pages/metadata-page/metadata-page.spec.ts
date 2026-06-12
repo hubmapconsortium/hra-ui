@@ -117,7 +117,7 @@ describe('MetadataPageComponent', () => {
     expect(instance.tags()).toEqual([
       {
         id: 'ref-organ',
-        label: '3D Reference Objects',
+        label: '3D reference objects',
         type: 'do',
       },
       {
@@ -146,7 +146,7 @@ describe('MetadataPageComponent', () => {
     expect(instance.tags()).toEqual([
       {
         id: 'ref-organ',
-        label: '3D Reference Objects',
+        label: '3D reference objects',
         type: 'do',
       },
     ]);
