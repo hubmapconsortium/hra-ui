@@ -247,7 +247,7 @@ content:
         level: 3
         content:
           - component: Image
-            src: assets/content/release-notes-page/images/v2.5/spatial-omnics.png
+            src: assets/content/release-notes-page/images/v2.5/spatial-omics-gallery-v2.5.png
             alt: A screenshot of the Cell Distance Explorer application showing a colorful custom network visualization.
           - component: Markdown
             data: |
