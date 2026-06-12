@@ -97,7 +97,7 @@ content:
                 * Spleen, red pulp
                 * Spleen, white pulp
                 * Thymus, thymus lobule
-              * 22 ASCT+B Tables
+              * 22 ASCT+B tables
                 * Brain
                 * Blood vasculature
                 * Bone marrow
@@ -123,11 +123,11 @@ content:
               * 7 cell type annotation crosswalks
                 * Azimuth crosswalk
                 * CellTypist crosswalk
-                * DeepCell Types Crosswalk
-                * DeepCell Types (HuBMAP Edition) Crosswalk
+                * DeepCell Types crosswalk
+                * DeepCell Types (HuBMAP Edition) crosswalk
                 * Pan-human Azimuth crosswalk
                 * popV crosswalk
-                * Vasculature Common Coordinate Framework (VCCF) Crosswalk
+                * Vasculature Common Coordinate Framework (VCCF) crosswalk
               * 2 3D reference objects
                 * United, female
                 * United, male
@@ -157,11 +157,11 @@ content:
                   type: link
                   urlColumn: publishedUrl
               - column: termsAdded
-                label: Terms Added
+                label: Terms added
                 type:
                   type: numeric
               - column: axiomsAdded
-                label: Axioms Added
+                label: Axioms added
                 type:
                   type: numeric
             rows:
@@ -191,7 +191,7 @@ content:
         content:
           - component: Markdown
             data: |
-              The Human Reference Atlas (HRA) is being compiled by more than 1,000 international and interdisciplinary experts across
+              The HRA is being compiled by more than 1,000 international and interdisciplinary experts across
               more than 25 international consortia funded by the National Institutes of Health (NIH), the Chan Zuckerberg Initiative,
               the CIFAR MacMillan Multiscale Human program in Canada, and Stiftung Charité in Germany. HRA data mirror sites are being
               set up around the globe to make the HRA data and code maximally useful for experts and practitioners.
@@ -233,7 +233,7 @@ content:
         content:
           - component: Markdown
             data: |
-              The Human Reference Atlas (HRA) Time Capsule is a downloadable, citable snapshot of the HRA Knowledge Graph
+              The HRA Time Capsule is a downloadable, citable snapshot of the HRA Knowledge Graph
               that preserves each release for long-term access and use. Developers can use it to create local installations,
               mirror sites, and custom deployments without depending on external infrastructure.
           - component: TextHyperlink
