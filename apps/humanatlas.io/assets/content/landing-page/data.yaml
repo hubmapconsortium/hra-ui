@@ -1,42 +1,36 @@
 $schema: ../../../app/schemas/landing-page/landing-page.schema.json
 carouselItems:
   - tagline: New publication
-    description: |
-      Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage
-    imageSrc: assets/content/landing-page/images/carousel1.png
+    description: Cell Type Populations for 3D Anatomical Structures of the Human Reference Atlas
+    imageSrc: assets/content/landing-page/images/carousel5.png
     action: Read
     link:
-      url: https://www.nature.com/articles/s41592-024-02563-5
-  - tagline: New publication
+      url: https://doi.org/10.1038/s41597-026-06642-4
+  - tagline: New preprint
     description: Exploring endothelial cell environments across organs in spatially resolved omics data
     imageSrc: assets/content/landing-page/images/carousel6.png
     action: Read
     link:
       url: https://doi.org/10.1101/2025.09.23.678129
-  - tagline: New publication
+  - tagline: Featured publication
     description: Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph
     imageSrc: assets/content/landing-page/images/carousel2.png
     action: Read
     link:
-      url: https://www.nature.com/articles/s41597-025-05183-6
-  - tagline: New publication
-    description: Functional tissue units in the Human Reference Atlas
-    imageSrc: assets/content/landing-page/images/carousel3.png
+      url: https://doi.org/10.1038/s41597-025-05183-6
+  - tagline: Featured publication
+    description: |
+      Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas construction and usage
+    imageSrc: assets/content/landing-page/images/carousel1.png
     action: Read
     link:
-      url: https://www.nature.com/articles/s41467-024-54591-6
+      url: https://doi.org/10.1038/s41592-024-02563-5
   - tagline: Read the flagship publication of the Human Reference Atlas
     description: Anatomical structures, cell types and biomarkers of the Human Reference Atlas
     imageSrc: assets/content/landing-page/images/carousel4.png
     action: Read
     link:
-      url: https://www.nature.com/articles/s41556-021-00788-6
-  - tagline: New preprint
-    description: Constructing and Using Cell Type Populations of the Human Reference Atlas
-    imageSrc: assets/content/landing-page/images/carousel5.png
-    action: Read
-    link:
-      url: https://www.nature.com/articles/s41597-026-06642-4
+      url: https://doi.org/10.1038/s41556-021-00788-6
 
 countInfo:
   - count: 26
@@ -50,22 +44,22 @@ countInfo:
     label: publications
     suffix: +
     icon: misc:publications
-  - count: 77
+  - count: 85
     label: organs
     icon: misc:heart
-  - count: 4810
+  - count: 4807
     label: anatomical structures
     icon: misc:asctb-reporter
-  - count: 1334
+  - count: 2215
     label: cell types
     icon: misc:cell-type
-  - count: 2070
+  - count: 1347
     label: biomarkers
     icon: misc:biomarker
-  - count: 37
+  - count: 38
     label: organ mapping antibody panels
     icon: misc:omaps
-  - count: 26
+  - count: 29
     label: functional tissue units
     icon: misc:ftu
 
