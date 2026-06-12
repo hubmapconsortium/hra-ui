@@ -1,6 +1,6 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: Training
-subtitle: Learn how to construct and use the Human Reference Atlas.
+subtitle: Build the skills to explore, use, and understand the Human Reference Atlas.
 icons: misc:training
 content:
   - component: PageSection
@@ -10,7 +10,7 @@ content:
     content:
       component: Markdown
       data: |
-        Processes and procedures to ensure the standardized construction of the Human Reference Atlas.
+        Processes and procedures to ensure the standardized construction of the Human Reference Atlas (HRA).
 
         - [Standard Operating Procedures](standard-operating-procedures)
         - [Standard Operating Procedure Glossary](https://doi.org/10.5281/zenodo.17664992)
@@ -21,7 +21,7 @@ content:
     level: 2
     content:
       component: Markdown
-      data: Introductory level content made for general audiences of the Human Reference Atlas.
+      data: Introductory level content made for general audiences.
 
   - component: PageSection
     tagline: Human Atlas Stories
@@ -39,17 +39,67 @@ content:
         5. [Know Your Body Buddies](https://cns-iu.github.io/hra-scrollytelling/story5.html)
 
   - component: PageSection
-    tagline: Human Atlas videos
+    tagline: Videos
     anchor: human-atlas-videos
     level: 3
     content:
       component: Markdown
       data: |
-        Watch introductory videos showcasing Human Reference Atlas efforts:
+        Learn key HRA concepts through short videos, animations, and real-world research examples.
 
-        - [10^10 — A Multiscale Voyage through the Human Body](https://www.youtube.com/watch?v=-YNP5XdnLPA)
-        - [Human Reference Atlas: Define Yourself—The Human Gut Atlas Story](https://www.youtube.com/watch?v=_H3S5HeFFPE)
-        - [Human Reference Atlas: Vasculature Common Coordinate Framework (VCCF)](https://www.youtube.com/watch?v=zQeMgxo8n_U)
+  - component: PageSection
+    tagline: HuBMAP Overview
+    anchor: hubmap-overview
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          The [Human BioMolecular Atlas Program (HuBMAP)](https://hubmapconsortium.org), a National Institutes of Health (NIH) Common Fund program, is a leading contributor to the development of the Human Reference Atlas (HRA), working with experts across multiple consortia to build a comprehensive 3D map of the healthy human body.
+
+      - component: YouTubePlayer
+        videoId: yCh4XnD7rEE
+        label: HuBMAP Overview
+
+  - component: PageSection
+    tagline: Vasculature Common Coordinate Framework
+    anchor: vccf
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          The Vasculature Common Coordinate Framework (VCCF) is an open resource that maps the body's blood vessels and how they connect. It links blood vessels to related cells, biomarkers, anatomical structures, and 3D reference objects, helping researchers study, compare, and describe locations in the human body.
+
+          Get data and learn more: [Vasculature Common Coordinate Framework (VCCF)](https://humanatlas.io/vccf)
+
+      - component: YouTubePlayer
+        videoId: zQeMgxo8n_U
+        label: 'Human Reference Atlas: Vasculature Common Coordinate Framework (VCCF)'
+
+  - component: PageSection
+    tagline: Define Yourself—The Human Gut Atlas Story
+    anchor: human-gut-atlas-story
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          See how researchers use HRA data to uncover patterns in cell organization within the human gut. This video shows how mapping cell neighborhoods can reveal new insights into human health and disease.
+
+      - component: YouTubePlayer
+        videoId: _H3S5HeFFPE
+        label: 'Human Reference Atlas: Define Yourself—The Human Gut Atlas Story'
+
+  - component: PageSection
+    tagline: 10^10 — A Multiscale Voyage through the Human Body
+    anchor: multiscale-voyage
+    level: 4
+    content:
+      - component: Markdown
+        data: |
+          Take a journey through the human body, from organs and tissues to cells and molecules. This animation showcases how the HRA maps the body across multiple scales.
+
+      - component: YouTubePlayer
+        videoId: -YNP5XdnLPA
+        label: '10^10 — A Multiscale Voyage through the Human Body'
 
   - component: PageSection
     tagline: 24 Hour Events
@@ -69,7 +119,8 @@ content:
     level: 3
     content:
       component: Markdown
-      data: The [Visible Human Course](https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc) is free and it empowers anyone to help construct and properly use the evolving Human Reference Atlas.
+      data: |
+        Ready to dive deeper? Enroll in the free [Visible Human Course](https://expand.iu.edu/browse/sice/cns/courses/visible-human-mooc) to learn how HuBMAP and the Human Reference Atlas are transforming our understanding of the human body.
 
   - component: PageSection
     tagline: Kaggle competitions

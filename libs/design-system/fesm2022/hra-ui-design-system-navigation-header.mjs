@@ -470,7 +470,7 @@ var menus = [
 					{
 						type: "item",
 						label: "Visible Human Course",
-						url: "https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc/",
+						url: "https://expand.iu.edu/browse/sice/cns/courses/visible-human-mooc",
 						external: true
 					},
 					{
@@ -482,6 +482,11 @@ var menus = [
 						type: "item",
 						label: "Human Atlas Stories",
 						url: "https://humanatlas.io/overview-training-outreach#human-atlas-stories"
+					},
+					{
+						type: "item",
+						label: "Videos",
+						url: "https://humanatlas.io/overview-training-outreach#human-atlas-videos"
 					},
 					{
 						type: "item",
