@@ -7239,6 +7239,10 @@ studies:
       using deepcell tools.
     citations:
       - >-
+        Jain, S., Pei, L., Spraggins, J.M. et al. Advances and prospects for the
+        Human BioMolecular Atlas Program (HuBMAP). Nat Cell Biol 25, 1089–1100
+        (2023). https://doi.org/10.1038/s41556-023-01194-w
+      - >-
         Greenwald, N.F., Miller, G., Moen, E. et al. Whole-cell segmentation of
         tissue images with human-level performance using large-scale data
         annotation and deep learning. Nat Biotechnol 40, 555–565 (2022).
@@ -7259,6 +7263,7 @@ studies:
     technology: Multiple Technologies
     euiUrl: ''
     publications:
+      - https://doi.org/10.1038/s41556-023-01194-w
       - https://doi.org/10.1038/s41587-021-01094-0
       - https://doi.org/10.1038/s41592-025-02879-w
       - https://doi.org/10.1101/2024.11.02.621624
