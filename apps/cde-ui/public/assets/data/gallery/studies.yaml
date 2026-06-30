@@ -7233,10 +7233,7 @@ studies:
         level2CellTypesCount: 8
         level1CellTypesCount: 5
   - slug: hubmap-mirror-deepcell
-    description: >-
-      This dataset comprises 339 spatial proteomics datasets from the HuBMAP
-      Data Portal with cell segmentation and cell type annotations computed
-      using deepcell tools.
+    description: "This collection comprises 339 spatial proteomics datasets from the [HuBMAP Data Portal](https://portal.hubmapconsortium.org) with cell segmentation done using [Deepcell Mesmer](https://deepcell.readthedocs.io/en/master) and [CellSAM](https://vanvalenlab.github.io/cellSAM/index.html) models, and cell type annotation done using [DeepcellTypes](https://vanvalenlab.github.io/deepcell-types/#) model.\r\n\r\nTo look up a particular dataset on the HuBMAP Data Portal, reformat the Dataset ID below for compatibility. Example: Reformat `HBM222_WQKC_382_uterus_mibi` to `HBM222.WQKC.382`. Use this reformatted HuBMAP ID to search for the [source dataset on the portal](https://portal.hubmapconsortium.org/search/datasets).\r\n\r\nSome datasets in this collection currently may not have cell-to-nearest-endothelial-cell links and will be updated in future releases. For those datasets, only nodes (dots) for cell locations but no links (lines) are shown.\r\n"
     citations:
       - >-
         Jain, S., Pei, L., Spraggins, J.M. et al. Advances and prospects for the

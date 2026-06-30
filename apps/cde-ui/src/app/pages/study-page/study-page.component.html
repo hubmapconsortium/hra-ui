@@ -32,7 +32,7 @@
   </hra-table-of-contents-layout-header>
 
   <hra-page-section hraFeature="overview" tagline="Overview" anchor="overview" [level]="2">
-    <p>{{ data.description }}</p>
+    <hra-markdown [data]="data.description" />
   </hra-page-section>
 
   <hra-page-section hraFeature="publications" tagline="Publications" anchor="publications" [level]="2">
