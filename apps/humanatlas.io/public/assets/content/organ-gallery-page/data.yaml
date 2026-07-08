@@ -15,8 +15,27 @@ content:
       data: |
         The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that lets users explore the HRA in immersive 3D and in their true size, location, and spatial relation to each other. The HRA Organ Gallery has several use cases: 1) introduce both novice and expert users to the 2D and 3D data available in the HRA via the HuBMAP Data Portal, the SenNet Data Portal, and similar efforts; (2) enable multiscale harmonization, visualization, and exploration of spatial biological data; (3) enable biological queries across scales; and 4) provide quality assurance and quality control (QA/QC) for HRA data providers.
         The concept of the application is described in this [publication](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full).
-        Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://apps.humanatlas.io/eui/) to how it appears in the HRA Organ Gallery when using a Meta Quest 2 or 3.
-        This research is based on work supported by a [R03 award by the NIH](https://reporter.nih.gov/search/ywt9ul-G8kuWaSRazYBjJg/project-details/11123677), a [NIH HuBMAP JumpStart Fellowship 2024-2025](https://hubmapconsortium.org/jumpstart-program/#andreas2024), a HuBMAP NIH JumpStart Award (2023-2024), and a [CIFAR](https://cifar.ca/research-programs/cifar-macmillan-multiscale-human/) catalyst award.
+        Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://apps.humanatlas.io/eui/) to how it appears in the HRA Organ Gallery when using a Meta Quest VR headset.
+        This research is based on work supported by a [R03 award by the NIH](https://reporter.nih.gov/search/ywt9ul-G8kuWaSRazYBjJg/project-details/11123677), a [NIH HuBMAP JumpStart Fellowship 2024-2025](https://hubmapconsortium.org/jumpstart-program/#andreas2024), a HuBMAP NIH JumpStart Award (2023-2024), and a [CIFAR](https://cifar.ca/research-programs/cifar-macmillan-multiscale-human/) Catalyst award.
+
+  - component: PageSection
+    tagline: Preprint
+    anchor: preprint
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        A preprint describing the HRA Organ Gallery in VR, including the HRA: Powers of Ten application, is availabe at TBA.
+
+  - component: PageSection
+    tagline: Application
+    anchor: applicatiom
+    level: 2
+    content:
+        component: Markdown
+        data: |
+          You can download and install the application to your Meta Quest VR headset at [https://www.meta.com/experiences/5696814507101529](https://www.meta.com/experiences/5696814507101529).
+
 
   - component: PageSection
     tagline: 2D vs. virtual reality
@@ -26,7 +45,7 @@ content:
       - component: Markdown
         data: |
           **Left**: A user looks at the HRA with the EUI in a standard-size browser window on a 17-in display.
-          **Right**: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of the HRA in true scale using immersive technology (VR). This image is taken from this [publication](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full). <br><br>
+          **Right**: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of the HRA in true scale using immersive technology (VR). <br><br>
 
       - component: Image
         src: assets/content/organ-gallery-page/images/organ_gallery.png
