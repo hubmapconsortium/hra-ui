@@ -45,7 +45,7 @@ content:
       - component: Markdown
         data: |
           **Left**: A user looks at the HRA with the EUI in a standard-size browser window on a 17-in display.
-          **Right**: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of the HRA in true scale using immersive technology (VR). <br><br>
+          **Right**: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of the HRA in true scale using VR. <br><br>
 
       - component: Image
         src: assets/content/organ-gallery-page/images/organ_gallery.png
@@ -57,7 +57,7 @@ content:
     content:
       component: Markdown
       data: |
-        Using a visually explicit method of data integration, the HRA enables users to explore disparate data. Virtual reality (VR) presents a unique opportunity to explore both spatial and abstract data in an immersive environment that enhances presence beyond traditional interfaces like windows, icons, menus, and pointers, also called WIMP paradigm (Van Dam, 1997). Although some users may be able to learn how to explore 3D reference organs and tissue blocks on a 2D screen (Bueckle et al., [2021](https://journals.plos.org/plosone/article/metrics?id=10.1371/journal.pone.0258103#citedHeader), [2022](https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2021.727344/full)), many still struggle with interacting with 3D objects on a 2D screen.
+        Using a visually explicit method of data integration, the HRA enables users to explore disparate data. VR presents a unique opportunity to explore both spatial and abstract data in an immersive environment that enhances presence beyond traditional interfaces like windows, icons, menus, and pointers, also called WIMP paradigm (Van Dam, 1997). Although some users may be able to learn how to explore 3D reference organs and tissue blocks on a 2D screen (Bueckle et al., [2021](https://journals.plos.org/plosone/article/metrics?id=10.1371/journal.pone.0258103#citedHeader), [2022](https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2021.727344/full)), many still struggle with interacting with 3D objects on a 2D screen.
 
   - component: PageSection
     tagline: Resources
@@ -89,15 +89,11 @@ content:
     content:
       component: Markdown
       data: |
-        A. Bueckle, C. Qing, S. Luley, Y. Kumar, N. Pandey, and K. Börner, “The HRA Organ Gallery affords immersive superpowers for building and explorring the
-        Human Reference Atlas with virtual reality,” *Frontiers in Bioinformatics*, vol. 3, 2023. doi: [10.3389/fbinf.2023.1162723](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full).
+        Bueckle, A. et al. Multiscale harmonization and semantic integration of biomedical data enable biological insights through immersive exploration. bioRxiv (2026). [TBA](TBA)
+        Bueckle, A. et al. The HRA Organ Gallery affords immersive superpowers for building and exploring the Human Reference Atlas with virtual reality. Front. Bioinforma. 3, (2023). (https://doi.org/10.3389/fbinf.2023.1162723)[https://doi.org/10.3389/fbinf.2023.1162723]
+        Bueckle, A., Buehling, K., Shih, P. C. & Börner, K. Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework. Front. Virtual Real. 2, (2022). [https://doi.org/10.3389/frvir.2021.727344](https://doi.org/10.3389/frvir.2021.727344)
+        Bueckle, A., Buehling, K., Shih, P. C. & Börner, K. 3D virtual reality vs. 2D desktop registration user interface comparison. PLOS ONE 16, e0258103 (2021). (https://doi.org/10.1371/journal.pone.0258103)[https://doi.org/10.1371/journal.pone.0258103]
+        Van Dam, A. Post-WIMP user interfaces. Commun. ACM 40, 63–67 (1997). [https://dl.acm.org/doi/10.1145/253671.253708](https://dl.acm.org/doi/10.1145/253671.253708)
 
-        Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. ["Optimizing Performance and Satisfaction in Matching and Movement Tasks in
-        Virtual Reality with Interventions Using the Data Visualization Literacy Framework"](https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2021.727344/full).
-        *Frontiers in Virtual Reality* 2. doi: 10.3389/frvir.2021.727344.
 
-        Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021. ["3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison"](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0258103).
-        *PLOS ONE* 16 (10): e0258103. doi: 10.1371/journal.pone.0258103.
 
-        van Dam, Andries. 1997. ["Post-WIMP User Interfaces"](https://dl.acm.org/doi/10.1145/253671.253708).
-        *Communications of the ACM 40* (2): 63-67. doi: 10.1145/253671.253708.
