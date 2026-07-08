@@ -25,7 +25,7 @@ content:
     content:
       component: Markdown
       data: |
-        A preprint describing the HRA Organ Gallery in VR, including the HRA: Powers of Ten application, is availabe at TBA.
+        A preprint describing the HRA Organ Gallery in VR, including the HRA: Powers of Ten application, is availabe at TBA. A series of video demonstrations is available at [https://cns-iu.github.io/hra-organ-gallery-supporting-information/#videos](https://cns-iu.github.io/hra-organ-gallery-supporting-information/#videos). A companion website is available at [https://cns-iu.github.io/hra-organ-gallery-supporting-information](https://cns-iu.github.io/hra-organ-gallery-supporting-information).
 
   - component: PageSection
     tagline: Application
@@ -67,20 +67,9 @@ content:
       component: Markdown
       data: |
         * You can download the application on the Meta Horizon Store: [https://www.meta.com/experiences/5696814507101529](https://www.meta.com/experiences/5696814507101529)
-        * This paper, mentioned above, describes the basic concept: [https://doi.org/10.3389/fbinf.2023.1162723](https://doi.org/10.3389/fbinf.2023.1162723)
-        * Work in progress: a follow-up publication describing multiscale exploration and visualization (preprint to be shared when available)
-        * Data pages for multiscale exploration and visualization: **TBA**
-        * Supporting Information for next paper: **TBA**
-
-  - component: PageSection
-    tagline: Feedback
-    anchor: feedback
-    level: 2
-    content:
-      component: Markdown
-      data: |
-        Information for test users is available [here](https://github.com/cns-iu/hra-organ-gallery-in-vr/blob/main/INFORMATION_FOR_TESTERS.MD). In order to engage a diverse group of users in the development of the HRA Organ Gallery, we invite feedback from a broad range of specialists in fields such as bioinformatics, 3D modeling, medical illustration, anatomy, data curation, and biology. We continuously evaluate the application's usability, engagement, and presence.
-        Also, please email Andreas Bueckle ([abueckle@iu.edu](mailto:abueckle@iu.edu)) if you are interested in contributing your input to the research and development of the HRA Organ Gallery.
+        * This paper describes the basic concept: [https://doi.org/10.3389/fbinf.2023.1162723](https://doi.org/10.3389/fbinf.2023.1162723)
+        * A new preprint is available at TBA.
+        * To download the most up-to-date GLB files for the organs of the HRA, please visit the [HRA 3D Reference Object Library](https://humanatlas.io/3d-reference-library).
 
   - component: PageSection
     tagline: References
