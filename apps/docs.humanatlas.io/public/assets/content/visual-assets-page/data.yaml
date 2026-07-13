@@ -1,0 +1,35 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Visual Assets
+subtitle: |
+  Open-source visual assets for the Human Reference Atlas.
+icons: product:design-system
+content:
+  - component: PageSection
+    tagline: Using HRA visual assets
+    anchor: using-visual-assets
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Human Reference Atlas (HRA) visual assets are open-source and available for use in your own projects. We ask that you follow the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078) when using HRA visual assets to maintain consistency with the HRA brand.
+
+  - component: PageSection
+    tagline: Icons
+    anchor: icons
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Content here.
+
+      - component: Image
+        src: assets/content/design-system-page/images/figma_comp_organization.png
+
+  - component: PageSection
+    tagline: Logos
+    anchor: logos
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Content here.
