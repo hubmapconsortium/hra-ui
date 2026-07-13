@@ -49,7 +49,7 @@ content:
       data: |
         * You can download the application on the Meta Horizon Store: [https://www.meta.com/experiences/5696814507101529](https://www.meta.com/experiences/5696814507101529)
         * This paper, mentioned above, describes the basic concept: [https://doi.org/10.3389/fbinf.2023.1162723](https://doi.org/10.3389/fbinf.2023.1162723)
-        * Work in progress: a follow-up publication describing multiscale exploration and visualization (preprint to be shared when available)
+        * Work in progress: a follow-up publication describing multiscale exploration and visualization (see [preprint on bioRxiv](https://www.biorxiv.org/content/10.64898/2026.07.07.737090))
         * Data pages for multiscale exploration and visualization: **TBA**
         * Supporting Information for next paper: **TBA**
 
@@ -70,15 +70,9 @@ content:
     content:
       component: Markdown
       data: |
-        A. Bueckle, C. Qing, S. Luley, Y. Kumar, N. Pandey, and K. Börner, “The HRA Organ Gallery affords immersive superpowers for building and explorring the
-        Human Reference Atlas with virtual reality,” *Frontiers in Bioinformatics*, vol. 3, 2023. doi: [10.3389/fbinf.2023.1162723](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full).
+        Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021. “3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison.” PLOS ONE 16 (10): e0258103. [https://doi.org/10.1371/journal.pone.0258103](https://doi.org/10.1371/journal.pone.0258103).
+        Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. “Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework.” Frontiers in Virtual Reality 2. [https://doi.org/10.3389/frvir.2021.727344](https://doi.org/10.3389/frvir.2021.727344).
+        Bueckle, Andreas, Catherine Qing, Shefali Luley, Yash Kumar, Naval Pandey, and Katy Börner. 2023. “The HRA Organ Gallery Affords Immersive Superpowers for Building and Exploring the Human Reference Atlas with Virtual Reality.” Frontiers in Bioinformatics 3 (April). [https://doi.org/10.3389/fbinf.2023.1162723](https://doi.org/10.3389/fbinf.2023.1162723).
+        Bueckle, Andreas, Chenchen Zhu, Alex Yu Hin Wong, et al. 2026. “Multiscale Harmonization and Semantic Integration of Biomedical Data Enable Biological Insights through Immersive Exploration.” Preprint, bioRxiv, July 11. [https://doi.org/10.64898/2026.07.07.737090](https://doi.org/10.64898/2026.07.07.737090).
+        Van Dam, Andries. 1997. “Post-WIMP User Interfaces.” Communications of the ACM 40 (2): 63–67. [https://doi.org/10.1145/253671.253708](https://doi.org/10.1145/253671.253708).
 
-        Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. ["Optimizing Performance and Satisfaction in Matching and Movement Tasks in
-        Virtual Reality with Interventions Using the Data Visualization Literacy Framework"](https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2021.727344/full).
-        *Frontiers in Virtual Reality* 2. doi: 10.3389/frvir.2021.727344.
-
-        Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021. ["3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison"](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0258103).
-        *PLOS ONE* 16 (10): e0258103. doi: 10.1371/journal.pone.0258103.
-
-        van Dam, Andries. 1997. ["Post-WIMP User Interfaces"](https://dl.acm.org/doi/10.1145/253671.253708).
-        *Communications of the ACM 40* (2): 63-67. doi: 10.1145/253671.253708.
