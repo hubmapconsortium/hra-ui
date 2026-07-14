@@ -11,19 +11,81 @@ content:
     content:
       - component: Markdown
         data: |
-          Human Reference Atlas (HRA) visual assets are open-source and available for use in your own projects. We ask that you follow the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078) when using HRA visual assets to maintain consistency with the HRA brand.
+          Human Reference Atlas (HRA) visual assets, such as icons, logos, and illustrations, are open-source and available for use in your own projects. We ask that you follow the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078) when using HRA visual assets to maintain consistency with the HRA brand.
 
   - component: PageSection
-    tagline: Icons
-    anchor: icons
+    tagline: Iconography
+    anchor: iconography
     level: 2
     content:
       - component: Markdown
         data: |
-          Content here.
+          HRA icons are a key part of our design language and are used across all interfaces. HRA has custom icons for apps, data, organs, and more.
 
       - component: Image
-        src: assets/content/design-system-page/images/figma_comp_organization.png
+        src: assets\content\visual-assets-page\images\icon-overview.png
+        alt: 'Overview of HRA icon categories: app products, data products, organs, and miscellaneous icons.'
+
+      - component: Markdown
+        data: |
+          Optimal usage of HRA iconography includes:
+            - All icons contain a filled, circular background. Do not use HRA icons with outlines or strokes.
+            - App and data product icons exist as a branded house.
+              - Use a white fill (<code>#FFFFFF</code>) on dark blue (<code>#201E3D</code>).
+            - Organ icons use a white fill (<code>#FFFFFF</code>) on brand red (<code>#FF0043</code>).
+            - Miscellaneous icons, used visually, use a white fill (<code>#FFFFFF</code>) on top of tertiary blue (<code>#4B4B5E</code>).
+
+  - component: PageSection
+    tagline: Download icon packages
+    anchor: download-icons
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Download HRA icon packages for use in your own projects. ZIP files contain all icons for a given category in SVG and PNG formats. For more information, see the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078).
+      - component: GridContainer
+        content:
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: App icons
+            icons: product:apps
+            content:
+              - component: Markdown
+                data: Contains icons for all Human Reference Atlas applications.
+            actionsLeft:
+              component: TextHyperlink
+              text: Download PNGs
+              url: https://humanatlas.io/api
+            actionsRight:
+              component: TextHyperlink
+              text: Use app
+              url: https://apps.humanatlas.io/api/
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: ASCT+B Reporter
+            icons: product:asctb-reporter
+            content:
+              - component: Markdown
+                data: Explore relationships between anatomical structures, cell types, and biomarkers.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: https://humanatlas.io/asctb-reporter
+            actionsRight:
+              component: TextHyperlink
+              text: Use app
+              url: https://apps.humanatlas.io/asctb-reporter/
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Cell Distance Explorer
+            icons: product:cde
+            content:
+              - component: Markdown
+                data: Compute, visualize, and explore distance distributions.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: https://humanatlas.io/user-story/5
 
   - component: PageSection
     tagline: Logos
