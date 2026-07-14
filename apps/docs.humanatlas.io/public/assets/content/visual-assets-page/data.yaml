@@ -33,7 +33,7 @@ content:
             - App and data product icons exist as a branded house.
               - Use a white fill (<code>#FFFFFF</code>) on dark blue (<code>#201E3D</code>).
             - Organ icons use a white fill (<code>#FFFFFF</code>) on brand red (<code>#FF0043</code>).
-            - Miscellaneous icons, used visually, use a white fill (<code>#FFFFFF</code>) on top of tertiary blue (<code>#4B4B5E</code>).
+            - Miscellaneous icons use a white fill (<code>#FFFFFF</code>) on top of tertiary blue (<code>#4B4B5E</code>).
 
   - component: PageSection
     tagline: Download icon packages
@@ -43,6 +43,7 @@ content:
       - component: Markdown
         data: |
           Download HRA icon packages for use in your own projects. ZIP files contain all icons for a given category in SVG and PNG formats. For more information, see the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078).
+
       - component: GridContainer
         content:
           - component: ActionCard
@@ -51,40 +52,60 @@ content:
             icons: product:apps
             content:
               - component: Markdown
-                data: Contains icons for all Human Reference Atlas applications.
+                data: ZIP files contain all HRA app icons in PNG and SVG formats.
             actionsLeft:
               component: TextHyperlink
-              text: Download PNGs
+              text: PNG
               url: https://humanatlas.io/api
             actionsRight:
               component: TextHyperlink
-              text: Use app
-              url: https://apps.humanatlas.io/api/
+              text: SVG
+              url: assets/content/visual-assets-page/downloads/app-svg.zip
+              download: ''
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: ASCT+B Reporter
-            icons: product:asctb-reporter
+            tagline: Data product icons
+            icons: product:ftu
             content:
               - component: Markdown
-                data: Explore relationships between anatomical structures, cell types, and biomarkers.
+                data: ZIP files contain all HRA data product icons in PNG and SVG formats.
             actionsLeft:
               component: TextHyperlink
-              text: Learn more
+              text: PNG
               url: https://humanatlas.io/asctb-reporter
             actionsRight:
               component: TextHyperlink
-              text: Use app
-              url: https://apps.humanatlas.io/asctb-reporter/
+              text: SVG
+              url: https://humanatlas.io/asctb-reporter
           - component: ActionCard
             variant: outlined-with-icons
-            tagline: Cell Distance Explorer
-            icons: product:cde
+            tagline: Organ icons
+            icons: organ:heart
             content:
               - component: Markdown
-                data: Compute, visualize, and explore distance distributions.
+                data: ZIP files contain all HRA organ icons in PNG and SVG formats.
             actionsLeft:
               component: TextHyperlink
-              text: Learn more
+              text: PNG
+              url: https://humanatlas.io/organ
+            actionsRight:
+              component: TextHyperlink
+              text: SVG
+              url: https://humanatlas.io/user-story/5
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: Miscellaneous icons
+            icons: misc:experts
+            content:
+              - component: Markdown
+                data: ZIP files contain all HRA miscellaneous icons in PNG and SVG formats.
+            actionsLeft:
+              component: TextHyperlink
+              text: PNG
+              url: https://humanatlas.io/organ
+            actionsRight:
+              component: TextHyperlink
+              text: SVG
               url: https://humanatlas.io/user-story/5
 
   - component: PageSection
