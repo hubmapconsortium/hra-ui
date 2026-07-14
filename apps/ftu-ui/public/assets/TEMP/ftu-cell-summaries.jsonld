@@ -34,7 +34,7 @@
         {
           "@type": "CellSummaryRow",
           "cell_id": "http://purl.obolibrary.org/obo/CL_4030009",
-          "cell_label": "epithelial cell of proximal tubule",
+          "cell_label": "epithelial cell of proximal tubule segment 1",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -3753,7 +3753,7 @@
         {
           "@type": "CellSummaryRow",
           "cell_id": "http://purl.obolibrary.org/obo/CL_0000653",
-          "cell_label": "glomerular visceral epithelial cell",
+          "cell_label": "podocyte",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -13492,7 +13492,7 @@
         {
           "@type": "CellSummaryRow",
           "cell_id": "http://purl.obolibrary.org/obo/CL_4028004",
-          "cell_label": "alveolar type 1 fibroblast",
+          "cell_label": "alveolar type 1 fibroblast cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -14215,7 +14215,7 @@
         {
           "@type": "CellSummaryRow",
           "cell_id": "http://purl.obolibrary.org/obo/CL_0002062",
-          "cell_label": "type I pneumocyte",
+          "cell_label": "pulmonary alveolar type 1 cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -15668,7 +15668,7 @@
         {
           "@type": "CellSummaryRow",
           "cell_id": "http://purl.obolibrary.org/obo/CL_0002063",
-          "cell_label": "type II pneumocyte",
+          "cell_label": "pulmonary alveolar type 2 cell",
           "genes": [
             {
               "@type": "GeneExpression",
@@ -16406,7 +16406,7 @@
         {
           "@type": "CellSummaryRow",
           "cell_id": "http://purl.obolibrary.org/obo/CL_4033055",
-          "cell_label": "airway submucosal gland duct ciliated cell",
+          "cell_label": "airway submucosal gland duct multiciliated cell",
           "genes": [
             {
               "@type": "GeneExpression",
