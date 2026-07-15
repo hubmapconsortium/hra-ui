@@ -64,4 +64,19 @@ describe('LinkDirective', () => {
 
     expect.hasAssertions();
   });
+
+  it('uses default anchor behavior for downloads', async () => {
+    expect.assertions(2);
+    await render(`<a hraLink="${pageUrl}" hraLinkDownload="">link</a>`, { imports: [LinkDirective], providers });
+
+    const user = userEvent.setup();
+    const el = screen.getByText('link');
+    expect(el).toHaveAttribute('download', '');
+    el.addEventListener('click', (event) => {
+      expect(event.defaultPrevented).toBeFalsy();
+      event.preventDefault();
+    });
+
+    await user.click(el);
+  });
 });

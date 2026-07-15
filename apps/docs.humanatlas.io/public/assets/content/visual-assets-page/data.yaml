@@ -23,7 +23,7 @@ content:
           HRA icons are a key part of our design language and are used across all interfaces. HRA has custom icons for apps, data, organs, and more.
 
       - component: Image
-        src: assets\content\visual-assets-page\images\icon-overview.png
+        src: assets/content/visual-assets-page/images/icon-overview.png
         alt: 'Overview of HRA icon categories: app products, data products, organs, and miscellaneous icons.'
 
       - component: Markdown
@@ -56,11 +56,12 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: PNG
-              url: https://humanatlas.io/api
+              url: assets/content/visual-assets-page/downloads/apps-png.zip
+              download: ''
             actionsRight:
               component: TextHyperlink
               text: SVG
-              url: assets/content/visual-assets-page/downloads/app-svg.zip
+              url: assets/content/visual-assets-page/downloads/apps-svg.zip
               download: ''
           - component: ActionCard
             variant: outlined-with-icons
@@ -72,11 +73,13 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: PNG
-              url: https://humanatlas.io/asctb-reporter
+              url: assets/content/visual-assets-page/downloads/data-png.zip
+              download: ''
             actionsRight:
               component: TextHyperlink
               text: SVG
-              url: https://humanatlas.io/asctb-reporter
+              url: assets/content/visual-assets-page/downloads/data-svg.zip
+              download: ''
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Organ icons
@@ -87,11 +90,13 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: PNG
-              url: https://humanatlas.io/organ
+              url: assets/content/visual-assets-page/downloads/organs-png.zip
+              download: ''
             actionsRight:
               component: TextHyperlink
               text: SVG
-              url: https://humanatlas.io/user-story/5
+              url: assets/content/visual-assets-page/downloads/organs-svg.zip
+              download: ''
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Miscellaneous icons
@@ -102,17 +107,53 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: PNG
-              url: https://humanatlas.io/organ
+              url: assets/content/visual-assets-page/downloads/misc-png.zip
+              download: ''
             actionsRight:
               component: TextHyperlink
               text: SVG
-              url: https://humanatlas.io/user-story/5
+              url: assets/content/visual-assets-page/downloads/misc-svg.zip
+              download: ''
 
   - component: PageSection
-    tagline: Logos
-    anchor: logos
+    tagline: HRA symbol and brandmark
+    anchor: hra-logo
     level: 2
     content:
       - component: Markdown
         data: |
-          Content here.
+          The brandmark represents the construction of the circular diagram of the Vasculature Common Coordinate Framework (VCCF). It also denotes a red blood cell, serving as the essential unit for scale measurement across the HRA.
+
+      - component: Image
+        src: assets/content/visual-assets-page/images/brandmarks.png
+        alt: 'Large and small HRA brandmark variants, with the large variant on the left and the small variant on the right.'
+
+      - component: Markdown
+        data: |
+          For scales of 48 pixels by 48 pixels and below, use the small size brandmark variant.
+
+  - component: PageSection
+    tagline: Primary logo
+    anchor: primary-logo
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The HRA logo consist of two parts- the wordmark and the brandmark (symbol).
+
+      - component: Image
+        src: assets/content/visual-assets-page/images/primary-logo.png
+        alt: 'The primary HRA logo with the brandmark on the left and the wordmark, reading "Human Reference Atlas", on the right.'
+
+  - component: PageSection
+    tagline: Clear space
+    anchor: clear-space
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          The HRA logo should always be surrounded by a minimum area of white space, at least 1/3 the brandmark height. Please avoid placing other elements closer than the defined exclusion zone.
+
+      - component: Image
+        src: assets/content/visual-assets-page/images/clear-space.png
+        alt: 'The HRA brandmark and logo with defined 1/3 clear space area around it.'

@@ -36,5 +36,8 @@ export class TextHyperlinkComponent {
    */
   readonly external = input<boolean>(false);
 
+  /**
+   * Suggested filename for the downloaded resource, or `null` for a normal link.
+   */
   readonly download = input<string | null>(null);
 }
