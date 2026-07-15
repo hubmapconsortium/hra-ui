@@ -9762,8 +9762,8 @@
       "summary": [
         {
           "@type": "CellSummaryRow",
-          "cell_id": "http://purl.obolibrary.org/obo/CL_1001131",
-          "cell_label": "vasa recta ascending limb cell",
+          "cell_id": "http://purl.obolibrary.org/obo/CL_1001285",
+          "cell_label": "vasa recta descending limb cell",
           "genes": [
             {
               "@type": "GeneExpression",
