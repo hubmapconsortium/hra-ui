@@ -1,0 +1,140 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  min-width: 40rem;
+  max-width: 81.25rem;
+  border-radius: vars.$corner-small;
+  overflow: hidden;
+  width: calc(100vw);
+
+  .featured-section {
+    width: 19.75rem;
+    padding: 1.5rem;
+    background: vars.$surface-variant;
+  }
+
+  .featured-link {
+    width: 100%;
+    border-radius: vars.$corner-small;
+    overflow: hidden;
+    height: fit-content;
+  }
+
+  .featured-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .featured-image {
+    border-radius: vars.$corner-small;
+  }
+
+  .featured-bottom {
+    display: flex;
+    text-align: start;
+    padding: 1rem;
+    min-height: 3.5rem;
+    background: vars.$surface-bright;
+    border: 0.0625rem solid vars.$outline-variant;
+    border-radius: vars.$corner-small;
+    height: auto;
+
+    ::ng-deep .mdc-button__label {
+      width: 100%;
+    }
+  }
+
+  .featured-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .featured-label-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+    width: 12.5rem;
+
+    .tagline {
+      @include utils.use-font(label, medium);
+      color: vars.$on-surface-variant;
+    }
+  }
+
+  .right-side {
+    background: vars.$surface-container;
+    display: flex;
+    flex-direction: column;
+    min-width: 25.5rem;
+    flex-grow: 1;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-items {
+    display: flex;
+    justify-content: center;
+    max-width: 44.5rem;
+    width: 100%;
+  }
+
+  .groups {
+    display: flex;
+    width: 100%;
+    max-width: 44.5rem;
+    justify-content: space-between;
+  }
+
+  .group {
+    @include utils.use-font(label, large);
+    display: flex;
+    flex-direction: column;
+    min-width: 12rem;
+    max-width: 21rem;
+    flex-grow: 1;
+    padding: 1.5rem;
+    width: 50%;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.125rem;
+  }
+
+  .group-label {
+    color: vars.$on-surface-variant;
+    height: 2rem;
+    padding: 0 0.75rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .item-label {
+    min-height: 2.75rem;
+    justify-content: start;
+    padding: 0.5rem 0.75rem;
+    border-radius: vars.$corner-small;
+    height: auto;
+  }
+
+  .divider {
+    margin: 0.375rem 0 0.5rem;
+    color: vars.$outline-variant;
+  }
+
+  .socials {
+    display: flex;
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    justify-content: space-between;
+    max-width: 44.5rem;
+  }
+}

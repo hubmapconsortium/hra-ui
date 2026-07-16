@@ -35,4 +35,9 @@ export class TextHyperlinkComponent {
    * Whether the link should open in a new tab/window
    */
   readonly external = input<boolean>(false);
+
+  /**
+   * Aria label of text hyperlink component
+   */
+  readonly ariaLabel = input<string>();
 }

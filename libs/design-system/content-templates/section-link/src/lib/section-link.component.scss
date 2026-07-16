@@ -58,6 +58,7 @@ $level-configs: (
         visibility: hidden;
       }
 
+      &:focus .icon,
       &:focus-visible .icon {
         visibility: visible;
       }

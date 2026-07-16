@@ -1,0 +1,97 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: vars.$on-primary-fixed;
+
+  > * {
+    width: 100%;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2.5rem;
+    color: #ffffff;
+
+    @media (min-width: 1100px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .logo-and-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    @media (min-width: 1100px) {
+      align-items: start;
+    }
+
+    .logo {
+      height: 3rem;
+      padding: 4px;
+      border-radius: vars.$corner-extra-small;
+
+      ::ng-deep svg {
+        height: 2.5rem;
+      }
+
+      &:focus-visible {
+        @include utils.inset-outline(vars.$tertiary);
+      }
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .privacy-container {
+    @include utils.use-font(body, medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 2rem 2.5rem;
+    gap: 1.5rem;
+    background-color: vars.$tertiary-container;
+    color: vars.$on-tertiary-container;
+
+    @media (min-width: 1100px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    button,
+    a {
+      color: vars.$on-tertiary-container;
+    }
+
+    .privacy {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+    }
+
+    .separator {
+      width: 21px;
+      text-align: center;
+    }
+
+    .copyright {
+      text-align: center;
+    }
+  }
+}

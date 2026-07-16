@@ -1,0 +1,107 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+$z-index: 900;
+
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: $z-index;
+  background: vars.$surface-variant;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: $z-index + 1;
+    pointer-events: none;
+    backdrop-filter: blur(6.25rem);
+    mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 35.71%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .header {
+    position: relative;
+    z-index: $z-index + 2;
+
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 3rem,
+        icon-color: vars.$on-surface,
+      )
+    );
+  }
+
+  .header-content {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+
+    .filler {
+      flex-grow: 1;
+    }
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    height: 2.5rem;
+    padding: 0.25rem;
+    border-radius: vars.$corner-extra-small;
+    color: vars.$on-surface;
+
+    ::ng-deep svg {
+      height: 2rem;
+    }
+
+    &:focus-visible {
+      @include utils.inset-outline(vars.$tertiary);
+    }
+  }
+
+  .menu-button {
+    @include mat.button-overrides(
+      (
+        text-label-text-font: vars.$title-medium-font,
+        text-label-text-size: vars.$title-medium-size,
+        text-label-text-weight: vars.$title-medium-weight,
+        text-label-text-tracking: vars.$title-medium-tracking,
+        text-horizontal-padding: 0.625rem,
+      )
+    );
+
+    @include mat.button-toggle-overrides(
+      (
+        label-text-font: vars.$title-medium-font,
+        label-text-size: vars.$title-medium-size,
+        label-text-weight: vars.$title-medium-weight,
+        label-text-tracking: vars.$title-medium-tracking,
+      )
+    );
+
+    ::ng-deep .mat-button-toggle-label-content {
+      display: flex;
+      height: 2.5rem;
+      align-items: center;
+      padding: 0 0.625rem !important;
+    }
+  }
+}
+
+// Reduce z-index of overlay container when menu is open to allow backdrop effect
+// For other overlays we want to keep the higher z-index as they should appear above the header
+::ng-deep .cdk-overlay-container:has(.menu-open-backdrop) {
+  z-index: $z-index - 1;
+
+  .menu-open-backdrop {
+    top: 3.5rem;
+    background-color: utils.with-alpha(#405d40, 0.16);
+    backdrop-filter: blur(0.5rem);
+    mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    transition: 0.3s;
+    z-index: $z-index - 1;
+    top: 3.5rem;
+  }
+}

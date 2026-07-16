@@ -11,6 +11,5 @@ describe('BrandLogoComponent', () => {
 
     const link = screen.queryByRole('link');
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', 'https://humanatlas.io/');
   });
 });

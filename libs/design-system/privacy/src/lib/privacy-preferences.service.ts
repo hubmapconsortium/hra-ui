@@ -1,9 +1,9 @@
-import { ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { Overlay, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConsentService } from '@hra-ui/common/analytics';
 import {
-  CONSENT_BANNER_ARIA_LABELLEDBY_ID,
   CONSENT_BANNER_PANEL_CLASS,
   ConsentBannerComponent,
   ConsentBannerResult,
@@ -18,16 +18,14 @@ import store from 'store2';
 
 /** Key used to store privacy preferences in local storage */
 const PRIVACY_PREFERENCES_STORAGE_KEY = '__hra-analytics-privacy-preferences';
-/** ID for the consent banner dialog */
-const CONSENT_BANNER_DIALOG_ID = 'consentBannerDialog';
-/** ID for the privacy preferences dialog */
-const PRIVACY_PREFERENCES_DIALOG_ID = 'privacyPreferencesDialog';
 
 /** Service for managing privacy preferences and consent banner */
 @Injectable({
   providedIn: 'root',
 })
 export class PrivacyPreferencesService {
+  /** Reference to Angular CDK overlay service */
+  private readonly overlay = inject(Overlay);
   /** Reference to Angular Material dialog service */
   private readonly dialog = inject(MatDialog);
   /** Reference to consent service */
@@ -36,6 +34,8 @@ export class PrivacyPreferencesService {
   private readonly repositionScrollStrategy = inject(ScrollStrategyOptions).reposition();
   /** Whether to sync preferences to local storage */
   private readonly syncEnabled = signal(false);
+  /** Whether an active dialog is open */
+  private readonly hasActiveDialog = signal(false);
 
   /** Constructor */
   constructor() {
@@ -78,24 +78,23 @@ export class PrivacyPreferencesService {
       return;
     }
 
-    const ref = this.dialog.open<ConsentBannerComponent, never, ConsentBannerResult>(ConsentBannerComponent, {
-      ariaLabelledBy: CONSENT_BANNER_ARIA_LABELLEDBY_ID,
-      autoFocus: false,
-      closeOnNavigation: false,
-      disableClose: true,
+    const overlayRef = this.overlay.create({
+      disposeOnNavigation: false,
       hasBackdrop: false,
-      id: CONSENT_BANNER_DIALOG_ID,
-      panelClass: CONSENT_BANNER_PANEL_CLASS,
       minWidth: '100%',
-      position: {
-        bottom: '0px',
-        left: '0px',
-        right: '0px',
-      },
+      panelClass: CONSENT_BANNER_PANEL_CLASS,
+      positionStrategy: this.overlay.position().global().bottom('0').left('0').right('0'),
       scrollStrategy: this.repositionScrollStrategy,
     });
+    const portal = new ComponentPortal(ConsentBannerComponent);
+    const componentRef = overlayRef.attach(portal);
 
-    ref.afterClosed().subscribe((result) => this.handleDialogResult(result));
+    componentRef.instance.buttonClick.subscribe((result) => {
+      this.handleDialogResult(result);
+      overlayRef.dispose();
+    });
+
+    this.hasActiveDialog.set(true);
   }
 
   /** Open the privacy preferences dialog */
@@ -116,23 +115,20 @@ export class PrivacyPreferencesService {
           tab,
         },
         hasBackdrop: true,
-        id: PRIVACY_PREFERENCES_DIALOG_ID,
         maxWidth: '46.75rem',
         minWidth: '20rem',
+        panelClass: 'hra-privacy-preferences-panel',
         restoreFocus: true,
       },
     );
 
     ref.afterClosed().subscribe((result) => this.handleDialogResult(result));
-  }
-
-  /** Check whether a privacy-related dialog is currently open */
-  private hasActiveDialog(): boolean {
-    const ids = [CONSENT_BANNER_DIALOG_ID, PRIVACY_PREFERENCES_DIALOG_ID];
-    return ids.some((id) => this.dialog.getDialogById(id) !== undefined);
+    this.hasActiveDialog.set(true);
   }
 
   private handleDialogResult(result: ConsentBannerResult | PrivacyPreferencesResult = 'dismiss'): void {
+    this.hasActiveDialog.set(false);
+
     switch (result) {
       case 'allow-all':
         this.consent.enableAllCategories();

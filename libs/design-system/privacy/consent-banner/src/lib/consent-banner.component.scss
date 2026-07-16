@@ -1,15 +1,16 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils' as utils;
 @use '../../../../styles/vars' as vars;
 
 :host {
-  background-color: utils.with-alpha(vars.$surface-bright, 80%);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 1.5rem;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  background-color: vars.$surface-variant;
+  border-radius: vars.$corner-large vars.$corner-large 0 0;
 
   hra-brand-logo {
     --hra-brand-logo-text-color: vars.$secondary;
@@ -20,33 +21,20 @@
     flex-shrink: 0;
   }
 
-  .middle,
-  .right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .middle {
-    flex: 1;
-    min-width: 0;
-    align-self: flex-start;
+    padding: 0 1.5rem;
 
-    .content {
-      padding: 0 1.5rem;
+    .text-area {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      padding-bottom: 1.5rem;
+      .text1 {
+        @include utils.use-font(title, small);
+      }
 
-      .text-area {
-        display: flex;
-        flex-direction: column;
-        row-gap: 1rem;
-        padding-bottom: 1.5rem;
-        .text1 {
-          @include utils.use-font(title, small);
-        }
-
-        .text2 {
-          @include utils.use-font(label, large);
-        }
+      .text2 {
+        @include utils.use-font(label, large);
       }
     }
 
@@ -57,12 +45,16 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        width: fit-content;
         @include utils.use-font(label, large);
       }
     }
   }
 
   .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     row-gap: 0.75rem;
     padding-left: 1rem;
     padding-right: 1.5rem;
@@ -88,25 +80,22 @@
       white-space: nowrap;
     }
   }
+
+  .spacer {
+    flex-grow: 1;
+  }
 }
 
-@media (min-width: 320px) and (max-width: 639px) {
+@media (max-width: 639px) {
   :host {
     flex-direction: column;
     row-gap: 2rem;
     padding: 1.5rem;
 
-    .middle,
-    .right {
-      align-items: stretch;
-    }
-
     .middle {
-      .content {
-        .text-area {
-          padding-bottom: 1rem;
-          gap: 1rem;
-        }
+      .text-area {
+        padding-bottom: 1rem;
+        gap: 1rem;
       }
 
       .hyperlink {
@@ -125,6 +114,7 @@
       min-width: auto;
       row-gap: 0.75rem;
       width: 100%;
+      align-items: stretch;
 
       .consent-buttons {
         width: 100%;
@@ -149,22 +139,21 @@
   .middle {
     min-width: 11.25rem;
     max-width: 44.75rem;
-    .content {
-      .text1 {
-        @include utils.use-font(title, small);
-      }
+    .text1 {
+      @include utils.use-font(title, small);
+    }
 
-      .text2 {
-        @include utils.use-font(label, large);
-      }
+    .text2 {
+      @include utils.use-font(label, large);
     }
   }
 }
 
 ::ng-deep .hra-consent-banner-panel {
-  border-radius: 1.75rem;
-  box-shadow: 0rem -0.75rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0rem -1rem 2rem 2rem utils.with-alpha(vars.$tertiary, 24%);
+  backdrop-filter: blur(10rem);
   animation: slideUpFromBottom 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: vars.$corner-large vars.$corner-large 0 0;
 }
 
 @keyframes slideUpFromBottom {

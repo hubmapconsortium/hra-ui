@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { booleanAttribute, ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { FragmentLinkDirective } from '@hra-ui/common/router-ext';
+import { stripLeadingHash } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
 /**
@@ -24,4 +25,10 @@ export class SectionLinkComponent {
 
   /** Whether to display the underline */
   readonly underlined = input(false, { transform: booleanAttribute });
+
+  /** Label id */
+  protected readonly labelId = computed(() => {
+    const anchor = this.anchor();
+    return anchor ? `section-link-label--${stripLeadingHash(anchor)}` : null;
+  });
 }

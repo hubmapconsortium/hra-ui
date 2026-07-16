@@ -1,9 +1,13 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
 :host {
-  min-width: 17rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 16.25rem;
   max-width: 28rem;
+  width: 100%;
 
   .image {
     width: 100%;
@@ -15,25 +19,35 @@
   .content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    flex-grow: 1;
     padding-top: 1rem;
-    min-height: 6.875rem;
 
     .date {
-      @include utils.use-font(label, medium);
-      color: vars.$on-secondary-fixed;
+      color: vars.$on-surface-variant;
+      @include utils.use-font(title, small);
     }
 
-    .tagline-link {
-      color: vars.$tertiary;
-      text-decoration: underline;
-      cursor: pointer;
+    .tagline-link,
+    .tagline {
+      color: vars.$on-surface;
+      margin-top: 0.5rem;
       @include utils.use-font(title, medium);
       @include utils.line-clamp(2);
     }
 
+    .tagline-link {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
     .tags {
       padding-top: 1.25rem;
+      margin-top: auto;
     }
+  }
+
+  mat-chip {
+    margin: 0;
+    margin-left: 0.5rem;
   }
 }

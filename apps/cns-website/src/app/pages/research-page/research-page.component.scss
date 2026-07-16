@@ -1,0 +1,91 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+  height: calc(100vh - 3.5rem);
+
+  .container {
+    height: 100%;
+
+    @include mat.sidenav-overrides(
+      (
+        container-background-color: vars.$surface-bright,
+        container-divider-color: vars.$outline,
+        container-shape: vars.$corner-none,
+        container-width: 20rem,
+        content-background-color: vars.$background,
+      )
+    );
+  }
+
+  mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 3.5rem);
+    align-items: center;
+  }
+
+  hra-search-filter,
+  .content > *:not(cns-footer) {
+    max-width: 101.25rem;
+    width: calc(100% - 2.5rem);
+
+    @media (min-width: 640px) {
+      width: calc(100% - 5rem);
+    }
+  }
+
+  hra-search-filter {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  ng-scrollbar {
+    width: 100%;
+
+    ::ng-deep ng-scroll-content {
+      width: 100%;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 10.5rem);
+
+    &:has(.gallery-group) {
+      gap: 3rem;
+    }
+
+    .gallery-group .title {
+      margin-bottom: 2rem;
+
+      @include mat.divider-overrides(
+        (
+          color: vars.$outline,
+        )
+      );
+    }
+
+    .page-end {
+      padding-bottom: 2.5rem;
+      margin-bottom: auto;
+
+      mat-divider {
+        margin-top: 2rem;
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    hra-end-of-results-indicator {
+      padding: 0;
+      flex-direction: row;
+    }
+  }
+}

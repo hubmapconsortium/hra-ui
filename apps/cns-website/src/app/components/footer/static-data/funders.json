@@ -1,0 +1,47 @@
+{
+  "$schema": "../types/funders.schema.json",
+  "funders": [
+    {
+      "id": "nsf",
+      "name": "National Science Foundation",
+      "link": "https://www.nsf.gov/",
+      "image": "assets/logo/nsf_gray.svg"
+    },
+    {
+      "id": "nih",
+      "name": "National Institutes of Health",
+      "link": "https://www.nih.gov/",
+      "image": "assets/logo/nih_white.svg"
+    },
+    {
+      "id": "cifar",
+      "name": "The Canadian Institute for Advanced Research",
+      "link": "https://cifar.ca/",
+      "image": "assets/logo/cifar_white.svg"
+    },
+    {
+      "id": "iu",
+      "name": "Indiana University",
+      "link": "https://iu.edu/",
+      "image": "assets/logo/iu_white.svg"
+    },
+    {
+      "id": "ada",
+      "name": "American Dental Association",
+      "link": "https://www.ada.org/",
+      "image": "assets/logo/ada_white.svg"
+    },
+    {
+      "id": "jsmf",
+      "name": "James S. McDonnell Foundation",
+      "link": "https://www.jsmf.org/",
+      "image": "assets/logo/jsmf_white.svg"
+    },
+    {
+      "id": "gates",
+      "name": "Gates Foundation",
+      "link": "https://www.gatesfoundation.org/",
+      "image": "assets/logo/gates_white.svg"
+    }
+  ]
+}

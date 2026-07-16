@@ -1,0 +1,107 @@
+@use '@angular/material' as mat;
+@use 'vars';
+@use 'utils';
+
+:host {
+  display: block;
+  height: calc(100vh - 3.5rem);
+  width: 100%;
+
+  .container {
+    height: 100%;
+
+    @include mat.sidenav-overrides(
+      (
+        container-background-color: vars.$surface-bright,
+        container-divider-color: vars.$outline-variant,
+        container-shape: vars.$corner-none,
+        container-width: 20rem,
+        content-background-color: vars.$background,
+      )
+    );
+
+    .sidebar {
+      .filters {
+        .team-toggle {
+          width: min-content;
+          margin: -0.5rem 0 0.5rem;
+        }
+
+        .sort-by,
+        .group-by {
+          width: 100%;
+
+          @include mat.select-overrides(
+            (
+              enabled-trigger-text-color: vars.$on-surface,
+            )
+          );
+        }
+      }
+    }
+
+    ng-scrollbar {
+      --_scrollbar-content-width: 100%;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: calc(100vh - 3.5rem);
+      margin: 0 auto;
+      --profile-card-border-color: #8dc63f;
+      --profile-card-description-color: #{vars.$on-surface-variant};
+
+      .search-bar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        max-width: 81.25rem;
+        z-index: 10;
+        padding: 1.5rem 1.25rem 2rem;
+        background: vars.$background;
+
+        @media (min-width: 640px) {
+          padding: 1.5rem 2.5rem 2rem;
+        }
+      }
+
+      .profile-list {
+        max-width: 81.25rem;
+        width: 100%;
+        margin: 2rem 1.25rem;
+
+        @media (min-width: 640px) {
+          margin: 2.5rem;
+        }
+
+        .section {
+          margin: 0 2.5rem;
+
+          .title {
+            margin-bottom: 2.5rem;
+
+            @include mat.divider-overrides(
+              (
+                color: vars.$outline,
+              )
+            );
+          }
+
+          .gallery {
+            gap: 5rem 2.5rem;
+          }
+
+          &:not(:last-of-type) {
+            margin-bottom: 5rem;
+          }
+        }
+      }
+
+      .footer {
+        margin-top: auto;
+      }
+    }
+  }
+}

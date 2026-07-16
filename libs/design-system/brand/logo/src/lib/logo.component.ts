@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { HraCommonModule } from '@hra-ui/common';
 import { findOrThrow } from '@hra-ui/common/array-util';
+import { RouterExtModule } from '@hra-ui/common/router-ext';
 import { InlineSVGModule, type SVGScriptEvalMode } from 'ng-inline-svg-2';
 import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 
@@ -9,7 +10,7 @@ import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 /** Brand Logo Component */
 @Component({
   selector: 'hra-brand-logo',
-  imports: [HraCommonModule, InlineSVGModule],
+  imports: [HraCommonModule, InlineSVGModule, RouterExtModule],
   templateUrl: './logo.component.html',
   styleUrl: './logo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,12 +22,12 @@ export class BrandLogoComponent {
   /** Size of the logo */
   readonly size = input<BrandLogoSize>('regular');
 
-  /** Logos from injection token */
-  readonly logos = input(injectBrandLogos());
+  /** Brand configuration from injection token */
+  readonly brandConfig = input(injectBrandLogos());
 
   /** SVG script eval mode */
   protected readonly NEVER_EVAL_SCRIPTS = 'never' as SVGScriptEvalMode;
 
   /** Logo data */
-  protected readonly data = computed(() => findOrThrow(this.logos(), ({ size }) => size === this.size()));
+  protected readonly data = computed(() => findOrThrow(this.brandConfig().logos, ({ size }) => size === this.size()));
 }

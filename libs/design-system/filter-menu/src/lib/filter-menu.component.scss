@@ -6,29 +6,33 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 20rem;
-  color: vars.$secondary;
+  color: vars.$on-surface;
   gap: 1.5rem;
+
+  .tagline {
+    .title {
+      @include utils.use-font(title, medium);
+    }
+  }
 
   .header {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+
+    .title {
+      padding: 0.5rem 0;
+      @include utils.use-font(title, medium);
+    }
   }
 
   .icon {
     padding: 0.5rem;
   }
 
-  .title {
-    padding: 0.5rem 0;
-    @include utils.use-font(title, small);
-  }
-
   .section {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
-    width: 20rem;
   }
 
   .intro {

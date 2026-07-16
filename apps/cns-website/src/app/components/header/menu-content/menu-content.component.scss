@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+$item-height: 3rem;
+$item-horizontal-padding: 0.75em;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  --hra-header-menu-content-item-horizontal-padding: #{$item-horizontal-padding};
+
+  ::ng-deep .mdc-button__label {
+    width: 100%;
+  }
+
+  .item-label {
+    height: auto;
+    min-height: $item-height;
+    padding: 0 var(--hra-header-menu-content-item-horizontal-padding);
+    color: vars.$on-surface-variant;
+    justify-content: start;
+    @include utils.use-font(title, medium);
+  }
+}

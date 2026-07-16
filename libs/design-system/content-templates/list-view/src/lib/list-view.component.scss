@@ -17,8 +17,9 @@
   }
 
   .content {
-    @include utils.use-font(body, xl);
+    overflow-wrap: break-word;
     color: vars.$primary;
+    @include utils.use-font(body, xl);
 
     ::ng-deep p {
       margin-bottom: 0;

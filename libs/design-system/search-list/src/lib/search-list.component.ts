@@ -51,11 +51,17 @@ export class SearchListComponent<T extends SearchListOption> {
   /** Whether to disable the ripple effect for list items */
   readonly disableRipple = input(false, { transform: booleanAttribute });
 
+  /** Whether to show options with zero count */
+  readonly showEmptyOptions = input(false, { transform: booleanAttribute });
+
   /** All filter options */
   readonly options = input.required<T[]>();
 
   /** Currently selected filters */
   readonly selected = model<T[]>([]);
+
+  /** Counts for each filter option */
+  readonly counts = input<Record<string, number>>();
 
   /** Current search bar value */
   readonly search = model<string>('');
@@ -64,11 +70,18 @@ export class SearchListComponent<T extends SearchListOption> {
   readonly filteredOptions = computed(() => this.doSearch());
 
   /**
-   * Updates selected options on update
-   * @param event Selected options in list
+   * Updates selected options on option click
+   * @param event Selected options
    */
   selectionUpdate(event: MatListOption[]): void {
     this.selected.set(event.map((option) => option.value));
+  }
+
+  /** Gets count for an option, either from the option itself or from the counts input
+   * @param option Option to get count for
+   */
+  getCount(option: T): number | undefined {
+    return option.count ?? this.counts()?.[option.id];
   }
 
   /** Filters options according to the search bar value */

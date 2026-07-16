@@ -1,0 +1,37 @@
+@use 'vars';
+@use 'utils';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: flex-end;
+
+  .title {
+    @include utils.use-font(body, medium);
+  }
+
+  .funders {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .funder {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      min-width: 2.5rem;
+      height: 2.5rem;
+      object-fit: none;
+    }
+
+    span {
+      margin: 0 1rem;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+@use '../../../../styles/vars';
+
+:host {
+  ::ng-deep hra-table {
+    --hra-table-max-height: 26.125rem;
+    border-color: vars.$outline;
+    border-radius: 0.5rem;
+
+    @include mat.table-overrides(
+      (
+        header-headline-color: vars.$on-surface,
+        row-item-label-text-color: vars.$on-surface-variant,
+      )
+    );
+
+    thead {
+      tr {
+        background-color: vars.$surface-container-highest;
+      }
+    }
+
+    .mat-column-date {
+      min-width: 8rem;
+      max-width: 9.75rem;
+    }
+
+    .mat-column-event {
+      min-width: 10rem;
+      max-width: 30.25rem;
+    }
+
+    .mat-column-location {
+      min-width: 8.75rem;
+      max-width: 11.25rem;
+    }
+
+    .mat-column-contact {
+      min-width: 10rem;
+      max-width: 13.5rem;
+    }
+
+    .mat-column-links {
+      min-width: 8rem;
+      max-width: 11.25rem;
+
+      a {
+        color: inherit;
+      }
+    }
+  }
+}

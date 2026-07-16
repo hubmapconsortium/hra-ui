@@ -48,7 +48,7 @@ describe('SearchFilterComponent', () => {
       },
     });
 
-    const input = screen.getByRole('textbox');
+    const input = screen.getByRole('searchbox');
     await userEvent.type(input, 'kidney');
 
     expect(input).toHaveValue('kidney');

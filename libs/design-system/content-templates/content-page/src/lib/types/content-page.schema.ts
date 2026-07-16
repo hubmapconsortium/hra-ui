@@ -1,4 +1,5 @@
 import { ProjectedContentTemplateSchema } from '@hra-ui/cdk/content-template';
+import { BreadcrumbItemSchema } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconListSchema } from '@hra-ui/design-system/icons';
 import * as z from 'zod';
 
@@ -12,6 +13,7 @@ export const ContentPageDataSchema = z
     title: z.string(),
     subtitle: z.string(),
     icons: IconListSchema.optional(),
+    breadcrumbs: z.array(BreadcrumbItemSchema).optional(),
     action: z
       .object({
         label: z.string(),

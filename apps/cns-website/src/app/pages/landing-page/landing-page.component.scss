@@ -1,0 +1,66 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: calc(100vh - 3.5rem);
+
+  @media (prefers-color-scheme: dark) {
+    background: utils.with-alpha(vars.$primary, 0.08);
+
+    .content {
+      background-color: rgba(0, 0, 0, 0.7);
+      background-blend-mode: darken;
+    }
+  }
+
+  .content {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 6.25rem 1.25rem;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: calc(100vh - 3.5rem);
+
+    @media (min-width: 640px) {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 0.25rem;
+    color: vars.$on-background;
+    @include utils.use-font(display, large);
+  }
+
+  .tagline {
+    margin-bottom: 2rem;
+    max-width: 31.5rem;
+    text-align: center;
+    color: vars.$on-surface;
+    @include utils.use-font(body, large);
+  }
+
+  .content-filter {
+    margin-bottom: 3rem;
+  }
+
+  .content-grid {
+    width: 100%;
+    max-width: 86.5rem;
+  }
+
+  hra-content-button {
+    animation-delay: var(--animate-delay);
+  }
+}

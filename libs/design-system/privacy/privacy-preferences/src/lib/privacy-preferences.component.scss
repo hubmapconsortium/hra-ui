@@ -4,9 +4,7 @@
 
 :host {
   display: block;
-  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$on-background, 24%);
-  border-radius: 0.5rem;
-  background-color: vars.$surface-container-low;
+  background-color: vars.$surface-container-high;
 
   .header {
     display: flex;
@@ -16,10 +14,6 @@
 
     button[mat-icon-button] {
       color: vars.$on-surface;
-
-      mat-icon {
-        color: inherit;
-      }
     }
   }
 
@@ -81,4 +75,12 @@
       }
     }
   }
+}
+
+::ng-deep .hra-privacy-preferences-panel {
+  @include mat.dialog-overrides(
+    (
+      container-elevation-shadow: 0rem 0.75rem 2rem 1.5rem utils.with-alpha(vars.$tertiary, 24%),
+    )
+  );
 }

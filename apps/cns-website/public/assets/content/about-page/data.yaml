@@ -1,0 +1,89 @@
+$schema: ../../../app/schemas/content-page/content-page.schema.json
+title: About the Cyberinfrastructure for Network Science Center
+subtitle: |
+  We are atlas builders and system integrators with a core focus on data visualization literacy.
+  We publish in high impact journals, our code is high quality, and we communicate our work well to diverse audiences.
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: About the Cyberinfrastructure for Network Science Center
+content:
+  - component: PageSection
+    tagline: Our mission
+    anchor: our-mission
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The [CNS](https://cns.iu.edu/) mission is to advance research, development, teaching, and service in data mining, modeling, and visualization.
+          Specific foci are increased data visualization literacy and research on multi-level atlases
+          of the structure and evolution of science and technology (see [Mapping Science Exhibit](https://scimaps.org/)),
+          mapping the human body at the single cell level (see [HuBMAP](https://portal.hubmapconsortium.org/)),
+          and the communication of results via static and interactive data visualizations
+          (see courses like the [Visual Analytics Certificate](https://visanalytics.cns.iu.edu/)
+          and the [Visible Human MOOC](https://expand.iu.edu/browse/sice/cns/courses/hubmap-visible-human-mooc)).
+      - component: Image
+        src: /assets/content/about-page/images/luddy-hall.png
+
+  - component: PageSection
+    tagline: Our history
+    anchor: our-history
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Before CNS came into existence, Katy Börner created and directed the Information Visualization Lab to provide an active and advanced research environment to conduct research in information visualization.
+
+
+          She later broadened the scope of her enterprise and grew it into an organization that performs big data mining and filtering, creates open source tools for analysis and visualization, shares knowledge and
+          techniques through teaching, exhibitions, and workshops on an international level, and connects people with different expertise for research collaboration across the world—what you know today as the CNS Center.
+
+
+          Today, many students and staff members decide to join CNS because its strong focus on information visualization excellence. Almost all projects at CNS aim to advance data visualization design, standards, tools,
+          or data visualization literacy in general.
+      - component: Image
+        styles:
+          max-width: 640px
+          max-height: 480px
+        src: /assets/content/about-page/images/history-2005.png
+
+  - component: PageSection
+    tagline: Donate
+    anchor: donate
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          CNS receives funding from organizations throughout the world plus smaller donations from individuals. These generous gifts allow us to stay on the cutting edge of information science and continue the work of
+          helping advance big data management and utilization. Thank you for your support!
+      - component: Button
+        label: Donate
+        href: https://give.myiu.org/iu-bloomington/I320004200.html
+        type: cta
+
+  - component: PageSection
+    tagline: Contact us
+    anchor: contact-us
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Contact: Traci Smith, Center Assistant
+          <br>
+          E-mail: cnscntr@iu.edu
+          <br>
+          Phone: 812-856-4402
+          <br><br>
+          Mailing address:
+          <br>
+          Cyberinfrastructure for Network Science (CNS) Center
+          <br>
+          Department of Intelligent Systems Engineering
+          <br>
+          Luddy School of Informatics, Computing, and Engineering
+          <br>
+          Indiana University at Bloomington
+          <br>
+          700 N. Woodlawn Ave. Luddy Hall, Suite 4018
+          <br>
+          Bloomington, IN 47408

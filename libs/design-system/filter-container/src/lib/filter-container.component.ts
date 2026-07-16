@@ -1,4 +1,5 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +10,7 @@ import {
   InfoButtonComponent,
   InfoButtonTaglineDirective,
 } from '@hra-ui/design-system/buttons/info-button';
+import { ChipSizeDirective } from '@hra-ui/design-system/chips';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /** A filter chip representing a selected filter option */
@@ -25,13 +27,15 @@ export interface FilterChip {
   imports: [
     HraCommonModule,
     ButtonsModule,
-    MatIconModule,
+    MatButtonToggleModule,
     MatChipsModule,
     MatDividerModule,
+    MatIconModule,
     InfoButtonComponent,
     InfoButtonTaglineDirective,
     InfoButtonActionsDirective,
     PlainTooltipDirective,
+    ChipSizeDirective,
   ],
   templateUrl: './filter-container.component.html',
   styleUrl: './filter-container.component.scss',
@@ -43,6 +47,9 @@ export class FilterContainerComponent<T extends FilterChip> {
 
   /** Total count of filter options in the category */
   readonly totalCount = input<number>();
+
+  /** Whether the filter container is active/open */
+  readonly active = model(false);
 
   /** Whether to show the info button with tooltip */
   readonly showTooltip = input(false, { transform: booleanAttribute });

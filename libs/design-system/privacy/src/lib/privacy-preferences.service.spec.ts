@@ -1,14 +1,21 @@
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConsentService } from '@hra-ui/common/analytics';
 import { EventCategory } from '@hra-ui/common/analytics/events';
-import { of } from 'rxjs';
+import { ConsentBannerResult } from '@hra-ui/design-system/privacy/consent-banner';
+import { of, ReplaySubject } from 'rxjs';
 import { PrivacyPreferencesService } from './privacy-preferences.service';
 
 // Mock store2
 jest.mock('store2', () => ({
   local: {
+    has: jest.fn(),
+    get: jest.fn(),
+    set: jest.fn(),
+  },
+  session: {
     has: jest.fn(),
     get: jest.fn(),
     set: jest.fn(),
@@ -21,6 +28,11 @@ interface MockStore {
     get: jest.Mock;
     set: jest.Mock;
   };
+  session: {
+    has: jest.Mock;
+    get: jest.Mock;
+    set: jest.Mock;
+  };
 }
 
 describe('PrivacyPreferencesService', () => {
@@ -28,6 +40,7 @@ describe('PrivacyPreferencesService', () => {
   let mockDialog: jest.Mocked<MatDialog>;
   let mockConsentService: jest.Mocked<ConsentService>;
   let mockStore: MockStore;
+  let consentBannerResult: ReplaySubject<ConsentBannerResult>;
 
   const mockCategories = {
     [EventCategory.Necessary]: true,
@@ -38,6 +51,33 @@ describe('PrivacyPreferencesService', () => {
 
   beforeEach(async () => {
     mockStore = (await import('store2')).default as unknown as MockStore;
+    consentBannerResult = new ReplaySubject<ConsentBannerResult>(1);
+
+    const mockComponentRef = {
+      instance: {
+        buttonClick: consentBannerResult,
+      },
+    };
+
+    const mockOverlayRef = {
+      attach: jest.fn(() => mockComponentRef),
+      detach: jest.fn(),
+    };
+
+    const mockGlobalPositionStrategy = {
+      bottom: jest.fn().mockReturnThis(),
+      left: jest.fn().mockReturnThis(),
+      right: jest.fn().mockReturnThis(),
+    };
+
+    const mockPositionBuilder = {
+      global: jest.fn(() => mockGlobalPositionStrategy),
+    };
+
+    const mockOverlay = {
+      create: jest.fn(() => mockOverlayRef as unknown as OverlayRef),
+      position: jest.fn(() => mockPositionBuilder),
+    };
 
     const mockDialogRef = {
       afterClosed: jest.fn(() => of('allow-all')),
@@ -58,6 +98,7 @@ describe('PrivacyPreferencesService', () => {
     TestBed.configureTestingModule({
       providers: [
         PrivacyPreferencesService,
+        { provide: Overlay, useValue: mockOverlay },
         { provide: MatDialog, useValue: mockDialogService },
         { provide: ConsentService, useValue: mockConsent },
       ],
@@ -135,47 +176,27 @@ describe('PrivacyPreferencesService', () => {
 
   describe('openConsentBanner', () => {
     it('should not open banner if dialog is already active', () => {
-      mockDialog.getDialogById.mockReturnValue({} as MatDialogRef<unknown>);
-
+      service.openConsentBanner();
       service.openConsentBanner();
 
-      expect(mockDialog.open).not.toHaveBeenCalled();
-    });
-
-    it('should open consent banner dialog with correct configuration', () => {
-      mockDialog.getDialogById.mockReturnValue(undefined);
-
-      service.openConsentBanner();
-
-      expect(mockDialog.open).toHaveBeenCalledWith(
-        expect.any(Function),
-        expect.objectContaining({
-          id: 'consentBannerDialog',
-          disableClose: true,
-          hasBackdrop: false,
-        }),
-      );
+      expect(TestBed.inject(Overlay).create).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('openPrivacyPreferences', () => {
     it('should not open dialog if one is already active', () => {
-      mockDialog.getDialogById.mockReturnValue({} as MatDialogRef<unknown>);
-
+      service.openPrivacyPreferences();
       service.openPrivacyPreferences();
 
-      expect(mockDialog.open).not.toHaveBeenCalled();
+      expect(mockDialog.open).toHaveBeenCalledTimes(1);
     });
 
     it('should open privacy preferences dialog with correct configuration', () => {
-      mockDialog.getDialogById.mockReturnValue(undefined);
-
       service.openPrivacyPreferences('manage');
 
       expect(mockDialog.open).toHaveBeenCalledWith(
         expect.any(Function),
         expect.objectContaining({
-          id: 'privacyPreferencesDialog',
           data: expect.objectContaining({
             tab: 'manage',
           }),
@@ -205,14 +226,10 @@ describe('PrivacyPreferencesService', () => {
   describe('handleDialogResult', () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      mockDialog.getDialogById.mockReturnValue(undefined);
     });
 
     it('should handle "allow-all" result', () => {
-      const mockDialogRef = {
-        afterClosed: jest.fn(() => of('allow-all')),
-      } as unknown as MatDialogRef<unknown>;
-      mockDialog.open.mockReturnValue(mockDialogRef);
+      consentBannerResult.next('allow-all');
       jest.spyOn(service, 'enableSync');
 
       service.openConsentBanner();
@@ -222,10 +239,7 @@ describe('PrivacyPreferencesService', () => {
     });
 
     it('should handle "allow-necessary" result', () => {
-      const mockDialogRef = {
-        afterClosed: jest.fn(() => of('allow-necessary')),
-      } as unknown as MatDialogRef<unknown>;
-      mockDialog.open.mockReturnValue(mockDialogRef);
+      consentBannerResult.next('allow-necessary');
       jest.spyOn(service, 'enableSync');
 
       service.openConsentBanner();
@@ -235,10 +249,7 @@ describe('PrivacyPreferencesService', () => {
     });
 
     it('should handle "customize" result', () => {
-      const mockDialogRef = {
-        afterClosed: jest.fn(() => of('customize')),
-      } as unknown as MatDialogRef<unknown>;
-      mockDialog.open.mockReturnValue(mockDialogRef);
+      consentBannerResult.next('customize');
       jest.spyOn(service, 'openPrivacyPreferences');
 
       service.openConsentBanner();

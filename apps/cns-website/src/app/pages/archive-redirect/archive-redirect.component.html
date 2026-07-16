@@ -1,0 +1,72 @@
+<div id="main-content" class="content" role="main" hraFeature="archive-redirect-page">
+  <h2 class="title">
+    @if (redirectUrl()) {
+      This page has been archived
+    } @else {
+      This page isn’t available
+    }
+  </h2>
+
+  @if (!redirectUrl()) {
+    <p class="description">
+      @if (isLoading()) {
+        Check the page address or try searching Google for this URL.
+      } @else {
+        No archived pages found. Check the page address or try searching Google for this URL.
+      }
+    </p>
+
+    <hra-copyable-url-container class="copy-url" [url]="currentUrl()" />
+  }
+
+  @if (redirectUrl() || isLoading()) {
+    <div class="card" [class.large]="!!redirectUrl()">
+      <mat-progress-spinner
+        class="spinner"
+        mode="indeterminate"
+        diameter="48"
+        strokeWidth="4"
+        aria-labelledby="spinner-text"
+      />
+
+      <div id="spinner-text" class="spinner-text">
+        @if (isLoading()) {
+          Looking for archived pages...
+        } @else {
+          <div class="line-1">Redirecting in {{ countdown$ | async }}</div>
+          <div class="line-2">{{ redirectUrl() }}</div>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="actions">
+    @if (redirectUrl(); as url) {
+      <a
+        mat-button
+        hraCtaButton
+        hraPrimaryButton
+        class="archive-link"
+        hraFeature="archived"
+        hraClickEvent
+        [attr.href]="url"
+      >
+        View archived page
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </a>
+    }
+
+    <a
+      mat-button
+      hraCtaButton
+      class="home-link"
+      hraFeature="home"
+      hraClickEvent
+      hraLink="/"
+      [hraButtonVariant]="redirectUrl() ? 'secondary' : 'primary'"
+    >
+      Go to homepage
+      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+    </a>
+  </div>
+</div>

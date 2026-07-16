@@ -20,11 +20,15 @@ export interface FilterOptionCategory<T extends SearchListOption> {
   selected?: T[];
   /** Total count */
   totalCount?: number;
+  /** Whether search should be disabled for this filter */
+  disableSearch?: boolean;
 }
 
 /** Position of the filter menu overlay */
 const FILTER_MENU_POSITIONS: ConnectedPosition[] = [
   { originX: 'end', originY: 'top', overlayX: 'start', overlayY: 'top', offsetX: 16 },
+  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetY: 16 },
+  { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom', offsetY: -16 },
 ];
 
 /**
@@ -59,8 +63,14 @@ export class FilterMenuComponent<T extends SearchListOption> {
   /** Whether to enable total count display */
   readonly enableTotalCount = input<boolean>(false);
 
+  /** Whether to show options with zero count */
+  readonly showEmptyOptions = input<boolean>();
+
   /** List of all filters with options */
   readonly filters = model.required<FilterOptionCategory<T>[]>();
+
+  /** Counts for each filter option */
+  readonly counts = input<Record<string, number>[]>([]);
 
   /** Emits when the form opening state is toggled */
   readonly closeClick = output();
@@ -86,6 +96,18 @@ export class FilterMenuComponent<T extends SearchListOption> {
   });
 
   /**
+   * Checks if a filter category is an "extra" category (i.e., has fewer than 2 options)
+   * @param category The filter category to check
+   * @returns True if the category is extra, false otherwise
+   */
+  isExtraCategory(category: FilterOptionCategory<T>): boolean {
+    if (this.counts().length === 0) {
+      return false;
+    }
+    return Object.keys(this.counts()[this.filters().indexOf(category)]).length < 2;
+  }
+
+  /**
    * Updates filters on filter selection
    * @param category Filter category to update
    * @param selected Selected filter options
@@ -93,6 +115,14 @@ export class FilterMenuComponent<T extends SearchListOption> {
   updateFilterSelection(category: FilterOptionCategory<T>, selected: T[] = []) {
     const updated = { ...category, selected };
     this.filters.update((filters) => filters.map((filter) => (filter.id === category.id ? updated : filter)));
+  }
+
+  /**
+   * Toggles filter menu open/close
+   * @param category Filter category to toggle
+   */
+  toggleFilterMenu(category?: FilterOptionCategory<T>): void {
+    this.activeFilter.update((current) => (current === category ? undefined : category));
   }
 
   /**

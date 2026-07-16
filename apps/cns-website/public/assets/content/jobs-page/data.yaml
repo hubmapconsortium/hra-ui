@@ -1,0 +1,16 @@
+$schema: ../../../../src/app/schemas/content-page/content-page.schema.json
+title: Jobs
+subtitle: Work at Indiana University's Cyberinfrastructure for Network Science Center.
+breadcrumbs:
+  - name: Home
+    route: /
+  - name: Jobs
+content:
+  - component: PageSection
+    tagline: No open positions
+    anchor: no-open-positions
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          We do not currently have any open positions.

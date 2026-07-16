@@ -1,0 +1,74 @@
+@if (menu().featured; as featured) {
+  <div class="featured-section">
+    <div class="featured-link">
+      <div class="featured-content-container">
+        @if (featured.imgSrc; as src) {
+          <img class="featured-image" alt="" [src]="src | assetUrl" />
+        }
+        <a
+          mat-button
+          hraClickEvent
+          class="featured-bottom"
+          tabindex="0"
+          cdkFocusInitial
+          [hraLink]="featured.url"
+          [hraLinkExternal]="featured.external"
+          (click)="maybeScrollToTop(featured)"
+          (keyup.enter)="maybeScrollToTop(featured)"
+        >
+          <div class="featured-label">
+            <div class="featured-label-content">
+              <span class="label">{{ featured.label }}</span>
+              @if (featured.tagline; as tagline) {
+                <span class="tagline">{{ tagline }}</span>
+              }
+            </div>
+            <mat-icon>arrow_right_alt</mat-icon>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+}
+
+<div class="right-side">
+  <div class="nav-items">
+    <div class="groups">
+      @for (group of menu().items; track group) {
+        <div class="group">
+          <div class="group-label">
+            {{ group.label }}
+          </div>
+
+          <mat-divider class="divider" />
+          <div class="items">
+            @for (item of group.items; track item) {
+              @if (!item.mobileOnly) {
+                <a
+                  mat-button
+                  hraSecondaryButton
+                  hraClickEvent
+                  class="item-label"
+                  tabindex="0"
+                  [hraFeature]="item.label | slugify"
+                  [hraLink]="item.url"
+                  [hraLinkExternal]="item.external"
+                  (click)="maybeScrollToTop(item)"
+                  (keyup.enter)="maybeScrollToTop(item)"
+                >
+                  {{ item.label }}
+                </a>
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="socials">
+    @for (id of socials(); track id) {
+      <hra-social-media-button size="large" variant="dark" [id]="$any(id)" />
+    }
+  </div>
+</div>
