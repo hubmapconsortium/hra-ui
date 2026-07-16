@@ -112,6 +112,8 @@ function compareByNumericProperty(
     return propB === null ? 0 : -order;
   } else if (propB === null) {
     return order;
+  } else if (propA === propB && (propA === Infinity || propA === -Infinity)) {
+    return 0;
   }
 
   return order * (propA - propB);
@@ -171,11 +173,11 @@ function createSortFn(sortBy: SortBy, store: PeopleProps): (a: PeopleItem, b: Pe
 
     case SortBy.EndYearNewest: {
       const endYearByPerson = store.endYearByPerson();
-      return (a, b) => compareByNumericProperty(a, b, endYearByPerson, -1);
+      return (a, b) => compareByNumericProperty(a, b, endYearByPerson, -1) || compareByName(a, b, 1);
     }
     case SortBy.StartYearOldest: {
       const startYearByPerson = store.startYearByPerson();
-      return (a, b) => compareByNumericProperty(a, b, startYearByPerson, 1);
+      return (a, b) => compareByNumericProperty(a, b, startYearByPerson, 1) || compareByName(a, b, 1);
     }
 
     default: {

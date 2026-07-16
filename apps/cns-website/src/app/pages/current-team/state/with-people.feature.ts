@@ -132,12 +132,13 @@ export function withPeople() {
       const endYearByPerson = computed(() =>
         createRolesPropertyMap(
           people(),
-          (role) => role.dateEnd?.getFullYear() ?? null,
+          (role) => role.dateEnd && role.dateEnd.getFullYear(),
           (years) => {
             if (years.some((year) => year === null)) {
               return null;
             }
-            return Math.max(...(years as number[]));
+            const validYears = years.filter((year) => typeof year === 'number');
+            return validYears.length === 0 ? Infinity : Math.max(...validYears);
           },
         ),
       );
