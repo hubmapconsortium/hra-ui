@@ -116,7 +116,7 @@ content:
               download: ''
 
   - component: PageSection
-    tagline: HRA symbol and brandmark
+    tagline: HRA symbol and logo
     anchor: hra-logo
     level: 2
     content:
@@ -157,3 +157,107 @@ content:
       - component: Image
         src: assets/content/visual-assets-page/images/clear-space.png
         alt: 'The HRA brandmark and logo with defined 1/3 clear space area around it.'
+
+  - component: PageSection
+    tagline: Download logos
+    anchor: download-logos
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Download HRA logos for use in your own projects. ZIP files contain all logos in various sizes and formats.
+
+      - component: Image
+        src: assets/content/visual-assets-page/images/logo-package.png
+        alt: 'Two size variations of the HRA brandmark and three color variantions of the HRA logo.'
+
+      - component: Markdown
+        data: |
+          For more information, see the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078).
+
+      - component: GridContainer
+        content:
+          - component: ActionCard
+            variant: outlined
+            tagline: PNG
+            content:
+              - component: Markdown
+                data: ZIP file contains HRA brandmarks and logos in PNG format.
+            actionsLeft:
+              component: TextHyperlink
+              text: Download
+              url: assets/content/visual-assets-page/downloads/hra-logos-png.zip
+              download: ''
+          - component: ActionCard
+            variant: outlined
+            tagline: SVG
+            content:
+              - component: Markdown
+                data: ZIP file contains HRA brandmarks and logos in SVG format.
+            actionsLeft:
+              component: TextHyperlink
+              text: Download
+              url: assets/content/visual-assets-page/downloads/hra-logos-SVG.zip
+              download: ''
+          - component: ActionCard
+            variant: outlined
+            tagline: PDF
+            content:
+              - component: Markdown
+                data: ZIP file contains HRA brandmarks and logos in PDF format.
+            actionsLeft:
+              component: TextHyperlink
+              text: Download
+              url: assets/content/visual-assets-page/downloads/hra-logos-pdf.zip
+              download: ''
+
+  - component: PageSection
+    tagline: Digital objects as visual assets
+    anchor: digital-objects-as-visual-assets
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          All HRA digital objects, such as 2D functional tissue unit illustrations and 3D models (3D functional tissue units, 3D reference objects, and landmarks), are available for download via the [HRA Knowledge Graph Explorer](https://apps.humanatlas.io/kg-explorer).
+
+          HRA visual assets may also be exported from National Institutes of Health websites, such as [NIH 3D](https://3d.nih.gov), and [NIH BioArt Source](https://bioart.nih.gov).
+
+      - component: GridContainer
+        content:
+          - component: ActionCard
+            variant: outlined-with-icons
+            icons: product:knowledge-graph
+            tagline: HRA Knowledge Graph Explorer
+            content:
+              - component: Markdown
+                data: A database of all HRA digital objects with options to download and export in various formats.
+            actionsLeft:
+              component: TextHyperlink
+              text: Use app
+              url: https://apps.humanatlas.io/kg-explorer
+            actionsRight:
+              component: TextHyperlink
+              text: Learn more
+              url: https://docs.humanatlas.io/apps/kg
+          - component: ActionCard
+            variant: outlined-with-icons
+            icons: product:ftu
+            tagline: HRA on NIH BioArt Source
+            content:
+              - component: Markdown
+                data: Get HRA 2D functional tissue unit illustrations with NIH BioArt Source.
+            actionsLeft:
+              component: TextHyperlink
+              text: Use app
+              url: https://bioart.niaid.nih.gov/discover?sort=date_desc&collection=2
+          - component: ActionCard
+            variant: outlined-with-icons
+            icons: product:3d-organ
+            tagline: HRA on NIH 3D
+            content:
+              - component: Markdown
+                data: Export HRA 3D reference object models via NIH 3D.
+            actionsLeft:
+              component: TextHyperlink
+              text: Use app
+              url: https://3d.nih.gov/collections/hra
