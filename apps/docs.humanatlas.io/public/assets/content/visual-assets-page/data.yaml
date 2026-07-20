@@ -42,7 +42,7 @@ content:
     content:
       - component: Markdown
         data: |
-          Download HRA icon packages for use in your own projects. ZIP files contain all icons for a given category in SVG and PNG formats. For more information, see the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078).
+          Download HRA icon packages for use in your own projects. ZIP files contain all icons for a given category in PDF, PNG, and SVG formats. For more information, see the [HRA Design Style Guide](https://doi.org/10.5281/zenodo.14343078).
 
       - component: GridContainer
         content:
@@ -52,16 +52,11 @@ content:
             icons: product:apps
             content:
               - component: Markdown
-                data: ZIP files contain all HRA app icons in PNG and SVG formats.
+                data: ZIP containing all HRA app product icons as SVG, PNG, and PDF files.
             actionsLeft:
               component: TextHyperlink
-              text: PNG
-              url: assets/content/visual-assets-page/downloads/apps-png.zip
-              download: ''
-            actionsRight:
-              component: TextHyperlink
-              text: SVG
-              url: assets/content/visual-assets-page/downloads/apps-svg.zip
+              text: Download
+              url: assets/content/visual-assets-page/downloads/hra-app-icons.zip
               download: ''
           - component: ActionCard
             variant: outlined-with-icons
@@ -69,16 +64,11 @@ content:
             icons: product:ftu
             content:
               - component: Markdown
-                data: ZIP files contain all HRA data product icons in PNG and SVG formats.
+                data: ZIP containing all HRA data product icons as SVG, PNG, and PDF files.
             actionsLeft:
               component: TextHyperlink
-              text: PNG
+              text: Download
               url: assets/content/visual-assets-page/downloads/data-png.zip
-              download: ''
-            actionsRight:
-              component: TextHyperlink
-              text: SVG
-              url: assets/content/visual-assets-page/downloads/data-svg.zip
               download: ''
           - component: ActionCard
             variant: outlined-with-icons
@@ -86,16 +76,11 @@ content:
             icons: organ:heart
             content:
               - component: Markdown
-                data: ZIP files contain all HRA organ icons in PNG and SVG formats.
+                data: ZIP containing all HRA organ icons as SVG, PNG, and PDF files.
             actionsLeft:
               component: TextHyperlink
-              text: PNG
+              text: Download
               url: assets/content/visual-assets-page/downloads/organs-png.zip
-              download: ''
-            actionsRight:
-              component: TextHyperlink
-              text: SVG
-              url: assets/content/visual-assets-page/downloads/organs-svg.zip
               download: ''
           - component: ActionCard
             variant: outlined-with-icons
@@ -103,16 +88,11 @@ content:
             icons: misc:experts
             content:
               - component: Markdown
-                data: ZIP files contain all HRA miscellaneous icons in PNG and SVG formats.
+                data: ZIP containing all miscellaneous HRA icons as SVG, PNG, and PDF files.
             actionsLeft:
               component: TextHyperlink
-              text: PNG
-              url: assets/content/visual-assets-page/downloads/misc-png.zip
-              download: ''
-            actionsRight:
-              component: TextHyperlink
-              text: SVG
-              url: assets/content/visual-assets-page/downloads/misc-svg.zip
+              text: Download
+              url: assets/content/visual-assets-page/downloads/hra-icons-misc.zip
               download: ''
 
   - component: PageSection
