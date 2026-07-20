@@ -139,7 +139,7 @@ content:
     content:
       - component: Markdown
         data: |
-          The HRA logo consist of two parts- the wordmark and the brandmark (symbol).
+          The HRA logo consist of two parts—the wordmark and the brandmark (symbol).
 
       - component: Image
         src: assets/content/visual-assets-page/images/primary-logo.png
