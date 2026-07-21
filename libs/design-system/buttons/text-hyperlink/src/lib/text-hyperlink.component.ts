@@ -35,4 +35,9 @@ export class TextHyperlinkComponent {
    * Whether the link should open in a new tab/window
    */
   readonly external = input<boolean>(false);
+
+  /**
+   * Suggested filename for the downloaded resource, or `null` for a normal link.
+   */
+  readonly download = input<string | null>(null);
 }

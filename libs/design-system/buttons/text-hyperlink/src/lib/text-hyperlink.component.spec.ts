@@ -41,4 +41,17 @@ describe('TextHyperlinkComponent', () => {
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   });
+
+  it('should create download links', async () => {
+    await render(TextHyperlinkComponent, {
+      inputs: {
+        text: 'Download',
+        url: 'assets/icons.zip',
+        download: 'icons.zip',
+      },
+    });
+
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('download', 'icons.zip');
+  });
 });
