@@ -101,6 +101,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'visual-assets',
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver('assets/content/visual-assets-page/data.yaml', ContentPageDataSchema),
+    },
+  },
+  {
     path: 'dev/web-components',
     component: ContentPageComponent,
     resolve: {

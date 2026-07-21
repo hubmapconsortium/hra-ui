@@ -106,6 +106,12 @@
       "label": "Standard Operating Procedures",
       "icon": "checklist",
       "url": "https://humanatlas.io/standard-operating-procedures"
+    },
+    {
+      "type": "item",
+      "label": "Visual Assets",
+      "icon": "image",
+      "url": "https://docs.humanatlas.io/visual-assets"
     }
   ]
 }

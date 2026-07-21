@@ -14,6 +14,7 @@ import { isAuxClick } from '../util/event';
     '[attr.href]': 'href()',
     '[attr.target]': 'external() ? "_blank" : null',
     '[attr.rel]': 'external() ? "noopener noreferrer" : null',
+    '[attr.download]': 'download()',
     '(click)': 'onClick($event)',
   },
 })
@@ -24,6 +25,10 @@ export class LinkDirective {
   /** Whether the link should open is a new tab/window */
   // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn't work for non-trivial selectors
   readonly external = input(false, { alias: 'hraLinkExternal', transform: booleanAttribute });
+
+  /** Download attribute for the link */
+  // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn't work for non-trivial selectors
+  readonly download = input<string | null>(null, { alias: 'hraLinkDownload' });
 
   /** Resolved url tree */
   readonly urlTree = computed(() => {
@@ -63,7 +68,7 @@ export class LinkDirective {
    */
   onClick(event: Event): boolean {
     const urlTree = this.urlTree();
-    if (!urlTree || (event instanceof MouseEvent && isAuxClick(event))) {
+    if (!urlTree || (event instanceof MouseEvent && isAuxClick(event)) || this.download() !== null) {
       return true;
     }
 
