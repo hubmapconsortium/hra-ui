@@ -214,6 +214,9 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#download" >download</a>
+                            </li>
+                            <li>
                                 <a href="#external" >external</a>
                             </li>
                             <li>
@@ -237,6 +240,38 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="download"></a>
+                        <b>download</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null, { alias: &#x27;hraLinkDownload&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:31</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Download attribute for the link</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="external"></a>
                         <b>external</b>
                     </td>
@@ -248,7 +283,7 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:27</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -285,7 +320,7 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:23</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -325,8 +360,8 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="64"
-                                    class="link-to-prism">router-ext/src/lib/link/link.directive.ts:64</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">router-ext/src/lib/link/link.directive.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -420,7 +455,7 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -468,7 +503,7 @@ Only supports absolute urls and must be used on <code>&lt;a&gt;</code> or <code>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">router-ext/src/lib/link/link.directive.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -504,6 +539,7 @@ import { isAuxClick } from &#x27;../util/event&#x27;;
     &#x27;[attr.href]&#x27;: &#x27;href()&#x27;,
     &#x27;[attr.target]&#x27;: &#x27;external() ? &quot;_blank&quot; : null&#x27;,
     &#x27;[attr.rel]&#x27;: &#x27;external() ? &quot;noopener noreferrer&quot; : null&#x27;,
+    &#x27;[attr.download]&#x27;: &#x27;download()&#x27;,
     &#x27;(click)&#x27;: &#x27;onClick($event)&#x27;,
   },
 })
@@ -514,6 +550,10 @@ export class LinkDirective {
   /** Whether the link should open is a new tab/window */
   // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn&#x27;t work for non-trivial selectors
   readonly external &#x3D; input(false, { alias: &#x27;hraLinkExternal&#x27;, transform: booleanAttribute });
+
+  /** Download attribute for the link */
+  // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn&#x27;t work for non-trivial selectors
+  readonly download &#x3D; input&lt;string | null&gt;(null, { alias: &#x27;hraLinkDownload&#x27; });
 
   /** Resolved url tree */
   readonly urlTree &#x3D; computed(() &#x3D;&gt; {
@@ -553,7 +593,7 @@ export class LinkDirective {
    */
   onClick(event: Event): boolean {
     const urlTree &#x3D; this.urlTree();
-    if (!urlTree || (event instanceof MouseEvent &amp;&amp; isAuxClick(event))) {
+    if (!urlTree || (event instanceof MouseEvent &amp;&amp; isAuxClick(event)) || this.download() !&#x3D;&#x3D; null) {
       return true;
     }
 

@@ -85,6 +85,8 @@ declare class LinkDirective {
     readonly url: _angular_core.InputSignal<string>;
     /** Whether the link should open is a new tab/window */
     readonly external: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    /** Download attribute for the link */
+    readonly download: _angular_core.InputSignal<string | null>;
     /** Resolved url tree */
     readonly urlTree: _angular_core.Signal<_angular_router.UrlTree | undefined>;
     /** Location strategy reference */
@@ -103,7 +105,7 @@ declare class LinkDirective {
      */
     onClick(event: Event): boolean;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<LinkDirective, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<LinkDirective, "a[hraLink], area[hraLink]", never, { "url": { "alias": "hraLink"; "required": true; "isSignal": true; }; "external": { "alias": "hraLinkExternal"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<LinkDirective, "a[hraLink], area[hraLink]", never, { "url": { "alias": "hraLink"; "required": true; "isSignal": true; }; "external": { "alias": "hraLinkExternal"; "required": false; "isSignal": true; }; "download": { "alias": "hraLinkDownload"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /** Router extension feature */

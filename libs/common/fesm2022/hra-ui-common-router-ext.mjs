@@ -77,6 +77,9 @@ class LinkDirective {
     /** Whether the link should open is a new tab/window */
     // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn't work for non-trivial selectors
     external = input(false, { ...(ngDevMode ? { debugName: "external" } : {}), alias: 'hraLinkExternal', transform: booleanAttribute });
+    /** Download attribute for the link */
+    // eslint-disable-next-line @angular-eslint/no-input-rename -- Rule doesn't work for non-trivial selectors
+    download = input(null, { ...(ngDevMode ? { debugName: "download" } : {}), alias: 'hraLinkDownload' });
     /** Resolved url tree */
     urlTree = computed(() => {
         const { router, resolve } = this;
@@ -111,14 +114,14 @@ class LinkDirective {
      */
     onClick(event) {
         const urlTree = this.urlTree();
-        if (!urlTree || (event instanceof MouseEvent && isAuxClick(event))) {
+        if (!urlTree || (event instanceof MouseEvent && isAuxClick(event)) || this.download() !== null) {
             return true;
         }
         this.router?.navigateByUrl(urlTree);
         return false;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: LinkDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: LinkDirective, isStandalone: true, selector: "a[hraLink], area[hraLink]", inputs: { url: { classPropertyName: "url", publicName: "hraLink", isSignal: true, isRequired: true, transformFunction: null }, external: { classPropertyName: "external", publicName: "hraLinkExternal", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "href()", "attr.target": "external() ? \"_blank\" : null", "attr.rel": "external() ? \"noopener noreferrer\" : null" } }, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: LinkDirective, isStandalone: true, selector: "a[hraLink], area[hraLink]", inputs: { url: { classPropertyName: "url", publicName: "hraLink", isSignal: true, isRequired: true, transformFunction: null }, external: { classPropertyName: "external", publicName: "hraLinkExternal", isSignal: true, isRequired: false, transformFunction: null }, download: { classPropertyName: "download", publicName: "hraLinkDownload", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "onClick($event)" }, properties: { "attr.href": "href()", "attr.target": "external() ? \"_blank\" : null", "attr.rel": "external() ? \"noopener noreferrer\" : null", "attr.download": "download()" } }, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: LinkDirective, decorators: [{
             type: Directive,
@@ -128,10 +131,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
                         '[attr.href]': 'href()',
                         '[attr.target]': 'external() ? "_blank" : null',
                         '[attr.rel]': 'external() ? "noopener noreferrer" : null',
+                        '[attr.download]': 'download()',
                         '(click)': 'onClick($event)',
                     },
                 }]
-        }], propDecorators: { url: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraLink", required: true }] }], external: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraLinkExternal", required: false }] }] } });
+        }], propDecorators: { url: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraLink", required: true }] }], external: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraLinkExternal", required: false }] }], download: [{ type: i0.Input, args: [{ isSignal: true, alias: "hraLinkDownload", required: false }] }] } });
 
 /** Default match options */
 const DEFAULT_MATCH_OPTIONS = {
