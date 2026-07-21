@@ -30,7 +30,7 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-nephron",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
@@ -53,7 +53,7 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-renal-corpuscle",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
@@ -76,7 +76,7 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-cortical-collecting-duct",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
@@ -99,7 +99,7 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_kidney-ascending-thin-loop-of-henle",
+          "@id": "https://purl.humanatlas.io/2d-ftu/kidney-ascending-thin-loop-of-henle",
           "@type": "Dataset",
           "label": "snRNA-seq of Three Healthy Human Kidney Tissue",
           "link": "https://doi.org/10.1038/s41467-021-22368-w",
@@ -122,7 +122,7 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_lung-bronchial-submucosal-gland",
+          "@id": "https://purl.humanatlas.io/2d-ftu/lung-bronchial-submucosal-gland",
           "@type": "Dataset",
           "label": "scRNA Seq of Resected Human Lung Tissue",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
@@ -149,7 +149,7 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_lung-pulmonary-alveolus",
+          "@id": "https://purl.humanatlas.io/2d-ftu/lung-pulmonary-alveolus",
           "@type": "Dataset",
           "label": "scRNA Seq of Resected Human Lung Tissue",
           "link": "https://doi.org/10.1038/s41591-019-0468-5",
@@ -176,7 +176,7 @@
       "@type": "FtuIllustration",
       "data_sources": [
         {
-          "@id": "https://doi.org/10.1038/s41467-021-22368-w#CellSummary_liver-liver-lobule",
+          "@id": "https://purl.humanatlas.io/2d-ftu/liver-liver-lobule",
           "@type": "Dataset",
           "label": "sc Bulk Transcriptomics of Liver Data",
           "link": "https://doi.org/10.1038/s41598-021-98806-y",
