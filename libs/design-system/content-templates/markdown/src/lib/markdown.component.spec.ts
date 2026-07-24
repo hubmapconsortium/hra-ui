@@ -42,4 +42,36 @@ describe('MarkdownComponent', () => {
 
     expect(screen.getByRole('heading', { name: /test/i })).toBeInTheDocument();
   });
+
+  it.each([
+    ['markdown backticks', 'Use `part_of` relationships.'],
+    ['an HTML code element', 'Use <code>part_of</code> relationships.'],
+  ])('should render inline code authored with %s', async (_, data) => {
+    const { container } = await setup(data);
+
+    const code = container.querySelector('code');
+    expect(code).toHaveTextContent('part_of');
+    expect(code?.matches(':not(pre) > code')).toBe(true);
+  });
+
+  it('should keep fenced code blocks separate from inline code', async () => {
+    const { container } = await setup('```\nconst relationship = "part_of";\n```');
+
+    const code = container.querySelector('pre > code');
+    expect(code).toHaveTextContent('const relationship = "part_of";');
+    expect(code?.matches(':not(pre) > code')).toBe(false);
+  });
+
+  it('should render inline code inside a link', async () => {
+    const { container } = await setup('[`part_of`](https://example.com)');
+
+    expect(container.querySelector('a > code')).toHaveTextContent('part_of');
+  });
+
+  it('should preserve long inline code values that may wrap', async () => {
+    const value = 'a-very-long-machine-readable-relationship-identifier-that-may-wrap';
+    const { container } = await setup(`Use \`${value}\` in the query.`);
+
+    expect(container.querySelector('code')).toHaveTextContent(value);
+  });
 });
