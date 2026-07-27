@@ -369,6 +369,13 @@
     },
   },
   {
+    path: &#x27;visual-assets&#x27;,
+    component: ContentPageComponent,
+    resolve: {
+      data: createYamlSpecResolver(&#x27;assets/content/visual-assets-page/data.yaml&#x27;, ContentPageDataSchema),
+    },
+  },
+  {
     path: &#x27;dev/web-components&#x27;,
     component: ContentPageComponent,
     resolve: {

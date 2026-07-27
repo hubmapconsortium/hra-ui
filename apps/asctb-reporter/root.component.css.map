@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["apps/asctb-reporter/src/app/modules/root/root.component.scss"],
+  "sourcesContent": ["@use 'vars';\n\n.control-pane-container {\n  height: calc(100% - 12.1rem);\n  width: 100%;\n  position: absolute;\n  left: 0;\n}\n\n.control-pane {\n  width: 20.5rem;\n  border-right: 0.0625rem solid vars.$outline;\n  min-width: 3.125rem;\n  border-radius: 0;\n  background-color: var(--mat-sys-surface-container-lowest);\n}\n\n.tree-div {\n  max-width: 100%;\n  overflow-x: auto;\n}\n\n.compare-sidenav {\n  width: 40.625rem !important;\n}\n\n.example-box {\n  cursor: move;\n  z-index: 5;\n}\n.box-container {\n  position: absolute;\n  width: 15.625rem;\n  left: 0.625rem;\n  z-index: 2;\n}\n\n::ng-deep {\n  mat-dialog-container .mat-mdc-dialog-surface {\n    border-radius: 0.5rem;\n  }\n}\n"],
+  "mappings": ";AAEA,CAAA;AACE,UAAA,KAAA,KAAA,EAAA;AACA,SAAA;AACA,YAAA;AACA,QAAA;;AAGF,CAAA;AACE,SAAA;AACA,gBAAA,UAAA,MAAA,IAAA;AACA,aAAA;AACA,iBAAA;AACA,oBAAA,IAAA;;AAGF,CAAA;AACE,aAAA;AACA,cAAA;;AAGF,CAAA;AACE,SAAA;;AAGF,CAAA;AACE,UAAA;AACA,WAAA;;AAEF,CAAA;AACE,YAAA;AACA,SAAA;AACA,QAAA;AACA,WAAA;;AAIA,UAAA,qBAAA,CAAA;AACE,iBAAA;;",
+  "names": []
+}

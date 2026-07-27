@@ -49,8 +49,12 @@ declare class TextHyperlinkComponent {
      * Whether the link should open in a new tab/window
      */
     readonly external: i0.InputSignal<boolean>;
+    /**
+     * Suggested filename for the downloaded resource, or `null` for a normal link.
+     */
+    readonly download: i0.InputSignal<string | null>;
     static ɵfac: i0.ɵɵFactoryDeclaration<TextHyperlinkComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TextHyperlinkComponent, "hra-text-hyperlink", never, { "text": { "alias": "text"; "required": true; "isSignal": true; }; "url": { "alias": "url"; "required": true; "isSignal": true; }; "icon": { "alias": "icon"; "required": false; "isSignal": true; }; "external": { "alias": "external"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextHyperlinkComponent, "hra-text-hyperlink", never, { "text": { "alias": "text"; "required": true; "isSignal": true; }; "url": { "alias": "url"; "required": true; "isSignal": true; }; "icon": { "alias": "icon"; "required": false; "isSignal": true; }; "external": { "alias": "external"; "required": false; "isSignal": true; }; "download": { "alias": "download"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /**
@@ -72,6 +76,7 @@ declare const TextHyperlinkSchema: z.ZodObject<{
     url: z.ZodString;
     icon: z.ZodOptional<z.ZodString>;
     external: z.ZodOptional<z.ZodBoolean>;
+    download: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 
 export { TextButtonDirective, TextHyperlinkComponent, TextHyperlinkDef, TextHyperlinkDirective, TextHyperlinkSchema, provideTextHyperlink };
