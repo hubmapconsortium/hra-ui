@@ -15,11 +15,29 @@ content:
     content:
       - component: Markdown
         data: |
-          Digital objects are unique data categories building the Human Reference Atlas. Digital objects are organized within the <a href="https://lod.humanatlas.io" target="_blank">Knowledge Graph database application</a>.
+          Digital objects build the data foundation of the Human Reference Atlas (HRA). This data is stored and organized in the HRA Knowledge Graph. Use the [Knowledge Graph Explorer](https://apps.humanatlas.io/kg-explorer) app to filter, query, and download HRA data.
+
           Digital objects may be connected to ontology terminology, such as <a href="https://www.ebi.ac.uk/ols4/ontologies/uberon" target="_blank">Uberon</a>, <a href="https://www.ebi.ac.uk/ols4/ontologies/cl" target="_blank">Cell Ontology (CL)</a>,
           and <a href="https://www.ebi.ac.uk/ols4/ontologies/pcl" target="_blank">Provisional Cell Ontology (PCL)</a>, via CSV files called crosswalk tables.
+
       - component: GridContainer
         content:
+          - component: ActionCard
+            variant: outlined-with-icons
+            tagline: 2D Functional Tissue Unit Illustrations
+            icons: product:ftu
+            content:
+              - component: Markdown
+                data: |
+                  Illustrations of the smallest tissue organization performing a unique physiologic function and is replicated multiple times in a human organ.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /2d-ftu-illustrations?version=2.1&organ=Kidney
+            actionsRight:
+              component: TextHyperlink
+              text: Get data
+              url: https://purl.humanatlas.io/2d-ftu
           - component: ActionCard
             variant: outlined-with-icons
             tagline: 3D Reference Objects
@@ -34,7 +52,7 @@ content:
             actionsRight:
               component: TextHyperlink
               text: Get data
-              url: https://lod.humanatlas.io/ref-organ
+              url: https://purl.humanatlas.io/ref-organ
           - component: ActionCard
             variant: outlined-with-icons
             tagline: ASCT+B Tables
@@ -49,7 +67,7 @@ content:
             actionsRight:
               component: TextHyperlink
               text: Get data
-              url: https://lod.humanatlas.io/asct-b
+              url: https://purl.humanatlas.io/asct-b
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Cell Type Annotation Crosswalks
@@ -64,24 +82,7 @@ content:
             actionsRight:
               component: TextHyperlink
               text: Get data
-              url: https://lod.humanatlas.io/ctann
-          - component: ActionCard
-            variant: outlined-with-icons
-            tagline: Functional Tissue Unit Illustrations
-            icons: product:ftu
-            content:
-              - component: Markdown
-                data: |
-                  Illustrations of the smallest tissue organization performing a unique physiologic function
-                  and is replicated multiple times in a human organ.
-            actionsLeft:
-              component: TextHyperlink
-              text: Learn more
-              url: /2d-ftu-illustrations?version=2.1&organ=Kidney
-            actionsRight:
-              component: TextHyperlink
-              text: Get data
-              url: https://lod.humanatlas.io/2d-ftu
+              url: https://purl.humanatlas.io/ctann
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Millitomes
@@ -96,7 +97,7 @@ content:
             actionsRight:
               component: TextHyperlink
               text: Get data
-              url: https://lod.humanatlas.io/millitome
+              url: https://purl.humanatlas.io/millitome
           - component: ActionCard
             variant: outlined-with-icons
             tagline: Organ Mapping Antibody Panels
@@ -111,7 +112,121 @@ content:
             actionsRight:
               component: TextHyperlink
               text: Get data
-              url: https://lod.humanatlas.io/omap
+              url: https://purl.humanatlas.io/omap
+
+  - component: PageSection
+    tagline: HRA data access
+    anchor: data-access
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Find applications, data packages, mirrors, APIs, and documentation for using HRA data.
+
+      - component: GridContainer
+        content:
+          - component: ActionCard
+            variant: outlined
+            eyebrow: App & documentation
+            tagline: API
+            content:
+              - component: Markdown
+                data: Query and interact with the Human Reference Atlas using Python, JavaScript, SPARQL, REST, and more.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: /api
+            actionsRight:
+              component: TextHyperlink
+              text: Use app
+              url: https://apps.humanatlas.io/api
+          - component: ActionCard
+            variant: outlined
+            eyebrow: Development documentation
+            tagline: API reference
+            content:
+              - component: Markdown
+                data: Review available endpoints, parameters, and response formats for the HRA API.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: https://docs.humanatlas.io/dev/api
+          - component: ActionCard
+            variant: outlined
+            eyebrow: Data mirror
+            tagline: Berlin data mirror
+            content:
+              - component: Markdown
+                data: Access HRA data through a mirror hosted in Berlin, Germany.
+            actionsLeft:
+              component: TextHyperlink
+              text: View mirror
+              icon: open_in_new
+              url: https://humanatlas.bihealth.org/mirror/
+          - component: ActionCard
+            variant: outlined
+            eyebrow: Data package
+            tagline: Download the HRA Knowledge Graph
+            content:
+              - component: Markdown
+                data: Export a versioned, citable snapshot of the HRA Knowledge Graph for local use or custom deployments.
+            actionsLeft:
+              component: TextHyperlink
+              text: Get data
+              icon: open_in_new
+              url: https://doi.org/10.5281/zenodo.15323983
+          - component: ActionCard
+            variant: outlined
+            eyebrow: App & documentation
+            tagline: Knowledge Graph Explorer
+            content:
+              - component: Markdown
+                data: Filter, query, and download Human Reference Atlas digital object data.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: https://docs.humanatlas.io/apps/kg
+            actionsRight:
+              component: TextHyperlink
+              text: Use app
+              url: https://apps.humanatlas.io/kg-explorer
+          - component: ActionCard
+            variant: outlined
+            eyebrow: Documentation
+            tagline: Knowledge Graph for developers
+            content:
+              - component: Markdown
+                data: Technical documentation for accessing, integrating, and working with HRA Knowledge Graph data.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              url: https://docs.humanatlas.io/apps/kg
+          - component: ActionCard
+            variant: outlined
+            eyebrow: Standard operating procedure
+            tagline: Set up a data mirror
+            content:
+              - component: Markdown
+                data: |
+                  Follow the standard operating procedure for hosting and maintaining an HRA data mirror.
+            actionsLeft:
+              component: TextHyperlink
+              text: Learn more
+              icon: open_in_new
+              url: https://doi.org/10.5281/zenodo.17873664
+          - component: ActionCard
+            variant: outlined
+            eyebrow: Data mirror
+            tagline: Shanghai data mirror
+            content:
+              - component: Markdown
+                data: Access HRA data through a mirror hosted in Shanghai, China.
+            actionsLeft:
+              component: TextHyperlink
+              text: View mirror
+              icon: open_in_new
+              url: https://msdc.fudan.edu.cn/humanatlas-mirror
+
   - component: PageSection
     tagline: Collaborator data portals
     anchor: collaborator-data-portals
@@ -120,6 +235,7 @@ content:
       - component: Markdown
         data: |
           Explore data repositories from collaborators who help build the evolving Human Reference Atlas.
+
       - component: GridContainer
         content:
           - component: ActionCard
@@ -129,6 +245,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Explore
+              icon: open_in_new
               url: https://portal.hubmapconsortium.org/
           - component: ActionCard
             variant: outlined
@@ -137,6 +254,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Explore
+              icon: open_in_new
               url: https://data.sennetconsortium.org/
           - component: ActionCard
             variant: outlined
@@ -145,6 +263,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Explore
+              icon: open_in_new
               url: https://www.kpmp.org/
           - component: ActionCard
             variant: outlined
@@ -153,6 +272,7 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Explore
+              icon: open_in_new
               url: https://www.gtexportal.org/home/
           - component: ActionCard
             variant: outlined
@@ -161,4 +281,5 @@ content:
             actionsLeft:
               component: TextHyperlink
               text: Explore
+              icon: open_in_new
               url: https://strandlab.net/GUDMAP/
