@@ -73,14 +73,17 @@ export class PrivacyPreferencesService {
   }
 
   /** Open the consent banner dialog */
-  openConsentBanner(): void {
+  openConsentBanner(disableFocus?: boolean): void {
     if (this.hasActiveDialog()) {
       return;
     }
 
+    disableFocus ??= this.isEmbedded();
     const ref = this.dialog.open<ConsentBannerComponent, never, ConsentBannerResult>(ConsentBannerComponent, {
       ariaLabelledBy: CONSENT_BANNER_ARIA_LABELLEDBY_ID,
-      autoFocus: false,
+      // Target a non-existent element to completely disable focusing
+      // Setting to `false` still causes the dialog to focus its container element
+      autoFocus: disableFocus ? 'hra-element-should-not-exist' : false,
       closeOnNavigation: false,
       disableClose: true,
       hasBackdrop: false,
@@ -150,7 +153,7 @@ export class PrivacyPreferencesService {
 
       case 'dismiss':
         if (!this.syncEnabled()) {
-          this.openConsentBanner();
+          this.openConsentBanner(false);
         }
         break;
 
@@ -158,6 +161,15 @@ export class PrivacyPreferencesService {
         this.consent.updateCategories(result);
         this.enableSync();
         break;
+    }
+  }
+
+  /** Check if the application is embedded in another page */
+  private isEmbedded(): boolean {
+    try {
+      return window.self !== window.top;
+    } catch {
+      return true;
     }
   }
 }

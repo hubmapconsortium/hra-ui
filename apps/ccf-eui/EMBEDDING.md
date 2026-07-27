@@ -42,18 +42,19 @@ eui.token = '...';
 
 ### Available inputs
 
-| Attribute name        | Description                                                           | Data format         | Default                                |
-| --------------------- | --------------------------------------------------------------------- | ------------------- | -------------------------------------- |
-| _data-sources_        | Data sources from which data is queried                               | An array of strings | None                                   |
-| _selected-organs_     | The initially enabled organs                                          | An array of strings | None                                   |
-| _remote-api-endpoint_ | The api endpoint from which data is queried                           | An url              | `https://apps.humanatlas.io/api`       |
-| _token_               | Api token passed during data queries                                  | A string            | None                                   |
-| _filter_              | Initial data filter                                                   | A `Filter` object   | None                                   |
-| _header_              | Whether to show the header bar                                        | A boolean           | `true`                                 |
-| _login-disabled_      | Whether login is disabled                                             | A boolean           | `false`                                |
-| _home-url_            | Url visited when the user clicks the EUI logo                         | An url              | `https://portal.hubmapconsortium.org/` |
-| _logo-tooltip_        | Tooltip displayed when the user hover over the logo                   | A string            | `Human BioMolecular Atlas Project`     |
-| _base-href_           | Base url to fetch relative links. Must be set if `<base>` is not used | An url              | None                                   |
+| Attribute name               | Description                                                            | Data format         | Default                                |
+| ---------------------------- | ---------------------------------------------------------------------- | ------------------- | -------------------------------------- |
+| _data-sources_               | Data sources from which data is queried                                | An array of strings | None                                   |
+| _selected-organs_            | The initially enabled organs                                           | An array of strings | None                                   |
+| _remote-api-endpoint_        | The api endpoint from which data is queried                            | An url              | `https://apps.humanatlas.io/api`       |
+| _token_                      | Api token passed during data queries                                   | A string            | None                                   |
+| _filter_                     | Initial data filter                                                    | A `Filter` object   | None                                   |
+| _header_                     | Whether to show the header bar                                         | A boolean           | `true`                                 |
+| _login-disabled_             | Whether login is disabled                                              | A boolean           | `false`                                |
+| _home-url_                   | Url visited when the user clicks the EUI logo                          | An url              | `https://portal.hubmapconsortium.org/` |
+| _logo-tooltip_               | Tooltip displayed when the user hover over the logo                    | A string            | `Human BioMolecular Atlas Project`     |
+| _base-href_                  | Base url to fetch relative links. Must be set if `<base>` is not used  | An url              | None                                   |
+| _disable-screen-size-notice_ | Disable notification that the app is optimized for larger screen sizes | A boolean           | `false`                                |
 
 A `Filter` is a plain object with the following **optional** properties:
 
