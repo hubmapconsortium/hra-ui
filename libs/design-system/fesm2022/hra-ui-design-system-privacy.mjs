@@ -55,13 +55,16 @@ class PrivacyPreferencesService {
         this.syncEnabled.set(true);
     }
     /** Open the consent banner dialog */
-    openConsentBanner() {
+    openConsentBanner(disableFocus) {
         if (this.hasActiveDialog()) {
             return;
         }
+        disableFocus ??= this.isEmbedded();
         const ref = this.dialog.open(ConsentBannerComponent, {
             ariaLabelledBy: CONSENT_BANNER_ARIA_LABELLEDBY_ID,
-            autoFocus: false,
+            // Target a non-existent element to completely disable focusing
+            // Setting to `false` still causes the dialog to focus its container element
+            autoFocus: disableFocus ? 'hra-element-should-not-exist' : false,
             closeOnNavigation: false,
             disableClose: true,
             hasBackdrop: false,
@@ -119,13 +122,22 @@ class PrivacyPreferencesService {
                 break;
             case 'dismiss':
                 if (!this.syncEnabled()) {
-                    this.openConsentBanner();
+                    this.openConsentBanner(false);
                 }
                 break;
             default:
                 this.consent.updateCategories(result);
                 this.enableSync();
                 break;
+        }
+    }
+    /** Check if the application is embedded in another page */
+    isEmbedded() {
+        try {
+            return window.self !== window.top;
+        }
+        catch {
+            return true;
         }
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PrivacyPreferencesService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });

@@ -22,12 +22,14 @@ declare class PrivacyPreferencesService {
     /** Enable syncing of preferences to local storage */
     enableSync(): void;
     /** Open the consent banner dialog */
-    openConsentBanner(): void;
+    openConsentBanner(disableFocus?: boolean): void;
     /** Open the privacy preferences dialog */
     openPrivacyPreferences(tab?: PrivacyPreferencesTab): void;
     /** Check whether a privacy-related dialog is currently open */
     private hasActiveDialog;
     private handleDialogResult;
+    /** Check if the application is embedded in another page */
+    private isEmbedded;
     static ɵfac: i0.ɵɵFactoryDeclaration<PrivacyPreferencesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<PrivacyPreferencesService>;
 }
