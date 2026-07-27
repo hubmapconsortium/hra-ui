@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { computed, Directive, effect, inject, input, output } from '@angular/core';
 import { ConsentCategories, ConsentService } from '@hra-ui/common/analytics';
 import { injectAssetHref, injectPageHref } from '@hra-ui/common/url';
@@ -25,6 +26,9 @@ export abstract class BaseApplicationComponent {
 
   /** Whether analytics is enabled/disabled or the specific analytics settings */
   readonly analytics = input(undefined, { transform: AnalyticsInput.parse });
+
+  /** Whether to disable the screen size notice popup */
+  readonly disableScreenSizeNotice = input(false, { transform: coerceBooleanProperty });
 
   /** Emits when the user changes their consent settings */
   readonly consentChange = output<ConsentCategories>();
@@ -70,7 +74,7 @@ export abstract class BaseApplicationComponent {
 
     // Enable screen size notice
     if (options.screenSizeNotice) {
-      initializeScreenSizeNoticeMonitor(options.screenSizeNotice);
+      initializeScreenSizeNoticeMonitor(options.screenSizeNotice, this.disableScreenSizeNotice);
     }
   }
 }
