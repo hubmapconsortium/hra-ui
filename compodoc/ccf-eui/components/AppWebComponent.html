@@ -183,7 +183,7 @@
             <tr>
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (initialized) {
-  &lt;ccf-root /&gt;
+  &lt;ccf-root [disableScreenSizeNotice]&#x3D;&quot;disableScreenSizeNotice()&quot; /&gt;
 }
 </code></pre></td>
             </tr>
@@ -236,6 +236,9 @@
                                 <a href="#dataSources" >dataSources</a>
                             </li>
                             <li>
+                                <a href="#disableScreenSizeNotice" >disableScreenSizeNotice</a>
+                            </li>
+                            <li>
                                 <a href="#filter" >filter</a>
                             </li>
                             <li>
@@ -281,7 +284,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/app-web-component.component.ts:163</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/app/app-web-component.component.ts:166</a></div>
                             </td>
                         </tr>
 
@@ -346,6 +349,32 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Data sources from which data is queried</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disableScreenSizeNotice"></a>
+                        <b>disableScreenSizeNotice</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false, { transform: coerceBooleanProperty }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/app-web-component.component.ts:163</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to disable the screen size notice popup</p>
 </div>
                     </td>
                 </tr>
@@ -597,7 +626,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/app-web-component.component.ts:163</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/app/app-web-component.component.ts:166</a></div>
                         </td>
                     </tr>
 
@@ -616,10 +645,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { coerceBooleanProperty } from &#x27;@angular/cdk/coercion&#x27;;
+import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 import { Filter } from &#x27;@hra-api/ng-client&#x27;;
 import { BaseWebComponent, BUILTIN_PARSERS } from &#x27;ccf-shared/web-components&#x27;;
-
 import { environment } from &#x27;../environments/environment&#x27;;
 
 /**
@@ -741,41 +770,44 @@ function parseFilter(value: unknown): string | Partial&lt;Filter&gt; {
   standalone: false,
   template: &#x60;
     @if (initialized) {
-      &lt;ccf-root /&gt;
+      &lt;ccf-root [disableScreenSizeNotice]&#x3D;&quot;disableScreenSizeNotice()&quot; /&gt;
     }
   &#x60;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */
-  baseHref &#x3D; input&lt;string&gt;();
+  readonly baseHref &#x3D; input&lt;string&gt;();
 
   /** Data sources from which data is queried */
-  dataSources &#x3D; input&lt;string | string[]&gt;();
+  readonly dataSources &#x3D; input&lt;string | string[]&gt;();
 
   /** The initially enabled organs */
-  selectedOrgans &#x3D; input&lt;string[]&gt;();
+  readonly selectedOrgans &#x3D; input&lt;string[]&gt;();
 
   /** Api token passed during data queries */
-  token &#x3D; input&lt;string&gt;();
+  readonly token &#x3D; input&lt;string&gt;();
 
   /** The api endpoint from which data is queried */
-  remoteApiEndpoint &#x3D; input&lt;string&gt;();
+  readonly remoteApiEndpoint &#x3D; input&lt;string&gt;();
 
   /** Whether to show the header bar */
-  header &#x3D; input&lt;string | boolean&gt;();
+  readonly header &#x3D; input&lt;string | boolean&gt;();
 
   /** Url visited when the user clicks the EUI logo */
-  homeUrl &#x3D; input&lt;string&gt;();
+  readonly homeUrl &#x3D; input&lt;string&gt;();
 
   /** Tooltip displayed when the user hover over the logo */
-  logoTooltip &#x3D; input&lt;string&gt;();
+  readonly logoTooltip &#x3D; input&lt;string&gt;();
 
   /** Whether login is disabled */
-  loginDisabled &#x3D; input&lt;boolean&gt;();
+  readonly loginDisabled &#x3D; input&lt;boolean&gt;();
 
   /** Initial data filter */
-  filter &#x3D; input&lt;string | Partial&lt;Filter&gt;&gt;();
+  readonly filter &#x3D; input&lt;string | Partial&lt;Filter&gt;&gt;();
+
+  /** Whether to disable the screen size notice popup */
+  readonly disableScreenSizeNotice &#x3D; input(false, { transform: coerceBooleanProperty });
 
   /** Whether the component is fully initialized */
   override initialized!: boolean;
@@ -832,7 +864,7 @@ export class AppWebComponent extends BaseWebComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (initialized) {  <ccf-root />}</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (initialized) {  <ccf-root [disableScreenSizeNotice]="disableScreenSizeNotice()" />}</div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'ccf-root'},{'name': 'AppWebComponent', 'selector': 'ccf-root-wc'},{'name': 'AutocompleteChipsFormComponent', 'selector': 'ccf-autocomplete-chips-form'},{'name': 'DonorCardComponent', 'selector': 'ccf-donor-card'},{'name': 'DualSliderComponent', 'selector': 'ccf-dual-slider'},{'name': 'FiltersContentComponent', 'selector': 'ccf-filters-content'},{'name': 'MetadataCardComponent', 'selector': 'ccf-metadata-card'},{'name': 'OntologySelectionComponent', 'selector': 'ccf-ontology-selection'},{'name': 'OntologyTreeComponent', 'selector': 'ccf-ontology-tree'},{'name': 'OrganSelectComponent', 'selector': 'ccf-organ-select'},{'name': 'ResultsBrowserComponent', 'selector': 'ccf-results-browser'},{'name': 'SpatialSearchConfigBehaviorComponent', 'selector': 'ccf-spatial-search-config-behavior'},{'name': 'SpatialSearchConfigComponent', 'selector': 'ccf-spatial-search-config'},{'name': 'SpatialSearchInputsComponent', 'selector': 'ccf-spatial-search-inputs'},{'name': 'SpatialSearchUiBehaviorComponent', 'selector': 'ccf-spatial-search-ui-behavior'},{'name': 'SpatialSearchUiComponent', 'selector': 'ccf-spatial-search-ui'},{'name': 'TermOccurrenceListComponent', 'selector': 'ccf-term-occurrence-list'},{'name': 'ThumbnailListComponent', 'selector': 'ccf-thumbnail-list'},{'name': 'TissueBlockListComponent', 'selector': 'ccf-tissue-block-list'},{'name': 'TissueSectionVisComponent', 'selector': 'ccf-tissue-section-vis'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppWebComponent'};

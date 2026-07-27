@@ -27,12 +27,14 @@ declare abstract class BaseApplicationComponent {
     readonly pageHref: _angular_core.InputSignal<string | undefined>;
     /** Whether analytics is enabled/disabled or the specific analytics settings */
     readonly analytics: _angular_core.InputSignalWithTransform<boolean | Partial<Record<_hra_ui_common_types_hra_ui_common_analytics_events.EventCategory, boolean>> | undefined, unknown>;
+    /** Whether to disable the screen size notice popup */
+    readonly disableScreenSizeNotice: _angular_core.InputSignalWithTransform<boolean, any>;
     /** Emits when the user changes their consent settings */
     readonly consentChange: _angular_core.OutputEmitterRef<ConsentCategories>;
     /** Initialize the application component */
     constructor(options?: BaseApplicationOptions);
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<BaseApplicationComponent, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<BaseApplicationComponent, never, never, { "assetHref": { "alias": "assetHref"; "required": false; "isSignal": true; }; "pageHref": { "alias": "pageHref"; "required": false; "isSignal": true; }; "analytics": { "alias": "analytics"; "required": false; "isSignal": true; }; }, { "consentChange": "consentChange"; }, never, never, true, never>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<BaseApplicationComponent, never, never, { "assetHref": { "alias": "assetHref"; "required": false; "isSignal": true; }; "pageHref": { "alias": "pageHref"; "required": false; "isSignal": true; }; "analytics": { "alias": "analytics"; "required": false; "isSignal": true; }; "disableScreenSizeNotice": { "alias": "disableScreenSizeNotice"; "required": false; "isSignal": true; }; }, { "consentChange": "consentChange"; }, never, never, true, never>;
 }
 
 export { BaseApplicationComponent };
