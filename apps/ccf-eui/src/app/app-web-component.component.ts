@@ -1,7 +1,7 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Filter } from '@hra-api/ng-client';
 import { BaseWebComponent, BUILTIN_PARSERS } from 'ccf-shared/web-components';
-
 import { environment } from '../environments/environment';
 
 /**
@@ -123,41 +123,44 @@ function parseFilter(value: unknown): string | Partial<Filter> {
   standalone: false,
   template: `
     @if (initialized) {
-      <ccf-root />
+      <ccf-root [disableScreenSizeNotice]="disableScreenSizeNotice()" />
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWebComponent extends BaseWebComponent {
   /** Base url to fetch relative links */
-  baseHref = input<string>();
+  readonly baseHref = input<string>();
 
   /** Data sources from which data is queried */
-  dataSources = input<string | string[]>();
+  readonly dataSources = input<string | string[]>();
 
   /** The initially enabled organs */
-  selectedOrgans = input<string[]>();
+  readonly selectedOrgans = input<string[]>();
 
   /** Api token passed during data queries */
-  token = input<string>();
+  readonly token = input<string>();
 
   /** The api endpoint from which data is queried */
-  remoteApiEndpoint = input<string>();
+  readonly remoteApiEndpoint = input<string>();
 
   /** Whether to show the header bar */
-  header = input<string | boolean>();
+  readonly header = input<string | boolean>();
 
   /** Url visited when the user clicks the EUI logo */
-  homeUrl = input<string>();
+  readonly homeUrl = input<string>();
 
   /** Tooltip displayed when the user hover over the logo */
-  logoTooltip = input<string>();
+  readonly logoTooltip = input<string>();
 
   /** Whether login is disabled */
-  loginDisabled = input<boolean>();
+  readonly loginDisabled = input<boolean>();
 
   /** Initial data filter */
-  filter = input<string | Partial<Filter>>();
+  readonly filter = input<string | Partial<Filter>>();
+
+  /** Whether to disable the screen size notice popup */
+  readonly disableScreenSizeNotice = input(false, { transform: coerceBooleanProperty });
 
   /** Whether the component is fully initialized */
   override initialized!: boolean;
