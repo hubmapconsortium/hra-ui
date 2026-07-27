@@ -34,6 +34,8 @@ export class ActionCardActionComponent {
 export class ActionCardComponent {
   /** Card layout variant */
   readonly variant = input.required<ActionCardVariant>();
+  /** Small label shown above the title for `outlined` cards */
+  readonly eyebrow = input<string>();
   /** Title */
   readonly tagline = input.required<string>();
   /** Smaller title show above the primary title for `elevated` cards */

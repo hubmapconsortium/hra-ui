@@ -14,6 +14,41 @@ describe('ActionCardComponent', () => {
     await expect(promise).resolves.toBeTruthy();
   });
 
+  it('should show the eyebrow for outlined cards when specified', async () => {
+    await render(ActionCardComponent, {
+      inputs: {
+        variant: 'outlined',
+        eyebrow: 'Digital object',
+        tagline: 'Title',
+      },
+    });
+
+    expect(screen.getByText('Digital object')).toHaveClass('eyebrow');
+  });
+
+  it('should hide the eyebrow when omitted', async () => {
+    await render(ActionCardComponent, {
+      inputs: {
+        variant: 'outlined',
+        tagline: 'Title',
+      },
+    });
+
+    expect(document.querySelector('.eyebrow')).not.toBeInTheDocument();
+  });
+
+  it('should hide the eyebrow for outlined-with-icons cards', async () => {
+    await render(ActionCardComponent, {
+      inputs: {
+        variant: 'outlined-with-icons',
+        eyebrow: 'Digital object',
+        tagline: 'Title',
+      },
+    });
+
+    expect(screen.queryByText('Digital object')).not.toBeInTheDocument();
+  });
+
   it('should set the correct alignment for the action', async () => {
     await render(
       `<hra-action-card variant="elevated" tagline="Title">

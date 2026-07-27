@@ -95,6 +95,38 @@ export const RequiredInputWithValidation: Story = {
   }),
 };
 
+export const WithHelperText: Story = {
+  render: () => ({
+    template: `
+      <mat-form-field appearance="outline">
+        <mat-label>Email address</mat-label>
+        <input type="email" matInput placeholder="name@example.com">
+        <mat-hint>We will only use this to contact you.</mat-hint>
+      </mat-form-field>
+    `,
+  }),
+};
+
+export const WithErrorText: Story = {
+  render: () => {
+    const emailFormControl = new FormControl('', Validators.required);
+    emailFormControl.markAsTouched();
+
+    return {
+      props: {
+        emailFormControl,
+      },
+      template: `
+        <mat-form-field appearance="outline">
+          <mat-label>Email address</mat-label>
+          <input type="email" matInput [formControl]="emailFormControl" placeholder="name@example.com">
+          <mat-error>Email address is required.</mat-error>
+        </mat-form-field>
+      `,
+    };
+  },
+};
+
 export const InputWithClearButton: Story = {
   render: () => ({
     props: {
