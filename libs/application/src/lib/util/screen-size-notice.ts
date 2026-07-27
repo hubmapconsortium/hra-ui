@@ -1,4 +1,4 @@
-import { assertInInjectionContext, booleanAttribute, effect, inject } from '@angular/core';
+import { assertInInjectionContext, booleanAttribute, effect, inject, Signal } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { watchBreakpoints } from '@hra-ui/cdk/breakpoints';
 import { DialogService } from '@hra-ui/design-system/dialog';
@@ -16,7 +16,7 @@ export interface ScreenSizeNoticeOptions {
 const SCREEN_SIZE_NOTICE_STORAGE_KEY = '__hra-screen-size-notice-dismissed';
 
 /** Monitors screen size and opens/closes screen size notice dialog as needed */
-export function initializeScreenSizeNoticeMonitor(options: ScreenSizeNoticeOptions): void {
+export function initializeScreenSizeNoticeMonitor(options: ScreenSizeNoticeOptions, disabled: Signal<boolean>): void {
   assertInInjectionContext(initializeScreenSizeNoticeMonitor);
 
   const { width, height } = options;
@@ -28,7 +28,7 @@ export function initializeScreenSizeNoticeMonitor(options: ScreenSizeNoticeOptio
 
   if (!dismissed) {
     const ref = effect(() => {
-      if (breakpoints().matchesAny()) {
+      if (!disabled() && breakpoints().matchesAny()) {
         if (!activeNotice) {
           activeNotice = dialogService.openNotice(
             'Heads up!',
