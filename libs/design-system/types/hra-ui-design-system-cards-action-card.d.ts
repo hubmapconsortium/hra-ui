@@ -17,6 +17,8 @@ declare class ActionCardActionComponent {
 declare class ActionCardComponent {
     /** Card layout variant */
     readonly variant: _angular_core.InputSignal<"elevated" | "flat" | "outlined" | "outlined-with-icons">;
+    /** Small label shown above the title for `outlined` cards */
+    readonly eyebrow: _angular_core.InputSignal<string | undefined>;
     /** Title */
     readonly tagline: _angular_core.InputSignal<string>;
     /** Smaller title show above the primary title for `elevated` cards */
@@ -48,7 +50,7 @@ declare class ActionCardComponent {
         inline?: boolean | undefined;
     })[] | undefined>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<ActionCardComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ActionCardComponent, "hra-action-card", never, { "variant": { "alias": "variant"; "required": true; "isSignal": true; }; "tagline": { "alias": "tagline"; "required": true; "isSignal": true; }; "subtagline": { "alias": "subtagline"; "required": false; "isSignal": true; }; "image": { "alias": "image"; "required": false; "isSignal": true; }; "icons": { "alias": "icons"; "required": false; "isSignal": true; }; }, {}, never, ["*", "hra-action-card-action:not([alignment='right'])", "hra-action-card-action[alignment='right']"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ActionCardComponent, "hra-action-card", never, { "variant": { "alias": "variant"; "required": true; "isSignal": true; }; "eyebrow": { "alias": "eyebrow"; "required": false; "isSignal": true; }; "tagline": { "alias": "tagline"; "required": true; "isSignal": true; }; "subtagline": { "alias": "subtagline"; "required": false; "isSignal": true; }; "image": { "alias": "image"; "required": false; "isSignal": true; }; "icons": { "alias": "icons"; "required": false; "isSignal": true; }; }, {}, never, ["*", "hra-action-card-action:not([alignment='right'])", "hra-action-card-action[alignment='right']"], true, never>;
 }
 
 /** Content template definition for action card */
@@ -79,6 +81,7 @@ declare const ActionCardSchema: z.ZodObject<{
         outlined: "outlined";
         "outlined-with-icons": "outlined-with-icons";
     }>;
+    eyebrow: z.ZodOptional<z.ZodString>;
     tagline: z.ZodString;
     subtagline: z.ZodOptional<z.ZodString>;
     image: z.ZodOptional<z.ZodString>;

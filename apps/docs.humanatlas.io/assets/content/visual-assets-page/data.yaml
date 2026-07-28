@@ -200,7 +200,7 @@ content:
         data: |
           All HRA digital objects, such as 2D functional tissue unit illustrations and 3D models (3D functional tissue units, 3D reference objects, and landmarks), are available for download via the [HRA Knowledge Graph Explorer](https://apps.humanatlas.io/kg-explorer).
 
-          HRA visual assets may also be exported from National Institutes of Health websites, such as [NIH 3D](https://3d.nih.gov), and [NIH BioArt Source](https://bioart.nih.gov).
+          HRA visual assets may also be exported from National Institutes of Health websites, such as [NIH 3D](https://3d.nih.gov) and [NIH BioArt Source](https://bioart.nih.gov).
 
       - component: GridContainer
         content:
