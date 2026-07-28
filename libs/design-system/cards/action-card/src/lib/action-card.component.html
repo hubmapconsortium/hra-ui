@@ -11,6 +11,9 @@
 }
 
 <div class="content">
+  @if (variant() === 'outlined' && eyebrow()) {
+    <div class="eyebrow">{{ eyebrow() }}</div>
+  }
   @if (variant() === 'elevated') {
     <div class="subtagline">{{ subtagline() }}</div>
   }

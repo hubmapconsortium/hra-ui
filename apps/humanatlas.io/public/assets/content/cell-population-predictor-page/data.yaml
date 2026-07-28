@@ -1,5 +1,5 @@
 $schema: '../../../app/schemas/content-page/content-page.schema.json'
-title: Cell Population Predictor
+title: Cell Type Population Predictor
 subtitle: Upload a 3D tissue extraction site to predict cell type populations for the site.
 icons: product:cell-population-predictor
 action:
