@@ -45,7 +45,7 @@ content:
         across biological scales.
 
   - component: PageSection
-    tagline: ASCT+B tables by HRA release
+    tagline: 'Summary statistics: ASCT+B tables by HRA release'
     anchor: summary-statistics
     level: 2
     content:
@@ -300,7 +300,7 @@ content:
           Technically, [CCF Tools](https://github.com/hubmapconsortium/ccf-validation-tools) is a Python-based workflow that compares table content with [Ubergraph](https://github.com/INCATools/ubergraph), an integrated RDF triplestore with a SPARQL interface. Ubergraph brings together biomedical ontologies including [Uberon](https://obophenotype.github.io/uberon/about), which represents anatomical structures, and the [Cell Ontology](https://cell-ontology.github.io/), which defines biological cell types.
 
   - component: PageSection
-    tagline: Explore relationships in the ASCT+B Reporter
+    tagline: Visualize relationships with the ASCT+B Reporter
     anchor: app-visualize-asctb-tables
     level: 2
     content:

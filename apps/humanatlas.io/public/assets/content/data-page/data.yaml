@@ -59,7 +59,7 @@ content:
             icons: product:asctb-reporter
             content:
               - component: Markdown
-                data: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
+                data: Expert-curated reference data connecting human anatomy, cell types, and biomarkers across the Human Reference Atlas.
             actionsLeft:
               component: TextHyperlink
               text: Learn more
