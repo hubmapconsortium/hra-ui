@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/cdk/injectors/src/lib/on-destroy/destroy-host.component.ts"],
-  "sourcesContent": [":host { display: none }"],
-  "mappings": ";AAAA;AAAQ,WAAA;;",
-  "names": []
-}

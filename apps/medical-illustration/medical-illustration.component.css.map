@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/medical-illustration/src/app/medical-illustration.component.scss"],
-  "sourcesContent": ["hra-interactive-svg {\n  display: flex;\n  height: 100%;\n  width: 100%;\n}\n\n::ng-deep .svg,\n::ng-deep svg {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,UAAA;AACA,SAAA;;AAGF,UAAA,CAAA;AAAA,UAAA;AAEE,WAAA;AACA,SAAA;AACA,UAAA;;",
-  "names": []
-}

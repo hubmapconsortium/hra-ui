@@ -389,7 +389,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>openConsentBanner()</code>
+<code>openConsentBanner(disableFocus?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
@@ -407,10 +407,40 @@
                         <div class="io-description"><p>Open the consent banner dialog</p>
 </div>
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>disableFocus</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -435,8 +465,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="102"
-                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/privacy/src/lib/privacy-preferences.service.ts:102</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">/home/workflows/workspace/libs/design-system/privacy/src/lib/privacy-preferences.service.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -565,14 +595,17 @@ export class PrivacyPreferencesService {
   }
 
   /** Open the consent banner dialog */
-  openConsentBanner(): void {
+  openConsentBanner(disableFocus?: boolean): void {
     if (this.hasActiveDialog()) {
       return;
     }
 
+    disableFocus ??&#x3D; this.isEmbedded();
     const ref &#x3D; this.dialog.open&lt;ConsentBannerComponent, never, ConsentBannerResult&gt;(ConsentBannerComponent, {
       ariaLabelledBy: CONSENT_BANNER_ARIA_LABELLEDBY_ID,
-      autoFocus: false,
+      // Target a non-existent element to completely disable focusing
+      // Setting to &#x60;false&#x60; still causes the dialog to focus its container element
+      autoFocus: disableFocus ? &#x27;hra-element-should-not-exist&#x27; : false,
       closeOnNavigation: false,
       disableClose: true,
       hasBackdrop: false,
@@ -642,7 +675,7 @@ export class PrivacyPreferencesService {
 
       case &#x27;dismiss&#x27;:
         if (!this.syncEnabled()) {
-          this.openConsentBanner();
+          this.openConsentBanner(false);
         }
         break;
 
@@ -650,6 +683,15 @@ export class PrivacyPreferencesService {
         this.consent.updateCategories(result);
         this.enableSync();
         break;
+    }
+  }
+
+  /** Check if the application is embedded in another page */
+  private isEmbedded(): boolean {
+    try {
+      return window.self !&#x3D;&#x3D; window.top;
+    } catch {
+      return true;
     }
   }
 }

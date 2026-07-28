@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["apps/asctb-reporter/src/app/components/sidenav/sidenav.component.scss"],
-  "sourcesContent": [":host {\n  .card {\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n\n    .card-body {\n      max-height: calc(100vh - 4rem);\n      &.with-footer {\n        flex: 1;\n        max-height: calc(100vh - 4.1rem - 4.5rem);\n      }\n    }\n  }\n}\n"],
-  "mappings": ";AACE,MAAA,CAAA;AACE,WAAA;AACA,kBAAA;AACA,UAAA;;AAEA,MAAA,CALF,KAKE,CAAA;AACE,cAAA,KAAA,MAAA,EAAA;;AACA,MAAA,CAPJ,KAOI,CAFF,SAEE,CAAA;AACE,QAAA;AACA,cAAA,KAAA,MAAA,EAAA,OAAA,EAAA;;",
-  "names": []
-}
