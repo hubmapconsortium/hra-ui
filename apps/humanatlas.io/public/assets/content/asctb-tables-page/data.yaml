@@ -15,9 +15,9 @@ content:
       data: |
         Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables are expert-curated [digital objects](/overview-data) that describe the healthy human body at three connected scales:
 
-        - **Anatomical structures (AS):** The parts that make up an organ, organized from larger structures to smaller ones.
-        - **Cell types (CT):** The cells found within those anatomical structures.
-        - **Biomarkers (B):** The genes, proteins, lipids, metabolites, and proteoforms used to characterize those cell types.
+        - **Anatomical structures (AS):** The parts that make up an organ, organized from larger structures to smaller ones
+        - **Cell types (CT):** The cells found within those anatomical structures
+        - **Biomarkers (B):** The genes, proteins, lipids, metabolites, and proteoforms used to characterize those cell types
 
         Together, these connections create a structured map from the organ level to the cellular and molecular levels. Each table
         focuses on an organ or organ system and aligns its terms with established biomedical ontologies. The tables are authored
@@ -54,12 +54,12 @@ content:
           Choose an HRA release to see which organ tables are available, explore an individual table, or download its data.
           The counts summarize each table's content and coverage:
 
-          - **#AS, #CT, and #B:** Anatomical structures, cell types, and biomarkers.
-          - **#AS-AS:** `part_of` relationships between anatomical structures.
-          - **#AS-CT:** `located_in` relationships connecting cell types to anatomical structures.
-          - **#CT-BM:** `characterizes` relationships connecting biomarkers to cell types.
-          - **#BG, #BP, #BM, #BF, and #BL:** Gene, protein, metabolite, proteoform, and lipid biomarkers.
-          - **NoLink, NoCT, and NoB:** Entries without an ontology link or without an expected cell type or biomarker connection.
+          - **#AS, #CT, and #B:** Anatomical structures, cell types, and biomarkers
+          - **#AS-AS:** `part_of` relationships between anatomical structures
+          - **#AS-CT:** `located_in` relationships connecting cell types to anatomical structures
+          - **#CT-BM:** `characterizes` relationships connecting biomarkers to cell types
+          - **#BG, #BP, #BM, #BF, and #BL:** Gene, protein, metabolite, proteoform, and lipid biomarkers
+          - **NoLink, NoCT, and NoB:** Entries without an ontology link or without an expected cell type or biomarker connection
       - component: VersionedDataTable
         styles:
           --hra-table-max-height: 35rem
@@ -330,8 +330,7 @@ content:
         data: |
           The [ASCT+B Reporter app](https://apps.humanatlas.io/asctb-reporter) transforms rows of table data into an interactive tree view of biological relationships. Explore one organ or compare multiple organs using a partonomy tree of anatomical structures and network views that connect anatomical structures to cell types and cell types to biomarkers.
 
-          Use the app to understand an organ's organization, inspect supporting ontology information, compare data, and
-          help review ASCT+B tables.
+          Use the app to understand an organ's organization, inspect supporting ontology information, compare data, and help review ASCT+B tables.
 
       - component: Image
         src: assets/ui-images/annotated-ui-asctb-reporter.png
