@@ -77,12 +77,12 @@ content:
                   type: link
                   urlColumn: url
               - column: csvLabel
-                label: Download ASCT+B Tables
+                label: Export table
                 type:
                   type: link
                   urlColumn: csv
               - column: table_version
-                label: Table Version
+                label: Table version
               - column: AS
                 label: '#AS'
                 type:
@@ -275,6 +275,28 @@ content:
               - column: CT_BM
                 label: '#CT-BM'
                 type: numeric
+
+      - component: GridContainer
+        styles:
+          background-color: rgba(23, 145, 255, 0.12)
+          border-radius: 0.5rem
+          padding: .75rem
+          padding-bottom: 0rem
+          font: var(--mat-sys-body-xl)
+          display: flex
+          gap: .75rem
+        content:
+          - component: TextHyperlink
+            text: ''
+            url: ''
+            icon: info
+            styles:
+              pointer-events: none
+              --mat-sys-tertiary: '#00529C'
+          - component: Markdown
+            data: |
+              **How totals are calculated:** Totals add the counts from all organ tables. Items that appear in more than one table are counted each time, so totals are not unique counts for each release.
+
   - component: PageSection
     tagline: Standard operating procedures for ASCT+B table creation
     anchor: sop
