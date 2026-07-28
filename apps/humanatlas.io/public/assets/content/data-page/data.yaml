@@ -192,7 +192,7 @@ content:
               url: https://apps.humanatlas.io/kg-explorer
           - component: ActionCard
             variant: outlined
-            eyebrow: Documentation
+            eyebrow: Development documentation
             tagline: Knowledge Graph for developers
             content:
               - component: Markdown
