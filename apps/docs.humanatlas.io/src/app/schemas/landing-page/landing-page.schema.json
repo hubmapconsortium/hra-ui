@@ -49,6 +49,9 @@
         "variant": {
           "$ref": "#/$defs/ActionCardVariant"
         },
+        "eyebrow": {
+          "type": "string"
+        },
         "tagline": {
           "type": "string"
         },

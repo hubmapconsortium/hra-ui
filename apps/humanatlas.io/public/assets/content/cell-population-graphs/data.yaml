@@ -1,5 +1,5 @@
 $schema: '../../../app/schemas/content-page/content-page.schema.json'
-title: Cell Population Graphs
+title: Cell Type Population Graphs
 subtitle: Compare cell type populations across datasets.
 icons: product:cell-population-graphs
 content:
