@@ -1,7 +1,21 @@
+@use '../../../../styles/utils';
+@use '../../../../styles/vars' as vars;
+
 :host {
   display: block;
 
   markdown ::ng-deep {
+    // Keep fenced code blocks on their existing presentation.
+    :not(pre) > code {
+      @include utils.use-font(code, medium);
+
+      background-color: vars.$surface-container-high;
+      border-radius: 0.25rem;
+      box-decoration-break: clone;
+      overflow-wrap: anywhere;
+      padding: 0.125rem 0.25rem;
+    }
+
     p {
       margin: 0.75rem 0;
       line-height: 1.6875rem;
