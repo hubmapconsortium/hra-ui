@@ -65,3 +65,17 @@ export const WithSupportingTextTertiary: StoryObj = {
 `,
   }),
 };
+
+export const WithTrailingSupportingText: StoryObj = {
+  name: 'With Trailing Supporting Text',
+  render: () => ({
+    template: `
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Published datasets</span>
+        <span matListItemMeta>12 items</span>
+      </mat-list-item>
+    </mat-list>
+`,
+  }),
+};

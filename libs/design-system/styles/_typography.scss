@@ -91,7 +91,12 @@ $overrides: (
 
   body-large-tracking: 0rem,
   body-medium-tracking: 0rem,
-  body-small-tracking: 0rem,
+  body-small: 400 0.75rem / 1.125rem $_plain,
+  body-small-font: $_plain,
+  body-small-line-height: 1.125rem,
+  body-small-size: 0.75rem,
+  body-small-tracking: 0.025rem,
+  body-small-weight: 400,
 );
 
 @mixin custom-variants() {

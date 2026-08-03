@@ -266,6 +266,11 @@
               "type": "item",
               "label": "Funding",
               "url": "https://humanatlas.io/about#funding"
+            },
+            {
+              "type": "item",
+              "label": "Visual Assets",
+              "url": "https://docs.humanatlas.io/visual-assets"
             }
           ]
         }

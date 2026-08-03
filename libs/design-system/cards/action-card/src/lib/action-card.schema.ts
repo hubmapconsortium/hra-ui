@@ -17,6 +17,8 @@ export type ActionCard = z.infer<typeof ActionCardSchema>;
 export const ActionCardSchema = ContentTemplateSchema.extend({
   component: z.literal('ActionCard'),
   variant: ActionCardVariantSchema,
+  /** Accepted for all variants, but only rendered by the `outlined` variant */
+  eyebrow: z.string().optional(),
   tagline: z.string(),
   subtagline: z.string().optional(),
   image: z.string().optional(),

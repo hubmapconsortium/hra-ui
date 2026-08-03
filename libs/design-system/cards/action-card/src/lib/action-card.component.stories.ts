@@ -36,7 +36,7 @@ type Story = StoryObj<ActionCardComponent & WithContent>;
 function render(variant: ActionCardVariant, actions: string): Story['render'] {
   return (args) => ({
     props: args,
-    template: `<hra-action-card variant="${variant}" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
+    template: `<hra-action-card variant="${variant}" [eyebrow]="eyebrow" [tagline]="tagline" [subtagline]="subtagline" [image]="image" [icons]="icons">
       ${args.content}
       ${actions}
     </hra-action-card>`,
@@ -89,11 +89,31 @@ export const Flat: Story = {
 };
 
 export const Outlined: Story = {
+  args: {
+    eyebrow: 'Standard operating procedure',
+    tagline: 'Create an HRA data mirror',
+    content: 'Follow the standard operating procedure for hosting and maintaining an HRA data mirror.',
+  },
   render: render(
     'outlined',
     `<hra-action-card-action>
       <a hraHyperlink href="https://google.com">
-        Action
+        Learn more
+      </a>
+    </hra-action-card-action>`,
+  ),
+};
+
+export const OutlinedWithoutEyebrow: Story = {
+  args: {
+    tagline: 'Explore Human Reference Atlas data',
+    content: 'Find data, tools, and resources for using the Human Reference Atlas.',
+  },
+  render: render(
+    'outlined',
+    `<hra-action-card-action>
+      <a hraHyperlink href="https://google.com">
+        Explore data
       </a>
     </hra-action-card-action>`,
   ),

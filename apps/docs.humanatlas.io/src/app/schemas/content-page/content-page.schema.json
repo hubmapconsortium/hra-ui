@@ -3,7 +3,6 @@
   "$ref": "#/$defs/ContentPageData",
   "$defs": {
     "ContentPageData": {
-      "id": "ContentPageData",
       "type": "object",
       "properties": {
         "$schema": {
@@ -47,10 +46,10 @@
         "subtitle",
         "content"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "ContentPageData"
     },
     "IconList": {
-      "id": "IconList",
       "anyOf": [
         {
           "anyOf": [
@@ -75,10 +74,10 @@
             ]
           }
         }
-      ]
+      ],
+      "id": "IconList"
     },
     "IconData": {
-      "id": "IconData",
       "type": "object",
       "properties": {
         "svgIcon": {
@@ -94,10 +93,10 @@
           "type": "boolean"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "IconData"
     },
     "ProjectedContentTemplate": {
-      "id": "ProjectedContentTemplate",
       "anyOf": [
         {
           "$ref": "#/$defs/AnyContentTemplate"
@@ -108,7 +107,8 @@
             "$ref": "#/$defs/AnyContentTemplate"
           }
         }
-      ]
+      ],
+      "id": "ProjectedContentTemplate"
     },
     "AnyContentTemplate": {
       "id": "AnyContentTemplate",
@@ -164,7 +164,6 @@
       ]
     },
     "ActionCard": {
-      "id": "ActionCard",
       "type": "object",
       "properties": {
         "component": {
@@ -185,6 +184,9 @@
         },
         "variant": {
           "$ref": "#/$defs/ActionCardVariant"
+        },
+        "eyebrow": {
+          "type": "string"
         },
         "tagline": {
           "type": "string"
@@ -213,10 +215,10 @@
         "variant",
         "tagline"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "ActionCard"
     },
     "Classes": {
-      "id": "Classes",
       "anyOf": [
         {
           "type": "string"
@@ -234,10 +236,10 @@
           },
           "additionalProperties": {}
         }
-      ]
+      ],
+      "id": "Classes"
     },
     "Styles": {
-      "id": "Styles",
       "anyOf": [
         {
           "type": "string"
@@ -249,10 +251,10 @@
           },
           "additionalProperties": {}
         }
-      ]
+      ],
+      "id": "Styles"
     },
     "Controller": {
-      "id": "Controller",
       "type": "object",
       "properties": {
         "id": {
@@ -262,20 +264,20 @@
       "required": [
         "id"
       ],
-      "additionalProperties": {}
+      "additionalProperties": {},
+      "id": "Controller"
     },
     "ActionCardVariant": {
-      "id": "ActionCardVariant",
       "type": "string",
       "enum": [
         "elevated",
         "flat",
         "outlined",
         "outlined-with-icons"
-      ]
+      ],
+      "id": "ActionCardVariant"
     },
     "ApiCommand": {
-      "id": "ApiCommand",
       "type": "object",
       "properties": {
         "component": {
@@ -314,10 +316,10 @@
         "method",
         "rightButton"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "ApiCommand"
     },
     "ApiCommandButton": {
-      "id": "ApiCommandButton",
       "type": "object",
       "properties": {
         "label": {
@@ -334,10 +336,10 @@
       "required": [
         "label"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "ApiCommandButton"
     },
     "Button": {
-      "id": "Button",
       "type": "object",
       "properties": {
         "component": {
@@ -397,10 +399,10 @@
         "label",
         "href"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "Button"
     },
     "CodeBlock": {
-      "id": "CodeBlock",
       "type": "object",
       "properties": {
         "component": {
@@ -429,10 +431,10 @@
       "required": [
         "component"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "CodeBlock"
     },
     "DataViewer": {
-      "id": "DataViewer",
       "type": "object",
       "properties": {
         "component": {
@@ -470,18 +472,18 @@
         "githubIconsUrl",
         "releaseVersionData"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "DataViewer"
     },
     "DataViewerVariant": {
-      "id": "DataViewerVariant",
       "type": "string",
       "enum": [
         "ftu",
         "3d-organ"
-      ]
+      ],
+      "id": "DataViewerVariant"
     },
     "ReleaseVersionData": {
-      "id": "ReleaseVersionData",
       "type": "object",
       "properties": {
         "version": {
@@ -518,10 +520,10 @@
         "date",
         "organData"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "ReleaseVersionData"
     },
     "DataViewerOrgan": {
-      "id": "DataViewerOrgan",
       "type": "object",
       "properties": {
         "label": {
@@ -542,10 +544,10 @@
         "icon",
         "cards"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "DataViewerOrgan"
     },
     "DataViewerCard": {
-      "id": "DataViewerCard",
       "type": "object",
       "properties": {
         "label": {
@@ -583,10 +585,10 @@
         "sourceDataUrl",
         "files"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "DataViewerCard"
     },
     "DataViewerFile": {
-      "id": "DataViewerFile",
       "type": "object",
       "properties": {
         "label": {
@@ -601,10 +603,10 @@
         "label",
         "url"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "DataViewerFile"
     },
     "FlexContainer": {
-      "id": "FlexContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -640,10 +642,10 @@
         "component",
         "content"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "FlexContainer"
     },
     "GridContainer": {
-      "id": "GridContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -676,10 +678,10 @@
         "component",
         "content"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "GridContainer"
     },
     "Icon": {
-      "id": "Icon",
       "type": "object",
       "properties": {
         "component": {
@@ -714,10 +716,10 @@
       "required": [
         "component"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "Icon"
     },
     "Image": {
-      "id": "Image",
       "type": "object",
       "properties": {
         "component": {
@@ -747,10 +749,10 @@
         "component",
         "src"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "Image"
     },
     "Markdown": {
-      "id": "Markdown",
       "type": "object",
       "properties": {
         "component": {
@@ -779,10 +781,10 @@
       "required": [
         "component"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "Markdown"
     },
     "PageSection": {
-      "id": "PageSection",
       "type": "object",
       "properties": {
         "component": {
@@ -824,10 +826,10 @@
         "tagline",
         "content"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "PageSection"
     },
     "Table": {
-      "id": "Table",
       "type": "object",
       "properties": {
         "component": {
@@ -861,7 +863,7 @@
             "$ref": "#/$defs/TableRow"
           }
         },
-        "style": {
+        "variant": {
           "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
@@ -877,10 +879,10 @@
       "required": [
         "component"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "Table"
     },
     "TableColumn": {
-      "id": "TableColumn",
       "type": "object",
       "properties": {
         "column": {
@@ -913,6 +915,10 @@
                 {
                   "type": "string",
                   "const": "menu"
+                },
+                {
+                  "type": "string",
+                  "const": "dataExploration"
                 }
               ]
             },
@@ -935,6 +941,9 @@
                 },
                 {
                   "$ref": "#/$defs/MenuButtonColumnType"
+                },
+                {
+                  "$ref": "#/$defs/DataExplorationColumnType"
                 }
               ]
             }
@@ -946,10 +955,10 @@
         "label",
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "TableColumn"
     },
     "TextColumnType": {
-      "id": "TextColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -960,10 +969,10 @@
       "required": [
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "TextColumnType"
     },
     "NumericColumnType": {
-      "id": "NumericColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -977,10 +986,10 @@
       "required": [
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "NumericColumnType"
     },
     "MarkdownColumnType": {
-      "id": "MarkdownColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -991,10 +1000,10 @@
       "required": [
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "MarkdownColumnType"
     },
     "LinkColumnType": {
-      "id": "LinkColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -1012,10 +1021,10 @@
         "type",
         "urlColumn"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "LinkColumnType"
     },
     "IconColumnType": {
-      "id": "IconColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -1033,10 +1042,10 @@
         "type",
         "icon"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "IconColumnType"
     },
     "MenuButtonColumnType": {
-      "id": "MenuButtonColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -1058,10 +1067,39 @@
         "icon",
         "options"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "MenuButtonColumnType"
+    },
+    "DataExplorationColumnType": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "dataExploration"
+        },
+        "label": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "titleColumn": {
+          "type": "string"
+        },
+        "imageUrlColumn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "id": "DataExplorationColumnType"
     },
     "TableRow": {
-      "id": "TableRow",
       "type": "object",
       "propertyNames": {
         "type": "string"
@@ -1082,19 +1120,19 @@
             "items": {}
           }
         ]
-      }
+      },
+      "id": "TableRow"
     },
     "TableVariant": {
-      "id": "TableVariant",
       "type": "string",
       "enum": [
         "alternating",
         "divider",
         "basic"
-      ]
+      ],
+      "id": "TableVariant"
     },
     "ProfileCard": {
-      "id": "ProfileCard",
       "type": "object",
       "properties": {
         "component": {
@@ -1135,10 +1173,10 @@
         "description",
         "pictureUrl"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "ProfileCard"
     },
     "TextHyperlink": {
-      "id": "TextHyperlink",
       "type": "object",
       "properties": {
         "component": {
@@ -1168,6 +1206,16 @@
         },
         "external": {
           "type": "boolean"
+        },
+        "download": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -1175,10 +1223,10 @@
         "text",
         "url"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "TextHyperlink"
     },
     "VersionedDataTable": {
-      "id": "VersionedDataTable",
       "type": "object",
       "properties": {
         "component": {
@@ -1203,7 +1251,7 @@
             "$ref": "#/$defs/TableColumn"
           }
         },
-        "style": {
+        "variant": {
           "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
@@ -1230,10 +1278,10 @@
         "label",
         "items"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "VersionedDataTable"
     },
     "VersionedData": {
-      "id": "VersionedData",
       "type": "object",
       "properties": {
         "csvUrl": {
@@ -1251,7 +1299,7 @@
             "$ref": "#/$defs/TableRow"
           }
         },
-        "style": {
+        "variant": {
           "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
@@ -1271,10 +1319,10 @@
         "label",
         "version"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "VersionedData"
     },
     "YouTubePlayer": {
-      "id": "YouTubePlayer",
       "type": "object",
       "properties": {
         "component": {
@@ -1305,7 +1353,8 @@
         "videoId",
         "label"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "id": "YouTubePlayer"
     }
   }
 }

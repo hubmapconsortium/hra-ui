@@ -13,10 +13,49 @@ content:
     content:
       component: Markdown
       data: |
-        The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that lets users explore the HRA in immersive 3D and in their true size, location, and spatial relation to each other. The HRA Organ Gallery has several use cases: 1) introduce both novice and expert users to the 2D and 3D data available in the HRA via the HuBMAP Data Portal, the SenNet Data Portal, and similar efforts; (2) enable multiscale harmonization, visualization, and exploration of spatial biological data; (3) enable biological queries across scales; and 4) provide quality assurance and quality control (QA/QC) for HRA data providers.
-        The concept of the application is described in this [publication](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full).
-        Figure 1 compares the user interface for exploring the HRA via the [Exploration User Interface (EUI)](https://apps.humanatlas.io/eui/) to how it appears in the HRA Organ Gallery when using a Meta Quest 2 or 3.
-        This research is based on work supported by a [R03 award by the NIH](https://reporter.nih.gov/search/ywt9ul-G8kuWaSRazYBjJg/project-details/11123677), a [NIH HuBMAP JumpStart Fellowship 2024-2025](https://hubmapconsortium.org/jumpstart-program/#andreas2024), a HuBMAP NIH JumpStart Award (2023-2024), and a [CIFAR](https://cifar.ca/research-programs/cifar-macmillan-multiscale-human/) catalyst award.
+        The Human Reference Atlas (HRA) Organ Gallery is a virtual reality (VR) application that lets
+        users explore the HRA in immersive 3D and in their true size, location, and spatial relation
+        to each other. The HRA Organ Gallery has several use cases: 1) introduce both novice and expert
+        users to the 2D and 3D data available in the HRA via the HuBMAP Data Portal, the SenNet Data
+        Portal, and similar efforts; (2) enable multiscale harmonization, visualization, and exploration
+        of spatial biological data; (3) enable biological queries across scales; and 4) provide quality
+        assurance and quality control (QA/QC) for HRA data providers.
+
+        A new preprint is available at [https://www.biorxiv.org/content/10.64898/2026.07.07.737090](https://www.biorxiv.org/content/10.64898/2026.07.07.737090).
+
+        The concept of the application is described in this
+        [publication](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full).
+
+        Figure 1 compares the user interface for exploring the HRA via the
+        [Exploration User Interface (EUI)](https://apps.humanatlas.io/eui/) to how it appears in the
+        HRA Organ Gallery when using a Meta Quest VR headset.
+
+        This research is based on work supported by a
+        [R03 award by the NIH](https://reporter.nih.gov/search/ywt9ul-G8kuWaSRazYBjJg/project-details/11123677),
+        a [NIH HuBMAP JumpStart Fellowship 2024-2025](https://hubmapconsortium.org/jumpstart-program/#andreas2024),
+        a HuBMAP NIH JumpStart Award (2023-2024), and a
+        [CIFAR](https://cifar.ca/research-programs/cifar-macmillan-multiscale-human/) Catalyst award.
+
+  - component: PageSection
+    tagline: Preprint
+    anchor: preprint
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        A preprint describing the HRA Organ Gallery in VR, including the HRA: Powers of Ten application,
+        is available at [https://www.biorxiv.org/content/10.64898/2026.07.07.737090](https://www.biorxiv.org/content/10.64898/2026.07.07.737090).
+        A series of video demonstrations is available at https://cns-iu.github.io/hra-organ-gallery-supporting-information/#videos.
+        A companion website is available at https://cns-iu.github.io/hra-organ-gallery-supporting-information.
+
+  - component: PageSection
+    tagline: Application
+    anchor: application
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        You can download and install the application to your Meta Quest VR headset at https://www.meta.com/experiences/5696814507101529.
 
   - component: PageSection
     tagline: 2D vs. virtual reality
@@ -26,7 +65,9 @@ content:
       - component: Markdown
         data: |
           **Left**: A user looks at the HRA with the EUI in a standard-size browser window on a 17-in display.
-          **Right**: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of the HRA in true scale using immersive technology (VR). This image is taken from this [publication](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full). <br><br>
+
+          **Right**: The HRA Organ Gallery allows the user to view the organs, tissue blocks, and cell type counts of
+          the HRA in true scale using VR. <br><br>
 
       - component: Image
         src: assets/content/organ-gallery-page/images/organ_gallery.png
@@ -38,7 +79,14 @@ content:
     content:
       component: Markdown
       data: |
-        Using a visually explicit method of data integration, the HRA enables users to explore disparate data. Virtual reality (VR) presents a unique opportunity to explore both spatial and abstract data in an immersive environment that enhances presence beyond traditional interfaces like windows, icons, menus, and pointers, also called WIMP paradigm (Van Dam, 1997). Although some users may be able to learn how to explore 3D reference organs and tissue blocks on a 2D screen (Bueckle et al., [2021](https://journals.plos.org/plosone/article/metrics?id=10.1371/journal.pone.0258103#citedHeader), [2022](https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2021.727344/full)), many still struggle with interacting with 3D objects on a 2D screen.
+        Using a visually explicit method of data integration, the HRA enables users to explore disparate data.
+        VR presents a unique opportunity to explore both spatial and abstract data in an immersive environment
+        that enhances presence beyond traditional interfaces like windows, icons, menus, and pointers, also
+        called WIMP paradigm (Van Dam, 1997). Although some users may be able to learn how to explore 3D reference
+        organs and tissue blocks on a 2D screen
+        (Bueckle et al., [2021](https://journals.plos.org/plosone/article/metrics?id=10.1371/journal.pone.0258103#citedHeader),
+        [2022](https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2021.727344/full)),
+        many still struggle with interacting with 3D objects on a 2D screen.
 
   - component: PageSection
     tagline: Resources
@@ -47,21 +95,11 @@ content:
     content:
       component: Markdown
       data: |
-        * You can download the application on the Meta Horizon Store: [https://www.meta.com/experiences/5696814507101529](https://www.meta.com/experiences/5696814507101529)
-        * This paper, mentioned above, describes the basic concept: [https://doi.org/10.3389/fbinf.2023.1162723](https://doi.org/10.3389/fbinf.2023.1162723)
-        * Work in progress: a follow-up publication describing multiscale exploration and visualization (preprint to be shared when available)
-        * Data pages for multiscale exploration and visualization: **TBA**
-        * Supporting Information for next paper: **TBA**
-
-  - component: PageSection
-    tagline: Feedback
-    anchor: feedback
-    level: 2
-    content:
-      component: Markdown
-      data: |
-        Information for test users is available [here](https://github.com/cns-iu/hra-organ-gallery-in-vr/blob/main/INFORMATION_FOR_TESTERS.MD). In order to engage a diverse group of users in the development of the HRA Organ Gallery, we invite feedback from a broad range of specialists in fields such as bioinformatics, 3D modeling, medical illustration, anatomy, data curation, and biology. We continuously evaluate the application's usability, engagement, and presence.
-        Also, please email Andreas Bueckle ([abueckle@iu.edu](mailto:abueckle@iu.edu)) if you are interested in contributing your input to the research and development of the HRA Organ Gallery.
+        * You can download the application on the Meta Horizon Store: https://www.meta.com/experiences/5696814507101529
+        * This paper describes the basic concept: https://doi.org/10.3389/fbinf.2023.1162723
+        * A new preprint is available at [https://www.biorxiv.org/content/10.64898/2026.07.07.737090](https://www.biorxiv.org/content/10.64898/2026.07.07.737090).
+        * To download the most up-to-date GLB files for the organs of the HRA, please visit the
+        [HRA 3D Reference Object Library](https://humanatlas.io/3d-reference-library).
 
   - component: PageSection
     tagline: References
@@ -70,15 +108,16 @@ content:
     content:
       component: Markdown
       data: |
-        A. Bueckle, C. Qing, S. Luley, Y. Kumar, N. Pandey, and K. Börner, “The HRA Organ Gallery affords immersive superpowers for building and explorring the
-        Human Reference Atlas with virtual reality,” *Frontiers in Bioinformatics*, vol. 3, 2023. doi: [10.3389/fbinf.2023.1162723](https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2023.1162723/full).
+        Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021. “3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison.”
+        PLOS ONE 16 (10): e0258103. https://doi.org/10.1371/journal.pone.0258103.
 
-        Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. ["Optimizing Performance and Satisfaction in Matching and Movement Tasks in
-        Virtual Reality with Interventions Using the Data Visualization Literacy Framework"](https://www.frontiersin.org/journals/virtual-reality/articles/10.3389/frvir.2021.727344/full).
-        *Frontiers in Virtual Reality* 2. doi: 10.3389/frvir.2021.727344.
+        Bueckle, Andreas, Kilian Buehling, Patrick C. Shih, and Katy Börner. 2022. “Optimizing Performance and Satisfaction in Matching and Movement Tasks in
+        Virtual Reality with Interventions Using the Data Visualization Literacy Framework.” Frontiers in Virtual Reality 2. https://doi.org/10.3389/frvir.2021.727344.
 
-        Bueckle, Andreas., Kilian Buehling, Patrick C. Shih, and Katy Börner. 2021. ["3D Virtual Reality vs. 2D Desktop Registration User Interface Comparison"](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0258103).
-        *PLOS ONE* 16 (10): e0258103. doi: 10.1371/journal.pone.0258103.
+        Bueckle, Andreas, Catherine Qing, Shefali Luley, Yash Kumar, Naval Pandey, and Katy Börner. 2023. “The HRA Organ Gallery Affords Immersive Superpowers
+        for Building and Exploring the Human Reference Atlas with Virtual Reality.” Frontiers in Bioinformatics 3 (April). https://doi.org/10.3389/fbinf.2023.1162723.
 
-        van Dam, Andries. 1997. ["Post-WIMP User Interfaces"](https://dl.acm.org/doi/10.1145/253671.253708).
-        *Communications of the ACM 40* (2): 63-67. doi: 10.1145/253671.253708.
+        Bueckle, Andreas, Chenchen Zhu, Alex Yu Hin Wong, et al. 2026. “Multiscale Harmonization and Semantic Integration of Biomedical Data Enable Biological Insights
+        through Immersive Exploration.” Preprint, bioRxiv, July 11. https://doi.org/10.64898/2026.07.07.737090.
+
+        Van Dam, Andries. 1997. “Post-WIMP User Interfaces.” Communications of the ACM 40 (2): 63–67. https://doi.org/10.1145/253671.253708.
