@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["libs/design-system/buttons/help-button/src/lib/help-button.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;;",
-  "names": []
-}
