@@ -3392,13 +3392,21 @@ Please report this to https://github.com/markedjs/marked.`,t){let i="<p>An error
   }
 }
 /*# sourceMappingURL=categories.component.css.map */
-`]}]}],null,{categories:[{type:x,args:[{isSignal:!0,alias:"categories",required:!0}]},{type:qe,args:["categoriesChange"]}]});(typeof ngDevMode>"u"||ngDevMode)&&dn(bN,{className:"CategoriesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/categories/categories.component.ts",lineNumber:22});R();function $at(t,e){if(t&1){let n=Cn();B(0,"button",14),We("click",function(){mt(n);let r=ue();return pt(r.tabIndex.set(1))}),pe(1,"Customize"),G()}}function Wat(t,e){if(t&1&&(B(0,"button",12),pe(1,"Allow selection"),G()),t&2){let n=ue();fe("mat-dialog-close",n.categories())}}var qat={consent:0,manage:1},eee=class T${data=b(XJ);tabIndex=ut(qat[this.data.tab??"consent"],...ngDevMode?[{debugName:"tabIndex"}]:[]);categories=ut(this.data.categories,...ngDevMode?[{debugName:"categories"}]:[]);static \u0275fac=function(n){return new(n||T$)};static \u0275cmp=we({type:T$,selectors:[["hra-privacy-preferences"]],decls:24,vars:3,consts:[[1,"header"],["size","small"],["mat-icon-button","","mat-dialog-close","dismiss","aria-label","Close privacy preferences"],["mat-stretch-tabs","","dynamicHeight","",1,"tab-group",3,"selectedIndexChange","selectedIndex"],["label","Consent"],[1,"consent-content"],["label","Details"],["hraScrollOverflowFade","",1,"details"],[1,"categories",3,"categoriesChange","categories"],[1,"footer-buttons"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-necessary"],["mat-button","","hraCtaButton","","hraSecondaryButton",""],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","",3,"mat-dialog-close"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-all"],["mat-button","","hraCtaButton","","hraSecondaryButton","",3,"click"]],template:function(n,i){n&1&&(B(0,"div",0),Le(1,"hra-brand-logo",1),B(2,"button",2)(3,"mat-icon"),pe(4,"close"),G()()(),Le(5,"mat-divider"),B(6,"mat-tab-group",3),BO("selectedIndexChange",function(a){return n4(i.tabIndex,a)||(i.tabIndex=a),a}),B(7,"mat-tab",4)(8,"div",5)(9,"p"),pe(10,"This website uses cookies and similar technologies."),G(),B(11,"p"),pe(12," We use anonymized statistics data insights to improve our website. Marketing cookies are needed to watch videos on this website. "),G()()(),B(13,"mat-tab",6)(14,"ng-scrollbar",7)(15,"hra-categories",8),BO("categoriesChange",function(a){return n4(i.categories,a)||(i.categories=a),a}),G()()()(),Le(16,"mat-divider"),B(17,"div",9)(18,"button",10),pe(19,"Allow necessary only"),G(),Ge(20,$at,2,0,"button",11)(21,Wat,2,1,"button",12),B(22,"button",13),pe(23,"Allow all"),G()()),n&2&&(j(6),LO("selectedIndex",i.tabIndex),j(9),LO("categories",i.categories),j(5),Qe(i.tabIndex()===0?20:21))},dependencies:[Wt,yd,Hh,Wn,ho,Ao,zi,mM,aN,ts,MM,Np,la,Po,RJ,qh,xv,ec,ul,UP,bN],styles:[`
+`]}]}],null,{categories:[{type:x,args:[{isSignal:!0,alias:"categories",required:!0}]},{type:qe,args:["categoriesChange"]}]});(typeof ngDevMode>"u"||ngDevMode)&&dn(bN,{className:"CategoriesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/categories/categories.component.ts",lineNumber:22});R();function $at(t,e){if(t&1){let n=Cn();B(0,"button",14),We("click",function(){mt(n);let r=ue();return pt(r.tabIndex.set(1))}),pe(1,"Customize"),G()}}function Wat(t,e){if(t&1&&(B(0,"button",12),pe(1,"Allow selection"),G()),t&2){let n=ue();fe("mat-dialog-close",n.categories())}}var qat={consent:0,manage:1},eee=class T${data=b(XJ);tabIndex=ut(qat[this.data.tab??"consent"],...ngDevMode?[{debugName:"tabIndex"}]:[]);categories=ut(this.data.categories,...ngDevMode?[{debugName:"categories"}]:[]);static \u0275fac=function(n){return new(n||T$)};static \u0275cmp=we({type:T$,selectors:[["hra-privacy-preferences"]],decls:24,vars:3,consts:[[1,"header"],["size","small"],["mat-icon-button","","mat-dialog-close","dismiss","aria-label","Close privacy preferences"],["mat-stretch-tabs","",1,"tab-group",3,"selectedIndexChange","selectedIndex"],["label","Consent"],[1,"consent-content"],["label","Details"],["hraScrollOverflowFade","",1,"details"],[1,"categories",3,"categoriesChange","categories"],[1,"footer-buttons"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-necessary"],["mat-button","","hraCtaButton","","hraSecondaryButton",""],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","",3,"mat-dialog-close"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-all"],["mat-button","","hraCtaButton","","hraSecondaryButton","",3,"click"]],template:function(n,i){n&1&&(B(0,"div",0),Le(1,"hra-brand-logo",1),B(2,"button",2)(3,"mat-icon"),pe(4,"close"),G()()(),Le(5,"mat-divider"),B(6,"mat-tab-group",3),BO("selectedIndexChange",function(a){return n4(i.tabIndex,a)||(i.tabIndex=a),a}),B(7,"mat-tab",4)(8,"div",5)(9,"p"),pe(10,"This website uses cookies and similar technologies."),G(),B(11,"p"),pe(12," We use anonymized statistics data insights to improve our website. Marketing cookies are needed to watch videos on this website. "),G()()(),B(13,"mat-tab",6)(14,"ng-scrollbar",7)(15,"hra-categories",8),BO("categoriesChange",function(a){return n4(i.categories,a)||(i.categories=a),a}),G()()()(),Le(16,"mat-divider"),B(17,"div",9)(18,"button",10),pe(19,"Allow necessary only"),G(),Ge(20,$at,2,0,"button",11)(21,Wat,2,1,"button",12),B(22,"button",13),pe(23,"Allow all"),G()()),n&2&&(j(6),LO("selectedIndex",i.tabIndex),j(9),LO("categories",i.categories),j(5),Qe(i.tabIndex()===0?20:21))},dependencies:[Wt,yd,Hh,Wn,ho,Ao,zi,mM,aN,ts,MM,Np,la,Po,RJ,qh,xv,ec,ul,UP,bN],styles:[`
 
 [_nghost-%COMP%] {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: hidden;
   box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-on-background) r g b/24%);
   border-radius: 0.5rem;
   background-color: var(--mat-sys-surface-container-low);
+}
+[_nghost-%COMP%]   .header[_ngcontent-%COMP%], 
+[_nghost-%COMP%]   mat-divider[_ngcontent-%COMP%], 
+[_nghost-%COMP%]   .footer-buttons[_ngcontent-%COMP%] {
+  flex-shrink: 0;
 }
 [_nghost-%COMP%]   .header[_ngcontent-%COMP%] {
   display: flex;
@@ -3412,14 +3420,26 @@ Please report this to https://github.com/markedjs/marked.`,t){let i="<p>An error
 [_nghost-%COMP%]   .header[_ngcontent-%COMP%]   button[mat-icon-button][_ngcontent-%COMP%]   mat-icon[_ngcontent-%COMP%] {
   color: inherit;
 }
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%] {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body, 
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body-content {
+  overflow: hidden;
+}
 [_nghost-%COMP%]   .details[_ngcontent-%COMP%] {
-  max-height: calc(100vh - 16rem);
+  height: 100%;
+  --scrollbar-overscroll-behavior: contain;
 }
 [_nghost-%COMP%]   .details[_ngcontent-%COMP%]   .categories[_ngcontent-%COMP%] {
   margin: 1rem 1.5rem;
-}
-[_nghost-%COMP%]   ng-scrollbar[_ngcontent-%COMP%] {
-  flex-grow: 1;
 }
 [_nghost-%COMP%]   .consent-content[_ngcontent-%COMP%] {
   display: flex;
@@ -3473,7 +3493,7 @@ Please report this to https://github.com/markedjs/marked.`,t){let i="<p>An error
 
 <mat-divider />
 
-<mat-tab-group mat-stretch-tabs class="tab-group" dynamicHeight [(selectedIndex)]="tabIndex">
+<mat-tab-group mat-stretch-tabs class="tab-group" [(selectedIndex)]="tabIndex">
   <mat-tab label="Consent">
     <div class="consent-content">
       <p>This website uses cookies and similar technologies.</p>
@@ -3505,10 +3525,18 @@ Please report this to https://github.com/markedjs/marked.`,t){let i="<p>An error
 </div>
 `,styles:[`/* libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.scss */
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: hidden;
   box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-on-background) r g b/24%);
   border-radius: 0.5rem;
   background-color: var(--mat-sys-surface-container-low);
+}
+:host .header,
+:host mat-divider,
+:host .footer-buttons {
+  flex-shrink: 0;
 }
 :host .header {
   display: flex;
@@ -3522,14 +3550,26 @@ Please report this to https://github.com/markedjs/marked.`,t){let i="<p>An error
 :host .header button[mat-icon-button] mat-icon {
   color: inherit;
 }
+:host .tab-group {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+:host .tab-group ::ng-deep .mat-mdc-tab-body-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+:host .tab-group ::ng-deep .mat-mdc-tab-body,
+:host .tab-group ::ng-deep .mat-mdc-tab-body-content {
+  overflow: hidden;
+}
 :host .details {
-  max-height: calc(100vh - 16rem);
+  height: 100%;
+  --scrollbar-overscroll-behavior: contain;
 }
 :host .details .categories {
   margin: 1rem 1.5rem;
-}
-:host ng-scrollbar {
-  flex-grow: 1;
 }
 :host .consent-content {
   display: flex;
@@ -3574,7 +3614,7 @@ Please report this to https://github.com/markedjs/marked.`,t){let i="<p>An error
   }
 }
 /*# sourceMappingURL=privacy-preferences.component.css.map */
-`]}]}],null,null);(typeof ngDevMode>"u"||ngDevMode)&&dn(eee,{className:"PrivacyPreferencesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.ts",lineNumber:55});var nz=rm(_K());R();var iz="__hra-analytics-privacy-preferences",yce="consentBannerDialog",Ace="privacyPreferencesDialog",tee=class hR{dialog=b(uf);consent=b(MB);repositionScrollStrategy=b(_Z).reposition();syncEnabled=ut(!1,...ngDevMode?[{debugName:"syncEnabled"}]:[]);constructor(){ui(()=>{if(this.syncEnabled()){let e=this.consent.categories();nz.default.local.set(iz,e)}})}launch(){this.hasPrivacyPreferences()?(this.consent.updateCategories(this.getPrivacyPreferences()),this.enableSync()):this.openConsentBanner()}hasPrivacyPreferences(){return nz.default.local.has(iz)}getPrivacyPreferences(){return nz.default.local.get(iz)??{}}enableSync(){this.syncEnabled.set(!0)}openConsentBanner(e){if(this.hasActiveDialog())return;e??=this.isEmbedded(),this.dialog.open(ZJ,{ariaLabelledBy:UMe,autoFocus:e?"hra-element-should-not-exist":!1,closeOnNavigation:!1,disableClose:!0,hasBackdrop:!1,id:yce,panelClass:Pat,minWidth:"100%",position:{bottom:"0px",left:"0px",right:"0px"},scrollStrategy:this.repositionScrollStrategy}).afterClosed().subscribe(i=>this.handleDialogResult(i))}openPrivacyPreferences(e){if(this.hasActiveDialog())return;this.dialog.open(eee,{ariaLabel:"Manage privacy preferences",ariaModal:!0,autoFocus:!0,closeOnNavigation:!1,data:{categories:this.consent.categories(),tab:e},hasBackdrop:!0,id:Ace,maxWidth:"46.75rem",minWidth:"20rem",restoreFocus:!0}).afterClosed().subscribe(i=>this.handleDialogResult(i))}hasActiveDialog(){return[yce,Ace].some(n=>this.dialog.getDialogById(n)!==void 0)}handleDialogResult(e="dismiss"){switch(e){case"allow-all":this.consent.enableAllCategories(),this.enableSync();break;case"allow-necessary":this.consent.disableAllCategories(),this.enableSync();break;case"customize":this.openPrivacyPreferences("consent");break;case"dismiss":this.syncEnabled()||this.openConsentBanner(!1);break;default:this.consent.updateCategories(e),this.enableSync();break}}isEmbedded(){try{return window.self!==window.top}catch{return!0}}static \u0275fac=function(n){return new(n||hR)};static \u0275prov=ve({token:hR,factory:hR.\u0275fac,providedIn:"root"})};(typeof ngDevMode>"u"||ngDevMode)&&C(tee,[{type:Te,args:[{providedIn:"root"}]}],()=>[],null);R();function Yat(t,e){if(t&1&&Le(0,"hra-social-media-button",10),t&2){let n=e.$implicit;fe("id",n)}}var JA=class D${funders=le(Aat,...ngDevMode?[{debugName:"funders"}]:[]);socials=le(znt,...ngDevMode?[{debugName:"socials"}]:[]);privacyPreferences=b(tee);static \u0275fac=function(n){return new(n||D$)};static \u0275cmp=we({type:D$,selectors:[["hra-footer"]],inputs:{funders:[1,"funders"],socials:[1,"socials"]},decls:32,vars:1,consts:[["hraFeature","footer"],[1,"content-container"],[1,"logo"],[3,"funders"],[1,"disclaimer"],[2,"margin-bottom","0.75rem"],["hraHyperlink","","hraFeature","hra","href","https://humanatlas.io/"],["hraHyperlink","","hraFeature","fair-principles","href","https://www.go-fair.org/fair-principles/"],[1,"socials-container"],[1,"socials"],["size","large","variant","color",3,"id"],[1,"privacy"],["hraTextButton","",3,"click"],["hraHyperlink","","hraFeature","hra-privacy-policy","href","https://humanatlas.io/privacy-policy"],[1,"copyright"],["hraHyperlink","","hraFeature","cns-landing-page","href","https://cns.iu.edu/"],["hraHyperlink","","hraFeature","iu-landing-page","href","https://www.iu.edu/"]],template:function(n,i){n&1&&(No(0,0),B(1,"div",1),Le(2,"hra-brand-logo",2)(3,"hra-funding",3),B(4,"div",4)(5,"p",5),pe(6," Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or medical or professional advice. "),G(),B(7,"p")(8,"a",6),pe(9,"Human Reference Atlas"),G(),pe(10," data is managed and published according to "),B(11,"a",7),pe(12,"FAIR principles"),G(),pe(13,", including standardized processing with reproducible pipelines. "),G()()(),Le(14,"mat-divider"),B(15,"div",8)(16,"div",9),Ar(17,Yat,1,1,"hra-social-media-button",10,yp),G(),B(19,"span",11)(20,"button",12),We("click",function(){return i.privacyPreferences.openPrivacyPreferences("manage")}),pe(21,"Privacy Preferences"),G(),pe(22," \xB7 "),B(23,"a",13),pe(24,"Privacy Policy"),G()(),B(25,"span",14),pe(26," \xA9 2026 "),B(27,"a",15),pe(28,"Cyberinfrastructure for Network Science Center"),G(),pe(29," at "),B(30,"a",16),pe(31,"Indiana University"),G()()(),Eo()),n&2&&(j(3),fe("funders",i.funders()),j(14),xr(i.socials()))},dependencies:[Wt,mr,bn,yd,Hh,Wn,cN,nJ,Ic,gN,la,Po],styles:[`
+`]}]}],null,null);(typeof ngDevMode>"u"||ngDevMode)&&dn(eee,{className:"PrivacyPreferencesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.ts",lineNumber:55});var nz=rm(_K());R();var iz="__hra-analytics-privacy-preferences",yce="consentBannerDialog",Ace="privacyPreferencesDialog",tee=class hR{dialog=b(uf);consent=b(MB);repositionScrollStrategy=b(_Z).reposition();syncEnabled=ut(!1,...ngDevMode?[{debugName:"syncEnabled"}]:[]);constructor(){ui(()=>{if(this.syncEnabled()){let e=this.consent.categories();nz.default.local.set(iz,e)}})}launch(){this.hasPrivacyPreferences()?(this.consent.updateCategories(this.getPrivacyPreferences()),this.enableSync()):this.openConsentBanner()}hasPrivacyPreferences(){return nz.default.local.has(iz)}getPrivacyPreferences(){return nz.default.local.get(iz)??{}}enableSync(){this.syncEnabled.set(!0)}openConsentBanner(e){if(this.hasActiveDialog())return;e??=this.isEmbedded(),this.dialog.open(ZJ,{ariaLabelledBy:UMe,autoFocus:e?"hra-element-should-not-exist":!1,closeOnNavigation:!1,disableClose:!0,hasBackdrop:!1,id:yce,panelClass:Pat,minWidth:"100%",position:{bottom:"0px",left:"0px",right:"0px"},scrollStrategy:this.repositionScrollStrategy}).afterClosed().subscribe(i=>this.handleDialogResult(i))}openPrivacyPreferences(e){if(this.hasActiveDialog())return;this.dialog.open(eee,{ariaLabel:"Manage privacy preferences",ariaModal:!0,autoFocus:!0,closeOnNavigation:!1,data:{categories:this.consent.categories(),tab:e},hasBackdrop:!0,id:Ace,maxHeight:"calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))",maxWidth:"46.75rem",minWidth:"20rem",restoreFocus:!0}).afterClosed().subscribe(i=>this.handleDialogResult(i))}hasActiveDialog(){return[yce,Ace].some(n=>this.dialog.getDialogById(n)!==void 0)}handleDialogResult(e="dismiss"){switch(e){case"allow-all":this.consent.enableAllCategories(),this.enableSync();break;case"allow-necessary":this.consent.disableAllCategories(),this.enableSync();break;case"customize":this.openPrivacyPreferences("consent");break;case"dismiss":this.syncEnabled()||this.openConsentBanner(!1);break;default:this.consent.updateCategories(e),this.enableSync();break}}isEmbedded(){try{return window.self!==window.top}catch{return!0}}static \u0275fac=function(n){return new(n||hR)};static \u0275prov=ve({token:hR,factory:hR.\u0275fac,providedIn:"root"})};(typeof ngDevMode>"u"||ngDevMode)&&C(tee,[{type:Te,args:[{providedIn:"root"}]}],()=>[],null);R();function Yat(t,e){if(t&1&&Le(0,"hra-social-media-button",10),t&2){let n=e.$implicit;fe("id",n)}}var JA=class D${funders=le(Aat,...ngDevMode?[{debugName:"funders"}]:[]);socials=le(znt,...ngDevMode?[{debugName:"socials"}]:[]);privacyPreferences=b(tee);static \u0275fac=function(n){return new(n||D$)};static \u0275cmp=we({type:D$,selectors:[["hra-footer"]],inputs:{funders:[1,"funders"],socials:[1,"socials"]},decls:32,vars:1,consts:[["hraFeature","footer"],[1,"content-container"],[1,"logo"],[3,"funders"],[1,"disclaimer"],[2,"margin-bottom","0.75rem"],["hraHyperlink","","hraFeature","hra","href","https://humanatlas.io/"],["hraHyperlink","","hraFeature","fair-principles","href","https://www.go-fair.org/fair-principles/"],[1,"socials-container"],[1,"socials"],["size","large","variant","color",3,"id"],[1,"privacy"],["hraTextButton","",3,"click"],["hraHyperlink","","hraFeature","hra-privacy-policy","href","https://humanatlas.io/privacy-policy"],[1,"copyright"],["hraHyperlink","","hraFeature","cns-landing-page","href","https://cns.iu.edu/"],["hraHyperlink","","hraFeature","iu-landing-page","href","https://www.iu.edu/"]],template:function(n,i){n&1&&(No(0,0),B(1,"div",1),Le(2,"hra-brand-logo",2)(3,"hra-funding",3),B(4,"div",4)(5,"p",5),pe(6," Medical Disclaimer: This resource is intended for research purposes only. It should not be used for emergencies or medical or professional advice. "),G(),B(7,"p")(8,"a",6),pe(9,"Human Reference Atlas"),G(),pe(10," data is managed and published according to "),B(11,"a",7),pe(12,"FAIR principles"),G(),pe(13,", including standardized processing with reproducible pipelines. "),G()()(),Le(14,"mat-divider"),B(15,"div",8)(16,"div",9),Ar(17,Yat,1,1,"hra-social-media-button",10,yp),G(),B(19,"span",11)(20,"button",12),We("click",function(){return i.privacyPreferences.openPrivacyPreferences("manage")}),pe(21,"Privacy Preferences"),G(),pe(22," \xB7 "),B(23,"a",13),pe(24,"Privacy Policy"),G()(),B(25,"span",14),pe(26," \xA9 2026 "),B(27,"a",15),pe(28,"Cyberinfrastructure for Network Science Center"),G(),pe(29," at "),B(30,"a",16),pe(31,"Indiana University"),G()()(),Eo()),n&2&&(j(3),fe("funders",i.funders()),j(14),xr(i.socials()))},dependencies:[Wt,mr,bn,yd,Hh,Wn,cN,nJ,Ic,gN,la,Po],styles:[`
 
 [_nghost-%COMP%] {
   display: flex;

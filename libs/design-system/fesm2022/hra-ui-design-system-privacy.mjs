@@ -96,6 +96,7 @@ class PrivacyPreferencesService {
             },
             hasBackdrop: true,
             id: PRIVACY_PREFERENCES_DIALOG_ID,
+            maxHeight: 'calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))',
             maxWidth: '46.75rem',
             minWidth: '20rem',
             restoreFocus: true,

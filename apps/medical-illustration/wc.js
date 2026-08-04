@@ -2835,13 +2835,21 @@ code.hljs {
   }
 }
 /*# sourceMappingURL=categories.component.css.map */
-`]}]}],null,{categories:[{type:g,args:[{isSignal:!0,alias:"categories",required:!0}]},{type:Ve,args:["categoriesChange"]}]});(typeof ngDevMode>"u"||ngDevMode)&&En(I7,{className:"CategoriesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/categories/categories.component.ts",lineNumber:22});C();function TIe(t,e){if(t&1){let n=kr();ee(0,"button",14),at("click",function(){Yt(n);let r=dt();return Kt(r.tabIndex.set(1))}),Ot(1,"Customize"),se()}}function IIe(t,e){if(t&1&&(ee(0,"button",12),Ot(1,"Allow selection"),se()),t&2){let n=dt();Mt("mat-dialog-close",n.categories())}}var AIe={consent:0,manage:1},FL=class yO{constructor(){this.data=p(AL),this.tabIndex=St(AIe[this.data.tab??"consent"],...ngDevMode?[{debugName:"tabIndex"}]:[]),this.categories=St(this.data.categories,...ngDevMode?[{debugName:"categories"}]:[])}static{this.\u0275fac=function(n){return new(n||yO)}}static{this.\u0275cmp=ke({type:yO,selectors:[["hra-privacy-preferences"]],decls:24,vars:3,consts:[[1,"header"],["size","small"],["mat-icon-button","","mat-dialog-close","dismiss","aria-label","Close privacy preferences"],["mat-stretch-tabs","","dynamicHeight","",1,"tab-group",3,"selectedIndexChange","selectedIndex"],["label","Consent"],[1,"consent-content"],["label","Details"],["hraScrollOverflowFade","",1,"details"],[1,"categories",3,"categoriesChange","categories"],[1,"footer-buttons"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-necessary"],["mat-button","","hraCtaButton","","hraSecondaryButton",""],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","",3,"mat-dialog-close"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-all"],["mat-button","","hraCtaButton","","hraSecondaryButton","",3,"click"]],template:function(n,i){n&1&&(ee(0,"div",0),_t(1,"hra-brand-logo",1),ee(2,"button",2)(3,"mat-icon"),Ot(4,"close"),se()()(),_t(5,"mat-divider"),ee(6,"mat-tab-group",3),Ux("selectedIndexChange",function(o){return VS(i.tabIndex,o)||(i.tabIndex=o),o}),ee(7,"mat-tab",4)(8,"div",5)(9,"p"),Ot(10,"This website uses cookies and similar technologies."),se(),ee(11,"p"),Ot(12," We use anonymized statistics data insights to improve our website. Marketing cookies are needed to watch videos on this website. "),se()()(),ee(13,"mat-tab",6)(14,"ng-scrollbar",7)(15,"hra-categories",8),Ux("categoriesChange",function(o){return VS(i.categories,o)||(i.categories=o),o}),se()()()(),_t(16,"mat-divider"),ee(17,"div",9)(18,"button",10),Ot(19,"Allow necessary only"),se(),vt(20,TIe,2,0,"button",11)(21,IIe,2,1,"button",12),ee(22,"button",13),Ot(23,"Allow all"),se()()),n&2&&(me(6),Hx("selectedIndex",i.tabIndex),me(9),Hx("categories",i.categories),me(5),bt(i.tabIndex()===0?20:21))},dependencies:[ki,xb,Fd,Xs,$s,ra,Nr,KF,QF,Db,Lb,Ql,Bb,qd,EL,Hs,Ud,bL,Zl,K5,I7],styles:[`
+`]}]}],null,{categories:[{type:g,args:[{isSignal:!0,alias:"categories",required:!0}]},{type:Ve,args:["categoriesChange"]}]});(typeof ngDevMode>"u"||ngDevMode)&&En(I7,{className:"CategoriesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/categories/categories.component.ts",lineNumber:22});C();function TIe(t,e){if(t&1){let n=kr();ee(0,"button",14),at("click",function(){Yt(n);let r=dt();return Kt(r.tabIndex.set(1))}),Ot(1,"Customize"),se()}}function IIe(t,e){if(t&1&&(ee(0,"button",12),Ot(1,"Allow selection"),se()),t&2){let n=dt();Mt("mat-dialog-close",n.categories())}}var AIe={consent:0,manage:1},FL=class yO{constructor(){this.data=p(AL),this.tabIndex=St(AIe[this.data.tab??"consent"],...ngDevMode?[{debugName:"tabIndex"}]:[]),this.categories=St(this.data.categories,...ngDevMode?[{debugName:"categories"}]:[])}static{this.\u0275fac=function(n){return new(n||yO)}}static{this.\u0275cmp=ke({type:yO,selectors:[["hra-privacy-preferences"]],decls:24,vars:3,consts:[[1,"header"],["size","small"],["mat-icon-button","","mat-dialog-close","dismiss","aria-label","Close privacy preferences"],["mat-stretch-tabs","",1,"tab-group",3,"selectedIndexChange","selectedIndex"],["label","Consent"],[1,"consent-content"],["label","Details"],["hraScrollOverflowFade","",1,"details"],[1,"categories",3,"categoriesChange","categories"],[1,"footer-buttons"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-necessary"],["mat-button","","hraCtaButton","","hraSecondaryButton",""],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","",3,"mat-dialog-close"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-all"],["mat-button","","hraCtaButton","","hraSecondaryButton","",3,"click"]],template:function(n,i){n&1&&(ee(0,"div",0),_t(1,"hra-brand-logo",1),ee(2,"button",2)(3,"mat-icon"),Ot(4,"close"),se()()(),_t(5,"mat-divider"),ee(6,"mat-tab-group",3),Ux("selectedIndexChange",function(o){return VS(i.tabIndex,o)||(i.tabIndex=o),o}),ee(7,"mat-tab",4)(8,"div",5)(9,"p"),Ot(10,"This website uses cookies and similar technologies."),se(),ee(11,"p"),Ot(12," We use anonymized statistics data insights to improve our website. Marketing cookies are needed to watch videos on this website. "),se()()(),ee(13,"mat-tab",6)(14,"ng-scrollbar",7)(15,"hra-categories",8),Ux("categoriesChange",function(o){return VS(i.categories,o)||(i.categories=o),o}),se()()()(),_t(16,"mat-divider"),ee(17,"div",9)(18,"button",10),Ot(19,"Allow necessary only"),se(),vt(20,TIe,2,0,"button",11)(21,IIe,2,1,"button",12),ee(22,"button",13),Ot(23,"Allow all"),se()()),n&2&&(me(6),Hx("selectedIndex",i.tabIndex),me(9),Hx("categories",i.categories),me(5),bt(i.tabIndex()===0?20:21))},dependencies:[ki,xb,Fd,Xs,$s,ra,Nr,KF,QF,Db,Lb,Ql,Bb,qd,EL,Hs,Ud,bL,Zl,K5,I7],styles:[`
 
 [_nghost-%COMP%] {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: hidden;
   box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-on-background) r g b/24%);
   border-radius: 0.5rem;
   background-color: var(--mat-sys-surface-container-low);
+}
+[_nghost-%COMP%]   .header[_ngcontent-%COMP%], 
+[_nghost-%COMP%]   mat-divider[_ngcontent-%COMP%], 
+[_nghost-%COMP%]   .footer-buttons[_ngcontent-%COMP%] {
+  flex-shrink: 0;
 }
 [_nghost-%COMP%]   .header[_ngcontent-%COMP%] {
   display: flex;
@@ -2855,14 +2863,26 @@ code.hljs {
 [_nghost-%COMP%]   .header[_ngcontent-%COMP%]   button[mat-icon-button][_ngcontent-%COMP%]   mat-icon[_ngcontent-%COMP%] {
   color: inherit;
 }
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%] {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body, 
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body-content {
+  overflow: hidden;
+}
 [_nghost-%COMP%]   .details[_ngcontent-%COMP%] {
-  max-height: calc(100vh - 16rem);
+  height: 100%;
+  --scrollbar-overscroll-behavior: contain;
 }
 [_nghost-%COMP%]   .details[_ngcontent-%COMP%]   .categories[_ngcontent-%COMP%] {
   margin: 1rem 1.5rem;
-}
-[_nghost-%COMP%]   ng-scrollbar[_ngcontent-%COMP%] {
-  flex-grow: 1;
 }
 [_nghost-%COMP%]   .consent-content[_ngcontent-%COMP%] {
   display: flex;
@@ -2916,7 +2936,7 @@ code.hljs {
 
 <mat-divider />
 
-<mat-tab-group mat-stretch-tabs class="tab-group" dynamicHeight [(selectedIndex)]="tabIndex">
+<mat-tab-group mat-stretch-tabs class="tab-group" [(selectedIndex)]="tabIndex">
   <mat-tab label="Consent">
     <div class="consent-content">
       <p>This website uses cookies and similar technologies.</p>
@@ -2948,10 +2968,18 @@ code.hljs {
 </div>
 `,styles:[`/* libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.scss */
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: hidden;
   box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-on-background) r g b/24%);
   border-radius: 0.5rem;
   background-color: var(--mat-sys-surface-container-low);
+}
+:host .header,
+:host mat-divider,
+:host .footer-buttons {
+  flex-shrink: 0;
 }
 :host .header {
   display: flex;
@@ -2965,14 +2993,26 @@ code.hljs {
 :host .header button[mat-icon-button] mat-icon {
   color: inherit;
 }
+:host .tab-group {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+:host .tab-group ::ng-deep .mat-mdc-tab-body-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+:host .tab-group ::ng-deep .mat-mdc-tab-body,
+:host .tab-group ::ng-deep .mat-mdc-tab-body-content {
+  overflow: hidden;
+}
 :host .details {
-  max-height: calc(100vh - 16rem);
+  height: 100%;
+  --scrollbar-overscroll-behavior: contain;
 }
 :host .details .categories {
   margin: 1rem 1.5rem;
-}
-:host ng-scrollbar {
-  flex-grow: 1;
 }
 :host .consent-content {
   display: flex;
@@ -3017,7 +3057,7 @@ code.hljs {
   }
 }
 /*# sourceMappingURL=privacy-preferences.component.css.map */
-`]}]}],null,null);(typeof ngDevMode>"u"||ngDevMode)&&En(FL,{className:"PrivacyPreferencesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.ts",lineNumber:55});var ZE=fm(vN());C();var YE="__hra-analytics-privacy-preferences",u8="consentBannerDialog",h8="privacyPreferencesDialog",xte=class Q2{constructor(){this.dialog=p(mu),this.consent=p(jk),this.repositionScrollStrategy=p(eF).reposition(),this.syncEnabled=St(!1,...ngDevMode?[{debugName:"syncEnabled"}]:[]),qn(()=>{if(this.syncEnabled()){let e=this.consent.categories();ZE.default.local.set(YE,e)}})}launch(){this.hasPrivacyPreferences()?(this.consent.updateCategories(this.getPrivacyPreferences()),this.enableSync()):this.openConsentBanner()}hasPrivacyPreferences(){return ZE.default.local.has(YE)}getPrivacyPreferences(){return ZE.default.local.get(YE)??{}}enableSync(){this.syncEnabled.set(!0)}openConsentBanner(e){if(this.hasActiveDialog())return;e??=this.isEmbedded(),this.dialog.open(PL,{ariaLabelledBy:wte,autoFocus:e?"hra-element-should-not-exist":!1,closeOnNavigation:!1,disableClose:!0,hasBackdrop:!1,id:u8,panelClass:vIe,minWidth:"100%",position:{bottom:"0px",left:"0px",right:"0px"},scrollStrategy:this.repositionScrollStrategy}).afterClosed().subscribe(i=>this.handleDialogResult(i))}openPrivacyPreferences(e){if(this.hasActiveDialog())return;this.dialog.open(FL,{ariaLabel:"Manage privacy preferences",ariaModal:!0,autoFocus:!0,closeOnNavigation:!1,data:{categories:this.consent.categories(),tab:e},hasBackdrop:!0,id:h8,maxWidth:"46.75rem",minWidth:"20rem",restoreFocus:!0}).afterClosed().subscribe(i=>this.handleDialogResult(i))}hasActiveDialog(){return[u8,h8].some(n=>this.dialog.getDialogById(n)!==void 0)}handleDialogResult(e="dismiss"){switch(e){case"allow-all":this.consent.enableAllCategories(),this.enableSync();break;case"allow-necessary":this.consent.disableAllCategories(),this.enableSync();break;case"customize":this.openPrivacyPreferences("consent");break;case"dismiss":this.syncEnabled()||this.openConsentBanner(!1);break;default:this.consent.updateCategories(e),this.enableSync();break}}isEmbedded(){try{return window.self!==window.top}catch{return!0}}static{this.\u0275fac=function(n){return new(n||Q2)}}static{this.\u0275prov=ie({token:Q2,factory:Q2.\u0275fac,providedIn:"root"})}};(typeof ngDevMode>"u"||ngDevMode)&&v(xte,[{type:ce,args:[{providedIn:"root"}]}],()=>[],null);var OIe=MF([C7e(),mh(),eDe({truthy:["true","enable","enabled"],falsy:["false","disable","disabled"]}),N7e(IF(fr),mh())]),PIe=mee(t=>{try{if(typeof t=="string")return JSON.parse(t)}catch{}return t},OIe).catch(void 0);C();var RIe={Mobile:"(max-width: 639.98px)",Desktop:"(min-width: 640px) and (max-width: 1920.98px)",LargeDesktop:"(min-width: 1921px)"};C();jt();var NIe=class{constructor(t,e){this.state=t,this.mapping=e}matchesAny(){return this.state.matches}matchesQuery(t){return this.state.breakpoints[t]??!1}matchesBreakpoint(t){return this.matchesQuery(this.mapping[t])}};function FIe(t=RIe){let e=Array.isArray(t)?{}:t,n=Array.isArray(t)?t:Object.values(t),r=p(RF).observe(n).pipe($t(o=>new NIe(o,e)));return a5(r,{requireSync:!0})}C();C();function LIe(t,e){if(t&1){let n=kr();ee(0,"button",7),at("click",function(){Yt(n);let r=dt();return Kt(r.data.action.callback())}),Ot(1),se()}if(t&2){let n=dt();me(),Na(" ",n.data.action.label," ")}}var LL=class _O{constructor(){this.data=p(AL)}static{this.\u0275fac=function(n){return new(n||_O)}}static{this.\u0275cmp=ke({type:_O,selectors:[["hra-notice"]],decls:13,vars:3,consts:[["hraFeature","notice"],["mat-dialog-title",""],[1,"title"],["mat-icon-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraIconButtonSize","large","disableRipple","","data-testid","close-icon"],[1,"material-symbols-rounded"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action"],["mat-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"dismiss"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action",3,"click"]],template:function(n,i){n&1&&(fk(0,0),ee(1,"div",1)(2,"div",2),Ot(3),se(),ee(4,"button",3)(5,"mat-icon",4),Ot(6,"close"),se()()(),ee(7,"mat-dialog-content"),Ot(8),se(),ee(9,"mat-dialog-actions"),vt(10,LIe,2,1,"button",5),ee(11,"button",6),Ot(12," Dismiss "),se()(),ib()),n&2&&(me(3),Na(" ",i.data.title," "),me(5),yr(i.data.message),me(2),bt(i.data.action?10:-1))},dependencies:[ki,fo,zs,Di,Nr,Xs,$s,ra,wv,y7,wr,mm,um,hm,Ql],styles:[`
+`]}]}],null,null);(typeof ngDevMode>"u"||ngDevMode)&&En(FL,{className:"PrivacyPreferencesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.ts",lineNumber:55});var ZE=fm(vN());C();var YE="__hra-analytics-privacy-preferences",u8="consentBannerDialog",h8="privacyPreferencesDialog",xte=class Q2{constructor(){this.dialog=p(mu),this.consent=p(jk),this.repositionScrollStrategy=p(eF).reposition(),this.syncEnabled=St(!1,...ngDevMode?[{debugName:"syncEnabled"}]:[]),qn(()=>{if(this.syncEnabled()){let e=this.consent.categories();ZE.default.local.set(YE,e)}})}launch(){this.hasPrivacyPreferences()?(this.consent.updateCategories(this.getPrivacyPreferences()),this.enableSync()):this.openConsentBanner()}hasPrivacyPreferences(){return ZE.default.local.has(YE)}getPrivacyPreferences(){return ZE.default.local.get(YE)??{}}enableSync(){this.syncEnabled.set(!0)}openConsentBanner(e){if(this.hasActiveDialog())return;e??=this.isEmbedded(),this.dialog.open(PL,{ariaLabelledBy:wte,autoFocus:e?"hra-element-should-not-exist":!1,closeOnNavigation:!1,disableClose:!0,hasBackdrop:!1,id:u8,panelClass:vIe,minWidth:"100%",position:{bottom:"0px",left:"0px",right:"0px"},scrollStrategy:this.repositionScrollStrategy}).afterClosed().subscribe(i=>this.handleDialogResult(i))}openPrivacyPreferences(e){if(this.hasActiveDialog())return;this.dialog.open(FL,{ariaLabel:"Manage privacy preferences",ariaModal:!0,autoFocus:!0,closeOnNavigation:!1,data:{categories:this.consent.categories(),tab:e},hasBackdrop:!0,id:h8,maxHeight:"calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))",maxWidth:"46.75rem",minWidth:"20rem",restoreFocus:!0}).afterClosed().subscribe(i=>this.handleDialogResult(i))}hasActiveDialog(){return[u8,h8].some(n=>this.dialog.getDialogById(n)!==void 0)}handleDialogResult(e="dismiss"){switch(e){case"allow-all":this.consent.enableAllCategories(),this.enableSync();break;case"allow-necessary":this.consent.disableAllCategories(),this.enableSync();break;case"customize":this.openPrivacyPreferences("consent");break;case"dismiss":this.syncEnabled()||this.openConsentBanner(!1);break;default:this.consent.updateCategories(e),this.enableSync();break}}isEmbedded(){try{return window.self!==window.top}catch{return!0}}static{this.\u0275fac=function(n){return new(n||Q2)}}static{this.\u0275prov=ie({token:Q2,factory:Q2.\u0275fac,providedIn:"root"})}};(typeof ngDevMode>"u"||ngDevMode)&&v(xte,[{type:ce,args:[{providedIn:"root"}]}],()=>[],null);var OIe=MF([C7e(),mh(),eDe({truthy:["true","enable","enabled"],falsy:["false","disable","disabled"]}),N7e(IF(fr),mh())]),PIe=mee(t=>{try{if(typeof t=="string")return JSON.parse(t)}catch{}return t},OIe).catch(void 0);C();var RIe={Mobile:"(max-width: 639.98px)",Desktop:"(min-width: 640px) and (max-width: 1920.98px)",LargeDesktop:"(min-width: 1921px)"};C();jt();var NIe=class{constructor(t,e){this.state=t,this.mapping=e}matchesAny(){return this.state.matches}matchesQuery(t){return this.state.breakpoints[t]??!1}matchesBreakpoint(t){return this.matchesQuery(this.mapping[t])}};function FIe(t=RIe){let e=Array.isArray(t)?{}:t,n=Array.isArray(t)?t:Object.values(t),r=p(RF).observe(n).pipe($t(o=>new NIe(o,e)));return a5(r,{requireSync:!0})}C();C();function LIe(t,e){if(t&1){let n=kr();ee(0,"button",7),at("click",function(){Yt(n);let r=dt();return Kt(r.data.action.callback())}),Ot(1),se()}if(t&2){let n=dt();me(),Na(" ",n.data.action.label," ")}}var LL=class _O{constructor(){this.data=p(AL)}static{this.\u0275fac=function(n){return new(n||_O)}}static{this.\u0275cmp=ke({type:_O,selectors:[["hra-notice"]],decls:13,vars:3,consts:[["hraFeature","notice"],["mat-dialog-title",""],[1,"title"],["mat-icon-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraIconButtonSize","large","disableRipple","","data-testid","close-icon"],[1,"material-symbols-rounded"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action"],["mat-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"dismiss"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action",3,"click"]],template:function(n,i){n&1&&(fk(0,0),ee(1,"div",1)(2,"div",2),Ot(3),se(),ee(4,"button",3)(5,"mat-icon",4),Ot(6,"close"),se()()(),ee(7,"mat-dialog-content"),Ot(8),se(),ee(9,"mat-dialog-actions"),vt(10,LIe,2,1,"button",5),ee(11,"button",6),Ot(12," Dismiss "),se()(),ib()),n&2&&(me(3),Na(" ",i.data.title," "),me(5),yr(i.data.message),me(2),bt(i.data.action?10:-1))},dependencies:[ki,fo,zs,Di,Nr,Xs,$s,ra,wv,y7,wr,mm,um,hm,Ql],styles:[`
 
 [_nghost-%COMP%] {
   display: block;

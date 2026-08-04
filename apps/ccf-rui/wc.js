@@ -3414,13 +3414,21 @@ ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bo
   }
 }
 /*# sourceMappingURL=categories.component.css.map */
-`]}]}],null,{categories:[{type:C,args:[{isSignal:!0,alias:"categories",required:!0}]},{type:je,args:["categoriesChange"]}]});(typeof ngDevMode>"u"||ngDevMode)&&Jt(WN,{className:"CategoriesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/categories/categories.component.ts",lineNumber:22});A();function gdt(t,e){if(t&1){let n=Mn();F(0,"button",14),Ee("click",function(){Ge(n);let r=Be();return $e(r.tabIndex.set(1))}),ue(1,"Customize"),B()}}function vdt(t,e){if(t&1&&(F(0,"button",12),ue(1,"Allow selection"),B()),t&2){let n=Be();Me("mat-dialog-close",n.categories())}}var bdt={consent:0,manage:1},TK=class K6{constructor(){this.data=_(KS),this.tabIndex=Ht(bdt[this.data.tab??"consent"],...ngDevMode?[{debugName:"tabIndex"}]:[]),this.categories=Ht(this.data.categories,...ngDevMode?[{debugName:"categories"}]:[])}static{this.\u0275fac=function(n){return new(n||K6)}}static{this.\u0275cmp=Pe({type:K6,selectors:[["hra-privacy-preferences"]],decls:24,vars:3,consts:[[1,"header"],["size","small"],["mat-icon-button","","mat-dialog-close","dismiss","aria-label","Close privacy preferences"],["mat-stretch-tabs","","dynamicHeight","",1,"tab-group",3,"selectedIndexChange","selectedIndex"],["label","Consent"],[1,"consent-content"],["label","Details"],["hraScrollOverflowFade","",1,"details"],[1,"categories",3,"categoriesChange","categories"],[1,"footer-buttons"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-necessary"],["mat-button","","hraCtaButton","","hraSecondaryButton",""],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","",3,"mat-dialog-close"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-all"],["mat-button","","hraCtaButton","","hraSecondaryButton","",3,"click"]],template:function(n,i){n&1&&(F(0,"div",0),et(1,"hra-brand-logo",1),F(2,"button",2)(3,"mat-icon"),ue(4,"close"),B()()(),et(5,"mat-divider"),F(6,"mat-tab-group",3),Yk("selectedIndexChange",function(a){return LO(i.tabIndex,a)||(i.tabIndex=a),a}),F(7,"mat-tab",4)(8,"div",5)(9,"p"),ue(10,"This website uses cookies and similar technologies."),B(),F(11,"p"),ue(12," We use anonymized statistics data insights to improve our website. Marketing cookies are needed to watch videos on this website. "),B()()(),F(13,"mat-tab",6)(14,"ng-scrollbar",7)(15,"hra-categories",8),Yk("categoriesChange",function(a){return LO(i.categories,a)||(i.categories=a),a}),B()()()(),et(16,"mat-divider"),F(17,"div",9)(18,"button",10),ue(19,"Allow necessary only"),B(),mt(20,gdt,2,0,"button",11)(21,vdt,2,1,"button",12),F(22,"button",13),ue(23,"Allow all"),B()()),n&2&&(K(6),Xk("selectedIndex",i.tabIndex),K(9),Xk("categories",i.categories),K(5),pt(i.tabIndex()===0?20:21))},dependencies:[Lt,t7,Dv,Qn,yo,Jr,zi,TN,DN,i7,Id,Pu,bl,Ou,pK,dm,Pv,s7,um,GP,WN],styles:[`
+`]}]}],null,{categories:[{type:C,args:[{isSignal:!0,alias:"categories",required:!0}]},{type:je,args:["categoriesChange"]}]});(typeof ngDevMode>"u"||ngDevMode)&&Jt(WN,{className:"CategoriesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/categories/categories.component.ts",lineNumber:22});A();function gdt(t,e){if(t&1){let n=Mn();F(0,"button",14),Ee("click",function(){Ge(n);let r=Be();return $e(r.tabIndex.set(1))}),ue(1,"Customize"),B()}}function vdt(t,e){if(t&1&&(F(0,"button",12),ue(1,"Allow selection"),B()),t&2){let n=Be();Me("mat-dialog-close",n.categories())}}var bdt={consent:0,manage:1},TK=class K6{constructor(){this.data=_(KS),this.tabIndex=Ht(bdt[this.data.tab??"consent"],...ngDevMode?[{debugName:"tabIndex"}]:[]),this.categories=Ht(this.data.categories,...ngDevMode?[{debugName:"categories"}]:[])}static{this.\u0275fac=function(n){return new(n||K6)}}static{this.\u0275cmp=Pe({type:K6,selectors:[["hra-privacy-preferences"]],decls:24,vars:3,consts:[[1,"header"],["size","small"],["mat-icon-button","","mat-dialog-close","dismiss","aria-label","Close privacy preferences"],["mat-stretch-tabs","",1,"tab-group",3,"selectedIndexChange","selectedIndex"],["label","Consent"],[1,"consent-content"],["label","Details"],["hraScrollOverflowFade","",1,"details"],[1,"categories",3,"categoriesChange","categories"],[1,"footer-buttons"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-necessary"],["mat-button","","hraCtaButton","","hraSecondaryButton",""],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","",3,"mat-dialog-close"],["mat-flat-button","","hraCtaButton","","hraPrimaryButton","","mat-dialog-close","allow-all"],["mat-button","","hraCtaButton","","hraSecondaryButton","",3,"click"]],template:function(n,i){n&1&&(F(0,"div",0),et(1,"hra-brand-logo",1),F(2,"button",2)(3,"mat-icon"),ue(4,"close"),B()()(),et(5,"mat-divider"),F(6,"mat-tab-group",3),Yk("selectedIndexChange",function(a){return LO(i.tabIndex,a)||(i.tabIndex=a),a}),F(7,"mat-tab",4)(8,"div",5)(9,"p"),ue(10,"This website uses cookies and similar technologies."),B(),F(11,"p"),ue(12," We use anonymized statistics data insights to improve our website. Marketing cookies are needed to watch videos on this website. "),B()()(),F(13,"mat-tab",6)(14,"ng-scrollbar",7)(15,"hra-categories",8),Yk("categoriesChange",function(a){return LO(i.categories,a)||(i.categories=a),a}),B()()()(),et(16,"mat-divider"),F(17,"div",9)(18,"button",10),ue(19,"Allow necessary only"),B(),mt(20,gdt,2,0,"button",11)(21,vdt,2,1,"button",12),F(22,"button",13),ue(23,"Allow all"),B()()),n&2&&(K(6),Xk("selectedIndex",i.tabIndex),K(9),Xk("categories",i.categories),K(5),pt(i.tabIndex()===0?20:21))},dependencies:[Lt,t7,Dv,Qn,yo,Jr,zi,TN,DN,i7,Id,Pu,bl,Ou,pK,dm,Pv,s7,um,GP,WN],styles:[`
 
 [_nghost-%COMP%] {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: hidden;
   box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-on-background) r g b/24%);
   border-radius: 0.5rem;
   background-color: var(--mat-sys-surface-container-low);
+}
+[_nghost-%COMP%]   .header[_ngcontent-%COMP%], 
+[_nghost-%COMP%]   mat-divider[_ngcontent-%COMP%], 
+[_nghost-%COMP%]   .footer-buttons[_ngcontent-%COMP%] {
+  flex-shrink: 0;
 }
 [_nghost-%COMP%]   .header[_ngcontent-%COMP%] {
   display: flex;
@@ -3434,14 +3442,26 @@ ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bo
 [_nghost-%COMP%]   .header[_ngcontent-%COMP%]   button[mat-icon-button][_ngcontent-%COMP%]   mat-icon[_ngcontent-%COMP%] {
   color: inherit;
 }
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%] {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body, 
+[_nghost-%COMP%]   .tab-group[_ngcontent-%COMP%]     .mat-mdc-tab-body-content {
+  overflow: hidden;
+}
 [_nghost-%COMP%]   .details[_ngcontent-%COMP%] {
-  max-height: calc(100vh - 16rem);
+  height: 100%;
+  --scrollbar-overscroll-behavior: contain;
 }
 [_nghost-%COMP%]   .details[_ngcontent-%COMP%]   .categories[_ngcontent-%COMP%] {
   margin: 1rem 1.5rem;
-}
-[_nghost-%COMP%]   ng-scrollbar[_ngcontent-%COMP%] {
-  flex-grow: 1;
 }
 [_nghost-%COMP%]   .consent-content[_ngcontent-%COMP%] {
   display: flex;
@@ -3495,7 +3515,7 @@ ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bo
 
 <mat-divider />
 
-<mat-tab-group mat-stretch-tabs class="tab-group" dynamicHeight [(selectedIndex)]="tabIndex">
+<mat-tab-group mat-stretch-tabs class="tab-group" [(selectedIndex)]="tabIndex">
   <mat-tab label="Consent">
     <div class="consent-content">
       <p>This website uses cookies and similar technologies.</p>
@@ -3527,10 +3547,18 @@ ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bo
 </div>
 `,styles:[`/* libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.scss */
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: hidden;
   box-shadow: 0rem 0.3125rem 1rem 0rem rgb(from var(--mat-sys-on-background) r g b/24%);
   border-radius: 0.5rem;
   background-color: var(--mat-sys-surface-container-low);
+}
+:host .header,
+:host mat-divider,
+:host .footer-buttons {
+  flex-shrink: 0;
 }
 :host .header {
   display: flex;
@@ -3544,14 +3572,26 @@ ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bo
 :host .header button[mat-icon-button] mat-icon {
   color: inherit;
 }
+:host .tab-group {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+:host .tab-group ::ng-deep .mat-mdc-tab-body-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+:host .tab-group ::ng-deep .mat-mdc-tab-body,
+:host .tab-group ::ng-deep .mat-mdc-tab-body-content {
+  overflow: hidden;
+}
 :host .details {
-  max-height: calc(100vh - 16rem);
+  height: 100%;
+  --scrollbar-overscroll-behavior: contain;
 }
 :host .details .categories {
   margin: 1rem 1.5rem;
-}
-:host ng-scrollbar {
-  flex-grow: 1;
 }
 :host .consent-content {
   display: flex;
@@ -3596,7 +3636,7 @@ ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bo
   }
 }
 /*# sourceMappingURL=privacy-preferences.component.css.map */
-`]}]}],null,null);(typeof ngDevMode>"u"||ngDevMode)&&Jt(TK,{className:"PrivacyPreferencesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.ts",lineNumber:55});var L3=Vc(KX());A();var B3="__hra-analytics-privacy-preferences",fce="consentBannerDialog",gce="privacyPreferencesDialog",kSe=class yI{constructor(){this.dialog=_(Wu),this.consent=_(pN),this.repositionScrollStrategy=_(DZ).reposition(),this.syncEnabled=Ht(!1,...ngDevMode?[{debugName:"syncEnabled"}]:[]),qi(()=>{if(this.syncEnabled()){let e=this.consent.categories();L3.default.local.set(B3,e)}})}launch(){this.hasPrivacyPreferences()?(this.consent.updateCategories(this.getPrivacyPreferences()),this.enableSync()):this.openConsentBanner()}hasPrivacyPreferences(){return L3.default.local.has(B3)}getPrivacyPreferences(){return L3.default.local.get(B3)??{}}enableSync(){this.syncEnabled.set(!0)}openConsentBanner(e){if(this.hasActiveDialog())return;e??=this.isEmbedded(),this.dialog.open(sK,{ariaLabelledBy:rSe,autoFocus:e?"hra-element-should-not-exist":!1,closeOnNavigation:!1,disableClose:!0,hasBackdrop:!1,id:fce,panelClass:act,minWidth:"100%",position:{bottom:"0px",left:"0px",right:"0px"},scrollStrategy:this.repositionScrollStrategy}).afterClosed().subscribe(i=>this.handleDialogResult(i))}openPrivacyPreferences(e){if(this.hasActiveDialog())return;this.dialog.open(TK,{ariaLabel:"Manage privacy preferences",ariaModal:!0,autoFocus:!0,closeOnNavigation:!1,data:{categories:this.consent.categories(),tab:e},hasBackdrop:!0,id:gce,maxWidth:"46.75rem",minWidth:"20rem",restoreFocus:!0}).afterClosed().subscribe(i=>this.handleDialogResult(i))}hasActiveDialog(){return[fce,gce].some(n=>this.dialog.getDialogById(n)!==void 0)}handleDialogResult(e="dismiss"){switch(e){case"allow-all":this.consent.enableAllCategories(),this.enableSync();break;case"allow-necessary":this.consent.disableAllCategories(),this.enableSync();break;case"customize":this.openPrivacyPreferences("consent");break;case"dismiss":this.syncEnabled()||this.openConsentBanner(!1);break;default:this.consent.updateCategories(e),this.enableSync();break}}isEmbedded(){try{return window.self!==window.top}catch{return!0}}static{this.\u0275fac=function(n){return new(n||yI)}}static{this.\u0275prov=be({token:yI,factory:yI.\u0275fac,providedIn:"root"})}};(typeof ngDevMode>"u"||ngDevMode)&&M(kSe,[{type:Ce,args:[{providedIn:"root"}]}],()=>[],null);var _dt=wZ([WCe(),MG(),Xit({truthy:["true","enable","enabled"],falsy:["false","disable","disabled"]}),Tit(YCe(vs),MG())]),ydt=EN(t=>{try{if(typeof t=="string")return JSON.parse(t)}catch{}return t},_dt).catch(void 0);A();var xdt={Mobile:"(max-width: 639.98px)",Desktop:"(min-width: 640px) and (max-width: 1920.98px)",LargeDesktop:"(min-width: 1921px)"};A();Nt();var wdt=class{constructor(t,e){this.state=t,this.mapping=e}matchesAny(){return this.state.matches}matchesQuery(t){return this.state.breakpoints[t]??!1}matchesBreakpoint(t){return this.matchesQuery(this.mapping[t])}};function kdt(t=xdt){let e=Array.isArray(t)?{}:t,n=Array.isArray(t)?t:Object.values(t),r=_(ES).observe(n).pipe(it(a=>new wdt(a,e)));return Ul(r,{requireSync:!0})}A();A();function Cdt(t,e){if(t&1){let n=Mn();F(0,"button",7),Ee("click",function(){Ge(n);let r=Be();return $e(r.data.action.callback())}),ue(1),B()}if(t&2){let n=Be();K(),Yi(" ",n.data.action.label," ")}}var AK=class J6{constructor(){this.data=_(KS)}static{this.\u0275fac=function(n){return new(n||J6)}}static{this.\u0275cmp=Pe({type:J6,selectors:[["hra-notice"]],decls:13,vars:3,consts:[["hraFeature","notice"],["mat-dialog-title",""],[1,"title"],["mat-icon-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraIconButtonSize","large","disableRipple","","data-testid","close-icon"],[1,"material-symbols-rounded"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action"],["mat-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"dismiss"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action",3,"click"]],template:function(n,i){n&1&&(zu(0,0),F(1,"div",1)(2,"div",2),ue(3),B(),F(4,"button",3)(5,"mat-icon",4),ue(6,"close"),B()()(),F(7,"mat-dialog-content"),ue(8),B(),F(9,"mat-dialog-actions"),mt(10,Cdt,2,1,"button",5),F(11,"button",6),ue(12," Dismiss "),B()(),kd()),n&2&&(K(3),Yi(" ",i.data.title," "),K(5),fi(i.data.message),K(2),pt(i.data.action?10:-1))},dependencies:[Lt,bi,Ti,Xt,zi,Qn,yo,Jr,Iu,hb,Qr,Tv,Kp,cm,Pu],styles:[`
+`]}]}],null,null);(typeof ngDevMode>"u"||ngDevMode)&&Jt(TK,{className:"PrivacyPreferencesComponent",filePath:"libs/design-system/privacy/privacy-preferences/src/lib/privacy-preferences.component.ts",lineNumber:55});var L3=Vc(KX());A();var B3="__hra-analytics-privacy-preferences",fce="consentBannerDialog",gce="privacyPreferencesDialog",kSe=class yI{constructor(){this.dialog=_(Wu),this.consent=_(pN),this.repositionScrollStrategy=_(DZ).reposition(),this.syncEnabled=Ht(!1,...ngDevMode?[{debugName:"syncEnabled"}]:[]),qi(()=>{if(this.syncEnabled()){let e=this.consent.categories();L3.default.local.set(B3,e)}})}launch(){this.hasPrivacyPreferences()?(this.consent.updateCategories(this.getPrivacyPreferences()),this.enableSync()):this.openConsentBanner()}hasPrivacyPreferences(){return L3.default.local.has(B3)}getPrivacyPreferences(){return L3.default.local.get(B3)??{}}enableSync(){this.syncEnabled.set(!0)}openConsentBanner(e){if(this.hasActiveDialog())return;e??=this.isEmbedded(),this.dialog.open(sK,{ariaLabelledBy:rSe,autoFocus:e?"hra-element-should-not-exist":!1,closeOnNavigation:!1,disableClose:!0,hasBackdrop:!1,id:fce,panelClass:act,minWidth:"100%",position:{bottom:"0px",left:"0px",right:"0px"},scrollStrategy:this.repositionScrollStrategy}).afterClosed().subscribe(i=>this.handleDialogResult(i))}openPrivacyPreferences(e){if(this.hasActiveDialog())return;this.dialog.open(TK,{ariaLabel:"Manage privacy preferences",ariaModal:!0,autoFocus:!0,closeOnNavigation:!1,data:{categories:this.consent.categories(),tab:e},hasBackdrop:!0,id:gce,maxHeight:"calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))",maxWidth:"46.75rem",minWidth:"20rem",restoreFocus:!0}).afterClosed().subscribe(i=>this.handleDialogResult(i))}hasActiveDialog(){return[fce,gce].some(n=>this.dialog.getDialogById(n)!==void 0)}handleDialogResult(e="dismiss"){switch(e){case"allow-all":this.consent.enableAllCategories(),this.enableSync();break;case"allow-necessary":this.consent.disableAllCategories(),this.enableSync();break;case"customize":this.openPrivacyPreferences("consent");break;case"dismiss":this.syncEnabled()||this.openConsentBanner(!1);break;default:this.consent.updateCategories(e),this.enableSync();break}}isEmbedded(){try{return window.self!==window.top}catch{return!0}}static{this.\u0275fac=function(n){return new(n||yI)}}static{this.\u0275prov=be({token:yI,factory:yI.\u0275fac,providedIn:"root"})}};(typeof ngDevMode>"u"||ngDevMode)&&M(kSe,[{type:Ce,args:[{providedIn:"root"}]}],()=>[],null);var _dt=wZ([WCe(),MG(),Xit({truthy:["true","enable","enabled"],falsy:["false","disable","disabled"]}),Tit(YCe(vs),MG())]),ydt=EN(t=>{try{if(typeof t=="string")return JSON.parse(t)}catch{}return t},_dt).catch(void 0);A();var xdt={Mobile:"(max-width: 639.98px)",Desktop:"(min-width: 640px) and (max-width: 1920.98px)",LargeDesktop:"(min-width: 1921px)"};A();Nt();var wdt=class{constructor(t,e){this.state=t,this.mapping=e}matchesAny(){return this.state.matches}matchesQuery(t){return this.state.breakpoints[t]??!1}matchesBreakpoint(t){return this.matchesQuery(this.mapping[t])}};function kdt(t=xdt){let e=Array.isArray(t)?{}:t,n=Array.isArray(t)?t:Object.values(t),r=_(ES).observe(n).pipe(it(a=>new wdt(a,e)));return Ul(r,{requireSync:!0})}A();A();function Cdt(t,e){if(t&1){let n=Mn();F(0,"button",7),Ee("click",function(){Ge(n);let r=Be();return $e(r.data.action.callback())}),ue(1),B()}if(t&2){let n=Be();K(),Yi(" ",n.data.action.label," ")}}var AK=class J6{constructor(){this.data=_(KS)}static{this.\u0275fac=function(n){return new(n||J6)}}static{this.\u0275cmp=Pe({type:J6,selectors:[["hra-notice"]],decls:13,vars:3,consts:[["hraFeature","notice"],["mat-dialog-title",""],[1,"title"],["mat-icon-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraIconButtonSize","large","disableRipple","","data-testid","close-icon"],[1,"material-symbols-rounded"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action"],["mat-button","","mat-dialog-close","","hraFeature","close","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"dismiss"],["mat-button","","hraFeature","action","hraClickEvent","","hraButtonSize","medium","disableRipple","",1,"action",3,"click"]],template:function(n,i){n&1&&(zu(0,0),F(1,"div",1)(2,"div",2),ue(3),B(),F(4,"button",3)(5,"mat-icon",4),ue(6,"close"),B()()(),F(7,"mat-dialog-content"),ue(8),B(),F(9,"mat-dialog-actions"),mt(10,Cdt,2,1,"button",5),F(11,"button",6),ue(12," Dismiss "),B()(),kd()),n&2&&(K(3),Yi(" ",i.data.title," "),K(5),fi(i.data.message),K(2),pt(i.data.action?10:-1))},dependencies:[Lt,bi,Ti,Xt,zi,Qn,yo,Jr,Iu,hb,Qr,Tv,Kp,cm,Pu],styles:[`
 
 [_nghost-%COMP%] {
   display: block;
