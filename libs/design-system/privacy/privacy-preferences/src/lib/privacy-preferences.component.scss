@@ -3,10 +3,19 @@
 @use '../../../../styles/vars' as vars;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow: hidden;
   box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$on-background, 24%);
   border-radius: 0.5rem;
   background-color: vars.$surface-container-low;
+
+  .header,
+  mat-divider,
+  .footer-buttons {
+    flex-shrink: 0;
+  }
 
   .header {
     display: flex;
@@ -23,16 +32,32 @@
     }
   }
 
+  .tab-group {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+
+    ::ng-deep {
+      .mat-mdc-tab-body-wrapper {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .mat-mdc-tab-body,
+      .mat-mdc-tab-body-content {
+        overflow: hidden;
+      }
+    }
+  }
+
   .details {
-    max-height: calc(100vh - 16rem);
+    height: 100%;
+    --scrollbar-overscroll-behavior: contain;
 
     .categories {
       margin: 1rem 1.5rem;
     }
-  }
-
-  ng-scrollbar {
-    flex-grow: 1;
   }
 
   .consent-content {
