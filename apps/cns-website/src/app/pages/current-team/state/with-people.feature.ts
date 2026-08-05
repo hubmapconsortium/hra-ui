@@ -12,6 +12,9 @@ import { entityConfig, setEntities, withEntities } from '@ngrx/signals/entities'
 import { PeopleItem } from '../../../schemas/people.schema';
 import { AnyRole } from '../../../schemas/roles.schema';
 
+/** Formatter for the abbreviated month and year in a team member's tenure. */
+const tenureDateFormatter = new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' });
+
 /**
  * Props provided by the people feature
  */
@@ -36,6 +39,10 @@ export type PeopleProps = {
 export type PeopleMethods = {
   /** Get the display title for a team member */
   getMemberTitle(person: PeopleItem): string;
+  /** Check whether a team member's profile contains details beyond their card and email */
+  hasProfileDetails(person: PeopleItem): boolean;
+  /** Get the full CNS tenure for a team member */
+  getTenureDateRange(person: PeopleItem): string;
   /** Get the searchable text for a team member */
   getSearchableText(person: PeopleItem): string;
   /** Check if a person was active in a given year */
@@ -168,6 +175,30 @@ export function withPeople() {
         }
       };
 
+      const hasProfileDetails = (person: PeopleItem): boolean => {
+        const role = store.rolesByPerson().get(person)?.[0];
+        if (role?.type !== 'member') {
+          return false;
+        }
+
+        const { office, phone, fax, education, background, interests } = role;
+        return [office, phone, fax, education, background, interests].some((value) => !!value?.trim());
+      };
+
+      const getTenureDateRange = (person: PeopleItem): string => {
+        const startDate = new Date(Math.min(...person.roles.map((role) => role.dateStart.getTime())));
+        const formattedStartDate = tenureDateFormatter.format(startDate);
+        const hasCurrentRole = person.roles.some((role) => role.dateEnd === null || role.dateEnd === undefined);
+        if (hasCurrentRole) {
+          return `${formattedStartDate}–Current`;
+        }
+
+        const endDate = new Date(
+          Math.max(...person.roles.map((role) => role.dateEnd?.getTime() ?? startDate.getTime())),
+        );
+        return `${formattedStartDate}–${tenureDateFormatter.format(endDate)}`;
+      };
+
       const getSearchableText = (person: PeopleItem): string => {
         const parts = [person.name, getMemberTitle(person)];
         return parts
@@ -193,7 +224,14 @@ export function withPeople() {
 
       const setPeople = signalMethod((people: PeopleItem[]) => patchState(store, setEntities(people, peopleConfig)));
 
-      return { getMemberTitle, getSearchableText, isActiveInYear, setPeople } satisfies PeopleMethods;
+      return {
+        getMemberTitle,
+        hasProfileDetails,
+        getTenureDateRange,
+        getSearchableText,
+        isActiveInYear,
+        setPeople,
+      } satisfies PeopleMethods;
     }),
   );
 }

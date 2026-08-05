@@ -1,0 +1,6 @@
+<img loading="lazy" [attr.src]="pictureUrl() | assetUrl" [attr.alt]="`Profile picture of ${name()}`" />
+<div class="details">
+  <div class="name">{{ name() }}</div>
+  <div class="occupation">{{ occupation() }}</div>
+  <div class="date-range">{{ dateRange() }}</div>
+</div>

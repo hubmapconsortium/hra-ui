@@ -17,6 +17,7 @@ import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { FormerTeamMemberCardComponent } from '../../components/former-team-member-card/former-team-member-card.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { ScrollbarStore } from '../../state/scrollbar/scrollbar.store';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
@@ -32,6 +33,7 @@ import { CurrentTeamStore } from './state/current-team.store';
     ButtonsModule,
     FilterMenuComponent,
     FooterComponent,
+    FormerTeamMemberCardComponent,
     FormsModule,
     GalleryGridComponent,
     GalleryGridItemDirective,
