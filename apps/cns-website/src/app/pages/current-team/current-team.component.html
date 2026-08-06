@@ -92,7 +92,7 @@
                         [pictureUrl]="person.image ? person.image : placeholderImage"
                         [name]="person.name"
                         [occupation]="store.getMemberTitle(person)"
-                        [dateRange]="store.getTenureDateRange(person)"
+                        [dateRanges]="store.getTenureDateRanges(person)"
                       />
                     } @else {
                       <hra-profile-card

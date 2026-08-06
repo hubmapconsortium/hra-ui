@@ -19,6 +19,6 @@ export class FormerTeamMemberCardComponent {
   /** Team member's most recent CNS occupation or role. */
   readonly occupation = input.required<string>();
 
-  /** Full CNS tenure, from earliest start year through latest end year. */
-  readonly dateRange = input.required<string>();
+  /** Continuous CNS tenure streaks, ordered from most to least recent. */
+  readonly dateRanges = input.required<readonly string[]>();
 }

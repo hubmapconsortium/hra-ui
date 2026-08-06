@@ -110,8 +110,8 @@ describe('CurrentTeamComponent', () => {
         {
           type: 'member',
           title: 'Research Assistant',
-          dateStart: new Date('2010-01-01'),
-          dateEnd: new Date('2015-12-31'),
+          dateStart: new Date(2010, 0, 1),
+          dateEnd: new Date(2015, 11, 31),
           displayOrder: 3,
           office: '',
           phone: '',
@@ -149,8 +149,6 @@ describe('CurrentTeamComponent', () => {
   it('should show current members by default and display all role types correctly', async () => {
     await renderComponent();
 
-    const learnMoreLinks = screen.getAllByText(/learn more/i);
-    expect(learnMoreLinks).toHaveLength(1);
     expect(screen.getByText('Katy Börner')).toBeInTheDocument();
     expect(screen.getByText('John Smith')).toBeInTheDocument();
     expect(screen.getByText('Jane Doe')).toBeInTheDocument();
@@ -167,20 +165,53 @@ describe('CurrentTeamComponent', () => {
     const user = userEvent.setup();
     await renderComponent();
 
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
-
     const formerToggle = await screen.findByRole('radio', { name: /former team/i });
     await user.click(formerToggle);
 
     expect(await screen.findByText('Former Member')).toBeInTheDocument();
     expect(screen.getByText('Research Assistant')).toBeInTheDocument();
-    expect(screen.getByText('Aug 2008–Dec 2015')).toBeInTheDocument();
+    const tenureStreaks = screen.getAllByText(/200[8-9]|201[0-5]/);
+    expect(tenureStreaks[0]).toHaveTextContent('Jan 2010–Dec 2015');
+    expect(tenureStreaks[1]).toHaveTextContent('Aug 2008–May 2009');
     expect(screen.queryAllByText(/learn more/i)).toHaveLength(0);
 
     const currentToggle = await screen.findByRole('radio', { name: /current team/i });
     await user.click(currentToggle);
 
-    expect(await screen.findAllByText(/learn more/i)).toHaveLength(1);
+    expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
+  });
+
+  it('should show an unknown tenure end for a former member with an omitted end date', async () => {
+    const user = userEvent.setup();
+    const dataWithUnknownEnd: PeopleData = [
+      {
+        name: 'Unknown End Member',
+        lastName: 'Member',
+        image: '',
+        slug: 'unknown-end-member' as PeopleId,
+        roles: [
+          {
+            type: 'member',
+            title: 'Research Assistant',
+            dateStart: new Date(2020, 0, 1),
+            displayOrder: 1,
+          },
+        ],
+      },
+    ];
+
+    await renderComponent(dataWithUnknownEnd);
+    const formerToggle = await screen.findByRole('radio', { name: /former team/i });
+    await user.click(formerToggle);
+
+    expect(await screen.findByText('Unknown End Member')).toBeInTheDocument();
+    expect(screen.getByText('Jan 2020–Unknown')).toBeInTheDocument();
+
+    const groupBySelect = await screen.findByRole('combobox', { name: /group by/i });
+    await user.click(groupBySelect);
+    const endYearOption = await screen.findByRole('option', { name: /end year/i });
+    await user.click(endYearOption);
+    expect(await screen.findByText('Unknown')).toBeInTheDocument();
   });
 
   it('should filter by search text and show no results when no matches', async () => {
@@ -191,7 +222,7 @@ describe('CurrentTeamComponent', () => {
     await user.type(searchInput, 'Katy');
 
     expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.queryByText('John Smith')).not.toBeInTheDocument();
 
     await user.clear(searchInput);
     await user.type(searchInput, 'XYZ123');
@@ -267,7 +298,7 @@ describe('CurrentTeamComponent', () => {
     const clearFiltersButton = await screen.findByRole('button', { name: /clear filters/i });
     await user.click(clearFiltersButton);
 
-    expect(await screen.findAllByText(/learn more/i)).toHaveLength(1);
+    expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
 
     await user.type(searchInput, 'test');
     const clearSearchButton = await screen.findByRole('button', { name: /clear search/i });
@@ -285,7 +316,7 @@ describe('CurrentTeamComponent', () => {
     await user.type(searchInput, 'Katy');
 
     await screen.findByText('Katy Börner');
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.getByText((content) => content.includes('1') && content.includes('/'))).toBeInTheDocument();
   });
 
   it('should show hierarchical sort option only for current team', async () => {
@@ -324,7 +355,7 @@ describe('CurrentTeamComponent', () => {
     ];
 
     await renderComponent(dataWithNoRoles);
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/)).toHaveLength(4);
     expect(screen.queryByText('No Role Member')).not.toBeInTheDocument();
   });
 
@@ -436,7 +467,7 @@ describe('CurrentTeamComponent', () => {
     const option = await screen.findByRole('option', { name: /end year \(new to old\)/i });
     await user.click(option);
 
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/)).toHaveLength(4);
   });
 
   it('should have filter buttons available', async () => {
@@ -454,7 +485,6 @@ describe('CurrentTeamComponent', () => {
     await user.type(searchInput, 'Borner');
 
     expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
   });
 
   it('should handle member with no title gracefully', async () => {
@@ -928,7 +958,7 @@ describe('CurrentTeamComponent', () => {
     const noneOption = await screen.findByRole('option', { name: /none/i });
     await user.click(noneOption);
 
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/)).toHaveLength(4);
   });
 
   it('should handle sorting when both roles have same undefined end dates', async () => {

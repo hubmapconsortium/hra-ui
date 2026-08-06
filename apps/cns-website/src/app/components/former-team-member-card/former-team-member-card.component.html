@@ -2,5 +2,9 @@
 <div class="details">
   <div class="name">{{ name() }}</div>
   <div class="occupation">{{ occupation() }}</div>
-  <div class="date-range">{{ dateRange() }}</div>
+  <div class="date-ranges" role="list" aria-label="CNS tenure">
+    @for (dateRange of dateRanges(); track $index) {
+      <div class="date-range" role="listitem">{{ dateRange }}</div>
+    }
+  </div>
 </div>

@@ -11,9 +11,12 @@ import {
 import { entityConfig, setEntities, withEntities } from '@ngrx/signals/entities';
 import { PeopleItem } from '../../../schemas/people.schema';
 import { AnyRole } from '../../../schemas/roles.schema';
-
-/** Formatter for the abbreviated month and year in a team member's tenure. */
-const tenureDateFormatter = new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' });
+import {
+  formatTenureDateRanges,
+  hasProfileDetails as rolesHaveProfileDetails,
+  isCurrentRole,
+  isRoleActiveInYear,
+} from '../../../utils/person-roles';
 
 /**
  * Props provided by the people feature
@@ -31,6 +34,10 @@ export type PeopleProps = {
   endYearByPerson: Signal<Map<PeopleItem, number | null>>;
   /** Map of people to their display order */
   displayOrderByPerson: Signal<Map<PeopleItem, number>>;
+  /** Map of people to whether their profile contains meaningful additional details */
+  profileDetailsByPerson: Signal<Map<PeopleItem, boolean>>;
+  /** Map of people to their formatted continuous CNS tenure streaks */
+  tenureDateRangesByPerson: Signal<Map<PeopleItem, string[]>>;
 };
 
 /**
@@ -41,8 +48,8 @@ export type PeopleMethods = {
   getMemberTitle(person: PeopleItem): string;
   /** Check whether a team member's profile contains details beyond their card and email */
   hasProfileDetails(person: PeopleItem): boolean;
-  /** Get the full CNS tenure for a team member */
-  getTenureDateRange(person: PeopleItem): string;
+  /** Get continuous CNS tenure streaks for a team member, newest first */
+  getTenureDateRanges(person: PeopleItem): string[];
   /** Get the searchable text for a team member */
   getSearchableText(person: PeopleItem): string;
   /** Check if a person was active in a given year */
@@ -139,7 +146,7 @@ export function withPeople() {
       const endYearByPerson = computed(() =>
         createRolesPropertyMap(
           people(),
-          (role) => role.dateEnd && role.dateEnd.getFullYear(),
+          (role) => (isCurrentRole(role) ? null : role.dateEnd?.getFullYear()),
           (years) => {
             if (years.some((year) => year === null)) {
               return null;
@@ -150,6 +157,15 @@ export function withPeople() {
         ),
       );
 
+      const profileDetailsByPerson = computed(
+        () =>
+          new Map([...rolesByPerson().entries()].map(([person, roles]) => [person, rolesHaveProfileDetails(roles)])),
+      );
+
+      const tenureDateRangesByPerson = computed(
+        () => new Map([...rolesByPerson().entries()].map(([person, roles]) => [person, formatTenureDateRanges(roles)])),
+      );
+
       return {
         people,
         numPeople,
@@ -157,6 +173,8 @@ export function withPeople() {
         displayOrderByPerson,
         startYearByPerson,
         endYearByPerson,
+        profileDetailsByPerson,
+        tenureDateRangesByPerson,
       } satisfies PeopleProps;
     }),
     withMethods((store) => {
@@ -176,27 +194,11 @@ export function withPeople() {
       };
 
       const hasProfileDetails = (person: PeopleItem): boolean => {
-        const role = store.rolesByPerson().get(person)?.[0];
-        if (role?.type !== 'member') {
-          return false;
-        }
-
-        const { office, phone, fax, education, background, interests } = role;
-        return [office, phone, fax, education, background, interests].some((value) => !!value?.trim());
+        return store.profileDetailsByPerson().get(person) ?? false;
       };
 
-      const getTenureDateRange = (person: PeopleItem): string => {
-        const startDate = new Date(Math.min(...person.roles.map((role) => role.dateStart.getTime())));
-        const formattedStartDate = tenureDateFormatter.format(startDate);
-        const hasCurrentRole = person.roles.some((role) => role.dateEnd === null || role.dateEnd === undefined);
-        if (hasCurrentRole) {
-          return `${formattedStartDate}–Current`;
-        }
-
-        const endDate = new Date(
-          Math.max(...person.roles.map((role) => role.dateEnd?.getTime() ?? startDate.getTime())),
-        );
-        return `${formattedStartDate}–${tenureDateFormatter.format(endDate)}`;
+      const getTenureDateRanges = (person: PeopleItem): string[] => {
+        return store.tenureDateRangesByPerson().get(person) ?? [];
       };
 
       const getSearchableText = (person: PeopleItem): string => {
@@ -211,15 +213,7 @@ export function withPeople() {
       };
 
       const isActiveInYear = (person: PeopleItem, year: number): boolean => {
-        for (const role of person.roles) {
-          const startYear = role.dateStart.getFullYear();
-          const endYear = role.dateEnd ? role.dateEnd.getFullYear() : null;
-          if (year >= startYear && (endYear === null || year <= endYear)) {
-            return true;
-          }
-        }
-
-        return false;
+        return person.roles.some((role) => isRoleActiveInYear(role, year));
       };
 
       const setPeople = signalMethod((people: PeopleItem[]) => patchState(store, setEntities(people, peopleConfig)));
@@ -227,7 +221,7 @@ export function withPeople() {
       return {
         getMemberTitle,
         hasProfileDetails,
-        getTenureDateRange,
+        getTenureDateRanges,
         getSearchableText,
         isActiveInYear,
         setPeople,
