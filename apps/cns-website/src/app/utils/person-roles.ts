@@ -19,15 +19,16 @@ export function isCurrentRole(role: AnyRole): boolean {
 /** Check whether a role is known to have been active during a given year. */
 export function isRoleActiveInYear(role: AnyRole, year: number): boolean {
   const startYear = role.dateStart.getFullYear();
+  const endDate = role.dateEnd;
   if (year < startYear) {
     return false;
-  } else if (isCurrentRole(role)) {
+  } else if (endDate === null) {
     return true;
-  } else if (role.dateEnd === undefined) {
+  } else if (endDate === undefined) {
     return year === startYear;
   }
 
-  return year <= role.dateEnd.getFullYear();
+  return year <= endDate.getFullYear();
 }
 
 /** Check whether the primary role contains profile details beyond the card and email. */
