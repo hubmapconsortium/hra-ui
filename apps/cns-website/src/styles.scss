@@ -9,8 +9,6 @@
 @use 'vars';
 
 @include utils.global-styles() {
-  --profile-card-image-filter: saturate(32%);
-
   @include theming.theme(cns.$theme, cns-typography.$overrides);
   @include cns-typography.custom-variants();
   @include mat.theme-overrides(

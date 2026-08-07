@@ -181,39 +181,6 @@ describe('CurrentTeamComponent', () => {
     expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
   });
 
-  it('should show an unknown tenure end for a former member with an omitted end date', async () => {
-    const user = userEvent.setup();
-    const dataWithUnknownEnd: PeopleData = [
-      {
-        name: 'Unknown End Member',
-        lastName: 'Member',
-        image: '',
-        slug: 'unknown-end-member' as PeopleId,
-        roles: [
-          {
-            type: 'member',
-            title: 'Research Assistant',
-            dateStart: new Date(2020, 0, 1),
-            displayOrder: 1,
-          },
-        ],
-      },
-    ];
-
-    await renderComponent(dataWithUnknownEnd);
-    const formerToggle = await screen.findByRole('radio', { name: /former team/i });
-    await user.click(formerToggle);
-
-    expect(await screen.findByText('Unknown End Member')).toBeInTheDocument();
-    expect(screen.getByText('Jan 2020–Unknown')).toBeInTheDocument();
-
-    const groupBySelect = await screen.findByRole('combobox', { name: /group by/i });
-    await user.click(groupBySelect);
-    const endYearOption = await screen.findByRole('option', { name: /end year/i });
-    await user.click(endYearOption);
-    expect(await screen.findByText('Unknown')).toBeInTheDocument();
-  });
-
   it('should filter by search text and show no results when no matches', async () => {
     const user = userEvent.setup();
     await renderComponent();

@@ -11,12 +11,6 @@ import {
 import { entityConfig, setEntities, withEntities } from '@ngrx/signals/entities';
 import { PeopleItem } from '../../../schemas/people.schema';
 import { AnyRole } from '../../../schemas/roles.schema';
-import {
-  formatTenureDateRanges,
-  hasProfileDetails as rolesHaveProfileDetails,
-  isCurrentRole,
-  isRoleActiveInYear,
-} from '../../../utils/person-roles';
 
 /**
  * Props provided by the people feature
@@ -34,10 +28,6 @@ export type PeopleProps = {
   endYearByPerson: Signal<Map<PeopleItem, number | null>>;
   /** Map of people to their display order */
   displayOrderByPerson: Signal<Map<PeopleItem, number>>;
-  /** Map of people to whether their profile contains meaningful additional details */
-  profileDetailsByPerson: Signal<Map<PeopleItem, boolean>>;
-  /** Map of people to their formatted continuous CNS tenure streaks */
-  tenureDateRangesByPerson: Signal<Map<PeopleItem, string[]>>;
 };
 
 /**
@@ -46,10 +36,6 @@ export type PeopleProps = {
 export type PeopleMethods = {
   /** Get the display title for a team member */
   getMemberTitle(person: PeopleItem): string;
-  /** Check whether a team member's profile contains details beyond their card and email */
-  hasProfileDetails(person: PeopleItem): boolean;
-  /** Get continuous CNS tenure streaks for a team member, newest first */
-  getTenureDateRanges(person: PeopleItem): string[];
   /** Get the searchable text for a team member */
   getSearchableText(person: PeopleItem): string;
   /** Check if a person was active in a given year */
@@ -146,7 +132,7 @@ export function withPeople() {
       const endYearByPerson = computed(() =>
         createRolesPropertyMap(
           people(),
-          (role) => (isCurrentRole(role) ? null : role.dateEnd?.getFullYear()),
+          (role) => role.dateEnd && role.dateEnd.getFullYear(),
           (years) => {
             if (years.some((year) => year === null)) {
               return null;
@@ -157,15 +143,6 @@ export function withPeople() {
         ),
       );
 
-      const profileDetailsByPerson = computed(
-        () =>
-          new Map([...rolesByPerson().entries()].map(([person, roles]) => [person, rolesHaveProfileDetails(roles)])),
-      );
-
-      const tenureDateRangesByPerson = computed(
-        () => new Map([...rolesByPerson().entries()].map(([person, roles]) => [person, formatTenureDateRanges(roles)])),
-      );
-
       return {
         people,
         numPeople,
@@ -173,8 +150,6 @@ export function withPeople() {
         displayOrderByPerson,
         startYearByPerson,
         endYearByPerson,
-        profileDetailsByPerson,
-        tenureDateRangesByPerson,
       } satisfies PeopleProps;
     }),
     withMethods((store) => {
@@ -193,14 +168,6 @@ export function withPeople() {
         }
       };
 
-      const hasProfileDetails = (person: PeopleItem): boolean => {
-        return store.profileDetailsByPerson().get(person) ?? false;
-      };
-
-      const getTenureDateRanges = (person: PeopleItem): string[] => {
-        return store.tenureDateRangesByPerson().get(person) ?? [];
-      };
-
       const getSearchableText = (person: PeopleItem): string => {
         const parts = [person.name, getMemberTitle(person)];
         return parts
@@ -213,19 +180,20 @@ export function withPeople() {
       };
 
       const isActiveInYear = (person: PeopleItem, year: number): boolean => {
-        return person.roles.some((role) => isRoleActiveInYear(role, year));
+        for (const role of person.roles) {
+          const startYear = role.dateStart.getFullYear();
+          const endYear = role.dateEnd ? role.dateEnd.getFullYear() : null;
+          if (year >= startYear && (endYear === null || year <= endYear)) {
+            return true;
+          }
+        }
+
+        return false;
       };
 
       const setPeople = signalMethod((people: PeopleItem[]) => patchState(store, setEntities(people, peopleConfig)));
 
-      return {
-        getMemberTitle,
-        hasProfileDetails,
-        getTenureDateRanges,
-        getSearchableText,
-        isActiveInYear,
-        setPeople,
-      } satisfies PeopleMethods;
+      return { getMemberTitle, getSearchableText, isActiveInYear, setPeople } satisfies PeopleMethods;
     }),
   );
 }

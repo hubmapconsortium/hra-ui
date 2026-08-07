@@ -1,10 +1,10 @@
-<img loading="lazy" [attr.src]="pictureUrl() | assetUrl" [attr.alt]="`Profile picture of ${name()}`" />
+<img loading="lazy" [attr.src]="pictureUrl() | assetUrl" [attr.alt]="`Profile picture of ${person().name}`" />
 <div class="details">
-  <div class="name">{{ name() }}</div>
+  <div class="name">{{ person().name }}</div>
   <div class="occupation">{{ occupation() }}</div>
-  <div class="date-ranges" role="list" aria-label="CNS tenure">
+  <ol class="date-ranges" aria-label="CNS tenure">
     @for (dateRange of dateRanges(); track $index) {
-      <div class="date-range" role="listitem">{{ dateRange }}</div>
+      <li class="date-range">{{ dateRange }}</li>
     }
-  </div>
+  </ol>
 </div>

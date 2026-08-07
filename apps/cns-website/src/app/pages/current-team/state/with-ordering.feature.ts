@@ -11,7 +11,6 @@ import {
 import { PeopleItem } from '../../../schemas/people.schema';
 import { AnyRole } from '../../../schemas/roles.schema';
 import { RefinedRoleType, refineRoleType } from '../../../utils/refined-roles';
-import { isCurrentRole } from '../../../utils/person-roles';
 import { FilterProps, TeamType } from './with-filters.feature';
 import { PeopleMethods, PeopleProps } from './with-people.feature';
 
@@ -223,7 +222,7 @@ function createGroupByKeyImpl(groupBy: GroupBy | null): (role: AnyRole) => Group
     case GroupBy.StartYear:
       return (role) => role.dateStart.getFullYear();
     case GroupBy.EndYear:
-      return (role) => (isCurrentRole(role) ? 'current' : (role.dateEnd?.getFullYear() ?? 'unknown'));
+      return (role) => role.dateEnd?.getFullYear() ?? 'current';
     default:
       return () => 'unknown';
   }

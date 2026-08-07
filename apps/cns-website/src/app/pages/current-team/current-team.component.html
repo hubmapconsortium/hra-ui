@@ -89,32 +89,15 @@
                     @if (store.team() === 'past') {
                       <cns-former-team-member-card
                         [hraFeature]="person.slug"
-                        [pictureUrl]="person.image ? person.image : placeholderImage"
-                        [name]="person.name"
+                        [person]="person"
                         [occupation]="store.getMemberTitle(person)"
-                        [dateRanges]="store.getTenureDateRanges(person)"
                       />
                     } @else {
-                      <hra-profile-card
+                      <cns-current-team-member-card
                         [hraFeature]="person.slug"
-                        [pictureUrl]="person.image ? person.image : placeholderImage"
-                        [name]="person.name"
-                        [description]="store.getMemberTitle(person)"
-                        [centerContent]="true"
-                      >
-                        @if (store.hasProfileDetails(person)) {
-                          <a
-                            mat-button
-                            hraHyperlink
-                            class="learn-more"
-                            [hraLink]="`/people/${person.slug}`"
-                            [attr.aria-label]="`Learn more about ${person.name}`"
-                          >
-                            Learn more
-                            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-                          </a>
-                        }
-                      </hra-profile-card>
+                        [person]="person"
+                        [occupation]="store.getMemberTitle(person)"
+                      />
                     }
                   </ng-container>
                 </hra-gallery-grid>

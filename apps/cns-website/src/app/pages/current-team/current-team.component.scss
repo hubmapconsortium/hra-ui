@@ -52,6 +52,7 @@
       margin: 0 auto;
       --profile-card-border-color: #8dc63f;
       --profile-card-description-color: #{vars.$on-surface-variant};
+      --profile-card-image-filter: saturate(32%);
 
       .search-bar {
         position: sticky;
