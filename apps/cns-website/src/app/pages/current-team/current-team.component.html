@@ -80,28 +80,26 @@
                 @if (group.label) {
                   <h3 hra-section-link class="title" [underlined]="true">{{ group.label }}</h3>
                 }
-                <hra-gallery-grid class="gallery" [dataSource]="group.people">
-                  <hra-profile-card
-                    *hraGalleryGridItem="let person"
-                    [hraFeature]="person.slug"
-                    [pictureUrl]="person.image ? person.image : placeholderImage"
-                    [name]="person.name"
-                    [description]="store.getMemberTitle(person)"
-                    [centerContent]="true"
-                  >
-                    @if (store.team() === 'current') {
-                      <a
-                        mat-button
-                        hraHyperlink
-                        class="learn-more"
-                        [hraLink]="`/people/${person.slug}`"
-                        [attr.aria-label]="`Learn more about ${person.name}`"
-                      >
-                        Learn more
-                        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-                      </a>
+                <hra-gallery-grid
+                  class="gallery"
+                  [class.former-team-gallery]="store.team() === 'past'"
+                  [dataSource]="group.people"
+                >
+                  <ng-container *hraGalleryGridItem="let person">
+                    @if (store.team() === 'past') {
+                      <cns-former-team-member-card
+                        [hraFeature]="person.slug"
+                        [person]="person"
+                        [occupation]="store.getMemberTitle(person)"
+                      />
+                    } @else {
+                      <cns-current-team-member-card
+                        [hraFeature]="person.slug"
+                        [person]="person"
+                        [occupation]="store.getMemberTitle(person)"
+                      />
                     }
-                  </hra-profile-card>
+                  </ng-container>
                 </hra-gallery-grid>
               </section>
             }

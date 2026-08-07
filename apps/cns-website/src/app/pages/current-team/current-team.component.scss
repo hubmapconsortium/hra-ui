@@ -52,6 +52,7 @@
       margin: 0 auto;
       --profile-card-border-color: #8dc63f;
       --profile-card-description-color: #{vars.$on-surface-variant};
+      --profile-card-image-filter: saturate(32%);
 
       .search-bar {
         position: sticky;
@@ -91,6 +92,10 @@
 
           .gallery {
             gap: 5rem 2.5rem;
+
+            &.former-team-gallery {
+              grid-template-columns: repeat(auto-fit, minmax(min(21rem, 100%), 1fr));
+            }
           }
 
           &:not(:last-of-type) {
