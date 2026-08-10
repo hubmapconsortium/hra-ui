@@ -608,8 +608,6 @@
                         <i>Default value : </i><code>ContentTemplateSchema.extend({
   component: z.literal(&#x27;ActionCard&#x27;),
   variant: ActionCardVariantSchema,
-  /** Accepted for all variants, but only rendered by the &#x60;outlined&#x60; variant */
-  eyebrow: z.string().optional(),
   tagline: z.string(),
   subtagline: z.string().optional(),
   image: z.string().optional(),
@@ -5585,7 +5583,6 @@ Primarily used to simplify testing.</p>
   url: z.string(),
   icon: z.string().optional(),
   external: z.boolean().optional(),
-  download: z.string().nullable().optional(),
 }).meta({ id: &#x27;TextHyperlink&#x27; })</code>
                     </td>
                 </tr>
