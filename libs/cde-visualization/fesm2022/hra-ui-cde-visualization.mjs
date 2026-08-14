@@ -1801,7 +1801,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
 /** Default key for the color map type */
 const DEFAULT_COLOR_MAP_KEY = 'Cell Type';
 /** Default key for the color map value */
-const DEFAULT_COLOR_MAP_VALUE_KEY = 'HEX';
+const DEFAULT_COLOR_MAP_VALUE_KEY = 'Cell Color';
 /** Converts a color map array to a lookup map for quick access */
 function colorMapToLookup(colorMap, typeKey, colorKey) {
     const lookup = new Map();
@@ -1811,6 +1811,10 @@ function colorMapToLookup(colorMap, typeKey, colorKey) {
     return lookup;
 }
 
+/** Regular expression to match hex color values */
+const HEX_COLOR_REGEX = /^#([0-9a-f]{3}){1,2}$/i;
+/** Regular expression to match RGB color values in the format [r, g, b] */
+const RGBA_COLOR_REGEX = /^\[(\s*\d+\s*,){2}\s*\d+\s*\]$/;
 /** Service to load color map entries from CSV files */
 class ColorMapFileLoaderService {
     /** CSV loader service for handling CSV file loading */
@@ -1829,18 +1833,60 @@ class ColorMapFileLoaderService {
         if (data.length === 0) {
             return [];
         }
-        let colorKey;
+        const colorKeys = new Map();
         for (const [key, value] of Object.entries(data[0])) {
-            if (/^\[[\d\s,]+\]$/.test(value.trim())) {
-                // Checks for r g b array
-                colorKey = key;
-                break;
+            const trimmedValue = value.trim();
+            if (HEX_COLOR_REGEX.test(trimmedValue)) {
+                colorKeys.set(key, 'hex');
+            }
+            else if (RGBA_COLOR_REGEX.test(trimmedValue)) {
+                colorKeys.set(key, 'rgb');
             }
         }
-        if (colorKey === undefined) {
+        if (colorKeys.size === 0) {
             throw new Error('Could not parse color map');
         }
-        return data.map((item) => ({ ...item, [colorKey]: JSON.parse(item[colorKey]) }));
+        const result = [];
+        for (const item of data) {
+            const entry = { ...item };
+            for (const [key, type] of colorKeys.entries()) {
+                entry[key] = this.parseColorValue(item[key], type);
+            }
+            result.push(entry);
+        }
+        return result;
+    }
+    /**
+     * Parses a color value string into an array of RGB values or returns the original string if it cannot be parsed.
+     *
+     * @param value Value to parse
+     * @param type Format of the color value ('hex' or 'rgb')
+     * @returns An array of RGB values if the value is valid, or the original string if it cannot be parsed
+     */
+    parseColorValue(value, type) {
+        value = value.trim();
+        if (type === 'hex') {
+            value = value.slice(1);
+            const step = value.length === 3 ? 1 : 2;
+            const rgb = [];
+            for (let index = 0; index < 3; index++) {
+                const start = index * step;
+                const hexValue = value.slice(start, start + step);
+                let parsedValue = parseInt(hexValue, 16);
+                if (step === 1) {
+                    parsedValue = (parsedValue << 4) | parsedValue;
+                }
+                rgb.push(parsedValue);
+            }
+            return rgb;
+        }
+        else if (type === 'rgb') {
+            const rgb = JSON.parse(value);
+            if (Array.isArray(rgb) && rgb.length === 3) {
+                return rgb;
+            }
+        }
+        return value;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ColorMapFileLoaderService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ColorMapFileLoaderService, providedIn: 'root' });

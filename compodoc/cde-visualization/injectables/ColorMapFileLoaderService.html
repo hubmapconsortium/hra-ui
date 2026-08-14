@@ -201,8 +201,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/lib/services/data/color-map-loader.service.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/lib/services/data/color-map-loader.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -273,6 +273,11 @@ import { CsvFileLoaderOptions, CsvFileLoaderService, FileLoader, FileLoaderEvent
 import { map, Observable } from &#x27;rxjs&#x27;;
 import { ColorMapEntry } from &#x27;../../models/color-map&#x27;;
 
+/** Regular expression to match hex color values */
+const HEX_COLOR_REGEX &#x3D; /^#([0-9a-f]{3}){1,2}$/i;
+/** Regular expression to match RGB color values in the format [r, g, b] */
+const RGBA_COLOR_REGEX &#x3D; /^\[(\s*\d+\s*,){2}\s*\d+\s*\]$/;
+
 /** Service to load color map entries from CSV files */
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -300,20 +305,68 @@ export class ColorMapFileLoaderService implements FileLoader&lt;ColorMapEntry[],
       return [];
     }
 
-    let colorKey: string | undefined;
+    const colorKeys &#x3D; new Map&lt;string, &#x27;hex&#x27; | &#x27;rgb&#x27;&gt;();
     for (const [key, value] of Object.entries(data[0])) {
-      if (/^\[[\d\s,]+\]$/.test(value.trim())) {
-        // Checks for r g b array
-        colorKey &#x3D; key;
-        break;
+      const trimmedValue &#x3D; value.trim();
+      if (HEX_COLOR_REGEX.test(trimmedValue)) {
+        colorKeys.set(key, &#x27;hex&#x27;);
+      } else if (RGBA_COLOR_REGEX.test(trimmedValue)) {
+        colorKeys.set(key, &#x27;rgb&#x27;);
       }
     }
 
-    if (colorKey &#x3D;&#x3D;&#x3D; undefined) {
+    if (colorKeys.size &#x3D;&#x3D;&#x3D; 0) {
       throw new Error(&#x27;Could not parse color map&#x27;);
     }
 
-    return data.map((item) &#x3D;&gt; ({ ...item, [colorKey]: JSON.parse(item[colorKey]) }));
+    const result: ColorMapEntry[] &#x3D; [];
+    for (const item of data) {
+      const entry: Record&lt;string, unknown&gt; &#x3D; { ...item };
+      for (const [key, type] of colorKeys.entries()) {
+        entry[key] &#x3D; this.parseColorValue(item[key], type);
+      }
+
+      result.push(entry as ColorMapEntry);
+    }
+
+    return result;
+  }
+
+  /**
+   * Parses a color value string into an array of RGB values or returns the original string if it cannot be parsed.
+   *
+   * @param value Value to parse
+   * @param type Format of the color value (&#x27;hex&#x27; or &#x27;rgb&#x27;)
+   * @returns An array of RGB values if the value is valid, or the original string if it cannot be parsed
+   */
+  private parseColorValue(value: string, type: &#x27;hex&#x27; | &#x27;rgb&#x27;): number[] | string {
+    value &#x3D; value.trim();
+
+    if (type &#x3D;&#x3D;&#x3D; &#x27;hex&#x27;) {
+      value &#x3D; value.slice(1);
+
+      const step &#x3D; value.length &#x3D;&#x3D;&#x3D; 3 ? 1 : 2;
+      const rgb &#x3D; [];
+      for (let index &#x3D; 0; index &lt; 3; index++) {
+        const start &#x3D; index * step;
+        const hexValue &#x3D; value.slice(start, start + step);
+        let parsedValue &#x3D; parseInt(hexValue, 16);
+        if (step &#x3D;&#x3D;&#x3D; 1) {
+          parsedValue &#x3D; (parsedValue &lt;&lt; 4) | parsedValue;
+        }
+
+        rgb.push(parsedValue);
+      }
+
+      return rgb;
+    } else if (type &#x3D;&#x3D;&#x3D; &#x27;rgb&#x27;) {
+      const rgb &#x3D; JSON.parse(value);
+      if (Array.isArray(rgb) &amp;&amp; rgb.length &#x3D;&#x3D;&#x3D; 3) {
+        return rgb;
+      }
+    }
+
+    return value;
   }
 }
 </code></pre>

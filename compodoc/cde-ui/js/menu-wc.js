@@ -123,6 +123,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/EmptyFileError.html" data-type="entity-link" >EmptyFileError</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/FileParseError.html" data-type="entity-link" >FileParseError</a>
                             </li>
                             <li class="link">
