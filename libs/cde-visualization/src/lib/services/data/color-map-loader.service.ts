@@ -3,7 +3,9 @@ import { CsvFileLoaderOptions, CsvFileLoaderService, FileLoader, FileLoaderEvent
 import { map, Observable } from 'rxjs';
 import { ColorMapEntry } from '../../models/color-map';
 
+/** Regular expression to match hex color values */
 const HEX_COLOR_REGEX = /^#([0-9a-f]{3}){1,2}$/i;
+/** Regular expression to match RGB color values in the format [r, g, b] */
 const RGBA_COLOR_REGEX = /^\[(\s*\d+\s*,){2}\s*\d+\s*\]$/;
 
 /** Service to load color map entries from CSV files */
@@ -60,6 +62,13 @@ export class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], Cs
     return result;
   }
 
+  /**
+   * Parses a color value string into an array of RGB values or returns the original string if it cannot be parsed.
+   *
+   * @param value Value to parse
+   * @param type Format of the color value ('hex' or 'rgb')
+   * @returns An array of RGB values if the value is valid, or the original string if it cannot be parsed
+   */
   private parseColorValue(value: string, type: 'hex' | 'rgb'): number[] | string {
     value = value.trim();
 

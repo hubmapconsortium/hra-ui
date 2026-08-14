@@ -37,6 +37,7 @@ export interface MissingKeyError {
   keys: string[];
 }
 
+/** Error when uploaded file is empty */
 export interface EmptyFileError {
   /** Error type */
   type: 'empty-file-error';
