@@ -74,6 +74,10 @@ export const FILE_TYPE_MAP: Record<string, FileTypeData> = {
     name: 'N-Quads',
     typeSuffix: '.nt',
   },
+  'application/zip': {
+    name: 'ZIP',
+    typeSuffix: '.zip',
+  },
 };
 
 /** Interface for file type info */
@@ -111,10 +115,13 @@ export class DownloadService {
    * @param files Array of distributions from metadata
    * @returns Resolved download data
    */
-  private resolveDownloadOptions(id: string, files: DistributionsInfo[]) {
+  private resolveDownloadOptions(id: string, files: DistributionsInfo[]): MenuOptionsType[] {
     const allDownloadOptions = files.map((file) => {
       const fileType = FILE_TYPE_MAP[file.mediaType];
       const isCrosswalkCsv = file.mediaType === 'text/csv' && file.id.includes('crosswalk');
+      if (!fileType) {
+        return undefined;
+      }
       return {
         id: id + fileType.typeSuffix,
         name: isCrosswalkCsv ? 'CSV - Crosswalk' : `${fileType.name}`,
@@ -123,7 +130,7 @@ export class DownloadService {
         url: file.downloadUrl,
       };
     });
-    return allDownloadOptions;
+    return allDownloadOptions.filter((option) => !!option);
   }
 
   /**
