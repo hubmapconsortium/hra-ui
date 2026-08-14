@@ -3,6 +3,9 @@ import { CsvFileLoaderOptions, CsvFileLoaderService, FileLoader, FileLoaderEvent
 import { map, Observable } from 'rxjs';
 import { ColorMapEntry } from '../../models/color-map';
 
+const HEX_COLOR_REGEX = /^#([0-9a-f]{3}){1,2}$/i;
+const RGBA_COLOR_REGEX = /^\[(\s*\d+\s*,){2}\s*\d+\s*\]$/;
+
 /** Service to load color map entries from CSV files */
 @Injectable({
   providedIn: 'root',
@@ -30,19 +33,60 @@ export class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], Cs
       return [];
     }
 
-    let colorKey: string | undefined;
+    const colorKeys = new Map<string, 'hex' | 'rgb'>();
     for (const [key, value] of Object.entries(data[0])) {
-      if (/^\[[\d\s,]+\]$/.test(value.trim())) {
-        // Checks for r g b array
-        colorKey = key;
-        break;
+      const trimmedValue = value.trim();
+      if (HEX_COLOR_REGEX.test(trimmedValue)) {
+        colorKeys.set(key, 'hex');
+      } else if (RGBA_COLOR_REGEX.test(trimmedValue)) {
+        colorKeys.set(key, 'rgb');
       }
     }
 
-    if (colorKey === undefined) {
+    if (colorKeys.size === 0) {
       throw new Error('Could not parse color map');
     }
 
-    return data.map((item) => ({ ...item, [colorKey]: JSON.parse(item[colorKey]) }));
+    const result: ColorMapEntry[] = [];
+    for (const item of data) {
+      const entry: Record<string, unknown> = { ...item };
+      for (const [key, type] of colorKeys.entries()) {
+        entry[key] = this.parseColorValue(item[key], type);
+      }
+
+      result.push(entry as ColorMapEntry);
+    }
+
+    return result;
+  }
+
+  private parseColorValue(value: string, type: 'hex' | 'rgb'): number[] | string {
+    value = value.trim();
+
+    if (type === 'hex') {
+      value = value.slice(1);
+
+      const step = value.length === 3 ? 1 : 2;
+      const rgb = [];
+      for (let index = 0; index < 3; index++) {
+        const start = index * step;
+        const hexValue = value.slice(start, start + step);
+        let parsedValue = parseInt(hexValue, 16);
+        if (step === 1) {
+          parsedValue = (parsedValue << 4) | parsedValue;
+        }
+
+        rgb.push(parsedValue);
+      }
+
+      return rgb;
+    } else if (type === 'rgb') {
+      const rgb = JSON.parse(value);
+      if (Array.isArray(rgb) && rgb.length === 3) {
+        return rgb;
+      }
+    }
+
+    return value;
   }
 }

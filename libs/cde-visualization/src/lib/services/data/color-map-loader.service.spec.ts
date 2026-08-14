@@ -12,6 +12,12 @@ describe('ColorMapLoaderService', () => {
     { cell_id: '2', cell_type: 'c', cell_color: '[0,0,2]' },
   ];
 
+  const sampleColorMapHex = [
+    { cell_id: '0', cell_type: 'a', cell_color: '#000' },
+    { cell_id: '1', cell_type: 'b', cell_color: '#000001' },
+    { cell_id: '2', cell_type: 'c', cell_color: '#000002' },
+  ];
+
   const invalidColorMap = [
     { cell_id: '0', cell_type: 'a', cell_color: '' },
     { cell_id: '1', cell_type: 'b', cell_color: '' },
@@ -32,6 +38,10 @@ describe('ColorMapLoaderService', () => {
   const colorMapEvent: FileLoaderEvent<ColorMapEntry[]> = {
     type: 'data',
     data: sampleColorMap,
+  };
+  const colorMapHexEvent: FileLoaderEvent<ColorMapEntry[]> = {
+    type: 'data',
+    data: sampleColorMapHex,
   };
   const invalidColorMapEvent: FileLoaderEvent<ColorMapEntry[]> = {
     type: 'data',
@@ -72,6 +82,13 @@ describe('ColorMapLoaderService', () => {
 
   it('returns data event with parsed color map entries', async () => {
     csvLoader.load.mockReturnValue(of(colorMapEvent));
+    const result$ = service.load('a/file.csv', {});
+    const firstEvent = await firstValueFrom(result$);
+    expect(firstEvent).toEqual(parsedColorMapEvent);
+  });
+
+  it('returns data event with parsed color map entries for hex colors', async () => {
+    csvLoader.load.mockReturnValue(of(colorMapHexEvent));
     const result$ = service.load('a/file.csv', {});
     const firstEvent = await firstValueFrom(result$);
     expect(firstEvent).toEqual(parsedColorMapEvent);
