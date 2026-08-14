@@ -1503,7 +1503,7 @@ export class HistogramComponent {
       draft.config.padding.left &#x3D; EXPORT_IMAGE_PADDING;
       draft.encoding.color.legend &#x3D; EXPORT_IMAGE_LEGEND_CONFIG;
       draft.data.values &#x3D; this.data();
-      draft.encoding.color.scale.range &#x3D; this.colors();
+      draft.encoding.color.scale.range &#x3D; this.allColors();
     });
 
     const el &#x3D; this.renderer.createElement(&#x27;div&#x27;);

@@ -618,7 +618,7 @@ class HistogramComponent {
             draft.config.padding.left = EXPORT_IMAGE_PADDING$1;
             draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG$1;
             draft.data.values = this.data();
-            draft.encoding.color.scale.range = this.colors();
+            draft.encoding.color.scale.range = this.allColors();
         });
         const el = this.renderer.createElement('div');
         const { view, finalize } = await embed(el, spec, {
