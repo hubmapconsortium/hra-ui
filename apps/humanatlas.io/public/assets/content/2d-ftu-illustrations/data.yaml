@@ -65,7 +65,7 @@ content:
               --mat-sys-tertiary: '#00529C'
           - component: Markdown
             data: |
-              NOTE: Islets of Lingerhans is deprecated and will be removed from the HRA collection in December 2026 for the 12th Release (v2.6).
+              NOTE: Islets of Langerhans is deprecated and will be removed from the HRA collection in December 2026 for the 12th Release (v2.6).
 
       - component: DataViewerWithQueryParams
         variant: ftu
