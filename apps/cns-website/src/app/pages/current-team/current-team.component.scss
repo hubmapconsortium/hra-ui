@@ -4,12 +4,16 @@
 
 :host {
   display: block;
-  height: calc(100vh - 3.5rem);
   width: 100%;
 
-  .container {
-    height: 100%;
+  mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 3.5rem);
+    align-items: center;
+  }
 
+  .container {
     @include mat.sidenav-overrides(
       (
         container-background-color: vars.$surface-bright,
@@ -42,6 +46,7 @@
 
     ng-scrollbar {
       --_scrollbar-content-width: 100%;
+      width: 100%;
     }
 
     .content {
