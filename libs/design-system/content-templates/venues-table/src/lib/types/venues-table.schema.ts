@@ -8,7 +8,7 @@ export type VenueItem = z.infer<typeof VenueItemSchema>;
 /** Venue item schema */
 export const VenueItemSchema = z
   .object({
-    dateStart: z.coerce.date(),
+    date: z.coerce.date(),
     dateEnd: z.coerce.date().optional(),
     title: z.string(),
     venue: z.string().nullish(),
