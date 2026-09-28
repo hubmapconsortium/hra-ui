@@ -1,6 +1,6 @@
 $schema: ../../../app/schemas/content-page/content-page.schema.json
 title: ASCT+B Tables
-subtitle: Human organ systems organized in nested levels from anatomical structures down to subcellular biomarkers.
+subtitle: Expert-curated reference data connecting human anatomy, cell types, and biomarkers across the Human Reference Atlas.
 icons: product:asctb-reporter
 action:
   label: Get data
@@ -13,26 +13,59 @@ content:
     content:
       component: Markdown
       data: |
-        Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables aim to capture the nested part_of structure of
-        anatomical human body parts, the typology of cells, and the biomarkers used to identify cell types (e.g., gene, protein,
-        lipid or metabolic markers). The tables are authored and reviewed by an international team of anatomists, pathologists,
-        physicians, and other experts.
+        Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) tables are expert-curated [digital objects](/overview-data) that describe the healthy human body at three connected scales:
+
+        - **Anatomical structures (AS):** The parts that make up an organ, organized from larger structures to smaller ones
+        - **Cell types (CT):** The cells found within those anatomical structures
+        - **Biomarkers (B):** The genes, proteins, lipids, metabolites, and proteoforms used to characterize those cell types
+
+        Together, these connections create a structured map from the organ level to the cellular and molecular levels. Each table
+        focuses on an organ or organ system and aligns its terms with established biomedical ontologies. The tables are authored
+        and reviewed by an international team of anatomists, pathologists, physicians, and other domain experts.
+
   - component: PageSection
-    tagline: Summary statistics
+    tagline: How ASCT+B tables support the HRA
+    anchor: how-asctb-tables-support-the-hra
+    level: 2
+    content:
+      component: Markdown
+      data: |
+        ASCT+B tables turn expert knowledge about the human body into a shared, machine-readable reference. Consistent names,
+        identifiers, and relationships make it possible to connect and compare data produced by different researchers,
+        technologies, and studies.
+
+        Within the Human Reference Atlas, ASCT+B tables:
+
+        - provide core anatomical, cellular, and molecular relationships for the HRA Knowledge Graph
+        - support consistent annotation and integration across HRA digital objects and datasets
+        - connect experimental data to a common reference for exploration and analysis
+        - preserve changes through versioned releases that can be cited and reused
+
+        This shared foundation helps the HRA represent not only what structures and cells exist, but also how they are related
+        across biological scales.
+
+  - component: PageSection
+    tagline: 'Summary statistics: ASCT+B tables by HRA release'
     anchor: summary-statistics
-    level: 3
+    level: 2
     content:
       - component: Markdown
         data: |
-          The below table lists for each organ the number of anatomical structures (#AS), the number of cell types (#CT), the number of
-          biomarkers (#B), the number of part_of relationships between AS, the number of located_in links between CT and AS, and the number of
-          CT and B (i.e., which B characterize a CT). Biomarker abbreviations: genes (BG), proteins (BP), metabolites (BM), proteoforms (BF), and lipids (BL).
+          Choose an HRA release to see which organ tables are available, explore an individual table, or download its data.
+          The counts summarize each table's content and coverage:
+
+          - **#AS, #CT, and #B:** Anatomical structures, cell types, and biomarkers
+          - **#AS-AS:** `part_of` relationships between anatomical structures
+          - **#AS-CT:** `located_in` relationships connecting cell types to anatomical structures
+          - **#CT-BM:** `characterizes` relationships connecting biomarkers to cell types
+          - **#BG, #BP, #BM, #BF, and #BL:** Gene, protein, metabolite, proteoform, and lipid biomarkers
+          - **NoLink, NoCT, and NoB:** Entries without an ontology link or without an expected cell type or biomarker connection
       - component: VersionedDataTable
         styles:
           --hra-table-max-height: 35rem
         controllers:
           - id: VersionedTableParamSync
-        label: Release Version
+        label: Release version
         items:
           - label: 11th Release (v2.5)
             version: v2.5
@@ -44,12 +77,12 @@ content:
                   type: link
                   urlColumn: url
               - column: csvLabel
-                label: Download ASCT+B Tables
+                label: Export table
                 type:
                   type: link
                   urlColumn: csv
               - column: table_version
-                label: Table Version
+                label: Table version
               - column: AS
                 label: '#AS'
                 type:
@@ -242,41 +275,61 @@ content:
               - column: CT_BM
                 label: '#CT-BM'
                 type: numeric
+
+      - component: GridContainer
+        styles:
+          background-color: rgba(23, 145, 255, 0.12)
+          border-radius: 0.5rem
+          padding: .75rem
+          padding-bottom: 0rem
+          font: var(--mat-sys-body-xl)
+          display: flex
+          gap: .75rem
+        content:
+          - component: TextHyperlink
+            text: ''
+            url: ''
+            icon: info
+            styles:
+              pointer-events: none
+              --mat-sys-tertiary: '#00529C'
+          - component: Markdown
+            data: |
+              **How totals are calculated:** Totals add the counts from all organ tables. Items that appear in more than one table are counted each time, so totals are not unique counts for each release.
+
   - component: PageSection
-    tagline: Standard operating procedures (SOPs)
+    tagline: Standard operating procedures for ASCT+B table creation
     anchor: sop
-    level: 3
-    content:
-      - component: Markdown
-        data: |
-          -  [SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables](https://doi.org/10.5281/zenodo.5746152)
-          -  [SOP: ASCT+B Table Communications](https://doi.org/10.5281/zenodo.5639622)
-  - component: PageSection
-    tagline: Use app to visualize ASCT+B tables
-    anchor: app-visualize-asctb-tables
     level: 2
     content:
       - component: Markdown
         data: |
-          The ASCT+B Reporter makes it possible to explore tables visually—per organ or across all organs—in support of table authoring and review.
-          It combines two different types of Angular visualizations: 1) A partonomy tree of anatomical structures, 2) bimodal networks that
-          link anatomical structures to cell types and cell types to biomarkers.<br><br>
-      - component: TextHyperlink
-        text: Use app
-        url: https://apps.humanatlas.io/asctb-reporter/
-        icon: arrow_right_alt
+          Domain experts use a shared template and documented review process to create consistent, interoperable ASCT+B tables.
+          These standard operating procedures (SOPs) define how tables are authored, structured, reviewed, and communicated:
+
+          -  [SOP: Authoring Anatomical Structures, Cell Types, and Biomarkers (ASCT+B) Tables](https://doi.org/10.5281/zenodo.5746152)
 
   - component: PageSection
-    tagline: Ontology validation reports
+    tagline: How ASCT+B tables are validated
     anchor: ontology-validation-reports
     level: 2
     content:
       - component: Markdown
         data: |
-          ASCT+B table drafts are run through a Python script called CCF_Tools each week. The script reads them in, compares them against the
-          Resource Description Framework (RDF) triple store database called Ubergraph (Uberon and Cell Ontology), and outputs a validation report that
-          can be used to improve tables during creation or revision cycles.<br><br>
-      - component: TextHyperlink
-        text: View reports
-        url: https://hubmapconsortium.github.io/ccf-validation-tools/
-        icon: arrow_right_alt
+          Each week, CCF Tools checks draft ASCT+B tables to help authors catch issues early and keep table content consistent. The resulting validation reports highlight missing identifiers, inconsistent labels, and other potential problems that can be addressed during table authoring and revision. Validations are posted weekly at [ASCT+B Validation Reports](https://hubmapconsortium.github.io/ccf-validation-tools).
+
+          Technically, [CCF Tools](https://github.com/hubmapconsortium/ccf-validation-tools) is a Python-based workflow that compares table content with [Ubergraph](https://github.com/INCATools/ubergraph), an integrated RDF triplestore with a SPARQL interface. Ubergraph brings together biomedical ontologies including [Uberon](https://obophenotype.github.io/uberon/about), which represents anatomical structures, and the [Cell Ontology](https://cell-ontology.github.io/), which defines biological cell types.
+
+  - component: PageSection
+    tagline: Visualize relationships with the ASCT+B Reporter
+    anchor: app-visualize-asctb-tables
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The [ASCT+B Reporter app](https://apps.humanatlas.io/asctb-reporter) transforms rows of table data into an interactive tree view of biological relationships. Explore one organ or compare multiple organs using a partonomy tree of anatomical structures and network views that connect anatomical structures to cell types and cell types to biomarkers.
+
+          Use the app to understand an organ's organization, inspect supporting ontology information, compare data, and help review ASCT+B tables.
+
+      - component: Image
+        src: assets/ui-images/annotated-ui-asctb-reporter.png
