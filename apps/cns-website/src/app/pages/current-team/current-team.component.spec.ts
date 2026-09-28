@@ -51,7 +51,7 @@ describe('CurrentTeamComponent', () => {
           fax: '',
           email: '',
           education: '',
-          background: '',
+          background: 'Research biography',
           interests: '',
         },
       ],
@@ -71,7 +71,7 @@ describe('CurrentTeamComponent', () => {
           office: '',
           phone: '',
           fax: '',
-          email: '',
+          email: 'john.smith@example.org',
           education: '',
           background: '',
           interests: '',
@@ -110,8 +110,8 @@ describe('CurrentTeamComponent', () => {
         {
           type: 'member',
           title: 'Research Assistant',
-          dateStart: new Date('2010-01-01'),
-          dateEnd: new Date('2015-12-31'),
+          dateStart: new Date(2010, 0, 1),
+          dateEnd: new Date(2015, 11, 31),
           displayOrder: 3,
           office: '',
           phone: '',
@@ -120,6 +120,14 @@ describe('CurrentTeamComponent', () => {
           education: '',
           background: '',
           interests: '',
+        },
+        {
+          type: 'student',
+          topic: 'Information Visualization',
+          degree: 'Masters',
+          department: 'Informatics',
+          dateStart: new Date(2008, 7, 1),
+          dateEnd: new Date(2009, 4, 31),
         },
       ],
     },
@@ -141,8 +149,6 @@ describe('CurrentTeamComponent', () => {
   it('should show current members by default and display all role types correctly', async () => {
     await renderComponent();
 
-    const learnMoreLinks = screen.getAllByText(/learn more/i);
-    expect(learnMoreLinks).toHaveLength(4);
     expect(screen.getByText('Katy Börner')).toBeInTheDocument();
     expect(screen.getByText('John Smith')).toBeInTheDocument();
     expect(screen.getByText('Jane Doe')).toBeInTheDocument();
@@ -159,18 +165,20 @@ describe('CurrentTeamComponent', () => {
     const user = userEvent.setup();
     await renderComponent();
 
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(4);
-
     const formerToggle = await screen.findByRole('radio', { name: /former team/i });
     await user.click(formerToggle);
 
     expect(await screen.findByText('Former Member')).toBeInTheDocument();
+    expect(screen.getByText('Research Assistant')).toBeInTheDocument();
+    const tenureStreaks = screen.getAllByText(/200[8-9]|201[0-5]/);
+    expect(tenureStreaks[0]).toHaveTextContent('Jan 2010–Dec 2015');
+    expect(tenureStreaks[1]).toHaveTextContent('Aug 2008–May 2009');
     expect(screen.queryAllByText(/learn more/i)).toHaveLength(0);
 
     const currentToggle = await screen.findByRole('radio', { name: /current team/i });
     await user.click(currentToggle);
 
-    expect(await screen.findAllByText(/learn more/i)).toHaveLength(4);
+    expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
   });
 
   it('should filter by search text and show no results when no matches', async () => {
@@ -181,7 +189,7 @@ describe('CurrentTeamComponent', () => {
     await user.type(searchInput, 'Katy');
 
     expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.queryByText('John Smith')).not.toBeInTheDocument();
 
     await user.clear(searchInput);
     await user.type(searchInput, 'XYZ123');
@@ -242,6 +250,9 @@ describe('CurrentTeamComponent', () => {
 
     const katyLink = screen.getByRole('link', { name: /learn more about katy/i });
     expect(katyLink).toHaveAttribute('href', '/people/katy-borner');
+    expect(screen.queryByRole('link', { name: /learn more about john/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /learn more about jane/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /learn more about bob/i })).not.toBeInTheDocument();
   });
 
   it('should clear filters and search', async () => {
@@ -254,7 +265,7 @@ describe('CurrentTeamComponent', () => {
     const clearFiltersButton = await screen.findByRole('button', { name: /clear filters/i });
     await user.click(clearFiltersButton);
 
-    expect(await screen.findAllByText(/learn more/i)).toHaveLength(4);
+    expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
 
     await user.type(searchInput, 'test');
     const clearSearchButton = await screen.findByRole('button', { name: /clear search/i });
@@ -272,7 +283,7 @@ describe('CurrentTeamComponent', () => {
     await user.type(searchInput, 'Katy');
 
     await screen.findByText('Katy Börner');
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
+    expect(screen.getByText((content) => content.includes('1') && content.includes('/'))).toBeInTheDocument();
   });
 
   it('should show hierarchical sort option only for current team', async () => {
@@ -311,7 +322,7 @@ describe('CurrentTeamComponent', () => {
     ];
 
     await renderComponent(dataWithNoRoles);
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(4);
+    expect(screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/)).toHaveLength(4);
     expect(screen.queryByText('No Role Member')).not.toBeInTheDocument();
   });
 
@@ -423,7 +434,7 @@ describe('CurrentTeamComponent', () => {
     const option = await screen.findByRole('option', { name: /end year \(new to old\)/i });
     await user.click(option);
 
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(4);
+    expect(screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/)).toHaveLength(4);
   });
 
   it('should have filter buttons available', async () => {
@@ -441,7 +452,6 @@ describe('CurrentTeamComponent', () => {
     await user.type(searchInput, 'Borner');
 
     expect(await screen.findByText('Katy Börner')).toBeInTheDocument();
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(1);
   });
 
   it('should handle member with no title gracefully', async () => {
@@ -915,7 +925,7 @@ describe('CurrentTeamComponent', () => {
     const noneOption = await screen.findByRole('option', { name: /none/i });
     await user.click(noneOption);
 
-    expect(screen.getAllByText(/learn more/i)).toHaveLength(4);
+    expect(screen.getAllByText(/^(Katy Börner|John Smith|Jane Doe|Bob Johnson)$/)).toHaveLength(4);
   });
 
   it('should handle sorting when both roles have same undefined end dates', async () => {
