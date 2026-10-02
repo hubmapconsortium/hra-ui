@@ -66,6 +66,8 @@
 
     <ng-scrollbar>
       <div class="content" hraFeature="result">
+        <hra-page-label class="title" tagline="Research Explorer" />
+
         @if (store.numFilteredItems() === 0) {
           <hra-no-results-indicator hraFeature="no-results" (clearFilters)="store.resetFilters()" />
         } @else if (store.view() === 'gallery') {

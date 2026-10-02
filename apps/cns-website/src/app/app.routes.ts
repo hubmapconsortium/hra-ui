@@ -3,11 +3,13 @@ import { ContentPageDataSchema } from '@hra-ui/design-system/content-templates/c
 import { createJsonSpecResolver, createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
+import { ResearchCategoryView } from './pages/research-category-page/research-category-page.component';
 import { createPersonResolver } from './resolvers/person.resolver';
+import { createResearchItemsResolver } from './resolvers/research-items.resolver';
 import { FeaturedDataSchema } from './schemas/featured.schema';
 import { PeopleDataSchema } from './schemas/people.schema';
 import { ResearchTypesDataSchema } from './schemas/research-type.schema';
-import { ResearchDataSchema } from './schemas/research.schema';
+import { ResearchDataSchema, ResearchItem } from './schemas/research.schema';
 import { createTagsResolver } from './state/tags/tags.store';
 import { createMountRedirectRoute } from './utils/mount-redirect';
 
@@ -44,6 +46,49 @@ const PERSON_BASE_URL = BASE_URL + 'content/people';
 /** Helper function to load the content component */
 const loadContentComponent = () =>
   import('./components/content-page/content-page.component').then((m) => m.ContentPageComponent);
+
+/** All research content index URLs */
+const ALL_RESEARCH_INDEX_URLS = [
+  NEWS_INDEX_URL,
+  PUBLICATIONS_INDEX_URL,
+  EVENT_INDEX_URL,
+  FUNDING_INDEX_URL,
+  VISUALIZATIONS_INDEX_URL,
+];
+
+/**
+ * Helper function to create a research category page route
+ *
+ * @param path Route path
+ * @param title Page title
+ * @param view Display mode
+ * @param urls Research index urls to load items from
+ * @param filter Optional predicate selecting which items to display
+ * @returns A route for the research category page
+ */
+function createResearchCategoryRoute(
+  path: string,
+  title: string,
+  view: ResearchCategoryView,
+  urls: string[],
+  filter?: (item: ResearchItem) => boolean,
+): Route {
+  return {
+    path,
+    loadComponent: () =>
+      import('./pages/research-category-page/research-category-page.component').then(
+        (m) => m.ResearchCategoryPageComponent,
+      ),
+    data: { title, view },
+    resolve: {
+      items: createResearchItemsResolver(urls, filter),
+      tags: createTagsResolver({
+        categoriesUrl: RESEARCH_CATEGORIES_INDEX_URL,
+        projectsUrl: PROJECTS_INDEX_URL,
+      }),
+    },
+  };
+}
 
 /** Application routes */
 export const appRoutes: Route[] = [
@@ -138,10 +183,26 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
     },
   },
-  {
-    path: 'publications',
-    redirectTo: '/research?category=publication&view=list&group-by=year',
-  },
+  createResearchCategoryRoute('events', 'Events', 'list', [EVENT_INDEX_URL]),
+  createResearchCategoryRoute('funding', 'Funding', 'list', [FUNDING_INDEX_URL]),
+  createResearchCategoryRoute('news', 'News', 'gallery', [NEWS_INDEX_URL]),
+  createResearchCategoryRoute(
+    'presentations',
+    'Presentations',
+    'list',
+    [EVENT_INDEX_URL],
+    (item) => item.type === 'presentation',
+  ),
+  createResearchCategoryRoute(
+    'projects',
+    'Projects',
+    'list',
+    ALL_RESEARCH_INDEX_URLS,
+    (item) => item.projects.length > 0,
+  ),
+  createResearchCategoryRoute('publications', 'Publications', 'list', [PUBLICATIONS_INDEX_URL]),
+  createResearchCategoryRoute('tutorials', 'Tutorials', 'list', [EVENT_INDEX_URL], (item) => item.type === 'tutorial'),
+  createResearchCategoryRoute('visualizations', 'Visualizations', 'gallery', [VISUALIZATIONS_INDEX_URL]),
   {
     path: 'research',
     loadComponent: () => import('./pages/research-page/research-page.component').then((m) => m.ResearchPageComponent),
@@ -161,6 +222,7 @@ export const appRoutes: Route[] = [
       }),
     },
   },
+
   {
     path: 'visitor-info',
     loadComponent: loadContentComponent,
