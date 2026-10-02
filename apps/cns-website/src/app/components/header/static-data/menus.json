@@ -107,23 +107,23 @@
             },
             {
               "type": "item",
-              "label": "Projects",
-              "url": "https://cns.iu.edu/projects"
-            },
-            {
-              "type": "item",
               "label": "People",
               "url": "https://cns.iu.edu/people"
             },
             {
               "type": "item",
-              "label": "Publications",
-              "url": "https://cns.iu.edu/publications"
+              "label": "Presentations",
+              "url": "https://cns.iu.edu/presentations"
             },
             {
               "type": "item",
-              "label": "Presentations",
-              "url": "https://cns.iu.edu/presentations"
+              "label": "Projects",
+              "url": "https://cns.iu.edu/projects"
+            },
+            {
+              "type": "item",
+              "label": "Publications",
+              "url": "https://cns.iu.edu/publications"
             },
             {
               "type": "item",
