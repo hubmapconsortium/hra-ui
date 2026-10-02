@@ -9,6 +9,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { CardsModule } from '@hra-ui/design-system/cards';
 import { TagItem } from '@hra-ui/design-system/cards/gallery-card';
 import { ListViewComponent } from '@hra-ui/design-system/content-templates/list-view';
+import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page-label';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { FilterMenuComponent } from '@hra-ui/design-system/filter-menu';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
@@ -51,6 +52,7 @@ import { ResearchStore } from './state/research.store';
     MatSelectModule,
     MatSidenavModule,
     NoResultsIndicatorComponent,
+    PageLabelComponent,
     SearchFilterComponent,
     SectionLinkComponent,
     ScrollingModule,

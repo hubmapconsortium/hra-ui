@@ -280,7 +280,7 @@ function createFilteredBy<T, Opt>(
  * Normalizes search text for case/diacritic-insensitive matching.
  * @param str Raw input string
  */
-function normalizeSearchString(str: string): string {
+export function normalizeSearchString(str: string): string {
   return str
     .trim()
     .toLocaleLowerCase()
