@@ -184,6 +184,8 @@ export const appRoutes: Route[] = [
     },
   },
   createResearchCategoryRoute('events', 'Events', 'list', [EVENT_INDEX_URL]),
+  // TODO: Use this when we want to filter events to only those organized by CNS
+  // createResearchCategoryRoute('events', 'Events', 'list', [EVENT_INDEX_URL], (item) => item.organizedByCns),
   createResearchCategoryRoute('funding', 'Funding', 'list', [FUNDING_INDEX_URL]),
   createResearchCategoryRoute('news', 'News', 'gallery', [NEWS_INDEX_URL]),
   createResearchCategoryRoute(
