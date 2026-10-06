@@ -66,29 +66,33 @@
 
     <ng-scrollbar>
       <div class="content" hraFeature="result">
+        <hra-page-label class="title" tagline="Research Explorer" />
+
         @if (store.numFilteredItems() === 0) {
           <hra-no-results-indicator hraFeature="no-results" (clearFilters)="store.resetFilters()" />
         } @else if (store.view() === 'gallery') {
-          @for (group of store.sortedGroupedItems(); track group.label) {
-            <section class="gallery-group">
-              @if (group.label) {
-                <h3 hra-section-link underlined class="title">{{ group.label }}</h3>
-              }
+          <div class="gallery-view">
+            @for (group of store.sortedGroupedItems(); track group.label) {
+              <section class="gallery-group">
+                @if (group.label) {
+                  <h3 hra-section-link underlined class="group-title">{{ group.label }}</h3>
+                }
 
-              <hra-gallery-grid [dataSource]="group.items">
-                <hra-gallery-card
-                  *hraGalleryGridItem="let item"
-                  [hraFeature]="item.slug"
-                  [imageSrc]="getThumbnail(item)"
-                  [tagline]="item.title"
-                  [date]="(item.dateStart | date) ?? ''"
-                  [link]="item.link"
-                  [external]="true"
-                  [tags]="getTagItems(item.category, item.projects)"
-                />
-              </hra-gallery-grid>
-            </section>
-          }
+                <hra-gallery-grid [dataSource]="group.items">
+                  <hra-gallery-card
+                    *hraGalleryGridItem="let item"
+                    [hraFeature]="item.slug"
+                    [imageSrc]="getThumbnail(item)"
+                    [tagline]="item.title"
+                    [date]="(item.dateStart | date) ?? ''"
+                    [link]="item.link"
+                    [external]="true"
+                    [tags]="getTagItems(item.category, item.projects)"
+                  />
+                </hra-gallery-grid>
+              </section>
+            }
+          </div>
         } @else {
           <hra-list-view [data]="store.sortedGroupedListItems()" [groupBy]="store.groupBy() !== null" />
         }

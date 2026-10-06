@@ -60,8 +60,13 @@
     },
     {
       "type": "item",
+      "label": "People",
+      "url": "https://cns.iu.edu/people"
+    },
+    {
+      "type": "item",
       "label": "Publications",
-      "url": "https://cns.iu.edu/research/?category=publication&view=list&group-by=year"
+      "url": "https://cns.iu.edu/publications"
     },
     {
       "type": "menu",
@@ -88,32 +93,47 @@
             {
               "type": "item",
               "label": "Events",
-              "url": "https://cns.iu.edu/research/?category=event&view=list&group-by=year"
+              "url": "https://cns.iu.edu/events"
             },
             {
               "type": "item",
               "label": "Funding",
-              "url": "https://cns.iu.edu/research/?category=funding&view=list&group-by=year"
+              "url": "https://cns.iu.edu/funding"
             },
             {
               "type": "item",
               "label": "News",
-              "url": "https://cns.iu.edu/research/?category=news"
+              "url": "https://cns.iu.edu/news"
             },
             {
               "type": "item",
-              "label": "Publications",
-              "url": "https://cns.iu.edu/research/?category=publication&view=list&group-by=year"
+              "label": "People",
+              "url": "https://cns.iu.edu/people"
             },
             {
               "type": "item",
               "label": "Presentations",
-              "url": "https://cns.iu.edu/research/?category=event&event=presentation&view=list&group-by=year"
+              "url": "https://cns.iu.edu/presentations"
+            },
+            {
+              "type": "item",
+              "label": "Projects",
+              "url": "https://cns.iu.edu/projects"
+            },
+            {
+              "type": "item",
+              "label": "Publications",
+              "url": "https://cns.iu.edu/publications"
+            },
+            {
+              "type": "item",
+              "label": "Tutorials",
+              "url": "https://cns.iu.edu/tutorials"
             },
             {
               "type": "item",
               "label": "Visualizations",
-              "url": "https://cns.iu.edu/research/?category=visualization&group-by=year"
+              "url": "https://cns.iu.edu/visualizations"
             }
           ]
         },
