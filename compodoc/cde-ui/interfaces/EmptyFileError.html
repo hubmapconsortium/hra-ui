@@ -116,7 +116,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  MissingKeyError</li>
+  EmptyFileError</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -148,7 +148,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Error when missing required columns in uploaded csv</p>
+                <p>Error when uploaded file is empty</p>
 
             </p>
 
@@ -166,12 +166,6 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#keys" 
->
-                                            keys
-                                        </a>
-                                </li>
-                                <li>
                                         <a href="#type" 
 >
                                             type
@@ -188,45 +182,6 @@
 
             <section data-compodoc="block-properties">
                 <h3 id="inputs">Properties</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="keys"></a>
-                                        <span class="name "><b>keys</b>
-                                            <a href="#keys">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>keys:     <code>string[]</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>Required keys missing</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -870,7 +825,7 @@ export class CreateVisualizationPageComponent {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'MissingKeyError.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmptyFileError.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

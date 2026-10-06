@@ -205,17 +205,7 @@ content:
     content:
       component: Markdown
       data: |
-        [SOP: Construction of Organ Mapping Antibody Panels for Multiplexed Antibody-Based Imaging of Human Tissues](https://zenodo.org/records/7386417)
-
-  - component: PageSection
-    tagline: Templates
-    anchor: templates
-    level: 2
-    content:
-      component: Markdown
-      data: |
-        - [OMAP Table Template harmonized with Antibody Validation Reports](https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-table-template.xlsx)
-        - [OMAP Description Document Template](https://hubmapconsortium.github.io/ccf/pages/omap-extras/omap-description-document-template.docx)
+        [SOP: Construction of Organ Mapping Antibody Panels for Multiplexed Antibody-Based Imaging of Human Tissues](https://doi.org/10.5281/zenodo.5749882)
 
   - component: PageSection
     tagline: Frequently asked questions (FAQs)

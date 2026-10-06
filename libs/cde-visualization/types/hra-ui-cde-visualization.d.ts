@@ -301,6 +301,14 @@ declare class ColorMapFileLoaderService implements FileLoader<ColorMapEntry[], C
     load(file: string | File, options: CsvFileLoaderOptions): Observable<FileLoaderEvent<ColorMapEntry[]>>;
     /** Parses the raw CSV data into an array of ColorMapEntry objects */
     private parseColorMapEntries;
+    /**
+     * Parses a color value string into an array of RGB values or returns the original string if it cannot be parsed.
+     *
+     * @param value Value to parse
+     * @param type Format of the color value ('hex' or 'rgb')
+     * @returns An array of RGB values if the value is valid, or the original string if it cannot be parsed
+     */
+    private parseColorValue;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<ColorMapFileLoaderService, never>;
     static ɵprov: _angular_core.ɵɵInjectableDeclaration<ColorMapFileLoaderService>;
 }
