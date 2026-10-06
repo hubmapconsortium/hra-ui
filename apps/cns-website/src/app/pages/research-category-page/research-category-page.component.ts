@@ -52,6 +52,20 @@ export function getEventDetails(description: string): string {
     .replace(/\.$/, '');
 }
 
+/**
+ * Creates a markdown link that is safe for titles containing brackets
+ * and urls containing whitespace or parentheses
+ *
+ * @param text link text
+ * @param url link url
+ * @returns markdown link
+ */
+export function createMarkdownLink(text: string, url: string): string {
+  const escapedText = text.replace(/[\\[\]]/g, '\\$&');
+  const escapedUrl = url.replace(/[<>]/g, encodeURIComponent);
+  return `[${escapedText}](<${escapedUrl}>)`;
+}
+
 /** Group of research items for a single year */
 export interface ResearchYearGroup {
   /** Year label */
@@ -179,7 +193,7 @@ export class ResearchCategoryPageComponent {
    * @returns markdown content
    */
   private formatEventContent(item: ResearchItem): string {
-    const title = item.link ? `[${item.title}](${item.link})` : item.title;
+    const title = item.link ? createMarkdownLink(item.title, item.link) : item.title;
     const start = formatDate(item.dateStart, 'mediumDate', this.locale);
     const end = formatDate(item.dateEnd, 'mediumDate', this.locale);
     const dates = start === end ? start : `${start} - ${end}`;
