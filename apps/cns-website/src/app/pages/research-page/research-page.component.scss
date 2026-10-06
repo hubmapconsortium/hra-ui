@@ -59,18 +59,24 @@
     align-items: center;
     min-height: calc(100vh - 10.5rem);
 
-    &:has(.gallery-group) {
-      gap: 3rem;
+    .title {
+      margin-bottom: 2rem;
     }
 
-    .gallery-group .title {
-      margin-bottom: 2rem;
+    .gallery-view {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
 
-      @include mat.divider-overrides(
-        (
-          color: vars.$outline,
-        )
-      );
+      .gallery-group .group-title {
+        margin-bottom: 1rem;
+
+        @include mat.divider-overrides(
+          (
+            color: vars.$outline,
+          )
+        );
+      }
     }
 
     .page-end {

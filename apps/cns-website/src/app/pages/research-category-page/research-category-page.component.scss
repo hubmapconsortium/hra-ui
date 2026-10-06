@@ -48,18 +48,24 @@
     min-height: calc(100vh - 3.5rem);
     color: vars.$on-background;
 
-    &:has(.gallery-group) {
-      gap: 3rem;
+    .title {
+      margin-bottom: 2rem;
     }
 
-    .gallery-group .group-title {
-      margin-bottom: 2rem;
+    .gallery-view {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
 
-      @include mat.divider-overrides(
-        (
-          color: vars.$outline,
-        )
-      );
+      .gallery-group .group-title {
+        margin-bottom: 1rem;
+
+        @include mat.divider-overrides(
+          (
+            color: vars.$outline,
+          )
+        );
+      }
     }
 
     .page-end {
