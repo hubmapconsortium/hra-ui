@@ -35,7 +35,7 @@
           }
         </div>
       } @else {
-        <hra-list-view [data]="listGroups()" [groupBy]="true" />
+        <hra-list-view [class.events-list]="view() === 'events'" [data]="listGroups()" [groupBy]="true" />
       }
 
       <div class="page-end">

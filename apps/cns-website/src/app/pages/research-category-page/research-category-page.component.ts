@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, viewChild } from '@angular/core';
+import { formatDate } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  LOCALE_ID,
+  viewChild,
+} from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { HraCommonModule } from '@hra-ui/common';
 import { CardsModule } from '@hra-ui/design-system/cards';
@@ -20,7 +30,27 @@ import { parseSearch } from '../research-page/state/serialization';
 import { normalizeSearchString } from '../research-page/state/with-filters.feature';
 
 /** Display mode for research items */
-export type ResearchCategoryView = 'gallery' | 'list';
+export type ResearchCategoryView = 'gallery' | 'list' | 'events';
+
+/**
+ * Extracts the details following the date and title from an event description.
+ * Descriptions follow the format `<dates>. <type>: “<title>.” <details>`
+ *
+ * @param description event description
+ * @returns the details or an empty string if none are found
+ */
+export function getEventDetails(description: string): string {
+  const index = description.indexOf('.”');
+  if (index < 0) {
+    return '';
+  }
+
+  return description
+    .slice(index + '.”'.length)
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\.$/, '');
+}
 
 /** Group of research items for a single year */
 export interface ResearchYearGroup {
@@ -71,6 +101,9 @@ export class ResearchCategoryPageComponent {
   /** Tags store for resolving tag labels */
   private readonly tagsStore = inject(TagsStore);
 
+  /** Locale used for date formatting */
+  private readonly locale = inject(LOCALE_ID);
+
   /** Search text synced with the `search` query parameter */
   protected readonly search = linkedQueryParam('search', {
     parse: parseSearch,
@@ -115,7 +148,9 @@ export class ResearchCategoryPageComponent {
   protected readonly listGroups = computed<ListViewGroup[]>(() =>
     this.groups().map(({ label, items }) => ({
       group: label,
-      items: items.map((item) => ({ content: item.description })),
+      items: items.map((item) => ({
+        content: this.view() === 'events' ? this.formatEventContent(item) : item.description,
+      })),
     })),
   );
 
@@ -135,6 +170,22 @@ export class ResearchCategoryPageComponent {
    */
   getThumbnail(item: ResearchItem): string {
     return item.thumbnail || getDefaultThumbnail(item.category, item.type);
+  }
+
+  /**
+   * Formats an event as markdown: a linked title followed by its date range and details
+   *
+   * @param item event to format
+   * @returns markdown content
+   */
+  private formatEventContent(item: ResearchItem): string {
+    const title = item.link ? `[${item.title}](${item.link})` : item.title;
+    const start = formatDate(item.dateStart, 'mediumDate', this.locale);
+    const end = formatDate(item.dateEnd, 'mediumDate', this.locale);
+    const dates = start === end ? start : `${start} - ${end}`;
+    const details = getEventDetails(item.description);
+    const subtitle = details ? `${dates} | ${details}` : dates;
+    return `${title}\n\n${subtitle}`;
   }
 
   /**
