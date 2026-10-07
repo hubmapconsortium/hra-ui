@@ -23,6 +23,14 @@
 
     ::ng-deep p {
       margin-bottom: 0;
+
+      &:first-child {
+        @include utils.use-font(title, large);
+      }
+
+      + p {
+        margin-top: 0.5rem;
+      }
     }
   }
 }

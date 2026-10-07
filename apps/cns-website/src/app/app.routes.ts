@@ -174,9 +174,9 @@ export const appRoutes: Route[] = [
       data: createYamlSpecResolver('assets/content/privacy-policy-page/data.yaml', ContentPageDataSchema),
     },
   },
-  createResearchCategoryRoute('events', 'Events', 'events', [EVENT_INDEX_URL]),
+  createResearchCategoryRoute('events', 'Events', 'list', [EVENT_INDEX_URL]),
   // TODO: Use this when we want to filter events to only those organized by CNS
-  // createResearchCategoryRoute('events', 'Events', 'events', [EVENT_INDEX_URL], (item) => item.organizedByCns),
+  // createResearchCategoryRoute('events', 'Events', 'list', [EVENT_INDEX_URL], (item) => item.organizedByCns),
   createResearchCategoryRoute('funding', 'Funding', 'list', [FUNDING_INDEX_URL]),
   createResearchCategoryRoute('news', 'News', 'gallery', [NEWS_INDEX_URL]),
   createResearchCategoryRoute(

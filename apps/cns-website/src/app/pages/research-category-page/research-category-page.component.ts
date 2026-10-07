@@ -1,14 +1,4 @@
-import { formatDate } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  LOCALE_ID,
-  viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, viewChild } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { HraCommonModule } from '@hra-ui/common';
 import { CardsModule } from '@hra-ui/design-system/cards';
@@ -30,7 +20,7 @@ import { parseSearch } from '../research-page/state/serialization';
 import { normalizeSearchString } from '../research-page/state/with-filters.feature';
 
 /** Display mode for research items */
-export type ResearchCategoryView = 'gallery' | 'list' | 'events';
+export type ResearchCategoryView = 'gallery' | 'list';
 
 /** Group of research items for a single year */
 export interface ResearchYearGroup {
@@ -83,9 +73,6 @@ export class ResearchCategoryPageComponent {
   /** Tags store for resolving tag labels */
   private readonly tagsStore = inject(TagsStore);
 
-  /** Locale used for date formatting */
-  private readonly locale = inject(LOCALE_ID);
-
   /** Search text synced with the `search` query parameter */
   protected readonly search = linkedQueryParam('search', {
     parse: parseSearch,
@@ -130,9 +117,7 @@ export class ResearchCategoryPageComponent {
   protected readonly listGroups = computed<ListViewGroup[]>(() =>
     this.groups().map(({ label, items }) => ({
       group: label,
-      items: items.map((item) => ({
-        content: this.view() === 'events' ? this.formatEventContent(item) : item.description,
-      })),
+      items: items.map((item) => ({ content: item.description })),
     })),
   );
 
@@ -162,21 +147,5 @@ export class ResearchCategoryPageComponent {
    */
   getTagItems(category: ResearchCategoryId, projects: ResearchProjectId[]): TagItem[] {
     return this.tagsStore.getItemsByIds([category, ...projects]).slice(0, 2);
-  }
-
-  /**
-   * Formats an event as markdown: a linked title followed by its date range and details
-   *
-   * @param item event to format
-   * @returns markdown content
-   */
-  private formatEventContent(item: ResearchItem): string {
-    const { title, dateStart, dateEnd, location, link } = item;
-    const itemTitle = link ? `[${title}](${link})` : title;
-    const start = formatDate(dateStart, 'mediumDate', this.locale);
-    const end = formatDate(dateEnd, 'mediumDate', this.locale);
-    const dates = start === end ? start : `${start} - ${end}`;
-    const subtitle = `${dates} ${location ? `| ${location}` : ''}`;
-    return `${itemTitle}\n\n${subtitle}`;
   }
 }

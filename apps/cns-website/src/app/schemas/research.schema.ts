@@ -51,8 +51,6 @@ export const ResearchItemSchema = z
     projects: z.array(ResearchProjectIdSchema).default(() => []),
     /** Whether an event is organized by CNS */
     organizedByCns: z.boolean().default(false),
-    /** Location of the event */
-    location: z.string().optional(),
   })
   .meta({ id: 'Research' });
 

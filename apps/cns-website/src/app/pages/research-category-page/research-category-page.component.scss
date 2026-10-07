@@ -68,17 +68,6 @@
       }
     }
 
-    .events-list ::ng-deep .content {
-      p:first-child {
-        font: vars.$title-large;
-        letter-spacing: vars.$title-large-tracking;
-      }
-
-      p + p {
-        margin-top: 0.25rem;
-      }
-    }
-
     .page-end {
       padding-bottom: 2.5rem;
       margin-bottom: auto;
