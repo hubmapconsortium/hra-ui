@@ -12,12 +12,7 @@ import {
   ResearchItem,
   ResearchProjectId,
 } from '../../schemas/research.schema';
-import {
-  createMarkdownLink,
-  getEventDetails,
-  ResearchCategoryPageComponent,
-  ResearchCategoryView,
-} from './research-category-page.component';
+import { ResearchCategoryPageComponent, ResearchCategoryView } from './research-category-page.component';
 
 const mockResearchItem = (overrides?: Partial<ResearchItem>): ResearchItem => ({
   slug: 'test-research-1' as ResearchId,
@@ -93,21 +88,20 @@ describe('ResearchCategoryPageComponent', () => {
         dateEnd: new Date(2024, 0, 20),
         description:
           '2024-01-15 to 2024-01-20. Presentation: “[Network Workshop](https://example.com/workshop).” Bloomington, IN. Presented by Katy Börner.',
+        location: 'Bloomington, IN',
         ...overrides,
       });
 
     const renderEvents = (items: ResearchData) => renderComponent({ title: 'Events', view: 'events', items });
 
-    it('should render the linked title and the date range with details', async () => {
+    it('should render the linked title and the date range with location', async () => {
       await renderEvents([mockEvent()]);
 
       expect(await screen.findByRole('link', { name: 'Network Workshop' })).toHaveAttribute(
         'href',
         'https://example.com/workshop',
       );
-      expect(
-        await screen.findByText('Jan 15, 2024 - Jan 20, 2024 | Bloomington, IN. Presented by Katy Börner'),
-      ).toBeInTheDocument();
+      expect(await screen.findByText('Jan 15, 2024 - Jan 20, 2024 | Bloomington, IN')).toBeInTheDocument();
     });
 
     it('should render the title and subtitle as separate paragraphs', async () => {
@@ -129,11 +123,11 @@ describe('ResearchCategoryPageComponent', () => {
     it('should show a single date for single day events', async () => {
       await renderEvents([mockEvent({ dateEnd: new Date(2024, 0, 15) })]);
 
-      expect(await screen.findByText('Jan 15, 2024 | Bloomington, IN. Presented by Katy Börner')).toBeInTheDocument();
+      expect(await screen.findByText('Jan 15, 2024 | Bloomington, IN')).toBeInTheDocument();
     });
 
-    it('should show only the dates when there are no details', async () => {
-      await renderEvents([mockEvent({ description: '2024-01-15 to 2024-01-20. Presentation: “Network Workshop.”' })]);
+    it('should show only the dates when there is no location', async () => {
+      await renderEvents([mockEvent({ location: undefined })]);
 
       expect(await screen.findByText('Jan 15, 2024 - Jan 20, 2024')).toBeInTheDocument();
     });
@@ -182,40 +176,5 @@ describe('ResearchCategoryPageComponent', () => {
   it('should handle empty data gracefully', async () => {
     await renderComponent({ items: [] });
     expect(screen.getByText((content) => content.includes('0') && content.includes('/'))).toBeInTheDocument();
-  });
-
-  describe('createMarkdownLink', () => {
-    it('should escape brackets in the text', () => {
-      expect(createMarkdownLink('a [b] c', 'https://x.com')).toBe('[a \\[b\\] c](<https://x.com>)');
-    });
-
-    it('should wrap the url in angle brackets', () => {
-      expect(createMarkdownLink('a', 'https://x.com/a b (1).pdf')).toBe('[a](<https://x.com/a b (1).pdf>)');
-    });
-  });
-
-  describe('getEventDetails', () => {
-    it('should return everything after the title', () => {
-      expect(getEventDetails('2014-06-23. Presentation: “Talk.” Brussels, Belgium. Presented by Katy Börner.')).toBe(
-        'Brussels, Belgium. Presented by Katy Börner',
-      );
-    });
-
-    it('should collapse whitespace and line breaks', () => {
-      expect(getEventDetails('2009-02-23. Visit: “Visit.” NYC Seed, Six MetroTech Center \nBrooklyn, NY.')).toBe(
-        'NYC Seed, Six MetroTech Center Brooklyn, NY',
-      );
-    });
-
-    it('should only remove the final period', () => {
-      expect(getEventDetails('2014-06-23. Presentation: “Talk.” Room 1.2, Bloomington, IN.')).toBe(
-        'Room 1.2, Bloomington, IN',
-      );
-    });
-
-    it('should return an empty string when there are no details', () => {
-      expect(getEventDetails('2014-06-23. Presentation: “Talk.”')).toBe('');
-      expect(getEventDetails('No title here')).toBe('');
-    });
   });
 });

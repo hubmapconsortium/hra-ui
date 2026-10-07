@@ -39,8 +39,6 @@ export const ResearchItemSchema = z
     dateStart: LocalDateSchema,
     /** End date of the research */
     dateEnd: LocalDateSchema,
-    /** Whether an event is organized by CNS */
-    organizedByCns: z.boolean().default(false),
     /** Thumbnail image for the research */
     thumbnail: z.string().optional(),
     /** Description of the research */
@@ -51,6 +49,10 @@ export const ResearchItemSchema = z
     featured: z.boolean().default(false),
     /** Projects associated with the research */
     projects: z.array(ResearchProjectIdSchema).default(() => []),
+    /** Whether an event is organized by CNS */
+    organizedByCns: z.boolean().default(false),
+    /** Location of the event */
+    location: z.string().optional(),
   })
   .meta({ id: 'Research' });
 

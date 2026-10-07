@@ -32,40 +32,6 @@ import { normalizeSearchString } from '../research-page/state/with-filters.featu
 /** Display mode for research items */
 export type ResearchCategoryView = 'gallery' | 'list' | 'events';
 
-/**
- * Extracts the details following the date and title from an event description.
- * Descriptions follow the format `<dates>. <type>: “<title>.” <details>`
- *
- * @param description event description
- * @returns the details or an empty string if none are found
- */
-export function getEventDetails(description: string): string {
-  const index = description.indexOf('.”');
-  if (index < 0) {
-    return '';
-  }
-
-  return description
-    .slice(index + '.”'.length)
-    .replace(/\s+/g, ' ')
-    .trim()
-    .replace(/\.$/, '');
-}
-
-/**
- * Creates a markdown link that is safe for titles containing brackets
- * and urls containing whitespace or parentheses
- *
- * @param text link text
- * @param url link url
- * @returns markdown link
- */
-export function createMarkdownLink(text: string, url: string): string {
-  const escapedText = text.replace(/[\\[\]]/g, '\\$&');
-  const escapedUrl = url.replace(/[<>]/g, encodeURIComponent);
-  return `[${escapedText}](<${escapedUrl}>)`;
-}
-
 /** Group of research items for a single year */
 export interface ResearchYearGroup {
   /** Year label */
@@ -101,8 +67,10 @@ export interface ResearchYearGroup {
 export class ResearchCategoryPageComponent {
   /** Research items to display */
   readonly items = input.required<ResearchData>();
+
   /** Page title */
   readonly title = input.required<string>();
+
   /** Display mode */
   readonly view = input<ResearchCategoryView>('list');
 
@@ -187,22 +155,6 @@ export class ResearchCategoryPageComponent {
   }
 
   /**
-   * Formats an event as markdown: a linked title followed by its date range and details
-   *
-   * @param item event to format
-   * @returns markdown content
-   */
-  private formatEventContent(item: ResearchItem): string {
-    const title = item.link ? createMarkdownLink(item.title, item.link) : item.title;
-    const start = formatDate(item.dateStart, 'mediumDate', this.locale);
-    const end = formatDate(item.dateEnd, 'mediumDate', this.locale);
-    const dates = start === end ? start : `${start} - ${end}`;
-    const details = getEventDetails(item.description);
-    const subtitle = details ? `${dates} | ${details}` : dates;
-    return `${title}\n\n${subtitle}`;
-  }
-
-  /**
    * Gets tag items from array of tag ids using the store's tags map
    * @param category research category for the tags (e.g. 'publication', 'event')
    * @param projects tag ids
@@ -210,5 +162,35 @@ export class ResearchCategoryPageComponent {
    */
   getTagItems(category: ResearchCategoryId, projects: ResearchProjectId[]): TagItem[] {
     return this.tagsStore.getItemsByIds([category, ...projects]).slice(0, 2);
+  }
+
+  /**
+   * Formats an event as markdown: a linked title followed by its date range and details
+   *
+   * @param item event to format
+   * @returns markdown content
+   */
+  private formatEventContent(item: ResearchItem): string {
+    const { title, dateStart, dateEnd, location, link } = item;
+    const itemTitle = link ? this.createMarkdownLink(title, link) : title;
+    const start = formatDate(dateStart, 'mediumDate', this.locale);
+    const end = formatDate(dateEnd, 'mediumDate', this.locale);
+    const dates = start === end ? start : `${start} - ${end}`;
+    const subtitle = `${dates} ${location ? `| ${location}` : ''}`;
+    return `${itemTitle}\n\n${subtitle}`;
+  }
+
+  /**
+   * Creates a markdown link that is safe for titles containing brackets
+   * and urls containing whitespace or parentheses
+   *
+   * @param text link text
+   * @param url link url
+   * @returns markdown link
+   */
+  private createMarkdownLink(text: string, url: string): string {
+    const escapedText = text.replace(/[\\[\]]/g, '\\$&');
+    const escapedUrl = url.replace(/[<>]/g, encodeURIComponent);
+    return `[${escapedText}](<${escapedUrl}>)`;
   }
 }
