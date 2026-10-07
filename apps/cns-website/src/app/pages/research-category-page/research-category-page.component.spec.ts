@@ -139,18 +139,6 @@ describe('ResearchCategoryPageComponent', () => {
       expect(screen.queryByRole('link', { name: 'Network Workshop' })).not.toBeInTheDocument();
     });
 
-    it.each([
-      ['spaces in the link', 'Network Workshop', 'https://example.com/docs/Katy Borner Scimap.pdf'],
-      ['parentheses in the link', 'Network Workshop', 'https://example.com/docs/slides (1).pdf'],
-      ['brackets in the title', 'Toward a human [reference] map', 'https://example.com/workshop'],
-    ])('should render a link when there are %s', async (_, title, link) => {
-      await renderEvents([mockEvent({ title, link })]);
-
-      const anchor = await screen.findByRole('link', { name: title });
-      expect(anchor.getAttribute('href')).toBe(encodeURI(link));
-      expect(screen.queryByText(/\]\(/)).not.toBeInTheDocument();
-    });
-
     it('should apply the events list styling', async () => {
       const { container } = await renderEvents([mockEvent()]);
       expect(container.querySelector('hra-list-view')).toHaveClass('events-list');

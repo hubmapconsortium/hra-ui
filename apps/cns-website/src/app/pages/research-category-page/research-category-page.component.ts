@@ -172,25 +172,11 @@ export class ResearchCategoryPageComponent {
    */
   private formatEventContent(item: ResearchItem): string {
     const { title, dateStart, dateEnd, location, link } = item;
-    const itemTitle = link ? this.createMarkdownLink(title, link) : title;
+    const itemTitle = link ? `[${title}](${link})` : title;
     const start = formatDate(dateStart, 'mediumDate', this.locale);
     const end = formatDate(dateEnd, 'mediumDate', this.locale);
     const dates = start === end ? start : `${start} - ${end}`;
     const subtitle = `${dates} ${location ? `| ${location}` : ''}`;
     return `${itemTitle}\n\n${subtitle}`;
-  }
-
-  /**
-   * Creates a markdown link that is safe for titles containing brackets
-   * and urls containing whitespace or parentheses
-   *
-   * @param text link text
-   * @param url link url
-   * @returns markdown link
-   */
-  private createMarkdownLink(text: string, url: string): string {
-    const escapedText = text.replace(/[\\[\]]/g, '\\$&');
-    const escapedUrl = url.replace(/[<>]/g, encodeURIComponent);
-    return `[${escapedText}](<${escapedUrl}>)`;
   }
 }
