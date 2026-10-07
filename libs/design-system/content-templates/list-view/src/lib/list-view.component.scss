@@ -19,17 +19,19 @@
   .content {
     overflow-wrap: break-word;
     color: vars.$primary;
-    @include utils.use-font(body, xl);
 
     ::ng-deep p {
       margin-bottom: 0;
 
-      &:first-child {
-        @include utils.use-font(title, large);
-      }
+      &:not(:only-of-type) {
+        &:first-child {
+          @include utils.use-font(title, medium);
+        }
 
-      + p {
-        margin-top: 0.5rem;
+        + p {
+          @include utils.use-font(body, medium);
+          margin-top: 0.25rem;
+        }
       }
     }
   }
