@@ -47,15 +47,6 @@ const PERSON_BASE_URL = BASE_URL + 'content/people';
 const loadContentComponent = () =>
   import('./components/content-page/content-page.component').then((m) => m.ContentPageComponent);
 
-/** All research content index URLs */
-const ALL_RESEARCH_INDEX_URLS = [
-  NEWS_INDEX_URL,
-  PUBLICATIONS_INDEX_URL,
-  EVENT_INDEX_URL,
-  FUNDING_INDEX_URL,
-  VISUALIZATIONS_INDEX_URL,
-];
-
 /**
  * Helper function to create a research category page route
  *
@@ -184,6 +175,8 @@ export const appRoutes: Route[] = [
     },
   },
   createResearchCategoryRoute('events', 'Events', 'list', [EVENT_INDEX_URL]),
+  // TODO: Use this when we want to filter events to only those organized by CNS
+  // createResearchCategoryRoute('events', 'Events', 'list', [EVENT_INDEX_URL], (item) => item.organizedByCns),
   createResearchCategoryRoute('funding', 'Funding', 'list', [FUNDING_INDEX_URL]),
   createResearchCategoryRoute('news', 'News', 'gallery', [NEWS_INDEX_URL]),
   createResearchCategoryRoute(
@@ -192,13 +185,6 @@ export const appRoutes: Route[] = [
     'list',
     [EVENT_INDEX_URL],
     (item) => item.type === 'presentation',
-  ),
-  createResearchCategoryRoute(
-    'projects',
-    'Projects',
-    'list',
-    ALL_RESEARCH_INDEX_URLS,
-    (item) => item.projects.length > 0,
   ),
   createResearchCategoryRoute('publications', 'Publications', 'list', [PUBLICATIONS_INDEX_URL]),
   createResearchCategoryRoute('tutorials', 'Tutorials', 'list', [EVENT_INDEX_URL], (item) => item.type === 'tutorial'),

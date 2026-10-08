@@ -117,11 +117,6 @@
             },
             {
               "type": "item",
-              "label": "Projects",
-              "url": "https://cns.iu.edu/projects"
-            },
-            {
-              "type": "item",
               "label": "Publications",
               "url": "https://cns.iu.edu/publications"
             },

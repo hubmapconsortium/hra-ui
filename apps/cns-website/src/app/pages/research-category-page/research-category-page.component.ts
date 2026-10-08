@@ -8,7 +8,6 @@ import { PageLabelComponent } from '@hra-ui/design-system/content-templates/page
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
 import { EndOfResultsIndicatorComponent } from '@hra-ui/design-system/indicators/end-of-results';
-import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no-results-indicator';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { linkedQueryParam } from 'ngxtension/linked-query-param';
@@ -47,7 +46,6 @@ export interface ResearchYearGroup {
     ListViewComponent,
     MatDivider,
     NgScrollbar,
-    NoResultsIndicatorComponent,
     PageLabelComponent,
     SearchFilterComponent,
     SectionLinkComponent,
@@ -59,8 +57,10 @@ export interface ResearchYearGroup {
 export class ResearchCategoryPageComponent {
   /** Research items to display */
   readonly items = input.required<ResearchData>();
+
   /** Page title */
   readonly title = input.required<string>();
+
   /** Display mode */
   readonly view = input<ResearchCategoryView>('list');
 

@@ -23,6 +23,7 @@ const mockResearchItem = (overrides?: Partial<ResearchItem>): ResearchItem => ({
   dateStart: new Date('2024-01-15'),
   dateEnd: new Date('2024-01-20'),
   link: 'https://example.com/research',
+  organizedByCns: false,
   people: [],
   featured: false,
   projects: ['organ-brain' as ResearchProjectId],
@@ -74,6 +75,19 @@ describe('ResearchCategoryPageComponent', () => {
     await renderComponent({ view: 'gallery' });
     expect(await screen.findByText('2024')).toBeInTheDocument();
     expect(screen.queryByText('Details about another publication.')).not.toBeInTheDocument();
+  });
+
+  it('should sort items newest first within a year', async () => {
+    await renderComponent({
+      items: [
+        mockResearchItem({ slug: 'a' as ResearchId, description: 'Older item', dateStart: new Date('2024-02-01') }),
+        mockResearchItem({ slug: 'b' as ResearchId, description: 'Newer item', dateStart: new Date('2024-06-01') }),
+      ],
+    });
+
+    const newer = await screen.findByText('Newer item');
+    const older = await screen.findByText('Older item');
+    expect(newer.compareDocumentPosition(older) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('should filter items by search text', async () => {
