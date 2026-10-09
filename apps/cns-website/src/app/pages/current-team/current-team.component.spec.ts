@@ -157,7 +157,7 @@ describe('CurrentTeamComponent', () => {
     // Verify role types display
     expect(screen.getByText('Faculty, Center Director')).toBeInTheDocument();
     expect(screen.getByText('Postdoctoral Fellow')).toBeInTheDocument();
-    expect(screen.getByText('Ph.D. Student - Data Visualization')).toBeInTheDocument();
+    expect(screen.getByText('Ph.D. Student, Data Visualization')).toBeInTheDocument();
     expect(screen.getByText('Collaborator - HuBMAP')).toBeInTheDocument();
   });
 
@@ -363,7 +363,7 @@ describe('CurrentTeamComponent', () => {
     ];
 
     await renderComponent(dataWithMasters);
-    expect(screen.getByText('Masters Student - Machine Learning')).toBeInTheDocument();
+    expect(screen.getByText('Masters Student, Machine Learning')).toBeInTheDocument();
   });
 
   it('should group by role showing all group headers', async () => {

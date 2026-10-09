@@ -11,6 +11,7 @@ import {
 import { entityConfig, setEntities, withEntities } from '@ngrx/signals/entities';
 import { PeopleItem } from '../../../schemas/people.schema';
 import { AnyRole } from '../../../schemas/roles.schema';
+import { getRoleTitle } from '../../../utils/role-title';
 
 /**
  * Props provided by the people feature
@@ -156,16 +157,7 @@ export function withPeople() {
       const getMemberTitle = (person: PeopleItem) => {
         const rolesByPerson = store.rolesByPerson();
         const role = rolesByPerson.get(person)?.[0];
-        switch (role?.type) {
-          case 'collaborator':
-            return `Collaborator - ${role.project}`;
-          case 'member':
-            return role.title || '';
-          case 'student':
-            return `${role.degree} Student - ${role.topic}`;
-          default:
-            return '';
-        }
+        return role ? getRoleTitle(role) : '';
       };
 
       const getSearchableText = (person: PeopleItem): string => {
