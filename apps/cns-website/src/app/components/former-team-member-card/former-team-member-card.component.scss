@@ -34,18 +34,4 @@
     color: vars.$on-surface-variant;
     margin-bottom: 1rem;
   }
-
-  .date-ranges {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .date-range {
-    @include utils.use-font(label, large);
-    color: vars.$on-surface;
-  }
 }
