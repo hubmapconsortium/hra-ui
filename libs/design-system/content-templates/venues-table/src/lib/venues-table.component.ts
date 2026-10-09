@@ -69,7 +69,7 @@ export class VenuesTableComponent {
    */
   private convertToTableRows(venues: VenueData): TableRow[] {
     return venues.map((venue) => ({
-      date: venue.dateStart,
+      date: venue.date,
       event: venue.title.replace(/Places\s*&\s*Spaces/g, '*Places & Spaces*'),
       location: [venue.city, venue.state, venue.country].filter((s) => !!s).join(', '),
       contact: venue.organizer || '',
@@ -100,10 +100,10 @@ export class VenuesTableComponent {
       links.push(`[Website](${venue.websiteUrl})`);
     }
     if (venue.venueImages) {
-      links.push(`[Photo gallery](${this.buildLinkUrl('venues/gallery', venue.dateStart, venue.title, '')})`);
+      links.push(`[Photo gallery](${this.buildLinkUrl('venues/gallery', venue.date, venue.title, '')})`);
     }
     if (venue.pdfLink) {
-      links.push(`[PDF](${this.buildLinkUrl('assets/content/venues', venue.dateStart, venue.title, venue.pdfLink)})`);
+      links.push(`[PDF](${this.buildLinkUrl('assets/content/venues', venue.date, venue.title, venue.pdfLink)})`);
     }
     return links.join(' | ');
   }
