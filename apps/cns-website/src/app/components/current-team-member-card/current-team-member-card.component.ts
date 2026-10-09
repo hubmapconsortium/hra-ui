@@ -21,15 +21,4 @@ export class CurrentTeamMemberCardComponent {
 
   /** Profile image URL, falling back to the gender-neutral placeholder. */
   protected readonly pictureUrl = computed(() => this.person().image || '/assets/placeholder-images/placeholder.png');
-
-  /** Whether the profile contains useful information beyond the card and email. */
-  protected readonly showLearnMore = computed(() => {
-    const role = this.person().roles[0];
-    if (role?.type !== 'member') {
-      return false;
-    }
-
-    const { office, phone, fax, education, background, interests } = role;
-    return [office, phone, fax, education, background, interests].some((value) => !!value?.trim());
-  });
 }

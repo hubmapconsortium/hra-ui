@@ -250,9 +250,9 @@ describe('CurrentTeamComponent', () => {
 
     const katyLink = screen.getByRole('link', { name: /learn more about katy/i });
     expect(katyLink).toHaveAttribute('href', '/people/katy-borner');
-    expect(screen.queryByRole('link', { name: /learn more about john/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: /learn more about jane/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: /learn more about bob/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /learn more about john/i })).toHaveAttribute('href', '/people/john-smith');
+    expect(screen.getByRole('link', { name: /learn more about jane/i })).toHaveAttribute('href', '/people/jane-doe');
+    expect(screen.getByRole('link', { name: /learn more about bob/i })).toHaveAttribute('href', '/people/bob-johnson');
   });
 
   it('should clear filters and search', async () => {
