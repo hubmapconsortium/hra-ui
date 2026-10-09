@@ -93,3 +93,49 @@ export const SocialIcons: Story = {
     `,
   }),
 };
+
+export const ImageSaturation: Story = {
+  render: (args) => ({
+    props: { ...args, pictureUrl: 'assets/ui-images/google-maps-luddy-hall.png' },
+    styles: [
+      `.saturation-comparison {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+      }
+
+      .comparison-item {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .full-saturation {
+        --profile-card-image-filter: saturate(100%);
+      }`,
+    ],
+    template: `
+      <div class="saturation-comparison">
+        <div class="comparison-item">
+          <strong>Default</strong>
+          <hra-profile-card
+            [pictureUrl]="pictureUrl"
+            [name]="name"
+            [description]="description"
+            [centerContent]="centerContent"
+          />
+        </div>
+        <div class="comparison-item">
+          <strong>Configured override (100%)</strong>
+          <hra-profile-card
+            class="full-saturation"
+            [pictureUrl]="pictureUrl"
+            [name]="name"
+            [description]="description"
+            [centerContent]="centerContent"
+          />
+        </div>
+      </div>
+    `,
+  }),
+};

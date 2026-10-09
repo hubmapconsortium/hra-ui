@@ -1,0 +1,6 @@
+<img loading="lazy" [attr.src]="pictureUrl() | assetUrl" [attr.alt]="`Profile picture of ${person().name}`" />
+<div class="details">
+  <div class="name">{{ person().name }}</div>
+  <div class="occupation">{{ occupation() }}</div>
+  <cns-tenure-list [roles]="person().roles" />
+</div>
