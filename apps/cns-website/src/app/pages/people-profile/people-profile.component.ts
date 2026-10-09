@@ -3,7 +3,6 @@ import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/mat
 import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 import { HraCommonModule } from '@hra-ui/common';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { ChipsModule } from '@hra-ui/design-system/chips';
 import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import {
@@ -12,8 +11,8 @@ import {
 } from '@hra-ui/design-system/layouts/table-of-contents';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PeopleItem } from '../../schemas/people.schema';
-import { getRefinedRoleTypeLabel, refineRoleType } from '../../utils/refined-roles';
 import { ContactInfoComponent } from './contact-info/contact-info.component';
+import { RoleHistoryComponent } from './role-history/role-history.component';
 
 /** Profile section data */
 interface ProfileSection {
@@ -32,7 +31,6 @@ interface ProfileSection {
   selector: 'cns-people-profile',
   imports: [
     HraCommonModule,
-    ChipsModule,
     ContactInfoComponent,
     FooterComponent,
     MarkdownComponent,
@@ -40,6 +38,7 @@ interface ProfileSection {
     MatSidenavContainer,
     MatSidenavContent,
     PageSectionComponent,
+    RoleHistoryComponent,
     TableOfContentsLayoutComponent,
     TableOfContentsLayoutHeaderComponent,
   ],
@@ -79,25 +78,6 @@ export class PeopleProfileComponent {
 
     const { email, fax, office, phone } = role;
     return !!(email || fax || office || phone);
-  });
-
-  /** Role tags computed for display */
-  protected readonly tags = computed(() => {
-    const role = this.primaryRole();
-    if (!role) {
-      return [];
-    }
-
-    const tags: string[] = [];
-    if (role.type === 'member') {
-      if (role.title) {
-        tags.push(role.title);
-      }
-    }
-
-    tags.push(getRefinedRoleTypeLabel(refineRoleType(role)));
-
-    return tags;
   });
 
   /** Profile sections computed from role data */

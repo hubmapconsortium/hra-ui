@@ -1,0 +1,11 @@
+<ul class="roles" aria-label="CNS roles">
+  @for (entry of entries(); track $index) {
+    <li class="role" [class.ended]="entry.ended">
+      @if (entry.title) {
+        {{ entry.title }}
+        <span aria-hidden="true">·</span>
+      }
+      {{ entry.dateRange }}
+    </li>
+  }
+</ul>
