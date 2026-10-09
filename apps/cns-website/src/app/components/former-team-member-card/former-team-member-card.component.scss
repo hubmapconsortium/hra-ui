@@ -13,7 +13,7 @@
     width: 9.375rem;
     height: 11.75rem;
     object-fit: cover;
-    filter: grayscale(100%);
+    filter: var(--profile-card-image-filter, saturate(32%));
     background: vars.$surface-variant;
   }
 
