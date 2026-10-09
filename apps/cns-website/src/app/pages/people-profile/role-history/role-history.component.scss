@@ -14,7 +14,7 @@
   }
 
   .role {
-    @include utils.use-font(body, xl);
+    @include utils.use-font(body, large);
 
     &.ended {
       color: vars.$on-surface-variant;
