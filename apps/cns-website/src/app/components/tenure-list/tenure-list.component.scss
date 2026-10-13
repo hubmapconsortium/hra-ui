@@ -1,0 +1,20 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+
+  .date-ranges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .date-range {
+    @include utils.use-font(label, large);
+    color: vars.$on-surface;
+  }
+}

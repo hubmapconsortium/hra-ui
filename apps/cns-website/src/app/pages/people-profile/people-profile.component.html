@@ -6,13 +6,10 @@
   <mat-sidenav-content id="main-content" class="content" role="main" tabindex="-1">
     <hra-table-of-contents-layout class="layout-container">
       <hra-table-of-contents-layout-header>
-        <hra-page-section
-          class="section"
-          [tagline]="data().name"
-          [level]="1"
-          [breadcrumbs]="breadcrumbs()"
-          [tags]="tags()"
-        >
+        <hra-page-section class="section" [tagline]="data().name" [level]="1" [breadcrumbs]="breadcrumbs()">
+          @if (data().roles.length > 0) {
+            <cns-role-history [roles]="data().roles" />
+          }
           @if (hasContactInfo() && isMobile()) {
             <cns-contact-info [image]="data().image" [role]="primaryRole()" />
           }

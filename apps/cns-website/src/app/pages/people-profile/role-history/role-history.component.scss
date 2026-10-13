@@ -1,0 +1,23 @@
+@use 'utils';
+@use 'vars';
+
+:host {
+  display: block;
+
+  .roles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .role {
+    @include utils.use-font(body, large);
+
+    &.ended {
+      color: vars.$on-surface-variant;
+    }
+  }
+}

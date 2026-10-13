@@ -5,9 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
-import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ProfileCardComponent } from '@hra-ui/design-system/cards/profile-card';
 import { SectionLinkComponent } from '@hra-ui/design-system/content-templates/section-link';
 import { FilterMenuComponent } from '@hra-ui/design-system/filter-menu';
 import { GalleryGridComponent, GalleryGridItemDirective } from '@hra-ui/design-system/gallery-grid';
@@ -16,7 +14,9 @@ import { NoResultsIndicatorComponent } from '@hra-ui/design-system/indicators/no
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { SearchFilterComponent } from '@hra-ui/design-system/search-filter';
 import { NgScrollbar } from 'ngx-scrollbar';
+import { CurrentTeamMemberCardComponent } from '../../components/current-team-member-card/current-team-member-card.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { FormerTeamMemberCardComponent } from '../../components/former-team-member-card/former-team-member-card.component';
 import { PeopleData } from '../../schemas/people.schema';
 import { ScrollbarStore } from '../../state/scrollbar/scrollbar.store';
 import { SidebarStore } from '../../state/sidebar/sidebar.store';
@@ -30,19 +30,19 @@ import { CurrentTeamStore } from './state/current-team.store';
   imports: [
     HraCommonModule,
     ButtonsModule,
+    CurrentTeamMemberCardComponent,
     FilterMenuComponent,
     FooterComponent,
+    FormerTeamMemberCardComponent,
     FormsModule,
     GalleryGridComponent,
     GalleryGridItemDirective,
     IconsModule,
-    LinkDirective,
     MatButtonToggleModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSidenavModule,
     NoResultsIndicatorComponent,
-    ProfileCardComponent,
     ScrollingModule,
     SearchFilterComponent,
     SectionLinkComponent,
@@ -65,9 +65,6 @@ export class CurrentTeamComponent {
   protected readonly sidebarStore = inject(SidebarStore);
   /** Scrollbar store for managing viewport scrolling */
   protected readonly scrollbarStore = inject(ScrollbarStore);
-
-  /** Gender neutral placeholder image for members without pictures */
-  protected readonly placeholderImage = '/assets/placeholder-images/placeholder.png';
 
   /** Reference to the sidebar component */
   private readonly sidebar = viewChild.required(MatSidenav);
