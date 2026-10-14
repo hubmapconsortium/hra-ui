@@ -75,7 +75,7 @@
   }
 
   body {
-    height: 100vh;
+    height: 100dvh;
     min-width: 20rem;
   }
 
@@ -429,7 +429,7 @@
 
   hra-server-error-page,
   hra-not-found-page {
-    height: calc(100vh - 3.5rem);
+    height: calc(100dvh - 3.5rem);
     background-color: unset !important;
 
     .title {

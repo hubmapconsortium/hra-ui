@@ -83,9 +83,9 @@ export class HeaderComponent {
   /** Offset from top to the menu. Used to calculate menu heights and max heights */
   protected readonly menuOffsetPx = signal<number>(0);
   /** Mobile menu height. Fills the entire screen */
-  protected readonly mobileMenuHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px)`);
+  protected readonly mobileMenuHeight = computed(() => `calc(100dvh - ${this.menuOffsetPx()}px)`);
   /** Desktop menu max height */
-  protected readonly desktopMenuMaxHeight = computed(() => `calc(100vh - ${this.menuOffsetPx()}px - 16px)`);
+  protected readonly desktopMenuMaxHeight = computed(() => `calc(100dvh - ${this.menuOffsetPx()}px - 16px)`);
   /** Mobile menu overlay origin */
   private readonly mobileMenuOrigin = viewChild.required('mobileMenuOrigin', { read: ElementRef });
   /** Desktop menu overlay origin */

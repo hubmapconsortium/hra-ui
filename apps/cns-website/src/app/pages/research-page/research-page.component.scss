@@ -4,7 +4,7 @@
 
 :host {
   display: block;
-  height: calc(100vh - 3.5rem);
+  height: calc(100dvh - 3.5rem);
 
   .container {
     height: 100%;
@@ -23,7 +23,7 @@
   mat-sidenav-content {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 3.5rem);
+    height: calc(100dvh - 3.5rem);
     align-items: center;
   }
 
@@ -57,7 +57,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: calc(100vh - 10.5rem);
+    min-height: calc(100dvh - 10.5rem);
 
     .title {
       margin-bottom: 2rem;
