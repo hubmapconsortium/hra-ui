@@ -639,13 +639,31 @@ export class FtuDataImplService extends FtuDataService {
    */
   private toSourceReferences(data: DataSources): SourceReference[] {
     const results: SourceReference[] &#x3D; [];
-    for (const { &#x27;@id&#x27;: id, label, link, description, year &#x3D; -1 } of data) {
+    for (const {
+      &#x27;@id&#x27;: id,
+      label,
+      link,
+      description,
+      year &#x3D; -1,
+      cell_type_annotation_tool: cellType,
+      health_status: healthStatus,
+      sex,
+      age,
+      bmi,
+      ethnicity,
+    } of data) {
       results.push({
         datasetId: id,
         datasetTitle: label,
         doi: link,
         title: description,
         year,
+        cellType,
+        healthStatus,
+        sex,
+        age,
+        bmi,
+        ethnicity,
       });
     }
     return results;

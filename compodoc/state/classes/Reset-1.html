@@ -137,7 +137,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/illustrator/illustrator.actions.ts</code>
+            <code>src/lib/cell-summary/cell-summary.actions.ts</code>
         </p>
 
 
@@ -145,7 +145,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Resets the state</p>
+                <p>Action to reset the current state</p>
 
             </p>
 
@@ -153,7 +153,7 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                        <code>Action(&#x27;[Illustrator] Reset&#x27;)</code>
+                        <code>Action(&#x27;[CellSummary] Reset&#x27;)</code>
             </p>
 
 
@@ -172,57 +172,36 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Action } from &#x27;@hra-ui/cdk/state&#x27;;
-import { IllustrationMappingItem, Iri } from &#x27;@hra-ui/services&#x27;;
+import { Iri, SourceReference } from &#x27;@hra-ui/services&#x27;;
 
-/**
- * Loads the state with the current Iri
- */
-export class Load extends Action(&#x27;[Illustrator] Load&#x27;) {
+/** Loads the given Iri to the state */
+export class Load extends Action(&#x27;[CellSummary] Load&#x27;) {
   /** Intializes the set iri */
   constructor(readonly iri: Iri) {
     super();
   }
 }
 
-/**
- * Sets the selection for the Item in the current state on SetHover
- */
-export class SetHover extends Action(&#x27;[Illustrator] Set Selection on Hover&#x27;) {
-  /** Initializes the Mapping Item */
-  constructor(readonly selectedOnHover: IllustrationMappingItem | undefined) {
+/** Filters summaries by sources */
+export class FilterSummaries extends Action(&#x27;[CellSummary] Filter Summaries&#x27;) {
+  /** Initializes */
+  constructor(readonly sources: SourceReference[]) {
     super();
   }
 }
 
 /**
- * Sets the selection for the Item in the current state on SetClicked
+ * Action to combine summaries by biomarker
  */
-export class SetClicked extends Action(&#x27;[Illustrator] Set Selection on Clicked&#x27;) {
-  /** Initializes the Mapping Item */
-  constructor(readonly selectedOnClick: IllustrationMappingItem) {
-    super();
-  }
-}
+export class CombineSummariesByBiomarker extends Action(&#x27;[CellSummary] Combine Summaries by Biomarker&#x27;) {}
 
 /**
- * Sets highlighted cell type id in the state from label
- */
-export class HighlightCellType extends Action(&#x27;[Illustrator] Highlight Cell Type Id&#x27;) {
-  /** Initializes the Mapping Item */
-  constructor(readonly hoverLabel?: string) {
-    super();
-  }
-}
+ * Compute aggregate of the given data and store to state */
+export class ComputeAggregates extends Action(&#x27;[CellSummary] Compute Aggregates&#x27;) {}
 
 /**
- * Clears the selection for the current state
- */
-export class ClearSelection extends Action(&#x27;[Illustrator] Clear Selection&#x27;) {}
-
-/**
- * Resets the state
- */
-export class Reset extends Action(&#x27;[Illustrator] Reset&#x27;) {}
+ * Action to reset the current state */
+export class Reset extends Action(&#x27;[CellSummary] Reset&#x27;) {}
 </code></pre>
     </div>
 </div>

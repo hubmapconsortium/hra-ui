@@ -167,6 +167,12 @@ const RAW_DATASETS = z.object({
             year: z.number().optional(),
             doi: z.string().optional(),
             link: z.string(),
+            cell_type_annotation_tool: z.string().optional(),
+            health_status: z.string().optional(),
+            sex: z.string().optional(),
+            age: z.number().optional(),
+            bmi: z.number().optional(),
+            ethnicity: z.string().optional(),
         })
             .array(),
     })
@@ -395,13 +401,19 @@ class FtuDataImplService extends FtuDataService {
      */
     toSourceReferences(data) {
         const results = [];
-        for (const { '@id': id, label, link, description, year = -1 } of data) {
+        for (const { '@id': id, label, link, description, year = -1, cell_type_annotation_tool: cellType, health_status: healthStatus, sex, age, bmi, ethnicity, } of data) {
             results.push({
                 datasetId: id,
                 datasetTitle: label,
                 doi: link,
                 title: description,
                 year,
+                cellType,
+                healthStatus,
+                sex,
+                age,
+                bmi,
+                ethnicity,
             });
         }
         return results;
