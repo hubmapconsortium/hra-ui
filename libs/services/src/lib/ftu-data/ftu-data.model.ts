@@ -165,6 +165,12 @@ export const RAW_DATASETS = z.object({
           year: z.number().optional(),
           doi: z.string().optional(),
           link: z.string(),
+          cell_type_annotation_tool: z.string().optional(),
+          health_status: z.string().optional(),
+          sex: z.string().optional(),
+          age: z.number().optional(),
+          bmi: z.number().optional(),
+          ethnicity: z.string().optional(),
         })
         .array(),
     })
