@@ -276,13 +276,31 @@ export class FtuDataImplService extends FtuDataService {
    */
   private toSourceReferences(data: DataSources): SourceReference[] {
     const results: SourceReference[] = [];
-    for (const { '@id': id, label, link, description, year = -1 } of data) {
+    for (const {
+      '@id': id,
+      label,
+      link,
+      description,
+      year = -1,
+      cell_type_annotation_tool: cellType,
+      health_status: healthStatus,
+      sex,
+      age,
+      bmi,
+      ethnicity,
+    } of data) {
       results.push({
         datasetId: id,
         datasetTitle: label,
         doi: link,
         title: description,
         year,
+        cellType,
+        healthStatus,
+        sex,
+        age,
+        bmi,
+        ethnicity,
       });
     }
     return results;
