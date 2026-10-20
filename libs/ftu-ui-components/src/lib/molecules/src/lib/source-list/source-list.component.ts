@@ -85,6 +85,13 @@ export class SourceListComponent {
 
   /** Sort data on load and set columns */
   constructor() {
+    // Sort age ranges such as '60-69' by their lower bound so they sort among numeric ages
+    const defaultSortingDataAccessor = this.datasource.sortingDataAccessor;
+    this.datasource.sortingDataAccessor = (data, column) =>
+      column === 'age' && typeof data.age === 'string'
+        ? parseFloat(data.age)
+        : defaultSortingDataAccessor(data, column);
+
     effect(() => {
       this.datasource.sort = this.sort();
     });

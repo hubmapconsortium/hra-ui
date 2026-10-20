@@ -105,7 +105,8 @@ export const SOURCE_REFERENCE = z.object({
   cellType: z.string().optional(),
   healthStatus: z.string().optional(),
   sex: z.string().optional(),
-  age: z.number().optional(),
+  /** Age in years, or an age range such as '60-69' */
+  age: z.union([z.number(), z.string()]).optional(),
   bmi: z.number().optional(),
   ethnicity: z.string().optional(),
 });
@@ -168,7 +169,7 @@ export const RAW_DATASETS = z.object({
           cell_type_annotation_tool: z.string().optional(),
           health_status: z.string().optional(),
           sex: z.string().optional(),
-          age: z.number().optional(),
+          age: z.union([z.number(), z.string()]).optional(),
           bmi: z.number().optional(),
           ethnicity: z.string().optional(),
         })

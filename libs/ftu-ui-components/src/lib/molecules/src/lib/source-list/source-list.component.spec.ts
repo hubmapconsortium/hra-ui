@@ -61,6 +61,18 @@ describe('SourceListComponent', () => {
     expect(fullscreenMock.isFullscreen.set).toHaveBeenCalledWith(true);
   });
 
+  it('should sort age ranges by their lower bound', async () => {
+    const { fixture } = await render(SourceListComponent, {
+      inputs: {
+        sources: testSources,
+      },
+    });
+
+    const { datasource } = fixture.componentInstance;
+    expect(datasource.sortingDataAccessor({ ...testItem, age: '60-69' }, 'age')).toBe(60);
+    expect(datasource.sortingDataAccessor({ ...testItem, age: 7 }, 'age')).toBe(7);
+  });
+
   it('should toggle showTable on toggleTable() method call', async () => {
     const { fixture } = await render(SourceListComponent, {
       inputs: {
