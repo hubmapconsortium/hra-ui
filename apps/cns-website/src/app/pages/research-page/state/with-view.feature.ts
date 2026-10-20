@@ -25,7 +25,7 @@ export function withView() {
   return signalStoreFeature(
     withState(initialState),
     withComputed((store) => ({
-      view: () => store._view() ?? View.Gallery,
+      view: () => store._view() ?? View.List,
     })),
     withMethods((store) => ({
       /** Sets the active view mode */
