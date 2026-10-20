@@ -105,9 +105,10 @@ export const SOURCE_REFERENCE = z.object({
   cellType: z.string().optional(),
   healthStatus: z.string().optional(),
   sex: z.string().optional(),
-  /** Age in years, or an age range such as '60-69' */
+  /** Age in years, or a string such as an age range ('60-69') or 'unknown' */
   age: z.union([z.number(), z.string()]).optional(),
-  bmi: z.number().optional(),
+  /** BMI, or a string such as 'unknown' */
+  bmi: z.union([z.number(), z.string()]).optional(),
   ethnicity: z.string().optional(),
 });
 
@@ -170,7 +171,7 @@ export const RAW_DATASETS = z.object({
           health_status: z.string().optional(),
           sex: z.string().optional(),
           age: z.union([z.number(), z.string()]).optional(),
-          bmi: z.number().optional(),
+          bmi: z.union([z.number(), z.string()]).optional(),
           ethnicity: z.string().optional(),
         })
         .array(),

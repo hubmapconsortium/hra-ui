@@ -85,12 +85,17 @@ export class SourceListComponent {
 
   /** Sort data on load and set columns */
   constructor() {
-    // Sort age ranges such as '60-69' by their lower bound so they sort among numeric ages
+    // Sort string ages/BMIs among the numeric ones: ranges such as '60-69' by their lower bound,
+    // other strings such as 'unknown' after all numbers
     const defaultSortingDataAccessor = this.datasource.sortingDataAccessor;
-    this.datasource.sortingDataAccessor = (data, column) =>
-      column === 'age' && typeof data.age === 'string'
-        ? parseFloat(data.age)
-        : defaultSortingDataAccessor(data, column);
+    this.datasource.sortingDataAccessor = (data, column) => {
+      const value = column === 'age' || column === 'bmi' ? data[column] : undefined;
+      if (typeof value === 'string') {
+        const number = parseFloat(value);
+        return isNaN(number) ? Number.MAX_SAFE_INTEGER : number;
+      }
+      return defaultSortingDataAccessor(data, column);
+    };
 
     effect(() => {
       this.datasource.sort = this.sort();
