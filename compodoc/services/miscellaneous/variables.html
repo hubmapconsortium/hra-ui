@@ -1334,7 +1334,7 @@
           cell_type_annotation_tool: z.string().optional(),
           health_status: z.string().optional(),
           sex: z.string().optional(),
-          age: z.number().optional(),
+          age: z.union([z.number(), z.string()]).optional(),
           bmi: z.number().optional(),
           ethnicity: z.string().optional(),
         })
@@ -1491,7 +1491,8 @@
   cellType: z.string().optional(),
   healthStatus: z.string().optional(),
   sex: z.string().optional(),
-  age: z.number().optional(),
+  /** Age in years, or an age range such as &#x27;60-69&#x27; */
+  age: z.union([z.number(), z.string()]).optional(),
   bmi: z.number().optional(),
   ethnicity: z.string().optional(),
 })</code>

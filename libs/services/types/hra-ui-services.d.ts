@@ -74,7 +74,7 @@ declare const SOURCE_REFERENCE: z.ZodObject<{
     cellType: z.ZodOptional<z.ZodString>;
     healthStatus: z.ZodOptional<z.ZodString>;
     sex: z.ZodOptional<z.ZodString>;
-    age: z.ZodOptional<z.ZodNumber>;
+    age: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
     bmi: z.ZodOptional<z.ZodNumber>;
     ethnicity: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
@@ -157,7 +157,7 @@ declare const RAW_DATASETS: z.ZodObject<{
             cell_type_annotation_tool: z.ZodOptional<z.ZodString>;
             health_status: z.ZodOptional<z.ZodString>;
             sex: z.ZodOptional<z.ZodString>;
-            age: z.ZodOptional<z.ZodNumber>;
+            age: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
             bmi: z.ZodOptional<z.ZodNumber>;
             ethnicity: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>>;
@@ -692,7 +692,7 @@ declare const RAW_DATASETS_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.
             cell_type_annotation_tool: z.ZodOptional<z.ZodString>;
             health_status: z.ZodOptional<z.ZodString>;
             sex: z.ZodOptional<z.ZodString>;
-            age: z.ZodOptional<z.ZodNumber>;
+            age: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
             bmi: z.ZodOptional<z.ZodNumber>;
             ethnicity: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>>;
@@ -718,7 +718,7 @@ declare function rawDatasetsInput(value: unknown): string | {
             cell_type_annotation_tool?: string | undefined;
             health_status?: string | undefined;
             sex?: string | undefined;
-            age?: number | undefined;
+            age?: string | number | undefined;
             bmi?: number | undefined;
             ethnicity?: string | undefined;
         }[];

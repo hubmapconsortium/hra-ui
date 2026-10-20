@@ -298,7 +298,7 @@ declare class SourceListComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }, node_modules__angular_material_types__paginator_chunk.MatPaginator>;
@@ -312,7 +312,7 @@ declare class SourceListComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[]>;
@@ -338,7 +338,7 @@ declare class SourceListComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[]>;
@@ -692,7 +692,7 @@ declare class BiomarkerDetailsComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[];
@@ -749,7 +749,7 @@ declare class BiomarkerDetailsComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[]) => {
@@ -765,7 +765,7 @@ declare class BiomarkerDetailsComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[];
@@ -1027,7 +1027,7 @@ declare class TissueLibraryBehaviorComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[];
@@ -1040,7 +1040,7 @@ declare class TissueLibraryBehaviorComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[], id?: (string & zod.$brand<"URL"> & zod.$brand<"IRI">) | undefined) => {
@@ -1207,7 +1207,7 @@ declare class BiomarkerDetailsWcComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[];
@@ -1221,7 +1221,7 @@ declare class BiomarkerDetailsWcComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[]>;
@@ -1263,7 +1263,7 @@ declare class BiomarkerDetailsWcComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
+        age?: string | number | undefined;
         bmi?: number | undefined;
         ethnicity?: string | undefined;
     }[]) => {
