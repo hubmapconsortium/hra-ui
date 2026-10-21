@@ -34,8 +34,21 @@ content:
     anchor: app-features
     level: 3
     content:
+      - component: Markdown
+        data: |
+          - **Visualize custom data.** Upload data with X-Y coordinates for 2D or X-Y-Z coordinates for 3D.
+          - **Measure distances to an anchor cell type.** Each cell is linked to its nearest anchor cell when one is within the distance threshold. Distances are straight-line (Euclidean) distances in micrometers.
+          - **Explore cells in the Visualization panel.** Use **Explore** to zoom, pan, and rotate. Use **Inspect** to see a cell's type, Cell Ontology ID, coordinates, and distance to the closest anchor cell. Use **Select** to draw around cells and delete them from the dataset.
+          - **Compare cell types.** In the **Cell types** panel, show or hide cell types, change their colors, and compare cell and link counts.
+          - **Compare distance distributions.** The **Histogram** and **Violin graph** panels show distances to the nearest anchor cell for each cell type.
+          - **Review sample details.** The **Sample metadata** panel shows file names and any metadata entered during setup.
+          - **Download results.** Download the visualization as a PNG file, the histogram and violin graph as PNG or SVG files, and the cells, cell links, and cell color map as CSV files.
+          - **Embed the app.** Add the visualization to another website with the [embedding guide](https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md).
+
+          To explore without uploading data, browse published datasets in the [Spatial Omics Gallery](https://apps.humanatlas.io/cde/gallery).
       - component: Image
         src: assets/ui-images/annotated-ui-cde.png
+        alt: Annotated screenshot of the Cell Distance Explorer showing the 2D large intestine sample. Callouts describe the Sample metadata panel; the Cell types list with totals, sorting, show and hide checkboxes, color swatches, and the anchor cell type; the Visualization panel with Select, Inspect, and Explore modes and navigation controls; and the Violin graph and Histogram panels and their menus.
 
   - component: PageSection
     tagline: Demo video
@@ -47,24 +60,316 @@ content:
         label: Cell distance explorer demo video
 
   - component: PageSection
+    tagline: Example use cases
+    anchor: example-use-cases
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          - **Blood vessels in colorectal cancer (2D).** See how far tumor, immune, and other cells are from the nearest endothelial cell in a CyCIF sample from the Sorger Lab. [Open the 2D sample](https://apps.humanatlas.io/cde/example/0) or [read the colorectal cancer publication](https://doi.org/10.1016/j.cell.2022.12.028).
+          - **Immune cells and vasculature in skin (3D).** Explore distances from immune cells to the nearest endothelial cell in a 3D Cell DIVE reconstruction of human skin from the Fiona Ginty Lab. [Open the 3D sample](https://apps.humanatlas.io/cde/example/1) or [read the skin publication](https://doi.org/10.1038/s42003-023-04991-z).
+          - **Endothelial cell environments across organs.** Compare how cells are arranged around blood vessels in studies from more than 10 organs. [Browse the Spatial Omics Gallery](https://apps.humanatlas.io/cde/gallery) or [read the Cell Distance Explorer publication](https://doi.org/10.1101/2025.09.23.678129).
+          - **Custom anchors and structures.** With custom data, any category can be the anchor. For example, set tumor cells as the anchor to measure how close immune cells come to a tumor. An [example notebook](https://github.com/x-atlas-consortia/hra-notebooks/blob/main/notebooks/hra-hierarchical-cell-neighborhoods.ipynb) builds a Cell Distance Explorer from published data with hierarchical tissue unit annotations.
+
+  - component: PageSection
+    tagline: Create a visualization
+    anchor: create-a-visualization
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          Upload 2D or 3D cell data to measure how far each cell is from the nearest cell of a chosen type, called the anchor cell type. The [Create visualization page](https://apps.humanatlas.io/cde/create) guides users through six steps, then opens the data in an interactive visualization.
+      - component: GridContainer
+        styles:
+          background-color: rgba(23, 145, 255, 0.12)
+          border-radius: 0.5rem
+          padding: .75rem
+          padding-bottom: 0rem
+          font: var(--mat-sys-label-large)
+          display: flex
+          gap: .75rem
+        content:
+          - component: TextHyperlink
+            text: ''
+            url: ''
+            icon: info
+            styles:
+              pointer-events: none
+              --mat-sys-tertiary: '#00529C'
+          - component: Markdown
+            data: |
+              Cell Distance Explorer works with any spatial data that has X-Y or X-Y-Z coordinates and a category for each point, not only cells. For example, the cell type column can list anatomical structures, such as functional tissue units, or landmarks, such as the edge of an organ. Distances can then be measured to any of those categories.
+
+  - component: PageSection
+    tagline: Quickstart
+    anchor: quickstart
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Try the workflow in about two minutes with the cell data template, a small 3D sample.
+
+          1. Open the [cell data template](https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780) and select **File** > **Download** > **Comma Separated Values (.csv)**.
+          2. Open the [Create visualization page](https://apps.humanatlas.io/cde/create), select **Upload CSV**, and choose the downloaded file. The **X axis**, **Y axis**, **Z axis**, and **Cell type** columns are selected automatically.
+          3. Keep the default parameters. Endothelial is the anchor cell type.
+          4. Select **Visualize**.
+
+  - component: PageSection
+    tagline: Prepare data
+    anchor: prepare-data
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Save cell data as a CSV file with a header row and one row per cell. To start from an example, open the [cell data template](https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780).
+
+          Coordinates can be in pixels or micrometers. The pixel size is set in step 3.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: column
+            label: Column
+          - column: required
+            label: Required
+          - column: description
+            label: Description
+          - column: headers
+            label: Recognized headers
+            type: markdown
+        rows:
+          - column: X
+            required: 'Yes'
+            description: X coordinate of the cell.
+            headers: '`x`'
+          - column: Y
+            required: 'Yes'
+            description: Y coordinate of the cell.
+            headers: '`y`'
+          - column: Cell type
+            required: 'Yes'
+            description: Name of the cell type, such as Endothelial. Can include damage and proliferation markers.
+            headers: '`cell type`, `celltype`, `cell_type`'
+          - column: Z
+            required: For 3D data
+            description: Z coordinate of the cell.
+            headers: '`z`'
+          - column: Cell ontology ID
+            required: 'No'
+            description: Cell Ontology ID for the cell type, such as CL:0000115. Shown when inspecting a cell.
+            headers: '`cell ontology id`, `ontology id`, `cell_ontology_id`, `ontology_id`, `cellontologyid`, `ontologyid`'
+      - component: Markdown
+        data: |
+          Headers aren't case-sensitive. When a header matches a recognized header, the app selects that column automatically. Otherwise, select the column in step 2.
+
+          To use custom colors, also prepare a color map CSV file with one row per cell type. To start from an example, open the [color map template](https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0). Both color map columns are required, and their headers must match a recognized header.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: column
+            label: Column
+          - column: description
+            label: Description
+          - column: headers
+            label: Recognized headers
+            type: markdown
+        rows:
+          - column: Cell type
+            description: Name of the cell type, spelled as in the cell data.
+            headers: '`cell type`, `celltype`, `cell_type`'
+          - column: Cell color
+            description: 'Color as a hex code (#RRGGBB) or RGB values ([R, G, B]), such as #FF0000 or [255, 0, 0].'
+            headers: '`cell color`, `cellcolor`, `cell_color`, `color`, `colour`, `hex`, `rgb`, `rgba`'
+
+  - component: PageSection
+    tagline: Step-by-step guide
+    anchor: create-a-visualization-step-by-step
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Open the [Create visualization page](https://apps.humanatlas.io/cde/create) and complete the steps in order. Steps 4 and 5 are optional.
+
+          1. **Upload data.** Select **Upload CSV** and choose the cell data file. To see the expected format, select **Open template**.
+          2. **Organize data.** Check that **X axis**, **Y axis**, and **Cell type** use the right columns. For 3D data, select the **Z axis** column. A **Cell ontology ID** column can also be selected.
+          3. **Configure parameters.**
+              - **Anchor cell type:** The cell type that distances are measured to. The default is Endothelial if the data includes it. Otherwise, it's the first cell type in the file.
+              - **Distance threshold (µm):** How far a cell can be from an anchor cell and still be linked to it. The default is 1000. Enter a number greater than 0.
+              - **Pixel size (X), (Y), and (Z) (µm/pixel):** Converts coordinates to micrometers. Typical microscopy pixel sizes are 0.1–1 µm/pixel. Use 1 if coordinates are already in micrometers. For 3D data with Z values in slices, set **Pixel size (Z)** to the distance between slices. Enter numbers greater than 0.
+          4. **Optional: Add metadata.** Enter a **Visualization title**, **Imaging technology**, **Organ**, **Sex**, **Age**, and **Thickness (µm)**. Metadata appears in the **Sample metadata** panel and doesn't change the visualization.
+          5. **Optional: Configure colors.** Keep **Use default colors**, or select **Upload color map** and upload a color map CSV file. Colors can also be changed later in the **Cell types** panel.
+          6. **Visualize cell distance data.** Select **Visualize**. If anything is missing, a message above the button explains what to complete.
+      - component: GridContainer
+        styles:
+          background-color: rgba(23, 145, 255, 0.12)
+          border-radius: 0.5rem
+          padding: .75rem
+          padding-bottom: 0rem
+          font: var(--mat-sys-label-large)
+          display: flex
+          gap: .75rem
+        content:
+          - component: TextHyperlink
+            text: ''
+            url: ''
+            icon: info
+            styles:
+              pointer-events: none
+              --mat-sys-tertiary: '#00529C'
+          - component: Markdown
+            data: |
+              Data can't be changed after selecting **Visualize**. To make changes, create a new visualization. Download any needed files before leaving or refreshing the visualization page.
+
+  - component: PageSection
+    tagline: Downloaded files
+    anchor: downloaded-files
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Download CSV files from the **Cell types** panel menu, and images from the **Downloads** menu of the **Visualization**, **Histogram**, and **Violin graph** panels. CSV files include only the cell types currently shown and leave out deleted cells. Coordinates and distances are in micrometers.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: file
+            label: File
+          - column: contents
+            label: Contents
+        rows:
+          - file: Cells CSV
+            contents: One row per cell. For uploaded data, the columns are Cell Type, Cell Ontology ID, X, Y, and Z. Cell Ontology ID and Z are empty when not provided.
+          - file: Cell links CSV
+            contents: One row per link between a cell and its nearest anchor cell. Cell ID and Target ID are the row numbers of the cell and the anchor cell in the cells CSV, starting at 0. X1, Y1, and Z1 are the cell's coordinates, X2, Y2, and Z2 are the anchor cell's coordinates, and Distance is the distance between them.
+          - file: Cell color map CSV
+            contents: One row per cell type, with Cell Type and Cell Color columns. Colors are RGB values. Upload this file in step 5 to reuse the colors in a new visualization.
+          - file: Visualization PNG
+            contents: Image of the current view in the Visualization panel.
+          - file: Histogram and violin graph
+            contents: PNG or SVG images of each chart.
+
+  - component: PageSection
+    tagline: Troubleshooting
+    anchor: troubleshooting
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          If a file can't be used or a value isn't valid, the page shows one of these messages.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: message
+            label: Message
+          - column: fix
+            label: How to fix it
+        rows:
+          - message: 'Invalid file type: …, expected csv'
+            fix: Save the file as a CSV (comma-separated values) file and upload it again.
+          - message: File is empty.
+            fix: Add a header row and at least one row of cell data.
+          - message: 'Invalid file: errors on rows …'
+            fix: Check the listed rows. Each row needs the same number of values as the header row.
+          - message: 'Please select the required column headers: …'
+            fix: In step 2, select a column for each listed field, or rename the headers to match a recognized header.
+          - message: 'Required columns missing: …'
+            fix: Rename the color map headers to match a recognized header for cell type and cell color.
+          - message: 'Required color format not detected. Please use #RRGGBB or [R, G, B].'
+            fix: 'Write each color as a hex code, such as #FF0000, or as RGB values, such as [255, 0, 0].'
+          - message: Enter more than 0
+            fix: Enter a distance threshold or pixel size greater than 0.
+          - message: Enter a whole number, 0–120
+            fix: Enter the age in whole years, from 0 to 120.
+          - message: Enter 0 or more
+            fix: Enter a thickness of 0 µm or more.
+
+  - component: PageSection
     tagline: Code
     anchor: code
     level: 2
     content:
       - component: Markdown
         data: |
-          - [GitHub Repository](https://github.com/x-atlas-consortia/hra-apps/tree/main/applications/cde-cell-distance-explorer/)
-            - [HRA Notebooks](https://github.com/x-atlas-consortia/hra-notebooks/tree/main)
-              - [Hierarchical Tissue Unit Annotation](https://github.com/x-atlas-consortia/hra-notebooks/blob/main/notebooks/hra-hierarchical-cell-neighborhoods.ipynb)
+          - [Source code on GitHub](https://github.com/hubmapconsortium/hra-ui): The app ([apps/cde-ui](https://github.com/hubmapconsortium/hra-ui/tree/main/apps/cde-ui)) and its visualization ([libs/cde-visualization](https://github.com/hubmapconsortium/hra-ui/tree/main/libs/cde-visualization)) are part of the HRA UI repository.
+          - [Embedding guide](https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md): Add the Cell Distance Explorer visualization to any web page as a web component.
+          - [HRA Jupyter Widgets](https://github.com/x-atlas-consortia/hra-jupyter-widgets): Use the Cell Distance Explorer in Jupyter notebooks.
+          - [HRA Notebooks](https://github.com/x-atlas-consortia/hra-notebooks): Example notebooks, including [Hierarchical Tissue Unit Annotation](https://github.com/x-atlas-consortia/hra-notebooks/blob/main/notebooks/hra-hierarchical-cell-neighborhoods.ipynb), which builds a Cell Distance Explorer widget.
 
   - component: PageSection
-    tagline: Collaborators
-    anchor: collaborators
+    tagline: Citation
+    anchor: citation
     level: 2
     content:
       - component: Markdown
         data: |
-          - Thank you to the Peter Sorger Lab for providing the CyCIF colorectal cancer data for the 2D intestine cell sample visualization
-            - Publication: [Multiplexed 3D atlas of state transitions and immune interaction in colorectal cancer](https://www.sciencedirect.com/science/article/pii/S0092867422015719?via%3Dihub)
-          - Thank you to GE Healthcare for providing the Cell DIVE skin data for the 3D skin sample visualization
-            - Publication: [3D reconstruction of skin and spatial mapping of immune cell density, vascular distance and effects of sun exposure and aging](https://www.nature.com/articles/s42003-023-04991-z)
+          To cite the Cell Distance Explorer, use:
+
+          Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Puig-Barbe, A., Quardokus, E. M., Qaurooni, D., Yapp, C., Ewing, S. L., Enninful, A., Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C., Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025). Exploring endothelial cell environments across organs in spatially resolved omics data. *bioRxiv*. [https://doi.org/10.1101/2025.09.23.678129](https://doi.org/10.1101/2025.09.23.678129)
+
+  - component: PageSection
+    tagline: Acknowledgments
+    anchor: acknowledgments
+    level: 2
+    content:
+      - component: Markdown
+        data: |
+          The Cell Distance Explorer is part of the Human Reference Atlas (HRA), developed by the Indiana University Mapping Component. Many thanks to the authors listed in the citation above and to everyone who designed and built the app, including Daniel Bolin, Bruce W. Herr II, Bhushan Khope, Edward Lu, Elizabeth Maier, Gauri Markandey, and Saai Vignesh Premanand.
+
+  - component: PageSection
+    tagline: Data providers
+    anchor: data-providers
+    level: 3
+    content:
+      - component: Markdown
+        data: |
+          Many thanks to the labs that shared data for the [Spatial Omics Gallery](https://apps.humanatlas.io/cde/gallery) and the sample datasets. Each study page in the gallery lists its datasets and publications.
+      - component: PageTable
+        variant: alternating
+        verticalDividers: true
+        columns:
+          - column: lab
+            label: Lab
+          - column: institution
+            label: Institution
+          - column: studies
+            label: Studies
+            type: markdown
+        rows:
+          - lab: Angelo Lab
+            institution: Stanford University
+            studies: '[Maternal-fetal interface](https://apps.humanatlas.io/cde/gallery/maternalfetalinterface-mibitof-stanford)'
+          - lab: Fan Lab
+            institution: Johns Hopkins University
+            studies: '[Spleen](https://apps.humanatlas.io/cde/gallery/spleen-codex-ufl)'
+          - lab: Fan Lab
+            institution: Yale University
+            studies: '[Lymph node](https://apps.humanatlas.io/cde/gallery/lymphnode-codex-yale)'
+          - lab: Fiona Ginty Lab
+            institution: GE HealthCare Technology and Innovation Center
+            studies: '[Skin](https://apps.humanatlas.io/cde/gallery/skin-celldive-ge) (3D sample)'
+          - lab: Hickey Lab
+            institution: Duke University
+            studies: '[Large and small intestine](https://apps.humanatlas.io/cde/gallery/intestine-codex-stanford), with the Snyder Lab'
+          - lab: Lab of Oral & Craniofacial Innovation
+            institution: Virginia Commonwealth University
+            studies: '[Oral cavity](https://apps.humanatlas.io/cde/gallery/oralcavity-codex-czi)'
+          - lab: Martha L. Campbell-Thompson Lab
+            institution: University of Florida
+            studies: '[Pancreas](https://apps.humanatlas.io/cde/gallery/pancreas-geomx-ufl)'
+          - lab: Pryhuber Research Lab
+            institution: University of Rochester Medical Center
+            studies: '[Lung](https://apps.humanatlas.io/cde/gallery/lung-codex-urmc)'
+          - lab: Snyder Lab
+            institution: Stanford University
+            studies: '[Esophagus](https://apps.humanatlas.io/cde/gallery/esophagus-codex-stanford), [Large intestine](https://apps.humanatlas.io/cde/gallery/colon-xenium-stanford), [Large and small intestine](https://apps.humanatlas.io/cde/gallery/intestine-codex-stanford), [Tonsil](https://apps.humanatlas.io/cde/gallery/tonsil-codex-stanford)'
+          - lab: Sorger Lab
+            institution: Harvard Medical School
+            studies: '[Large intestine](https://apps.humanatlas.io/cde/gallery/colon-cycif-sorgerlab) (2D sample), [Skin](https://apps.humanatlas.io/cde/gallery/skin-confocal-sorgerlab)'
+          - lab: Tan Lab
+            institution: Children's Hospital of Philadelphia
+            studies: '[Bone marrow](https://apps.humanatlas.io/cde/gallery/bonemarrow-codex-chop)'
+          - lab: Multiple labs
+            institution: Human BioMolecular Atlas Program (HuBMAP)
+            studies: '[Multiple organs](https://apps.humanatlas.io/cde/gallery/hubmap-mirror-deepcell)'
