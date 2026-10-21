@@ -423,8 +423,12 @@
       </hra-info-button>
     </div>
 
-    @if (!hasValidNodes() || !hasValidData()) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+    @let hasNodes = hasValidNodes();
+    @let canVisualize = hasNodes && hasValidData();
+    @if (!hasNodes) {
+      <hra-error-indicator id="visualize-requirements" [errors]="['Please upload a dataset.']" />
+    } @else if (!canVisualize) {
+      <hra-error-indicator id="visualize-requirements" [errors]="['Please complete the required fields above.']" />
     }
 
     <button
@@ -435,8 +439,10 @@
       data-testid="visualize"
       hraFeature="submit"
       hraClickEvent
-      [disabled]="!hasValidNodes() || !hasValidData()"
-      (click)="$event.preventDefault(); submit()"
+      disabledInteractive
+      [disabled]="!canVisualize"
+      [attr.aria-describedby]="canVisualize ? null : 'visualize-requirements'"
+      (click)="$event.preventDefault(); canVisualize && submit()"
     >
       Visualize
       <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>

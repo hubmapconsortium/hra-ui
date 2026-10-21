@@ -119,7 +119,9 @@
         clip-path: $background-clip-path;
       }
 
-      &:disabled {
+      // `.mat-mdc-button-disabled` also covers buttons using `disabledInteractive`
+      &:disabled,
+      &.mat-mdc-button-disabled {
         background-color: utils.with-alpha(vars.$tertiary, 38%);
         @include mat.button-overrides(
           (
@@ -128,7 +130,7 @@
         );
       }
 
-      &:hover:not(:active):not(:disabled) {
+      &:hover:not(:active):not(:disabled):not(.mat-mdc-button-disabled) {
         &:before {
           content: '';
           position: absolute;

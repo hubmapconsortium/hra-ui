@@ -1,6 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
@@ -213,6 +214,30 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.click(screen.getByText('Upload color map'));
       fixture.detectChanges();
       expect(await screen.findByRole('button', { name: 'Upload CSV for color map' })).toBeInTheDocument();
+    });
+  });
+
+  describe('visualize button', () => {
+    const getVisualizeButton = () => screen.getByRole('button', { name: 'Visualize' });
+
+    it('stays focusable and explains why it is unavailable before an upload', async () => {
+      const button = getVisualizeButton();
+      expect(button).not.toHaveAttribute('disabled');
+      expect(button).toHaveAttribute('aria-disabled', 'true');
+      expect(button).toHaveAccessibleDescription('Please upload a dataset.');
+
+      const submitSpy = jest.spyOn(instance, 'submit');
+      await userEvent.click(button);
+      expect(submitSpy).not.toHaveBeenCalled();
+    });
+
+    it('asks for the remaining required fields once a dataset is uploaded', () => {
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.headers.patchValue({ xAxis: '' });
+      fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
+      fixture.detectChanges();
+
+      expect(getVisualizeButton()).toHaveAccessibleDescription('Please complete the required fields above.');
     });
   });
 
