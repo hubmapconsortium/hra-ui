@@ -160,6 +160,12 @@ describe('CreateVisualizationPageComponent', () => {
     });
   });
 
+  describe('color map toggle', () => {
+    it('has a descriptive accessible name', () => {
+      expect(screen.getByLabelText('Color map')).toHaveClass('mat-button-toggle-group');
+    });
+  });
+
   describe('setNodes()', () => {
     it('checks for required keys, if missing tell the user the missing columns', async () => {
       const nodeDataEl = screen.getAllByTestId(testId)[0];
