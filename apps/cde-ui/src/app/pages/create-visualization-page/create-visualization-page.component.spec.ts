@@ -118,6 +118,13 @@ describe('CreateVisualizationPageComponent', () => {
     await fixture.whenStable();
   });
 
+  it('passes the background image to the page styles', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.style.getPropertyValue('--page-background-image')).toContain(
+      'create-visualization-page-background.png',
+    );
+  });
+
   describe('template links', () => {
     it('renders outlined links that open the templates in a new tab', () => {
       const dataTemplate = screen.getByRole('link', { name: 'Open template for cell data, opens in a new tab' });

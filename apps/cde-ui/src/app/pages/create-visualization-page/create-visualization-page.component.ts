@@ -78,7 +78,7 @@ function optionalValue<T>(): T | null {
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[style.background-image]': 'backgroundImageUrl()',
+    '[style.--page-background-image]': 'backgroundImageUrl()',
   },
 })
 export class CreateVisualizationPageComponent {

@@ -3,10 +3,29 @@
 :host {
   display: block;
   top: 7.0625rem;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-color: vars.$background;
   position: relative;
+  // Keeps the background layer below this page's content
+  isolation: isolate;
+
+  // Background image sized to the window instead of the page, so it doesn't stretch or move as
+  // cards grow. A fixed layer resizes reliably with the window, unlike background-attachment: fixed.
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--page-background-image) center / cover no-repeat;
+
+    // Content scrolling over a still image can bother people sensitive to motion, so scroll the
+    // image with the page instead, at its natural proportions, and fade it into the page background
+    @media (prefers-reduced-motion: reduce) {
+      position: absolute;
+      bottom: auto;
+      aspect-ratio: 1988 / 1080;
+      mask-image: linear-gradient(to bottom, black 70%, transparent);
+    }
+  }
 
   hra-nav-header {
     border-bottom: 1px solid vars.$outline;
