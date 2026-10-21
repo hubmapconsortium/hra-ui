@@ -241,9 +241,9 @@ export class CreateVisualizationPageComponent {
       return undefined;
     }
     const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
-    const xError = xAxis ? undefined : 'X Axis';
-    const yError = yAxis ? undefined : 'Y Axis';
-    const ctError = cellType ? undefined : 'Cell Type';
+    const xError = xAxis ? undefined : 'X axis';
+    const yError = yAxis ? undefined : 'Y axis';
+    const ctError = cellType ? undefined : 'cell type';
     const errorColumns = [xError, yError, ctError].filter((e) => !!e);
 
     return errorColumns.length > 0
