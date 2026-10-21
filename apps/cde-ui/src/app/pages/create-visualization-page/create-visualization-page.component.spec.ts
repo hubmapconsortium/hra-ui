@@ -7,7 +7,7 @@ import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY, Metadata } from '@hra-ui/cde-visualization';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
-import { render, screen } from '@testing-library/angular';
+import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
@@ -138,6 +138,25 @@ describe('CreateVisualizationPageComponent', () => {
         'href',
         expect.stringContaining('1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE'),
       );
+    });
+  });
+
+  describe('card headings', () => {
+    it('only contain the step number and title', () => {
+      const headings = screen.getAllByRole('heading', { level: 2 });
+
+      expect(headings.map((heading) => heading.querySelector('.card-title')?.textContent)).toEqual([
+        'Upload data',
+        'Organize data',
+        'Configure parameters',
+        'Optional: Add metadata',
+        'Optional: Configure colors',
+        'Visualize cell distance data',
+      ]);
+      for (const heading of headings) {
+        expect(within(heading).queryByRole('button')).toBeNull();
+        expect(within(heading).queryByRole('link')).toBeNull();
+      }
     });
   });
 

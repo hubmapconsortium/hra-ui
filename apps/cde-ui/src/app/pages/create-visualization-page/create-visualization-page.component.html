@@ -1,6 +1,6 @@
 <form class="content" hraFeature="create-visualization-page" [formGroup]="visualizationForm">
   <div class="page-nav">
-    <h1 class="title">Create a Distance Visualization</h1>
+    <h1 class="title">Create a distance visualization</h1>
   </div>
 
   <hra-workflow-card
@@ -9,9 +9,11 @@
     [allowUpload]="true"
     [loadProgress]="nodeProgress"
   >
-    <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="1" />
-      <span class="card-title">Upload data</span>
+    <div class="header">
+      <h2 class="heading">
+        <hra-step-indicator class="step-number" [value]="1" />
+        <span class="card-title">Upload data</span>
+      </h2>
       <hra-info-button>
         Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
         damage and proliferation markers.
@@ -31,7 +33,7 @@
         Open template
         <mat-icon iconPositionEnd>open_in_new</mat-icon>
       </a>
-    </h2>
+    </div>
     <table aria-label="data upload requirements">
       <tr>
         <th>Required columns</th>
@@ -70,11 +72,13 @@
   </hra-workflow-card>
 
   <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
-    <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="2" />
-      <span class="card-title">Organize data</span>
+    <div class="header">
+      <h2 class="heading">
+        <hra-step-indicator class="step-number" [value]="2" />
+        <span class="card-title">Organize data</span>
+      </h2>
       <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>
-    </h2>
+    </div>
 
     @if (visualizationForm.controls.headers.disabled) {
       <hra-error-indicator [errors]="['Please upload a dataset.']" />
@@ -174,9 +178,11 @@
   </hra-workflow-card>
 
   <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">
-    <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="3" />
-      <div class="card-title">Configure parameters</div>
+    <div class="header">
+      <h2 class="heading">
+        <hra-step-indicator class="step-number" [value]="3" />
+        <span class="card-title">Configure parameters</span>
+      </h2>
       <hra-info-button>
         The anchor cell type represents the cell type to which the nearest cell distance distributions should be
         computed and visualized. Euclidian distance is used to compute the distance between two cells. "Endothelial" is
@@ -188,7 +194,7 @@
         Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
         in micrometers.
       </hra-info-button>
-    </h2>
+    </div>
 
     @if (visualizationForm.controls.parameters.disabled) {
       <hra-error-indicator [errors]="['Please upload a dataset.']" />
@@ -236,14 +242,16 @@
   </hra-workflow-card>
 
   <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">
-    <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="4" />
-      <div class="card-title">Optional: Add metadata</div>
+    <div class="header">
+      <h2 class="heading">
+        <hra-step-indicator class="step-number" [value]="4" />
+        <span class="card-title">Optional: Add metadata</span>
+      </h2>
       <hra-info-button>
         Information in these fields will not change the visualization output. Metadata may be helpful for taking
         screenshots of the uploaded data and resulting visualizations in the Visualization App.
       </hra-info-button>
-    </h2>
+    </div>
 
     <div class="row">
       <mat-form-field subscriptSizing="dynamic" hraFeature="visualization-title">
@@ -310,9 +318,11 @@
     [allowUpload]="true"
     [loadProgress]="colorProgress"
   >
-    <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="5" />
-      <div class="card-title">Optional: Configure colors</div>
+    <div class="header">
+      <h2 class="heading">
+        <hra-step-indicator class="step-number" [value]="5" />
+        <span class="card-title">Optional: Configure colors</span>
+      </h2>
       <hra-info-button>
         Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
         may be changed individually while exploring the visualization in the Visualization App.
@@ -332,7 +342,7 @@
         Open template
         <mat-icon iconPositionEnd>open_in_new</mat-icon>
       </a>
-    </h2>
+    </div>
 
     <mat-button-toggle-group
       formControlName="colorMapType"
@@ -388,15 +398,17 @@
   </hra-workflow-card>
 
   <hra-workflow-card class="card visualize" hraFeature="visualize-data">
-    <h2 class="header">
-      <hra-step-indicator class="step-number" [value]="6" />
-      <div class="card-title">Visualize cell distance data</div>
+    <div class="header">
+      <h2 class="heading">
+        <hra-step-indicator class="step-number" [value]="6" />
+        <span class="card-title">Visualize cell distance data</span>
+      </h2>
       <hra-info-button>
         <div hraInfoButtonTooltipContent>
           Data on the Create Visualization page cannot be modified after a visualization is generated.
         </div>
       </hra-info-button>
-    </h2>
+    </div>
 
     @if (!hasValidNodes() || !hasValidData()) {
       <hra-error-indicator [errors]="['Please upload a dataset.']" />
