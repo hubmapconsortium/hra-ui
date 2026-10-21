@@ -11,7 +11,8 @@
   >
     <div class="header">
       <h2 class="heading">
-        <hra-step-indicator class="step-number" [value]="1" />
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="1" />
+        <span class="visually-hidden">Step 1 of 6: </span>
         <span class="card-title">Upload data</span>
       </h2>
       <hra-info-button>
@@ -78,7 +79,8 @@
   <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
     <div class="header">
       <h2 class="heading">
-        <hra-step-indicator class="step-number" [value]="2" />
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="2" />
+        <span class="visually-hidden">Step 2 of 6: </span>
         <span class="card-title">Organize data</span>
       </h2>
       <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>
@@ -192,7 +194,8 @@
   <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">
     <div class="header">
       <h2 class="heading">
-        <hra-step-indicator class="step-number" [value]="3" />
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="3" />
+        <span class="visually-hidden">Step 3 of 6: </span>
         <span class="card-title">Configure parameters</span>
       </h2>
       <hra-info-button>
@@ -256,7 +259,8 @@
   <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">
     <div class="header">
       <h2 class="heading">
-        <hra-step-indicator class="step-number" [value]="4" />
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="4" />
+        <span class="visually-hidden">Step 4 of 6: </span>
         <span class="card-title">Optional: Add metadata</span>
       </h2>
       <hra-info-button>
@@ -332,7 +336,8 @@
   >
     <div class="header">
       <h2 class="heading">
-        <hra-step-indicator class="step-number" [value]="5" />
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="5" />
+        <span class="visually-hidden">Step 5 of 6: </span>
         <span class="card-title">Optional: Configure colors</span>
       </h2>
       <hra-info-button>
@@ -413,7 +418,8 @@
   <hra-workflow-card class="card visualize" hraFeature="visualize-data">
     <div class="header">
       <h2 class="heading">
-        <hra-step-indicator class="step-number" [value]="6" />
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="6" />
+        <span class="visually-hidden">Step 6 of 6: </span>
         <span class="card-title">Visualize cell distance data</span>
       </h2>
       <hra-info-button>

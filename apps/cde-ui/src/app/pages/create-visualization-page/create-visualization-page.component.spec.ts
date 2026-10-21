@@ -153,14 +153,19 @@ describe('CreateVisualizationPageComponent', () => {
     it('only contain the step number and title', () => {
       const headings = screen.getAllByRole('heading', { level: 2 });
 
-      expect(headings.map((heading) => heading.querySelector('.card-title')?.textContent)).toEqual([
+      const titles = [
         'Upload data',
         'Organize data',
         'Configure parameters',
         'Optional: Add metadata',
         'Optional: Configure colors',
         'Visualize cell distance data',
-      ]);
+      ];
+
+      expect(headings.map((heading) => heading.querySelector('.card-title')?.textContent)).toEqual(titles);
+      titles.forEach((title, index) => {
+        expect(screen.getByRole('heading', { level: 2, name: `Step ${index + 1} of 6: ${title}` })).toBeInTheDocument();
+      });
       for (const heading of headings) {
         expect(within(heading).queryByRole('button')).toBeNull();
         expect(within(heading).queryByRole('link')).toBeNull();

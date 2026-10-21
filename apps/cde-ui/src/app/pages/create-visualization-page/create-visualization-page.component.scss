@@ -95,6 +95,16 @@
     flex-grow: 1;
   }
 
+  // Hides text visually while keeping it available to screen readers
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   // Requirement lists keep the spacing of the tables they replaced
   .requirements {
     display: flex;
