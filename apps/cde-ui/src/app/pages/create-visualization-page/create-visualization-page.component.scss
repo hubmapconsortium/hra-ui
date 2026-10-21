@@ -76,21 +76,36 @@
     flex-grow: 1;
   }
 
-  table {
-    grid-area: table;
+  // Requirement lists keep the spacing of the tables they replaced
+  .requirements {
+    display: flex;
+    gap: 0.125rem;
+    padding: 0.0625rem 0.125rem;
 
-    th,
-    td {
-      font: vars.$label-large;
-      font-weight: vars.$label-large-weight;
-      padding-left: 1rem;
-      text-align: left;
-      min-width: 13.5rem;
-      height: 1.5rem;
+    .requirement-group {
+      flex: 0 0 13.5rem;
     }
 
-    td {
-      padding-left: 1.5rem;
+    .requirement-label,
+    .requirement-list li {
+      padding-block: 0.125rem;
+      font: vars.$label-large;
+      font-weight: vars.$label-large-weight;
+    }
+
+    .requirement-label {
+      display: block;
+      padding-left: 1rem;
+    }
+
+    .requirement-list {
+      margin: 0;
+      padding: 0;
+      list-style: inside '• ';
+
+      li {
+        padding-left: 1.5rem;
+      }
     }
   }
 
@@ -146,13 +161,8 @@
       width: fit-content;
     }
 
-    table {
-      width: 66%;
-
-      th,
-      td {
-        min-width: 0;
-      }
+    .requirements .requirement-group {
+      flex-basis: 11rem;
     }
   }
 
