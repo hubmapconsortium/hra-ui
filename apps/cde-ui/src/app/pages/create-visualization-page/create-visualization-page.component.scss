@@ -1,7 +1,10 @@
 @use 'vars';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  // Fill at least the window below the header, so the footer sits at the bottom of short pages
+  min-height: calc(100vh - 7.0625rem);
   top: 7.0625rem;
   background-color: vars.$background;
   position: relative;
@@ -29,6 +32,10 @@
 
   hra-nav-header {
     border-bottom: 1px solid vars.$outline;
+  }
+
+  hra-footer {
+    margin-top: auto;
   }
 
   ::ng-deep .app-logo .app-description {
