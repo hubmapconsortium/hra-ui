@@ -36,6 +36,22 @@ describe('FileUploadComponent', () => {
     expect(screen.getByText(/Upload CSV/i)).toBeInTheDocument();
   });
 
+  it('should announce upload errors to screen readers', async () => {
+    await render(FileUploadComponent, {
+      componentInputs: {
+        accept: 'csv',
+        loader: loader,
+        options: {},
+        errorMessage: 'File is empty.',
+        errorActionMessage: 'Please upload a non-empty CSV file.',
+      },
+    });
+
+    const alert = screen.getByRole('alert');
+    expect(alert).toHaveTextContent('File is empty.');
+    expect(alert).toHaveTextContent('Please upload a non-empty CSV file.');
+  });
+
   it('should cancel load', async () => {
     const loadCancelled = jest.fn();
     const {

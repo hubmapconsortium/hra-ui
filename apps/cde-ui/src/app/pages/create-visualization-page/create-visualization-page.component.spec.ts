@@ -170,6 +170,7 @@ describe('CreateVisualizationPageComponent', () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
       expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: Cell Type/);
+      expect(screen.getByText(/Please select the required column header/).closest('[role="alert"]')).not.toBeNull();
     });
 
     it('sets nodes', async () => {
