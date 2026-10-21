@@ -5,7 +5,7 @@ import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-syst
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
-import { VisualCard } from './components/visual-card/visual-card.component';
+import { LandingCard } from './components/landing-card/landing-card.component';
 import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { StudyPageComponent } from './pages/study-page/study-page.component';
@@ -57,7 +57,7 @@ export const ROUTES: Routes = [
     component: LandingPageComponent,
     resolve: {
       [CRUMBS_DATA_KEY]: createCrumbsResolver(),
-      cards: jsonFileResolver<VisualCard[]>(LANDING_PAGE_CARDS_URL, { cache: true }),
+      cards: jsonFileResolver<LandingCard[]>(LANDING_PAGE_CARDS_URL, { cache: true }),
     },
   },
   {

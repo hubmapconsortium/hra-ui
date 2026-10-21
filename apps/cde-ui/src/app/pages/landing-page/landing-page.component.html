@@ -1,54 +1,65 @@
 <ng-container hraFeature="landing-page">
-  <section hraFeature="visualize" class="visualize">
-    <div class="title">Visualize and quantify distances</div>
-    <div class="cards-container">
-      <div class="cards" hraFeature="cde-cards">
-        @for (card of cards(); track card.tagline) {
-          @let actionsInfo = card.actionsInfo ?? {};
-
-          <hra-collection-card
-            [tagline]="card.tagline"
-            [image]="card.image"
-            [taglineChips]="card.taglineChips ?? []"
-            [label]="card.label"
-            [supportingText]="card.supportingText"
+  <section class="hero" hraFeature="hero" aria-labelledby="landing-title">
+    <div class="hero-content">
+      <div class="hero-text">
+        <hra-icon class="logo" svgIcon="product:cde" />
+        <h1 id="landing-title" class="hero-title">Visualize and quantify cell distances</h1>
+        <p class="hero-description">Upload 2D or 3D spatial data to compute and explore cell-to-cell distances.</p>
+        <div class="hero-actions">
+          <a
+            mat-button
+            hraCtaButton
+            hraPrimaryButton
+            class="hero-action"
+            hraFeature="create-visualization"
+            hraClickEvent
+            hraLink="/create"
           >
-            @if (actionsInfo['leftActionText'] && actionsInfo['leftActionUrl']) {
-              <hra-collection-card-action>
-                <a
-                  hraFeature="left-action"
-                  mat-flat-button
-                  hraButtonSize="medium"
-                  [hraClickEvent]="{ url: actionsInfo['leftActionUrl'] }"
-                  [hraLink]="actionsInfo['leftActionUrl']"
-                >
-                  {{ actionsInfo['leftActionText'] }}
-                </a>
-              </hra-collection-card-action>
-            }
-            @if (actionsInfo['rightActionText'] && actionsInfo['rightActionUrl']) {
-              <hra-collection-card-action alignment="right">
-                <a
-                  hraFeature="right-action"
-                  mat-button
-                  hraButtonSize="medium"
-                  [hraClickEvent]="{ url: actionsInfo['rightActionUrl'] }"
-                  [hraLink]="actionsInfo['rightActionUrl']"
-                >
-                  {{ actionsInfo['rightActionText'] }}
-                </a>
-              </hra-collection-card-action>
-            }
-          </hra-collection-card>
-        }
+            Create a visualization
+            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+          </a>
+          <a
+            mat-button
+            hraCtaButton
+            hraSecondaryButton
+            class="hero-action"
+            hraFeature="explore-gallery"
+            hraClickEvent
+            hraLink="/gallery"
+          >
+            Explore the gallery
+            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+          </a>
+        </div>
       </div>
+
+      <img
+        class="hero-image"
+        width="2800"
+        height="1730"
+        alt="Cell Distance Explorer visualizing a large intestine sample, with violin and histogram charts of cell distances"
+        [attr.src]="'assets/ui-images/CDE.png' | assetUrl"
+      />
+    </div>
+  </section>
+
+  <section class="get-started" hraFeature="visualize" aria-labelledby="get-started-title">
+    <div class="get-started-content">
+      <h2 id="get-started-title" class="section-title">Get started</h2>
+      <ul class="cards" role="list" hraFeature="cde-cards">
+        @for (card of cards(); track card.title) {
+          <li class="card">
+            <cde-landing-card [card]="card" />
+          </li>
+        }
+      </ul>
     </div>
   </section>
 
   <section class="cite" [style.background-image]="'assets/backgrounds/cde-lung-bg.png' | assetUrl | cssUrl">
     <div class="content-container">
       <div class="content">
-        <div class="title">How to cite the Cell Distance Explorer</div>
+        <h2 class="title">How to cite the Cell Distance Explorer</h2>
         <div class="description" #citationText>
           Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,
           Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,

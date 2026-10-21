@@ -11,76 +11,144 @@
 }
 
 :host {
+  // Matches the footer content column so sections line up on wide screens
+  $content-max-width: 101.25rem;
+
   background-color: vars.$secondary-container;
   display: block;
 
   section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 6rem 2.5rem;
-    min-height: calc(100vh - 113px);
+    align-items: center;
+    padding: 4rem 2.5rem;
+
+    @media (min-width: 1100px) {
+      padding-inline: 5rem;
+    }
+
+    @media (max-width: 40rem) {
+      padding-inline: 1rem;
+    }
   }
 
-  .visualize {
-    .cards-container {
-      display: flex;
-      justify-content: center;
+  .hero {
+    padding-top: 6rem;
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
       align-items: center;
+      gap: 3rem 4rem;
+      width: 100%;
+      max-width: $content-max-width;
+
+      @media (max-width: 64rem) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 1.5rem;
+    }
+
+    .logo {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .hero-title {
+      margin: 0;
+      @include utils.use-font(display, large);
+      color: vars.$secondary;
+    }
+
+    .hero-description {
+      margin: 0;
+      @include utils.use-font(body, xl);
+      color: vars.$primary;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-top: 0.5rem;
+
+      .hero-action {
+        @include utils.use-font(label, medium);
+      }
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0.0625rem solid vars.$outline;
+      border-radius: 0.75rem;
+      background-color: vars.$on-primary;
+      box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
+    }
+  }
+
+  .get-started {
+    padding-bottom: 6rem;
+
+    .get-started-content {
+      width: 100%;
+      max-width: $content-max-width;
+    }
+
+    .section-title {
+      margin: 0 0 1.5rem;
+      @include utils.use-font(headline, medium);
+      color: vars.$secondary;
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(17.75rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(17.75rem, 100%), 1fr));
       gap: 1.5rem;
-      justify-items: center;
-      max-width: 107.5rem;
-      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
 
-      hra-collection-card {
-        animation: fadeIn 0.8s ease-in-out;
-        opacity: 1;
-
-        .label {
-          @include utils.use-font(label, large);
-        }
-
-        .supporting-text {
-          @include utils.use-font(label, medium);
-          margin-bottom: 1rem;
-        }
-
-        hra-collection-card-action {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
+      @media (prefers-reduced-motion: no-preference) {
+        .card {
+          animation: fadeIn 0.8s ease-in-out;
         }
       }
-    }
-
-    .title {
-      @include utils.use-font(display, large);
-      color: vars.$secondary;
-      margin-bottom: 3.5rem;
-      text-align: center;
     }
   }
 
   .cite {
+    justify-content: center;
+    align-items: stretch;
+    min-height: calc(100vh - 113px);
+    padding-block: 6rem;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 
+    @media (prefers-reduced-motion: reduce), (max-width: 64rem) {
+      background-attachment: scroll;
+    }
+
     .content-container {
-      max-width: 90rem;
+      width: 100%;
+      max-width: $content-max-width;
+      margin-inline: auto;
     }
 
     .content {
       max-width: 59.25rem;
 
       .title {
+        margin: 0 0 0.75rem;
         @include utils.use-font(headline, medium);
-        margin-bottom: 0.75rem;
       }
 
       .description {

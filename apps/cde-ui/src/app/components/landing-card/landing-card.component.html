@@ -1,0 +1,45 @@
+@let data = card();
+
+<div class="media">
+  <img class="image" alt="" [attr.src]="data.image | assetUrl" />
+</div>
+
+<div class="body">
+  <h3 class="title">
+    <a
+      class="primary-link"
+      hraFeature="primary-action"
+      [hraClickEvent]="{ url: data.action.url }"
+      [hraLink]="data.action.url"
+      [hraLinkExternal]="data.action.external ?? false"
+    >
+      {{ data.title }}
+    </a>
+  </h3>
+
+  @if (data.description) {
+    <p class="description">{{ data.description }}</p>
+  }
+</div>
+
+<div class="actions">
+  <span class="cta" aria-hidden="true">
+    {{ data.action.label }}
+    <mat-icon class="cta-icon">arrow_right_alt</mat-icon>
+  </span>
+
+  @if (data.secondaryAction; as secondary) {
+    <a
+      class="secondary-link"
+      hraFeature="secondary-action"
+      [hraClickEvent]="{ url: secondary.url }"
+      [hraLink]="secondary.url"
+      [hraLinkExternal]="secondary.external ?? false"
+    >
+      {{ secondary.label }}
+      @if (secondary.external) {
+        <mat-icon class="link-icon">open_in_new</mat-icon>
+      }
+    </a>
+  }
+</div>

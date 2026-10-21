@@ -1,52 +1,46 @@
 [
   {
-    "tagline": "Create a visualization",
-    "taglineChips": ["Upload data", "Configure settings"],
+    "title": "Create a visualization",
+    "description": "Upload your own spatial data and configure settings to analyze cell distances.",
     "image": "assets/examples/create-a-visualization.png",
-    "label": "Featured app",
-    "supportingText": "Analyze your data with the Cell Distance Explorer",
-    "actionsInfo": {
-      "leftActionText": "Use app",
-      "leftActionUrl": "/create"
+    "action": {
+      "label": "Create visualizations",
+      "url": "/create"
     }
   },
   {
-    "tagline": "New: Spatial Omics Gallery",
-    "taglineChips": ["14 studies", "399 datasets"],
+    "title": "New: Spatial Omics Gallery",
+    "description": "Explore 399 datasets from 14 spatial omics studies.",
     "image": "assets/examples/spatial-omics-gallery.png",
-    "label": "New feature",
-    "supportingText": "Explore spatial omics datasets",
-    "actionsInfo": {
-      "leftActionText": "Use app",
-      "leftActionUrl": "/gallery",
-      "rightActionText": "Publication",
-      "rightActionUrl": "https://doi.org/10.1101/2025.09.23.678129"
+    "action": {
+      "label": "Explore gallery",
+      "url": "/gallery"
     }
   },
   {
-    "tagline": "Explore 2D data",
-    "taglineChips": ["Large intestine", "CyCIF"],
+    "title": "Explore 2D data",
+    "description": "Sample large intestine CyCIF data from the Sorger Lab at Harvard Medical School.",
     "image": "assets/examples/2d-data-intestine.png",
-    "label": "Quick start",
-    "supportingText": "Data provided by Sorger Lab at Harvard Medical School",
-    "actionsInfo": {
-      "leftActionText": "Use app",
-      "leftActionUrl": "/example/0",
-      "rightActionText": "Learn more",
-      "rightActionUrl": "/gallery/colon-cycif-sorgerlab"
+    "action": {
+      "label": "Explore in app",
+      "url": "/example/0"
+    },
+    "secondaryAction": {
+      "label": "Dataset details",
+      "url": "/gallery/colon-cycif-sorgerlab"
     }
   },
   {
-    "tagline": "Explore 3D data",
-    "taglineChips": ["Skin", "Cell DIVE"],
+    "title": "Explore 3D data",
+    "description": "Sample skin Cell DIVE data from the Fiona Ginty Lab at GE HealthCare Technology and Innovation Center.",
     "image": "assets/examples/3d-data-skin.png",
-    "label": "Quick start",
-    "supportingText": "Data provided by Fiona Ginty Lab at GE HealthCare Technology and Innovation Center",
-    "actionsInfo": {
-      "leftActionText": "Use app",
-      "leftActionUrl": "/example/1",
-      "rightActionText": "Learn more",
-      "rightActionUrl": "/gallery/skin-celldive-ge"
+    "action": {
+      "label": "Explore in app",
+      "url": "/example/1"
+    },
+    "secondaryAction": {
+      "label": "Dataset details",
+      "url": "/gallery/skin-celldive-ge"
     }
   }
 ]

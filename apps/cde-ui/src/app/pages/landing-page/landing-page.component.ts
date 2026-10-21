@@ -4,13 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import {
-  CollectionCard,
-  CollectionCardActionComponent,
-  CollectionCardComponent,
-} from '@hra-ui/design-system/cards/collection-card';
+import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import { LandingCard, LandingCardComponent } from '../../components/landing-card/landing-card.component';
 /**
  * Landing Page Component
  */
@@ -22,8 +19,8 @@ import { SnackbarService } from '@hra-ui/design-system/snackbar';
     ButtonsModule,
     NavigationModule,
     LinkDirective,
-    CollectionCardComponent,
-    CollectionCardActionComponent,
+    IconsModule,
+    LandingCardComponent,
     CdkCopyToClipboard,
   ],
   templateUrl: './landing-page.component.html',
@@ -31,8 +28,8 @@ import { SnackbarService } from '@hra-ui/design-system/snackbar';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  /** Visual cards to display on the landing page */
-  readonly cards = input<CollectionCard[]>([]);
+  /** Cards to display on the landing page */
+  readonly cards = input<LandingCard[]>([]);
 
   /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);
