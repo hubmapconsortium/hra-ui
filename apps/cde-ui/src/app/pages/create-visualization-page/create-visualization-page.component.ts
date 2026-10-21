@@ -27,6 +27,7 @@ import { MarkEmptyFormControlDirective } from '../../components/empty-form-contr
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
+import { validatePositive } from '../../shared/form-validators/is-positive';
 import { OrganEntry } from '../../shared/resolvers/organs.resolver';
 
 /** Error when missing required columns in uploaded csv */
@@ -139,10 +140,10 @@ export class CreateVisualizationPageComponent {
     }),
     parameters: this.fb.group({
       nodeTargetValue: [{ value: DEFAULT_NODE_TARGET_SELECTOR, disabled: true }],
-      distanceThreshold: [{ value: 1000, disabled: true }],
-      pixelSizeX: [{ value: 1, disabled: true }, Validators.min(1)],
-      pixelSizeY: [{ value: 1, disabled: true }, Validators.min(1)],
-      pixelSizeZ: [{ value: 1, disabled: true }, Validators.min(1)],
+      distanceThreshold: [{ value: 1000, disabled: true }, validatePositive()],
+      pixelSizeX: [{ value: 1, disabled: true }, validatePositive()],
+      pixelSizeY: [{ value: 1, disabled: true }, validatePositive()],
+      pixelSizeZ: [{ value: 1, disabled: true }, validatePositive()],
     }),
     metadata: this.fb.group({
       title: [optionalValue<string>()],
@@ -352,7 +353,8 @@ export class CreateVisualizationPageComponent {
       !!pixelSizeX &&
       !!pixelSizeY &&
       !!pixelSizeZ &&
-      !!distanceThreshold
+      !!distanceThreshold &&
+      this.visualizationForm.controls['parameters'].valid
     );
   }
 
@@ -419,10 +421,11 @@ export class CreateVisualizationPageComponent {
     }
 
     const { nodes, customColorMap, visualizationForm, colorHeaders } = this;
-    const { colorMapType, metadata } = visualizationForm.value;
+    const { colorMapType, metadata, parameters } = visualizationForm.value;
     const headers = visualizationForm.value.headers;
+    const pixelSizes = this.getPixelSizes();
 
-    const nodesView = new NodesView(nodes, {
+    const nodesView = new NodesView(this.scaleNodes(nodes, pixelSizes), {
       'Cell Type': headers?.cellType ?? '',
       'Cell Ontology ID': headers?.ontologyId ?? undefined,
       X: headers?.xAxis ?? '',
@@ -438,26 +441,78 @@ export class CreateVisualizationPageComponent {
           })
         : undefined;
 
-    const nodeTargetSelector = visualizationForm.value.parameters
-      ? visualizationForm.value.parameters.nodeTargetValue
-      : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
       sourceFileName: this.nodesFileUpload().file?.name,
       colorMapFileName: this.customColorMapFileUpload()?.file?.name,
       organ: metadata?.organ?.label,
+      pixelSize: this.formatPixelSize(pixelSizes),
       creationTimestamp: Date.now(),
     });
 
     const nullishRemovedData = this.removeNullishValues({
       nodes: nodesView,
-      nodeTargetSelector,
+      nodeTargetSelector: parameters?.nodeTargetValue,
+      maxEdgeDistance: parameters?.distanceThreshold,
       colorMap: colorMapView,
       metadata: normalizedMetadata,
     });
 
     this.dataService.setData(nullishRemovedData);
     this.router.navigate(['/visualize']);
+  }
+
+  /**
+   * Gets the pixel size of each selected coordinate column
+   * @returns Column and pixel size pairs for the X, Y, and (if selected) Z axes
+   */
+  private getPixelSizes(): [string, number][] {
+    const { headers, parameters } = this.visualizationForm.value;
+    const pairs: [string | null | undefined, number | null | undefined][] = [
+      [headers?.xAxis, parameters?.pixelSizeX],
+      [headers?.yAxis, parameters?.pixelSizeY],
+      [headers?.zAxis, parameters?.pixelSizeZ],
+    ];
+
+    return pairs.filter((pair): pair is [string, number] => !!pair[0] && typeof pair[1] === 'number');
+  }
+
+  /**
+   * Converts node coordinates to micrometers by multiplying them by their axis' pixel size
+   * @param nodes Nodes to scale
+   * @param pixelSizes Column and pixel size pairs
+   * @returns Scaled copies of the nodes, or the nodes themselves if every pixel size is 1
+   */
+  private scaleNodes(nodes: Record<string, unknown>[], pixelSizes: [string, number][]): Record<string, unknown>[] {
+    const scaledAxes = pixelSizes.filter(([, size]) => size !== 1);
+    if (scaledAxes.length === 0) {
+      return nodes;
+    }
+
+    return nodes.map((node) => {
+      const scaledNode = { ...node };
+      for (const [column, size] of scaledAxes) {
+        const value = node[column];
+        if (typeof value === 'number') {
+          scaledNode[column] = value * size;
+        }
+      }
+      return scaledNode;
+    });
+  }
+
+  /**
+   * Formats pixel sizes for the sample metadata
+   * @param pixelSizes Column and pixel size pairs
+   * @returns The pixel size if every axis has the same size, otherwise the sizes as "X × Y × Z"
+   */
+  private formatPixelSize(pixelSizes: [string, number][]): number | string | undefined {
+    const sizes = pixelSizes.map(([, size]) => size);
+    if (sizes.length === 0) {
+      return undefined;
+    }
+
+    return sizes.every((size) => size === sizes[0]) ? sizes[0] : sizes.join(' × ');
   }
 
   /**
