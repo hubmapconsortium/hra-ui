@@ -318,11 +318,13 @@
       <mat-form-field subscriptSizing="dynamic" hraFeature="age">
         <mat-label>Age</mat-label>
         <input matInput type="number" formControlName="age" min="0" max="120" hraClickEvent cdeMarkEmptyFormControl />
+        <mat-error>Enter a whole number, 0–120</mat-error>
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="thickness">
         <mat-label>Thickness (µm)</mat-label>
         <input matInput type="number" formControlName="thickness" min="0" hraClickEvent cdeMarkEmptyFormControl />
+        <mat-error>Enter 0 or more</mat-error>
       </mat-form-field>
     </div>
   </hra-workflow-card>

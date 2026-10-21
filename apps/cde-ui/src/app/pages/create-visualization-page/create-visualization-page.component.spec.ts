@@ -222,6 +222,17 @@ describe('CreateVisualizationPageComponent', () => {
     });
   });
 
+  describe('metadata errors', () => {
+    it('explains invalid age and thickness values', async () => {
+      await userEvent.type(screen.getByRole('spinbutton', { name: 'Age' }), '150');
+      await userEvent.type(screen.getByRole('spinbutton', { name: 'Thickness (µm)' }), '-1');
+      await userEvent.tab();
+
+      expect(await screen.findByText('Enter a whole number, 0–120')).toBeInTheDocument();
+      expect(screen.getByText('Enter 0 or more')).toBeInTheDocument();
+    });
+  });
+
   describe('visualize button', () => {
     const getVisualizeButton = () => screen.getByRole('button', { name: 'Visualize' });
 

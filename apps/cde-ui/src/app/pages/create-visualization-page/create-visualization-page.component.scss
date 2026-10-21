@@ -177,10 +177,14 @@
     .row {
       display: flex;
       justify-content: space-between;
+      // Keep a field's height when its neighbor shows error text
+      align-items: flex-start;
       gap: 1.5rem;
 
+      // Equal-width fields that don't grow when error text appears
       mat-form-field {
-        flex-grow: 1;
+        flex: 1 1 0;
+        min-width: 0;
       }
     }
   }
