@@ -26,7 +26,20 @@
       filled-container-shape: vars.$corner-extra-small,
       filled-horizontal-padding: 1rem,
       filled-hover-state-layer-opacity: 8%,
-      filled-icon-offset: 0
+      filled-icon-offset: 0,
+
+      // Outlined buttons styles
+      outlined-label-text-color: vars.$on-tertiary-fixed,
+      outlined-state-layer-color: vars.$on-tertiary-fixed,
+      outlined-outline-color: vars.$on-tertiary-fixed,
+      outlined-outline-width: 0.0625rem,
+      outlined-disabled-label-text-color: utils.with-alpha(vars.$tertiary, 38%),
+      outlined-disabled-outline-color: utils.with-alpha(vars.$tertiary, 38%),
+      outlined-ripple-color: utils.with-alpha(vars.$secondary, 8%),
+      outlined-container-height: 2.5rem,
+      outlined-container-shape: vars.$corner-extra-small,
+      outlined-horizontal-padding: 1rem,
+      outlined-icon-offset: 0
     )
   );
 
@@ -193,6 +206,40 @@
 
     mat-icon.mat-icon {
       // when we upgrade to angular 20, check if icon button overrides work here
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  [mat-stroked-button] {
+    &:focus-visible {
+      @include mat.button-overrides(
+        (
+          outlined-focus-state-layer-opacity: 0,
+          outlined-label-text-color: vars.$secondary,
+        )
+      );
+
+      @include utils.inset-outline(vars.$tertiary);
+    }
+
+    &.hra-button-size-small {
+      @include utils.use-font(label, small);
+
+      @include mat.button-overrides(
+        (
+          outlined-container-height: 1.75rem,
+          outlined-horizontal-padding: 0.5rem,
+        )
+      );
+    }
+
+    &.hra-button-size-medium {
+      @include utils.use-font(label, medium);
+    }
+
+    mat-icon.mat-icon {
       width: 1.5rem;
       height: 1.5rem;
       font-size: 1.5rem;

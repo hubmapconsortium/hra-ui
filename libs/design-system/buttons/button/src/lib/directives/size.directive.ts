@@ -5,7 +5,8 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 
 /** Style a mat-button to a specific named size */
 @Directive({
-  selector: 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]',
+  selector:
+    'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]',
   host: {
     '[class]': '"hra-button-size-" + size()',
   },

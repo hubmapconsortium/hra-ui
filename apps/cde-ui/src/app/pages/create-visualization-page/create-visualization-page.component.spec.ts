@@ -118,6 +118,29 @@ describe('CreateVisualizationPageComponent', () => {
     await fixture.whenStable();
   });
 
+  describe('template links', () => {
+    it('renders outlined links that open the templates in a new tab', () => {
+      const dataTemplate = screen.getByRole('link', { name: 'Open template for cell data, opens in a new tab' });
+      const colorTemplate = screen.getByRole('link', { name: 'Open template for color maps, opens in a new tab' });
+
+      for (const link of [dataTemplate, colorTemplate]) {
+        expect(link).toHaveTextContent(/^\s*Open template/);
+        expect(link).toHaveAttribute('mat-stroked-button');
+        expect(link).toHaveAttribute('target', '_blank');
+        expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+        expect(link).toHaveClass('hra-button-size-medium');
+      }
+      expect(dataTemplate).toHaveAttribute(
+        'href',
+        expect.stringContaining('1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY'),
+      );
+      expect(colorTemplate).toHaveAttribute(
+        'href',
+        expect.stringContaining('1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE'),
+      );
+    });
+  });
+
   describe('setNodes()', () => {
     it('checks for required keys, if missing tell the user the missing columns', async () => {
       const nodeDataEl = screen.getAllByTestId(testId)[0];
