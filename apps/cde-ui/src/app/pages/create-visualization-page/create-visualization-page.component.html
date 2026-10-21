@@ -87,11 +87,12 @@
     <div class="required-headers">
       <span class="subheader">Required: Verify column headers</span>
 
-      <mat-form-field subscriptSizing="dynamic" hraFeature="x-axis-selector">
+      <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="x-axis-selector">
         <mat-label>X axis</mat-label>
         <mat-select
           disableRipple
           formControlName="xAxis"
+          required
           panelClass="options-container"
           hraClickEvent
           hraModelChangeEvent
@@ -103,11 +104,12 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field subscriptSizing="dynamic" hraFeature="y-axis-selector">
+      <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="y-axis-selector">
         <mat-label>Y axis</mat-label>
         <mat-select
           disableRipple
           formControlName="yAxis"
+          required
           panelClass="options-container"
           hraClickEvent
           hraModelChangeEvent
@@ -119,11 +121,17 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="cell-type-select" subscriptSizing="dynamic" hraFeature="cell-type-selector">
+      <mat-form-field
+        class="cell-type-select"
+        subscriptSizing="dynamic"
+        hideRequiredMarker
+        hraFeature="cell-type-selector"
+      >
         <mat-label>Cell type</mat-label>
         <mat-select
           disableRipple
           formControlName="cellType"
+          required
           panelClass="options-container"
           hraClickEvent
           hraModelChangeEvent

@@ -160,6 +160,17 @@ describe('CreateVisualizationPageComponent', () => {
     });
   });
 
+  describe('required column headers', () => {
+    it('marks the required selects as required for assistive technology', () => {
+      for (const name of ['X axis', 'Y axis', 'Cell type']) {
+        expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'true');
+      }
+      for (const name of ['Z axis', 'Cell ontology ID']) {
+        expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'false');
+      }
+    });
+  });
+
   describe('color map toggle', () => {
     it('has a descriptive accessible name', () => {
       expect(screen.getByLabelText('Color map')).toHaveClass('mat-button-toggle-group');
