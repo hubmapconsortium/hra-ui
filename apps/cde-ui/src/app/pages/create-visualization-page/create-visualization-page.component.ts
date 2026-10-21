@@ -337,6 +337,14 @@ export class CreateVisualizationPageComponent {
   }
 
   /**
+   * Determines whether a dataset has been loaded, even if its columns aren't mapped yet
+   * @returns true if the dataset has at least one row
+   */
+  hasDataset(): boolean {
+    return !!this.nodes && this.nodes.length > 0;
+  }
+
+  /**
    * Determines whether all required fields have been provided
    * @returns true if all required data has been filled in
    */

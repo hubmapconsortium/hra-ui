@@ -431,9 +431,8 @@
       </hra-info-button>
     </div>
 
-    @let hasNodes = hasValidNodes();
-    @let canVisualize = hasNodes && hasValidData();
-    @if (!hasNodes) {
+    @let canVisualize = hasValidNodes() && hasValidData();
+    @if (!hasDataset()) {
       <hra-error-indicator id="visualize-requirements" [errors]="['Please upload a dataset.']" />
     } @else if (!canVisualize) {
       <hra-error-indicator id="visualize-requirements" [errors]="['Please complete the required fields above.']" />

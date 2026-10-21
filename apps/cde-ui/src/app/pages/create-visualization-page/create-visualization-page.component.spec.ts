@@ -249,7 +249,7 @@ describe('CreateVisualizationPageComponent', () => {
 
     it('asks for the remaining required fields once a dataset is uploaded', () => {
       instance.setNodes(sampleNodes);
-      instance.visualizationForm.controls.headers.patchValue({ xAxis: '' });
+      instance.visualizationForm.controls.headers.patchValue({ cellType: '' });
       fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
       fixture.detectChanges();
 
