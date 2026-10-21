@@ -58,6 +58,7 @@
     <cde-file-upload
       class="upload-csv"
       accept="text/csv,.csv"
+      uploadAriaLabel="Upload CSV for cell data"
       [loader]="nodesLoader"
       [options]="nodesLoaderOptions"
       [errorMessage]="nodesErrorMessage"
@@ -391,6 +392,7 @@
       <cde-file-upload
         class="upload-colormap"
         accept="text/csv,.csv"
+        uploadAriaLabel="Upload CSV for color map"
         data-testid="color-map-upload"
         [loader]="colorMapLoader"
         [options]="colorMapLoaderOptions"

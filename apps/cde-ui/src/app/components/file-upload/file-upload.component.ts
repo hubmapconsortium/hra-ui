@@ -45,6 +45,8 @@ export class FileUploadComponent<T, OptionsT> {
   readonly errorMessage = input<string>('');
   /** Upload error action message */
   readonly errorActionMessage = input<string>('');
+  /** Accessible name for the upload button. Should start with the visible "Upload CSV" text */
+  readonly uploadAriaLabel = input<string>();
 
   /** Accepted file types */
   readonly accept = input.required<string>();

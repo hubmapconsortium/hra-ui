@@ -171,6 +171,16 @@ describe('CreateVisualizationPageComponent', () => {
     });
   });
 
+  describe('upload buttons', () => {
+    it('have distinct accessible names', async () => {
+      expect(screen.getByRole('button', { name: 'Upload CSV for cell data' })).toBeInTheDocument();
+
+      await userEvent.click(screen.getByText('Upload color map'));
+      fixture.detectChanges();
+      expect(await screen.findByRole('button', { name: 'Upload CSV for color map' })).toBeInTheDocument();
+    });
+  });
+
   describe('color map toggle', () => {
     it('has a descriptive accessible name', () => {
       expect(screen.getByLabelText('Color map')).toHaveClass('mat-button-toggle-group');

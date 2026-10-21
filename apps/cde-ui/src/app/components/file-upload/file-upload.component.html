@@ -13,6 +13,7 @@
       hraButtonSize="large"
       hraFeature="upload"
       hraClickEvent
+      [attr.aria-label]="uploadAriaLabel() ?? null"
       (click)="fileInput.click()"
     >
       Upload CSV

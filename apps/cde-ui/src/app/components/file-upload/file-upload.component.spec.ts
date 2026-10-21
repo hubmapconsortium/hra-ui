@@ -36,6 +36,19 @@ describe('FileUploadComponent', () => {
     expect(screen.getByText(/Upload CSV/i)).toBeInTheDocument();
   });
 
+  it('should use the provided accessible name for the upload button', async () => {
+    await render(FileUploadComponent, {
+      componentInputs: {
+        accept: 'csv',
+        loader: loader,
+        options: {},
+        uploadAriaLabel: 'Upload CSV for cell data',
+      },
+    });
+
+    expect(screen.getByRole('button', { name: 'Upload CSV for cell data' })).toHaveTextContent('Upload CSV');
+  });
+
   it('should announce upload errors to screen readers', async () => {
     await render(FileUploadComponent, {
       componentInputs: {
