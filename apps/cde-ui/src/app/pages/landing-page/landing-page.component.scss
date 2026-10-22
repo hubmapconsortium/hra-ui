@@ -113,8 +113,8 @@
     }
 
     .logo {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 4rem;
+      height: 4rem;
 
       @media (max-width: 40rem) {
         width: 3.5rem;
@@ -124,8 +124,10 @@
 
     .hero-title {
       margin: 0;
-      @include utils.use-font(display, large);
+      @include utils.use-font(display, medium);
       color: vars.$secondary;
+      // Evens out the lines when the title wraps on phones
+      text-wrap: balance;
 
       @media (max-width: 40rem) {
         @include utils.use-font(display, small);
@@ -201,9 +203,14 @@
     }
   }
 
+  // Kept tight so the examples show above the fold on smaller laptops
   .examples {
-    padding-block: 3rem 4rem;
+    padding-block: 2rem 3rem;
     background-color: vars.$surface-container-lowest;
+
+    .section-description {
+      margin-bottom: 1rem;
+    }
   }
 
   .developer-tools {

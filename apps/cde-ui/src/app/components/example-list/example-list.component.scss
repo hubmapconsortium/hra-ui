@@ -21,24 +21,34 @@
 
   .example {
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
+    // Top aligned so titles line up across rows whose credits wrap differently
+    align-items: flex-start;
+    gap: 1rem;
     // Fill the grid cell so rows side by side share the same height
     height: 100%;
     box-sizing: border-box;
-    padding: 1rem;
-    border: 0.0625rem solid vars.$outline-variant;
+    padding: 0.75rem;
+    border: 0.0625rem solid vars.$outline;
     border-radius: 0.75rem;
     color: inherit;
     text-decoration: none;
 
     &:hover {
       background-color: vars.$surface-container;
+
+      // One step darker so the circle stays visible against the hover background
+      .arrow {
+        background-color: vars.$surface-container-highest;
+      }
     }
 
     &:hover,
     &:focus-visible {
-      .arrow {
+      .thumbnail img {
+        transform: scale(1.1);
+      }
+
+      .arrow mat-icon {
         transform: translateX(0.25rem);
       }
     }
@@ -49,62 +59,73 @@
     }
   }
 
+  // Clips the image so it zooms within its frame on hover
   .thumbnail {
     flex-shrink: 0;
     // Shrinks on narrow screens and when zoomed so the text keeps room to wrap
-    width: min(10rem, 30%);
+    width: min(6.5rem, 30%);
     aspect-ratio: 16 / 10;
-    object-fit: cover;
+    overflow: hidden;
     border-radius: 0.5rem;
     background-color: vars.$secondary;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .text {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.125rem;
     min-width: 0;
   }
 
   .title {
-    // Title large: 22/28, semibold
-    @include landing-type.font(1.375rem, 1.75rem, 600, 0);
+    // 18/24, semibold
+    @include landing-type.font(1.125rem, 1.5rem, 600, 0);
     color: vars.$secondary;
   }
 
-  .description,
-  .credit {
+  .description {
     // Body medium: 14/20, regular, 0.2px tracking
     @include landing-type.font(0.875rem, 1.25rem, 400, 0.0125rem);
     color: vars.$primary;
   }
 
+  .credit {
+    // Body small: 12/16, regular, 0.4px tracking
+    @include landing-type.font(0.75rem, 1rem, 400, 0.025rem);
+    color: vars.$on-surface-variant;
+  }
+
+  // Tonal circle so the row reads as something to click
   .arrow {
     flex-shrink: 0;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
     margin-left: auto;
-    color: vars.$on-tertiary-fixed;
+    border-radius: vars.$corner-full;
+    background-color: vars.$surface-container-high;
+    color: vars.$on-surface-variant;
   }
 
   // Compact layout for narrow rows, such as on phones or when zoomed in
   @container (max-width: 28rem) {
     .example {
-      align-items: flex-start;
       gap: 0.75rem;
-      padding: 0.75rem;
     }
 
     .thumbnail {
       width: 4.5rem;
       aspect-ratio: 1;
-    }
-
-    .title {
-      // 18/24, semibold
-      @include landing-type.font(1.125rem, 1.5rem, 600, 0);
-    }
-
-    .arrow {
-      align-self: center;
     }
   }
 
@@ -113,7 +134,11 @@
       transition: background-color 0.2s ease-in-out;
     }
 
-    .arrow {
+    .thumbnail img {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .arrow mat-icon {
       transition: transform 0.2s ease-in-out;
     }
   }
