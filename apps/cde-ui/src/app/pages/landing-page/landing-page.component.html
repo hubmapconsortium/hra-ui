@@ -1,10 +1,12 @@
 <ng-container hraFeature="landing-page">
-  <section
-    class="hero"
-    hraFeature="hero"
-    aria-labelledby="landing-title"
-    [style.--hero-background]="'assets/backgrounds/cde-lung-bg.png' | assetUrl | cssUrl"
-  >
+  <section class="hero" hraFeature="hero" aria-labelledby="landing-title">
+    <picture class="hero-background">
+      @for (source of heroBackgroundSources; track source.src) {
+        <source [attr.media]="source.media" [attr.srcset]="source.src | assetUrl" />
+      }
+      <img alt="" decoding="async" fetchpriority="low" [attr.src]="heroBackgroundFallback | assetUrl" />
+    </picture>
+
     <div class="hero-content">
       <div class="hero-text">
         <hra-icon class="logo" svgIcon="product:cde" />
@@ -40,11 +42,14 @@
 
       <img
         class="hero-image"
-        width="2800"
-        height="1730"
+        width="1080"
+        height="581"
+        sizes="(min-width: 36rem) 34rem, calc(100vw - 2rem)"
+        fetchpriority="high"
         alt="Cell Distance Explorer visualizing a large intestine sample, with violin and histogram charts of cell distances"
         [class.loaded]="heroImageLoaded()"
-        [attr.src]="'assets/ui-images/CDE.png' | assetUrl"
+        [attr.srcset]="heroScreenshotSrcset()"
+        [attr.src]="heroScreenshotFallback | assetUrl"
         (load)="heroImageLoaded.set(true)"
         (error)="heroImageLoaded.set(true)"
       />
