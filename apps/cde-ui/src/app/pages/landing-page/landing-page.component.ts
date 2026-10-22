@@ -16,6 +16,7 @@ const HERO_SCREENSHOTS = [
   { width: 540, src: 'assets/screenshots/large-intestine-visualization-540x316.webp' },
   { width: 720, src: 'assets/screenshots/large-intestine-visualization-720x422.webp' },
   { width: 1080, src: 'assets/screenshots/large-intestine-visualization-1080x633.webp' },
+  { width: 1440, src: 'assets/screenshots/large-intestine-visualization-1440x844.webp' },
 ];
 
 /** Hero background sizes by viewport width, largest first, so the first matching media query wins */
