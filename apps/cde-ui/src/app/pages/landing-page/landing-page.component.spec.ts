@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { provideIcons } from '@hra-ui/design-system/icons';
-import { render, screen, within } from '@testing-library/angular';
+import { fireEvent, render, screen, within } from '@testing-library/angular';
 import { LandingExample } from '../../components/example-list/example-list.component';
 import { LandingCard } from '../../components/landing-card/landing-card.component';
 import { LandingPageComponent } from './landing-page.component';
@@ -53,6 +53,27 @@ describe('LandingPageComponent', () => {
       .map((link) => link.getAttribute('href'));
     expect(hrefs).toEqual(['/create', '/gallery']);
     expect(within(hero).getByRole('img', { name: /Cell Distance Explorer/ })).toBeInTheDocument();
+  });
+
+  it('should start the hero screenshot entrance once the image has loaded', async () => {
+    await setup();
+
+    const image = screen.getByRole('img', { name: /Cell Distance Explorer/ });
+    expect(image).not.toHaveClass('loaded');
+
+    fireEvent.load(image);
+    expect(image).toHaveClass('loaded');
+  });
+
+  it('should offer every hero screenshot size in the srcset', async () => {
+    await setup();
+
+    const image = screen.getByRole('img', { name: /Cell Distance Explorer/ });
+    const widths = image
+      .getAttribute('srcset')
+      ?.split(', ')
+      .map((candidate) => candidate.split(' ')[1]);
+    expect(widths).toEqual(['540w', '720w', '1080w', '1440w']);
   });
 
   it('should render the examples section', async () => {
