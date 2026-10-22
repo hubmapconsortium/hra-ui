@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import {
@@ -40,7 +39,6 @@ import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
@@ -131,7 +129,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatButtonModule,
     MatExpansionModule,
     ColorPickerLabelComponent,
-    OverlayModule,
     ScrollingModule,
     MatMenuModule,
     FullscreenPortalComponent,
@@ -165,12 +162,6 @@ export class HistogramComponent {
 
   /** Cell types to use for the visualization */
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
-
-  /** Tooltip position configuration */
-  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
-
-  /** State indicating whether the info panel is open */
-  infoOpen = false;
 
   /** Toggles full screen mode */
   protected readonly fullscreen = signal(false);

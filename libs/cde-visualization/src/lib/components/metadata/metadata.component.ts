@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -9,7 +8,6 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Metadata } from '../../models/metadata';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -46,7 +44,6 @@ export class DefaultToPipe implements PipeTransform {
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,
-    OverlayModule,
     DefaultToPipe,
     MatMenuModule,
     PlainTooltipDirective,
@@ -71,9 +68,6 @@ export class MetadataComponent {
     return HIDABLE_FIELDS.some((field) => metadata[field] === undefined);
   });
 
-  /** Sets the tooltip position to the right side */
-  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
-
   /** Creates a date formatter with default locale */
   readonly dateFormat = new Intl.DateTimeFormat(undefined, {
     year: 'numeric',
@@ -87,9 +81,6 @@ export class MetadataComponent {
     minute: '2-digit',
     second: '2-digit',
   });
-
-  /** Flag to check if info tooltip is open */
-  tooltipOpen = false;
 
   /** Checks if a field is visible based on its value and the showEmptyFields signal */
   isFieldVisible(field: keyof Metadata): boolean {
