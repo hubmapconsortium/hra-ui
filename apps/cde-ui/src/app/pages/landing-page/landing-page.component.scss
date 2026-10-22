@@ -25,7 +25,7 @@
 // Hero background drifts down while the hero scrolls away, so it moves slower than the content
 @keyframes parallax {
   to {
-    transform: translateY(30%);
+    transform: translateY(50%);
   }
 }
 
@@ -107,7 +107,7 @@
 
     .hero-title {
       margin: 0;
-      @include utils.use-font(display, medium);
+      @include utils.use-font(display, large);
       color: vars.$secondary;
     }
 
@@ -173,21 +173,6 @@
   .examples {
     padding-block: 3rem 4rem;
     background-color: vars.$surface-container-lowest;
-
-    .section-content {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 40rem);
-      align-items: center;
-      gap: 1.5rem 4rem;
-
-      @media (max-width: 64rem) {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .section-description {
-      margin-bottom: 0;
-    }
   }
 
   .developer-tools {
