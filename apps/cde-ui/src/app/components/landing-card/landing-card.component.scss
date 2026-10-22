@@ -85,8 +85,8 @@
   }
 
   .description {
-    // Body medium: 14/20, regular, 0.2px tracking
-    @include landing-type.font(0.875rem, 1.25rem, 400, 0.0125rem);
+    // Body large: 16/24, regular
+    @include landing-type.font(1rem, 1.5rem, 400, 0);
     color: vars.$primary;
   }
 
