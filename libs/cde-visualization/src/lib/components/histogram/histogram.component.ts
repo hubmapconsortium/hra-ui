@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import {
@@ -33,7 +32,6 @@ import {
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
@@ -41,7 +39,6 @@ import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
@@ -88,7 +85,7 @@ interface ModifiableHistogramSpec {
 const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 
 /** Label for all cell types */
-const ALL_CELLS_TYPE = 'All Cells';
+const ALL_CELLS_TYPE = 'All cells';
 
 /** Width of the exported image */
 const EXPORT_IMAGE_WIDTH = 1000;
@@ -132,7 +129,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatButtonModule,
     MatExpansionModule,
     ColorPickerLabelComponent,
-    OverlayModule,
     ScrollingModule,
     MatMenuModule,
     FullscreenPortalComponent,
@@ -166,20 +162,6 @@ export class HistogramComponent {
 
   /** Cell types to use for the visualization */
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
-
-  /** Tooltip position configuration */
-  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
-
-  /** Tooltip content */
-  readonly tooltipContent: TooltipContent[] = [
-    {
-      description:
-        'The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.',
-    },
-  ];
-
-  /** State indicating whether the info panel is open */
-  infoOpen = false;
 
   /** Toggles full screen mode */
   protected readonly fullscreen = signal(false);
