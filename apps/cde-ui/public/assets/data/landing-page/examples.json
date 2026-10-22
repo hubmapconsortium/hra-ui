@@ -2,14 +2,14 @@
   {
     "title": "2D large intestine",
     "description": "CyCIF · 483,936 cells",
-    "credit": "Data from the Sorger Lab, Harvard Medical School",
+    "credit": "Sorger Lab, Harvard Medical School",
     "image": "assets/examples/thumb-sorger-lab-320x200.webp",
     "url": "/example/0"
   },
   {
     "title": "3D skin",
     "description": "Cell DIVE · 46,268 cells",
-    "credit": "Data from the Fiona Ginty Lab, GE HealthCare Technology and Innovation Center",
+    "credit": "Fiona Ginty Lab, GE HealthCare Technology and Innovation Center",
     "image": "assets/examples/thumb-ge-320x200.webp",
     "url": "/example/1"
   }
