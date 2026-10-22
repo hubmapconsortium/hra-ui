@@ -27,7 +27,6 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
 import { map } from 'rxjs';
 
 import { CellTypeEntry } from '../../models/cell-type';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 
 /**
@@ -85,9 +84,6 @@ export class CellTypesComponent {
     }
     return ['select', 'cellType', 'count', 'links'];
   });
-
-  /** Tooltip position configuration */
-  protected readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
 
   /** Reference to MatSort directive */
   protected readonly sort = viewChild.required(MatSort);

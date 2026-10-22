@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import { ChangeDetectionStrategy, Component, effect, inject, input, Renderer2, signal, viewChild } from '@angular/core';
@@ -13,14 +12,12 @@ import {
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { TooltipContent } from '@hra-ui/design-system/tooltip-card';
 import { produce } from 'immer';
 import { View } from 'vega';
 import embed from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { TOOLTIP_POSITION_RIGHT_SIDE } from '../../shared/tooltip-position';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
 
@@ -118,7 +115,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    OverlayModule,
     ScrollingModule,
     MatMenuModule,
     FullscreenPortalComponent,
@@ -136,20 +132,6 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   },
 })
 export class ViolinComponent {
-  /** Tooltip position configuration */
-  readonly tooltipPosition = TOOLTIP_POSITION_RIGHT_SIDE;
-
-  /** Tooltip content */
-  readonly tooltipContent: TooltipContent[] = [
-    {
-      description:
-        'The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.',
-    },
-  ];
-
-  /** State indicating whether the info panel is open */
-  infoOpen = false;
-
   /** Data for the violin visualization */
   readonly data = input.required<DistanceEntry[]>();
 
