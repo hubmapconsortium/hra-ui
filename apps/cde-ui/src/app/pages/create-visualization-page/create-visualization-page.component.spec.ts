@@ -20,7 +20,12 @@ jest.mock('@hra-ui/node-dist-vis', () => ({
 }));
 jest.mock('@hra-ui/node-dist-vis/models', () => ({
   ColorMapView: class MockColorMapView {},
-  NodesView: class MockNodesView {},
+  NodesView: class MockNodesView {
+    constructor(
+      readonly data: Record<string, unknown>[],
+      readonly keyMapping: Record<string, unknown>,
+    ) {}
+  },
 }));
 jest.mock('@hra-ui/cde-visualization', () => ({
   ...jest.requireActual('@hra-ui/cde-visualization'),
@@ -419,6 +424,82 @@ describe('CreateVisualizationPageComponent', () => {
       instance.submit();
 
       expect(setDataSpy).toHaveBeenCalled();
+    });
+
+    it('passes the distance threshold to the visualization', () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ distanceThreshold: 50 });
+      instance.submit();
+
+      expect(setDataSpy).toHaveBeenCalledWith(expect.objectContaining({ maxEdgeDistance: 50 }));
+    });
+
+    it('converts coordinates to micrometers using the pixel sizes', () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+      const nodes = [createNodeEntry(nodeTargetKey, 'a', 1, 2), createNodeEntry(nodeTargetKey, 'b', 3, 4)];
+
+      instance.setNodes(nodes);
+      instance.visualizationForm.controls.parameters.patchValue({ pixelSizeX: 2, pixelSizeY: 0.5, pixelSizeZ: 3 });
+      instance.submit();
+
+      const { nodes: nodesView, metadata } = setDataSpy.mock.calls[0][0] as {
+        nodes: { data: Record<string, unknown>[] };
+        metadata: Metadata;
+      };
+      expect(nodesView.data).toEqual([
+        { [nodeTargetKey]: 'a', x: 2, y: 1 },
+        { [nodeTargetKey]: 'b', x: 6, y: 2 },
+      ]);
+      expect(nodes[0]).toEqual({ [nodeTargetKey]: 'a', x: 1, y: 2 });
+      expect(metadata.pixelSize).toEqual('2 × 0.5');
+    });
+
+    it('shows a single pixel size when every axis has the same size', () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ pixelSizeX: 0.65, pixelSizeY: 0.65 });
+      instance.submit();
+
+      expect(setDataSpy).toHaveBeenCalledWith(
+        expect.objectContaining({ metadata: expect.objectContaining({ pixelSize: 0.65 }) }),
+      );
+    });
+  });
+
+  describe('parameters', () => {
+    it('accepts pixel sizes below 1', () => {
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ pixelSizeX: 0.65 });
+
+      expect(instance.hasValidData()).toBe(true);
+    });
+
+    it('requires a distance threshold and pixel sizes greater than 0', () => {
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ distanceThreshold: -5 });
+      expect(instance.hasValidData()).toBe(false);
+
+      instance.visualizationForm.controls.parameters.patchValue({ distanceThreshold: 50, pixelSizeY: -1 });
+      expect(instance.hasValidData()).toBe(false);
+    });
+
+    it('explains invalid distance threshold and pixel size values', async () => {
+      instance.setNodes(sampleNodes);
+      fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
+      fixture.detectChanges();
+
+      const threshold = screen.getByRole('spinbutton', { name: 'Distance threshold (µm)' });
+      await userEvent.clear(threshold);
+      await userEvent.type(threshold, '0');
+      await userEvent.tab();
+
+      expect(await screen.findByText('Enter more than 0')).toBeInTheDocument();
     });
   });
 

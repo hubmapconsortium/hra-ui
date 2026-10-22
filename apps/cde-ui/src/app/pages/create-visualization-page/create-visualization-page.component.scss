@@ -169,6 +169,8 @@
     .parameters-2 {
       display: grid;
       column-gap: 1.5rem;
+      // Keep a field's height when its neighbor shows error text
+      align-items: start;
     }
 
     .parameters-1 {

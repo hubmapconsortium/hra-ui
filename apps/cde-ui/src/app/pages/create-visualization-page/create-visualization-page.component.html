@@ -233,8 +233,16 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="distance-threshold">
-        <mat-label>Distance threshold</mat-label>
-        <input matInput formControlName="distanceThreshold" hraClickEvent cdeMarkEmptyFormControl />
+        <mat-label>Distance threshold (µm)</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="distanceThreshold"
+          min="0"
+          hraClickEvent
+          cdeMarkEmptyFormControl
+        />
+        <mat-error>Enter more than 0</mat-error>
       </mat-form-field>
     </div>
 
@@ -242,16 +250,19 @@
       <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-x">
         <mat-label>Pixel size (X) (µm/pixel)</mat-label>
         <input matInput type="number" formControlName="pixelSizeX" min="0" hraClickEvent cdeMarkEmptyFormControl />
+        <mat-error>Enter more than 0</mat-error>
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-y">
         <mat-label>Pixel size (Y) (µm/pixel)</mat-label>
         <input matInput type="number" formControlName="pixelSizeY" min="0" hraClickEvent cdeMarkEmptyFormControl />
+        <mat-error>Enter more than 0</mat-error>
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-z">
         <mat-label>Pixel size (Z) (µm/pixel)</mat-label>
         <input matInput type="number" formControlName="pixelSizeZ" min="0" hraClickEvent cdeMarkEmptyFormControl />
+        <mat-error>Enter more than 0</mat-error>
       </mat-form-field>
     </div>
   </hra-workflow-card>
