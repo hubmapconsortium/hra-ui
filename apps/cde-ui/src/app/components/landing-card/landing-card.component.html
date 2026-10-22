@@ -1,14 +1,8 @@
 @let data = card();
 
-@if (data.image) {
-  <div class="media">
-    <img class="image" alt="" [attr.src]="data.image | assetUrl" />
-  </div>
-} @else if (data.icon) {
-  <div class="icon-container">
-    <hra-icon class="icon" inline [icon]="data.icon" />
-  </div>
-}
+<div class="icon-container">
+  <hra-icon class="icon" inline [icon]="data.icon" />
+</div>
 
 <div class="body">
   <h3 class="title">
@@ -33,19 +27,4 @@
     {{ data.action.label }}
     <mat-icon class="cta-icon">{{ data.action.external ? 'open_in_new' : 'arrow_right_alt' }}</mat-icon>
   </span>
-
-  @if (data.secondaryAction; as secondary) {
-    <a
-      class="secondary-link"
-      hraFeature="secondary-action"
-      [hraClickEvent]="{ url: secondary.url }"
-      [hraLink]="secondary.url"
-      [hraLinkExternal]="secondary.external ?? false"
-    >
-      {{ secondary.label }}
-      @if (secondary.external) {
-        <mat-icon class="link-icon">open_in_new</mat-icon>
-      }
-    </a>
-  }
 </div>

@@ -18,25 +18,9 @@
     border-color: vars.$secondary;
     box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
 
-    .image {
-      transform: scale(1.03);
-    }
-
     .cta-icon {
       transform: translateX(0.25rem);
     }
-  }
-
-  .media {
-    overflow: hidden;
-    border-bottom: 0.0625rem solid vars.$outline;
-  }
-
-  .image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
   }
 
   .icon-container {
@@ -94,46 +78,16 @@
   }
 
   .actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem 1rem;
     padding: 1.5rem 1rem 1rem;
   }
 
-  .cta,
-  .secondary-link {
+  .cta {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
     // Label large: 14/21, semibold, 0.1px tracking
     @include landing-type.font(0.875rem, 1.3125rem, 600, 0.00625rem);
-  }
-
-  .cta {
     color: vars.$on-tertiary-fixed;
-  }
-
-  // Keep the secondary link clickable above the stretched primary link
-  .secondary-link {
-    position: relative;
-    z-index: 1;
-    color: vars.$secondary;
-    text-decoration: underline solid currentColor 0.0625rem;
-    text-underline-offset: 0.125rem;
-    border-radius: 0.25rem;
-
-    &:focus-visible {
-      outline: 0.125rem solid vars.$tertiary;
-      outline-offset: 0.125rem;
-    }
-
-    .link-icon {
-      width: 1.125rem;
-      height: 1.125rem;
-      font-size: 1.125rem;
-    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -141,7 +95,6 @@
       border-color 0.2s ease-in-out,
       box-shadow 0.2s ease-in-out;
 
-    .image,
     .cta-icon {
       transition: transform 0.2s ease-in-out;
     }

@@ -20,19 +20,14 @@ export interface LandingCard {
   title: string;
   /** One sentence describing the destination */
   description?: string;
-  /** Image url */
-  image?: string;
-  /** Icon shown when the card has no image */
-  icon?: IconData;
+  /** Icon shown above the title */
+  icon: IconData;
   /** Destination of the whole card */
   action: LandingCardLink;
-  /** Optional additional link */
-  secondaryAction?: LandingCardLink;
 }
 
 /**
  * Landing page card where the entire card links to a single destination.
- * An optional secondary link stays separately clickable.
  */
 @Component({
   selector: 'cde-landing-card',
