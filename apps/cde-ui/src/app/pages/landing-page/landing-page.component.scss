@@ -1,5 +1,12 @@
+@use 'sass:math';
 @use 'vars';
 @use 'utils';
+
+// Vertical spacing that holds at its base size up to a 1080px tall window,
+// then grows with the window height, up to twice the base size
+@function tall-space($base) {
+  @return clamp($base, math.div(math.div($base, 1rem) * 16, 1080) * 100vh, $base * 2);
+}
 
 // Keyframes are only named in rules outside @media and @supports. Once styles are minified, Angular's
 // view encapsulation stops renaming names inside those blocks to match its scoped keyframes.
@@ -57,7 +64,7 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding-block: 3rem;
+    padding-block: tall-space(3rem);
     background-color: vars.$surface-container-lowest;
 
     // Decorative background on its own layer so it can move independently of the content
@@ -195,7 +202,7 @@
 
   // Kept tight so the examples show above the fold on smaller laptops
   .examples {
-    padding-block: 2rem 3rem;
+    padding-block: tall-space(2rem) tall-space(3rem);
     // Soft mesh: lavender from the top right, a hint of red from the bottom left
     background:
       radial-gradient(45% 90% at 100% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 45%), transparent),
@@ -208,7 +215,7 @@
   }
 
   .developer-tools {
-    padding-block: 4rem 5rem;
+    padding-block: tall-space(4rem) tall-space(5rem);
     // Deeper mesh than the examples so the section stands apart from the footer
     background:
       radial-gradient(60% 90% at 0% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 80%), transparent),
@@ -239,7 +246,7 @@
     justify-content: center;
     align-items: stretch;
     min-height: 28rem;
-    padding-block: 5rem;
+    padding-block: tall-space(5rem);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
