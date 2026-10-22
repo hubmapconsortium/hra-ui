@@ -74,8 +74,8 @@ declare const SOURCE_REFERENCE: z.ZodObject<{
     cellType: z.ZodOptional<z.ZodString>;
     healthStatus: z.ZodOptional<z.ZodString>;
     sex: z.ZodOptional<z.ZodString>;
-    age: z.ZodOptional<z.ZodNumber>;
-    bmi: z.ZodOptional<z.ZodNumber>;
+    age: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
+    bmi: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
     ethnicity: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
@@ -154,6 +154,12 @@ declare const RAW_DATASETS: z.ZodObject<{
             year: z.ZodOptional<z.ZodNumber>;
             doi: z.ZodOptional<z.ZodString>;
             link: z.ZodString;
+            cell_type_annotation_tool: z.ZodOptional<z.ZodString>;
+            health_status: z.ZodOptional<z.ZodString>;
+            sex: z.ZodOptional<z.ZodString>;
+            age: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
+            bmi: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
+            ethnicity: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
@@ -683,6 +689,12 @@ declare const RAW_DATASETS_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.
             year: z.ZodOptional<z.ZodNumber>;
             doi: z.ZodOptional<z.ZodString>;
             link: z.ZodString;
+            cell_type_annotation_tool: z.ZodOptional<z.ZodString>;
+            health_status: z.ZodOptional<z.ZodString>;
+            sex: z.ZodOptional<z.ZodString>;
+            age: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
+            bmi: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
+            ethnicity: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>>;
     }, z.core.$strip>>;
 }, z.core.$strip>]>>;
@@ -703,6 +715,12 @@ declare function rawDatasetsInput(value: unknown): string | {
             authors?: string[] | undefined;
             year?: number | undefined;
             doi?: string | undefined;
+            cell_type_annotation_tool?: string | undefined;
+            health_status?: string | undefined;
+            sex?: string | undefined;
+            age?: string | number | undefined;
+            bmi?: string | number | undefined;
+            ethnicity?: string | undefined;
         }[];
     }[];
 } | undefined;

@@ -298,10 +298,12 @@ declare class SourceListComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }, node_modules__angular_material_types__paginator_chunk.MatPaginator>;
+    /** Default sorting data accessor of the table data source */
+    private readonly defaultSortingDataAccessor;
     /** List of sources with titles and links displayed to the user */
     readonly sources: i0.InputSignal<{
         year: number;
@@ -312,8 +314,8 @@ declare class SourceListComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[]>;
     /** Text that appears in the empty biomarker message */
@@ -338,13 +340,18 @@ declare class SourceListComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[]>;
     readonly selection: SelectionModel<Record<string, string | number | boolean | any[]>>;
     /** Sort data on load and set columns */
     constructor();
+    /**
+     * Sorting data accessor that sorts string ages/BMIs among the numeric ones: ranges such as
+     * '60-69' by their lower bound, other strings such as 'unknown' after all numbers
+     */
+    private sortingDataAccessor;
     /** Opens the source list in fullscreen mode */
     openSourceListFullscreen(): void;
     /**
@@ -692,8 +699,8 @@ declare class BiomarkerDetailsComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[];
     /** Iri of medical illustration behavior component */
@@ -749,8 +756,8 @@ declare class BiomarkerDetailsComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[]) => {
         readonly sources: _hra_ui_services.SourceReference[];
@@ -765,8 +772,8 @@ declare class BiomarkerDetailsComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[];
     /** Active tab index */
@@ -1027,8 +1034,8 @@ declare class TissueLibraryBehaviorComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[];
     protected readonly downloadCsv: (sourceRefs: {
@@ -1040,8 +1047,8 @@ declare class TissueLibraryBehaviorComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[], id?: (string & zod.$brand<"URL"> & zod.$brand<"IRI">) | undefined) => {
         readonly sourceRefs: _hra_ui_services.SourceReference[];
@@ -1207,8 +1214,8 @@ declare class BiomarkerDetailsWcComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[];
     /** List of selected sources */
@@ -1221,8 +1228,8 @@ declare class BiomarkerDetailsWcComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[]>;
     /**
@@ -1263,8 +1270,8 @@ declare class BiomarkerDetailsWcComponent {
         cellType?: string | undefined;
         healthStatus?: string | undefined;
         sex?: string | undefined;
-        age?: number | undefined;
-        bmi?: number | undefined;
+        age?: string | number | undefined;
+        bmi?: string | number | undefined;
         ethnicity?: string | undefined;
     }[]) => {
         readonly sources: SourceReference[];

@@ -113,8 +113,10 @@ const SOURCE_REFERENCE = z.object({
     cellType: z.string().optional(),
     healthStatus: z.string().optional(),
     sex: z.string().optional(),
-    age: z.number().optional(),
-    bmi: z.number().optional(),
+    /** Age in years, or a string such as an age range ('60-69') or 'unknown' */
+    age: z.union([z.number(), z.string()]).optional(),
+    /** BMI, or a string such as 'unknown' */
+    bmi: z.union([z.number(), z.string()]).optional(),
     ethnicity: z.string().optional(),
 });
 /** Zod Schema for a ILLUSTRATION_MAPPING_ITEM */
@@ -167,6 +169,12 @@ const RAW_DATASETS = z.object({
             year: z.number().optional(),
             doi: z.string().optional(),
             link: z.string(),
+            cell_type_annotation_tool: z.string().optional(),
+            health_status: z.string().optional(),
+            sex: z.string().optional(),
+            age: z.union([z.number(), z.string()]).optional(),
+            bmi: z.union([z.number(), z.string()]).optional(),
+            ethnicity: z.string().optional(),
         })
             .array(),
     })
@@ -395,13 +403,19 @@ class FtuDataImplService extends FtuDataService {
      */
     toSourceReferences(data) {
         const results = [];
-        for (const { '@id': id, label, link, description, year = -1 } of data) {
+        for (const { '@id': id, label, link, description, year = -1, cell_type_annotation_tool: cellType, health_status: healthStatus, sex, age, bmi, ethnicity, } of data) {
             results.push({
                 datasetId: id,
                 datasetTitle: label,
                 doi: link,
                 title: description,
                 year,
+                cellType,
+                healthStatus,
+                sex,
+                age,
+                bmi,
+                ethnicity,
             });
         }
         return results;

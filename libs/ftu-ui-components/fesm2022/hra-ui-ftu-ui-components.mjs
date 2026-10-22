@@ -500,6 +500,8 @@ class SourceListComponent {
     /** Mat sort element */
     sort = viewChild(MatSort, ...(ngDevMode ? [{ debugName: "sort" }] : []));
     datasource = new MatTableDataSource([]);
+    /** Default sorting data accessor of the table data source */
+    defaultSortingDataAccessor = this.datasource.sortingDataAccessor;
     /** List of sources with titles and links displayed to the user */
     sources = input([], ...(ngDevMode ? [{ debugName: "sources" }] : []));
     /** Text that appears in the empty biomarker message */
@@ -521,6 +523,7 @@ class SourceListComponent {
     selection = new SelectionModel(true, []);
     /** Sort data on load and set columns */
     constructor() {
+        this.datasource.sortingDataAccessor = this.sortingDataAccessor.bind(this);
         effect(() => {
             this.datasource.sort = this.sort();
         });
@@ -535,6 +538,18 @@ class SourceListComponent {
                 this.selectionChanged.emit(this.selection.selected);
             }
         });
+    }
+    /**
+     * Sorting data accessor that sorts string ages/BMIs among the numeric ones: ranges such as
+     * '60-69' by their lower bound, other strings such as 'unknown' after all numbers
+     */
+    sortingDataAccessor(data, column) {
+        const value = column === 'age' || column === 'bmi' ? data[column] : undefined;
+        if (typeof value === 'string') {
+            const number = parseFloat(value);
+            return isNaN(number) ? Number.MAX_SAFE_INTEGER : number;
+        }
+        return this.defaultSortingDataAccessor(data, column);
     }
     /** Opens the source list in fullscreen mode */
     openSourceListFullscreen() {
