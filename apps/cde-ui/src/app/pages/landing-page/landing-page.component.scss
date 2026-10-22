@@ -231,7 +231,8 @@
   .cite {
     justify-content: center;
     align-items: stretch;
-    min-height: calc(100vh - 113px);
+    // Fills the screen below the header, up to 1080px on tall screens
+    min-height: min(calc(100vh - 113px), 67.5rem);
     padding-block: 6rem;
     background-size: cover;
     background-position: center;
