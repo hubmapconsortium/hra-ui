@@ -55,7 +55,7 @@
         "field": "Count",
         "order": "descending"
       },
-      "title": "Cell Types",
+      "title": "Cell types",
       "header": {
         "labelAngle": 0,
         "labelPadding": 4,
