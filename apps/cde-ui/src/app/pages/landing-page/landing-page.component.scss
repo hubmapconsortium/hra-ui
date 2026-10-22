@@ -218,14 +218,14 @@
 
   .developer-tools {
     padding-block: tall-space(4rem) tall-space(5rem);
-    // Deeper mesh than the examples so the section stands apart from the footer
+    // Deeper mesh than the examples so the section stands apart from the footer,
+    // kept light behind the heading and description for contrast
     background:
-      radial-gradient(55% 85% at 0% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
-      radial-gradient(35% 70% at 30% 100%, utils.with-alpha(vars.$on-secondary-container, 18%), transparent),
-      radial-gradient(40% 75% at 100% 100%, utils.with-alpha(vars.$tertiary, 18%), transparent),
-      radial-gradient(35% 60% at 85% 5%, utils.with-alpha(vars.$on-secondary-container, 20%), transparent),
-      // Light highlight in the middle for contrast between the glows
-      radial-gradient(30% 55% at 60% 45%, utils.with-alpha(vars.$surface-container-lowest, 55%), transparent),
+      radial-gradient(50% 60% at 20% 10%, utils.with-alpha(vars.$surface-bright, 90%), transparent),
+      radial-gradient(40% 90% at 90% 20%, utils.with-alpha(vars.$secondary-fixed-dim, 75%), transparent),
+      radial-gradient(35% 70% at 5% 95%, utils.with-alpha(vars.$secondary-fixed-dim, 60%), transparent),
+      radial-gradient(30% 60% at 50% 105%, utils.with-alpha(vars.$on-secondary-container, 16%), transparent),
+      radial-gradient(30% 60% at 100% 100%, utils.with-alpha(vars.$surface-bright, 70%), transparent),
       vars.$surface-container-high;
 
     .cards {
