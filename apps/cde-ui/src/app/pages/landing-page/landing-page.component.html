@@ -66,20 +66,6 @@
     </div>
   </section>
 
-  <section class="developer-tools" hraFeature="developer-tools" aria-labelledby="developer-tools-title">
-    <div class="section-content">
-      <h2 id="developer-tools-title" class="section-title">Developer tools</h2>
-      <p class="section-description">Bring the Cell Distance Explorer into your own websites and analyses.</p>
-      <ul class="cards" role="list">
-        @for (card of developerTools(); track card.title) {
-          <li class="card">
-            <cde-landing-card [card]="card" />
-          </li>
-        }
-      </ul>
-    </div>
-  </section>
-
   <section
     class="cite"
     [style.background-image]="'assets/backgrounds/create-visualization-page-background.png' | assetUrl | cssUrl"
@@ -109,6 +95,20 @@
           <mat-icon>content_copy</mat-icon>
         </button>
       </div>
+    </div>
+  </section>
+
+  <section class="developer-tools" hraFeature="developer-tools" aria-labelledby="developer-tools-title">
+    <div class="section-content">
+      <h2 id="developer-tools-title" class="section-title">Developer tools</h2>
+      <p class="section-description">Bring the Cell Distance Explorer into your own websites and analyses.</p>
+      <ul class="cards" role="list">
+        @for (card of developerTools(); track card.title) {
+          <li class="card">
+            <cde-landing-card [card]="card" />
+          </li>
+        }
+      </ul>
     </div>
   </section>
 
