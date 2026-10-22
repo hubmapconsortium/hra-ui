@@ -45,8 +45,8 @@ interface Metadata {
     age?: number;
     /** Thickness */
     thickness?: number;
-    /** Pixel size */
-    pixelSize?: number;
+    /** Pixel size, or the size of each axis when they differ (for example "0.65 × 0.65 × 2") */
+    pixelSize?: number | string;
     /** Creation timestamp (ms since 1/1/1970 UTC) */
     creationTimestamp?: number;
     /** Name of the source file */
