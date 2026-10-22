@@ -1,0 +1,38 @@
+@use 'utils';
+@use 'vars';
+
+// Raised shadow shared by the hero screenshot and hovered landing cards
+$card-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
+
+// Landing page text follows the upcoming Figma type scale in Nunito Sans.
+// Replace with design system tokens once that typography lands in this repo.
+@mixin font($size, $line-height, $weight, $tracking) {
+  font-family: vars.$body-medium-font;
+  font-size: $size;
+  line-height: $line-height;
+  font-weight: $weight;
+  letter-spacing: $tracking;
+}
+
+// Outlined card on a solid surface, so section backgrounds stay behind the text
+@mixin card-surface($radius) {
+  border: 0.0625rem solid vars.$outline;
+  border-radius: $radius;
+  background-color: vars.$surface-container-lowest;
+}
+
+// Outlined card that lifts when hovered
+@mixin card($radius) {
+  @include card-surface($radius);
+
+  &:hover {
+    border-color: vars.$secondary;
+    box-shadow: $card-shadow;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition:
+      border-color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+}
