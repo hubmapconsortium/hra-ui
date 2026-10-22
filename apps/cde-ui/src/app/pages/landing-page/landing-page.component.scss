@@ -200,9 +200,9 @@
     }
   }
 
-  // Kept tight so the examples show above the fold on smaller laptops
+  // Same spacing as the hero, with no description so the rows show above the fold on smaller laptops
   .examples {
-    padding-block: tall-space(2rem) tall-space(3rem);
+    padding-block: tall-space(3rem);
     // Mesh of glows behind the rows: lavender and red along the bottom, lavender and indigo along the top
     background:
       radial-gradient(40% 90% at 18% 100%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
@@ -211,7 +211,7 @@
       radial-gradient(40% 70% at 45% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 55%), transparent),
       vars.$surface-container-lowest;
 
-    .section-description {
+    .section-title {
       margin-bottom: 1rem;
     }
   }
