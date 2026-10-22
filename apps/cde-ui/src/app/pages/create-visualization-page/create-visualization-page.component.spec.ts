@@ -1,13 +1,14 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY, Metadata } from '@hra-ui/cde-visualization';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
-import { render, screen } from '@testing-library/angular';
+import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
@@ -118,6 +119,150 @@ describe('CreateVisualizationPageComponent', () => {
     await fixture.whenStable();
   });
 
+  it('passes the background image to the page styles', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.style.getPropertyValue('--page-background-image')).toContain(
+      'create-visualization-page-background.png',
+    );
+  });
+
+  describe('template links', () => {
+    it('renders outlined links that open the templates in a new tab', () => {
+      const dataTemplate = screen.getByRole('link', { name: 'Open template for cell data, opens in a new tab' });
+      const colorTemplate = screen.getByRole('link', { name: 'Open template for color maps, opens in a new tab' });
+
+      for (const link of [dataTemplate, colorTemplate]) {
+        expect(link).toHaveTextContent(/^\s*Open template/);
+        expect(link).toHaveAttribute('mat-stroked-button');
+        expect(link).toHaveAttribute('target', '_blank');
+        expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+        expect(link).toHaveClass('hra-button-size-medium');
+      }
+      expect(dataTemplate).toHaveAttribute(
+        'href',
+        expect.stringContaining('1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY'),
+      );
+      expect(colorTemplate).toHaveAttribute(
+        'href',
+        expect.stringContaining('1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE'),
+      );
+    });
+  });
+
+  describe('card headings', () => {
+    it('only contain the step number and title', () => {
+      const headings = screen.getAllByRole('heading', { level: 2 });
+
+      const titles = [
+        'Upload data',
+        'Organize data',
+        'Configure parameters',
+        'Optional: Add metadata',
+        'Optional: Configure colors',
+        'Visualize cell distance data',
+      ];
+
+      expect(headings.map((heading) => heading.querySelector('.card-title')?.textContent)).toEqual(titles);
+      titles.forEach((title, index) => {
+        expect(screen.getByRole('heading', { level: 2, name: `Step ${index + 1} of 6: ${title}` })).toBeInTheDocument();
+      });
+      for (const heading of headings) {
+        expect(within(heading).queryByRole('button')).toBeNull();
+        expect(within(heading).queryByRole('link')).toBeNull();
+      }
+    });
+  });
+
+  describe('required column headers', () => {
+    it('marks the required selects as required for assistive technology', () => {
+      for (const name of ['X axis', 'Y axis', 'Cell type']) {
+        expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'true');
+      }
+      for (const name of ['Z axis', 'Cell ontology ID']) {
+        expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'false');
+      }
+    });
+  });
+
+  describe('requirements', () => {
+    function listItems(group: HTMLElement, name: string): (string | undefined)[] {
+      const list = within(group).getByRole('list', { name });
+      return within(list)
+        .getAllByRole('listitem')
+        .map((item) => item.textContent?.trim());
+    }
+
+    it('lists the data upload requirements as labeled lists', () => {
+      const group = screen.getByRole('group', { name: 'Data upload requirements' });
+
+      expect(within(group).queryByRole('table')).toBeNull();
+      expect(listItems(group, 'Required columns')).toEqual(['X', 'Y', 'Cell type']);
+      expect(listItems(group, 'Optional columns')).toEqual(['Z', 'Cell ontology ID']);
+      expect(listItems(group, 'Supported format')).toEqual(['CSV']);
+    });
+
+    it('lists the color map requirements when uploading a color map', async () => {
+      await userEvent.click(screen.getByText('Upload color map'));
+      fixture.detectChanges();
+      const group = await screen.findByRole('group', { name: 'Custom color map requirements' });
+
+      expect(within(group).queryByRole('table')).toBeNull();
+      expect(listItems(group, 'Required columns')).toEqual(['Cell type', 'Cell color']);
+      expect(listItems(group, 'Supported format')).toEqual(['CSV']);
+    });
+  });
+
+  describe('upload buttons', () => {
+    it('have distinct accessible names', async () => {
+      expect(screen.getByRole('button', { name: 'Upload CSV for cell data' })).toBeInTheDocument();
+
+      await userEvent.click(screen.getByText('Upload color map'));
+      fixture.detectChanges();
+      expect(await screen.findByRole('button', { name: 'Upload CSV for color map' })).toBeInTheDocument();
+    });
+  });
+
+  describe('metadata errors', () => {
+    it('explains invalid age and thickness values', async () => {
+      await userEvent.type(screen.getByRole('spinbutton', { name: 'Age' }), '150');
+      await userEvent.type(screen.getByRole('spinbutton', { name: 'Thickness (µm)' }), '-1');
+      await userEvent.tab();
+
+      expect(await screen.findByText('Enter a whole number, 0–120')).toBeInTheDocument();
+      expect(screen.getByText('Enter 0 or more')).toBeInTheDocument();
+    });
+  });
+
+  describe('visualize button', () => {
+    const getVisualizeButton = () => screen.getByRole('button', { name: 'Visualize' });
+
+    it('stays focusable and explains why it is unavailable before an upload', async () => {
+      const button = getVisualizeButton();
+      expect(button).not.toHaveAttribute('disabled');
+      expect(button).toHaveAttribute('aria-disabled', 'true');
+      expect(button).toHaveAccessibleDescription('Please upload a dataset.');
+
+      const submitSpy = jest.spyOn(instance, 'submit');
+      await userEvent.click(button);
+      expect(submitSpy).not.toHaveBeenCalled();
+    });
+
+    it('asks for the remaining required fields once a dataset is uploaded', () => {
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.headers.patchValue({ cellType: '' });
+      fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
+      fixture.detectChanges();
+
+      expect(getVisualizeButton()).toHaveAccessibleDescription('Please complete the required fields above.');
+    });
+  });
+
+  describe('color map toggle', () => {
+    it('has a descriptive accessible name', () => {
+      expect(screen.getByLabelText('Color map')).toHaveClass('mat-button-toggle-group');
+    });
+  });
+
   describe('setNodes()', () => {
     it('checks for required keys, if missing tell the user the missing columns', async () => {
       const nodeDataEl = screen.getAllByTestId(testId)[0];
@@ -127,7 +272,8 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: Cell Type/);
+      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: cell type/);
+      expect(screen.getByText(/Please select the required column header/).closest('[role="alert"]')).not.toBeNull();
     });
 
     it('sets nodes', async () => {

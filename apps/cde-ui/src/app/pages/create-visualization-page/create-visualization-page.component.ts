@@ -78,7 +78,7 @@ function optionalValue<T>(): T | null {
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[style.background-image]': 'backgroundImageUrl()',
+    '[style.--page-background-image]': 'backgroundImageUrl()',
   },
 })
 export class CreateVisualizationPageComponent {
@@ -241,9 +241,9 @@ export class CreateVisualizationPageComponent {
       return undefined;
     }
     const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
-    const xError = xAxis ? undefined : 'X Axis';
-    const yError = yAxis ? undefined : 'Y Axis';
-    const ctError = cellType ? undefined : 'Cell Type';
+    const xError = xAxis ? undefined : 'X axis';
+    const yError = yAxis ? undefined : 'Y axis';
+    const ctError = cellType ? undefined : 'cell type';
     const errorColumns = [xError, yError, ctError].filter((e) => !!e);
 
     return errorColumns.length > 0
@@ -334,6 +334,14 @@ export class CreateVisualizationPageComponent {
     }
     const { nodes } = this;
     return !!(nodes && nodes.length > 0 && cellTypeHeader in nodes[0]);
+  }
+
+  /**
+   * Determines whether a dataset has been loaded, even if its columns aren't mapped yet
+   * @returns true if the dataset has at least one row
+   */
+  hasDataset(): boolean {
+    return !!this.nodes && this.nodes.length > 0;
   }
 
   /**
