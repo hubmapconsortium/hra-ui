@@ -1,5 +1,5 @@
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
@@ -7,6 +7,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
+import { ExampleListComponent, LandingExample } from '../../components/example-list/example-list.component';
 import { LandingCard, LandingCardComponent } from '../../components/landing-card/landing-card.component';
 /**
  * Landing Page Component
@@ -20,6 +21,7 @@ import { LandingCard, LandingCardComponent } from '../../components/landing-card
     NavigationModule,
     LinkDirective,
     IconsModule,
+    ExampleListComponent,
     LandingCardComponent,
     CdkCopyToClipboard,
   ],
@@ -28,11 +30,14 @@ import { LandingCard, LandingCardComponent } from '../../components/landing-card
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  /** Example dataset cards */
-  readonly examples = input<LandingCard[]>([]);
+  /** Example datasets */
+  readonly examples = input<LandingExample[]>([]);
 
   /** Developer tools cards */
   readonly developerTools = input<LandingCard[]>([]);
+
+  /** Whether the hero screenshot has loaded, so its entrance animation plays on the image itself */
+  protected readonly heroImageLoaded = signal(false);
 
   /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);

@@ -1,0 +1,89 @@
+@use 'vars';
+@use '../../shared/styles/landing-type';
+
+:host {
+  display: block;
+
+  .examples {
+    // Offset the row padding so thumbnails line up with surrounding content
+    margin: 0 -0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  li + li {
+    border-top: 0.0625rem solid vars.$outline-variant;
+  }
+
+  .example {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      background-color: vars.$surface-container;
+    }
+
+    &:hover,
+    &:focus-visible {
+      .arrow {
+        transform: translateX(0.25rem);
+      }
+    }
+
+    &:focus-visible {
+      outline: 0.125rem solid vars.$tertiary;
+      outline-offset: -0.125rem;
+    }
+  }
+
+  .thumbnail {
+    flex-shrink: 0;
+    // Shrinks on narrow screens and when zoomed so the text keeps room to wrap
+    width: min(10rem, 30%);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    background-color: vars.$secondary;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  .title {
+    // Title large: 22/28, semibold
+    @include landing-type.font(1.375rem, 1.75rem, 600, 0);
+    color: vars.$secondary;
+  }
+
+  .description,
+  .credit {
+    // Body medium: 14/20, regular, 0.2px tracking
+    @include landing-type.font(0.875rem, 1.25rem, 400, 0.0125rem);
+    color: vars.$primary;
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    margin-left: auto;
+    color: vars.$on-tertiary-fixed;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .example {
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .arrow {
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}

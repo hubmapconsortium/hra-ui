@@ -59,13 +59,6 @@
     }
   }
 
-  .eyebrow {
-    margin-bottom: 0.25rem;
-    // Label medium: 12/16, semibold, 0.5px tracking
-    @include landing-type.font(0.75rem, 1rem, 600, 0.03125rem);
-    color: vars.$primary;
-  }
-
   .title {
     margin: 0 0 0.5rem;
     // Title medium: 16/24, semibold, 0.15px tracking

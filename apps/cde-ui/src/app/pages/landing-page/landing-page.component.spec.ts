@@ -3,6 +3,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen, within } from '@testing-library/angular';
+import { LandingExample } from '../../components/example-list/example-list.component';
 import { LandingCard } from '../../components/landing-card/landing-card.component';
 import { LandingPageComponent } from './landing-page.component';
 
@@ -11,17 +12,9 @@ jest.mock('vega-embed', () => ({ default: jest.fn() }));
 describe('LandingPageComponent', () => {
   const providers = [provideHttpClient(), provideHttpClientTesting(), provideIcons(), provideRouter([])];
 
-  const MOCK_EXAMPLES: LandingCard[] = [
-    {
-      title: 'Example A',
-      image: '',
-      action: { label: 'Open example', url: '/example/0' },
-    },
-    {
-      title: 'Example B',
-      image: '',
-      action: { label: 'Open example', url: '/example/1' },
-    },
+  const MOCK_EXAMPLES: LandingExample[] = [
+    { title: 'Example A', description: '', image: '', url: '/example/0' },
+    { title: 'Example B', description: '', image: '', url: '/example/1' },
   ];
 
   const MOCK_DEVELOPER_TOOLS: LandingCard[] = [
@@ -51,7 +44,7 @@ describe('LandingPageComponent', () => {
 
   // Assert structure and destinations rather than marketing copy, so copy edits don't break tests
 
-  it('should render the hero heading and calls to action', async () => {
+  it('should render the hero heading, calls to action and app preview', async () => {
     await setup();
 
     const hero = screen.getByRole('heading', { level: 1 }).closest('section') as HTMLElement;
@@ -59,16 +52,17 @@ describe('LandingPageComponent', () => {
       .getAllByRole('link')
       .map((link) => link.getAttribute('href'));
     expect(hrefs).toEqual(['/create', '/gallery']);
+    expect(within(hero).getByRole('img', { name: /Cell Distance Explorer/ })).toBeInTheDocument();
   });
 
-  it('should render the example cards and a link to the gallery', async () => {
+  it('should render the examples section', async () => {
     await setup();
 
     const section = screen.getByRole('region', { name: /example/i });
-    expect(within(section).getAllByRole('listitem')).toHaveLength(2);
-    expect(within(section).getByRole('link', { name: 'Example A' })).toHaveAttribute('href', '/example/0');
-    expect(within(section).getByRole('link', { name: 'Example B' })).toHaveAttribute('href', '/example/1');
-    expect(within(section).getByRole('link', { name: /gallery/i })).toHaveAttribute('href', '/gallery');
+    const hrefs = within(section)
+      .getAllByRole('link')
+      .map((link) => link.getAttribute('href'));
+    expect(hrefs).toEqual(['/example/0', '/example/1']);
   });
 
   it('should render the developer tools cards as external links', async () => {

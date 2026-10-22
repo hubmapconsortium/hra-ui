@@ -42,18 +42,6 @@ describe('LandingCardComponent', () => {
     expect(container.querySelector('.description')).toBeNull();
   });
 
-  it('should render the eyebrow when provided', async () => {
-    const { container } = await setup({ ...MOCK_CARD, eyebrow: '2D · Large intestine' });
-
-    expect(container.querySelector('.eyebrow')).toHaveTextContent('2D · Large intestine');
-  });
-
-  it('should omit the eyebrow when it is not provided', async () => {
-    const { container } = await setup();
-
-    expect(container.querySelector('.eyebrow')).toBeNull();
-  });
-
   it('should render an icon in place of a missing image', async () => {
     const { container } = await setup({ ...MOCK_CARD, image: undefined, icon: { fontIcon: 'code' } });
 

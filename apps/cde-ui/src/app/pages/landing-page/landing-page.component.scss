@@ -1,6 +1,5 @@
 @use 'vars';
 @use 'utils';
-@use '../../shared/styles/landing-type';
 
 @keyframes fadeIn {
   from {
@@ -8,6 +7,25 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+// Hero screenshot rises into place as it fades in
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Hero background drifts down while the hero scrolls away, so it moves slower than the content
+@keyframes parallax {
+  to {
+    transform: translateY(30%);
   }
 }
 
@@ -34,12 +52,36 @@
   }
 
   .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     padding-block: 3rem;
     background-color: vars.$surface-container-lowest;
+    view-timeline: --hero;
+
+    // Decorative background on its own layer so it can move independently of the content
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--hero-background) right center / cover no-repeat;
+    }
+
+    // Parallax only plays for people who haven't asked for reduced motion,
+    // and only in browsers that support scroll-driven animations
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        &::before {
+          animation: parallax linear both;
+          animation-timeline: --hero;
+          animation-range: exit;
+        }
+      }
+    }
 
     .hero-content {
       display: grid;
-      // Cap the preview width so the examples below stay close to the fold
       grid-template-columns: minmax(0, 1fr) minmax(0, 34rem);
       align-items: center;
       gap: 3rem 4rem;
@@ -59,13 +101,13 @@
     }
 
     .logo {
-      width: 3rem;
-      height: 3rem;
+      width: 4.5rem;
+      height: 4.5rem;
     }
 
     .hero-title {
       margin: 0;
-      @include utils.use-font(display, large);
+      @include utils.use-font(display, medium);
       color: vars.$secondary;
     }
 
@@ -89,11 +131,22 @@
     .hero-image {
       display: block;
       width: 100%;
+      // Keeps the stacked layout from pushing the examples far down on tablets
+      max-width: 34rem;
       height: auto;
       border: 0.0625rem solid vars.$outline;
       border-radius: 0.75rem;
       background-color: vars.$on-primary;
       box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
+
+      // Hidden until it loads so the entrance plays on the image rather than an empty frame
+      @media (prefers-reduced-motion: no-preference) {
+        opacity: 0;
+
+        &.loaded {
+          animation: riseIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+      }
     }
   }
 
@@ -115,6 +168,31 @@
       @include utils.use-font(body, large);
       color: vars.$primary;
     }
+  }
+
+  .examples {
+    padding-block: 3rem 4rem;
+    background-color: vars.$surface-container-lowest;
+
+    .section-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 40rem);
+      align-items: center;
+      gap: 1.5rem 4rem;
+
+      @media (max-width: 64rem) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .section-description {
+      margin-bottom: 0;
+    }
+  }
+
+  .developer-tools {
+    padding-block: 4rem 5rem;
+    background-color: vars.$surface-container-high;
 
     .cards {
       display: grid;
@@ -130,56 +208,6 @@
         }
       }
     }
-  }
-
-  .examples {
-    padding-block: 3rem 4rem;
-    background-color: vars.$surface-container;
-
-    .cards {
-      grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
-    }
-
-    .gallery-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      // Title large: 22/28, semibold
-      @include landing-type.font(1.375rem, 1.75rem, 600, 0);
-      color: vars.$on-tertiary-fixed;
-      text-decoration: none;
-      border-radius: 0.25rem;
-
-      .gallery-link-icon {
-        width: 1.75rem;
-        height: 1.75rem;
-        font-size: 1.75rem;
-      }
-
-      &:hover,
-      &:focus-visible {
-        .gallery-link-icon {
-          transform: translateX(0.25rem);
-        }
-      }
-
-      &:focus-visible {
-        outline: 0.125rem solid vars.$tertiary;
-        outline-offset: 0.25rem;
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        .gallery-link-icon {
-          transition: transform 0.2s ease-in-out;
-        }
-      }
-    }
-  }
-
-  .developer-tools {
-    padding-block: 4rem 5rem;
-    background-color: vars.$surface-container-high;
   }
 
   .cite {

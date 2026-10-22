@@ -16,8 +16,6 @@ export interface LandingCardLink {
 
 /** Landing card data */
 export interface LandingCard {
-  /** Short metadata line shown above the title */
-  eyebrow?: string;
   /** Card title */
   title: string;
   /** One sentence describing the destination */

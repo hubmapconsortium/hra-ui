@@ -5,6 +5,7 @@ import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-syst
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
+import { LandingExample } from './components/example-list/example-list.component';
 import { LandingCard } from './components/landing-card/landing-card.component';
 import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -63,7 +64,7 @@ export const ROUTES: Routes = [
     component: LandingPageComponent,
     resolve: {
       [CRUMBS_DATA_KEY]: createCrumbsResolver(),
-      examples: jsonFileResolver<LandingCard[]>(LANDING_PAGE_EXAMPLES_URL, { cache: true }),
+      examples: jsonFileResolver<LandingExample[]>(LANDING_PAGE_EXAMPLES_URL, { cache: true }),
       developerTools: jsonFileResolver<LandingCard[]>(LANDING_PAGE_DEVELOPER_TOOLS_URL, { cache: true }),
     },
   },

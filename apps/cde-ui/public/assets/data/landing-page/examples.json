@@ -1,30 +1,16 @@
 [
   {
-    "eyebrow": "CyCIF · 483,936 cells",
     "title": "2D large intestine",
-    "description": "Example data from the Sorger Lab at Harvard Medical School.",
+    "description": "CyCIF · 483,936 cells",
+    "credit": "Data from the Sorger Lab, Harvard Medical School",
     "image": "assets/examples/2d-data-intestine.png",
-    "action": {
-      "label": "Open example",
-      "url": "/example/0"
-    },
-    "secondaryAction": {
-      "label": "Dataset details",
-      "url": "/gallery/colon-cycif-sorgerlab"
-    }
+    "url": "/example/0"
   },
   {
-    "eyebrow": "Cell DIVE · 46,268 cells",
     "title": "3D skin",
-    "description": "Example data from the Fiona Ginty Lab at GE HealthCare Technology and Innovation Center.",
+    "description": "Cell DIVE · 46,268 cells",
+    "credit": "Data from the Fiona Ginty Lab, GE HealthCare Technology and Innovation Center",
     "image": "assets/examples/3d-data-skin.png",
-    "action": {
-      "label": "Open example",
-      "url": "/example/1"
-    },
-    "secondaryAction": {
-      "label": "Dataset details",
-      "url": "/gallery/skin-celldive-ge"
-    }
+    "url": "/example/1"
   }
 ]

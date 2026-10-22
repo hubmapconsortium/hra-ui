@@ -1,0 +1,17 @@
+<ul class="examples" role="list">
+  @for (example of examples(); track example.url) {
+    <li>
+      <a class="example" hraFeature="example" [hraClickEvent]="{ url: example.url }" [hraLink]="example.url">
+        <img class="thumbnail" alt="" [attr.src]="example.image | assetUrl" />
+        <span class="text">
+          <span class="title">{{ example.title }}</span>
+          <span class="description">{{ example.description }}</span>
+          @if (example.credit) {
+            <span class="credit">{{ example.credit }}</span>
+          }
+        </span>
+        <mat-icon class="arrow">arrow_right_alt</mat-icon>
+      </a>
+    </li>
+  }
+</ul>

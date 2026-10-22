@@ -1,5 +1,10 @@
 <ng-container hraFeature="landing-page">
-  <section class="hero" hraFeature="hero" aria-labelledby="landing-title">
+  <section
+    class="hero"
+    hraFeature="hero"
+    aria-labelledby="landing-title"
+    [style.--hero-background]="'assets/backgrounds/create-visualization-page-background.png' | assetUrl | cssUrl"
+  >
     <div class="hero-content">
       <div class="hero-text">
         <hra-icon class="logo" svgIcon="product:cde" />
@@ -38,26 +43,21 @@
         width="2800"
         height="1730"
         alt="Cell Distance Explorer visualizing a large intestine sample, with violin and histogram charts of cell distances"
+        [class.loaded]="heroImageLoaded()"
         [attr.src]="'assets/ui-images/CDE.png' | assetUrl"
+        (load)="heroImageLoaded.set(true)"
+        (error)="heroImageLoaded.set(true)"
       />
     </div>
   </section>
 
   <section class="examples" hraFeature="examples" aria-labelledby="examples-title">
     <div class="section-content">
-      <h2 id="examples-title" class="section-title">Example visualizations</h2>
-      <p class="section-description">Open a ready-made 2D or 3D dataset to see cell distances in action.</p>
-      <ul class="cards" role="list">
-        @for (card of examples(); track card.title) {
-          <li class="card">
-            <cde-landing-card [card]="card" />
-          </li>
-        }
-      </ul>
-      <a class="gallery-link" hraFeature="browse-gallery" hraClickEvent hraLink="/gallery">
-        Browse all datasets in the Spatial Omics Gallery
-        <mat-icon class="gallery-link-icon">arrow_right_alt</mat-icon>
-      </a>
+      <div class="examples-intro">
+        <h2 id="examples-title" class="section-title">Example visualizations</h2>
+        <p class="section-description">Open a ready-made dataset to explore the app with real data.</p>
+      </div>
+      <cde-example-list [examples]="examples()" />
     </div>
   </section>
 
