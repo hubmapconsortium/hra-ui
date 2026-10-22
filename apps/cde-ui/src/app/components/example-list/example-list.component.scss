@@ -95,8 +95,8 @@
   }
 
   .credit {
-    // Body small: 12/16, regular, 0.4px tracking
-    @include landing-type.font(0.75rem, 1rem, 400, 0.025rem);
+    // Body medium: 14/20, regular, 0.2px tracking
+    @include landing-type.font(0.875rem, 1.25rem, 400, 0.0125rem);
     color: vars.$on-surface-variant;
   }
 
