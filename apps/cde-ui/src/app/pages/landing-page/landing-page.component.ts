@@ -13,9 +13,9 @@ import { LandingCard, LandingCardComponent } from '../../components/landing-card
 
 /** Hero screenshot sizes, so the browser can pick one for the rendered width and pixel density */
 const HERO_SCREENSHOTS = [
-  { width: 540, src: 'assets/screenshots/hero-screenshot-540x291.webp' },
-  { width: 720, src: 'assets/screenshots/hero-screenshot-720x387.webp' },
-  { width: 1080, src: 'assets/screenshots/hero-screenshot-1080x581.webp' },
+  { width: 540, src: 'assets/screenshots/large-intestine-visualization-540x316.webp' },
+  { width: 720, src: 'assets/screenshots/large-intestine-visualization-720x422.webp' },
+  { width: 1080, src: 'assets/screenshots/large-intestine-visualization-1080x633.webp' },
 ];
 
 /** Hero background sizes by viewport width, largest first, so the first matching media query wins */
@@ -62,7 +62,7 @@ export class LandingPageComponent {
   );
 
   /** Hero screenshot for browsers without srcset support */
-  protected readonly heroScreenshotFallback = 'assets/screenshots/hero-screenshot-1080x581.webp';
+  protected readonly heroScreenshotFallback = 'assets/screenshots/large-intestine-visualization-1080x633.webp';
 
   /** Hero background sources for larger viewports */
   protected readonly heroBackgroundSources = HERO_BACKGROUND_SOURCES;
