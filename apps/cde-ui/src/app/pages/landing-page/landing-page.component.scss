@@ -36,6 +36,9 @@
   $content-max-width: 101.25rem;
   // Hero screenshot width on desktop: grows with tall windows, but leaves the text column room on narrow ones
   $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
+  // Hero screenshot width when stacked: grows toward the full column only with the height left over after
+  // the header (113px) and the rest of the first screen (about 54rem), so the examples stay above the fold
+  $hero-image-stacked-width: clamp(34rem, (100vh - 113px - 54rem) * 1.7, 100%);
 
   background-color: vars.$secondary-container;
   display: block;
@@ -55,15 +58,13 @@
     }
   }
 
-  // On desktop each pair of sections fills the window below the header, so the next pair starts below the fold.
+  // Each pair of sections fills at least the window below the header, so on tall windows the next pair starts
+  // below the fold. Shorter windows and phones are unaffected because their content is already taller.
   // The hero takes two thirds of any extra height in the first screen; the citation and developer tools share theirs equally.
   .fill-screen {
     display: flex;
     flex-direction: column;
-
-    @media (width > 64rem) {
-      min-height: calc(100vh - 113px);
-    }
+    min-height: calc(100vh - 113px);
   }
 
   .hero {
@@ -168,9 +169,8 @@
       max-width: $hero-image-width;
       height: auto;
 
-      // Keeps the stacked layout from pushing the examples far down on tablets
       @media (max-width: 64rem) {
-        max-width: 34rem;
+        max-width: $hero-image-stacked-width;
       }
 
       border: 0.0625rem solid vars.$outline;
