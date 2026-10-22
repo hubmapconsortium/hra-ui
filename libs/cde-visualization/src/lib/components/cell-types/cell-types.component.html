@@ -1,4 +1,4 @@
-<hra-expansion-panel tagline="Cell Types" disabled>
+<hra-expansion-panel tagline="Cell types" disabled>
   <hra-expansion-panel-actions>
     <span class="cell-types-label">
       <button
@@ -48,11 +48,11 @@
           (click)="toggleLinksColumn()"
         >
           <mat-icon>{{ hideCellLinkData() ? 'visibility' : 'visibility_off' }}visibility</mat-icon>
-          {{ hideCellLinkData() ? 'Show' : 'Hide' }} Cell Link Data
+          {{ hideCellLinkData() ? 'Show' : 'Hide' }} cell link data
         </button>
         <button mat-menu-item hraFeature="reset-all-colors" hraClickEvent (click)="resetAllColors.emit()">
           <mat-icon>reset_wrench</mat-icon>
-          Reset All Colors
+          Reset all colors
         </button>
         <a
           mat-menu-item
@@ -63,7 +63,7 @@
           hraClickEvent
         >
           <mat-icon>code</mat-icon>
-          Embed App
+          Embed app
         </a>
       </mat-menu>
       <mat-menu class="info-sub-menu" #infoSubMenu="matMenu">
@@ -76,27 +76,27 @@
         </button>
         <button mat-menu-item hraFeature="download-cell-links-csv" hraClickEvent (click)="downloadEdges.emit()">
           <mat-icon>download</mat-icon>
-          <span>Cell Links CSV</span>
+          <span>Cell links CSV</span>
         </button>
         <button mat-menu-item hraFeature="download-color-map-csv" hraClickEvent (click)="downloadColorMap.emit()">
           <mat-icon>download</mat-icon>
-          <span>Cell Color Map CSV</span>
+          <span>Cell color map CSV</span>
         </button>
       </mat-menu>
     </span>
   </hra-expansion-panel-actions>
   <div class="total-ct-label" hraFeature="total-cell-types">
     <span>{{ selection().length }}</span>
-    Total Cell Types
+    Total cell types
   </div>
   <div class="total-cells" hraFeature="total-cells">
     <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
-    Total Cells
+    Total cells
   </div>
   @if (!hideCellLinkData()) {
     <div class="total-cell-links" hraFeature="total-cell-links">
       <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
-      Total Cell Links
+      Total cell links
     </div>
   }
 
@@ -107,7 +107,7 @@
         matSort
         matSortDirection="desc"
         matSortActive="count"
-        aria-label="Cell Types Count Table"
+        aria-label="Cell types count table"
         [dataSource]="dataSource"
         [trackBy]="trackByName"
       >
@@ -143,7 +143,7 @@
             hraFeature="sort-by-cell-type"
             hraClickEvent
           >
-            Cell Type
+            Cell type
           </th>
           <td *matCellDef="let element" mat-cell class="name">
             <cde-color-picker-label

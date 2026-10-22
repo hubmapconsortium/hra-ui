@@ -88,7 +88,7 @@ interface ModifiableHistogramSpec {
 const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
 
 /** Label for all cell types */
-const ALL_CELLS_TYPE = 'All Cells';
+const ALL_CELLS_TYPE = 'All cells';
 
 /** Width of the exported image */
 const EXPORT_IMAGE_WIDTH = 1000;

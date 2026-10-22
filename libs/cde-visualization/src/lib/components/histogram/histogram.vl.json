@@ -41,7 +41,7 @@
   ],
   "transform": [
     {
-      "calculate": "[datum.type, 'All Cells']",
+      "calculate": "[datum.type, 'All cells']",
       "as": "type"
     },
     {
@@ -75,7 +75,7 @@
     },
     "y": {
       "aggregate": "count",
-      "title": "Number of Cells",
+      "title": "Number of cells",
       "axis": {
         "minExtent": 70,
         "tickCount": {
