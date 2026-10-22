@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Embed the web component",
+    "description": "Add the cde-visualization web component to any web page to explore your own cell data.",
+    "icon": { "fontIcon": "code" },
+    "action": {
+      "label": "Read the embedding guide",
+      "url": "https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md",
+      "external": true
+    }
+  },
+  {
+    "title": "Use Jupyter notebooks",
+    "description": "Visualize cell distances in Python with the CdeVisualization widget from hra-jupyter-widgets.",
+    "icon": { "fontIcon": "menu_book" },
+    "action": {
+      "label": "Open example notebook",
+      "url": "https://github.com/x-atlas-consortia/hra-notebooks/blob/main/notebooks/hra-use-cde.ipynb",
+      "external": true
+    }
+  },
+  {
+    "title": "View the source code",
+    "description": "The Cell Distance Explorer is open source. Browse the code or contribute on GitHub.",
+    "icon": { "svgIcon": "social:github" },
+    "action": {
+      "label": "Go to GitHub",
+      "url": "https://github.com/hubmapconsortium/hra-ui/tree/main/apps/cde-ui",
+      "external": true
+    }
+  }
+]

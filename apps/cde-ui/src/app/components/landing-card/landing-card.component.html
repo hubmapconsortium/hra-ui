@@ -1,10 +1,20 @@
 @let data = card();
 
-<div class="media">
-  <img class="image" alt="" [attr.src]="data.image | assetUrl" />
-</div>
+@if (data.image) {
+  <div class="media">
+    <img class="image" alt="" [attr.src]="data.image | assetUrl" />
+  </div>
+} @else if (data.icon) {
+  <div class="icon-container">
+    <hra-icon class="icon" inline [icon]="data.icon" />
+  </div>
+}
 
 <div class="body">
+  @if (data.eyebrow) {
+    <p class="eyebrow">{{ data.eyebrow }}</p>
+  }
+
   <h3 class="title">
     <a
       class="primary-link"
@@ -25,7 +35,7 @@
 <div class="actions">
   <span class="cta" aria-hidden="true">
     {{ data.action.label }}
-    <mat-icon class="cta-icon">arrow_right_alt</mat-icon>
+    <mat-icon class="cta-icon">{{ data.action.external ? 'open_in_new' : 'arrow_right_alt' }}</mat-icon>
   </span>
 
   @if (data.secondaryAction; as secondary) {

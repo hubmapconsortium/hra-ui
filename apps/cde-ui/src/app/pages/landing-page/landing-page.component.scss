@@ -1,5 +1,6 @@
 @use 'vars';
 @use 'utils';
+@use '../../shared/styles/landing-type';
 
 @keyframes fadeIn {
   from {
@@ -33,11 +34,13 @@
   }
 
   .hero {
-    padding-top: 6rem;
+    padding-block: 3rem;
+    background-color: vars.$surface-container-lowest;
 
     .hero-content {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+      // Cap the preview width so the examples below stay close to the fold
+      grid-template-columns: minmax(0, 1fr) minmax(0, 34rem);
       align-items: center;
       gap: 3rem 4rem;
       width: 100%;
@@ -56,8 +59,8 @@
     }
 
     .logo {
-      width: 4rem;
-      height: 4rem;
+      width: 3rem;
+      height: 3rem;
     }
 
     .hero-title {
@@ -94,23 +97,28 @@
     }
   }
 
-  .get-started {
-    padding-bottom: 6rem;
-
-    .get-started-content {
+  .examples,
+  .developer-tools {
+    .section-content {
       width: 100%;
       max-width: $content-max-width;
     }
 
     .section-title {
-      margin: 0 0 1.5rem;
+      margin: 0 0 0.5rem;
       @include utils.use-font(headline, medium);
       color: vars.$secondary;
     }
 
+    .section-description {
+      margin: 0 0 1.5rem;
+      @include utils.use-font(body, large);
+      color: vars.$primary;
+    }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(17.75rem, 100%), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
       gap: 1.5rem;
       margin: 0;
       padding: 0;
@@ -122,6 +130,56 @@
         }
       }
     }
+  }
+
+  .examples {
+    padding-block: 3rem 4rem;
+    background-color: vars.$surface-container;
+
+    .cards {
+      grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+    }
+
+    .gallery-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      // Title large: 22/28, semibold
+      @include landing-type.font(1.375rem, 1.75rem, 600, 0);
+      color: vars.$on-tertiary-fixed;
+      text-decoration: none;
+      border-radius: 0.25rem;
+
+      .gallery-link-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 1.75rem;
+      }
+
+      &:hover,
+      &:focus-visible {
+        .gallery-link-icon {
+          transform: translateX(0.25rem);
+        }
+      }
+
+      &:focus-visible {
+        outline: 0.125rem solid vars.$tertiary;
+        outline-offset: 0.25rem;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .gallery-link-icon {
+          transition: transform 0.2s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .developer-tools {
+    padding-block: 4rem 5rem;
+    background-color: vars.$surface-container-high;
   }
 
   .cite {

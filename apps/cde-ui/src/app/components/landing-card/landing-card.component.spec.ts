@@ -8,9 +8,9 @@ import { LandingCard, LandingCardComponent } from './landing-card.component';
 describe('LandingCardComponent', () => {
   const MOCK_CARD: LandingCard = {
     title: 'Explore 2D data',
-    description: 'Sample large intestine CyCIF data from the Sorger Lab.',
+    description: 'Example CyCIF data from the Sorger Lab.',
     image: 'assets/examples/2d-data-intestine.png',
-    action: { label: 'Explore in app', url: '/example/0' },
+    action: { label: 'Open example', url: '/example/0' },
   };
 
   async function setup(card: LandingCard = MOCK_CARD) {
@@ -33,7 +33,7 @@ describe('LandingCardComponent', () => {
   it('should render the description', async () => {
     await setup();
 
-    expect(screen.getByText('Sample large intestine CyCIF data from the Sorger Lab.')).toBeInTheDocument();
+    expect(screen.getByText('Example CyCIF data from the Sorger Lab.')).toBeInTheDocument();
   });
 
   it('should omit the description when it is not provided', async () => {
@@ -42,13 +42,44 @@ describe('LandingCardComponent', () => {
     expect(container.querySelector('.description')).toBeNull();
   });
 
+  it('should render the eyebrow when provided', async () => {
+    const { container } = await setup({ ...MOCK_CARD, eyebrow: '2D · Large intestine' });
+
+    expect(container.querySelector('.eyebrow')).toHaveTextContent('2D · Large intestine');
+  });
+
+  it('should omit the eyebrow when it is not provided', async () => {
+    const { container } = await setup();
+
+    expect(container.querySelector('.eyebrow')).toBeNull();
+  });
+
+  it('should render an icon in place of a missing image', async () => {
+    const { container } = await setup({ ...MOCK_CARD, image: undefined, icon: { fontIcon: 'code' } });
+
+    expect(container.querySelector('.image')).toBeNull();
+    expect(container.querySelector('.icon mat-icon')).toHaveAttribute('data-mat-icon-name', 'code');
+  });
+
   it('should hide the visual call to action from assistive technology', async () => {
     const { container } = await setup();
 
     const cta = container.querySelector('.cta');
-    expect(cta).toHaveTextContent('Explore in app');
+    expect(cta).toHaveTextContent('Open example');
     expect(cta).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getAllByRole('link')).toHaveLength(1);
+  });
+
+  it('should open an external card destination in a new tab', async () => {
+    const { container } = await setup({
+      ...MOCK_CARD,
+      action: { label: 'Go to GitHub', url: 'https://example.com/repo', external: true },
+    });
+
+    const link = screen.getByRole('link', { name: 'Explore 2D data' });
+    expect(link).toHaveAttribute('href', 'https://example.com/repo');
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(container.querySelector('.cta-icon')).toHaveTextContent('open_in_new');
   });
 
   it('should render an internal secondary link in the same tab', async () => {

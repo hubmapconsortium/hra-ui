@@ -1,0 +1,30 @@
+[
+  {
+    "eyebrow": "2D · Large intestine · 483,936 cells",
+    "title": "Explore 2D data",
+    "description": "Example CyCIF data from the Sorger Lab at Harvard Medical School.",
+    "image": "assets/examples/2d-data-intestine.png",
+    "action": {
+      "label": "Open example",
+      "url": "/example/0"
+    },
+    "secondaryAction": {
+      "label": "Dataset details",
+      "url": "/gallery/colon-cycif-sorgerlab"
+    }
+  },
+  {
+    "eyebrow": "3D · Skin · 46,268 cells",
+    "title": "Explore 3D data",
+    "description": "Example Cell DIVE data from the Fiona Ginty Lab at GE HealthCare Technology and Innovation Center.",
+    "image": "assets/examples/3d-data-skin.png",
+    "action": {
+      "label": "Open example",
+      "url": "/example/1"
+    },
+    "secondaryAction": {
+      "label": "Dataset details",
+      "url": "/gallery/skin-celldive-ge"
+    }
+  }
+]

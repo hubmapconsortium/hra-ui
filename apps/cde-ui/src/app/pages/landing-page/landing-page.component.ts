@@ -28,8 +28,11 @@ import { LandingCard, LandingCardComponent } from '../../components/landing-card
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  /** Cards to display on the landing page */
-  readonly cards = input<LandingCard[]>([]);
+  /** Example dataset cards */
+  readonly examples = input<LandingCard[]>([]);
+
+  /** Developer tools cards */
+  readonly developerTools = input<LandingCard[]>([]);
 
   /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);

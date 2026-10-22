@@ -43,11 +43,30 @@
     </div>
   </section>
 
-  <section class="get-started" hraFeature="visualize" aria-labelledby="get-started-title">
-    <div class="get-started-content">
-      <h2 id="get-started-title" class="section-title">Get started</h2>
-      <ul class="cards" role="list" hraFeature="cde-cards">
-        @for (card of cards(); track card.title) {
+  <section class="examples" hraFeature="examples" aria-labelledby="examples-title">
+    <div class="section-content">
+      <h2 id="examples-title" class="section-title">Example visualizations</h2>
+      <p class="section-description">Open a ready-made 2D or 3D dataset to see cell distances in action.</p>
+      <ul class="cards" role="list">
+        @for (card of examples(); track card.title) {
+          <li class="card">
+            <cde-landing-card [card]="card" />
+          </li>
+        }
+      </ul>
+      <a class="gallery-link" hraFeature="browse-gallery" hraClickEvent hraLink="/gallery">
+        Browse all 399 datasets in the Spatial Omics Gallery
+        <mat-icon class="gallery-link-icon">arrow_right_alt</mat-icon>
+      </a>
+    </div>
+  </section>
+
+  <section class="developer-tools" hraFeature="developer-tools" aria-labelledby="developer-tools-title">
+    <div class="section-content">
+      <h2 id="developer-tools-title" class="section-title">Developer tools</h2>
+      <p class="section-description">Bring the Cell Distance Explorer into your own websites and analyses.</p>
+      <ul class="cards" role="list">
+        @for (card of developerTools(); track card.title) {
           <li class="card">
             <cde-landing-card [card]="card" />
           </li>

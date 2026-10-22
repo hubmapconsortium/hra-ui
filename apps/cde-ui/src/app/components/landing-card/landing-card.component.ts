@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
+import { IconData, IconsModule } from '@hra-ui/design-system/icons';
 
 /** Link shown on a landing card */
 export interface LandingCardLink {
@@ -15,12 +16,16 @@ export interface LandingCardLink {
 
 /** Landing card data */
 export interface LandingCard {
+  /** Short metadata line shown above the title */
+  eyebrow?: string;
   /** Card title */
   title: string;
   /** One sentence describing the destination */
   description?: string;
   /** Image url */
-  image: string;
+  image?: string;
+  /** Icon shown when the card has no image */
+  icon?: IconData;
   /** Destination of the whole card */
   action: LandingCardLink;
   /** Optional additional link */
@@ -33,7 +38,7 @@ export interface LandingCard {
  */
 @Component({
   selector: 'cde-landing-card',
-  imports: [HraCommonModule, LinkDirective, MatIconModule],
+  imports: [HraCommonModule, LinkDirective, MatIconModule, IconsModule],
   templateUrl: './landing-card.component.html',
   styleUrl: './landing-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
