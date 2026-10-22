@@ -909,12 +909,12 @@
     const z &#x3D; DISTANCE_FORMAT.format(nodes.getZFor(node) ?? 0);
 
     return [
-      { label: &#x27;Cell Type&#x27;, value: type },
+      { label: &#x27;Cell type&#x27;, value: type },
       { label: &#x27;CL ID&#x27;, value: ontologyId },
-      { label: &#x27;Distance to Closest Anchor Cell&#x27;, value: distance },
-      { label: &#x27;X Coordinate&#x27;, value: &#x60;${x} µm&#x60; },
-      { label: &#x27;Y Coordinate&#x27;, value: &#x60;${y} µm&#x60; },
-      { label: &#x27;Z Coordinate&#x27;, value: &#x60;${z} µm&#x60; },
+      { label: &#x27;Distance to closest anchor cell&#x27;, value: distance },
+      { label: &#x27;X coordinate&#x27;, value: &#x60;${x} µm&#x60; },
+      { label: &#x27;Y coordinate&#x27;, value: &#x60;${y} µm&#x60; },
+      { label: &#x27;Z coordinate&#x27;, value: &#x60;${z} µm&#x60; },
     ];
   })</code>
                     </td>
@@ -1338,12 +1338,12 @@ export class NodeDistVisualizationComponent {
     const z &#x3D; DISTANCE_FORMAT.format(nodes.getZFor(node) ?? 0);
 
     return [
-      { label: &#x27;Cell Type&#x27;, value: type },
+      { label: &#x27;Cell type&#x27;, value: type },
       { label: &#x27;CL ID&#x27;, value: ontologyId },
-      { label: &#x27;Distance to Closest Anchor Cell&#x27;, value: distance },
-      { label: &#x27;X Coordinate&#x27;, value: &#x60;${x} µm&#x60; },
-      { label: &#x27;Y Coordinate&#x27;, value: &#x60;${y} µm&#x60; },
-      { label: &#x27;Z Coordinate&#x27;, value: &#x60;${z} µm&#x60; },
+      { label: &#x27;Distance to closest anchor cell&#x27;, value: distance },
+      { label: &#x27;X coordinate&#x27;, value: &#x60;${x} µm&#x60; },
+      { label: &#x27;Y coordinate&#x27;, value: &#x60;${y} µm&#x60; },
+      { label: &#x27;Z coordinate&#x27;, value: &#x60;${z} µm&#x60; },
     ];
   });
 
@@ -1533,7 +1533,7 @@ export class NodeDistVisualizationComponent {
   #cellInfoOverlay&#x3D;&quot;cdkConnectedOverlay&quot;
 &gt;
   &lt;hra-info-modal
-    title&#x3D;&quot;Cell Info&quot;
+    title&#x3D;&quot;Cell info&quot;
     data-testid&#x3D;&quot;cell-info&quot;
     [data]&#x3D;&quot;cellInfoContent()&quot;
     (close)&#x3D;&quot;cellInfo.set(undefined)&quot;
@@ -1568,7 +1568,7 @@ export class NodeDistVisualizationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Visualization" disabled>  <hra-expansion-panel-actions>    <cde-node-dist-visualization-menu      [(edgesDisabled)]="edgesDisabled"      (fullscreenClick)="fullscreen.open()"      (downloadClick)="download()"      (resetViewClick)="resetView()"      (resetDeletedClick)="resetDeletedNodes()"    />  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-node-dist-visualization-controls      [deleteDisabled]="!hasSelection()"      [(viewMode)]="viewMode"      (deleteClick)="deleteSelection()"      (viewModeChange)="cellInfo.set(undefined)"    />  </hra-expansion-panel-header-content>  <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>    <hra-fullscreen-actions>      <cde-node-dist-visualization-menu        fullscreenMode        [(edgesDisabled)]="edgesDisabled"        (downloadClick)="download()"        (resetViewClick)="resetView()"        (resetDeletedClick)="resetDeletedNodes()"      />      <cde-node-dist-visualization-controls        [deleteDisabled]="!hasSelection()"        [(viewMode)]="viewMode"        (deleteClick)="deleteSelection()"        (viewModeChange)="cellInfo.set(undefined)"      />    </hra-fullscreen-actions>    <hra-fullscreen-portal-content>      <hra-node-dist-vis cdkOverlayOrigin class="vis" data-testid="node-dist-vis" #cellInfoOrigin="cdkOverlayOrigin" />    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayDisposeOnNavigation]="true"  [cdkConnectedOverlayHasBackdrop]="false"  [cdkConnectedOverlayMinWidth]="540"  [cdkConnectedOverlayOpen]="cellInfoOpen()"  [cdkConnectedOverlayOrigin]="cellInfoOrigin"  [cdkConnectedOverlayPositions]="cellInfoPosition()"  [cdkConnectedOverlayPush]="true"  [cdkConnectedOverlayViewportMargin]="16"  (overlayOutsideClick)="cellInfo.set(undefined)"  #cellInfoOverlay="cdkConnectedOverlay">  <hra-info-modal    title="Cell Info"    data-testid="cell-info"    [data]="cellInfoContent()"    (close)="cellInfo.set(undefined)"  /></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Visualization" disabled>  <hra-expansion-panel-actions>    <cde-node-dist-visualization-menu      [(edgesDisabled)]="edgesDisabled"      (fullscreenClick)="fullscreen.open()"      (downloadClick)="download()"      (resetViewClick)="resetView()"      (resetDeletedClick)="resetDeletedNodes()"    />  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-node-dist-visualization-controls      [deleteDisabled]="!hasSelection()"      [(viewMode)]="viewMode"      (deleteClick)="deleteSelection()"      (viewModeChange)="cellInfo.set(undefined)"    />  </hra-expansion-panel-header-content>  <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>    <hra-fullscreen-actions>      <cde-node-dist-visualization-menu        fullscreenMode        [(edgesDisabled)]="edgesDisabled"        (downloadClick)="download()"        (resetViewClick)="resetView()"        (resetDeletedClick)="resetDeletedNodes()"      />      <cde-node-dist-visualization-controls        [deleteDisabled]="!hasSelection()"        [(viewMode)]="viewMode"        (deleteClick)="deleteSelection()"        (viewModeChange)="cellInfo.set(undefined)"      />    </hra-fullscreen-actions>    <hra-fullscreen-portal-content>      <hra-node-dist-vis cdkOverlayOrigin class="vis" data-testid="node-dist-vis" #cellInfoOrigin="cdkOverlayOrigin" />    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayDisposeOnNavigation]="true"  [cdkConnectedOverlayHasBackdrop]="false"  [cdkConnectedOverlayMinWidth]="540"  [cdkConnectedOverlayOpen]="cellInfoOpen()"  [cdkConnectedOverlayOrigin]="cellInfoOrigin"  [cdkConnectedOverlayPositions]="cellInfoPosition()"  [cdkConnectedOverlayPush]="true"  [cdkConnectedOverlayViewportMargin]="16"  (overlayOutsideClick)="cellInfo.set(undefined)"  #cellInfoOverlay="cdkConnectedOverlay">  <hra-info-modal    title="Cell info"    data-testid="cell-info"    [data]="cellInfoContent()"    (close)="cellInfo.set(undefined)"  /></ng-template></div>'
     var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NodeDistVisualizationComponent'};

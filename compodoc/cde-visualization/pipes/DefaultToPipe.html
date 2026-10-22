@@ -191,8 +191,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/lib/components/metadata/metadata.component.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/lib/components/metadata/metadata.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -265,8 +265,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
-import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
@@ -274,10 +273,8 @@ import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
-import { TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
 import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 import { Metadata } from &#x27;../../models/metadata&#x27;;
-import { TOOLTIP_POSITION_RIGHT_SIDE } from &#x27;../../shared/tooltip-position&#x27;;
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] &#x3D; [
@@ -314,7 +311,6 @@ export class DefaultToPipe implements PipeTransform {
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,
-    OverlayModule,
     DefaultToPipe,
     MatMenuModule,
     PlainTooltipDirective,
@@ -339,16 +335,6 @@ export class MetadataComponent {
     return HIDABLE_FIELDS.some((field) &#x3D;&gt; metadata[field] &#x3D;&#x3D;&#x3D; undefined);
   });
 
-  /** Sets the tooltip position to the right side */
-  readonly tooltipPosition &#x3D; TOOLTIP_POSITION_RIGHT_SIDE;
-
-  /** Tooltip content */
-  readonly tooltipContent: TooltipContent[] &#x3D; [
-    {
-      description: &#x27;Visualization metadata for the sample dataset. Sample files may be viewed in Google Sheets.&#x27;,
-    },
-  ];
-
   /** Creates a date formatter with default locale */
   readonly dateFormat &#x3D; new Intl.DateTimeFormat(undefined, {
     year: &#x27;numeric&#x27;,
@@ -362,9 +348,6 @@ export class MetadataComponent {
     minute: &#x27;2-digit&#x27;,
     second: &#x27;2-digit&#x27;,
   });
-
-  /** Flag to check if info tooltip is open */
-  tooltipOpen &#x3D; false;
 
   /** Checks if a field is visible based on its value and the showEmptyFields signal */
   isFieldVisible(field: keyof Metadata): boolean {

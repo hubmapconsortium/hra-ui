@@ -316,8 +316,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
-import { DOCUMENT } from &#x27;@angular/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ChangeDetectionStrategy, Component, effect, inject, input, Renderer2, signal, viewChild } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
@@ -331,14 +330,12 @@ import {
   FullscreenPortalContentComponent,
 } from &#x27;@hra-ui/design-system/fullscreen&#x27;;
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
-import { TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
 import { produce } from &#x27;immer&#x27;;
 import { View } from &#x27;vega&#x27;;
 import embed from &#x27;vega-embed&#x27;;
 
 import { DistanceEntry } from &#x27;../../cde-visualization/cde-visualization.component&#x27;;
 import { FileSaverService } from &#x27;../../services/file-saver/file-saver.service&#x27;;
-import { TOOLTIP_POSITION_RIGHT_SIDE } from &#x27;../../shared/tooltip-position&#x27;;
 import { ViolinMenuComponent } from &#x27;./violin-menu/violin-menu.component&#x27;;
 import * as VIOLIN_SPEC from &#x27;./violin.vl.json&#x27;;
 
@@ -436,7 +433,6 @@ const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-    OverlayModule,
     ScrollingModule,
     MatMenuModule,
     FullscreenPortalComponent,
@@ -454,20 +450,6 @@ const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
   },
 })
 export class ViolinComponent {
-  /** Tooltip position configuration */
-  readonly tooltipPosition &#x3D; TOOLTIP_POSITION_RIGHT_SIDE;
-
-  /** Tooltip content */
-  readonly tooltipContent: TooltipContent[] &#x3D; [
-    {
-      description:
-        &#x27;The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.&#x27;,
-    },
-  ];
-
-  /** State indicating whether the info panel is open */
-  infoOpen &#x3D; false;
-
   /** Data for the violin visualization */
   readonly data &#x3D; input.required&lt;DistanceEntry[]&gt;();
 

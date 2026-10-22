@@ -271,8 +271,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
-import { DOCUMENT } from &#x27;@angular/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import {
   ChangeDetectionStrategy,
@@ -306,7 +305,6 @@ import {
   FullscreenPortalContentComponent,
 } from &#x27;@hra-ui/design-system/fullscreen&#x27;;
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
-import { TooltipContent } from &#x27;@hra-ui/design-system/tooltip-card&#x27;;
 import { produce } from &#x27;immer&#x27;;
 import { ColorPickerDirective } from &#x27;ngx-color-picker&#x27;;
 import { View } from &#x27;vega&#x27;;
@@ -314,7 +312,6 @@ import embed, { VisualizationSpec } from &#x27;vega-embed&#x27;;
 import { DistanceEntry } from &#x27;../../cde-visualization/cde-visualization.component&#x27;;
 import { CellTypeEntry } from &#x27;../../models/cell-type&#x27;;
 import { FileSaverService } from &#x27;../../services/file-saver/file-saver.service&#x27;;
-import { TOOLTIP_POSITION_RIGHT_SIDE } from &#x27;../../shared/tooltip-position&#x27;;
 import { ColorPickerLabelComponent } from &#x27;../color-picker-label/color-picker-label.component&#x27;;
 import { HistogramMenuComponent } from &#x27;./histogram-menu/histogram-menu.component&#x27;;
 import * as HISTOGRAM_SPEC from &#x27;./histogram.vl.json&#x27;;
@@ -361,7 +358,7 @@ interface ModifiableHistogramSpec {
 const HISTOGRAM_FONTS &#x3D; [&#x27;12px Metropolis&#x27;, &#x27;14px Metropolis&#x27;];
 
 /** Label for all cell types */
-const ALL_CELLS_TYPE &#x3D; &#x27;All Cells&#x27;;
+const ALL_CELLS_TYPE &#x3D; &#x27;All cells&#x27;;
 
 /** Width of the exported image */
 const EXPORT_IMAGE_WIDTH &#x3D; 1000;
@@ -405,7 +402,6 @@ const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatButtonModule,
     MatExpansionModule,
     ColorPickerLabelComponent,
-    OverlayModule,
     ScrollingModule,
     MatMenuModule,
     FullscreenPortalComponent,
@@ -439,20 +435,6 @@ export class HistogramComponent {
 
   /** Cell types to use for the visualization */
   readonly filteredCellTypes &#x3D; input.required&lt;CellTypeEntry[]&gt;();
-
-  /** Tooltip position configuration */
-  readonly tooltipPosition &#x3D; TOOLTIP_POSITION_RIGHT_SIDE;
-
-  /** Tooltip content */
-  readonly tooltipContent: TooltipContent[] &#x3D; [
-    {
-      description:
-        &#x27;The graph shows a histogram of cell-to-nearest-anchor cell distance distributions categorized by each cell type in the dataset.&#x27;,
-    },
-  ];
-
-  /** State indicating whether the info panel is open */
-  infoOpen &#x3D; false;
 
   /** Toggles full screen mode */
   protected readonly fullscreen &#x3D; signal(false);

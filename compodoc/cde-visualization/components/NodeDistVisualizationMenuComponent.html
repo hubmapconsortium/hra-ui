@@ -553,7 +553,7 @@ export class NodeDistVisualizationMenuComponent {
   @if (!fullscreenMode()) {
     &lt;button mat-menu-item hraFeature&#x3D;&quot;fullscreen&quot; hraClickEvent (click)&#x3D;&quot;fullscreenClick.emit()&quot;&gt;
       &lt;mat-icon&gt;fullscreen&lt;/mat-icon&gt;
-      Full Screen
+      Full screen
     &lt;/button&gt;
   }
   &lt;button
@@ -563,7 +563,7 @@ export class NodeDistVisualizationMenuComponent {
     (click)&#x3D;&quot;this.edgesDisabled.set(!this.edgesDisabled())&quot;
   &gt;
     &lt;mat-icon&gt;{{ edgesDisabled() ? &#x27;visibility&#x27; : &#x27;visibility_off&#x27; }}&lt;/mat-icon&gt;
-    {{ edgesDisabled() ? &#x27;Show&#x27; : &#x27;Hide&#x27; }} Cell Links
+    {{ edgesDisabled() ? &#x27;Show&#x27; : &#x27;Hide&#x27; }} cell links
   &lt;/button&gt;
   &lt;a
     mat-menu-item
@@ -574,27 +574,27 @@ export class NodeDistVisualizationMenuComponent {
     hraClickEvent
   &gt;
     &lt;mat-icon&gt;code&lt;/mat-icon&gt;
-    Embed App
+    Embed app
   &lt;/a&gt;
 &lt;/mat-menu&gt;
 
 &lt;mat-menu class&#x3D;&quot;info-sub-menu&quot; #infoSubMenu&#x3D;&quot;matMenu&quot;&gt;
   &lt;div&gt;
     &lt;ul&gt;
-      Zoom Options
+      Zoom options
       &lt;li&gt;Mouse pinwheel&lt;/li&gt;
-      &lt;li&gt;Trackpad Pinch&lt;/li&gt;
+      &lt;li&gt;Trackpad pinch&lt;/li&gt;
     &lt;/ul&gt;
     &lt;ul&gt;
-      Pan Options
+      Pan options
       &lt;li&gt;CTRL/CMD + mouse drag&lt;/li&gt;
       &lt;li&gt;Right click + mouse drag&lt;/li&gt;
       &lt;li&gt;Keyboard arrows&lt;/li&gt;
     &lt;/ul&gt;
     &lt;ul&gt;
-      Rotation Options
+      Rotation options
       &lt;li&gt;CTRL/CMD + keyboard arrows&lt;/li&gt;
-      &lt;li&gt;Mouse Drag&lt;/li&gt;
+      &lt;li&gt;Mouse drag&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
 &lt;/mat-menu&gt;
@@ -609,12 +609,12 @@ export class NodeDistVisualizationMenuComponent {
 &lt;mat-menu class&#x3D;&quot;reset-sub-menu&quot; #resetSubMenu&#x3D;&quot;matMenu&quot;&gt;
   &lt;button mat-menu-item hraFeature&#x3D;&quot;reset-visualization-view&quot; hraClickEvent (click)&#x3D;&quot;resetViewClick.emit()&quot;&gt;
     &lt;mat-icon&gt;reset_wrench&lt;/mat-icon&gt;
-    &lt;span&gt;Reset Visualization View&lt;/span&gt;
+    &lt;span&gt;Reset visualization view&lt;/span&gt;
   &lt;/button&gt;
 
   &lt;button mat-menu-item hraFeature&#x3D;&quot;reset-deleted-cells&quot; hraClickEvent (click)&#x3D;&quot;resetDeletedClick.emit()&quot;&gt;
     &lt;mat-icon&gt;reset_wrench&lt;/mat-icon&gt;
-    &lt;span&gt;Reset Deleted Cells&lt;/span&gt;
+    &lt;span&gt;Reset deleted cells&lt;/span&gt;
   &lt;/button&gt;
 &lt;/mat-menu&gt;
 </code></pre>
@@ -646,7 +646,7 @@ export class NodeDistVisualizationMenuComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button  mat-icon-button  hraIconButtonSize="large"  aria-label="Icon to open nested menu"  hraPlainTooltip="More"  hraFeature="menu"  hraClickEvent  [matMenuTriggerFor]="menu">  <mat-icon>more_vert</mat-icon></button><mat-menu class="vis-overlay" hraFeature="menu" #menu="matMenu">  <button    mat-menu-item    matRipple    matRippleColor="#201E3D14"    hraFeature="info"    hraClickEvent    hraHoverEvent    hraHoverEventTriggerOn="mouseenter"    [matMenuTriggerFor]="infoSubMenu"  >    <mat-icon>info</mat-icon>    <span>Info</span>    <mat-icon class="expand-arrow">arrow_right</mat-icon>  </button>  <button    mat-menu-item    matRipple    matRippleColor="#201E3D14"    hraFeature="download"    hraClickEvent    [matMenuTriggerFor]="downloadSubMenu"  >    <mat-icon>download</mat-icon>    <span>Downloads</span>    <mat-icon class="expand-arrow">arrow_right</mat-icon>  </button>  <button    mat-menu-item    matRipple    matRippleColor="#201E3D14"    hraFeature="reset"    hraClickEvent    [matMenuTriggerFor]="resetSubMenu"  >    <mat-icon>reset_wrench</mat-icon>    <span>Reset</span>    <mat-icon class="expand-arrow">arrow_right</mat-icon>  </button>  @if (!fullscreenMode()) {    <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="fullscreenClick.emit()">      <mat-icon>fullscreen</mat-icon>      Full Screen    </button>  }  <button    mat-menu-item    hraClickEvent    [hraFeature]="edgesDisabled() ? \'show-cell-links\' : \'hide-cell-links\'"    (click)="this.edgesDisabled.set(!this.edgesDisabled())"  >    <mat-icon>{{ edgesDisabled() ? \'visibility\' : \'visibility_off\' }}</mat-icon>    {{ edgesDisabled() ? \'Show\' : \'Hide\' }} Cell Links  </button>  <a    mat-menu-item    href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"    target="_blank"    rel="noopener noreferrer"    hraFeature="embed-app"    hraClickEvent  >    <mat-icon>code</mat-icon>    Embed App  </a></mat-menu><mat-menu class="info-sub-menu" #infoSubMenu="matMenu">  <div>    <ul>      Zoom Options      <li>Mouse pinwheel</li>      <li>Trackpad Pinch</li>    </ul>    <ul>      Pan Options      <li>CTRL/CMD + mouse drag</li>      <li>Right click + mouse drag</li>      <li>Keyboard arrows</li>    </ul>    <ul>      Rotation Options      <li>CTRL/CMD + keyboard arrows</li>      <li>Mouse Drag</li>    </ul>  </div></mat-menu><mat-menu class="download-sub-menu" #downloadSubMenu="matMenu">  <button mat-menu-item hraFeature="download-png" hraClickEvent (click)="downloadClick.emit()">    <mat-icon>download</mat-icon>    <span>PNG</span>  </button></mat-menu><mat-menu class="reset-sub-menu" #resetSubMenu="matMenu">  <button mat-menu-item hraFeature="reset-visualization-view" hraClickEvent (click)="resetViewClick.emit()">    <mat-icon>reset_wrench</mat-icon>    <span>Reset Visualization View</span>  </button>  <button mat-menu-item hraFeature="reset-deleted-cells" hraClickEvent (click)="resetDeletedClick.emit()">    <mat-icon>reset_wrench</mat-icon>    <span>Reset Deleted Cells</span>  </button></mat-menu></div>'
+        var COMPONENT_TEMPLATE = '<div><button  mat-icon-button  hraIconButtonSize="large"  aria-label="Icon to open nested menu"  hraPlainTooltip="More"  hraFeature="menu"  hraClickEvent  [matMenuTriggerFor]="menu">  <mat-icon>more_vert</mat-icon></button><mat-menu class="vis-overlay" hraFeature="menu" #menu="matMenu">  <button    mat-menu-item    matRipple    matRippleColor="#201E3D14"    hraFeature="info"    hraClickEvent    hraHoverEvent    hraHoverEventTriggerOn="mouseenter"    [matMenuTriggerFor]="infoSubMenu"  >    <mat-icon>info</mat-icon>    <span>Info</span>    <mat-icon class="expand-arrow">arrow_right</mat-icon>  </button>  <button    mat-menu-item    matRipple    matRippleColor="#201E3D14"    hraFeature="download"    hraClickEvent    [matMenuTriggerFor]="downloadSubMenu"  >    <mat-icon>download</mat-icon>    <span>Downloads</span>    <mat-icon class="expand-arrow">arrow_right</mat-icon>  </button>  <button    mat-menu-item    matRipple    matRippleColor="#201E3D14"    hraFeature="reset"    hraClickEvent    [matMenuTriggerFor]="resetSubMenu"  >    <mat-icon>reset_wrench</mat-icon>    <span>Reset</span>    <mat-icon class="expand-arrow">arrow_right</mat-icon>  </button>  @if (!fullscreenMode()) {    <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="fullscreenClick.emit()">      <mat-icon>fullscreen</mat-icon>      Full screen    </button>  }  <button    mat-menu-item    hraClickEvent    [hraFeature]="edgesDisabled() ? \'show-cell-links\' : \'hide-cell-links\'"    (click)="this.edgesDisabled.set(!this.edgesDisabled())"  >    <mat-icon>{{ edgesDisabled() ? \'visibility\' : \'visibility_off\' }}</mat-icon>    {{ edgesDisabled() ? \'Show\' : \'Hide\' }} cell links  </button>  <a    mat-menu-item    href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"    target="_blank"    rel="noopener noreferrer"    hraFeature="embed-app"    hraClickEvent  >    <mat-icon>code</mat-icon>    Embed app  </a></mat-menu><mat-menu class="info-sub-menu" #infoSubMenu="matMenu">  <div>    <ul>      Zoom options      <li>Mouse pinwheel</li>      <li>Trackpad pinch</li>    </ul>    <ul>      Pan options      <li>CTRL/CMD + mouse drag</li>      <li>Right click + mouse drag</li>      <li>Keyboard arrows</li>    </ul>    <ul>      Rotation options      <li>CTRL/CMD + keyboard arrows</li>      <li>Mouse drag</li>    </ul>  </div></mat-menu><mat-menu class="download-sub-menu" #downloadSubMenu="matMenu">  <button mat-menu-item hraFeature="download-png" hraClickEvent (click)="downloadClick.emit()">    <mat-icon>download</mat-icon>    <span>PNG</span>  </button></mat-menu><mat-menu class="reset-sub-menu" #resetSubMenu="matMenu">  <button mat-menu-item hraFeature="reset-visualization-view" hraClickEvent (click)="resetViewClick.emit()">    <mat-icon>reset_wrench</mat-icon>    <span>Reset visualization view</span>  </button>  <button mat-menu-item hraFeature="reset-deleted-cells" hraClickEvent (click)="resetDeletedClick.emit()">    <mat-icon>reset_wrench</mat-icon>    <span>Reset deleted cells</span>  </button></mat-menu></div>'
     var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NodeDistVisualizationMenuComponent'};
