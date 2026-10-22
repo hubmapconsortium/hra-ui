@@ -136,7 +136,7 @@
     .hero-description {
       margin: 0;
       @include utils.use-font(body, xl);
-      color: vars.$primary;
+      color: vars.$on-surface-variant;
       text-wrap: balance;
     }
 
@@ -188,8 +188,8 @@
 
     .section-description {
       margin: 0 0 1.5rem;
-      @include utils.use-font(body, large);
-      color: vars.$primary;
+      @include utils.use-font(body, xl);
+      color: vars.$on-surface-variant;
     }
   }
 
@@ -255,6 +255,7 @@
 
       .description {
         @include utils.use-font(body, xl);
+        color: vars.$on-surface-variant;
       }
 
       .copy-citation {
