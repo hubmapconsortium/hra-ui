@@ -41,6 +41,8 @@
 :host {
   // Matches the footer content column so sections line up on wide screens
   $content-max-width: 101.25rem;
+  // Hero screenshot width on desktop: grows with tall windows, but leaves the text column room on narrow ones
+  $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
 
   background-color: vars.$secondary-container;
   display: block;
@@ -60,7 +62,20 @@
     }
   }
 
+  // On desktop the hero and examples fill the window below the header, so the citation starts below the fold.
+  // The hero takes two thirds of any extra height and the examples one third.
+  .first-screen {
+    display: flex;
+    flex-direction: column;
+
+    @media (width > 64rem) {
+      min-height: calc(100vh - 113px);
+    }
+  }
+
   .hero {
+    flex-grow: 2;
+    justify-content: center;
     position: relative;
     isolation: isolate;
     overflow: hidden;
@@ -100,7 +115,7 @@
 
     .hero-content {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 34rem);
+      grid-template-columns: minmax(0, 1fr) minmax(0, $hero-image-width);
       align-items: center;
       gap: 3rem 4rem;
       width: 100%;
@@ -157,9 +172,14 @@
     .hero-image {
       display: block;
       width: 100%;
-      // Keeps the stacked layout from pushing the examples far down on tablets
-      max-width: 34rem;
+      max-width: $hero-image-width;
       height: auto;
+
+      // Keeps the stacked layout from pushing the examples far down on tablets
+      @media (max-width: 64rem) {
+        max-width: 34rem;
+      }
+
       border: 0.0625rem solid vars.$outline;
       border-radius: 0.75rem;
       background-color: vars.$on-primary;
@@ -202,6 +222,8 @@
 
   // Same spacing as the hero, with no description so the rows show above the fold on smaller laptops
   .examples {
+    flex-grow: 1;
+    justify-content: center;
     padding-block: 3.5rem;
     // Mesh of glows behind the rows: lavender and red along the bottom, lavender and indigo along the top
     background:

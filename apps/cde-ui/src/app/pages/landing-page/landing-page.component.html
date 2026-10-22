@@ -1,67 +1,69 @@
 <ng-container hraFeature="landing-page">
-  <section class="hero" hraFeature="hero" aria-labelledby="landing-title">
-    <picture class="hero-background">
-      @for (source of heroBackgroundSources; track source.src) {
-        <source [attr.media]="source.media" [attr.srcset]="source.src | assetUrl" />
-      }
-      <img alt="" decoding="sync" fetchpriority="low" [attr.src]="heroBackgroundFallback | assetUrl" />
-    </picture>
+  <div class="first-screen">
+    <section class="hero" hraFeature="hero" aria-labelledby="landing-title">
+      <picture class="hero-background">
+        @for (source of heroBackgroundSources; track source.src) {
+          <source [attr.media]="source.media" [attr.srcset]="source.src | assetUrl" />
+        }
+        <img alt="" decoding="sync" fetchpriority="low" [attr.src]="heroBackgroundFallback | assetUrl" />
+      </picture>
 
-    <div class="hero-content">
-      <div class="hero-text">
-        <hra-icon class="logo" svgIcon="product:cde" />
-        <h1 id="landing-title" class="hero-title">Visualize and quantify distances</h1>
-        <p class="hero-description">Upload 2D or 3D spatial data to compute and explore cell-to-cell distances.</p>
-        <div class="hero-actions">
-          <a
-            mat-button
-            hraCtaButton
-            hraPrimaryButton
-            hraButtonSize="medium"
-            hraFeature="create-visualization"
-            hraClickEvent
-            hraLink="/create"
-          >
-            Create a visualization
-            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-          </a>
-          <a
-            mat-button
-            hraCtaButton
-            hraSecondaryButton
-            hraButtonSize="medium"
-            hraFeature="explore-gallery"
-            hraClickEvent
-            hraLink="/gallery"
-          >
-            Browse the gallery
-            <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-          </a>
+      <div class="hero-content">
+        <div class="hero-text">
+          <hra-icon class="logo" svgIcon="product:cde" />
+          <h1 id="landing-title" class="hero-title">Visualize and quantify distances</h1>
+          <p class="hero-description">Upload 2D or 3D spatial data to compute and explore cell-to-cell distances.</p>
+          <div class="hero-actions">
+            <a
+              mat-button
+              hraCtaButton
+              hraPrimaryButton
+              hraButtonSize="medium"
+              hraFeature="create-visualization"
+              hraClickEvent
+              hraLink="/create"
+            >
+              Create a visualization
+              <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+            </a>
+            <a
+              mat-button
+              hraCtaButton
+              hraSecondaryButton
+              hraButtonSize="medium"
+              hraFeature="explore-gallery"
+              hraClickEvent
+              hraLink="/gallery"
+            >
+              Browse the gallery
+              <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+            </a>
+          </div>
         </div>
+
+        <img
+          class="hero-image"
+          width="1080"
+          height="633"
+          sizes="(min-width: 64rem) clamp(34rem, min(50vh, 45vw), 56rem), (min-width: 36rem) 34rem, calc(100vw - 2rem)"
+          fetchpriority="high"
+          alt="Cell Distance Explorer visualizing a large intestine sample, with violin and histogram charts of cell distances"
+          [class.loaded]="heroImageLoaded()"
+          [attr.srcset]="heroScreenshotSrcset()"
+          [attr.src]="heroScreenshotFallback | assetUrl"
+          (load)="heroImageLoaded.set(true)"
+          (error)="heroImageLoaded.set(true)"
+        />
       </div>
+    </section>
 
-      <img
-        class="hero-image"
-        width="1080"
-        height="633"
-        sizes="(min-width: 36rem) 34rem, calc(100vw - 2rem)"
-        fetchpriority="high"
-        alt="Cell Distance Explorer visualizing a large intestine sample, with violin and histogram charts of cell distances"
-        [class.loaded]="heroImageLoaded()"
-        [attr.srcset]="heroScreenshotSrcset()"
-        [attr.src]="heroScreenshotFallback | assetUrl"
-        (load)="heroImageLoaded.set(true)"
-        (error)="heroImageLoaded.set(true)"
-      />
-    </div>
-  </section>
-
-  <section class="examples" hraFeature="examples" aria-labelledby="examples-title">
-    <div class="section-content">
-      <h2 id="examples-title" class="section-title">Start with an example dataset</h2>
-      <cde-example-list [examples]="examples()" />
-    </div>
-  </section>
+    <section class="examples" hraFeature="examples" aria-labelledby="examples-title">
+      <div class="section-content">
+        <h2 id="examples-title" class="section-title">Start with an example dataset</h2>
+        <cde-example-list [examples]="examples()" />
+      </div>
+    </section>
+  </div>
 
   <section
     class="cite"
