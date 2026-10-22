@@ -1,7 +1,7 @@
 [
   {
     "title": "Embed the web component",
-    "description": "Add the cde-visualization web component to any web page to explore your own cell data.",
+    "description": "Add the cde-visualization component to any webpage to interact with your own cell data.",
     "icon": { "fontIcon": "code" },
     "action": {
       "label": "Read the embedding guide",
@@ -11,7 +11,7 @@
   },
   {
     "title": "Use Jupyter notebooks",
-    "description": "Visualize cell distances in Python with the CdeVisualization widget from hra-jupyter-widgets.",
+    "description": "Visualize cell distances in Python with the CdeVisualization widget.",
     "icon": { "fontIcon": "menu_book" },
     "action": {
       "label": "Open example notebook",
@@ -20,7 +20,7 @@
     }
   },
   {
-    "title": "View the source code",
+    "title": "View source code",
     "description": "The Cell Distance Explorer is open source. Browse the code or contribute on GitHub.",
     "icon": { "svgIcon": "social:github" },
     "action": {
