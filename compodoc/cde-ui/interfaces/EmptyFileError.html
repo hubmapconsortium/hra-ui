@@ -306,7 +306,7 @@ function optionalValue&lt;T&gt;(): T | null {
   styleUrl: &#x27;./create-visualization-page.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    &#x27;[style.background-image]&#x27;: &#x27;backgroundImageUrl()&#x27;,
+    &#x27;[style.--page-background-image]&#x27;: &#x27;backgroundImageUrl()&#x27;,
   },
 })
 export class CreateVisualizationPageComponent {
@@ -469,9 +469,9 @@ export class CreateVisualizationPageComponent {
       return undefined;
     }
     const { xAxis, yAxis, cellType } &#x3D; this.visualizationForm.controls[&#x27;headers&#x27;].value;
-    const xError &#x3D; xAxis ? undefined : &#x27;X Axis&#x27;;
-    const yError &#x3D; yAxis ? undefined : &#x27;Y Axis&#x27;;
-    const ctError &#x3D; cellType ? undefined : &#x27;Cell Type&#x27;;
+    const xError &#x3D; xAxis ? undefined : &#x27;X axis&#x27;;
+    const yError &#x3D; yAxis ? undefined : &#x27;Y axis&#x27;;
+    const ctError &#x3D; cellType ? undefined : &#x27;cell type&#x27;;
     const errorColumns &#x3D; [xError, yError, ctError].filter((e) &#x3D;&gt; !!e);
 
     return errorColumns.length &gt; 0
@@ -562,6 +562,14 @@ export class CreateVisualizationPageComponent {
     }
     const { nodes } &#x3D; this;
     return !!(nodes &amp;&amp; nodes.length &gt; 0 &amp;&amp; cellTypeHeader in nodes[0]);
+  }
+
+  /**
+   * Determines whether a dataset has been loaded, even if its columns aren&#x27;t mapped yet
+   * @returns true if the dataset has at least one row
+   */
+  hasDataset(): boolean {
+    return !!this.nodes &amp;&amp; this.nodes.length &gt; 0;
   }
 
   /**

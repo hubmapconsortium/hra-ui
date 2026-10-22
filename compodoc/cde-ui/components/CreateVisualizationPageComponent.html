@@ -320,6 +320,9 @@
                                 <a href="#clearNodes" >clearNodes</a>
                             </li>
                             <li>
+                                <a href="#hasDataset" >hasDataset</a>
+                            </li>
+                            <li>
                                 <a href="#hasValidCustomColorMap" >hasValidCustomColorMap</a>
                             </li>
                             <li>
@@ -456,8 +459,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="394"
-                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:394</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="402"
+                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:402</a></div>
                         </td>
                     </tr>
 
@@ -518,6 +521,49 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="hasDataset"></a>
+                    <span class="name">
+                        <span ><b>hasDataset</b></span>
+                        <a href="#hasDataset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hasDataset()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="343"
+                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:343</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Determines whether a dataset has been loaded, even if its columns aren&#39;t mapped yet</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>true if the dataset has at least one row</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="hasValidCustomColorMap"></a>
                     <span class="name">
                         <span ><b>hasValidCustomColorMap</b></span>
@@ -534,8 +580,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="404"
-                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:404</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="412"
+                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:412</a></div>
                         </td>
                     </tr>
 
@@ -577,8 +623,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="343"
-                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:343</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="351"
+                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:351</a></div>
                         </td>
                     </tr>
 
@@ -663,8 +709,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="363"
-                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:363</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="371"
+                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:371</a></div>
                         </td>
                     </tr>
 
@@ -811,8 +857,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="416"
-                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:416</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="424"
+                                    class="link-to-prism">src/app/pages/create-visualization-page/create-visualization-page.component.ts:424</a></div>
                         </td>
                     </tr>
 
@@ -1863,7 +1909,7 @@ function optionalValue&lt;T&gt;(): T | null {
   styleUrl: &#x27;./create-visualization-page.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    &#x27;[style.background-image]&#x27;: &#x27;backgroundImageUrl()&#x27;,
+    &#x27;[style.--page-background-image]&#x27;: &#x27;backgroundImageUrl()&#x27;,
   },
 })
 export class CreateVisualizationPageComponent {
@@ -2026,9 +2072,9 @@ export class CreateVisualizationPageComponent {
       return undefined;
     }
     const { xAxis, yAxis, cellType } &#x3D; this.visualizationForm.controls[&#x27;headers&#x27;].value;
-    const xError &#x3D; xAxis ? undefined : &#x27;X Axis&#x27;;
-    const yError &#x3D; yAxis ? undefined : &#x27;Y Axis&#x27;;
-    const ctError &#x3D; cellType ? undefined : &#x27;Cell Type&#x27;;
+    const xError &#x3D; xAxis ? undefined : &#x27;X axis&#x27;;
+    const yError &#x3D; yAxis ? undefined : &#x27;Y axis&#x27;;
+    const ctError &#x3D; cellType ? undefined : &#x27;cell type&#x27;;
     const errorColumns &#x3D; [xError, yError, ctError].filter((e) &#x3D;&gt; !!e);
 
     return errorColumns.length &gt; 0
@@ -2119,6 +2165,14 @@ export class CreateVisualizationPageComponent {
     }
     const { nodes } &#x3D; this;
     return !!(nodes &amp;&amp; nodes.length &gt; 0 &amp;&amp; cellTypeHeader in nodes[0]);
+  }
+
+  /**
+   * Determines whether a dataset has been loaded, even if its columns aren&#x27;t mapped yet
+   * @returns true if the dataset has at least one row
+   */
+  hasDataset(): boolean {
+    return !!this.nodes &amp;&amp; this.nodes.length &gt; 0;
   }
 
   /**
@@ -2351,7 +2405,7 @@ export class CreateVisualizationPageComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;form class&#x3D;&quot;content&quot; hraFeature&#x3D;&quot;create-visualization-page&quot; [formGroup]&#x3D;&quot;visualizationForm&quot;&gt;
   &lt;div class&#x3D;&quot;page-nav&quot;&gt;
-    &lt;h1 class&#x3D;&quot;title&quot;&gt;Create a Distance Visualization&lt;/h1&gt;
+    &lt;h1 class&#x3D;&quot;title&quot;&gt;Create a distance visualization&lt;/h1&gt;
   &lt;/div&gt;
 
   &lt;hra-workflow-card
@@ -2360,52 +2414,60 @@ export class CreateVisualizationPageComponent {
     [allowUpload]&#x3D;&quot;true&quot;
     [loadProgress]&#x3D;&quot;nodeProgress&quot;
   &gt;
-    &lt;h2 class&#x3D;&quot;header&quot;&gt;
-      &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; [value]&#x3D;&quot;1&quot; /&gt;
-      &lt;span class&#x3D;&quot;card-title&quot;&gt;Upload data&lt;/span&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;h2 class&#x3D;&quot;heading&quot;&gt;
+        &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; aria-hidden&#x3D;&quot;true&quot; [value]&#x3D;&quot;1&quot; /&gt;
+        &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Step 1 of 6: &lt;/span&gt;
+        &lt;span class&#x3D;&quot;card-title&quot;&gt;Upload data&lt;/span&gt;
+      &lt;/h2&gt;
       &lt;hra-info-button&gt;
         Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
         damage and proliferation markers.
       &lt;/hra-info-button&gt;
       &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
       &lt;a
-        mat-button
+        mat-stroked-button
         class&#x3D;&quot;use-template&quot;
-        color&#x3D;&quot;primary&quot;
         href&#x3D;&quot;https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid&#x3D;47698780#gid&#x3D;47698780&quot;
         target&#x3D;&quot;_blank&quot;
         rel&#x3D;&quot;noopener noreferrer&quot;
         hraButtonSize&#x3D;&quot;medium&quot;
+        aria-label&#x3D;&quot;Open template for cell data, opens in a new tab&quot;
         hraFeature&#x3D;&quot;data-template&quot;
         hraClickEvent
       &gt;
-        Template
+        Open template
+        &lt;mat-icon iconPositionEnd&gt;open_in_new&lt;/mat-icon&gt;
       &lt;/a&gt;
-    &lt;/h2&gt;
-    &lt;table aria-label&#x3D;&quot;data upload requirements&quot;&gt;
-      &lt;tr&gt;
-        &lt;th&gt;Required columns&lt;/th&gt;
-        &lt;th&gt;Optional columns&lt;/th&gt;
-        &lt;th&gt;Supported format&lt;/th&gt;
-      &lt;/tr&gt;
-
-      &lt;tr&gt;
-        &lt;td&gt;• &lt;span&gt;X&lt;/span&gt;&lt;/td&gt;
-        &lt;td&gt;• &lt;span&gt;Z&lt;/span&gt;&lt;/td&gt;
-        &lt;td&gt;• &lt;span&gt;CSV&lt;/span&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td&gt;• &lt;span&gt;Y&lt;/span&gt;&lt;/td&gt;
-        &lt;td&gt;• &lt;span&gt;Cell ontology ID&lt;/span&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td&gt;• &lt;span&gt;Cell type&lt;/span&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-    &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;requirements&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Data upload requirements&quot;&gt;
+      &lt;div class&#x3D;&quot;requirement-group&quot;&gt;
+        &lt;span class&#x3D;&quot;requirement-label&quot; id&#x3D;&quot;data-required-columns&quot;&gt;Required columns&lt;/span&gt;
+        &lt;ul class&#x3D;&quot;requirement-list&quot; aria-labelledby&#x3D;&quot;data-required-columns&quot;&gt;
+          &lt;li&gt;X&lt;/li&gt;
+          &lt;li&gt;Y&lt;/li&gt;
+          &lt;li&gt;Cell type&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;requirement-group&quot;&gt;
+        &lt;span class&#x3D;&quot;requirement-label&quot; id&#x3D;&quot;data-optional-columns&quot;&gt;Optional columns&lt;/span&gt;
+        &lt;ul class&#x3D;&quot;requirement-list&quot; aria-labelledby&#x3D;&quot;data-optional-columns&quot;&gt;
+          &lt;li&gt;Z&lt;/li&gt;
+          &lt;li&gt;Cell ontology ID&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;requirement-group&quot;&gt;
+        &lt;span class&#x3D;&quot;requirement-label&quot; id&#x3D;&quot;data-supported-format&quot;&gt;Supported format&lt;/span&gt;
+        &lt;ul class&#x3D;&quot;requirement-list&quot; aria-labelledby&#x3D;&quot;data-supported-format&quot;&gt;
+          &lt;li&gt;CSV&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
 
     &lt;cde-file-upload
       class&#x3D;&quot;upload-csv&quot;
       accept&#x3D;&quot;text/csv,.csv&quot;
+      uploadAriaLabel&#x3D;&quot;Upload CSV for cell data&quot;
       [loader]&#x3D;&quot;nodesLoader&quot;
       [options]&#x3D;&quot;nodesLoaderOptions&quot;
       [errorMessage]&#x3D;&quot;nodesErrorMessage&quot;
@@ -2420,11 +2482,14 @@ export class CreateVisualizationPageComponent {
   &lt;/hra-workflow-card&gt;
 
   &lt;hra-workflow-card class&#x3D;&quot;card organize-data&quot; formGroupName&#x3D;&quot;headers&quot; hraFeature&#x3D;&quot;organize-data&quot;&gt;
-    &lt;h2 class&#x3D;&quot;header&quot;&gt;
-      &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; [value]&#x3D;&quot;2&quot; /&gt;
-      &lt;span class&#x3D;&quot;card-title&quot;&gt;Organize data&lt;/span&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;h2 class&#x3D;&quot;heading&quot;&gt;
+        &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; aria-hidden&#x3D;&quot;true&quot; [value]&#x3D;&quot;2&quot; /&gt;
+        &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Step 2 of 6: &lt;/span&gt;
+        &lt;span class&#x3D;&quot;card-title&quot;&gt;Organize data&lt;/span&gt;
+      &lt;/h2&gt;
       &lt;hra-info-button&gt; Verify column headers and edit as needed. Select optional column headers. &lt;/hra-info-button&gt;
-    &lt;/h2&gt;
+    &lt;/div&gt;
 
     @if (visualizationForm.controls.headers.disabled) {
       &lt;hra-error-indicator [errors]&#x3D;&quot;[&#x27;Please upload a dataset.&#x27;]&quot; /&gt;
@@ -2433,11 +2498,12 @@ export class CreateVisualizationPageComponent {
     &lt;div class&#x3D;&quot;required-headers&quot;&gt;
       &lt;span class&#x3D;&quot;subheader&quot;&gt;Required: Verify column headers&lt;/span&gt;
 
-      &lt;mat-form-field subscriptSizing&#x3D;&quot;dynamic&quot; hraFeature&#x3D;&quot;x-axis-selector&quot;&gt;
+      &lt;mat-form-field subscriptSizing&#x3D;&quot;dynamic&quot; hideRequiredMarker hraFeature&#x3D;&quot;x-axis-selector&quot;&gt;
         &lt;mat-label&gt;X axis&lt;/mat-label&gt;
         &lt;mat-select
           disableRipple
           formControlName&#x3D;&quot;xAxis&quot;
+          required
           panelClass&#x3D;&quot;options-container&quot;
           hraClickEvent
           hraModelChangeEvent
@@ -2449,11 +2515,12 @@ export class CreateVisualizationPageComponent {
         &lt;/mat-select&gt;
       &lt;/mat-form-field&gt;
 
-      &lt;mat-form-field subscriptSizing&#x3D;&quot;dynamic&quot; hraFeature&#x3D;&quot;y-axis-selector&quot;&gt;
+      &lt;mat-form-field subscriptSizing&#x3D;&quot;dynamic&quot; hideRequiredMarker hraFeature&#x3D;&quot;y-axis-selector&quot;&gt;
         &lt;mat-label&gt;Y axis&lt;/mat-label&gt;
         &lt;mat-select
           disableRipple
           formControlName&#x3D;&quot;yAxis&quot;
+          required
           panelClass&#x3D;&quot;options-container&quot;
           hraClickEvent
           hraModelChangeEvent
@@ -2465,11 +2532,17 @@ export class CreateVisualizationPageComponent {
         &lt;/mat-select&gt;
       &lt;/mat-form-field&gt;
 
-      &lt;mat-form-field class&#x3D;&quot;cell-type-select&quot; subscriptSizing&#x3D;&quot;dynamic&quot; hraFeature&#x3D;&quot;cell-type-selector&quot;&gt;
+      &lt;mat-form-field
+        class&#x3D;&quot;cell-type-select&quot;
+        subscriptSizing&#x3D;&quot;dynamic&quot;
+        hideRequiredMarker
+        hraFeature&#x3D;&quot;cell-type-selector&quot;
+      &gt;
         &lt;mat-label&gt;Cell type&lt;/mat-label&gt;
         &lt;mat-select
           disableRipple
           formControlName&#x3D;&quot;cellType&quot;
+          required
           panelClass&#x3D;&quot;options-container&quot;
           hraClickEvent
           hraModelChangeEvent
@@ -2483,7 +2556,7 @@ export class CreateVisualizationPageComponent {
     &lt;/div&gt;
 
     @if (columnErrorActionMessage) {
-      &lt;hra-error-indicator [errors]&#x3D;&quot;[columnErrorActionMessage]&quot; /&gt;
+      &lt;hra-error-indicator role&#x3D;&quot;alert&quot; [errors]&#x3D;&quot;[columnErrorActionMessage]&quot; /&gt;
     }
 
     &lt;div class&#x3D;&quot;optional-headers&quot;&gt;
@@ -2524,9 +2597,12 @@ export class CreateVisualizationPageComponent {
   &lt;/hra-workflow-card&gt;
 
   &lt;hra-workflow-card class&#x3D;&quot;card parameters&quot; formGroupName&#x3D;&quot;parameters&quot; hraFeature&#x3D;&quot;configure-parameters&quot;&gt;
-    &lt;h2 class&#x3D;&quot;header&quot;&gt;
-      &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; [value]&#x3D;&quot;3&quot; /&gt;
-      &lt;div class&#x3D;&quot;card-title&quot;&gt;Configure parameters&lt;/div&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;h2 class&#x3D;&quot;heading&quot;&gt;
+        &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; aria-hidden&#x3D;&quot;true&quot; [value]&#x3D;&quot;3&quot; /&gt;
+        &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Step 3 of 6: &lt;/span&gt;
+        &lt;span class&#x3D;&quot;card-title&quot;&gt;Configure parameters&lt;/span&gt;
+      &lt;/h2&gt;
       &lt;hra-info-button&gt;
         The anchor cell type represents the cell type to which the nearest cell distance distributions should be
         computed and visualized. Euclidian distance is used to compute the distance between two cells. &quot;Endothelial&quot; is
@@ -2538,7 +2614,7 @@ export class CreateVisualizationPageComponent {
         Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
         in micrometers.
       &lt;/hra-info-button&gt;
-    &lt;/h2&gt;
+    &lt;/div&gt;
 
     @if (visualizationForm.controls.parameters.disabled) {
       &lt;hra-error-indicator [errors]&#x3D;&quot;[&#x27;Please upload a dataset.&#x27;]&quot; /&gt;
@@ -2586,14 +2662,17 @@ export class CreateVisualizationPageComponent {
   &lt;/hra-workflow-card&gt;
 
   &lt;hra-workflow-card class&#x3D;&quot;card metadata&quot; formGroupName&#x3D;&quot;metadata&quot; hraFeature&#x3D;&quot;add-metadata&quot;&gt;
-    &lt;h2 class&#x3D;&quot;header&quot;&gt;
-      &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; [value]&#x3D;&quot;4&quot; /&gt;
-      &lt;div class&#x3D;&quot;card-title&quot;&gt;Optional: Add metadata&lt;/div&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;h2 class&#x3D;&quot;heading&quot;&gt;
+        &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; aria-hidden&#x3D;&quot;true&quot; [value]&#x3D;&quot;4&quot; /&gt;
+        &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Step 4 of 6: &lt;/span&gt;
+        &lt;span class&#x3D;&quot;card-title&quot;&gt;Optional: Add metadata&lt;/span&gt;
+      &lt;/h2&gt;
       &lt;hra-info-button&gt;
         Information in these fields will not change the visualization output. Metadata may be helpful for taking
         screenshots of the uploaded data and resulting visualizations in the Visualization App.
       &lt;/hra-info-button&gt;
-    &lt;/h2&gt;
+    &lt;/div&gt;
 
     &lt;div class&#x3D;&quot;row&quot;&gt;
       &lt;mat-form-field subscriptSizing&#x3D;&quot;dynamic&quot; hraFeature&#x3D;&quot;visualization-title&quot;&gt;
@@ -2644,11 +2723,13 @@ export class CreateVisualizationPageComponent {
       &lt;mat-form-field subscriptSizing&#x3D;&quot;dynamic&quot; hraFeature&#x3D;&quot;age&quot;&gt;
         &lt;mat-label&gt;Age&lt;/mat-label&gt;
         &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;age&quot; min&#x3D;&quot;0&quot; max&#x3D;&quot;120&quot; hraClickEvent cdeMarkEmptyFormControl /&gt;
+        &lt;mat-error&gt;Enter a whole number, 0–120&lt;/mat-error&gt;
       &lt;/mat-form-field&gt;
 
       &lt;mat-form-field subscriptSizing&#x3D;&quot;dynamic&quot; hraFeature&#x3D;&quot;thickness&quot;&gt;
         &lt;mat-label&gt;Thickness (µm)&lt;/mat-label&gt;
         &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;thickness&quot; min&#x3D;&quot;0&quot; hraClickEvent cdeMarkEmptyFormControl /&gt;
+        &lt;mat-error&gt;Enter 0 or more&lt;/mat-error&gt;
       &lt;/mat-form-field&gt;
     &lt;/div&gt;
   &lt;/hra-workflow-card&gt;
@@ -2660,32 +2741,37 @@ export class CreateVisualizationPageComponent {
     [allowUpload]&#x3D;&quot;true&quot;
     [loadProgress]&#x3D;&quot;colorProgress&quot;
   &gt;
-    &lt;h2 class&#x3D;&quot;header&quot;&gt;
-      &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; [value]&#x3D;&quot;5&quot; /&gt;
-      &lt;div class&#x3D;&quot;card-title&quot;&gt;Optional: Configure colors&lt;/div&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;h2 class&#x3D;&quot;heading&quot;&gt;
+        &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; aria-hidden&#x3D;&quot;true&quot; [value]&#x3D;&quot;5&quot; /&gt;
+        &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Step 5 of 6: &lt;/span&gt;
+        &lt;span class&#x3D;&quot;card-title&quot;&gt;Optional: Configure colors&lt;/span&gt;
+      &lt;/h2&gt;
       &lt;hra-info-button&gt;
         Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
         may be changed individually while exploring the visualization in the Visualization App.
       &lt;/hra-info-button&gt;
       &lt;div class&#x3D;&quot;filler&quot;&gt;&lt;/div&gt;
       &lt;a
-        mat-button
+        mat-stroked-button
         class&#x3D;&quot;use-template&quot;
-        color&#x3D;&quot;primary&quot;
         href&#x3D;&quot;https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid&#x3D;0#gid&#x3D;0&quot;
         target&#x3D;&quot;_blank&quot;
         rel&#x3D;&quot;noopener noreferrer&quot;
+        hraButtonSize&#x3D;&quot;medium&quot;
+        aria-label&#x3D;&quot;Open template for color maps, opens in a new tab&quot;
         hraFeature&#x3D;&quot;color-template&quot;
         hraClickEvent
       &gt;
-        Template
+        Open template
+        &lt;mat-icon iconPositionEnd&gt;open_in_new&lt;/mat-icon&gt;
       &lt;/a&gt;
-    &lt;/h2&gt;
+    &lt;/div&gt;
 
     &lt;mat-button-toggle-group
       formControlName&#x3D;&quot;colorMapType&quot;
       name&#x3D;&quot;singleSelect&quot;
-      aria-label&#x3D;&quot;Single Select&quot;
+      aria-label&#x3D;&quot;Color map&quot;
       hideSingleSelectionIndicator
       hraButtonToggleSize&#x3D;&quot;large&quot;
     &gt;
@@ -2703,24 +2789,25 @@ export class CreateVisualizationPageComponent {
     &lt;/mat-button-toggle-group&gt;
 
     @if (useCustomColorMap) {
-      &lt;table aria-label&#x3D;&quot;custom color map requirements&quot;&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Required columns&lt;/th&gt;
-          &lt;th&gt;Supported format&lt;/th&gt;
-          &lt;th&gt;&lt;/th&gt;
-          &lt;th&gt;&lt;/th&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;• &lt;span&gt;Cell type&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;• &lt;span&gt;CSV&lt;/span&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;• &lt;span&gt;Cell color&lt;/span&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/table&gt;
+      &lt;div class&#x3D;&quot;requirements&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Custom color map requirements&quot;&gt;
+        &lt;div class&#x3D;&quot;requirement-group&quot;&gt;
+          &lt;span class&#x3D;&quot;requirement-label&quot; id&#x3D;&quot;color-required-columns&quot;&gt;Required columns&lt;/span&gt;
+          &lt;ul class&#x3D;&quot;requirement-list&quot; aria-labelledby&#x3D;&quot;color-required-columns&quot;&gt;
+            &lt;li&gt;Cell type&lt;/li&gt;
+            &lt;li&gt;Cell color&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;requirement-group&quot;&gt;
+          &lt;span class&#x3D;&quot;requirement-label&quot; id&#x3D;&quot;color-supported-format&quot;&gt;Supported format&lt;/span&gt;
+          &lt;ul class&#x3D;&quot;requirement-list&quot; aria-labelledby&#x3D;&quot;color-supported-format&quot;&gt;
+            &lt;li&gt;CSV&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
       &lt;cde-file-upload
         class&#x3D;&quot;upload-colormap&quot;
         accept&#x3D;&quot;text/csv,.csv&quot;
+        uploadAriaLabel&#x3D;&quot;Upload CSV for color map&quot;
         data-testid&#x3D;&quot;color-map-upload&quot;
         [loader]&#x3D;&quot;colorMapLoader&quot;
         [options]&#x3D;&quot;colorMapLoaderOptions&quot;
@@ -2736,18 +2823,24 @@ export class CreateVisualizationPageComponent {
   &lt;/hra-workflow-card&gt;
 
   &lt;hra-workflow-card class&#x3D;&quot;card visualize&quot; hraFeature&#x3D;&quot;visualize-data&quot;&gt;
-    &lt;h2 class&#x3D;&quot;header&quot;&gt;
-      &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; [value]&#x3D;&quot;6&quot; /&gt;
-      &lt;div class&#x3D;&quot;card-title&quot;&gt;Visualize cell distance data&lt;/div&gt;
+    &lt;div class&#x3D;&quot;header&quot;&gt;
+      &lt;h2 class&#x3D;&quot;heading&quot;&gt;
+        &lt;hra-step-indicator class&#x3D;&quot;step-number&quot; aria-hidden&#x3D;&quot;true&quot; [value]&#x3D;&quot;6&quot; /&gt;
+        &lt;span class&#x3D;&quot;visually-hidden&quot;&gt;Step 6 of 6: &lt;/span&gt;
+        &lt;span class&#x3D;&quot;card-title&quot;&gt;Visualize cell distance data&lt;/span&gt;
+      &lt;/h2&gt;
       &lt;hra-info-button&gt;
         &lt;div hraInfoButtonTooltipContent&gt;
           Data on the Create Visualization page cannot be modified after a visualization is generated.
         &lt;/div&gt;
       &lt;/hra-info-button&gt;
-    &lt;/h2&gt;
+    &lt;/div&gt;
 
-    @if (!hasValidNodes() || !hasValidData()) {
-      &lt;hra-error-indicator [errors]&#x3D;&quot;[&#x27;Please upload a dataset.&#x27;]&quot; /&gt;
+    @let canVisualize &#x3D; hasValidNodes() &amp;&amp; hasValidData();
+    @if (!hasDataset()) {
+      &lt;hra-error-indicator id&#x3D;&quot;visualize-requirements&quot; [errors]&#x3D;&quot;[&#x27;Please upload a dataset.&#x27;]&quot; /&gt;
+    } @else if (!canVisualize) {
+      &lt;hra-error-indicator id&#x3D;&quot;visualize-requirements&quot; [errors]&#x3D;&quot;[&#x27;Please complete the required fields above.&#x27;]&quot; /&gt;
     }
 
     &lt;button
@@ -2758,8 +2851,10 @@ export class CreateVisualizationPageComponent {
       data-testid&#x3D;&quot;visualize&quot;
       hraFeature&#x3D;&quot;submit&quot;
       hraClickEvent
-      [disabled]&#x3D;&quot;!hasValidNodes() || !hasValidData()&quot;
-      (click)&#x3D;&quot;$event.preventDefault(); submit()&quot;
+      disabledInteractive
+      [disabled]&#x3D;&quot;!canVisualize&quot;
+      [attr.aria-describedby]&#x3D;&quot;canVisualize ? null : &#x27;visualize-requirements&#x27;&quot;
+      (click)&#x3D;&quot;$event.preventDefault(); canVisualize &amp;&amp; submit()&quot;
     &gt;
       Visualize
       &lt;mat-icon class&#x3D;&quot;material-symbols-rounded&quot; iconPositionEnd&gt;arrow_right_alt&lt;/mat-icon&gt;
@@ -2796,7 +2891,7 @@ export class CreateVisualizationPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form class="content" hraFeature="create-visualization-page" [formGroup]="visualizationForm">  <div class="page-nav">    <h1 class="title">Create a Distance Visualization</h1>  </div>  <hra-workflow-card    class="card data-upload"    hraFeature="upload-data"    [allowUpload]="true"    [loadProgress]="nodeProgress"  >    <h2 class="header">      <hra-step-indicator class="step-number" [value]="1" />      <span class="card-title">Upload data</span>      <hra-info-button>        Use the template to format single-cell spatial feature tables for exploration. The cell type column can include        damage and proliferation markers.      </hra-info-button>      <div class="filler"></div>      <a        mat-button        class="use-template"        color="primary"        href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"        target="_blank"        rel="noopener noreferrer"        hraButtonSize="medium"        hraFeature="data-template"        hraClickEvent      >        Template      </a>    </h2>    <table aria-label="data upload requirements">      <tr>        <th>Required columns</th>        <th>Optional columns</th>        <th>Supported format</th>      </tr>      <tr>        <td>• <span>X</span></td>        <td>• <span>Z</span></td>        <td>• <span>CSV</span></td>      </tr>      <tr>        <td>• <span>Y</span></td>        <td>• <span>Cell ontology ID</span></td>      </tr>      <tr>        <td>• <span>Cell type</span></td>      </tr>    </table>    <cde-file-upload      class="upload-csv"      accept="text/csv,.csv"      [loader]="nodesLoader"      [options]="nodesLoaderOptions"      [errorMessage]="nodesErrorMessage"      [errorActionMessage]="nodesErrorActionMessage"      (loadStarted)="clearNodes()"      (loadCompleted)="setNodes($event[0])"      (loadCancelled)="clearNodes()"      (loadErrored)="nodesLoadError = $event; nodeProgress = 0"      (progress)="nodeProgress = $event"      #nodesFileUpload    />  </hra-workflow-card>  <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">    <h2 class="header">      <hra-step-indicator class="step-number" [value]="2" />      <span class="card-title">Organize data</span>      <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>    </h2>    @if (visualizationForm.controls.headers.disabled) {      <hra-error-indicator [errors]="[\'Please upload a dataset.\']" />    }    <div class="required-headers">      <span class="subheader">Required: Verify column headers</span>      <mat-form-field subscriptSizing="dynamic" hraFeature="x-axis-selector">        <mat-label>X axis</mat-label>        <mat-select          disableRipple          formControlName="xAxis"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="y-axis-selector">        <mat-label>Y axis</mat-label>        <mat-select          disableRipple          formControlName="yAxis"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field class="cell-type-select" subscriptSizing="dynamic" hraFeature="cell-type-selector">        <mat-label>Cell type</mat-label>        <mat-select          disableRipple          formControlName="cellType"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    @if (columnErrorActionMessage) {      <hra-error-indicator [errors]="[columnErrorActionMessage]" />    }    <div class="optional-headers">      <span class="subheader">Optional: Add column headers</span>      <mat-form-field subscriptSizing="dynamic" hraFeature="z-axis-selector">        <mat-label>Z axis</mat-label>        <mat-select          disableRipple          formControlName="zAxis"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="cell-ontology-selector">        <mat-label>Cell ontology ID</mat-label>        <mat-select          disableRipple          formControlName="ontologyId"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>  </hra-workflow-card>  <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">    <h2 class="header">      <hra-step-indicator class="step-number" [value]="3" />      <div class="card-title">Configure parameters</div>      <hra-info-button>        The anchor cell type represents the cell type to which the nearest cell distance distributions should be        computed and visualized. Euclidian distance is used to compute the distance between two cells. "Endothelial" is        used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell type        label is used as the anchor cell type.        <br /><br />        Configure the distance threshold to modify visualizations for analysis.        <br /><br />        Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already        in micrometers.      </hra-info-button>    </h2>    @if (visualizationForm.controls.parameters.disabled) {      <hra-error-indicator [errors]="[\'Please upload a dataset.\']" />    }    <div class="parameters-1">      <mat-form-field subscriptSizing="dynamic" hraFeature="anchor-cell-type-selector">        <mat-label>Anchor cell type</mat-label>        <mat-select          disableRipple          formControlName="nodeTargetValue"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (type of cellTypes; track type) {            <mat-option [value]="type">{{ type }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="distance-threshold">        <mat-label>Distance threshold</mat-label>        <input matInput formControlName="distanceThreshold" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>    </div>    <div class="parameters-2">      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-x">        <mat-label>Pixel size (X) (µm/pixel)</mat-label>        <input matInput type="number" formControlName="pixelSizeX" min="0" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-y">        <mat-label>Pixel size (Y) (µm/pixel)</mat-label>        <input matInput type="number" formControlName="pixelSizeY" min="0" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-z">        <mat-label>Pixel size (Z) (µm/pixel)</mat-label>        <input matInput type="number" formControlName="pixelSizeZ" min="0" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>    </div>  </hra-workflow-card>  <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">    <h2 class="header">      <hra-step-indicator class="step-number" [value]="4" />      <div class="card-title">Optional: Add metadata</div>      <hra-info-button>        Information in these fields will not change the visualization output. Metadata may be helpful for taking        screenshots of the uploaded data and resulting visualizations in the Visualization App.      </hra-info-button>    </h2>    <div class="row">      <mat-form-field subscriptSizing="dynamic" hraFeature="visualization-title">        <mat-label>Visualization title</mat-label>        <input matInput formControlName="title" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="imaging-technology">        <mat-label>Imaging technology</mat-label>        <input matInput formControlName="technology" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>    </div>    <div class="row">      <mat-form-field subscriptSizing="dynamic" hraFeature="organ-selector">        <mat-label>Organ</mat-label>        <mat-select          disableRipple          formControlName="organ"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (organ of organs(); track organ.id) {            <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="sex-selector">        <mat-label>Sex</mat-label>        <mat-select          disableRipple          formControlName="sex"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          <mat-option value="Male">Male</mat-option>          <mat-option value="Female">Female</mat-option>        </mat-select>      </mat-form-field>    </div>    <div class="row">      <mat-form-field subscriptSizing="dynamic" hraFeature="age">        <mat-label>Age</mat-label>        <input matInput type="number" formControlName="age" min="0" max="120" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="thickness">        <mat-label>Thickness (µm)</mat-label>        <input matInput type="number" formControlName="thickness" min="0" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>    </div>  </hra-workflow-card>  <hra-workflow-card    class="color-config card"    hraFeature="configure-colors"    [class.custom]="useCustomColorMap"    [allowUpload]="true"    [loadProgress]="colorProgress"  >    <h2 class="header">      <hra-step-indicator class="step-number" [value]="5" />      <div class="card-title">Optional: Configure colors</div>      <hra-info-button>        Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors        may be changed individually while exploring the visualization in the Visualization App.      </hra-info-button>      <div class="filler"></div>      <a        mat-button        class="use-template"        color="primary"        href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"        target="_blank"        rel="noopener noreferrer"        hraFeature="color-template"        hraClickEvent      >        Template      </a>    </h2>    <mat-button-toggle-group      formControlName="colorMapType"      name="singleSelect"      aria-label="Single Select"      hideSingleSelectionIndicator      hraButtonToggleSize="large"    >      <mat-button-toggle disableRipple value="default" hraFeature="toggle.default" hraClickEvent        >Use default colors</mat-button-toggle      >      <mat-button-toggle        disableRipple        value="custom"        data-testid="upload-custom"        hraFeature="toggle.custom"        hraClickEvent        >Upload color map</mat-button-toggle      >    </mat-button-toggle-group>    @if (useCustomColorMap) {      <table aria-label="custom color map requirements">        <tr>          <th>Required columns</th>          <th>Supported format</th>          <th></th>          <th></th>        </tr>        <tr>          <td>• <span>Cell type</span></td>          <td>• <span>CSV</span></td>        </tr>        <tr>          <td>• <span>Cell color</span></td>        </tr>      </table>      <cde-file-upload        class="upload-colormap"        accept="text/csv,.csv"        data-testid="color-map-upload"        [loader]="colorMapLoader"        [options]="colorMapLoaderOptions"        [errorMessage]="colorErrorMessage"        [errorActionMessage]="colorErrorActionMessage"        (loadCompleted)="setCustomColorMap($event[0])"        (loadCancelled)="clearCustomColorMap()"        (loadErrored)="customColorMapLoadError = $event; colorProgress = 0"        (progress)="colorProgress = $event"        #customColorMapFileUpload      />    }  </hra-workflow-card>  <hra-workflow-card class="card visualize" hraFeature="visualize-data">    <h2 class="header">      <hra-step-indicator class="step-number" [value]="6" />      <div class="card-title">Visualize cell distance data</div>      <hra-info-button>        <div hraInfoButtonTooltipContent>          Data on the Create Visualization page cannot be modified after a visualization is generated.        </div>      </hra-info-button>    </h2>    @if (!hasValidNodes() || !hasValidData()) {      <hra-error-indicator [errors]="[\'Please upload a dataset.\']" />    }    <button      class="visualize-button"      mat-button      hraCtaButton      hraPrimaryButton      data-testid="visualize"      hraFeature="submit"      hraClickEvent      [disabled]="!hasValidNodes() || !hasValidData()"      (click)="$event.preventDefault(); submit()"    >      Visualize      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>    </button>  </hra-workflow-card></form><hra-footer /></div>'
+        var COMPONENT_TEMPLATE = '<div><form class="content" hraFeature="create-visualization-page" [formGroup]="visualizationForm">  <div class="page-nav">    <h1 class="title">Create a distance visualization</h1>  </div>  <hra-workflow-card    class="card data-upload"    hraFeature="upload-data"    [allowUpload]="true"    [loadProgress]="nodeProgress"  >    <div class="header">      <h2 class="heading">        <hra-step-indicator class="step-number" aria-hidden="true" [value]="1" />        <span class="visually-hidden">Step 1 of 6: </span>        <span class="card-title">Upload data</span>      </h2>      <hra-info-button>        Use the template to format single-cell spatial feature tables for exploration. The cell type column can include        damage and proliferation markers.      </hra-info-button>      <div class="filler"></div>      <a        mat-stroked-button        class="use-template"        href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"        target="_blank"        rel="noopener noreferrer"        hraButtonSize="medium"        aria-label="Open template for cell data, opens in a new tab"        hraFeature="data-template"        hraClickEvent      >        Open template        <mat-icon iconPositionEnd>open_in_new</mat-icon>      </a>    </div>    <div class="requirements" role="group" aria-label="Data upload requirements">      <div class="requirement-group">        <span class="requirement-label" id="data-required-columns">Required columns</span>        <ul class="requirement-list" aria-labelledby="data-required-columns">          <li>X</li>          <li>Y</li>          <li>Cell type</li>        </ul>      </div>      <div class="requirement-group">        <span class="requirement-label" id="data-optional-columns">Optional columns</span>        <ul class="requirement-list" aria-labelledby="data-optional-columns">          <li>Z</li>          <li>Cell ontology ID</li>        </ul>      </div>      <div class="requirement-group">        <span class="requirement-label" id="data-supported-format">Supported format</span>        <ul class="requirement-list" aria-labelledby="data-supported-format">          <li>CSV</li>        </ul>      </div>    </div>    <cde-file-upload      class="upload-csv"      accept="text/csv,.csv"      uploadAriaLabel="Upload CSV for cell data"      [loader]="nodesLoader"      [options]="nodesLoaderOptions"      [errorMessage]="nodesErrorMessage"      [errorActionMessage]="nodesErrorActionMessage"      (loadStarted)="clearNodes()"      (loadCompleted)="setNodes($event[0])"      (loadCancelled)="clearNodes()"      (loadErrored)="nodesLoadError = $event; nodeProgress = 0"      (progress)="nodeProgress = $event"      #nodesFileUpload    />  </hra-workflow-card>  <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">    <div class="header">      <h2 class="heading">        <hra-step-indicator class="step-number" aria-hidden="true" [value]="2" />        <span class="visually-hidden">Step 2 of 6: </span>        <span class="card-title">Organize data</span>      </h2>      <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>    </div>    @if (visualizationForm.controls.headers.disabled) {      <hra-error-indicator [errors]="[\'Please upload a dataset.\']" />    }    <div class="required-headers">      <span class="subheader">Required: Verify column headers</span>      <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="x-axis-selector">        <mat-label>X axis</mat-label>        <mat-select          disableRipple          formControlName="xAxis"          required          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="y-axis-selector">        <mat-label>Y axis</mat-label>        <mat-select          disableRipple          formControlName="yAxis"          required          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field        class="cell-type-select"        subscriptSizing="dynamic"        hideRequiredMarker        hraFeature="cell-type-selector"      >        <mat-label>Cell type</mat-label>        <mat-select          disableRipple          formControlName="cellType"          required          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>    @if (columnErrorActionMessage) {      <hra-error-indicator role="alert" [errors]="[columnErrorActionMessage]" />    }    <div class="optional-headers">      <span class="subheader">Optional: Add column headers</span>      <mat-form-field subscriptSizing="dynamic" hraFeature="z-axis-selector">        <mat-label>Z axis</mat-label>        <mat-select          disableRipple          formControlName="zAxis"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="cell-ontology-selector">        <mat-label>Cell ontology ID</mat-label>        <mat-select          disableRipple          formControlName="ontologyId"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (option of dataHeaders; track option) {            <mat-option [value]="option">{{ option }}</mat-option>          }        </mat-select>      </mat-form-field>    </div>  </hra-workflow-card>  <hra-workflow-card class="card parameters" formGroupName="parameters" hraFeature="configure-parameters">    <div class="header">      <h2 class="heading">        <hra-step-indicator class="step-number" aria-hidden="true" [value]="3" />        <span class="visually-hidden">Step 3 of 6: </span>        <span class="card-title">Configure parameters</span>      </h2>      <hra-info-button>        The anchor cell type represents the cell type to which the nearest cell distance distributions should be        computed and visualized. Euclidian distance is used to compute the distance between two cells. "Endothelial" is        used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell type        label is used as the anchor cell type.        <br /><br />        Configure the distance threshold to modify visualizations for analysis.        <br /><br />        Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already        in micrometers.      </hra-info-button>    </div>    @if (visualizationForm.controls.parameters.disabled) {      <hra-error-indicator [errors]="[\'Please upload a dataset.\']" />    }    <div class="parameters-1">      <mat-form-field subscriptSizing="dynamic" hraFeature="anchor-cell-type-selector">        <mat-label>Anchor cell type</mat-label>        <mat-select          disableRipple          formControlName="nodeTargetValue"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (type of cellTypes; track type) {            <mat-option [value]="type">{{ type }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="distance-threshold">        <mat-label>Distance threshold</mat-label>        <input matInput formControlName="distanceThreshold" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>    </div>    <div class="parameters-2">      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-x">        <mat-label>Pixel size (X) (µm/pixel)</mat-label>        <input matInput type="number" formControlName="pixelSizeX" min="0" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-y">        <mat-label>Pixel size (Y) (µm/pixel)</mat-label>        <input matInput type="number" formControlName="pixelSizeY" min="0" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="pixel-size-z">        <mat-label>Pixel size (Z) (µm/pixel)</mat-label>        <input matInput type="number" formControlName="pixelSizeZ" min="0" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>    </div>  </hra-workflow-card>  <hra-workflow-card class="card metadata" formGroupName="metadata" hraFeature="add-metadata">    <div class="header">      <h2 class="heading">        <hra-step-indicator class="step-number" aria-hidden="true" [value]="4" />        <span class="visually-hidden">Step 4 of 6: </span>        <span class="card-title">Optional: Add metadata</span>      </h2>      <hra-info-button>        Information in these fields will not change the visualization output. Metadata may be helpful for taking        screenshots of the uploaded data and resulting visualizations in the Visualization App.      </hra-info-button>    </div>    <div class="row">      <mat-form-field subscriptSizing="dynamic" hraFeature="visualization-title">        <mat-label>Visualization title</mat-label>        <input matInput formControlName="title" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="imaging-technology">        <mat-label>Imaging technology</mat-label>        <input matInput formControlName="technology" hraClickEvent cdeMarkEmptyFormControl />      </mat-form-field>    </div>    <div class="row">      <mat-form-field subscriptSizing="dynamic" hraFeature="organ-selector">        <mat-label>Organ</mat-label>        <mat-select          disableRipple          formControlName="organ"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          @for (organ of organs(); track organ.id) {            <mat-option [value]="organ">{{ organ.label | titlecase }}</mat-option>          }        </mat-select>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="sex-selector">        <mat-label>Sex</mat-label>        <mat-select          disableRipple          formControlName="sex"          panelClass="options-container"          hraClickEvent          hraModelChangeEvent          cdeMarkEmptyFormControl        >          <mat-option value="Male">Male</mat-option>          <mat-option value="Female">Female</mat-option>        </mat-select>      </mat-form-field>    </div>    <div class="row">      <mat-form-field subscriptSizing="dynamic" hraFeature="age">        <mat-label>Age</mat-label>        <input matInput type="number" formControlName="age" min="0" max="120" hraClickEvent cdeMarkEmptyFormControl />        <mat-error>Enter a whole number, 0–120</mat-error>      </mat-form-field>      <mat-form-field subscriptSizing="dynamic" hraFeature="thickness">        <mat-label>Thickness (µm)</mat-label>        <input matInput type="number" formControlName="thickness" min="0" hraClickEvent cdeMarkEmptyFormControl />        <mat-error>Enter 0 or more</mat-error>      </mat-form-field>    </div>  </hra-workflow-card>  <hra-workflow-card    class="color-config card"    hraFeature="configure-colors"    [class.custom]="useCustomColorMap"    [allowUpload]="true"    [loadProgress]="colorProgress"  >    <div class="header">      <h2 class="heading">        <hra-step-indicator class="step-number" aria-hidden="true" [value]="5" />        <span class="visually-hidden">Step 5 of 6: </span>        <span class="card-title">Optional: Configure colors</span>      </h2>      <hra-info-button>        Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors        may be changed individually while exploring the visualization in the Visualization App.      </hra-info-button>      <div class="filler"></div>      <a        mat-stroked-button        class="use-template"        href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"        target="_blank"        rel="noopener noreferrer"        hraButtonSize="medium"        aria-label="Open template for color maps, opens in a new tab"        hraFeature="color-template"        hraClickEvent      >        Open template        <mat-icon iconPositionEnd>open_in_new</mat-icon>      </a>    </div>    <mat-button-toggle-group      formControlName="colorMapType"      name="singleSelect"      aria-label="Color map"      hideSingleSelectionIndicator      hraButtonToggleSize="large"    >      <mat-button-toggle disableRipple value="default" hraFeature="toggle.default" hraClickEvent        >Use default colors</mat-button-toggle      >      <mat-button-toggle        disableRipple        value="custom"        data-testid="upload-custom"        hraFeature="toggle.custom"        hraClickEvent        >Upload color map</mat-button-toggle      >    </mat-button-toggle-group>    @if (useCustomColorMap) {      <div class="requirements" role="group" aria-label="Custom color map requirements">        <div class="requirement-group">          <span class="requirement-label" id="color-required-columns">Required columns</span>          <ul class="requirement-list" aria-labelledby="color-required-columns">            <li>Cell type</li>            <li>Cell color</li>          </ul>        </div>        <div class="requirement-group">          <span class="requirement-label" id="color-supported-format">Supported format</span>          <ul class="requirement-list" aria-labelledby="color-supported-format">            <li>CSV</li>          </ul>        </div>      </div>      <cde-file-upload        class="upload-colormap"        accept="text/csv,.csv"        uploadAriaLabel="Upload CSV for color map"        data-testid="color-map-upload"        [loader]="colorMapLoader"        [options]="colorMapLoaderOptions"        [errorMessage]="colorErrorMessage"        [errorActionMessage]="colorErrorActionMessage"        (loadCompleted)="setCustomColorMap($event[0])"        (loadCancelled)="clearCustomColorMap()"        (loadErrored)="customColorMapLoadError = $event; colorProgress = 0"        (progress)="colorProgress = $event"        #customColorMapFileUpload      />    }  </hra-workflow-card>  <hra-workflow-card class="card visualize" hraFeature="visualize-data">    <div class="header">      <h2 class="heading">        <hra-step-indicator class="step-number" aria-hidden="true" [value]="6" />        <span class="visually-hidden">Step 6 of 6: </span>        <span class="card-title">Visualize cell distance data</span>      </h2>      <hra-info-button>        <div hraInfoButtonTooltipContent>          Data on the Create Visualization page cannot be modified after a visualization is generated.        </div>      </hra-info-button>    </div>    @let canVisualize = hasValidNodes() && hasValidData();    @if (!hasDataset()) {      <hra-error-indicator id="visualize-requirements" [errors]="[\'Please upload a dataset.\']" />    } @else if (!canVisualize) {      <hra-error-indicator id="visualize-requirements" [errors]="[\'Please complete the required fields above.\']" />    }    <button      class="visualize-button"      mat-button      hraCtaButton      hraPrimaryButton      data-testid="visualize"      hraFeature="submit"      hraClickEvent      disabledInteractive      [disabled]="!canVisualize"      [attr.aria-describedby]="canVisualize ? null : \'visualize-requirements\'"      (click)="$event.preventDefault(); canVisualize && submit()"    >      Visualize      <mat-icon class="material-symbols-rounded" iconPositionEnd>arrow_right_alt</mat-icon>    </button>  </hra-workflow-card></form><hra-footer /></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'CreateVisualizationPageComponent'};

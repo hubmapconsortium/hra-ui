@@ -38,7 +38,7 @@ declare class ButtonSizeDirective {
     /** Size of button */
     readonly size: i0.InputSignal<ButtonSize>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ButtonSizeDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ButtonSizeDirective, "button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]", never, { "size": { "alias": "hraButtonSize"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ButtonSizeDirective, "button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]", never, { "size": { "alias": "hraButtonSize"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /** Named button variants */

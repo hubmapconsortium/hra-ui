@@ -758,6 +758,17 @@ html {
   --mat-button-filled-horizontal-padding: 1rem;
   --mat-button-filled-hover-state-layer-opacity: 8%;
   --mat-button-filled-icon-offset: 0;
+  --mat-button-outlined-label-text-color: var(--mat-sys-on-tertiary-fixed);
+  --mat-button-outlined-state-layer-color: var(--mat-sys-on-tertiary-fixed);
+  --mat-button-outlined-outline-color: var(--mat-sys-on-tertiary-fixed);
+  --mat-button-outlined-outline-width: 0.0625rem;
+  --mat-button-outlined-disabled-label-text-color: rgb(from var(--mat-sys-tertiary) r g b/38%);
+  --mat-button-outlined-disabled-outline-color: rgb(from var(--mat-sys-tertiary) r g b/38%);
+  --mat-button-outlined-ripple-color: rgb(from var(--mat-sys-secondary) r g b/8%);
+  --mat-button-outlined-container-height: 2.5rem;
+  --mat-button-outlined-container-shape: var(--mat-sys-corner-extra-small);
+  --mat-button-outlined-horizontal-padding: 1rem;
+  --mat-button-outlined-icon-offset: 0;
 }
 html [mat-button].hra-button-variant-secondary.hra-cta-button {
   --mat-button-text-container-shape: var(--mat-sys-corner-none);
@@ -793,11 +804,11 @@ html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
 html [mat-button].hra-cta-button:not(.hra-button-variant-secondary) .mat-ripple {
   clip-path: polygon(0 100%, 0 0, 100% 0%, 100% calc(100% - 0.8125rem), calc(100% - 0.9375rem) 100%);
 }
-html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):disabled {
+html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):disabled, html [mat-button].hra-cta-button:not(.hra-button-variant-secondary).mat-mdc-button-disabled {
   background-color: rgb(from var(--mat-sys-tertiary) r g b/38%);
   --mat-button-text-disabled-label-text-color: rgb(from var(--mat-sys-on-primary) r g b/38%);
 }
-html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):hover:not(:active):not(:disabled):before {
+html [mat-button].hra-cta-button:not(.hra-button-variant-secondary):hover:not(:active):not(:disabled):not(.mat-mdc-button-disabled):before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -845,6 +856,27 @@ html [mat-flat-button].hra-button-size-medium {
   letter-spacing: var(--mat-sys-label-medium-tracking);
 }
 html [mat-flat-button] mat-icon.mat-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.5rem;
+}
+html [mat-stroked-button]:focus-visible {
+  --mat-button-outlined-focus-state-layer-opacity: 0;
+  --mat-button-outlined-label-text-color: var(--mat-sys-secondary);
+  outline: 2px solid var(--mat-sys-tertiary);
+  outline-offset: -2px;
+}
+html [mat-stroked-button].hra-button-size-small {
+  font: var(--mat-sys-label-small);
+  letter-spacing: var(--mat-sys-label-small-tracking);
+  --mat-button-outlined-container-height: 1.75rem;
+  --mat-button-outlined-horizontal-padding: 0.5rem;
+}
+html [mat-stroked-button].hra-button-size-medium {
+  font: var(--mat-sys-label-medium);
+  letter-spacing: var(--mat-sys-label-medium-tracking);
+}
+html [mat-stroked-button] mat-icon.mat-icon {
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;

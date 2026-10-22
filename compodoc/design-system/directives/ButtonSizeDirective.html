@@ -154,7 +154,7 @@
 
                     <tr>
                         <td class="col-md-3">Selector</td>
-                        <td class="col-md-9"><code>button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]</code></td>
+                        <td class="col-md-9"><code>button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]</code></td>
                     </tr>
 
 
@@ -221,7 +221,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">buttons/button/src/lib/directives/size.directive.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">buttons/button/src/lib/directives/size.directive.ts:17</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -250,7 +250,8 @@ export type ButtonSize &#x3D; &#x27;small&#x27; | &#x27;medium&#x27; | &#x27;lar
 
 /** Style a mat-button to a specific named size */
 @Directive({
-  selector: &#x27;button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize]&#x27;,
+  selector:
+    &#x27;button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]&#x27;,
   host: {
     &#x27;[class]&#x27;: &#x27;&quot;hra-button-size-&quot; + size()&#x27;,
   },
