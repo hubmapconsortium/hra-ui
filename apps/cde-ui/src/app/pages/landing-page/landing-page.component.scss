@@ -1,12 +1,5 @@
-@use 'sass:math';
 @use 'vars';
 @use 'utils';
-
-// Vertical spacing that holds at its base size up to a 1080px tall window,
-// then grows with the window height, up to twice the base size
-@function tall-space($base) {
-  @return clamp($base, math.div(math.div($base, 1rem) * 16, 1080) * 100vh, $base * 2);
-}
 
 // Keyframes are only named in rules outside @media and @supports. Once styles are minified, Angular's
 // view encapsulation stops renaming names inside those blocks to match its scoped keyframes.
@@ -62,9 +55,9 @@
     }
   }
 
-  // On desktop the hero and examples fill the window below the header, so the citation starts below the fold.
-  // The hero takes two thirds of any extra height and the examples one third.
-  .first-screen {
+  // On desktop each pair of sections fills the window below the header, so the next pair starts below the fold.
+  // The hero takes two thirds of any extra height in the first screen; the citation and developer tools share theirs equally.
+  .fill-screen {
     display: flex;
     flex-direction: column;
 
@@ -239,7 +232,10 @@
   }
 
   .developer-tools {
-    padding-block: tall-space(4rem) tall-space(5rem);
+    // Zero basis so the two sections end up the same height when the window has room
+    flex: 1 1 0;
+    justify-content: center;
+    padding-block: 4rem 5rem;
     // Deeper mesh than the examples so the section stands apart from the footer,
     // kept light behind the heading and description for contrast
     background:
@@ -268,12 +264,11 @@
     }
   }
 
-  // A fixed minimum rather than a share of the viewport, so it stays compact on tall screens
   .cite {
+    flex: 1 1 0;
     justify-content: center;
     align-items: stretch;
-    min-height: 28rem;
-    padding-block: tall-space(5rem);
+    padding-block: 5rem;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -282,8 +277,14 @@
       background-attachment: scroll;
     }
 
+    // Holds the section's 28rem minimum (18rem plus the padding) here rather than on the section,
+    // so the zero flex basis can never squeeze the section below its content
     .content-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 100%;
+      min-height: 18rem;
       max-width: $content-max-width;
       margin-inline: auto;
     }

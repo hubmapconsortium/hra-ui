@@ -1,5 +1,5 @@
 <ng-container hraFeature="landing-page">
-  <div class="first-screen">
+  <div class="fill-screen">
     <section class="hero" hraFeature="hero" aria-labelledby="landing-title">
       <picture class="hero-background">
         @for (source of heroBackgroundSources; track source.src) {
@@ -65,51 +65,53 @@
     </section>
   </div>
 
-  <section
-    class="cite"
-    [style.background-image]="'assets/backgrounds/create-visualization-page-background.png' | assetUrl | cssUrl"
-  >
-    <div class="content-container">
-      <div class="content">
-        <h2 class="title">How to cite the Cell Distance Explorer</h2>
-        <div class="description" #citationText>
-          Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,
-          Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,
-          Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025).
-          <a hraFeature="citation-link" hraHyperlink href="https://doi.org/10.1101/2025.09.23.678129">
-            Exploring endothelial cell environments across organs in spatially resolved omics data.
-          </a>
-          BioRxiv. https://doi.org/10.1101/2025.09.23.678129
+  <div class="fill-screen">
+    <section
+      class="cite"
+      [style.background-image]="'assets/backgrounds/create-visualization-page-background.png' | assetUrl | cssUrl"
+    >
+      <div class="content-container">
+        <div class="content">
+          <h2 class="title">How to cite the Cell Distance Explorer</h2>
+          <div class="description" #citationText>
+            Jain, Y., Jepson, J., Chen, R., Maier, E., Herr, B. W., Aleix Puig-Barbe, Quardokus, E. M., Qaurooni, D.,
+            Yapp, C., Ewing, S. L., Archibald Enninful, Farzad, N., Bueckle, A., Easter, Q. T., Matuck, B., Zhu, C.,
+            Monte, E. M., Purkerson, J. M., Jehrio, M., & Misra, R. S. (2025).
+            <a hraFeature="citation-link" hraHyperlink href="https://doi.org/10.1101/2025.09.23.678129">
+              Exploring endothelial cell environments across organs in spatially resolved omics data.
+            </a>
+            BioRxiv. https://doi.org/10.1101/2025.09.23.678129
+          </div>
+          <button
+            hraFeature="copy-citation"
+            hraClickEvent
+            mat-flat-button
+            hraButtonSize="medium"
+            class="copy-citation"
+            [cdkCopyToClipboard]="collapseSpaces(citationText.textContent)"
+            (cdkCopyToClipboardCopied)="openCopiedSnackbar()"
+          >
+            Copy citation
+            <mat-icon>content_copy</mat-icon>
+          </button>
         </div>
-        <button
-          hraFeature="copy-citation"
-          hraClickEvent
-          mat-flat-button
-          hraButtonSize="medium"
-          class="copy-citation"
-          [cdkCopyToClipboard]="collapseSpaces(citationText.textContent)"
-          (cdkCopyToClipboardCopied)="openCopiedSnackbar()"
-        >
-          Copy citation
-          <mat-icon>content_copy</mat-icon>
-        </button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="developer-tools" hraFeature="developer-tools" aria-labelledby="developer-tools-title">
-    <div class="section-content">
-      <h2 id="developer-tools-title" class="section-title">Developer tools</h2>
-      <p class="section-description">Bring the Cell Distance Explorer into your own websites and analyses.</p>
-      <ul class="cards" role="list">
-        @for (card of developerTools(); track card.title) {
-          <li class="card">
-            <cde-landing-card [card]="card" />
-          </li>
-        }
-      </ul>
-    </div>
-  </section>
+    <section class="developer-tools" hraFeature="developer-tools" aria-labelledby="developer-tools-title">
+      <div class="section-content">
+        <h2 id="developer-tools-title" class="section-title">Developer tools</h2>
+        <p class="section-description">Bring the Cell Distance Explorer into your own websites and analyses.</p>
+        <ul class="cards" role="list">
+          @for (card of developerTools(); track card.title) {
+            <li class="card">
+              <cde-landing-card [card]="card" />
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+  </div>
 
   <hra-footer />
 </ng-container>
