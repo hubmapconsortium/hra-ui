@@ -1,4 +1,3 @@
-@use '@angular/material' as mat;
 @use 'vars';
 @use 'utils';
 
@@ -146,27 +145,6 @@
       flex-wrap: wrap;
       gap: 0.5rem 2rem;
       margin-top: 0.5rem;
-
-      .hero-action {
-        @include utils.use-font(label, large);
-        @include mat.button-overrides(
-          (
-            text-container-height: 3rem,
-            text-horizontal-padding: 1.5rem,
-          )
-        );
-
-        // Standard size on phones, where the large buttons crowd the stacked layout
-        @media (max-width: 40rem) {
-          @include utils.use-font(label, medium);
-          @include mat.button-overrides(
-            (
-              text-container-height: 2.5rem,
-              text-horizontal-padding: 1rem,
-            )
-          );
-        }
-      }
     }
 
     .hero-image {
