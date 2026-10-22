@@ -13,12 +13,12 @@ describe('LandingPageComponent', () => {
 
   const MOCK_EXAMPLES: LandingCard[] = [
     {
-      title: 'Cell distances to blood vessels in the large intestine',
+      title: 'Example A',
       image: '',
       action: { label: 'Open example', url: '/example/0' },
     },
     {
-      title: 'Cell distances to blood vessels in 3D skin',
+      title: 'Example B',
       image: '',
       action: { label: 'Open example', url: '/example/1' },
     },
@@ -49,35 +49,32 @@ describe('LandingPageComponent', () => {
     });
   }
 
+  // Assert structure and destinations rather than marketing copy, so copy edits don't break tests
+
   it('should render the hero heading and calls to action', async () => {
     await setup();
 
-    expect(
-      screen.getByRole('heading', { level: 1, name: 'Visualize and quantify cell distances' }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Create a visualization/ })).toHaveAttribute('href', '/create');
-    expect(screen.getByRole('link', { name: /Browse the gallery/ })).toHaveAttribute('href', '/gallery');
+    const hero = screen.getByRole('heading', { level: 1 }).closest('section') as HTMLElement;
+    const hrefs = within(hero)
+      .getAllByRole('link')
+      .map((link) => link.getAttribute('href'));
+    expect(hrefs).toEqual(['/create', '/gallery']);
   });
 
   it('should render the example cards and a link to the gallery', async () => {
     await setup();
 
-    const section = screen.getByRole('region', { name: 'Example visualizations' });
+    const section = screen.getByRole('region', { name: /example/i });
     expect(within(section).getAllByRole('listitem')).toHaveLength(2);
-    expect(
-      within(section).getByRole('link', { name: 'Cell distances to blood vessels in the large intestine' }),
-    ).toHaveAttribute('href', '/example/0');
-    expect(within(section).getByRole('link', { name: 'Cell distances to blood vessels in 3D skin' })).toHaveAttribute(
-      'href',
-      '/example/1',
-    );
-    expect(within(section).getByRole('link', { name: /Browse all 399 datasets/ })).toHaveAttribute('href', '/gallery');
+    expect(within(section).getByRole('link', { name: 'Example A' })).toHaveAttribute('href', '/example/0');
+    expect(within(section).getByRole('link', { name: 'Example B' })).toHaveAttribute('href', '/example/1');
+    expect(within(section).getByRole('link', { name: /gallery/i })).toHaveAttribute('href', '/gallery');
   });
 
   it('should render the developer tools cards as external links', async () => {
     await setup();
 
-    const section = screen.getByRole('region', { name: 'Developer tools' });
+    const section = screen.getByRole('region', { name: /developer/i });
     expect(within(section).getAllByRole('listitem')).toHaveLength(3);
     for (const link of within(section).getAllByRole('link')) {
       expect(link).toHaveAttribute('target', '_blank');

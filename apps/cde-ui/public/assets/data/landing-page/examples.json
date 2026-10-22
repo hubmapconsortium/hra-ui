@@ -1,7 +1,7 @@
 [
   {
-    "eyebrow": "2D · CyCIF · 483,936 cells",
-    "title": "Cell distances to blood vessels in the large intestine",
+    "eyebrow": "CyCIF · 483,936 cells",
+    "title": "2D large intestine",
     "description": "Example data from the Sorger Lab at Harvard Medical School.",
     "image": "assets/examples/2d-data-intestine.png",
     "action": {
@@ -14,8 +14,8 @@
     }
   },
   {
-    "eyebrow": "3D · Cell DIVE · 46,268 cells",
-    "title": "Cell distances to blood vessels in 3D skin",
+    "eyebrow": "Cell DIVE · 46,268 cells",
+    "title": "3D skin",
     "description": "Example data from the Fiona Ginty Lab at GE HealthCare Technology and Innovation Center.",
     "image": "assets/examples/3d-data-skin.png",
     "action": {
