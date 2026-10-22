@@ -2,6 +2,8 @@
 @use 'vars';
 @use 'utils';
 
+// Keyframes are only named in rules outside @media and @supports. Once styles are minified, Angular's
+// view encapsulation stops renaming names inside those blocks to match its scoped keyframes.
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -23,10 +25,10 @@
   }
 }
 
-// Hero background drifts down while the hero scrolls away, so it moves slower than the content
+// Hero background drifts down by half the scroll distance, so it moves at half the speed of the content
 @keyframes parallax {
   to {
-    transform: translateY(50%);
+    transform: translateY(100vh);
   }
 }
 
@@ -58,13 +60,14 @@
     overflow: hidden;
     padding-block: 3rem;
     background-color: vars.$surface-container-lowest;
-    view-timeline: --hero;
 
     // Decorative background on its own layer so it can move independently of the content
     .hero-background {
       position: absolute;
       inset: 0;
       z-index: -1;
+      // Zero length, so it has no visible effect until the scroll timeline below drives it
+      animation: parallax linear;
 
       img {
         display: block;
@@ -76,13 +79,15 @@
     }
 
     // Parallax only plays for people who haven't asked for reduced motion,
-    // and only in browsers that support scroll-driven animations
+    // and only in browsers that support scroll-driven animations.
+    // Follows the page scroll so it starts right away instead of once the hero reaches the sticky header,
+    // over a range long enough for heroes taller than the viewport on phones
     @media (prefers-reduced-motion: no-preference) {
-      @supports (animation-timeline: view()) {
+      @supports (animation-timeline: scroll()) {
         .hero-background {
-          animation: parallax linear both;
-          animation-timeline: --hero;
-          animation-range: exit;
+          animation-timeline: scroll(root);
+          animation-range: 0 200vh;
+          animation-fill-mode: both;
         }
       }
     }
@@ -164,9 +169,13 @@
       // Hidden until it loads so the entrance plays on the image rather than an empty frame
       @media (prefers-reduced-motion: no-preference) {
         opacity: 0;
+      }
 
-        &.loaded {
-          animation: riseIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      &.loaded {
+        animation: riseIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
         }
       }
     }
@@ -209,9 +218,11 @@
       padding: 0;
       list-style: none;
 
-      @media (prefers-reduced-motion: no-preference) {
-        .card {
-          animation: fadeIn 0.8s ease-in-out;
+      .card {
+        animation: fadeIn 0.8s ease-in-out;
+
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
         }
       }
     }
