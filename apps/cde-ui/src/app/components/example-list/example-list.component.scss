@@ -1,8 +1,11 @@
+@use 'utils';
 @use 'vars';
 @use '../../shared/styles/landing-type';
 
 :host {
   display: block;
+  // Evens out wrapped lines in titles, metadata and credits
+  text-wrap: balance;
 
   .examples {
     // Side by side when there is room, stacked on smaller screens
@@ -29,27 +32,20 @@
     box-sizing: border-box;
     padding: 0.75rem;
     border: 0.0625rem solid vars.$outline;
-    border-radius: 0.75rem;
+    border-radius: 0.625rem;
     color: inherit;
     text-decoration: none;
 
+    // Same lift as the developer tools cards
     &:hover {
-      background-color: vars.$surface-container;
-
-      // One step darker so the circle stays visible against the hover background
-      .arrow {
-        background-color: vars.$surface-container-highest;
-      }
+      border-color: vars.$secondary;
+      box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
     }
 
     &:hover,
     &:focus-visible {
       .thumbnail img {
         transform: scale(1.1);
-      }
-
-      .arrow mat-icon {
-        transform: translateX(0.25rem);
       }
     }
 
@@ -102,7 +98,7 @@
     color: vars.$on-surface-variant;
   }
 
-  // Tonal circle so the row reads as something to click
+  // Pale red circle so the row reads as something to click
   .arrow {
     flex-shrink: 0;
     align-self: center;
@@ -113,8 +109,8 @@
     height: 2.5rem;
     margin-left: auto;
     border-radius: vars.$corner-full;
-    background-color: vars.$surface-container-high;
-    color: vars.$on-surface-variant;
+    background-color: utils.with-alpha(vars.$tertiary, 10%);
+    color: vars.$on-tertiary-fixed;
   }
 
   // Compact layout for narrow rows, such as on phones or when zoomed in
@@ -131,15 +127,13 @@
 
   @media (prefers-reduced-motion: no-preference) {
     .example {
-      transition: background-color 0.2s ease-in-out;
+      transition:
+        border-color 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out;
     }
 
     .thumbnail img {
       transition: transform 0.3s ease-in-out;
-    }
-
-    .arrow mat-icon {
-      transition: transform 0.2s ease-in-out;
     }
   }
 }
