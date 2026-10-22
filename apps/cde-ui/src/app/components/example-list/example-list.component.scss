@@ -1,6 +1,6 @@
 @use 'utils';
 @use 'vars';
-@use '../../shared/styles/landing-type';
+@use '../../shared/styles/landing';
 
 :host {
   display: block;
@@ -31,18 +31,10 @@
     height: 100%;
     box-sizing: border-box;
     padding: 0.75rem;
-    border: 0.0625rem solid vars.$outline;
-    border-radius: 0.625rem;
-    // Solid card so the section's mesh background stays behind the text
-    background-color: vars.$surface-container-lowest;
     color: inherit;
     text-decoration: none;
-
     // Same lift as the developer tools cards
-    &:hover {
-      border-color: vars.$secondary;
-      box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
-    }
+    @include landing.card(0.625rem);
 
     &:hover,
     &:focus-visible {
@@ -84,19 +76,19 @@
 
   .title {
     // 18/24, semibold
-    @include landing-type.font(1.125rem, 1.5rem, 600, 0);
+    @include landing.font(1.125rem, 1.5rem, 600, 0);
     color: vars.$secondary;
   }
 
   .description {
     // Body medium: 14/20, regular, 0.2px tracking
-    @include landing-type.font(0.875rem, 1.25rem, 400, 0.0125rem);
+    @include landing.font(0.875rem, 1.25rem, 400, 0.0125rem);
     color: vars.$primary;
   }
 
   .credit {
     // Body medium: 14/20, regular, 0.2px tracking
-    @include landing-type.font(0.875rem, 1.25rem, 400, 0.0125rem);
+    @include landing.font(0.875rem, 1.25rem, 400, 0.0125rem);
     color: vars.$on-surface-variant;
   }
 
@@ -128,12 +120,6 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .example {
-      transition:
-        border-color 0.2s ease-in-out,
-        box-shadow 0.2s ease-in-out;
-    }
-
     .thumbnail img {
       transition: transform 0.3s ease-in-out;
     }

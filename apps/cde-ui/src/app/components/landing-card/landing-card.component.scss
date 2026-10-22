@@ -1,6 +1,6 @@
 @use 'utils';
 @use 'vars';
-@use '../../shared/styles/landing-type';
+@use '../../shared/styles/landing';
 
 :host {
   $radius: 0.75rem;
@@ -10,14 +10,9 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  border: 0.0625rem solid vars.$outline;
-  border-radius: $radius;
-  background-color: vars.$on-primary;
+  @include landing.card($radius);
 
   &:hover {
-    border-color: vars.$secondary;
-    box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
-
     .cta-icon {
       transform: translateX(0.25rem);
     }
@@ -50,16 +45,12 @@
   .body {
     flex-grow: 1;
     padding: 1rem 1rem 0;
-
-    p {
-      margin: 0;
-    }
   }
 
   .title {
     margin: 0 0 0.5rem;
     // Title medium: 16/24, semibold, 0.15px tracking
-    @include landing-type.font(1rem, 1.5rem, 600, 0.009375rem);
+    @include landing.font(1rem, 1.5rem, 600, 0.009375rem);
     color: vars.$secondary;
   }
 
@@ -85,8 +76,9 @@
   }
 
   .description {
+    margin: 0;
     // Body large: 16/24, regular
-    @include landing-type.font(1rem, 1.5rem, 400, 0);
+    @include landing.font(1rem, 1.5rem, 400, 0);
     color: vars.$primary;
   }
 
@@ -99,15 +91,11 @@
     align-items: center;
     gap: 0.25rem;
     // Label large: 14/21, semibold, 0.1px tracking
-    @include landing-type.font(0.875rem, 1.3125rem, 600, 0.00625rem);
+    @include landing.font(0.875rem, 1.3125rem, 600, 0.00625rem);
     color: vars.$on-tertiary-fixed;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition:
-      border-color 0.2s ease-in-out,
-      box-shadow 0.2s ease-in-out;
-
     .cta-icon {
       transition: transform 0.2s ease-in-out;
     }

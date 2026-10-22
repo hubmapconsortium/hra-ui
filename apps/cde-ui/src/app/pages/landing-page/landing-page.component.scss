@@ -1,16 +1,9 @@
 @use 'vars';
 @use 'utils';
+@use '../../shared/styles/landing';
 
 // Keyframes are only named in rules outside @media and @supports. Once styles are minified, Angular's
 // view encapsulation stops renaming names inside those blocks to match its scoped keyframes.
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 // Hero screenshot rises into place as it fades in
 @keyframes riseIn {
@@ -32,13 +25,15 @@
 }
 
 :host {
+  // App header height
+  $header-height: 113px;
   // Matches the footer content column so sections line up on wide screens
   $content-max-width: 101.25rem;
   // Hero screenshot width on desktop: grows with tall windows, but leaves the text column room on narrow ones
   $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
   // Hero screenshot width when stacked: grows toward the full column only with the height left over after
-  // the header (113px) and the rest of the first screen (about 54rem), so the examples stay above the fold
-  $hero-image-stacked-width: clamp(34rem, (100vh - 113px - 54rem) * 1.7, 100%);
+  // the header and the rest of the first screen (about 54rem), so the examples stay above the fold
+  $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);
 
   background-color: vars.$secondary-container;
   display: block;
@@ -64,7 +59,7 @@
   .fill-screen {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 113px);
+    min-height: calc(100vh - $header-height);
   }
 
   .hero {
@@ -168,15 +163,12 @@
       width: 100%;
       max-width: $hero-image-width;
       height: auto;
+      @include landing.card-surface(0.75rem);
+      box-shadow: landing.$card-shadow;
 
       @media (max-width: 64rem) {
         max-width: $hero-image-stacked-width;
       }
-
-      border: 0.0625rem solid vars.$outline;
-      border-radius: 0.75rem;
-      background-color: vars.$on-primary;
-      box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
 
       // Hidden until it loads so the entrance plays on the image rather than an empty frame
       @media (prefers-reduced-motion: no-preference) {
@@ -201,15 +193,9 @@
     }
 
     .section-title {
-      margin: 0 0 0.5rem;
+      margin: 0;
       @include utils.use-font(headline, medium);
       color: vars.$secondary;
-    }
-
-    .section-description {
-      margin: 0 0 1.5rem;
-      @include utils.use-font(body, xl);
-      color: vars.$on-surface-variant;
     }
   }
 
@@ -246,6 +232,16 @@
       radial-gradient(30% 60% at 100% 100%, utils.with-alpha(vars.$surface-bright, 70%), transparent),
       vars.$surface-container-high;
 
+    .section-title {
+      margin-bottom: 0.5rem;
+    }
+
+    .section-description {
+      margin: 0 0 1.5rem;
+      @include utils.use-font(body, xl);
+      color: vars.$on-surface-variant;
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
@@ -253,14 +249,6 @@
       margin: 0;
       padding: 0;
       list-style: none;
-
-      .card {
-        animation: fadeIn 0.8s ease-in-out;
-
-        @media (prefers-reduced-motion: reduce) {
-          animation: none;
-        }
-      }
     }
   }
 
