@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'vars';
 @use 'utils';
 
@@ -103,12 +104,21 @@
     .logo {
       width: 4.5rem;
       height: 4.5rem;
+
+      @media (max-width: 40rem) {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
     }
 
     .hero-title {
       margin: 0;
       @include utils.use-font(display, large);
       color: vars.$secondary;
+
+      @media (max-width: 40rem) {
+        @include utils.use-font(display, small);
+      }
     }
 
     .hero-description {
@@ -124,7 +134,13 @@
       margin-top: 0.5rem;
 
       .hero-action {
-        @include utils.use-font(label, medium);
+        @include utils.use-font(label, large);
+        @include mat.button-overrides(
+          (
+            text-container-height: 3rem,
+            text-horizontal-padding: 1.5rem,
+          )
+        );
       }
     }
 

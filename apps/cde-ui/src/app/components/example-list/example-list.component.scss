@@ -14,6 +14,11 @@
     list-style: none;
   }
 
+  li {
+    // Lets each row adapt to its own width rather than the viewport
+    container-type: inline-size;
+  }
+
   .example {
     display: flex;
     align-items: center;
@@ -78,6 +83,29 @@
     flex-shrink: 0;
     margin-left: auto;
     color: vars.$on-tertiary-fixed;
+  }
+
+  // Compact layout for narrow rows, such as on phones or when zoomed in
+  @container (max-width: 28rem) {
+    .example {
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
+    }
+
+    .thumbnail {
+      width: 4.5rem;
+      aspect-ratio: 1;
+    }
+
+    .title {
+      // 18/24, semibold
+      @include landing-type.font(1.125rem, 1.5rem, 600, 0);
+    }
+
+    .arrow {
+      align-self: center;
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
