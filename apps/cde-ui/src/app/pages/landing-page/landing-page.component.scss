@@ -138,12 +138,13 @@
       margin: 0;
       @include utils.use-font(body, xl);
       color: vars.$primary;
+      text-wrap: balance;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem 2rem;
+      gap: 0.5rem 2rem;
       margin-top: 0.5rem;
 
       .hero-action {
@@ -154,6 +155,17 @@
             text-horizontal-padding: 1.5rem,
           )
         );
+
+        // Standard size on phones, where the large buttons crowd the stacked layout
+        @media (max-width: 40rem) {
+          @include utils.use-font(label, medium);
+          @include mat.button-overrides(
+            (
+              text-container-height: 2.5rem,
+              text-horizontal-padding: 1rem,
+            )
+          );
+        }
       }
     }
 
