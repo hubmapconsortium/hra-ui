@@ -13,12 +13,12 @@ describe('LandingPageComponent', () => {
 
   const MOCK_EXAMPLES: LandingCard[] = [
     {
-      title: 'Explore 2D data',
+      title: 'Cell distances to blood vessels in the large intestine',
       image: '',
       action: { label: 'Open example', url: '/example/0' },
     },
     {
-      title: 'Explore 3D data',
+      title: 'Cell distances to blood vessels in 3D skin',
       image: '',
       action: { label: 'Open example', url: '/example/1' },
     },
@@ -56,7 +56,7 @@ describe('LandingPageComponent', () => {
       screen.getByRole('heading', { level: 1, name: 'Visualize and quantify cell distances' }),
     ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Create a visualization/ })).toHaveAttribute('href', '/create');
-    expect(screen.getByRole('link', { name: /Explore the gallery/ })).toHaveAttribute('href', '/gallery');
+    expect(screen.getByRole('link', { name: /Browse the gallery/ })).toHaveAttribute('href', '/gallery');
   });
 
   it('should render the example cards and a link to the gallery', async () => {
@@ -64,8 +64,13 @@ describe('LandingPageComponent', () => {
 
     const section = screen.getByRole('region', { name: 'Example visualizations' });
     expect(within(section).getAllByRole('listitem')).toHaveLength(2);
-    expect(within(section).getByRole('link', { name: 'Explore 2D data' })).toHaveAttribute('href', '/example/0');
-    expect(within(section).getByRole('link', { name: 'Explore 3D data' })).toHaveAttribute('href', '/example/1');
+    expect(
+      within(section).getByRole('link', { name: 'Cell distances to blood vessels in the large intestine' }),
+    ).toHaveAttribute('href', '/example/0');
+    expect(within(section).getByRole('link', { name: 'Cell distances to blood vessels in 3D skin' })).toHaveAttribute(
+      'href',
+      '/example/1',
+    );
     expect(within(section).getByRole('link', { name: /Browse all 399 datasets/ })).toHaveAttribute('href', '/gallery');
   });
 
