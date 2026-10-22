@@ -76,6 +76,12 @@ describe('LandingPageComponent', () => {
     expect(widths).toEqual(['540w', '720w', '1080w', '1440w']);
   });
 
+  it('should collapse and trim whitespace in the copied citation', async () => {
+    const { fixture } = await setup();
+
+    expect(fixture.componentInstance.collapseSpaces('\n  Jain, Y.,\n    Jepson, J.  \n')).toBe('Jain, Y., Jepson, J.');
+  });
+
   it('should render the examples section', async () => {
     await setup();
 

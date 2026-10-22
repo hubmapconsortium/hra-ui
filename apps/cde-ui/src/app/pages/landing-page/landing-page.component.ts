@@ -83,12 +83,12 @@ export class LandingPageComponent {
   }
 
   /**
-   * Collapse multiple spaces into a single space
+   * Collapse multiple spaces into a single space and trim the ends
    *
    * @param text Text to collapse consecutive spaces in
    * @returns Collapsed text
    */
   collapseSpaces(text: string): string {
-    return text.replace(/\s+/g, ' ');
+    return text.replace(/\s+/g, ' ').trim();
   }
 }
