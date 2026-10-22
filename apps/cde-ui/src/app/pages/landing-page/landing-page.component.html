@@ -4,7 +4,7 @@
       @for (source of heroBackgroundSources; track source.src) {
         <source [attr.media]="source.media" [attr.srcset]="source.src | assetUrl" />
       }
-      <img alt="" decoding="async" fetchpriority="low" [attr.src]="heroBackgroundFallback | assetUrl" />
+      <img alt="" decoding="sync" fetchpriority="low" [attr.src]="heroBackgroundFallback | assetUrl" />
     </picture>
 
     <div class="hero-content">
