@@ -64,7 +64,7 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding-block: tall-space(3rem);
+    padding-block: 3.5rem;
     background-color: vars.$surface-container-lowest;
 
     // Decorative background on its own layer so it can move independently of the content
@@ -202,7 +202,7 @@
 
   // Same spacing as the hero, with no description so the rows show above the fold on smaller laptops
   .examples {
-    padding-block: tall-space(3rem);
+    padding-block: 3.5rem;
     // Mesh of glows behind the rows: lavender and red along the bottom, lavender and indigo along the top
     background:
       radial-gradient(40% 90% at 18% 100%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
