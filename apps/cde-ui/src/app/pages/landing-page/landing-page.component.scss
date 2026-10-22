@@ -203,10 +203,12 @@
   // Kept tight so the examples show above the fold on smaller laptops
   .examples {
     padding-block: tall-space(2rem) tall-space(3rem);
-    // Soft mesh: lavender from the top right, a hint of red from the bottom left
+    // Mesh of glows behind the rows: lavender and red along the bottom, lavender and indigo along the top
     background:
-      radial-gradient(45% 90% at 100% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 45%), transparent),
-      radial-gradient(40% 80% at 0% 100%, utils.with-alpha(vars.$tertiary, 6%), transparent),
+      radial-gradient(40% 90% at 18% 100%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
+      radial-gradient(35% 80% at 70% 100%, utils.with-alpha(vars.$tertiary, 18%), transparent),
+      radial-gradient(45% 90% at 98% 0%, utils.with-alpha(vars.$on-secondary-container, 20%), transparent),
+      radial-gradient(40% 70% at 45% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 55%), transparent),
       vars.$surface-container-lowest;
 
     .section-description {
@@ -218,9 +220,12 @@
     padding-block: tall-space(4rem) tall-space(5rem);
     // Deeper mesh than the examples so the section stands apart from the footer
     background:
-      radial-gradient(60% 90% at 0% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 80%), transparent),
-      radial-gradient(45% 80% at 100% 100%, utils.with-alpha(vars.$tertiary, 14%), transparent),
-      radial-gradient(40% 70% at 90% 10%, utils.with-alpha(vars.$on-secondary-container, 16%), transparent),
+      radial-gradient(55% 85% at 0% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
+      radial-gradient(35% 70% at 30% 100%, utils.with-alpha(vars.$on-secondary-container, 18%), transparent),
+      radial-gradient(40% 75% at 100% 100%, utils.with-alpha(vars.$tertiary, 18%), transparent),
+      radial-gradient(35% 60% at 85% 5%, utils.with-alpha(vars.$on-secondary-container, 20%), transparent),
+      // Light highlight in the middle for contrast between the glows
+      radial-gradient(30% 55% at 60% 45%, utils.with-alpha(vars.$surface-container-lowest, 55%), transparent),
       vars.$surface-container-high;
 
     .cards {
