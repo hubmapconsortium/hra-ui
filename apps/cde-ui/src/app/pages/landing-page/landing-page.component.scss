@@ -196,7 +196,11 @@
   // Kept tight so the examples show above the fold on smaller laptops
   .examples {
     padding-block: 2rem 3rem;
-    background-color: vars.$surface-container-lowest;
+    // Soft mesh: lavender from the top right, a hint of red from the bottom left
+    background:
+      radial-gradient(45% 90% at 100% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 45%), transparent),
+      radial-gradient(40% 80% at 0% 100%, utils.with-alpha(vars.$tertiary, 6%), transparent),
+      vars.$surface-container-lowest;
 
     .section-description {
       margin-bottom: 1rem;
@@ -205,7 +209,12 @@
 
   .developer-tools {
     padding-block: 4rem 5rem;
-    background-color: vars.$surface-container-high;
+    // Deeper mesh than the examples so the section stands apart from the footer
+    background:
+      radial-gradient(60% 90% at 0% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 80%), transparent),
+      radial-gradient(45% 80% at 100% 100%, utils.with-alpha(vars.$tertiary, 14%), transparent),
+      radial-gradient(40% 70% at 90% 10%, utils.with-alpha(vars.$on-secondary-container, 16%), transparent),
+      vars.$surface-container-high;
 
     .cards {
       display: grid;
