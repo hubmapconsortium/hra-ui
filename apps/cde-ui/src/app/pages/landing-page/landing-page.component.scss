@@ -247,12 +247,12 @@
     }
   }
 
+  // A fixed minimum rather than a share of the viewport, so it stays compact on tall screens
   .cite {
     justify-content: center;
     align-items: stretch;
-    // Fills the screen below the header, up to 1080px on tall screens
-    min-height: min(calc(100vh - 113px), 67.5rem);
-    padding-block: 6rem;
+    min-height: 28rem;
+    padding-block: 5rem;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
