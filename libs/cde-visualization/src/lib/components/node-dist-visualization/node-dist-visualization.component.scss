@@ -57,7 +57,8 @@
 ::ng-deep div.node-dist-vis-fullscreen-panel {
   --mat-dialog-container-color: black;
 
+  // Matches the panel background used by the other fullscreen views
   .header {
-    background-color: vars.$surface-container-lowest;
+    background-color: vars.$surface-container-low;
   }
 }

@@ -108,6 +108,13 @@ $panel-background: vars.$surface-container-low;
   }
 }
 
+// Fullscreen views keep the panel background, so the charts and the surrounding UI match.
+// The cell visualization keeps its black background.
+::ng-deep .hra-app .fullscreen-panel:not(.node-dist-vis-fullscreen-panel) {
+  --mat-dialog-container-color: #{$panel-background};
+  --hra-scroll-overflow-fade-color: #{$panel-background};
+}
+
 // The Info submenus hold a paragraph of text rather than menu items
 ::ng-deep div.mat-mdc-menu-panel.info-sub-menu .mat-mdc-menu-content {
   padding: 0.75rem 1rem;
