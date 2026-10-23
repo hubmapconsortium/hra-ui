@@ -1,6 +1,7 @@
 @use 'atlasng-hra';
 @use 'theming';
 @use 'utils';
+@use 'vars';
 
 // Follow the system color scheme until the theme toggle picks one (see ThemeService)
 html {
@@ -18,6 +19,19 @@ html {
 
   input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
+  }
+
+  // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
+  // with on-surface links and on-surface-variant for the rest
+  hra-breadcrumbs {
+    --ang-breadcrumbs-crumb-color: #{vars.$on-surface-variant};
+    --ang-breadcrumbs-separator-color: #{vars.$on-surface-variant};
+    --ang-breadcrumbs-text-font: #{vars.$body-small-font};
+    --ang-breadcrumbs-text-size: #{vars.$body-small-size};
+    --ang-breadcrumbs-text-weight: 600;
+    --ang-breadcrumbs-text-line-height: #{vars.$body-small-line-height};
+    --ang-breadcrumbs-text-tracking: #{vars.$body-small-tracking};
+    --ang-text-link-color: #{vars.$on-surface};
   }
 
   hra-footer {
