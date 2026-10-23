@@ -97,7 +97,6 @@
   }
 
   .table-overflow-container {
-    --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
     overflow: auto;
     grid-area: table;
     height: 100%;

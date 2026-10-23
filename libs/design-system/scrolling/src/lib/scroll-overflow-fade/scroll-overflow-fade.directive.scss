@@ -1,7 +1,10 @@
+@use '../../../../styles/vars';
+
+// Set --hra-scroll-overflow-fade-color to the background of the scroll container
 .hra-scroll-overflow-fade-gradient-top,
 .hra-scroll-overflow-fade-gradient-bottom {
   --_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);
-  --_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);
+  --_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #{vars.$surface-container-lowest});
 
   display: block;
   position: absolute;
