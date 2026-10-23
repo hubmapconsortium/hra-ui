@@ -175,7 +175,7 @@ Set your overrides on `.hra-app` in a stylesheet loaded after `styles.css`. The 
   .hra-app {
     --mat-sys-primary: #0b57d0;
     --mat-sys-on-primary: #ffffff;
-    --mat-sys-surface-container-low: #f4f6fa;
+    --mat-sys-background: #f4f6fa;
   }
 </style>
 ```
@@ -219,13 +219,13 @@ A color override with a single value applies to both. To set each, use `light-da
 
 The histogram and violin charts read these tokens, and update their colors when the system setting or the `color-scheme` of the `html` element changes:
 
-| Token                             | Used for                                                   |
-| --------------------------------- | ---------------------------------------------------------- |
-| `--mat-sys-surface-container-low` | Chart background                                           |
-| `--mat-sys-on-surface`            | Titles, violin outlines, and the default "All cells" color |
-| `--mat-sys-on-surface-variant`    | Axis and cell type labels                                  |
-| `--mat-sys-outline-variant`       | Grid lines                                                 |
-| `--mat-sys-body-medium`           | All chart text: font family, size, weight, and line height |
+| Token                          | Used for                                                   |
+| ------------------------------ | ---------------------------------------------------------- |
+| `--mat-sys-background`         | Chart background                                           |
+| `--mat-sys-on-surface`         | Titles, violin outlines, and the default "All cells" color |
+| `--mat-sys-on-surface-variant` | Axis and cell type labels                                  |
+| `--mat-sys-outline-variant`    | Grid lines                                                 |
+| `--mat-sys-body-medium`        | All chart text: font family, size, weight, and line height |
 
 The violin box plots stay black in every theme, so they read against the violin colors.
 

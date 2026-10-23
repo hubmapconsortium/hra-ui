@@ -74,7 +74,7 @@ const CHART_FONT_FALLBACK: ChartFont = { font: 'Metropolis', fontSize: 14, fontW
 
 /** Theme token and fallback value for each chart theme color */
 const CHART_THEME_TOKENS: Record<ChartThemeColor, [token: string, fallback: string]> = {
-  background: ['--mat-sys-surface-container-low', '#fcfcfc'],
+  background: ['--mat-sys-background', '#fcfcfc'],
   titleColor: ['--mat-sys-on-surface', '#201e3d'],
   labelColor: ['--mat-sys-on-surface-variant', '#4b4b5e'],
   gridColor: ['--mat-sys-outline-variant', '#dddddd'],

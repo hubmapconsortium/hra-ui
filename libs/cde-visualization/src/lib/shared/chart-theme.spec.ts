@@ -55,7 +55,7 @@ describe('getChartTheme(el)', () => {
     // jsdom does not resolve CSS variables, so stand in for the browser's computed styles
     const resolvedFont = { fontFamily: 'Inter', fontSize: '13px', fontWeight: '450', lineHeight: '19px' };
     const resolvedColors: Record<string, string> = {
-      'var(--mat-sys-surface-container-low, #fcfcfc)': 'rgb(16, 16, 16)',
+      'var(--mat-sys-background, #fcfcfc)': 'rgb(16, 16, 16)',
       'var(--mat-sys-on-surface, #201e3d)': 'rgb(32, 32, 32)',
       'var(--mat-sys-on-surface-variant, #4b4b5e)': 'rgb(48, 48, 48)',
       'var(--mat-sys-outline-variant, #dddddd)': 'rgb(64, 64, 64)',
