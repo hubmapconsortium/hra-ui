@@ -1,4 +1,5 @@
 @use '../../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   display: block;
@@ -24,10 +25,10 @@
   }
 
   .reset-sub-menu .mat-mdc-menu-content {
-    font: vars.$label-medium;
+    @include utils.use-font(body, small);
 
     .mat-mdc-menu-item-text {
-      font: vars.$label-medium;
+      @include utils.use-font(body, small);
     }
   }
 }

@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   height: fit-content;
@@ -57,7 +58,7 @@
       hra-expansion-panel-header-content {
         cde-color-picker-label {
           .label {
-            font: vars.$label-small;
+            @include utils.use-font(body, small);
             display: flex;
             white-space: unset;
             max-width: unset;
