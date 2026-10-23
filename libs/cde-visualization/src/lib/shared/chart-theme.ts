@@ -28,7 +28,7 @@ export interface ChartTheme extends ChartFont {
   labelColor: string;
   /** Color of grid lines */
   gridColor: string;
-  /** Color of outlines, box plots, and series without their own color */
+  /** Color of violin outlines and series without their own color */
   markColor: string;
 }
 

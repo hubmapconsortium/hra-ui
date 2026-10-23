@@ -184,9 +184,7 @@
           "type": "boxplot",
           "extent": "min-max",
           "size": 4,
-          "color": {
-            "expr": "themeMarkColor"
-          }
+          "color": "black"
         },
         "encoding": {
           "x": {
