@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use '../utils';
 @use '../vars';
 @use './palettes';
 @use './shape';
@@ -17,13 +18,24 @@ $theme: (
 
 $overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);
 
-// Default text colors: on-surface for text, on-surface-variant for paragraphs.
-@mixin text-colors() {
+// Base styles for apps on this theme.
+@mixin base-styles() {
+  // Text uses on-surface, and paragraphs use on-surface-variant
   & {
     color: vars.$on-surface;
   }
 
   p {
     color: vars.$on-surface-variant;
+  }
+
+  // Scrollbars match the AtlasNG scroll area. ngx-scrollbar reads these variables.
+  ng-scrollbar {
+    --scrollbar-thumb-color: #{utils.with-alpha(vars.$inverse-surface, 72%)};
+    --scrollbar-thumb-shape: #{vars.$corner-full};
+    --scrollbar-track-color: transparent;
+    --scrollbar-track-shape: #{vars.$corner-full};
+    --scrollbar-track-thickness: 0.5rem;
+    --scrollbar-container-offset: 0.25rem;
   }
 }

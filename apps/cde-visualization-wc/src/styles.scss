@@ -11,5 +11,5 @@
     atlasng-hra.$overrides,
     $skip-overrides: (button, button-toggle, checkbox, icon-button, menu)
   );
-  @include atlasng-hra.text-colors();
+  @include atlasng-hra.base-styles();
 }
