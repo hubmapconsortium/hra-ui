@@ -372,22 +372,11 @@
       </a>
     </div>
 
-    <mat-button-toggle-group
-      formControlName="colorMapType"
-      name="singleSelect"
-      aria-label="Color map"
-      hideSingleSelectionIndicator
-      hraButtonToggleSize="large"
-    >
-      <mat-button-toggle disableRipple value="default" hraFeature="toggle.default" hraClickEvent
+    <mat-button-toggle-group formControlName="colorMapType" name="singleSelect" aria-label="Color map">
+      <mat-button-toggle value="default" hraFeature="toggle.default" hraClickEvent
         >Use default colors</mat-button-toggle
       >
-      <mat-button-toggle
-        disableRipple
-        value="custom"
-        data-testid="upload-custom"
-        hraFeature="toggle.custom"
-        hraClickEvent
+      <mat-button-toggle value="custom" data-testid="upload-custom" hraFeature="toggle.custom" hraClickEvent
         >Upload color map</mat-button-toggle
       >
     </mat-button-toggle-group>

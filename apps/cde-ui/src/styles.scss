@@ -8,8 +8,12 @@ html {
 }
 
 @include utils.global-styles() {
-  // Default Material buttons, without the HRA button overrides
-  @include theming.theme(atlasng-hra.$theme, atlasng-hra.$overrides, $skip-overrides: (button, icon-button));
+  // Default Material buttons and button toggles, without the HRA overrides
+  @include theming.theme(
+    atlasng-hra.$theme,
+    atlasng-hra.$overrides,
+    $skip-overrides: (button, button-toggle, icon-button)
+  );
   @include atlasng-hra.text-colors();
 
   input[type='number'] {

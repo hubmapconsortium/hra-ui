@@ -4,8 +4,12 @@
 
 // Default theme. Embedders can override any --mat-sys-* token on .hra-app (see EMBEDDING.md).
 // Light or dark follows the host page's color-scheme, so no color-scheme is set here.
-// Default Material buttons, without the HRA button overrides.
+// Default Material buttons and button toggles, without the HRA overrides.
 @include utils.global-styles() {
-  @include theming.theme(atlasng-hra.$theme, atlasng-hra.$overrides, $skip-overrides: (button, icon-button));
+  @include theming.theme(
+    atlasng-hra.$theme,
+    atlasng-hra.$overrides,
+    $skip-overrides: (button, button-toggle, icon-button)
+  );
   @include atlasng-hra.text-colors();
 }
