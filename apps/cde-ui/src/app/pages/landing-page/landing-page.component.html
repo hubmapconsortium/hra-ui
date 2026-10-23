@@ -14,27 +14,11 @@
           <h1 id="landing-title" class="hero-title">Visualize and quantify distances</h1>
           <p class="hero-description">Upload 2D or 3D spatial data to compute and explore cell-to-cell distances.</p>
           <div class="hero-actions">
-            <a
-              mat-button
-              hraCtaButton
-              hraPrimaryButton
-              hraButtonSize="medium"
-              hraFeature="create-visualization"
-              hraClickEvent
-              hraLink="/create"
-            >
+            <a mat-flat-button hraFeature="create-visualization" hraClickEvent hraLink="/create">
               Create a visualization
               <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
             </a>
-            <a
-              mat-button
-              hraCtaButton
-              hraSecondaryButton
-              hraButtonSize="medium"
-              hraFeature="explore-gallery"
-              hraClickEvent
-              hraLink="/gallery"
-            >
+            <a mat-stroked-button hraFeature="explore-gallery" hraClickEvent hraLink="/gallery">
               Browse the gallery
               <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
             </a>
@@ -88,7 +72,6 @@
             hraFeature="copy-citation"
             hraClickEvent
             mat-flat-button
-            hraButtonSize="medium"
             class="copy-citation"
             [cdkCopyToClipboard]="collapseSpaces(citationText.textContent)"
             (cdkCopyToClipboardCopied)="openCopiedSnackbar()"

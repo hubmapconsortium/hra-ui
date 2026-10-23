@@ -16,12 +16,6 @@
     )
   );
 
-  @include mat.button-overrides(
-    (
-      filled-container-height: 2rem,
-    )
-  );
-
   @include mat.menu-overrides(
     (
       item-label-text-color: vars.$primary,
