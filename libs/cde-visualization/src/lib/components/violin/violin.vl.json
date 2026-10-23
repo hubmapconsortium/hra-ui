@@ -17,10 +17,10 @@
     },
     "axis": {
       "labelFontSize": 12,
-      "titleFontSize": 14,
-      "titleFontWeight": 500,
-      "labelFontWeight": 500,
-      "titleLineHeight": 21,
+      "titleFontSize": 12,
+      "titleFontWeight": 400,
+      "labelFontWeight": 400,
+      "titleLineHeight": 18,
       "labelLineHeight": 18,
       "titleColor": {
         "expr": "themeTitleColor"
@@ -101,11 +101,7 @@
         "labelAlign": "left",
         "labelLimit": 100,
         "labelBaseline": "middle",
-        "titlePadding": 8,
-        "labelFontSize": 12,
-        "titleFontSize": 14,
-        "titleFontWeight": 500,
-        "labelFontWeight": 500
+        "titlePadding": 8
       }
     }
   },
