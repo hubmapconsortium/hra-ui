@@ -6,12 +6,22 @@ import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import { map } from 'rxjs';
 import { View } from 'vega';
 
+/** Chart font, read from the theme's body small type token */
+export interface ChartFont {
+  /** Font family for all chart text */
+  font: string;
+  /** Font size in pixels */
+  fontSize: number;
+  /** Font weight */
+  fontWeight: number;
+  /** Line height in pixels */
+  lineHeight: number;
+}
+
 /** Chart colors and font, read from the theme's CSS custom properties */
-export interface ChartTheme {
+export interface ChartTheme extends ChartFont {
   /** Chart background color */
   background: string;
-  /** Font family for axis and legend text */
-  font: string;
   /** Color of axis, header, and legend titles */
   titleColor: string;
   /** Color of axis, header, and legend labels */
@@ -23,7 +33,23 @@ export interface ChartTheme {
 }
 
 /** Chart theme colors */
-type ChartThemeColor = Exclude<keyof ChartTheme, 'font'>;
+type ChartThemeColor = Exclude<keyof ChartTheme, keyof ChartFont>;
+
+/** Font size, weight, and line height of chart labels and titles */
+interface ChartTextConfig {
+  /** Label font size */
+  labelFontSize?: number;
+  /** Title font size */
+  titleFontSize?: number;
+  /** Label font weight */
+  labelFontWeight?: number;
+  /** Title font weight */
+  titleFontWeight?: number;
+  /** Label line height */
+  labelLineHeight?: number;
+  /** Title line height */
+  titleLineHeight?: number;
+}
 
 /** Vega-Lite spec properties set from the chart theme */
 export interface ThemeableChartSpec {
@@ -33,13 +59,22 @@ export interface ThemeableChartSpec {
   config: {
     /** Font family */
     font: string;
+    /** Axis text configuration */
+    axis: ChartTextConfig;
+    /** Facet header text configuration */
+    header?: ChartTextConfig;
   };
 }
 
-/** Theme token and fallback value for each chart theme property */
-const CHART_THEME_TOKENS: Record<keyof ChartTheme, [token: string, fallback: string]> = {
+/** Type token used for all chart text */
+const CHART_FONT_TOKEN = '--mat-sys-body-small';
+
+/** Chart font to use if the type token is not set */
+const CHART_FONT_FALLBACK: ChartFont = { font: 'Metropolis', fontSize: 12, fontWeight: 400, lineHeight: 18 };
+
+/** Theme token and fallback value for each chart theme color */
+const CHART_THEME_TOKENS: Record<ChartThemeColor, [token: string, fallback: string]> = {
   background: ['--mat-sys-surface-container-low', '#fcfcfc'],
-  font: ['--mat-sys-label-medium-font', 'Metropolis'],
   titleColor: ['--mat-sys-on-surface', '#201e3d'],
   labelColor: ['--mat-sys-on-surface-variant', '#4b4b5e'],
   gridColor: ['--mat-sys-outline-variant', '#dddddd'],
@@ -69,12 +104,9 @@ const PREFERS_DARK_QUERY = '(prefers-color-scheme: dark)';
  * @returns The chart theme
  */
 export function getChartTheme(el: Element): ChartTheme {
-  const styles = getComputedStyle(el);
-  const [fontToken, fontFallback] = CHART_THEME_TOKENS.font;
-
   return {
+    ...resolveFont(el),
     background: resolveColor(el, CHART_THEME_TOKENS.background),
-    font: styles.getPropertyValue(fontToken).trim() || fontFallback,
     titleColor: resolveColor(el, CHART_THEME_TOKENS.titleColor),
     labelColor: resolveColor(el, CHART_THEME_TOKENS.labelColor),
     gridColor: resolveColor(el, CHART_THEME_TOKENS.gridColor),
@@ -106,14 +138,62 @@ function resolveColor(el: Element, [token, fallback]: [string, string]): string 
 }
 
 /**
+ * Resolves the chart type token to the font family, size, weight, and line height Vega needs.
+ * The token is applied to a hidden probe element and its computed font is read back.
+ *
+ * @param el Element whose tokens are used
+ * @returns The resolved font
+ */
+function resolveFont(el: Element): ChartFont {
+  const { font, fontSize, fontWeight, lineHeight } = CHART_FONT_FALLBACK;
+  const probe = el.ownerDocument.createElement('span');
+  probe.style.display = 'none';
+  probe.style.font = `var(${CHART_FONT_TOKEN}, ${fontWeight} ${fontSize}px/${lineHeight}px ${font})`;
+  el.appendChild(probe);
+
+  const styles = getComputedStyle(probe);
+  const resolved = {
+    font: styles.fontFamily,
+    fontSize: Number.parseFloat(styles.fontSize),
+    fontWeight: Number.parseFloat(styles.fontWeight),
+    lineHeight: Number.parseFloat(styles.lineHeight),
+  };
+  probe.remove();
+
+  // Environments that don't resolve CSS variables, such as jsdom, return no usable font
+  if (!resolved.font || !Number.isFinite(resolved.fontSize)) {
+    return CHART_FONT_FALLBACK;
+  }
+
+  return {
+    font: resolved.font,
+    fontSize: resolved.fontSize,
+    fontWeight: Number.isFinite(resolved.fontWeight) ? resolved.fontWeight : fontWeight,
+    lineHeight: Number.isFinite(resolved.lineHeight) ? resolved.lineHeight : Math.round(resolved.fontSize * 1.5),
+  };
+}
+
+/**
  * Sets the font and the initial theme colors of a spec from a chart theme.
+ * All chart labels and titles use the theme's body small type.
  * Mutates the spec, so call it on an immer draft.
  *
  * @param spec Spec draft to update
  * @param theme Chart theme to apply
  */
 export function applyChartTheme(spec: ThemeableChartSpec, theme: ChartTheme): void {
+  const text: ChartTextConfig = {
+    labelFontSize: theme.fontSize,
+    titleFontSize: theme.fontSize,
+    labelFontWeight: theme.fontWeight,
+    titleFontWeight: theme.fontWeight,
+    labelLineHeight: theme.lineHeight,
+    titleLineHeight: theme.lineHeight,
+  };
+
   spec.config.font = theme.font;
+  Object.assign(spec.config.axis, text);
+  spec.config.header = { ...spec.config.header, ...text };
   for (const param of spec.params) {
     const color = getThemeColorKey(param.name);
     if (color) {
