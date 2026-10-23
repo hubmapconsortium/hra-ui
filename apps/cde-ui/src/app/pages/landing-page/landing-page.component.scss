@@ -135,7 +135,7 @@
     .hero-title {
       margin: 0;
       @include utils.use-font(display, medium);
-      color: vars.$secondary;
+      color: vars.$on-surface;
       // Evens out the lines when the title wraps on phones
       text-wrap: balance;
 
@@ -195,7 +195,7 @@
     .section-title {
       margin: 0;
       @include utils.use-font(headline, medium);
-      color: vars.$secondary;
+      color: vars.$on-surface;
     }
   }
 

@@ -35,6 +35,12 @@ html {
   }
 
   hra-footer {
+    // The shared footer colors its funding title primary, which is red in AtlasNG HRA.
+    // The extra class outranks the component's encapsulated :host rule.
+    .content-container hra-funding {
+      color: vars.$on-surface-variant;
+    }
+
     @media (min-width: 1100px) {
       & > * {
         padding: 0 2.5rem;
