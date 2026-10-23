@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   display: block;
@@ -42,7 +43,7 @@
         margin: 1px 0;
 
         span {
-          font: vars.$label-small;
+          @include utils.use-font(body, small);
 
           a {
             color: vars.$on-surface-variant;
