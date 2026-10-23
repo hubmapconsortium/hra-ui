@@ -30,7 +30,7 @@
     padding: 0.5rem;
     border-radius: 0.5rem;
     font-size: 1.5rem;
-    color: vars.$secondary;
+    color: vars.$on-surface-variant;
     background-color: vars.$surface-container-high;
 
     ::ng-deep mat-icon {
@@ -51,7 +51,7 @@
     margin: 0 0 0.5rem;
     // Title medium: 16/24, semibold, 0.15px tracking
     @include landing.font(1rem, 1.5rem, 600, 0.009375rem);
-    color: vars.$secondary;
+    color: vars.$on-surface;
   }
 
   .primary-link {
@@ -92,7 +92,7 @@
     gap: 0.25rem;
     // Label large: 14/21, semibold, 0.1px tracking
     @include landing.font(0.875rem, 1.3125rem, 600, 0.00625rem);
-    color: vars.$on-tertiary-fixed;
+    color: vars.$primary;
   }
 
   @media (prefers-reduced-motion: no-preference) {

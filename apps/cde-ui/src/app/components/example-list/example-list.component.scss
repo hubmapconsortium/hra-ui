@@ -77,13 +77,13 @@
   .title {
     // 18/24, semibold
     @include landing.font(1.125rem, 1.5rem, 600, 0);
-    color: vars.$secondary;
+    color: vars.$on-surface;
   }
 
   .description {
     // Body medium: 14/20, regular, 0.2px tracking
     @include landing.font(0.875rem, 1.25rem, 400, 0.0125rem);
-    color: vars.$primary;
+    color: vars.$on-surface-variant;
   }
 
   .credit {
@@ -104,7 +104,7 @@
     margin-left: auto;
     border-radius: vars.$corner-full;
     background-color: utils.with-alpha(vars.$tertiary, 10%);
-    color: vars.$on-tertiary-fixed;
+    color: vars.$on-surface-variant;
   }
 
   // Compact layout for narrow rows, such as on phones or when zoomed in
