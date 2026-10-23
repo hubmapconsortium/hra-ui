@@ -25,18 +25,6 @@
     <span>Info</span>
     <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
-  <button
-    mat-menu-item
-    matRipple
-    matRippleColor="#201E3D14"
-    hraFeature="download"
-    hraClickEvent
-    [matMenuTriggerFor]="downloadSubMenu"
-  >
-    <mat-icon>download</mat-icon>
-    <span>Downloads</span>
-    <mat-icon class="expand-arrow">arrow_right</mat-icon>
-  </button>
   @if (!dialogOpen()) {
     <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="open.emit()">
       <mat-icon>fullscreen</mat-icon>
@@ -59,15 +47,4 @@
 <mat-menu class="info-sub-menu" #infoSubMenu="matMenu">
   This histogram plot shows the cell-to-nearest-anchor cell distance distributions categorized by each cell type in the
   dataset.
-</mat-menu>
-
-<mat-menu class="download-sub-menu" #downloadSubMenu="matMenu">
-  <button mat-menu-item hraFeature="download-png" hraClickEvent (click)="download.emit('png')">
-    <mat-icon>download</mat-icon>
-    PNG
-  </button>
-  <button mat-menu-item hraFeature="download-svg" hraClickEvent (click)="download.emit('svg')">
-    <mat-icon>download</mat-icon>
-    SVG
-  </button>
 </mat-menu>

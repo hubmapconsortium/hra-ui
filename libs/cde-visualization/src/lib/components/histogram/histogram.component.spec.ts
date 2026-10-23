@@ -1,9 +1,7 @@
 import { AnimationDriver } from '@angular/animations/browser';
 import { MockAnimationDriver } from '@angular/animations/browser/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { MatMenuHarness } from '@angular/material/menu/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { Rgb } from '@hra-ui/design-system/color-picker';
@@ -120,9 +118,7 @@ describe('HistogramComponent', () => {
     const imageUrl = 'data:foo';
     embedResult.view.toImageURL.mockReturnValue(Promise.resolve(imageUrl));
 
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-    await menu.clickItem({ text: /Downloads/i }, { text: /svg/i });
+    await fixture.componentInstance.download('svg');
 
     expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
   });

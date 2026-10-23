@@ -30,19 +30,6 @@
         </button>
         <button
           mat-menu-item
-          class="expanded"
-          matRipple
-          matRippleColor="#201E3D14"
-          hraFeature="download"
-          hraClickEvent
-          [matMenuTriggerFor]="downloadSubMenu"
-        >
-          <mat-icon>download</mat-icon>
-          <span>Download</span>
-          <mat-icon class="expand-arrow">arrow_right</mat-icon>
-        </button>
-        <button
-          mat-menu-item
           hraClickEvent
           [hraFeature]="hideCellLinkData() ? 'show-cell-link' : 'hide-cell-link'"
           (click)="toggleLinksColumn()"
@@ -68,20 +55,6 @@
       </mat-menu>
       <mat-menu class="info-sub-menu" #infoSubMenu="matMenu">
         {{ infoToolTipDescription }}
-      </mat-menu>
-      <mat-menu hraFeature="menu.download" #downloadSubMenu="matMenu">
-        <button mat-menu-item hraFeature="download-cells-csv" hraClickEvent (click)="downloadNodes.emit()">
-          <mat-icon>download</mat-icon>
-          <span>Cells CSV</span>
-        </button>
-        <button mat-menu-item hraFeature="download-cell-links-csv" hraClickEvent (click)="downloadEdges.emit()">
-          <mat-icon>download</mat-icon>
-          <span>Cell links CSV</span>
-        </button>
-        <button mat-menu-item hraFeature="download-color-map-csv" hraClickEvent (click)="downloadColorMap.emit()">
-          <mat-icon>download</mat-icon>
-          <span>Cell color map CSV</span>
-        </button>
       </mat-menu>
     </span>
   </hra-expansion-panel-actions>

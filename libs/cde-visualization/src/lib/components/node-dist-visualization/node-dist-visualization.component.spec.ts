@@ -95,7 +95,7 @@ describe('NodeDistVisualizationComponent', () => {
 
   it('should render', async () => {
     await setup();
-    expect(screen.getByText('Visualization')).toBeInTheDocument();
+    expect(screen.getByText('Distance visualization')).toBeInTheDocument();
   });
 
   it('forwards node clicks from the visualization', async () => {

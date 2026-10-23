@@ -1,13 +1,29 @@
-import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { FocusOrigin } from '@angular/cdk/a11y';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Pipe,
+  PipeTransform,
+  computed,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Metadata } from '../../models/metadata';
+import { DOWNLOADS_CONTENT } from '../downloads/downloads.content';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -50,6 +66,7 @@ export class DefaultToPipe implements PipeTransform {
     ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
   ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
@@ -58,6 +75,18 @@ export class DefaultToPipe implements PipeTransform {
 export class MetadataComponent {
   /** Input for Metadata Component */
   readonly metadata = input.required<Metadata>();
+
+  /** Whether the downloads drawer is open */
+  readonly downloadsOpen = input(false);
+
+  /** Emits when the downloads button is clicked */
+  readonly downloadsClick = output<void>();
+
+  /** Label and tooltip for the downloads button */
+  protected readonly downloadsLabel = DOWNLOADS_CONTENT.title;
+
+  /** Downloads button */
+  private readonly downloadsButton = viewChild.required('downloadsButton', { read: MatIconButton });
 
   /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields = signal(false);
@@ -91,6 +120,11 @@ export class MetadataComponent {
   /** Toggle function for the show/hide buttons */
   toggleEmptyFields(): void {
     this.showEmptyFields.set(!this.showEmptyFields());
+  }
+
+  /** Moves focus to the downloads button */
+  focusDownloadsButton(origin: FocusOrigin): void {
+    this.downloadsButton().focus(origin);
   }
 
   /** Formats the creation timestamp using a given formatter */

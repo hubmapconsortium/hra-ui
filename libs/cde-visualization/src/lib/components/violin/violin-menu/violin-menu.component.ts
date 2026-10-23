@@ -19,6 +19,4 @@ export class ViolinMenuComponent {
   readonly dialogOpen = input(false, { transform: booleanAttribute });
   /** Event to emit when dialog is opened */
   readonly open = output();
-  /** Event to emit to download assets */
-  readonly download = output<string>();
 }

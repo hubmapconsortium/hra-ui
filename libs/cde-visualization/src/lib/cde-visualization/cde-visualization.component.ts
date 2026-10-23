@@ -1,19 +1,24 @@
+import { FocusOrigin } from '@angular/cdk/a11y';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
   output,
   OutputEmitterRef,
+  Renderer2,
   Signal,
   signal,
   untracked,
+  viewChild,
   ViewContainerRef,
 } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDrawer, MatDrawerContent, MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
@@ -45,6 +50,8 @@ import {
 } from '@hra-ui/node-dist-vis/models';
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
+import { DownloadsComponent } from '../components/downloads/downloads.component';
+import { DownloadRequest } from '../components/downloads/downloads.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
@@ -74,7 +81,9 @@ export interface DistanceEntry {
   imports: [
     HraCommonModule,
     MatProgressBarModule,
+    MatSidenavModule,
     CellTypesComponent,
+    DownloadsComponent,
     HistogramComponent,
     MetadataComponent,
     NodeDistVisualizationComponent,
@@ -358,6 +367,27 @@ export class CdeVisualizationComponent {
   /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
 
+  /** Renderer used to toggle inert on the content behind the downloads drawer */
+  private readonly renderer = inject(Renderer2);
+
+  /** Downloads drawer */
+  private readonly downloadsDrawer = viewChild.required(MatDrawer);
+
+  /** Content behind the downloads drawer */
+  private readonly drawerContent = viewChild.required(MatDrawerContent, { read: ElementRef });
+
+  /** Metadata panel, which holds the downloads button */
+  private readonly metadataComponent = viewChild.required(MetadataComponent);
+
+  /** Distance visualization panel */
+  private readonly nodeDistVisualizationComponent = viewChild.required(NodeDistVisualizationComponent);
+
+  /** Violin graph panel */
+  private readonly violinComponent = viewChild.required(ViolinComponent);
+
+  /** Histogram panel */
+  private readonly histogramComponent = viewChild.required(HistogramComponent);
+
   /** Setup component */
   constructor() {
     // Workaround for getting ngx-color-picker to attach to the root view
@@ -389,6 +419,45 @@ export class CdeVisualizationComponent {
 
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
+  }
+
+  /** Opens the downloads drawer */
+  protected openDownloads(): void {
+    this.downloadsDrawer().open();
+  }
+
+  /** Makes the content behind the downloads drawer inert once the drawer has opened */
+  protected onDownloadsOpened(): void {
+    // The opened event is async and can arrive after the drawer has been closed again
+    if (this.downloadsDrawer().opened) {
+      this.renderer.setAttribute(this.drawerContent().nativeElement, 'inert', '');
+    }
+  }
+
+  /** Closes the downloads drawer and returns focus to the downloads button */
+  protected closeDownloads(origin: FocusOrigin): void {
+    // Inert must be removed before closing so focus can return to the downloads button
+    this.renderer.removeAttribute(this.drawerContent().nativeElement, 'inert');
+    this.downloadsDrawer().close();
+    this.metadataComponent().focusDownloadsButton(origin);
+  }
+
+  /** Downloads the requested file */
+  async handleDownload({ file, format }: DownloadRequest): Promise<void> {
+    switch (file) {
+      case 'cells':
+        return this.downloadNodes();
+      case 'cell-links':
+        return this.downloadEdges();
+      case 'color-map':
+        return this.downloadColorMap();
+      case 'visualization':
+        return this.nodeDistVisualizationComponent().download();
+      case 'violin-graph':
+        return this.violinComponent().download(format);
+      case 'histogram':
+        return this.histogramComponent().download(format);
+    }
   }
 
   /** Downloads nodes */

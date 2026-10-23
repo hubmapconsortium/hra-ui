@@ -1,0 +1,48 @@
+<div class="header">
+  <h2 class="title" [id]="titleId">{{ content.title }}</h2>
+  <button
+    mat-icon-button
+    hraIconButtonSize="large"
+    hraFeature="close"
+    hraClickEvent
+    [attr.aria-label]="content.closeLabel"
+    [hraPlainTooltip]="content.closeLabel"
+    (click)="close($event)"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="body">
+  @for (group of content.groups; track group.heading) {
+    <section class="group">
+      <h3 class="group-heading">{{ group.heading }}</h3>
+      @if (group.note) {
+        <p class="note">{{ group.note }}</p>
+      }
+      <ul class="files">
+        @for (file of group.files; track file.id) {
+          <li class="file" [hraFeature]="file.id">
+            <span class="file-name">{{ file.name }}</span>
+            <p class="file-description">{{ file.description }}</p>
+            <div class="formats">
+              @for (format of file.formats; track format.id) {
+                <button
+                  mat-button
+                  hraButtonSize="small"
+                  hraClickEvent
+                  [hraFeature]="`download-${format.id}`"
+                  [attr.aria-label]="format.ariaLabel"
+                  (click)="download.emit({ file: file.id, format: format.id })"
+                >
+                  <mat-icon>download</mat-icon>
+                  {{ format.label }}
+                </button>
+              }
+            </div>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+</div>
