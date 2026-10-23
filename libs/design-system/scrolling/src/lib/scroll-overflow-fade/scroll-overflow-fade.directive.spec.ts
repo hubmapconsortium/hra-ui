@@ -48,6 +48,15 @@ describe('ScrollOverflowFadeDirective', () => {
     await expect(render(template, { ...getSharedOptions() })).resolves.toBeDefined();
   });
 
+  it('renders on a scrollbar with an external viewport', async () => {
+    const externalViewportTemplate = `
+      <ng-scrollbar externalViewport=".viewport" hraScrollOverflowFade>
+        <div class="viewport">content</div>
+      </ng-scrollbar>
+    `;
+    await expect(render(externalViewportTemplate, { ...getSharedOptions() })).resolves.toBeDefined();
+  });
+
   it('creates top and bottom gradient elements', async () => {
     const context = await render(template, { ...getSharedOptions() });
     const scrollTimeline = jest.fn().mockReturnValue(undefined);
