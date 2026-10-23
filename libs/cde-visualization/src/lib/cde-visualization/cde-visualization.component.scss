@@ -103,35 +103,11 @@
   }
 }
 
-::ng-deep {
-  .metadata-overlay,
-  .histogram-overlay,
-  .vis-overlay,
-  .violin-overlay {
-    .mat-mdc-menu-content {
-      .mat-mdc-menu-item {
-        @include mat.menu-overrides(
-          (
-            item-leading-spacing: 1rem,
-            item-trailing-spacing: 1rem,
-          )
-        );
-        .mat-mdc-menu-item-text {
-          @include utils.use-font(body, medium);
-        }
-      }
-    }
-  }
-
-  div.mat-mdc-menu-panel {
-    max-width: 260px;
-    min-width: 208px;
-    &.info-sub-menu .mat-mdc-menu-content {
-      padding: 0.75rem 1rem;
-      color: vars.$on-surface-variant;
-      @include utils.use-font(body, medium);
-    }
-  }
+// The Info submenus hold a paragraph of text rather than menu items
+::ng-deep div.mat-mdc-menu-panel.info-sub-menu .mat-mdc-menu-content {
+  padding: 0.75rem 1rem;
+  color: vars.$on-surface-variant;
+  @include utils.use-font(body, medium);
 }
 
 ::ng-deep .download-snackbar-panel {

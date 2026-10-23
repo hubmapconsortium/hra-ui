@@ -20,12 +20,10 @@
   >
     <mat-icon>info</mat-icon>
     <span>Info</span>
-    <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
   <button mat-menu-item hraFeature="reset" hraClickEvent [matMenuTriggerFor]="resetSubMenu">
     <mat-icon>reset_wrench</mat-icon>
     <span>Reset</span>
-    <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
   @if (!fullscreenMode()) {
     <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="fullscreenClick.emit()">

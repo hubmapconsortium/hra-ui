@@ -7,15 +7,6 @@
   overflow: hidden;
   flex-grow: 1;
 
-  @include mat.checkbox-overrides(
-    (
-      unselected-icon-color: vars.$secondary,
-      selected-icon-color: vars.$secondary,
-      selected-checkmark-color: vars.$secondary,
-      state-layer-size: 1.75rem,
-    )
-  );
-
   @include mat.sort-overrides(
     (
       arrow-color: vars.$on-surface-variant,
@@ -116,11 +107,6 @@
         thead {
           tr {
             @include utils.use-font(body, medium);
-            .mat-mdc-checkbox {
-              .mdc-checkbox__background {
-                background-color: vars.$surface-container-lowest;
-              }
-            }
           }
           .mat-sort-header-container {
             max-width: 6rem;
@@ -172,16 +158,6 @@
             border-bottom: solid vars.$outline-variant 0.0625rem;
           }
         }
-
-        tr {
-          .mat-mdc-checkbox {
-            &.mat-mdc-checkbox-checked {
-              .mdc-checkbox__background {
-                background-color: vars.$surface-container-lowest;
-              }
-            }
-          }
-        }
       }
 
       tr {
@@ -221,13 +197,6 @@
 }
 
 ::ng-deep {
-  div.mat-mdc-menu-panel {
-    max-width: 19.25rem;
-    &.info-sub-menu .mat-mdc-menu-content {
-      padding: 1rem 1rem;
-    }
-  }
-
   .info-tooltip-panel {
     background-color: vars.$surface-container-lowest;
     box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);
