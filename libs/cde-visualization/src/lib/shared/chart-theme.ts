@@ -6,7 +6,7 @@ import { rgbToHex } from '@hra-ui/design-system/color-picker';
 import { map } from 'rxjs';
 import { View } from 'vega';
 
-/** Chart font, read from the theme's body small type token */
+/** Chart font, read from the theme's body medium type token */
 export interface ChartFont {
   /** Font family for all chart text */
   font: string;
@@ -67,10 +67,10 @@ export interface ThemeableChartSpec {
 }
 
 /** Type token used for all chart text */
-const CHART_FONT_TOKEN = '--mat-sys-body-small';
+const CHART_FONT_TOKEN = '--mat-sys-body-medium';
 
 /** Chart font to use if the type token is not set */
-const CHART_FONT_FALLBACK: ChartFont = { font: 'Metropolis', fontSize: 12, fontWeight: 400, lineHeight: 18 };
+const CHART_FONT_FALLBACK: ChartFont = { font: 'Metropolis', fontSize: 14, fontWeight: 400, lineHeight: 21 };
 
 /** Theme token and fallback value for each chart theme color */
 const CHART_THEME_TOKENS: Record<ChartThemeColor, [token: string, fallback: string]> = {
@@ -175,7 +175,7 @@ function resolveFont(el: Element): ChartFont {
 
 /**
  * Sets the font and the initial theme colors of a spec from a chart theme.
- * All chart labels and titles use the theme's body small type.
+ * All chart labels and titles use the theme's body medium type.
  * Mutates the spec, so call it on an immer draft.
  *
  * @param spec Spec draft to update

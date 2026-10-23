@@ -92,14 +92,14 @@
   }
 }
 
-// Panel titles use title medium and the rest of the panel text uses body small, docked or fullscreen
+// Panel titles use title medium and the rest of the panel text uses body medium, docked or fullscreen
 ::ng-deep .hra-app hra-expansion-panel {
   .title {
     @include utils.use-font(title, medium);
   }
 
   .expansion-body {
-    @include utils.use-font(body, small);
+    @include utils.use-font(body, medium);
   }
 }
 
@@ -117,7 +117,7 @@
           )
         );
         .mat-mdc-menu-item-text {
-          @include utils.use-font(body, small);
+          @include utils.use-font(body, medium);
         }
       }
     }
@@ -129,7 +129,7 @@
     &.info-sub-menu .mat-mdc-menu-content {
       padding: 0.75rem 1rem;
       color: vars.$on-surface-variant;
-      @include utils.use-font(body, small);
+      @include utils.use-font(body, medium);
     }
   }
 }

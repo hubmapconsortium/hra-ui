@@ -33,7 +33,7 @@
   }
 
   .label {
-    @include utils.use-font(body, small);
+    @include utils.use-font(body, medium);
     color: vars.$on-surface-variant;
     cursor: pointer;
     display: block;
@@ -80,7 +80,7 @@
             padding: 0.25rem 1.25rem;
             width: auto;
             div {
-              @include utils.use-font(body, small);
+              @include utils.use-font(body, medium);
               color: vars.$on-surface;
               text-transform: uppercase;
             }
@@ -97,7 +97,7 @@
             border-radius: 1rem;
             padding: 0.5625rem 0;
             height: 2.5rem;
-            @include utils.use-font(body, small);
+            @include utils.use-font(body, medium);
           }
         }
       }
@@ -118,7 +118,7 @@
           cursor: pointer;
           border: none;
           background-color: transparent;
-          @include utils.use-font(body, small);
+          @include utils.use-font(body, medium);
           padding: 0.25rem 0.5rem;
           color: vars.$on-surface;
         }
