@@ -2,8 +2,8 @@
 @use '../../../../../libs/design-system/styles/utils';
 @use '../../../../../libs/design-system/styles/vars' as vars;
 
-// Background of every panel and of the Downloads drawer
-$panel-background: vars.$surface-container-low;
+// Background of every panel, chart, and scroll fade
+$panel-background: vars.$background;
 
 :host {
   display: block;
@@ -18,7 +18,8 @@ $panel-background: vars.$surface-container-low;
       content-text-color: vars.$on-surface,
       content-background-color: $panel-background,
       container-text-color: vars.$on-surface,
-      container-background-color: $panel-background,
+      // The Downloads drawer keeps its own container color
+      container-background-color: vars.$surface-container-low,
       container-elevation-shadow: var(--mat-sys-level1),
       container-shape: vars.$corner-large,
       container-width: 25rem,

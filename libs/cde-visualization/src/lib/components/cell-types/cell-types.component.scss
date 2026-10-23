@@ -16,7 +16,7 @@
   // All table text uses on-surface-variant
   @include mat.table-overrides(
     (
-      background-color: vars.$surface-container-low,
+      background-color: vars.$background,
       row-item-container-height: 1.75rem,
       row-item-outline-width: 0,
       header-headline-color: vars.$on-surface-variant,
