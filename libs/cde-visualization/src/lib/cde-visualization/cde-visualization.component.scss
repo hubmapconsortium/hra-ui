@@ -49,15 +49,17 @@
     );
   }
 
+  // Panel dividers sit on the layout containers, so they run the full length of each panel
   .metadata {
     display: flex;
     flex-direction: column;
     grid-area: metadata;
+    border-right: 1px solid vars.$outline-variant;
 
     cde-metadata {
       width: 100%;
       height: fit-content;
-      border-bottom: 2px solid vars.$outline-variant;
+      border-bottom: 1px solid vars.$outline-variant;
     }
   }
 
@@ -71,27 +73,21 @@
       display: flex;
       height: 0;
       flex-grow: 1;
+      border-bottom: 1px solid vars.$outline-variant;
     }
 
+    // Clip the cell visualization so its canvas can't paint over the dividers
     cde-node-dist-visualization {
       height: 100%;
       min-width: 32.75rem;
       flex-grow: 1;
-
-      ::ng-deep .header {
-        border-left: 2px solid vars.$outline-variant;
-        border-right: 2px solid vars.$outline-variant;
-      }
-    }
-
-    cde-histogram {
-      border-left: 2px solid vars.$outline-variant;
+      overflow: hidden;
     }
 
     cde-violin {
       height: 100%;
       width: 31.5rem;
-      border-bottom: 2px solid vars.$outline-variant;
+      border-left: 1px solid vars.$outline-variant;
     }
   }
 }
