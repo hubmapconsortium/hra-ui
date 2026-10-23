@@ -1,10 +1,12 @@
 import { provideHttpClient } from '@angular/common/http';
+import { Provider, signal } from '@angular/core';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { fireEvent, render, screen, within } from '@testing-library/angular';
 import { LandingExample } from '../../components/example-list/example-list.component';
 import { LandingCard } from '../../components/landing-card/landing-card.component';
+import { Theme, ThemeService } from '../../services/theme-service/theme.service';
 import { LandingPageComponent } from './landing-page.component';
 
 jest.mock('vega-embed', () => ({ default: jest.fn() }));
@@ -35,9 +37,9 @@ describe('LandingPageComponent', () => {
     },
   ];
 
-  async function setup() {
+  async function setup(extraProviders: Provider[] = []) {
     return render(LandingPageComponent, {
-      providers,
+      providers: [...providers, ...extraProviders],
       inputs: { examples: MOCK_EXAMPLES, developerTools: MOCK_DEVELOPER_TOOLS },
     });
   }
@@ -100,5 +102,33 @@ describe('LandingPageComponent', () => {
     for (const link of within(section).getAllByRole('link')) {
       expect(link).toHaveAttribute('target', '_blank');
     }
+  });
+
+  describe('hero background', () => {
+    function getHeroBackgroundUrls(container: Element): string[] {
+      const picture = container.querySelector('.hero-background') as HTMLElement;
+      const sources = [...picture.querySelectorAll('source')].map((source) => source.getAttribute('srcset') ?? '');
+      return [...sources, picture.querySelector('img')?.getAttribute('src') ?? ''];
+    }
+
+    it('uses the light images in the light theme', async () => {
+      const { container } = await setup([{ provide: ThemeService, useValue: { theme: signal<Theme>('light') } }]);
+      const urls = getHeroBackgroundUrls(container);
+
+      expect(urls).toHaveLength(5);
+      for (const url of urls) {
+        expect(url).toContain('hero-bg-light-');
+      }
+    });
+
+    it('uses the dark images in the dark theme', async () => {
+      const { container } = await setup([{ provide: ThemeService, useValue: { theme: signal<Theme>('dark') } }]);
+      const urls = getHeroBackgroundUrls(container);
+
+      expect(urls).toHaveLength(5);
+      for (const url of urls) {
+        expect(url).toContain('hero-bg-dark-');
+      }
+    });
   });
 });
