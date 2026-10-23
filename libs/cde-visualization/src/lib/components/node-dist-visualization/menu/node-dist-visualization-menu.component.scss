@@ -1,5 +1,4 @@
 @use '../../../../../../../libs/design-system/styles/vars' as vars;
-@use '../../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   display: block;
@@ -21,14 +20,6 @@
 
     li {
       margin-left: 1.5rem;
-    }
-  }
-
-  .reset-sub-menu .mat-mdc-menu-content {
-    @include utils.use-font(body, medium);
-
-    .mat-mdc-menu-item-text {
-      @include utils.use-font(body, medium);
     }
   }
 }
