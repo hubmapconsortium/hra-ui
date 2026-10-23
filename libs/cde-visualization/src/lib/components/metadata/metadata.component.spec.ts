@@ -1,7 +1,8 @@
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { render, screen } from '@testing-library/angular';
+import { fireEvent, render, screen } from '@testing-library/angular';
 
 import { Metadata } from '../../models/metadata';
+import { DOWNLOADS_CONTENT } from '../downloads/downloads.content';
 import { MetadataComponent } from './metadata.component';
 
 describe('MetadataComponent', () => {
@@ -67,5 +68,49 @@ describe('MetadataComponent', () => {
     fixture.componentInstance.toggleEmptyFields();
     fixture.detectChanges();
     expect(screen.getByText('Creation date')).toBeInTheDocument();
+  });
+
+  it('should render the panel title', async () => {
+    await render(MetadataComponent, {
+      componentInputs: { metadata },
+      providers: [provideNoopAnimations()],
+    });
+
+    expect(screen.getByText('Metadata')).toBeInTheDocument();
+  });
+
+  describe('downloads button', () => {
+    async function setup(downloadsOpen?: boolean) {
+      const downloadsClick = jest.fn();
+      const result = await render(MetadataComponent, {
+        inputs: { metadata, ...(downloadsOpen !== undefined && { downloadsOpen }) },
+        on: { downloadsClick },
+        providers: [provideNoopAnimations()],
+      });
+      const button = screen.getByRole('button', { name: DOWNLOADS_CONTENT.title });
+      return { ...result, button, downloadsClick };
+    }
+
+    it('should open a dialog and report whether it is expanded', async () => {
+      const { button, fixture } = await setup();
+      expect(button).toHaveAttribute('aria-haspopup', 'dialog');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+
+      fixture.componentRef.setInput('downloadsOpen', true);
+      await fixture.whenStable();
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('should emit downloadsClick when clicked', async () => {
+      const { button, downloadsClick } = await setup();
+      fireEvent.click(button);
+      expect(downloadsClick).toHaveBeenCalled();
+    });
+
+    it('should move focus to the button', async () => {
+      const { button, fixture } = await setup(true);
+      fixture.componentInstance.focusDownloadsButton('keyboard');
+      expect(button).toHaveFocus();
+    });
   });
 });

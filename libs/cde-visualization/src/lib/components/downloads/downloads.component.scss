@@ -1,0 +1,82 @@
+@use '../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../libs/design-system/styles/vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: vars.$on-surface-variant;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.75rem 1rem 1.5rem;
+  }
+
+  .title {
+    flex-grow: 1;
+    margin: 0;
+    color: vars.$on-surface;
+    @include utils.use-font(title, large);
+  }
+
+  .body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .group + .group {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid vars.$outline-variant;
+  }
+
+  .group-heading {
+    margin: 0;
+    color: vars.$on-surface;
+    @include utils.use-font(title, medium);
+  }
+
+  .note {
+    margin: 0.5rem 0 0;
+    @include utils.use-font(body, medium);
+  }
+
+  .files {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // Description follows the name in the DOM so screen readers announce it before the buttons
+  .file {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'name formats'
+      'description description';
+    align-items: center;
+    gap: 0.25rem 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .file-name {
+    grid-area: name;
+    color: vars.$on-surface;
+    @include utils.use-font(title, small);
+  }
+
+  .file-description {
+    grid-area: description;
+    margin: 0;
+    @include utils.use-font(body, medium);
+  }
+
+  .formats {
+    grid-area: formats;
+    display: flex;
+    gap: 0.25rem;
+  }
+}

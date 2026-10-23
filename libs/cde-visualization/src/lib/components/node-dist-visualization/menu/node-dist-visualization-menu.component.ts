@@ -24,8 +24,6 @@ export class NodeDistVisualizationMenuComponent {
 
   /** Emits when full screen option clicked */
   readonly fullscreenClick = output<void>();
-  /** Emits when download option clicked */
-  readonly downloadClick = output<void>();
   /** Emits when reset visualization view option clicked */
   readonly resetViewClick = output<void>();
   /** Emits when reset deleted cells option option clicked */
