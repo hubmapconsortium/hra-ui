@@ -1,90 +1,293 @@
 @use 'vars';
 @use 'utils';
+@use '../../shared/styles/landing';
 
-@keyframes fadeIn {
+// Keyframes are only named in rules outside @media and @supports. Once styles are minified, Angular's
+// view encapsulation stops renaming names inside those blocks to match its scoped keyframes.
+
+// Hero screenshot rises into place as it fades in
+@keyframes riseIn {
   from {
     opacity: 0;
+    transform: translateY(2rem) scale(0.97);
   }
   to {
     opacity: 1;
+    transform: none;
+  }
+}
+
+// Hero background drifts down by half the scroll distance, so it moves at half the speed of the content
+@keyframes parallax {
+  to {
+    transform: translateY(100vh);
   }
 }
 
 :host {
+  // App header height
+  $header-height: 113px;
+  // Matches the footer content column so sections line up on wide screens
+  $content-max-width: 101.25rem;
+  // Hero screenshot width on desktop: grows with tall windows, but leaves the text column room on narrow ones
+  $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
+  // Hero screenshot width when stacked: grows toward the full column only with the height left over after
+  // the header and the rest of the first screen (about 54rem), so the examples stay above the fold
+  $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);
+
   background-color: vars.$secondary-container;
   display: block;
 
   section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 6rem 2.5rem;
-    min-height: calc(100vh - 113px);
-  }
+    align-items: center;
+    padding: 4rem 2.5rem;
 
-  .visualize {
-    .cards-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @media (min-width: 1100px) {
+      padding-inline: 5rem;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(17.75rem, 1fr));
-      gap: 1.5rem;
-      justify-items: center;
-      max-width: 107.5rem;
-      width: 100%;
+    @media (max-width: 40rem) {
+      padding-inline: 1rem;
+    }
+  }
 
-      hra-collection-card {
-        animation: fadeIn 0.8s ease-in-out;
-        opacity: 1;
+  // Each pair of sections fills at least the window below the header, so on tall windows the next pair starts
+  // below the fold. Shorter windows and phones are unaffected because their content is already taller.
+  // The hero takes two thirds of any extra height in the first screen; the citation and developer tools share theirs equally.
+  .fill-screen {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - $header-height);
+  }
 
-        .label {
-          @include utils.use-font(label, large);
-        }
+  .hero {
+    flex-grow: 2;
+    justify-content: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: 3.5rem;
+    background-color: vars.$surface-container-lowest;
 
-        .supporting-text {
-          @include utils.use-font(label, medium);
-          margin-bottom: 1rem;
-        }
+    // Decorative background on its own layer so it can move independently of the content
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      // Zero length, so it has no visible effect until the scroll timeline below drives it
+      animation: parallax linear;
 
-        hra-collection-card-action {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: right center;
+      }
+    }
+
+    // Parallax only plays for people who haven't asked for reduced motion,
+    // and only in browsers that support scroll-driven animations.
+    // Follows the page scroll so it starts right away instead of once the hero reaches the sticky header,
+    // over a range long enough for heroes taller than the viewport on phones
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: scroll()) {
+        .hero-background {
+          animation-timeline: scroll(root);
+          animation-range: 0 200vh;
+          animation-fill-mode: both;
         }
       }
     }
 
-    .title {
-      @include utils.use-font(display, large);
+    .hero-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, $hero-image-width);
+      align-items: center;
+      gap: 3rem 4rem;
+      width: 100%;
+      max-width: $content-max-width;
+
+      @media (max-width: 64rem) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 1.5rem;
+    }
+
+    .logo {
+      width: 4rem;
+      height: 4rem;
+
+      @media (max-width: 40rem) {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+    }
+
+    .hero-title {
+      margin: 0;
+      @include utils.use-font(display, medium);
       color: vars.$secondary;
-      margin-bottom: 3.5rem;
-      text-align: center;
+      // Evens out the lines when the title wraps on phones
+      text-wrap: balance;
+
+      @media (max-width: 40rem) {
+        @include utils.use-font(display, small);
+      }
+    }
+
+    .hero-description {
+      margin: 0;
+      @include utils.use-font(body, xl);
+      color: vars.$on-surface-variant;
+      text-wrap: balance;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      max-width: $hero-image-width;
+      height: auto;
+      @include landing.card-surface(0.75rem);
+      box-shadow: landing.$card-shadow;
+
+      @media (max-width: 64rem) {
+        max-width: $hero-image-stacked-width;
+      }
+
+      // Hidden until it loads so the entrance plays on the image rather than an empty frame
+      @media (prefers-reduced-motion: no-preference) {
+        opacity: 0;
+      }
+
+      &.loaded {
+        animation: riseIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
+        }
+      }
+    }
+  }
+
+  .examples,
+  .developer-tools {
+    .section-content {
+      width: 100%;
+      max-width: $content-max-width;
+    }
+
+    .section-title {
+      margin: 0;
+      @include utils.use-font(headline, medium);
+      color: vars.$secondary;
+    }
+  }
+
+  // Same spacing as the hero, with no description so the rows show above the fold on smaller laptops
+  .examples {
+    flex-grow: 1;
+    justify-content: center;
+    padding-block: 3.5rem;
+    // Mesh of glows behind the rows: lavender and red along the bottom, lavender and indigo along the top
+    background:
+      radial-gradient(40% 90% at 18% 100%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
+      radial-gradient(35% 80% at 70% 100%, utils.with-alpha(vars.$tertiary, 18%), transparent),
+      radial-gradient(45% 90% at 98% 0%, utils.with-alpha(vars.$on-secondary-container, 20%), transparent),
+      radial-gradient(40% 70% at 45% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 55%), transparent),
+      vars.$surface-container-lowest;
+
+    .section-title {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .developer-tools {
+    // Zero basis so the two sections end up the same height when the window has room
+    flex: 1 1 0;
+    justify-content: center;
+    padding-block: 4rem 5rem;
+    // Deeper mesh than the examples so the section stands apart from the footer,
+    // kept light behind the heading and description for contrast
+    background:
+      radial-gradient(50% 60% at 20% 10%, utils.with-alpha(vars.$surface-bright, 90%), transparent),
+      radial-gradient(40% 90% at 90% 20%, utils.with-alpha(vars.$secondary-fixed-dim, 75%), transparent),
+      radial-gradient(35% 70% at 5% 95%, utils.with-alpha(vars.$secondary-fixed-dim, 60%), transparent),
+      radial-gradient(30% 60% at 50% 105%, utils.with-alpha(vars.$on-secondary-container, 16%), transparent),
+      radial-gradient(30% 60% at 100% 100%, utils.with-alpha(vars.$surface-bright, 70%), transparent),
+      vars.$surface-container-high;
+
+    .section-title {
+      margin-bottom: 0.5rem;
+    }
+
+    .section-description {
+      margin: 0 0 1.5rem;
+      @include utils.use-font(body, xl);
+      color: vars.$on-surface-variant;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
   }
 
   .cite {
+    flex: 1 1 0;
+    justify-content: center;
+    align-items: stretch;
+    padding-block: 5rem;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 
+    @media (prefers-reduced-motion: reduce), (max-width: 64rem) {
+      background-attachment: scroll;
+    }
+
+    // Holds the section's 28rem minimum (18rem plus the padding) here rather than on the section,
+    // so the zero flex basis can never squeeze the section below its content
     .content-container {
-      max-width: 90rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 18rem;
+      max-width: $content-max-width;
+      margin-inline: auto;
     }
 
     .content {
       max-width: 59.25rem;
 
       .title {
+        margin: 0 0 0.75rem;
         @include utils.use-font(headline, medium);
-        margin-bottom: 0.75rem;
       }
 
       .description {
         @include utils.use-font(body, xl);
+        color: vars.$on-surface-variant;
       }
 
       .copy-citation {
