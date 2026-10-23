@@ -80,7 +80,7 @@ export class LandingPageComponent {
   /** Hero screenshot for browsers without srcset support */
   protected readonly heroScreenshotFallback = 'assets/screenshots/large-intestine-visualization-1080x633.webp';
 
-  /** Light or dark theme, which picks the hero background images */
+  /** Light or dark theme, which picks the hero and citation background images */
   private readonly theme = inject(ThemeService).theme;
 
   /** Hero background sources for larger viewports, in the current theme */
@@ -91,6 +91,13 @@ export class LandingPageComponent {
   /** Hero background for phones and browsers without picture support, in the current theme */
   protected readonly heroBackgroundFallback = computed(() =>
     heroBackground(this.theme(), HERO_BACKGROUND_FALLBACK_SIZE),
+  );
+
+  /** Citation background, in the current theme */
+  protected readonly citeBackground = computed(() =>
+    this.theme() === 'dark'
+      ? 'assets/backgrounds/create-visualization-page-background-dark.png'
+      : 'assets/backgrounds/create-visualization-page-background.png',
   );
 
   /** Resolves asset paths the same way as the assetUrl pipe */
