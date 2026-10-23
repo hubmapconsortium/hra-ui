@@ -217,14 +217,15 @@ A color override with a single value applies to both. To set each, use `light-da
 
 ### Charts
 
-The histogram and violin charts read these tokens when they render, and redraw when the system setting or the `color-scheme` of the `html` element changes:
+The histogram and violin charts read these tokens, and update their colors when the system setting or the `color-scheme` of the `html` element changes:
 
-| Token                             | Used for                    |
-| --------------------------------- | --------------------------- |
-| `--mat-sys-surface-container-low` | Chart background            |
-| `--mat-sys-on-surface`            | Axis and legend titles      |
-| `--mat-sys-on-surface-variant`    | Axis and legend labels      |
-| `--mat-sys-label-medium-font`     | Axis and legend font family |
+| Token                             | Used for                                                                 |
+| --------------------------------- | ------------------------------------------------------------------------ |
+| `--mat-sys-surface-container-low` | Chart background                                                         |
+| `--mat-sys-on-surface`            | Titles, violin outlines and box plots, and the default "All cells" color |
+| `--mat-sys-on-surface-variant`    | Axis and cell type labels                                                |
+| `--mat-sys-outline-variant`       | Grid lines                                                               |
+| `--mat-sys-label-medium-font`     | Axis and legend font family                                              |
 
 The cell visualization keeps its black background. Set cell colors with the `color-map` input.
 
