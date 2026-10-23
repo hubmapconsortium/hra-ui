@@ -34,7 +34,7 @@
 
   .label {
     font: vars.$label-small;
-    color: vars.$secondary;
+    color: vars.$on-surface-variant;
     cursor: pointer;
     display: block;
     white-space: nowrap;
@@ -58,6 +58,8 @@
 ::ng-deep {
   color-picker {
     div.color-picker {
+      // ngx-color-picker defaults to a white panel, which hides on-surface text in the dark theme
+      background-color: vars.$surface-container;
       border-radius: 0.5rem;
       border: none;
       box-shadow: 0px 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);

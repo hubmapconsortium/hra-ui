@@ -10,7 +10,7 @@
 
   @include mat.sidenav-overrides(
     (
-      content-text-color: vars.$secondary,
+      content-text-color: vars.$on-surface,
       content-background-color: vars.$surface-container-low,
       container-text-color: vars.$on-surface,
       container-background-color: vars.$surface-container-low,
@@ -102,8 +102,6 @@
   .vis-overlay,
   .violin-overlay {
     .mat-mdc-menu-content {
-      background-color: vars.$on-primary;
-      color: vars.$secondary;
       .mat-mdc-menu-item {
         @include mat.menu-overrides(
           (
@@ -123,7 +121,7 @@
     min-width: 208px;
     &.info-sub-menu .mat-mdc-menu-content {
       padding: 0.75rem 1rem;
-      background-color: vars.$on-primary;
+      color: vars.$on-surface-variant;
       font: vars.$label-medium;
     }
   }

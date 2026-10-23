@@ -45,7 +45,7 @@
           font: vars.$label-small;
 
           a {
-            color: vars.$tertiary;
+            color: vars.$on-surface-variant;
           }
         }
       }
@@ -60,13 +60,14 @@
       gap: 0.25rem;
     }
 
+    // All table text uses on-surface-variant
     .metadata-row-label {
-      color: vars.$secondary;
+      color: vars.$on-surface-variant;
       min-width: 7.25rem;
     }
 
     .metadata-row-value {
-      color: vars.$primary;
+      color: vars.$on-surface-variant;
       overflow: hidden;
       text-wrap: nowrap;
       text-overflow: ellipsis;
