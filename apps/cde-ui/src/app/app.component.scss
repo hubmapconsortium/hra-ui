@@ -9,6 +9,18 @@
   min-height: 100vh;
   background-color: vars.$surface;
 
+  // Breadcrumbs match AtlasNG: body medium at weight 600, links on-surface, the rest on-surface-variant
+  ::ng-deep hra-breadcrumbs {
+    --ang-breadcrumbs-crumb-color: #{vars.$on-surface-variant};
+    --ang-breadcrumbs-separator-color: #{vars.$on-surface-variant};
+    --ang-breadcrumbs-text-font: #{vars.$body-medium-font};
+    --ang-breadcrumbs-text-size: #{vars.$body-medium-size};
+    --ang-breadcrumbs-text-weight: 600;
+    --ang-breadcrumbs-text-line-height: #{vars.$body-medium-line-height};
+    --ang-breadcrumbs-text-tracking: #{vars.$body-medium-tracking};
+    --ang-text-link-color: #{vars.$on-surface};
+  }
+
   ::ng-deep hra-table-of-contents-layout {
     @media (min-width: 1100px) {
       margin: 0;
