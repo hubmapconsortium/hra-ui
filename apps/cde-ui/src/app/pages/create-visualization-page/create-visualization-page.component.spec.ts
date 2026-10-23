@@ -1,7 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
@@ -11,6 +11,7 @@ import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
+import { Theme, ThemeService } from '../../services/theme-service/theme.service';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
@@ -103,13 +104,20 @@ const csvColorMapWrongKeys = `cell_id,bad_celltype_key,bad_cell_color
   1,cell2,"[1,1,1]"`;
 
 describe('CreateVisualizationPageComponent', () => {
-  const providers = [provideAssetHref('http://localhost/'), provideHttpClient(), provideHttpClientTesting()];
+  const theme = signal<Theme>('light');
+  const providers = [
+    provideAssetHref('http://localhost/'),
+    provideHttpClient(),
+    provideHttpClientTesting(),
+    { provide: ThemeService, useValue: { theme } },
+  ];
 
   let instance: CreateVisualizationPageComponent;
   let fixture: ComponentFixture<CreateVisualizationPageComponent>;
 
   beforeEach(async () => {
     jest.spyOn(Date, 'now').mockReturnValue(0);
+    theme.set('light');
 
     const context = await render(CreateVisualizationPageComponent, {
       providers,
@@ -128,6 +136,16 @@ describe('CreateVisualizationPageComponent', () => {
     const host = fixture.nativeElement as HTMLElement;
     expect(host.style.getPropertyValue('--page-background-image')).toContain(
       'create-visualization-page-background.png',
+    );
+  });
+
+  it('passes the dark background image in the dark theme', () => {
+    theme.set('dark');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.style.getPropertyValue('--page-background-image')).toContain(
+      'create-visualization-page-background-dark.png',
     );
   });
 
