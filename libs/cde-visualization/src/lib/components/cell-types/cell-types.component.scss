@@ -16,24 +16,20 @@
     )
   );
 
-  @include mat.menu-overrides(
-    (
-      item-label-text-color: vars.$primary,
-    )
-  );
-
   @include mat.sort-overrides(
     (
-      arrow-color: vars.$secondary,
+      arrow-color: vars.$on-surface-variant,
     )
   );
 
+  // All table text uses on-surface-variant
   @include mat.table-overrides(
     (
       background-color: vars.$surface-container-low,
       row-item-container-height: 1.75rem,
       row-item-outline-width: 0,
-      header-headline-color: vars.$arrow-color,
+      header-headline-color: vars.$on-surface-variant,
+      row-item-label-text-color: vars.$on-surface-variant,
       header-container-height: 2rem,
     )
   );
@@ -89,10 +85,11 @@
     font: vars.$label-small;
     letter-spacing: vars.$label-medium-tracking;
     margin: 0.25rem;
+    color: vars.$on-surface-variant;
 
     span {
       display: block;
-      color: vars.$primary;
+      color: vars.$on-surface;
       font: vars.$label-medium;
     }
   }
@@ -118,10 +115,6 @@
 
     table {
       ::ng-deep {
-        .mat-mdc-menu-content {
-          color: vars.$primary;
-        }
-
         thead {
           tr {
             font: vars.$label-small;
@@ -135,21 +128,18 @@
             max-width: 6rem;
             .mat-sort-header-content {
               font: vars.$label-small;
-              color: vars.$secondary;
             }
           }
 
           tr th:last-child > div {
             justify-content: flex-end;
             margin-right: 0.25rem;
-            color: vars.$primary;
           }
         }
 
         tbody tr td.mdc-data-table__cell:nth-last-child(-n + 2) {
           text-align: end;
           padding-right: 1.5rem;
-          color: vars.$primary;
           font: vars.$label-small;
         }
 
@@ -246,6 +236,6 @@
     border-radius: 0.5rem;
     max-width: 21rem;
     font: vars.$label-medium;
-    color: vars.$primary;
+    color: vars.$on-surface-variant;
   }
 }
