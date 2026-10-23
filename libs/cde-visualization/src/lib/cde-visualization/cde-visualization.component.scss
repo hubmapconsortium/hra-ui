@@ -2,18 +2,23 @@
 @use '../../../../../libs/design-system/styles/utils';
 @use '../../../../../libs/design-system/styles/vars' as vars;
 
+// Background of every panel and of the Downloads drawer
+$panel-background: vars.$surface-container-low;
+
 :host {
   display: block;
   width: 100%;
   height: 100%;
   position: relative;
+  // Scroll fades blend into the panel background
+  --hra-scroll-overflow-fade-color: #{$panel-background};
 
   @include mat.sidenav-overrides(
     (
       content-text-color: vars.$on-surface,
-      content-background-color: vars.$surface-container-low,
+      content-background-color: $panel-background,
       container-text-color: vars.$on-surface,
-      container-background-color: vars.$surface-container-low,
+      container-background-color: $panel-background,
       container-elevation-shadow: var(--mat-sys-level1),
       container-shape: vars.$corner-large,
       container-width: 25rem,
