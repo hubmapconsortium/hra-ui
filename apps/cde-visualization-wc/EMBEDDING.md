@@ -225,7 +225,7 @@ The histogram and violin charts read these tokens, and update their colors when 
 | `--mat-sys-on-surface`            | Titles, violin outlines and box plots, and the default "All cells" color |
 | `--mat-sys-on-surface-variant`    | Axis and cell type labels                                                |
 | `--mat-sys-outline-variant`       | Grid lines                                                               |
-| `--mat-sys-body-small`            | All chart text: font family, size, weight, and line height               |
+| `--mat-sys-body-medium`           | All chart text: font family, size, weight, and line height               |
 
 The cell visualization keeps its black background. Set cell colors with the `color-map` input.
 

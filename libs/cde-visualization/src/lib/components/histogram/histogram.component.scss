@@ -27,7 +27,7 @@
     }
 
     .expansion-body {
-      height: 11.25rem;
+      height: 15rem;
       display: flex;
       gap: 1rem;
 
@@ -58,7 +58,7 @@
       hra-expansion-panel-header-content {
         cde-color-picker-label {
           .label {
-            @include utils.use-font(body, small);
+            @include utils.use-font(body, medium);
             display: flex;
             white-space: unset;
             max-width: unset;

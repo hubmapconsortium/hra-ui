@@ -14,12 +14,12 @@
       "left": 16
     },
     "axis": {
-      "labelFontSize": 12,
-      "titleFontSize": 12,
+      "labelFontSize": 14,
+      "titleFontSize": 14,
       "titleFontWeight": 400,
       "labelFontWeight": 400,
-      "titleLineHeight": 18,
-      "labelLineHeight": 18,
+      "titleLineHeight": 21,
+      "labelLineHeight": 21,
       "titleColor": {
         "expr": "themeTitleColor"
       },

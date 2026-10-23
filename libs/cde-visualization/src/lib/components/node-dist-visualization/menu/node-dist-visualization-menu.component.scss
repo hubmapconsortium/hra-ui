@@ -25,10 +25,10 @@
   }
 
   .reset-sub-menu .mat-mdc-menu-content {
-    @include utils.use-font(body, small);
+    @include utils.use-font(body, medium);
 
     .mat-mdc-menu-item-text {
-      @include utils.use-font(body, small);
+      @include utils.use-font(body, medium);
     }
   }
 }

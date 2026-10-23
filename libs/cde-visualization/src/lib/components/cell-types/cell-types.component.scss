@@ -82,7 +82,7 @@
   .total-ct-label,
   .total-cells,
   .total-cell-links {
-    @include utils.use-font(body, small);
+    @include utils.use-font(body, medium);
     margin: 0.25rem;
     color: vars.$on-surface-variant;
 
@@ -115,7 +115,7 @@
       ::ng-deep {
         thead {
           tr {
-            @include utils.use-font(body, small);
+            @include utils.use-font(body, medium);
             .mat-mdc-checkbox {
               .mdc-checkbox__background {
                 background-color: vars.$surface-container-lowest;
@@ -125,7 +125,7 @@
           .mat-sort-header-container {
             max-width: 6rem;
             .mat-sort-header-content {
-              @include utils.use-font(body, small);
+              @include utils.use-font(body, medium);
             }
           }
 
@@ -138,13 +138,13 @@
         tbody tr td.mdc-data-table__cell:nth-last-child(-n + 2) {
           text-align: end;
           padding-right: 1.5rem;
-          @include utils.use-font(body, small);
+          @include utils.use-font(body, medium);
         }
 
         tbody {
           tr,
           td {
-            @include utils.use-font(body, small);
+            @include utils.use-font(body, medium);
           }
         }
 
@@ -233,7 +233,7 @@
     box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);
     border-radius: 0.5rem;
     max-width: 21rem;
-    @include utils.use-font(body, small);
+    @include utils.use-font(body, medium);
     color: vars.$on-surface-variant;
   }
 }

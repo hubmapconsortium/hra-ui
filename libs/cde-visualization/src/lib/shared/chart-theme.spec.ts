@@ -41,9 +41,9 @@ describe('getChartTheme(el)', () => {
     expect(getChartTheme(el)).toEqual({
       background: '#fcfcfc',
       font: 'Metropolis',
-      fontSize: 12,
+      fontSize: 14,
       fontWeight: 400,
-      lineHeight: 18,
+      lineHeight: 21,
       titleColor: '#201e3d',
       labelColor: '#4b4b5e',
       gridColor: '#dddddd',
@@ -51,7 +51,7 @@ describe('getChartTheme(el)', () => {
     });
   });
 
-  it('resolves the body small type token and the color tokens to hex colors', () => {
+  it('resolves the body medium type token and the color tokens to hex colors', () => {
     // jsdom does not resolve CSS variables, so stand in for the browser's computed styles
     const resolvedFont = { fontFamily: 'Inter', fontSize: '13px', fontWeight: '450', lineHeight: '19px' };
     const resolvedColors: Record<string, string> = {
