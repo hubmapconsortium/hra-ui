@@ -50,8 +50,17 @@ describe('CellTypesComponent', () => {
     });
 
     expect(screen.getByText('Cell types')).toBeInTheDocument();
-    expect(screen.getByText('Total cell types')).toBeInTheDocument();
-    expect(screen.getByText('Total cells')).toBeInTheDocument();
+    expect(screen.getByText(`Total (${cellTypesSelection.length} cell types)`)).toBeInTheDocument();
+    expect(screen.getByText('total cells')).toBeInTheDocument();
+    expect(screen.getByText('total cell links')).toBeInTheDocument();
+  });
+
+  it('should label a single selected cell type in the singular', async () => {
+    await setup({
+      componentInputs: { cellTypes, cellTypesSelection: ['Cell Type 1'] },
+    });
+
+    expect(screen.getByText('Total (1 cell type)')).toBeInTheDocument();
   });
 
   it('should toggle row selection', async () => {
