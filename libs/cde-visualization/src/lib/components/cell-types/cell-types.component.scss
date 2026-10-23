@@ -102,7 +102,20 @@
     grid-area: table;
     height: 100%;
 
+    // Fixed columns keep the table inside the panel, so long cell type names truncate instead of scrolling sideways
     table {
+      width: 100%;
+      table-layout: fixed;
+
+      .mat-column-select {
+        width: 2.5rem;
+      }
+
+      .mat-column-count,
+      .mat-column-links {
+        width: 5rem;
+      }
+
       ::ng-deep {
         thead {
           tr {
@@ -185,12 +198,6 @@
       .mdc-data-table__cell,
       .mdc-data-table__header-cell {
         padding: 0;
-      }
-
-      .mdc-data-table__cell {
-        &:nth-child(2) {
-          max-width: 10rem;
-        }
       }
     }
   }
