@@ -22,6 +22,7 @@ import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
 import { IconDef, provideIcons } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
+import { providePlainTooltipOptions } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { provideMarkdown } from 'ngx-markdown';
 import { ROUTES } from './app.routes';
 import { StudiesGridDef } from './components/studies-grid/types/studies-grid.definition';
@@ -56,6 +57,7 @@ export const appConfig: ApplicationConfig = {
     provideIcons(),
     provideMarkdown(),
     provideNothrowPlatformLocation(),
+    providePlainTooltipOptions({ hraStyles: false }),
     provideRouter(
       ROUTES,
       withComponentInputBinding(),
