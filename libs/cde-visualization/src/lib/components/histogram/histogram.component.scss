@@ -6,12 +6,6 @@
   position: sticky;
   max-height: 22.5rem;
 
-  @include mat.button-overrides(
-    (
-      filled-container-height: 2rem,
-    )
-  );
-
   @include mat.expansion-overrides(
     (
       header-hover-state-layer-color: transparent,

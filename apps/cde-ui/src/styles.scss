@@ -1,5 +1,3 @@
-@use '@angular/material' as mat;
-@use 'vars';
 @use 'atlasng-hra';
 @use 'theming';
 @use 'utils';
@@ -10,22 +8,13 @@ html {
 }
 
 @include utils.global-styles() {
-  @include theming.theme(atlasng-hra.$theme, atlasng-hra.$overrides);
+  // Default Material buttons, without the HRA button overrides
+  @include theming.theme(atlasng-hra.$theme, atlasng-hra.$overrides, $skip-overrides: (button, icon-button));
   @include atlasng-hra.text-colors();
 
   input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
   }
-
-  // Set flat-button font globally
-  @include mat.button-overrides(
-    (
-      filled-label-text-font: vars.$label-medium-font,
-      filled-label-text-size: vars.$label-medium-size,
-      filled-label-text-tracking: vars.$label-medium-tracking,
-      filled-label-text-weight: vars.$label-medium-weight,
-    )
-  );
 
   hra-footer {
     @media (min-width: 1100px) {

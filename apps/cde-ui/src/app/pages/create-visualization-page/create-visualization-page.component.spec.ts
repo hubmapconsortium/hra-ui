@@ -141,7 +141,6 @@ describe('CreateVisualizationPageComponent', () => {
         expect(link).toHaveAttribute('mat-stroked-button');
         expect(link).toHaveAttribute('target', '_blank');
         expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-        expect(link).toHaveClass('hra-button-size-medium');
       }
       expect(dataTemplate).toHaveAttribute(
         'href',

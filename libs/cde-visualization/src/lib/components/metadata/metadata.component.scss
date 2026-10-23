@@ -3,12 +3,6 @@
 
 :host {
   display: block;
-  @include mat.button-overrides(
-    (
-      text-hover-state-layer-opacity: 0,
-      text-pressed-state-layer-opacity: 0,
-    )
-  );
 
   @include mat.expansion-overrides(
     (
@@ -76,21 +70,6 @@
       overflow: hidden;
       text-wrap: nowrap;
       text-overflow: ellipsis;
-    }
-
-    .show-hide {
-      height: 21px;
-      line-height: 21px;
-
-      .mdc-button {
-        @include mat.button-overrides(
-          (
-            text-label-text-color: vars.$on-tertiary-fixed,
-          )
-        );
-        height: 100%;
-        padding: 0;
-      }
     }
   }
 }
