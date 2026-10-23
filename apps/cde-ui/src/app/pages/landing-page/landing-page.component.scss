@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'vars';
 @use 'utils';
 @use '../../shared/styles/landing';
@@ -156,6 +157,12 @@
       flex-wrap: wrap;
       gap: 0.5rem 2rem;
       margin-top: 0.5rem;
+      // A primary label falls below 4.5:1 contrast on the light hero background
+      @include mat.button-overrides(
+        (
+          outlined-label-text-color: vars.$on-primary-container,
+        )
+      );
     }
 
     .hero-image {
