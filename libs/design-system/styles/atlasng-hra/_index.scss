@@ -1,12 +1,14 @@
 @use 'sass:map';
+@use '../vars';
 @use './palettes';
 @use './shape';
 @use './typography';
 
 // AtlasNG HRA theme, shaped for `theming.theme($theme, $overrides)`.
+// Each color token holds a light and a dark value, picked by the CSS `color-scheme` in effect.
 $theme: (
   color: (
-    theme-type: light,
+    theme-type: color-scheme,
     primary: palettes.$primary-palette,
     tertiary: palettes.$tertiary-palette,
   ),
@@ -14,3 +16,14 @@ $theme: (
 );
 
 $overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);
+
+// Default text colors: on-surface for text, on-surface-variant for paragraphs.
+@mixin text-colors() {
+  & {
+    color: vars.$on-surface;
+  }
+
+  p {
+    color: vars.$on-surface-variant;
+  }
+}

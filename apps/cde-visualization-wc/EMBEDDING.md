@@ -197,13 +197,33 @@ If your site is built with Angular Material, you can generate a complete set of 
 
 Typography tokens come as a shorthand (for example `--mat-sys-label-medium`) and its parts (`--mat-sys-label-medium-font`, `-size`, `-weight`, `-line-height`, and `-tracking`). Override both. The default theme's fonts, Metropolis and Nunito Sans, are included in `styles.css`; load any other fonts yourself.
 
-The histogram and violin charts read these tokens when they render:
+### Light and dark
+
+Each default color token holds a light and a dark value, and the _CDE_ follows the page's [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme). It stays light unless the page opts in:
+
+```css
+/* Follow the system setting */
+html {
+  color-scheme: light dark;
+}
+
+/* Or always use dark colors */
+html {
+  color-scheme: dark;
+}
+```
+
+A color override with a single value applies to both. To set each, use `light-dark()`, for example `--mat-sys-primary: light-dark(#0b57d0, #a8c7fa);`.
+
+### Charts
+
+The histogram and violin charts read these tokens when they render, and redraw when the system setting or the `color-scheme` of the `html` element changes:
 
 | Token                             | Used for                    |
 | --------------------------------- | --------------------------- |
 | `--mat-sys-surface-container-low` | Chart background            |
 | `--mat-sys-on-surface`            | Axis and legend titles      |
-| `--mat-sys-on-secondary-fixed`    | Axis and legend labels      |
+| `--mat-sys-on-surface-variant`    | Axis and legend labels      |
 | `--mat-sys-label-medium-font`     | Axis and legend font family |
 
 The cell visualization keeps its black background. Set cell colors with the `color-map` input.

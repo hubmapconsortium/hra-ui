@@ -18,7 +18,7 @@ import embed from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { applyChartTheme, getChartTheme, ThemeableChartSpec } from '../../shared/chart-theme';
+import { applyChartTheme, getChartTheme, ThemeableChartSpec, watchColorScheme } from '../../shared/chart-theme';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
 
@@ -152,6 +152,9 @@ export class ViolinComponent {
   /** Vega view instance for the violin */
   private readonly view = signal<View | undefined>(undefined);
 
+  /** Changes when the color scheme changes, so the violin redraws in the new theme colors */
+  private readonly colorScheme = watchColorScheme();
+
   /** Number of colors (cell types) in the visualization */
   readonly colorCount = signal<number>(0);
 
@@ -178,6 +181,7 @@ export class ViolinComponent {
 
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(async (onCleanup) => {
+    this.colorScheme();
     const container: HTMLElement = this.violinEl().rootNodes()[0];
     const el = container.querySelector('.violin-container') as HTMLElement;
     const theme = getChartTheme(container);
