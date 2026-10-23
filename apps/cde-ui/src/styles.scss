@@ -14,7 +14,7 @@ html {
     atlasng-hra.$overrides,
     $skip-overrides: (button, button-toggle, checkbox, icon-button, menu)
   );
-  @include atlasng-hra.text-colors();
+  @include atlasng-hra.base-styles();
 
   input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
