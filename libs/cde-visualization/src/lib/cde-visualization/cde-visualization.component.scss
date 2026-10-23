@@ -17,7 +17,7 @@
       container-elevation-shadow: var(--mat-sys-level1),
       container-shape: vars.$corner-large,
       container-width: 22.5rem,
-      scrim-color: utils.with-alpha(vars.$scrim, 0.16),
+      scrim-color: utils.with-alpha(vars.$scrim, 0.24),
     )
   );
 
