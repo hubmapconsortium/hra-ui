@@ -2,7 +2,9 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": "container",
-  "background": "#fcfcfc",
+  "background": {
+    "expr": "themeBackground"
+  },
   "config": {
     "font": "Metropolis",
     "padding": {
@@ -18,11 +20,18 @@
       "labelFontWeight": 500,
       "titleLineHeight": 21,
       "labelLineHeight": 18,
-      "titleColor": "#201E3D",
-      "labelColor": "#4B4B5E",
+      "titleColor": {
+        "expr": "themeTitleColor"
+      },
+      "labelColor": {
+        "expr": "themeLabelColor"
+      },
       "ticks": false,
       "domain": false,
-      "labelPadding": 8
+      "labelPadding": 8,
+      "gridColor": {
+        "expr": "themeGridColor"
+      }
     }
   },
   "data": {
@@ -37,6 +46,26 @@
     {
       "name": "colors",
       "value": []
+    },
+    {
+      "name": "themeBackground",
+      "value": "#fcfcfc"
+    },
+    {
+      "name": "themeTitleColor",
+      "value": "#201e3d"
+    },
+    {
+      "name": "themeLabelColor",
+      "value": "#4b4b5e"
+    },
+    {
+      "name": "themeGridColor",
+      "value": "#dddddd"
+    },
+    {
+      "name": "themeMarkColor",
+      "value": "#000000"
     }
   ],
   "transform": [
@@ -89,7 +118,7 @@
       "scale": {
         "range": [
           {
-            "expr": "'Replaced/repeated in javascript' && colors[0] || '#000'"
+            "expr": "'Replaced/repeated in javascript' && colors[0] || themeMarkColor"
           }
         ]
       }
