@@ -33,44 +33,33 @@
       padding: 0.5rem 0.75rem;
     }
 
+    // Labels and values line up in two columns, and long values truncate instead of wrapping.
+    // All table text uses on-surface-variant.
     .metadata-details {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 0.125rem 1rem;
       margin: 0 0.5rem 1rem 1rem;
+      color: vars.$on-surface-variant;
+      @include utils.use-font(body, medium);
 
-      > div {
-        display: inline-flex;
-        margin: 1px 0;
-
-        span {
-          @include utils.use-font(body, medium);
-
-          a {
-            color: vars.$on-surface-variant;
-          }
-        }
-      }
-
-      span {
-        display: block;
+      a {
+        color: vars.$on-surface-variant;
       }
     }
 
     .metadata-row {
-      display: flex;
-      gap: 0.25rem;
+      display: contents;
     }
 
-    // All table text uses on-surface-variant
     .metadata-row-label {
-      color: vars.$on-surface-variant;
-      min-width: 7.25rem;
+      white-space: nowrap;
     }
 
-    .metadata-row-value {
-      color: vars.$on-surface-variant;
+    .metadata-row > :last-child {
+      min-width: 0;
       overflow: hidden;
-      text-wrap: nowrap;
+      white-space: nowrap;
       text-overflow: ellipsis;
     }
   }
