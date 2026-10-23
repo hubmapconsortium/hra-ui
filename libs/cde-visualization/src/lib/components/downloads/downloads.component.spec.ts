@@ -13,14 +13,26 @@ describe('DownloadsComponent', () => {
     expect(screen.getByRole('heading', { level: 2, name: DOWNLOADS_CONTENT.title })).toBeInTheDocument();
     for (const group of DOWNLOADS_CONTENT.groups) {
       expect(screen.getByRole('heading', { level: 3, name: group.heading })).toBeInTheDocument();
-      if (group.note) {
-        expect(screen.getByText(group.note)).toBeInTheDocument();
+      for (const note of group.notes ?? []) {
+        expect(screen.getByText(note.text, { exact: false })).toBeInTheDocument();
       }
     }
 
     for (const file of files) {
       expect(screen.getByText(file.name)).toBeInTheDocument();
       expect(screen.getByText(file.description)).toBeInTheDocument();
+    }
+  });
+
+  it('should render note links that open in a new tab', async () => {
+    await render(DownloadsComponent);
+
+    const links = DOWNLOADS_CONTENT.groups.flatMap((group) => group.notes ?? []).flatMap((note) => note.link ?? []);
+    expect(links).not.toHaveLength(0);
+    for (const link of links) {
+      const anchor = screen.getByRole('link', { name: link.label });
+      expect(anchor).toHaveAttribute('href', link.url);
+      expect(anchor).toHaveAttribute('target', '_blank');
     }
   });
 

@@ -12,11 +12,11 @@
     (
       content-text-color: vars.$secondary,
       content-background-color: vars.$surface-container-low,
-      container-text-color: vars.$secondary,
-      container-background-color: vars.$surface-container-lowest,
+      container-text-color: vars.$on-surface,
+      container-background-color: vars.$surface-container-low,
       container-elevation-shadow: var(--mat-sys-level1),
       container-shape: vars.$corner-large,
-      container-width: 22.5rem,
+      container-width: 25rem,
       scrim-color: utils.with-alpha(vars.$scrim, 0.24),
     )
   );

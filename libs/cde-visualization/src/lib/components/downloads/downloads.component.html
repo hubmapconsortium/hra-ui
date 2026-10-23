@@ -17,8 +17,20 @@
   @for (group of content.groups; track group.heading) {
     <section class="group">
       <h3 class="group-heading">{{ group.heading }}</h3>
-      @if (group.note) {
-        <p class="note">{{ group.note }}</p>
+      @for (note of group.notes; track note.text) {
+        <p class="note">
+          {{ note.text }}
+          @if (note.link; as link) {
+            <a
+              hraHyperlink
+              hraFeature="embedding-guide"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.href]="link.url"
+              >{{ link.label }}</a
+            >
+          }
+        </p>
       }
       <ul class="files">
         @for (file of group.files; track file.id) {
@@ -29,7 +41,6 @@
               @for (format of file.formats; track format.id) {
                 <button
                   mat-button
-                  hraButtonSize="small"
                   hraClickEvent
                   [hraFeature]="`download-${format.id}`"
                   [attr.aria-label]="format.ariaLabel"

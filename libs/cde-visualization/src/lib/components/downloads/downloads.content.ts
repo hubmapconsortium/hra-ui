@@ -34,12 +34,28 @@ export interface DownloadFileContent {
   formats: DownloadFormatContent[];
 }
 
+/** A link shown after a note */
+export interface DownloadLinkContent {
+  /** Link text */
+  label: string;
+  /** Link url */
+  url: string;
+}
+
+/** A note shown below a group heading */
+export interface DownloadNoteContent {
+  /** Note text */
+  text: string;
+  /** Optional link shown after the text */
+  link?: DownloadLinkContent;
+}
+
 /** A group of downloadable files */
 export interface DownloadGroupContent {
   /** Group heading */
   heading: string;
-  /** Optional note shown below the heading */
-  note?: string;
+  /** Optional notes shown below the heading */
+  notes?: DownloadNoteContent[];
   /** Files in the group */
   files: DownloadFileContent[];
 }
@@ -61,7 +77,16 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
   groups: [
     {
       heading: 'Data',
-      note: 'CSV files include only the cell types currently shown and leave out deleted cells.',
+      notes: [
+        { text: 'CSV files include only the cell types currently shown and leave out deleted cells.' },
+        {
+          text: 'The embeddable visualization needs the Cells CSV. Cell links and Cell color map are optional and are generated when missing.',
+          link: {
+            label: 'Embedding guide',
+            url: 'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md',
+          },
+        },
+      ],
       files: [
         {
           id: 'cells',
