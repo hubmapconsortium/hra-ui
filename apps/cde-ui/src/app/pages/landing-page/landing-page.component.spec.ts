@@ -131,4 +131,23 @@ describe('LandingPageComponent', () => {
       }
     });
   });
+
+  describe('citation background', () => {
+    function getCiteBackground(): string {
+      const section = screen.getByRole('region', { name: /cite/i });
+      return section.style.backgroundImage;
+    }
+
+    it('uses the light image in the light theme', async () => {
+      await setup([{ provide: ThemeService, useValue: { theme: signal<Theme>('light') } }]);
+
+      expect(getCiteBackground()).toContain('create-visualization-page-background.png');
+    });
+
+    it('uses the dark image in the dark theme', async () => {
+      await setup([{ provide: ThemeService, useValue: { theme: signal<Theme>('dark') } }]);
+
+      expect(getCiteBackground()).toContain('create-visualization-page-background-dark.png');
+    });
+  });
 });
