@@ -9,15 +9,16 @@
     text-underline-offset: 0.125rem;
     cursor: pointer;
 
+    // Link colors read the AtlasNG text link token (--ang-text-link-color) when an app sets it
     &:link,
     &,
     &:link mat-icon {
-      color: vars.$tertiary;
+      color: var(--ang-text-link-color, #{vars.$tertiary});
     }
 
     &:visited,
     &:visited mat-icon {
-      color: vars.$tertiary;
+      color: var(--ang-text-link-color, #{vars.$tertiary});
     }
 
     &:focus-visible {
@@ -34,7 +35,7 @@
     &:hover mat-icon,
     &:active,
     &:active mat-icon {
-      color: vars.$tertiary;
+      color: var(--ang-text-link-color, #{vars.$tertiary});
     }
   }
 
