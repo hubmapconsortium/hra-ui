@@ -79,7 +79,7 @@
     margin: 0;
     // Body large: 16/24, regular
     @include landing.font(1rem, 1.5rem, 400, 0);
-    color: vars.$primary;
+    color: vars.$on-surface-variant;
   }
 
   .actions {

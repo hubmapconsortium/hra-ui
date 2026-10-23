@@ -1,8 +1,12 @@
+@use 'vars';
+
 :host {
   display: flex;
   flex-direction: column;
   width: 100%;
   min-width: 20rem;
+  min-height: 100vh;
+  background-color: vars.$surface;
 
   ::ng-deep hra-table-of-contents-layout {
     @media (min-width: 1100px) {

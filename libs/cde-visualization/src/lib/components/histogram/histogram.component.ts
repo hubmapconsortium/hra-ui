@@ -39,7 +39,7 @@ import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { applyChartTheme, getChartTheme, ThemeableChartSpec } from '../../shared/chart-theme';
+import { applyChartTheme, getChartTheme, ThemeableChartSpec, watchColorScheme } from '../../shared/chart-theme';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
@@ -192,6 +192,9 @@ export class HistogramComponent {
   /** Vega view instance for the histogram */
   protected readonly view = signal<View | undefined>(undefined);
 
+  /** Changes when the color scheme changes, so the histogram redraws in the new theme colors */
+  private readonly colorScheme = watchColorScheme();
+
   /** Emits updated color data */
   readonly updateColor = output<UpdateColorData>();
 
@@ -211,6 +214,7 @@ export class HistogramComponent {
 
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(async (onCleanup) => {
+    this.colorScheme();
     const el = this.histogramEl().rootNodes()[0];
     const theme = getChartTheme(el);
     await this.ensureFontsLoaded(theme.font);

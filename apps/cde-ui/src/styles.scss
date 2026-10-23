@@ -4,8 +4,14 @@
 @use 'theming';
 @use 'utils';
 
+// Follow the system color scheme until the theme toggle picks one (see ThemeService)
+html {
+  color-scheme: light dark;
+}
+
 @include utils.global-styles() {
   @include theming.theme(atlasng-hra.$theme, atlasng-hra.$overrides);
+  @include atlasng-hra.text-colors();
 
   input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
