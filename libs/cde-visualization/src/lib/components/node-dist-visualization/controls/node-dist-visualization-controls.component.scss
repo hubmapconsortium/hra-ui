@@ -1,5 +1,3 @@
-@use '@angular/material' as mat;
-
 :host {
   display: flex;
   flex-direction: row;
@@ -7,15 +5,5 @@
 
   .delete {
     margin-right: 1rem;
-  }
-}
-
-::ng-deep {
-  mat-button-toggle-group {
-    @include mat.button-toggle-overrides(
-      (
-        height: 1.3125rem,
-      )
-    );
   }
 }
