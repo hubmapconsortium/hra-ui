@@ -84,6 +84,13 @@ describe('LandingPageComponent', () => {
     expect(fixture.componentInstance.collapseSpaces('\n  Jain, Y.,\n    Jepson, J.  \n')).toBe('Jain, Y., Jepson, J.');
   });
 
+  it('should keep a space between the citation link and its source', async () => {
+    await setup();
+
+    const citation = screen.getByRole('region', { name: /cite/i }).querySelector('.description');
+    expect(citation?.textContent?.replace(/\s+/g, ' ')).toContain('omics data. bioRxiv.');
+  });
+
   it('should render the examples section', async () => {
     await setup();
 
