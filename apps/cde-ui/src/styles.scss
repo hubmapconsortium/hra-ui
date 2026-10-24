@@ -266,9 +266,9 @@ html {
     }
   }
 
-  // The table of contents matches AtlasNG's: an on-surface title small heading over on-surface-variant
-  // body medium links in 44px pill rows, indented from level 2, with on-surface hover and focus
-  // and a primary-container active link
+  // The table of contents follows AtlasNG's, with a larger title medium heading: an on-surface heading with
+  // AtlasNG's padding over on-surface-variant body medium links in 44px pill rows, indented from level 2,
+  // with on-surface hover and focus and a primary-container active link
   hra-table-of-contents {
     $item-height: 2.75rem;
 
@@ -281,11 +281,12 @@ html {
     --hra-table-of-contents-indentation-start: 2;
     --hra-table-of-contents-indentation-step: 1rem;
     --ang-table-of-contents-tagline-color: #{vars.$on-surface};
-    --ang-table-of-contents-tagline-font: #{vars.$title-small-font};
-    --ang-table-of-contents-tagline-size: #{vars.$title-small-size};
-    --ang-table-of-contents-tagline-weight: #{vars.$title-small-weight};
-    --ang-table-of-contents-tagline-line-height: #{vars.$title-small-line-height};
-    --ang-table-of-contents-tagline-tracking: #{vars.$title-small-tracking};
+    --ang-table-of-contents-tagline-font: #{vars.$title-medium-font};
+    --ang-table-of-contents-tagline-size: #{vars.$title-medium-size};
+    --ang-table-of-contents-tagline-weight: #{vars.$title-medium-weight};
+    --ang-table-of-contents-tagline-line-height: #{vars.$title-medium-line-height};
+    --ang-table-of-contents-tagline-tracking: #{vars.$title-medium-tracking};
+    --hra-table-of-contents-tagline-padding: 0.75rem 1rem;
     --ang-table-of-contents-item-color: #{vars.$on-surface-variant};
     --ang-table-of-contents-item-font: #{vars.$body-medium-font};
     --ang-table-of-contents-item-size: #{vars.$body-medium-size};
