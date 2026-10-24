@@ -39,6 +39,13 @@
     margin-top: auto;
   }
 
+  // Workflow cards in theme shape and elevation, outlined like the landing page cards
+  .card {
+    border: 1px solid vars.$outline-variant;
+    border-radius: vars.$corner-large;
+    box-shadow: var(--mat-sys-level3);
+  }
+
   ::ng-deep .app-logo .app-description {
     border-radius: 0.125rem;
     width: fit-content;
