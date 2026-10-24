@@ -7253,11 +7253,11 @@ studies:
         Jain, Y., Yu, K., Li, S., Abt, M. and Börner, K., 2024. Generalized cell
         phenotyping for spatial proteomics with language-informed vision models.
         bioRxiv, pp.2024-11. https://doi.org/10.1101/2024.11.02.621624
-    authors: Multiple Authors
+    authors: Multiple authors
     affiliations: Human BioMolecular Atlas Program
     consortium: HuBMAP
-    organName: Multiple Organs
-    technology: Multiple Technologies
+    organName: Multiple organs
+    technology: Multiple technologies
     euiUrl: ''
     publications:
       - https://doi.org/10.1038/s41556-023-01194-w
