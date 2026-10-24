@@ -106,6 +106,14 @@ html {
     }
   }
 
+  // The file pill shown after an upload, in theme roles
+  hra-delete-file-button {
+    border-radius: vars.$corner-full;
+    background: vars.$surface-variant;
+    color: vars.$on-surface-variant;
+    @include utils.use-font(title, small);
+  }
+
   // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
   // with on-surface links and on-surface-variant for the rest
   hra-breadcrumbs {
