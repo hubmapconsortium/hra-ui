@@ -1,6 +1,18 @@
 @use 'utils';
 @use 'vars';
 
+// Body text at the scale of AtlasNG's content paragraph: body large times 1.0625, so 17px on a 25.5px line.
+// Replace with <ang-content-paragraph> once CDE moves to AtlasNG.
+$paragraph-scale: 1.0625;
+
+@mixin paragraph {
+  font-family: vars.$body-large-font;
+  font-size: calc(#{$paragraph-scale} * #{vars.$body-large-size});
+  font-weight: vars.$body-large-weight;
+  line-height: calc(#{$paragraph-scale} * #{vars.$body-large-line-height});
+  letter-spacing: vars.$body-large-tracking;
+}
+
 // Raised shadow shared by the hero screenshot and hovered landing cards
 $card-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
 
