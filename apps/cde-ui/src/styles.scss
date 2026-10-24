@@ -33,6 +33,12 @@ html {
     font-weight: 600;
   }
 
+  // Filled logos draw their glyphs with fill="white". Following the icon's configured color instead lets
+  // CDE theme its logo (see CDE_LOGO_CONFIG in app.config.ts). Other logos are configured white, so they look the same.
+  hra-icon.hra-icon-filled path[fill='white'] {
+    fill: currentColor;
+  }
+
   // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
   // with on-surface links and on-surface-variant for the rest
   hra-breadcrumbs {

@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, inject, provideEnvironmentInitializer } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -20,13 +20,23 @@ import { GridContainerDef } from '@hra-ui/design-system/content-templates/grid-c
 import { ImageDef } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
-import { IconDef, provideIcons } from '@hra-ui/design-system/icons';
+import { IconConfig, IconConfigRegistryService, IconDef, provideIcons } from '@hra-ui/design-system/icons';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { providePlainTooltipOptions } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { provideMarkdown } from 'ngx-markdown';
 import { ROUTES } from './app.routes';
 import { StudiesGridDef } from './components/studies-grid/types/studies-grid.definition';
 import { handleNavigationError } from './shared/utils/navigation-error-handler';
+
+/**
+ * CDE logo in theme colors, so it follows the light and dark themes wherever it appears,
+ * such as the landing page hero and the Spatial Omics Gallery header.
+ * Takes precedence over the fixed colors the design system gives every product logo.
+ */
+const CDE_LOGO_CONFIG: IconConfig = {
+  color: 'var(--mat-sys-on-secondary)',
+  backgroundColor: 'var(--mat-sys-secondary)',
+};
 
 /**
  * Set of config options available during the application bootstrap operation.
@@ -53,6 +63,9 @@ export const appConfig: ApplicationConfig = {
       StudiesGridDef,
     ]),
     provideDesignSystem(),
+    provideEnvironmentInitializer(() => {
+      inject(IconConfigRegistryService).setIconConfig('cde', 'product', CDE_LOGO_CONFIG);
+    }),
     provideHttpClient(),
     provideIcons(),
     provideMarkdown(),
