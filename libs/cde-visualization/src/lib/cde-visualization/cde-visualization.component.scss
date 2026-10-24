@@ -12,6 +12,13 @@ $panel-background: vars.$background;
   position: relative;
   // Scroll fades blend into the panel background
   --hra-scroll-overflow-fade-color: #{$panel-background};
+  // Text links match AtlasNG's, as in cde-ui: underlined on-surface at a weight of 600.
+  // Set here so the web component, which has no app styles for links, matches too.
+  --ang-text-link-color: #{vars.$on-surface};
+
+  ::ng-deep a.hra-text-hyperlink {
+    font-weight: 600;
+  }
 
   @include mat.sidenav-overrides(
     (
