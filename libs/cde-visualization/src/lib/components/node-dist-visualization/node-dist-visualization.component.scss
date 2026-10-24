@@ -19,11 +19,13 @@
         cdk-accordion-item {
           height: 100%;
 
+          // The outline divider frames the dark visualization below the header, especially in the dark theme
           .header {
             background-color: vars.$background;
             height: 3.5rem;
             align-items: center;
             padding: 0 1rem;
+            border-bottom: 1px solid vars.$outline;
 
             hra-expansion-panel-header-content {
               mat-icon {

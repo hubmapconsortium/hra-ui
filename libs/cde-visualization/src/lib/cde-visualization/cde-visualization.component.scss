@@ -62,17 +62,18 @@ $panel-background: vars.$background;
     );
   }
 
-  // Panel dividers sit on the layout containers, so they run the full length of each panel
+  // Panel dividers sit on the layout containers, so they run the full length of each panel.
+  // They use outline, so the panels read as separate regions.
   .metadata {
     display: flex;
     flex-direction: column;
     grid-area: metadata;
-    border-right: 1px solid vars.$outline-variant;
+    border-right: 1px solid vars.$outline;
 
     cde-metadata {
       width: 100%;
       height: fit-content;
-      border-bottom: 1px solid vars.$outline-variant;
+      border-bottom: 1px solid vars.$outline;
     }
   }
 
@@ -86,7 +87,7 @@ $panel-background: vars.$background;
       display: flex;
       height: 0;
       flex-grow: 1;
-      border-bottom: 1px solid vars.$outline-variant;
+      border-bottom: 1px solid vars.$outline;
     }
 
     // Clip the cell visualization so its canvas can't paint over the dividers
@@ -100,7 +101,7 @@ $panel-background: vars.$background;
     cde-violin {
       height: 100%;
       width: 31.5rem;
-      border-left: 1px solid vars.$outline-variant;
+      border-left: 1px solid vars.$outline;
     }
   }
 }
