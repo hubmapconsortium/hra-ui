@@ -136,6 +136,12 @@ $panel-background: vars.$background;
   }
 }
 
+// Chart tooltips sit above overlays, so they show in fullscreen views. vega-tooltip appends its element to the body
+// with the same z-index as the overlay container, which comes later in the page and would cover it.
+::ng-deep html body #vg-tooltip-element {
+  z-index: 1100;
+}
+
 // The Info submenus hold a paragraph of text rather than menu items
 ::ng-deep div.mat-mdc-menu-panel.info-sub-menu .mat-mdc-menu-content {
   padding: 0.75rem 1rem;
