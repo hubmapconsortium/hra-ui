@@ -6,7 +6,8 @@
   border: 0.0625rem solid vars.$outline-variant;
   border-radius: 0.5rem;
 
-  // Colors and type read AtlasNG table of contents tokens (--ang-table-of-contents-*) when an app sets them
+  // Colors and type read AtlasNG table of contents tokens (--ang-table-of-contents-*),
+  // and tagline padding reads --hra-table-of-contents-tagline-padding, when an app sets them
   .tagline {
     font-family: var(--ang-table-of-contents-tagline-font, #{vars.$label-large-font});
     font-size: var(--ang-table-of-contents-tagline-size, #{vars.$label-large-size});
@@ -14,7 +15,7 @@
     line-height: var(--ang-table-of-contents-tagline-line-height, #{vars.$label-large-line-height});
     letter-spacing: var(--ang-table-of-contents-tagline-tracking, #{vars.$label-large-tracking});
     min-height: 3rem;
-    padding: 0.75rem 1.5rem;
+    padding: var(--hra-table-of-contents-tagline-padding, 0.75rem 1.5rem);
     border-bottom: 0.0625rem solid vars.$outline-variant;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
@@ -60,7 +61,7 @@
 
     .tagline {
       min-height: 2.5rem;
-      padding: 0.5rem 1rem;
+      padding: var(--hra-table-of-contents-tagline-padding, 0.5rem 1rem);
       border-bottom: none;
       background-color: unset;
     }
