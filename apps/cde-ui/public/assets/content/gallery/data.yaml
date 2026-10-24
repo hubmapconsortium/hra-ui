@@ -39,9 +39,10 @@ content:
         data: |
           A total of 203 out of 399 datasets are registered into the HRA and can be explored together within the context of the male and female reference body.
 
-      - component: TextHyperlink
-        text: Use app
-        url: https://hubmapconsortium.github.io/hra-registrations/vccf-federated/
+      - component: Button
+        label: Use app
+        href: https://hubmapconsortium.github.io/hra-registrations/vccf-federated/
+        type: tonal
         icon: arrow_right_alt
 
       - component: Image
