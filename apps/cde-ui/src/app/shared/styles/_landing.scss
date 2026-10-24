@@ -1,3 +1,4 @@
+@use 'utils';
 @use 'vars';
 
 // Body text at the scale of AtlasNG's content paragraph: body large times 1.0625, so 17px on a 25.5px line.
@@ -12,19 +13,28 @@ $paragraph-scale: 1.0625;
   letter-spacing: vars.$body-large-tracking;
 }
 
+// Focus ring in the style of AtlasNG's text links and content headers (solid, 1px outside the element),
+// at the 3px width of Material's strong focus indicators
+@mixin focus-ring {
+  outline: 3px solid vars.$on-surface;
+  outline-offset: 1px;
+}
+
 // Outlined card on a solid surface, so section backgrounds stay behind the text
 @mixin card-surface($radius) {
   border: 0.0625rem solid vars.$outline-variant;
   border-radius: $radius;
-  background-color: vars.$surface-container-lowest;
+  background-color: vars.$surface-container-low;
 }
 
-// Outlined card that responds to hover like Material components: an on-surface state layer and level 1 elevation
+// Outlined card that responds like Material components: a state layer and level 3 elevation on hover,
+// and a ripple (from matRipple) on press. Both use on-surface-variant, like AtlasNG's outlined buttons.
 @mixin card($radius) {
   @include card-surface($radius);
   position: relative;
   // Keeps the state layer above the card's background but below its content
   isolation: isolate;
+  --mat-ripple-color: #{utils.with-alpha(vars.$on-surface-variant, var(--mat-sys-pressed-state-layer-opacity))};
 
   &::before {
     content: '';
@@ -32,13 +42,13 @@ $paragraph-scale: 1.0625;
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    background-color: vars.$on-surface;
+    background-color: vars.$on-surface-variant;
     opacity: 0;
     pointer-events: none;
   }
 
   &:hover {
-    box-shadow: var(--mat-sys-level1);
+    box-shadow: var(--mat-sys-level3);
 
     &::before {
       opacity: var(--mat-sys-hover-state-layer-opacity);
