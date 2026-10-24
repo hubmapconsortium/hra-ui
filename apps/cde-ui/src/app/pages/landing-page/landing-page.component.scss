@@ -36,7 +36,7 @@
   // the header and the rest of the first screen (about 54rem), so the examples stay above the fold
   $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);
 
-  background-color: vars.$secondary-container;
+  background-color: vars.$background;
   display: block;
 
   section {
@@ -170,8 +170,8 @@
       width: 100%;
       max-width: $hero-image-width;
       height: auto;
-      @include landing.card-surface(0.75rem);
-      box-shadow: landing.$card-shadow;
+      @include landing.card-surface(vars.$corner-small);
+      box-shadow: var(--mat-sys-level3);
 
       @media (max-width: 64rem) {
         max-width: $hero-image-stacked-width;

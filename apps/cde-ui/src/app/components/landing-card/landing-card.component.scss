@@ -3,7 +3,7 @@
 @use '../../shared/styles/landing';
 
 :host {
-  $radius: 0.75rem;
+  $radius: vars.$corner-medium;
 
   position: relative;
   display: flex;
@@ -28,7 +28,7 @@
     width: 1.5rem;
     height: 1.5rem;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: vars.$corner-small;
     font-size: 1.5rem;
     color: vars.$on-surface-variant;
     background-color: vars.$surface-container-high;
