@@ -42,7 +42,7 @@ $item-vertical-padding: 0.375rem;
   .group-description,
   .subgroup-label {
     align-content: center;
-    color: vars.$on-primary-fixed;
+    color: var(--hra-header-menu-supporting-text-color, #{vars.$on-primary-fixed});
   }
 
   .subgroup-label {

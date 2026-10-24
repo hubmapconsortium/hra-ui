@@ -30,7 +30,7 @@
     }
 
     &.mobile-menu-open {
-      background-color: vars.$surface-dim;
+      background-color: var(--hra-header-menu-container-color, #{vars.$surface-dim});
       backdrop-filter: none;
     }
 

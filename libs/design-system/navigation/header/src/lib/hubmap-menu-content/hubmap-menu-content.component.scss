@@ -14,7 +14,7 @@
     min-height: $item-height;
     padding: 0 $padding;
     align-content: center;
-    color: vars.$on-primary-fixed;
+    color: var(--hra-header-menu-supporting-text-color, #{vars.$on-primary-fixed});
   }
 
   .group-items {

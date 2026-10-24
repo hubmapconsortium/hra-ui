@@ -181,6 +181,38 @@ html {
     }
   }
 
+  // Header menus follow AtlasNG's header shell tokens and Material's menu defaults: surface-container menus
+  // (also the bar's color while the mobile menu is open) with level 2 elevation and extra-small corners,
+  // on-surface category toggles, links, and app names with on-surface state layers and focus outlines,
+  // primary underlines on open categories, and on-surface-variant supporting text. The menus open in overlays,
+  // outside the header, and the overlay container also carries .hra-app.
+  hra-header,
+  hra-desktop-menu,
+  hra-mobile-menu {
+    --hra-header-menu-container-color: #{vars.$surface-container};
+    --hra-header-menu-shadow: var(--mat-sys-level2);
+    --hra-header-menu-shape: #{vars.$corner-extra-small};
+    --hra-header-menu-supporting-text-color: #{vars.$on-surface-variant};
+    --hra-header-mobile-menu-underline-color: #{vars.$primary};
+    --hra-navigation-category-toggle-text-color: #{vars.$on-surface};
+    --hra-navigation-category-toggle-underline-color: #{vars.$primary};
+    --hra-navigation-category-toggle-focus-color: #{vars.$on-surface};
+    --hra-app-nav-button-tagline-color: #{vars.$on-surface};
+    --hra-app-nav-button-description-color: #{vars.$on-surface-variant};
+    --hra-app-nav-button-state-layer-color: #{vars.$on-surface};
+    --hra-app-nav-button-focus-color: #{vars.$on-surface};
+  }
+
+  hra-menu-content {
+    @include mat.button-overrides(
+      (
+        text-label-text-color: vars.$on-surface,
+        text-state-layer-color: vars.$on-surface,
+        text-ripple-color: utils.with-alpha(vars.$on-surface, var(--mat-sys-pressed-state-layer-opacity)),
+      )
+    );
+  }
+
   // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
   // with on-surface links and on-surface-variant for the rest
   hra-breadcrumbs {
