@@ -28,7 +28,8 @@ $paragraph-scale: 1.0625;
 }
 
 // Outlined card that responds like Material components: a state layer and level 3 elevation on hover,
-// and a ripple (from matRipple) on press. Both use on-surface-variant, like AtlasNG's outlined buttons.
+// a stronger state layer on keyboard focus, and a ripple (from matRipple) on press.
+// All use on-surface-variant, like AtlasNG's outlined buttons.
 @mixin card($radius) {
   @include card-surface($radius);
   position: relative;
@@ -52,6 +53,14 @@ $paragraph-scale: 1.0625;
 
     &::before {
       opacity: var(--mat-sys-hover-state-layer-opacity);
+    }
+  }
+
+  // Keyboard focus on the card itself or on a link inside it
+  &:focus-visible,
+  &:has(:focus-visible) {
+    &::before {
+      opacity: var(--mat-sys-focus-state-layer-opacity);
     }
   }
 
