@@ -21,6 +21,8 @@ import { ImageDef } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
 import { IconConfig, IconConfigRegistryService, IconDef, provideIcons } from '@hra-ui/design-system/icons';
+import { provideTableOfContentsLayoutOptions } from '@hra-ui/design-system/layouts/table-of-contents';
+import { provideTableOfContentsOptions } from '@hra-ui/design-system/navigation/table-of-contents';
 import { PageTableDef } from '@hra-ui/design-system/table';
 import { providePlainTooltipOptions } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { provideMarkdown } from 'ngx-markdown';
@@ -78,5 +80,9 @@ export const appConfig: ApplicationConfig = {
       withNavigationErrorHandler(handleNavigationError),
     ),
     provideRouterExt(),
+    // The table of contents follows AtlasNG's: a Material navigation list, in a side column from AtlasNG's
+    // medium breakpoint (960px)
+    provideTableOfContentsLayoutOptions({ sideColumnQuery: '(min-width: 960px)' }),
+    provideTableOfContentsOptions({ navList: true }),
   ],
 };
