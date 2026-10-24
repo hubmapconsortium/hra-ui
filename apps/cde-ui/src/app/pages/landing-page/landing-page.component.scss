@@ -157,10 +157,12 @@
       flex-wrap: wrap;
       gap: 0.5rem 2rem;
       margin-top: 0.5rem;
-      // A primary label falls below 4.5:1 contrast on the light hero background
+      // Outlined buttons follow AtlasNG's defaults: on-surface-variant label, state layer, and ripple
       @include mat.button-overrides(
         (
-          outlined-label-text-color: vars.$on-primary-container,
+          outlined-label-text-color: vars.$on-surface-variant,
+          outlined-state-layer-color: vars.$on-surface-variant,
+          outlined-ripple-color: utils.with-alpha(vars.$on-surface-variant, var(--mat-sys-pressed-state-layer-opacity)),
         )
       );
     }
