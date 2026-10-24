@@ -15,8 +15,9 @@
   );
 
   ::ng-deep {
+    // The 8px left padding puts the collapse toggle's icon on the panel's 16px inset
     .header {
-      padding: 0.5rem 1rem 0.25rem 0.5rem;
+      padding: 0.5rem 1rem 0.5rem 0.5rem;
       hra-expansion-panel-header-content {
         display: block;
 

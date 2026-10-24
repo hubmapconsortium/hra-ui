@@ -29,8 +29,9 @@
       }
     }
 
+    // The 8px left padding puts the collapse toggle's icon on the panel's 16px inset
     ::ng-deep .header {
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 1rem 0.5rem 0.5rem;
     }
 
     // Labels and values line up in two columns, and long values truncate instead of wrapping.
@@ -39,7 +40,7 @@
       display: grid;
       grid-template-columns: max-content minmax(0, 1fr);
       gap: 0.125rem 1rem;
-      margin: 0 0.5rem 1rem 1rem;
+      margin: 0 1rem 1rem;
       color: vars.$on-surface-variant;
       @include utils.use-font(body, medium);
 
