@@ -57,8 +57,9 @@
     }
   }
 
-  // The Material navigation list follows AtlasNG's table of contents: full-width one-line items with
-  // on-surface state layers, and an active indicator only in the side column
+  // The Material navigation list follows AtlasNG's table of contents: full-width items with on-surface
+  // state layers, and an active indicator only in the side column. Unlike AtlasNG's one-line items, titles wrap:
+  // rows grow from the item height, padded to center a single line.
   .nav-list {
     padding: 0;
 
@@ -67,10 +68,15 @@
         (var(--indentation-level, 1) - var(--hra-table-of-contents-indentation-start, 1)) *
           var(--hra-table-of-contents-indentation-step, 0.75rem)
       );
+      $item-height: var(--ang-table-of-contents-item-height, 2.75rem);
+      $line-height: var(--ang-table-of-contents-item-line-height, #{vars.$body-medium-line-height});
 
       width: calc(100% - #{$indentation});
+      height: auto;
+      min-height: $item-height;
       margin-block: 0.25rem;
       margin-left: $indentation;
+      padding-block: calc((#{$item-height} - #{$line-height}) / 2);
 
       @include mat.list-overrides(
         (
@@ -78,18 +84,19 @@
           list-item-container-color: transparent,
           list-item-hover-state-layer-color: vars.$on-surface,
           list-item-focus-state-layer-color: vars.$on-surface,
-          list-item-one-line-container-height: var(--ang-table-of-contents-item-height, 2.75rem),
           list-item-label-text-color: var(--ang-table-of-contents-item-color, #{vars.$on-surface-variant}),
           list-item-label-text-font: var(--ang-table-of-contents-item-font, #{vars.$body-medium-font}),
           list-item-label-text-size: var(--ang-table-of-contents-item-size, #{vars.$body-medium-size}),
           list-item-label-text-weight: var(--ang-table-of-contents-item-weight, #{vars.$body-medium-weight}),
-          list-item-label-text-line-height: var(
-              --ang-table-of-contents-item-line-height,
-              #{vars.$body-medium-line-height}
-            ),
+          list-item-label-text-line-height: $line-height,
           list-item-label-text-tracking: var(--ang-table-of-contents-item-tracking, #{vars.$body-medium-tracking}),
         )
       );
+
+      ::ng-deep .mdc-list-item__content,
+      .nav-list-item-title {
+        white-space: normal;
+      }
     }
   }
 
