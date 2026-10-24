@@ -1,9 +1,9 @@
-@use '../../../../styles/utils';
 @use '../../../../styles/vars' as vars;
 
 :host {
   display: block;
 
+  // Colors and type read AtlasNG breadcrumbs tokens (--ang-breadcrumbs-*) when an app sets them
   .navigation .crumbs {
     display: flex;
     align-items: center;
@@ -12,8 +12,12 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    color: vars.$primary;
-    @include utils.use-font('label', 'medium');
+    color: var(--ang-breadcrumbs-crumb-color, #{vars.$primary});
+    font-family: var(--ang-breadcrumbs-text-font, #{vars.$label-medium-font});
+    font-size: var(--ang-breadcrumbs-text-size, #{vars.$label-medium-size});
+    font-weight: var(--ang-breadcrumbs-text-weight, #{vars.$label-medium-weight});
+    line-height: var(--ang-breadcrumbs-text-line-height, #{vars.$label-medium-line-height});
+    letter-spacing: var(--ang-breadcrumbs-text-tracking, #{vars.$label-medium-tracking});
     white-space: nowrap;
 
     .crumb {
@@ -32,7 +36,7 @@
 
     .separator {
       padding: 0.125rem 0.25rem;
-      color: vars.$outline;
+      color: var(--ang-breadcrumbs-separator-color, #{vars.$outline});
       user-select: none;
     }
   }

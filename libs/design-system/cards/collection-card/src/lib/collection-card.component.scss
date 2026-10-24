@@ -9,9 +9,10 @@
   flex-grow: 1;
   width: 100%;
   min-width: 16.5rem;
-  border: 0.0625rem solid vars.$outline;
+  // Colors read --hra-collection-card-* tokens when an app sets them
+  border: 0.0625rem solid var(--hra-collection-card-outline-color, #{vars.$outline});
   border-radius: 0.75rem;
-  background-color: vars.$on-primary;
+  background-color: var(--hra-collection-card-container-color, #{vars.$on-primary});
 
   mat-chip {
     margin-top: 0rem;
@@ -22,7 +23,7 @@
   .image {
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-block: 0.0625rem solid vars.$outline;
+    border-block: 0.0625rem solid var(--hra-collection-card-outline-color, #{vars.$outline});
   }
 
   .tagline {
@@ -42,7 +43,7 @@
     .container {
       .title {
         display: block;
-        color: vars.$secondary;
+        color: var(--hra-collection-card-title-color, #{vars.$secondary});
         margin-bottom: 0.5rem;
       }
     }
@@ -55,12 +56,12 @@
 
     .label {
       margin-bottom: 2px;
-      color: vars.$secondary;
+      color: var(--hra-collection-card-label-color, #{vars.$secondary});
       @include utils.use-font(label, large);
     }
 
     .supporting-text {
-      color: vars.$primary;
+      color: var(--hra-collection-card-supporting-text-color, #{vars.$primary});
       margin-bottom: 1rem;
       @include utils.use-font(label, medium);
     }

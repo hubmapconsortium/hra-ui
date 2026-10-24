@@ -33,8 +33,8 @@
   }
 
   .label {
-    font: vars.$label-small;
-    color: vars.$secondary;
+    @include utils.use-font(body, medium);
+    color: vars.$on-surface-variant;
     cursor: pointer;
     display: block;
     white-space: nowrap;
@@ -58,6 +58,8 @@
 ::ng-deep {
   color-picker {
     div.color-picker {
+      // ngx-color-picker defaults to a white panel, which hides on-surface text in the dark theme
+      background-color: vars.$surface-container;
       border-radius: 0.5rem;
       border: none;
       box-shadow: 0px 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);
@@ -78,12 +80,8 @@
             padding: 0.25rem 1.25rem;
             width: auto;
             div {
-              font-size: 0.75rem;
-              font-family: vars.$label-small-font;
-              line-height: 1.375rem;
-              letter-spacing: 0.005em;
+              @include utils.use-font(body, medium);
               color: vars.$on-surface;
-              font-weight: 500;
               text-transform: uppercase;
             }
           }
@@ -99,7 +97,7 @@
             border-radius: 1rem;
             padding: 0.5625rem 0;
             height: 2.5rem;
-            @include utils.use-font(label, medium);
+            @include utils.use-font(body, medium);
           }
         }
       }
@@ -120,12 +118,8 @@
           cursor: pointer;
           border: none;
           background-color: transparent;
-          font-size: 0.75rem;
-          letter-spacing: 0.005em;
-          line-height: 1.375rem;
-          font-family: vars.$label-small-font;
+          @include utils.use-font(body, medium);
           padding: 0.25rem 0.5rem;
-          font-weight: 500;
           color: vars.$on-surface;
         }
       }

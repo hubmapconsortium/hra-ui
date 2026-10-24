@@ -1,23 +1,16 @@
 $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Spatial Omics Gallery
-subtitle: Collection of all cell distance distributions of spatial omics datasets.
+subtitle: |
+  This gallery showcases a collection of cell feature tables from single-cell spatial omics—spatial proteomics and spatial
+  transcriptomics—datasets collected by the Human Reference Atlas team and processed and visualized in the Cell Distance Explorer.
 icons: product:cde
+headerContent:
+  - component: Button
+    label: Publication
+    href: 'https://doi.org/10.1101/2025.09.23.678129'
+    type: cta
+
 content:
-  - component: PageSection
-    tagline: Overview
-    anchor: overview
-    level: 2
-    content:
-      - component: Markdown
-        data: |
-          This gallery showcases a collection of cell feature tables from single-cell spatial omics—spatial proteomics and spatial
-          transcriptomics—datasets collected by the Human Reference Atlas team and processed and visualized in the Cell Distance Explorer.
-
-      - component: Button
-        label: Publication
-        href: 'https://doi.org/10.1101/2025.09.23.678129'
-        type: cta
-
   - component: PageSection
     tagline: Featured studies
     anchor: featured-studies
@@ -25,8 +18,8 @@ content:
     content:
       - component: Markdown
         data: |
-          Explore cell-to-nearest-endothelial-cell distance distributions for various cell types using 399 spatially resolved omics datasets
-          from 14 studies comprising 12 tissue types with a total of 47,349,496 cells.
+          Explore cell-to-nearest-endothelial-cell distance distributions for various cell types using 739 spatially resolved omics datasets
+          from 15 studies comprising 14 tissue types with a total of 59,702,512 cells.
 
       - component: StudiesGrid
 
@@ -37,11 +30,12 @@ content:
     content:
       - component: Markdown
         data: |
-          A total of 203 out of 399 datasets are registered into the HRA and can be explored together within the context of the male and female reference body.
+          A total of 203 out of 739 datasets are registered into the HRA and can be explored together within the context of the male and female reference body.
 
-      - component: TextHyperlink
-        text: Use app
-        url: https://hubmapconsortium.github.io/hra-registrations/vccf-federated/
+      - component: Button
+        label: Use app
+        href: https://hubmapconsortium.github.io/hra-registrations/vccf-federated/
+        type: tonal
         icon: arrow_right_alt
 
       - component: Image

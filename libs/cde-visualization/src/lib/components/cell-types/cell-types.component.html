@@ -4,7 +4,6 @@
       <button
         mat-icon-button
         hraPlainTooltip="More"
-        hraIconButtonSize="large"
         data-testid="trigger"
         hraFeature="menu"
         hraClickEvent
@@ -16,8 +15,6 @@
         <button
           mat-menu-item
           class="expanded"
-          matRipple
-          matRippleColor="#201E3D14"
           hraFeature="info"
           hraClickEvent
           hraHoverEvent
@@ -26,7 +23,6 @@
         >
           <mat-icon>info</mat-icon>
           <span>Info</span>
-          <mat-icon class="expand-arrow">arrow_right</mat-icon>
         </button>
         <button
           mat-menu-item
@@ -58,22 +54,16 @@
       </mat-menu>
     </span>
   </hra-expansion-panel-actions>
-  <div class="total-ct-label" hraFeature="total-cell-types">
-    <span>{{ selection().length }}</span>
-    Total cell types
-  </div>
-  <div class="total-cells" hraFeature="total-cells">
-    <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
-    Total cells
-  </div>
-  @if (!hideCellLinkData()) {
-    <div class="total-cell-links" hraFeature="total-cell-links">
-      <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
-      Total cell links
-    </div>
-  }
 
-  <ng-scrollbar class="table-overflow-container" externalViewport=".scroll-viewport" hraFeature="cell-types-table">
+  <!-- The fade starts below the 32px sticky header row -->
+  <ng-scrollbar
+    class="table-overflow-container"
+    orientation="vertical"
+    externalViewport=".scroll-viewport"
+    hraScrollOverflowFade
+    scrollOverflowFadeOffset="32"
+    hraFeature="cell-types-table"
+  >
     <div class="scroll-viewport">
       <table
         mat-table
@@ -161,4 +151,21 @@
       </table>
     </div>
   </ng-scrollbar>
+
+  <!-- Totals stay below the scroll area, lined up with the #Cells and #Links columns -->
+  <div class="totals">
+    <span class="total-cell-types" hraFeature="total-cell-types">
+      Total ({{ selection().length }} cell type{{ selection().length === 1 ? '' : 's' }})
+    </span>
+    <span class="total-count" hraFeature="total-cells">
+      <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
+      <span class="visually-hidden"> total cells</span>
+    </span>
+    @if (!hideCellLinkData()) {
+      <span class="total-count" hraFeature="total-cell-links">
+        <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
+        <span class="visually-hidden"> total cell links</span>
+      </span>
+    }
+  </div>
 </hra-expansion-panel>

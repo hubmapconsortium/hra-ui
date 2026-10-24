@@ -1,12 +1,17 @@
 @use 'sass:map';
+@use '../utils';
+@use '../vars';
+@use './ext-colors';
+@use './mat-defaults';
 @use './palettes';
 @use './shape';
 @use './typography';
 
 // AtlasNG HRA theme, shaped for `theming.theme($theme, $overrides)`.
+// Each color token holds a light and a dark value, picked by the CSS `color-scheme` in effect.
 $theme: (
   color: (
-    theme-type: light,
+    theme-type: color-scheme,
     primary: palettes.$primary-palette,
     tertiary: palettes.$tertiary-palette,
   ),
@@ -14,3 +19,37 @@ $theme: (
 );
 
 $overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);
+
+// Base styles for apps on this theme.
+@mixin base-styles() {
+  // Text uses on-surface, and paragraphs use on-surface-variant
+  & {
+    color: vars.$on-surface;
+  }
+
+  // AtlasNG's extended warning colors, read by notices (see _ext-colors.scss)
+  & {
+    @include ext-colors.ext-level-colors(warning, ext-colors.$warning-palette);
+  }
+
+  p {
+    color: vars.$on-surface-variant;
+  }
+
+  // Material buttons and form field hints use AtlasNG's defaults
+  & {
+    @include mat-defaults.button-defaults;
+  }
+
+  @include mat-defaults.form-field-defaults;
+
+  // Scrollbars match the AtlasNG scroll area. ngx-scrollbar reads these variables.
+  ng-scrollbar {
+    --scrollbar-thumb-color: #{utils.with-alpha(vars.$inverse-surface, 72%)};
+    --scrollbar-thumb-shape: #{vars.$corner-full};
+    --scrollbar-track-color: transparent;
+    --scrollbar-track-shape: #{vars.$corner-full};
+    --scrollbar-track-thickness: 0.5rem;
+    --scrollbar-container-offset: 0.25rem;
+  }
+}

@@ -5,11 +5,13 @@ import {
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
   output,
   Renderer2,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +22,7 @@ import {
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { colorEquals, Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
+import { colorEquals, hexToRgb, Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import {
   ExpansionPanelActionsComponent,
   ExpansionPanelComponent,
@@ -39,7 +41,13 @@ import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { applyChartTheme, getChartTheme, ThemeableChartSpec } from '../../shared/chart-theme';
+import {
+  applyChartTheme,
+  getChartTheme,
+  ThemeableChartSpec,
+  updateChartTheme,
+  watchColorScheme,
+} from '../../shared/chart-theme';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
@@ -115,7 +123,7 @@ const DYNAMIC_COLOR_RANGE_LENGTH = 2000;
 /** Dynamic color range for the histogram */
 const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   .fill(0)
-  .map((_value, index) => ({ expr: `colors[${index}] || '#000'` }));
+  .map((_value, index) => ({ expr: `colors[${index}] || themeMarkColor` }));
 
 /**
  * Histogram Component
@@ -174,11 +182,29 @@ export class HistogramComponent {
   /** Label for the total cell type */
   protected readonly totalCellTypeLabel = ALL_CELLS_TYPE;
 
-  /** Color for the total cell type */
-  protected readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
-
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
+
+  /** Host element, where the theme colors are read */
+  private readonly el: HTMLElement = inject(ElementRef).nativeElement;
+
+  /** Changes when the color scheme changes */
+  private readonly colorScheme = watchColorScheme();
+
+  /** Chart theme, read again when the color scheme changes */
+  private readonly theme = computed(() => {
+    this.colorScheme();
+    return getChartTheme(this.el);
+  });
+
+  /** Color picked for the total cell type, or undefined to use the theme's mark color */
+  protected readonly pickedTotalCellTypeColor = signal<Rgb | undefined>(undefined);
+
+  /** Color for the total cell type */
+  protected readonly totalCellTypeColor = computed(
+    () => this.pickedTotalCellTypeColor() ?? hexToRgb(this.theme().markColor),
+    { equal: colorEquals },
+  );
 
   /** Reference to the renderer for DOM manipulation */
   private readonly renderer = inject(Renderer2);
@@ -209,10 +235,19 @@ export class HistogramComponent {
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.allColors()).run());
 
+  /** Effect for updating the view's theme colors in place, without redrawing the histogram */
+  protected readonly viewThemeRef = effect(() => {
+    const theme = this.theme();
+    const view = this.view();
+    if (view) {
+      updateChartTheme(view, theme);
+    }
+  });
+
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(async (onCleanup) => {
     const el = this.histogramEl().rootNodes()[0];
-    const theme = getChartTheme(el);
+    const theme = untracked(this.theme);
     await this.ensureFontsLoaded(theme.font);
 
     const spec = produce(HISTOGRAM_SPEC, (draft) => {
@@ -241,7 +276,7 @@ export class HistogramComponent {
   /** Download the histogram as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
-    const theme = getChartTheme(this.histogramEl().rootNodes()[0]);
+    const theme = this.theme();
     const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec & ThemeableChartSpec, (draft) => {
       applyChartTheme(draft, theme);
       draft.width = EXPORT_IMAGE_WIDTH;
@@ -279,8 +314,8 @@ export class HistogramComponent {
     await Promise.all(loadPromises);
   }
 
-  /** Reset the color of the total cell type */
+  /** Reset the color of the total cell type to the theme's mark color */
   resetAllCellsColor(): void {
-    this.totalCellTypeColor.set([0, 0, 0]);
+    this.pickedTotalCellTypeColor.set(undefined);
   }
 }

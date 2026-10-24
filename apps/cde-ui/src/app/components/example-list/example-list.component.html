@@ -1,7 +1,7 @@
 <ul class="examples" role="list">
   @for (example of examples(); track example.url) {
     <li>
-      <a class="example" hraFeature="example" [hraClickEvent]="{ url: example.url }" [hraLink]="example.url">
+      <a class="example" hraFeature="example" matRipple [hraClickEvent]="{ url: example.url }" [hraLink]="example.url">
         <span class="thumbnail">
           <img alt="" [attr.src]="example.image | assetUrl" />
         </span>

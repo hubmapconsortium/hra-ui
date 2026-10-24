@@ -30,6 +30,12 @@ describe('LandingCardComponent', () => {
     expect(link).not.toHaveAttribute('target');
   });
 
+  it('should ripple the whole card when pressed', async () => {
+    const { fixture } = await setup();
+
+    expect(fixture.nativeElement).toHaveClass('mat-ripple');
+  });
+
   it('should render the description', async () => {
     await setup();
 

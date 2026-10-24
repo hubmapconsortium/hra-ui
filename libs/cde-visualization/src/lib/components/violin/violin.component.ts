@@ -1,6 +1,18 @@
 import { DOCUMENT } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
-import { ChangeDetectionStrategy, Component, effect, inject, input, Renderer2, signal, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  Renderer2,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +30,13 @@ import embed from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
-import { applyChartTheme, getChartTheme, ThemeableChartSpec } from '../../shared/chart-theme';
+import {
+  applyChartTheme,
+  getChartTheme,
+  ThemeableChartSpec,
+  updateChartTheme,
+  watchColorScheme,
+} from '../../shared/chart-theme';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
 
@@ -46,7 +64,7 @@ interface ModifiableViolinSpec {
     height: string | number;
     layer: {
       encoding: {
-        color: {
+        color?: {
           legend?: unknown;
           scale: {
             range: unknown[];
@@ -102,7 +120,7 @@ const DYNAMIC_COLOR_RANGE_LENGTH = 2000;
 /** Dynamic color range for the violin */
 const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   .fill(0)
-  .map((_value, index) => ({ expr: `colors[${index}] || '#000'` }));
+  .map((_value, index) => ({ expr: `colors[${index}] || themeMarkColor` }));
 
 /**
  * Violin Component
@@ -146,6 +164,18 @@ export class ViolinComponent {
   /** Service for saving files */
   private readonly fileSaver = inject(FileSaverService);
 
+  /** Host element, where the theme colors are read */
+  private readonly el: HTMLElement = inject(ElementRef).nativeElement;
+
+  /** Changes when the color scheme changes */
+  private readonly colorScheme = watchColorScheme();
+
+  /** Chart theme, read again when the color scheme changes */
+  private readonly theme = computed(() => {
+    this.colorScheme();
+    return getChartTheme(this.el);
+  });
+
   /** Element reference for the violin container */
   protected readonly violinEl = viewChild.required(FullscreenPortalComponent);
 
@@ -176,16 +206,25 @@ export class ViolinComponent {
     }
   });
 
+  /** Effect for updating the view's theme colors in place, without redrawing the violins */
+  protected readonly viewThemeRef = effect(() => {
+    const theme = this.theme();
+    const view = this.view();
+    if (view) {
+      updateChartTheme(view, theme);
+    }
+  });
+
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(async (onCleanup) => {
     const container: HTMLElement = this.violinEl().rootNodes()[0];
     const el = container.querySelector('.violin-container') as HTMLElement;
-    const theme = getChartTheme(container);
+    const theme = untracked(this.theme);
     await this.ensureFontsLoaded(theme.font);
-    const spec = produce(VIOLIN_SPEC, (draft) => {
+    const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec & ThemeableChartSpec, (draft) => {
       applyChartTheme(draft, theme);
       for (const layer of draft.spec.layer) {
-        if (layer.encoding.color.legend === null) {
+        if (layer.encoding.color?.legend === null) {
           layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
         }
       }
@@ -237,12 +276,12 @@ export class ViolinComponent {
   /** Download the violin as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
-    const theme = getChartTheme(this.violinEl().rootNodes()[0]);
+    const theme = this.theme();
     const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec & ThemeableChartSpec, (draft) => {
       applyChartTheme(draft, theme);
       draft.spec.width = EXPORT_IMAGE_WIDTH;
       for (const layer of draft.spec.layer) {
-        if (layer.encoding.color.legend === null) {
+        if (layer.encoding.color?.legend === null) {
           layer.encoding.color.legend = {
             ...EXPORT_IMAGE_LEGEND_CONFIG,
             titleColor: theme.titleColor,

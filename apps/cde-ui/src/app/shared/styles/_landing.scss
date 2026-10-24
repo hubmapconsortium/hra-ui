@@ -1,38 +1,74 @@
 @use 'utils';
 @use 'vars';
 
-// Raised shadow shared by the hero screenshot and hovered landing cards
-$card-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
+// Body text at the scale of AtlasNG's content paragraph: body large times 1.0625, so 17px on a 25.5px line.
+// Replace with <ang-content-paragraph> once CDE moves to AtlasNG.
+$paragraph-scale: 1.0625;
 
-// Landing page text follows the upcoming Figma type scale in Nunito Sans.
-// Replace with design system tokens once that typography lands in this repo.
-@mixin font($size, $line-height, $weight, $tracking) {
-  font-family: vars.$body-medium-font;
-  font-size: $size;
-  line-height: $line-height;
-  font-weight: $weight;
-  letter-spacing: $tracking;
+@mixin paragraph {
+  font-family: vars.$body-large-font;
+  font-size: calc(#{$paragraph-scale} * #{vars.$body-large-size});
+  font-weight: vars.$body-large-weight;
+  line-height: calc(#{$paragraph-scale} * #{vars.$body-large-line-height});
+  letter-spacing: vars.$body-large-tracking;
+}
+
+// Focus ring in the style of AtlasNG's text links and content headers (solid, 1px outside the element),
+// at the 3px width of Material's strong focus indicators
+@mixin focus-ring {
+  outline: 3px solid vars.$on-surface;
+  outline-offset: 1px;
 }
 
 // Outlined card on a solid surface, so section backgrounds stay behind the text
 @mixin card-surface($radius) {
-  border: 0.0625rem solid vars.$outline;
+  border: 0.0625rem solid vars.$outline-variant;
   border-radius: $radius;
-  background-color: vars.$surface-container-lowest;
+  background-color: vars.$surface-container-low;
 }
 
-// Outlined card that lifts when hovered
+// Outlined card that responds like Material components: a state layer and level 3 elevation on hover,
+// a stronger state layer on keyboard focus, and a ripple (from matRipple) on press.
+// All use on-surface-variant, like AtlasNG's outlined buttons.
 @mixin card($radius) {
   @include card-surface($radius);
+  position: relative;
+  // Keeps the state layer above the card's background but below its content
+  isolation: isolate;
+  --mat-ripple-color: #{utils.with-alpha(vars.$on-surface-variant, var(--mat-sys-pressed-state-layer-opacity))};
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: vars.$on-surface-variant;
+    opacity: 0;
+    pointer-events: none;
+  }
 
   &:hover {
-    border-color: vars.$secondary;
-    box-shadow: $card-shadow;
+    box-shadow: var(--mat-sys-level3);
+
+    &::before {
+      opacity: var(--mat-sys-hover-state-layer-opacity);
+    }
+  }
+
+  // Keyboard focus on the card itself or on a link inside it
+  &:focus-visible,
+  &:has(:focus-visible) {
+    &::before {
+      opacity: var(--mat-sys-focus-state-layer-opacity);
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition:
-      border-color 0.2s ease-in-out,
-      box-shadow 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
+
+    &::before {
+      transition: opacity 0.2s ease-in-out;
+    }
   }
 }

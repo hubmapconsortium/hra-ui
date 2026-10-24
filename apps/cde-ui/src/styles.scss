@@ -1,27 +1,273 @@
 @use '@angular/material' as mat;
-@use 'vars';
 @use 'atlasng-hra';
 @use 'theming';
 @use 'utils';
+@use 'vars';
+@use 'app/shared/styles/landing';
+
+// Follow the system color scheme until the theme toggle picks one (see ThemeService)
+html {
+  color-scheme: light dark;
+}
 
 @include utils.global-styles() {
-  @include theming.theme(atlasng-hra.$theme, atlasng-hra.$overrides);
+  // Default Material buttons, button toggles, checkboxes, form fields, menus, and selects, without the HRA overrides
+  @include theming.theme(
+    atlasng-hra.$theme,
+    atlasng-hra.$overrides,
+    $skip-overrides: (button, button-toggle, checkbox, form-field, icon-button, menu, select)
+  );
+  @include atlasng-hra.base-styles();
+
+  // Text fields and selects use secondary for their focus accents instead of Material's primary,
+  // which falls below 4.5:1 against the field background in the light theme
+  & {
+    @include mat.form-field-overrides(
+      (
+        filled-caret-color: vars.$secondary,
+        filled-focus-active-indicator-color: vars.$secondary,
+        filled-focus-label-text-color: vars.$secondary,
+        focus-select-arrow-color: vars.$secondary,
+        outlined-caret-color: vars.$secondary,
+        outlined-focus-label-text-color: vars.$secondary,
+        outlined-focus-outline-color: vars.$secondary,
+      )
+    );
+    @include mat.select-overrides(
+      (
+        focused-arrow-color: vars.$secondary,
+      )
+    );
+  }
 
   input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
   }
 
-  // Set flat-button font globally
-  @include mat.button-overrides(
-    (
-      filled-label-text-font: vars.$label-medium-font,
-      filled-label-text-size: vars.$label-medium-size,
-      filled-label-text-tracking: vars.$label-medium-tracking,
-      filled-label-text-weight: vars.$label-medium-weight,
-    )
-  );
+  // Text links match AtlasNG's text links: underlined on-surface at a weight of 600
+  & {
+    --ang-text-link-color: #{vars.$on-surface};
+  }
+
+  a.hra-text-hyperlink,
+  button.hra-text-button,
+  markdown a {
+    font-weight: 600;
+  }
+
+  // Call-to-action buttons (the gallery's Publication link and the error pages) look like Material's filled
+  // buttons, as on AtlasNG's error pages, since the HRA CTA styles are skipped with the other button overrides.
+  // Secondary CTAs stay text buttons.
+  [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
+    @include mat.button-overrides(
+      (
+        text-horizontal-padding: 1.5rem,
+        text-with-icon-horizontal-padding: 1.5rem,
+        text-icon-offset: -0.5rem,
+        text-label-text-color: vars.$on-primary,
+        text-state-layer-color: vars.$on-primary,
+        text-ripple-color: utils.with-alpha(vars.$on-primary, var(--mat-sys-pressed-state-layer-opacity)),
+      )
+    );
+    background-color: vars.$primary;
+  }
+
+  // Filled logos draw their glyphs with fill="white". Following the icon's configured color instead lets
+  // CDE theme its logo (see CDE_LOGO_CONFIG in app.config.ts). Other logos are configured white, so they look the same.
+  hra-icon.hra-icon-filled path[fill='white'] {
+    fill: currentColor;
+  }
+
+  // Error indicators match AtlasNG's warning notice and read the same token hooks in the same order
+  // (--ang-notice-*, then --ang-ext-*, then system tokens), so swapping in <ang-notice variant="warning">
+  // during the AtlasNG move keeps the look and any token customizations. Pass icon="warning" too.
+  hra-error-indicator {
+    $warning-color: var(--ang-notice-warning-color, var(--ang-ext-warning, #{vars.$outline}));
+
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid $warning-color;
+    border-radius: var(--ang-notice-container-shape, #{vars.$corner-extra-small});
+    background-color: var(
+      --ang-notice-warning-container-color,
+      var(--ang-ext-warning-container, #{vars.$surface-container-highest})
+    );
+    color: var(
+      --ang-notice-warning-body-color,
+      var(--ang-ext-on-warning-container-variant, #{vars.$on-surface-variant})
+    );
+
+    // The class outranks the shared indicator's encapsulated icon color and margin, which the gap replaces
+    mat-icon.mat-icon {
+      flex-shrink: 0;
+      margin: 0;
+      color: $warning-color;
+    }
+
+    // Outranks the shared indicator's label large, since the notice body uses body large
+    .errors > .error {
+      @include utils.use-font(body, large);
+    }
+  }
+
+  // Rich tooltips match AtlasNG's rich tooltip tokens. The shared rich tooltip has no token hooks, so these
+  // reach into its overlay content, and the element selectors outrank its encapsulated rules.
+  // Spacing follows AtlasNG too: padding on the container instead of each section, and no space for
+  // an empty tagline or actions, which the shared tooltip otherwise pads, leaving lopsided gaps.
+  .cdk-overlay-pane > div.container {
+    box-sizing: border-box;
+    max-width: 20rem;
+    padding: 0.75rem 1rem;
+    border-radius: vars.$corner-medium;
+    background-color: vars.$surface-container;
+    box-shadow: var(--mat-sys-level2);
+    overflow-wrap: anywhere;
+
+    > div.tagline {
+      margin-bottom: 0.25rem;
+      padding: 0;
+      @include utils.use-font(title, small);
+      color: vars.$on-surface-variant;
+    }
+
+    > div.content {
+      padding: 0;
+      @include utils.use-font(body, medium);
+      color: vars.$on-surface-variant;
+    }
+
+    > div.actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0 -0.5rem -0.75rem;
+      padding: 0;
+    }
+
+    > div.tagline:empty,
+    > div.tagline:has(> hra-rich-tooltip-tagline:empty),
+    > div.actions:empty,
+    > div.actions:has(> hra-rich-tooltip-actions:empty) {
+      display: none;
+    }
+  }
+
+  // The file pill shown after an upload, in theme roles
+  hra-delete-file-button {
+    border-radius: vars.$corner-full;
+    background: vars.$surface-variant;
+    color: vars.$on-surface-variant;
+    @include utils.use-font(title, small);
+  }
+
+  // The header matches AtlasNG's header shell: a flat surface-variant bar at 80%, AtlasNG's side padding,
+  // and an on-surface focus outline on the logo (with small corners) and icon buttons
+  hra-header {
+    --ang-header-shell-container-color: #{utils.with-alpha(vars.$surface-variant, 80%)};
+    --hra-header-shadow: none;
+    --hra-header-padding: 0 0.25rem;
+
+    @media (min-width: 960px) {
+      --hra-header-padding: 0 0.5rem;
+    }
+
+    hra-brand-logo .logo {
+      border-radius: vars.$corner-small;
+    }
+
+    :is(hra-brand-logo .logo, .mat-mdc-icon-button):focus-visible {
+      outline: 0.125rem solid vars.$on-surface;
+    }
+  }
+
+  // Header menus follow AtlasNG's header shell tokens and Material's menu defaults: surface-container menus
+  // (also the bar's color while the mobile menu is open) with level 2 elevation and extra-small corners,
+  // on-surface category toggles, links, and app names with on-surface state layers and focus outlines,
+  // primary underlines on open categories, and on-surface-variant supporting text. Descriptions use body medium,
+  // and section labels and app names title small. The menus open in overlays, outside the header,
+  // and the overlay container also carries .hra-app.
+  hra-header,
+  hra-desktop-menu,
+  hra-mobile-menu {
+    --hra-header-menu-container-color: #{vars.$surface-container};
+    --hra-header-menu-shadow: var(--mat-sys-level2);
+    --hra-header-menu-shape: #{vars.$corner-extra-small};
+    --hra-header-menu-supporting-text-color: #{vars.$on-surface-variant};
+    --hra-header-menu-description-font: #{vars.$body-medium};
+    --hra-header-menu-description-tracking: #{vars.$body-medium-tracking};
+    --hra-header-menu-section-label-font: #{vars.$title-small};
+    --hra-header-menu-section-label-tracking: #{vars.$title-small-tracking};
+    --hra-header-mobile-menu-underline-color: #{vars.$primary};
+    --hra-navigation-category-toggle-text-color: #{vars.$on-surface};
+    --hra-navigation-category-toggle-underline-color: #{vars.$primary};
+    --hra-navigation-category-toggle-focus-color: #{vars.$on-surface};
+    --hra-app-nav-button-tagline-color: #{vars.$on-surface};
+    --hra-app-nav-button-tagline-font: #{vars.$title-small};
+    --hra-app-nav-button-tagline-tracking: #{vars.$title-small-tracking};
+    --hra-app-nav-button-description-color: #{vars.$on-surface-variant};
+    --hra-app-nav-button-description-font: #{vars.$body-medium};
+    --hra-app-nav-button-description-tracking: #{vars.$body-medium-tracking};
+    --hra-app-nav-button-state-layer-color: #{vars.$on-surface};
+    --hra-app-nav-button-focus-color: #{vars.$on-surface};
+  }
+
+  hra-menu-content {
+    @include mat.button-overrides(
+      (
+        text-label-text-color: vars.$on-surface,
+        text-state-layer-color: vars.$on-surface,
+        text-ripple-color: utils.with-alpha(vars.$on-surface, var(--mat-sys-pressed-state-layer-opacity)),
+      )
+    );
+  }
+
+  // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
+  // with on-surface links and on-surface-variant for the rest
+  hra-breadcrumbs {
+    --ang-breadcrumbs-crumb-color: #{vars.$on-surface-variant};
+    --ang-breadcrumbs-separator-color: #{vars.$on-surface-variant};
+    --ang-breadcrumbs-text-font: #{vars.$body-small-font};
+    --ang-breadcrumbs-text-size: #{vars.$body-small-size};
+    --ang-breadcrumbs-text-weight: 600;
+    --ang-breadcrumbs-text-line-height: #{vars.$body-small-line-height};
+    --ang-breadcrumbs-text-tracking: #{vars.$body-small-tracking};
+  }
+
+  // Snackbars match AtlasNG and default Material: inverse-on-surface body medium text, level 3 elevation,
+  // and an inverse-on-surface close button. The shared snackbar sets surface text, label medium type,
+  // and a tinted shadow. The overlay container also carries .hra-app, so these reach the snackbar.
+  .hra-snackbar-panel {
+    @include mat.snack-bar-overrides(
+      (
+        supporting-text-color: vars.$inverse-on-surface,
+      )
+    );
+
+    .mat-mdc-snackbar-surface {
+      box-shadow: var(--mat-sys-level3);
+    }
+
+    hra-snackbar {
+      @include utils.use-font(body, medium);
+    }
+
+    button[mat-icon-button] {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$inverse-on-surface,
+        )
+      );
+    }
+  }
 
   hra-footer {
+    // The shared footer colors its funding title primary, which is red in AtlasNG HRA.
+    // The extra class outranks the component's encapsulated :host rule.
+    .content-container hra-funding {
+      color: vars.$on-surface-variant;
+    }
+
     @media (min-width: 1100px) {
       & > * {
         padding: 0 2.5rem;
@@ -32,5 +278,122 @@
         max-width: 101.25rem !important;
       }
     }
+  }
+
+  // Error pages match AtlasNG's error page: the page background, a headline large title,
+  // an on-surface-variant body large description, and AtlasNG's side padding and button gap
+  hra-not-found-page,
+  hra-server-error-page {
+    --ang-error-page-background: #{vars.$background};
+    --ang-error-page-title-font: #{vars.$headline-large};
+    --ang-error-page-title-letter-spacing: #{vars.$headline-large-tracking};
+    --ang-error-page-description-font: #{vars.$body-large};
+    --ang-error-page-description-letter-spacing: #{vars.$body-large-tracking};
+    --ang-error-page-description-color: #{vars.$on-surface-variant};
+    --hra-error-page-actions-gap: 1.5rem;
+    padding: 0 1.5rem;
+
+    @media (min-width: 960px) {
+      padding: 0 2.5rem;
+    }
+  }
+
+  // Content pages (the Spatial Omics Gallery and study pages) match AtlasNG's content sections and headers:
+  // AtlasNG's heading scale, outline underlines, and section spacing. Section text, including markdown
+  // paragraphs, uses AtlasNG's content paragraph scale in on-surface-variant, like the landing copy.
+  hra-page-section {
+    $heading-roles: (
+      1: display-medium,
+      2: display-small,
+      3: headline-large,
+      4: headline-medium,
+      5: headline-small,
+      6: title-large,
+    );
+    $paragraph-line-height: calc(#{landing.$paragraph-scale} * #{vars.$body-large-line-height});
+
+    --ang-content-section-font: #{vars.$body-large-font};
+    --ang-content-section-size: calc(#{landing.$paragraph-scale} * #{vars.$body-large-size});
+    --ang-content-section-weight: #{vars.$body-large-weight};
+    --ang-content-section-line-height: #{$paragraph-line-height};
+    --ang-content-section-tracking: #{vars.$body-large-tracking};
+    --ang-content-section-color: #{vars.$on-surface-variant};
+    --ang-content-header-underline-color: #{vars.$outline};
+    --hra-markdown-paragraph-line-height: #{$paragraph-line-height};
+    --hra-page-section-content-offset: 0.75rem;
+    --hra-page-section-content-gap: 2rem;
+
+    @each $level, $role in $heading-roles {
+      --ang-content-header-level-#{$level}-font: var(--mat-sys-#{$role}-font);
+      --ang-content-header-level-#{$level}-size: var(--mat-sys-#{$role}-size);
+      --ang-content-header-level-#{$level}-weight: var(--mat-sys-#{$role}-weight);
+      --ang-content-header-level-#{$level}-line-height: var(--mat-sys-#{$role}-line-height);
+      --ang-content-header-level-#{$level}-tracking: var(--mat-sys-#{$role}-tracking);
+    }
+  }
+
+  // The table of contents follows AtlasNG's (see the options in app.config.ts), with a larger title medium heading:
+  // an on-surface heading with AtlasNG's padding over a Material navigation list of on-surface-variant body medium
+  // links in 44px rows, indented from level 2, with a primary-container active link in the side column.
+  // The side column is AtlasNG's maximum table of contents width.
+  hra-table-of-contents-layout {
+    --hra-table-of-contents-layout-side-column-width: 18.75rem;
+  }
+
+  hra-table-of-contents {
+    --ang-table-of-contents-item-height: 2.75rem;
+    --hra-table-of-contents-indentation-start: 2;
+    --hra-table-of-contents-indentation-step: 1rem;
+    --ang-table-of-contents-tagline-color: #{vars.$on-surface};
+    --ang-table-of-contents-tagline-font: #{vars.$title-medium-font};
+    --ang-table-of-contents-tagline-size: #{vars.$title-medium-size};
+    --ang-table-of-contents-tagline-weight: #{vars.$title-medium-weight};
+    --ang-table-of-contents-tagline-line-height: #{vars.$title-medium-line-height};
+    --ang-table-of-contents-tagline-tracking: #{vars.$title-medium-tracking};
+    --hra-table-of-contents-tagline-padding: 0.75rem 1rem;
+    --ang-table-of-contents-item-color: #{vars.$on-surface-variant};
+    --ang-table-of-contents-item-font: #{vars.$body-medium-font};
+    --ang-table-of-contents-item-size: #{vars.$body-medium-size};
+    --ang-table-of-contents-item-weight: #{vars.$body-medium-weight};
+    --ang-table-of-contents-item-line-height: #{vars.$body-medium-line-height};
+    --ang-table-of-contents-item-tracking: #{vars.$body-medium-tracking};
+    --ang-table-of-contents-active-item-background-color: #{vars.$primary-container};
+  }
+
+  // Tables match AtlasNG's striped table, with lighter outline-variant borders: an on-surface title small header
+  // on surface-variant, and on-surface-variant body medium cells on a transparent background, striped with
+  // surface-container-low
+  hra-table {
+    --ang-table-border-color: #{vars.$outline-variant};
+    --ang-table-border-radius: #{vars.$corner-small};
+    --ang-table-header-background-color: #{vars.$surface-variant};
+    --ang-table-header-state-layer-color: #{vars.$on-surface-variant};
+    --ang-table-header-text-color: #{vars.$on-surface};
+    --ang-table-header-text-font: #{vars.$title-small-font};
+    --ang-table-header-text-size: #{vars.$title-small-size};
+    --ang-table-header-text-weight: #{vars.$title-small-weight};
+    --ang-table-header-text-line-height: #{vars.$title-small-line-height};
+    --ang-table-header-text-tracking: #{vars.$title-small-tracking};
+    --ang-table-cell-background-color: transparent;
+    --ang-table-cell-text-color: #{vars.$on-surface-variant};
+    --ang-table-cell-text-font: #{vars.$body-medium-font};
+    --ang-table-cell-text-size: #{vars.$body-medium-size};
+    --ang-table-cell-text-weight: #{vars.$body-medium-weight};
+    --ang-table-cell-text-line-height: #{vars.$body-medium-line-height};
+    --ang-table-cell-text-tracking: #{vars.$body-medium-tracking};
+    --ang-table-sort-indicator-color: #{vars.$on-surface-variant};
+    --ang-table-striped-row-background-color: #{vars.$surface-container-low};
+  }
+
+  // Result counts match AtlasNG's results indicator, at the height of the search field beside them.
+  // AtlasNG sets label large, which matches title small in the AtlasNG HRA type scale.
+  hra-results-indicator {
+    --hra-results-indicator-height: 3.5rem;
+    padding: 0.5rem 1rem;
+    border-color: vars.$outline-variant;
+    border-radius: vars.$corner-small;
+    background-color: vars.$surface-bright;
+    color: vars.$on-surface-variant;
+    @include utils.use-font(title, small);
   }
 }

@@ -1,16 +1,11 @@
 @use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   height: fit-content;
   position: sticky;
   max-height: 22.5rem;
-
-  @include mat.button-overrides(
-    (
-      filled-container-height: 2rem,
-    )
-  );
 
   @include mat.expansion-overrides(
     (
@@ -32,7 +27,7 @@
     }
 
     .expansion-body {
-      height: 11.25rem;
+      height: 15rem;
       display: flex;
       gap: 1rem;
 
@@ -41,7 +36,6 @@
       }
 
       .legend {
-        --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
         overflow-y: auto;
         flex-grow: 1;
         margin-left: 0.125rem;
@@ -63,7 +57,7 @@
       hra-expansion-panel-header-content {
         cde-color-picker-label {
           .label {
-            font: vars.$label-small;
+            @include utils.use-font(body, medium);
             display: flex;
             white-space: unset;
             max-width: unset;

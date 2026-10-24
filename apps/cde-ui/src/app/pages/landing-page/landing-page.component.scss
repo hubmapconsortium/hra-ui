@@ -35,7 +35,7 @@
   // the header and the rest of the first screen (about 54rem), so the examples stay above the fold
   $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);
 
-  background-color: vars.$secondary-container;
+  background-color: vars.$background;
   display: block;
 
   section {
@@ -135,7 +135,7 @@
     .hero-title {
       margin: 0;
       @include utils.use-font(display, medium);
-      color: vars.$secondary;
+      color: vars.$on-surface;
       // Evens out the lines when the title wraps on phones
       text-wrap: balance;
 
@@ -146,7 +146,7 @@
 
     .hero-description {
       margin: 0;
-      @include utils.use-font(body, xl);
+      @include landing.paragraph;
       color: vars.$on-surface-variant;
       text-wrap: balance;
     }
@@ -163,8 +163,8 @@
       width: 100%;
       max-width: $hero-image-width;
       height: auto;
-      @include landing.card-surface(0.75rem);
-      box-shadow: landing.$card-shadow;
+      @include landing.card-surface(vars.$corner-small);
+      box-shadow: var(--mat-sys-level3);
 
       @media (max-width: 64rem) {
         max-width: $hero-image-stacked-width;
@@ -195,7 +195,7 @@
     .section-title {
       margin: 0;
       @include utils.use-font(headline, medium);
-      color: vars.$secondary;
+      color: vars.$on-surface;
     }
   }
 
@@ -204,12 +204,13 @@
     flex-grow: 1;
     justify-content: center;
     padding-block: 3.5rem;
-    // Mesh of glows behind the rows: lavender and red along the bottom, lavender and indigo along the top
+    // Mesh of glows behind the rows: tertiary container and a hint of primary along the bottom,
+    // tertiary container and surface variant along the top
     background:
-      radial-gradient(40% 90% at 18% 100%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
-      radial-gradient(35% 80% at 70% 100%, utils.with-alpha(vars.$tertiary, 18%), transparent),
-      radial-gradient(45% 90% at 98% 0%, utils.with-alpha(vars.$on-secondary-container, 20%), transparent),
-      radial-gradient(40% 70% at 45% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 55%), transparent),
+      radial-gradient(40% 90% at 18% 100%, vars.$tertiary-container, transparent),
+      radial-gradient(35% 80% at 70% 100%, utils.with-alpha(vars.$primary, 14%), transparent),
+      radial-gradient(45% 90% at 98% 0%, vars.$surface-variant, transparent),
+      radial-gradient(40% 70% at 45% 0%, utils.with-alpha(vars.$tertiary-container, 70%), transparent),
       vars.$surface-container-lowest;
 
     .section-title {
@@ -223,13 +224,13 @@
     justify-content: center;
     padding-block: 4rem 5rem;
     // Deeper mesh than the examples so the section stands apart from the footer,
-    // kept light behind the heading and description for contrast
+    // kept to the plain surface behind the heading and description for contrast
     background:
-      radial-gradient(50% 60% at 20% 10%, utils.with-alpha(vars.$surface-bright, 90%), transparent),
-      radial-gradient(40% 90% at 90% 20%, utils.with-alpha(vars.$secondary-fixed-dim, 75%), transparent),
-      radial-gradient(35% 70% at 5% 95%, utils.with-alpha(vars.$secondary-fixed-dim, 60%), transparent),
-      radial-gradient(30% 60% at 50% 105%, utils.with-alpha(vars.$on-secondary-container, 16%), transparent),
-      radial-gradient(30% 60% at 100% 100%, utils.with-alpha(vars.$surface-bright, 70%), transparent),
+      radial-gradient(50% 60% at 20% 10%, utils.with-alpha(vars.$surface, 90%), transparent),
+      radial-gradient(40% 90% at 90% 20%, vars.$tertiary-container, transparent),
+      radial-gradient(35% 70% at 5% 95%, utils.with-alpha(vars.$tertiary-container, 80%), transparent),
+      radial-gradient(30% 60% at 50% 105%, vars.$surface-variant, transparent),
+      radial-gradient(30% 60% at 100% 100%, utils.with-alpha(vars.$surface, 70%), transparent),
       vars.$surface-container-high;
 
     .section-title {
@@ -238,7 +239,7 @@
 
     .section-description {
       margin: 0 0 1.5rem;
-      @include utils.use-font(body, xl);
+      @include landing.paragraph;
       color: vars.$on-surface-variant;
     }
 
@@ -286,8 +287,13 @@
       }
 
       .description {
-        @include utils.use-font(body, xl);
+        @include landing.paragraph;
         color: vars.$on-surface-variant;
+
+        // The citation link keeps the paragraph's weight instead of the 600 of text links
+        a {
+          font-weight: inherit;
+        }
       }
 
       .copy-citation {

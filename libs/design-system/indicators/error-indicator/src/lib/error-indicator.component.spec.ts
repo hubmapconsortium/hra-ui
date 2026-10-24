@@ -12,4 +12,18 @@ describe('ErrorIndicatorComponent', () => {
 
     expect(screen.getByText('Error 1')).toBeInTheDocument();
   });
+
+  it('shows the error icon by default', async () => {
+    const { container } = await render(ErrorIndicatorComponent, { componentInputs: { errors: ['Error 1'] } });
+
+    expect(container.querySelector('mat-icon')).toHaveTextContent('error');
+  });
+
+  it('shows the given icon', async () => {
+    const { container } = await render(ErrorIndicatorComponent, {
+      componentInputs: { errors: ['Error 1'], icon: 'warning' },
+    });
+
+    expect(container.querySelector('mat-icon')).toHaveTextContent('warning');
+  });
 });

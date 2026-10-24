@@ -1,6 +1,5 @@
 <button
   mat-icon-button
-  hraIconButtonSize="large"
   aria-label="Icon to open nested menu"
   hraPlainTooltip="More"
   hraClickEvent
@@ -12,8 +11,6 @@
 <mat-menu class="violin-overlay" #menu="matMenu">
   <button
     mat-menu-item
-    matRipple
-    matRippleColor="#201E3D14"
     hraFeature="info"
     hraClickEvent
     hraHoverEvent
@@ -23,7 +20,6 @@
   >
     <mat-icon>info</mat-icon>
     <span>Info</span>
-    <mat-icon class="expand-arrow">arrow_right</mat-icon>
   </button>
   @if (!dialogOpen()) {
     <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="open.emit()">

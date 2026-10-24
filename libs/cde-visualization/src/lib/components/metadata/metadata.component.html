@@ -2,7 +2,6 @@
   <hra-expansion-panel-actions>
     <button
       mat-icon-button
-      hraIconButtonSize="large"
       aria-label="Icon to open nested menu"
       hraPlainTooltip="More"
       hraFeature="menu"
@@ -15,8 +14,6 @@
       <button
         mat-menu-item
         class="expanded"
-        matRipple
-        matRippleColor="#201E3D14"
         hraFeature="info"
         hraClickEvent
         hraHoverEvent
@@ -25,7 +22,6 @@
       >
         <mat-icon>info</mat-icon>
         <span>Info</span>
-        <mat-icon class="expand-arrow">arrow_right</mat-icon>
       </button>
       @if (hasEmptyFields()) {
         <button
@@ -63,7 +59,6 @@
   <hra-expansion-panel-header-content>
     <button
       mat-icon-button
-      hraIconButtonSize="large"
       aria-haspopup="dialog"
       hraFeature="downloads"
       hraClickEvent
