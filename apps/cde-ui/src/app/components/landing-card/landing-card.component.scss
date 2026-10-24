@@ -49,8 +49,7 @@
 
   .title {
     margin: 0 0 0.5rem;
-    // Title medium: 16/24, semibold, 0.15px tracking
-    @include landing.font(1rem, 1.5rem, 600, 0.009375rem);
+    @include utils.use-font(title, medium);
     color: vars.$on-surface;
   }
 
@@ -77,8 +76,7 @@
 
   .description {
     margin: 0;
-    // Body large: 16/24, regular
-    @include landing.font(1rem, 1.5rem, 400, 0);
+    @include utils.use-font(body, large);
     color: vars.$on-surface-variant;
   }
 
@@ -90,8 +88,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    // Label large: 14/21, semibold, 0.1px tracking
-    @include landing.font(0.875rem, 1.3125rem, 600, 0.00625rem);
+    @include utils.use-font(title, small);
     color: vars.$primary;
   }
 
