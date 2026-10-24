@@ -207,20 +207,25 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   describe('requirements', () => {
-    function listItems(group: HTMLElement, name: string): (string | undefined)[] {
-      const list = within(group).getByRole('list', { name });
-      return within(list)
-        .getAllByRole('listitem')
-        .map((item) => item.textContent?.trim());
+    function requirements(group: HTMLElement): Record<string, string | undefined> {
+      const rows = group.querySelectorAll('dl > .requirement');
+      return Object.fromEntries(
+        [...rows].map((row) => [
+          row.querySelector('dt')?.textContent?.trim(),
+          row.querySelector('dd')?.textContent?.trim(),
+        ]),
+      );
     }
 
-    it('lists the data upload requirements as labeled lists', () => {
+    it('lists the data upload requirements as label and value pairs', () => {
       const group = screen.getByRole('group', { name: 'Data upload requirements' });
 
       expect(within(group).queryByRole('table')).toBeNull();
-      expect(listItems(group, 'Required columns')).toEqual(['X', 'Y', 'Cell type']);
-      expect(listItems(group, 'Optional columns')).toEqual(['Z', 'Cell ontology ID']);
-      expect(listItems(group, 'Supported format')).toEqual(['CSV']);
+      expect(requirements(group)).toEqual({
+        'Required columns': 'X, Y, cell type',
+        'Optional columns': 'Z, cell ontology ID',
+        'Supported format': 'CSV',
+      });
     });
 
     it('lists the color map requirements when uploading a color map', async () => {
@@ -229,8 +234,10 @@ describe('CreateVisualizationPageComponent', () => {
       const group = await screen.findByRole('group', { name: 'Custom color map requirements' });
 
       expect(within(group).queryByRole('table')).toBeNull();
-      expect(listItems(group, 'Required columns')).toEqual(['Cell type', 'Cell color']);
-      expect(listItems(group, 'Supported format')).toEqual(['CSV']);
+      expect(requirements(group)).toEqual({
+        'Required columns': 'Cell type, cell color',
+        'Supported format': 'CSV',
+      });
     });
   });
 
