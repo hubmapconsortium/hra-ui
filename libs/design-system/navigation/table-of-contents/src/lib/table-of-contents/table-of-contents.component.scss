@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../styles/utils';
 @use '../../../../../styles/vars';
 
@@ -56,8 +57,52 @@
     }
   }
 
-  @media (min-width: 1100px) {
+  // The Material navigation list follows AtlasNG's table of contents: full-width one-line items with
+  // on-surface state layers, and an active indicator only in the side column
+  .nav-list {
+    padding: 0;
+
+    .nav-list-item {
+      $indentation: calc(
+        (var(--indentation-level, 1) - var(--hra-table-of-contents-indentation-start, 1)) *
+          var(--hra-table-of-contents-indentation-step, 0.75rem)
+      );
+
+      width: calc(100% - #{$indentation});
+      margin-block: 0.25rem;
+      margin-left: $indentation;
+
+      @include mat.list-overrides(
+        (
+          active-indicator-color: transparent,
+          list-item-container-color: transparent,
+          list-item-hover-state-layer-color: vars.$on-surface,
+          list-item-focus-state-layer-color: vars.$on-surface,
+          list-item-one-line-container-height: var(--ang-table-of-contents-item-height, 2.75rem),
+          list-item-label-text-color: var(--ang-table-of-contents-item-color, #{vars.$on-surface-variant}),
+          list-item-label-text-font: var(--ang-table-of-contents-item-font, #{vars.$body-medium-font}),
+          list-item-label-text-size: var(--ang-table-of-contents-item-size, #{vars.$body-medium-size}),
+          list-item-label-text-weight: var(--ang-table-of-contents-item-weight, #{vars.$body-medium-weight}),
+          list-item-label-text-line-height: var(
+              --ang-table-of-contents-item-line-height,
+              #{vars.$body-medium-line-height}
+            ),
+          list-item-label-text-tracking: var(--ang-table-of-contents-item-tracking, #{vars.$body-medium-tracking}),
+        )
+      );
+    }
+  }
+
+  &.hra-table-of-contents-side-column {
     border: none;
+
+    .nav-list .nav-list-item {
+      @include mat.list-overrides(
+        (
+          active-indicator-color: var(--ang-table-of-contents-active-item-background-color, #{vars.$primary-container}),
+        )
+      );
+    }
 
     .tagline {
       min-height: 2.5rem;
