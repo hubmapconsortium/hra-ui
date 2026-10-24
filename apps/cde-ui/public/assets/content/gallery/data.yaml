@@ -18,8 +18,8 @@ content:
     content:
       - component: Markdown
         data: |
-          Explore cell-to-nearest-endothelial-cell distance distributions for various cell types using 399 spatially resolved omics datasets
-          from 14 studies comprising 12 tissue types with a total of 47,349,496 cells.
+          Explore cell-to-nearest-endothelial-cell distance distributions for various cell types using 739 spatially resolved omics datasets
+          from 15 studies comprising 14 tissue types with a total of 59,702,512 cells.
 
       - component: StudiesGrid
 
@@ -30,7 +30,7 @@ content:
     content:
       - component: Markdown
         data: |
-          A total of 203 out of 399 datasets are registered into the HRA and can be explored together within the context of the male and female reference body.
+          A total of 203 out of 739 datasets are registered into the HRA and can be explored together within the context of the male and female reference body.
 
       - component: Button
         label: Use app
