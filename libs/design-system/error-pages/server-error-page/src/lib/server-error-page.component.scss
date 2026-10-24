@@ -1,4 +1,3 @@
-@use '../../../../styles/utils';
 @use '../../../../styles/vars' as vars;
 
 :host {
@@ -8,24 +7,27 @@
   align-items: center;
   padding: 1rem 4rem;
   height: calc(100vh - 4.5rem);
-  background-color: vars.$secondary-container;
+  // Colors and type read AtlasNG error page tokens (--ang-error-page-*) when an app sets them
+  background-color: var(--ang-error-page-background, #{vars.$secondary-container});
 
   .title {
-    @include utils.use-font(display, medium);
+    font: var(--ang-error-page-title-font, #{vars.$display-medium});
+    letter-spacing: var(--ang-error-page-title-letter-spacing, #{vars.$display-medium-tracking});
     margin-bottom: 0.5rem;
     text-align: center;
   }
 
   .description {
-    @include utils.use-font(title, medium);
-    color: vars.$primary;
+    font: var(--ang-error-page-description-font, #{vars.$title-medium});
+    letter-spacing: var(--ang-error-page-description-letter-spacing, #{vars.$title-medium-tracking});
+    color: var(--ang-error-page-description-color, #{vars.$primary});
     margin-bottom: 4rem;
     text-align: center;
   }
 
   .actions {
     display: flex;
-    gap: 4rem;
+    gap: var(--hra-error-page-actions-gap, 4rem);
   }
 
   /* Responsive Styling */

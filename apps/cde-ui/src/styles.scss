@@ -54,6 +54,23 @@ html {
     font-weight: 600;
   }
 
+  // Call-to-action buttons (the gallery's Publication link and the error pages) look like Material's filled
+  // buttons, as on AtlasNG's error pages, since the HRA CTA styles are skipped with the other button overrides.
+  // Secondary CTAs stay text buttons.
+  [mat-button].hra-cta-button:not(.hra-button-variant-secondary) {
+    @include mat.button-overrides(
+      (
+        text-horizontal-padding: 1.5rem,
+        text-with-icon-horizontal-padding: 1.5rem,
+        text-icon-offset: -0.5rem,
+        text-label-text-color: vars.$on-primary,
+        text-state-layer-color: vars.$on-primary,
+        text-ripple-color: utils.with-alpha(vars.$on-primary, var(--mat-sys-pressed-state-layer-opacity)),
+      )
+    );
+    background-color: vars.$primary;
+  }
+
   // Filled logos draw their glyphs with fill="white". Following the icon's configured color instead lets
   // CDE theme its logo (see CDE_LOGO_CONFIG in app.config.ts). Other logos are configured white, so they look the same.
   hra-icon.hra-icon-filled path[fill='white'] {
@@ -193,6 +210,24 @@ html {
         width: calc(100% - 5rem) !important;
         max-width: 101.25rem !important;
       }
+    }
+  }
+
+  // Error pages match AtlasNG's error page: the page background, a headline large title,
+  // an on-surface-variant body large description, and AtlasNG's side padding and button gap
+  hra-not-found-page,
+  hra-server-error-page {
+    --ang-error-page-background: #{vars.$background};
+    --ang-error-page-title-font: #{vars.$headline-large};
+    --ang-error-page-title-letter-spacing: #{vars.$headline-large-tracking};
+    --ang-error-page-description-font: #{vars.$body-large};
+    --ang-error-page-description-letter-spacing: #{vars.$body-large-tracking};
+    --ang-error-page-description-color: #{vars.$on-surface-variant};
+    --hra-error-page-actions-gap: 1.5rem;
+    padding: 0 1.5rem;
+
+    @media (min-width: 960px) {
+      padding: 0 2.5rem;
     }
   }
 }
