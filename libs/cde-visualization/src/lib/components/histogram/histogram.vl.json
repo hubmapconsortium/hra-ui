@@ -95,7 +95,7 @@
       "axis": {
         "orient": "top",
         "minExtent": 25,
-        "labelFlush": false,
+        "labelFlush": true,
         "grid": true,
         "labelAngle": 0,
         "labelOverlap": true,
