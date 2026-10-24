@@ -1,6 +1,6 @@
 <ng-container hraFeature="file-upload">
   @if (!file && errorMessage()) {
-    <hra-error-indicator role="alert" [errors]="[errorMessage(), errorActionMessage()]" />
+    <hra-error-indicator role="alert" icon="warning" [errors]="[errorMessage(), errorActionMessage()]" />
   }
 
   @if (file && !errorMessage()) {

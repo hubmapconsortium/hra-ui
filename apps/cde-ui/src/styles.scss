@@ -60,6 +60,34 @@ html {
     fill: currentColor;
   }
 
+  // Error indicators match AtlasNG's warning notice and read the same token hooks in the same order
+  // (--ang-notice-*, then --ang-ext-*, then system tokens), so swapping in <ang-notice variant="warning">
+  // during the AtlasNG move keeps the look and any token customizations. Pass icon="warning" too.
+  hra-error-indicator {
+    $warning-color: var(--ang-notice-warning-color, var(--ang-ext-warning, #{vars.$outline}));
+
+    border: 2px solid $warning-color;
+    border-radius: var(--ang-notice-container-shape, #{vars.$corner-extra-small});
+    background-color: var(
+      --ang-notice-warning-container-color,
+      var(--ang-ext-warning-container, #{vars.$surface-container-highest})
+    );
+    color: var(
+      --ang-notice-warning-body-color,
+      var(--ang-ext-on-warning-container-variant, #{vars.$on-surface-variant})
+    );
+
+    // The class outranks the shared indicator's encapsulated icon color
+    mat-icon.mat-icon {
+      color: $warning-color;
+    }
+
+    // Outranks the shared indicator's label large, since the notice body uses body large
+    .errors > .error {
+      @include utils.use-font(body, large);
+    }
+  }
+
   // Rich tooltips match AtlasNG's rich tooltip tokens. The shared rich tooltip has no token hooks, so these
   // reach into its overlay content, and the element selectors outrank its encapsulated rules.
   .cdk-overlay-pane > div.container {
