@@ -147,7 +147,7 @@
 
     .hero-description {
       margin: 0;
-      @include utils.use-font(body, xl);
+      @include landing.paragraph;
       color: vars.$on-surface-variant;
       text-wrap: balance;
     }
@@ -246,7 +246,7 @@
 
     .section-description {
       margin: 0 0 1.5rem;
-      @include utils.use-font(body, xl);
+      @include landing.paragraph;
       color: vars.$on-surface-variant;
     }
 
@@ -294,7 +294,7 @@
       }
 
       .description {
-        @include utils.use-font(body, xl);
+        @include landing.paragraph;
         color: vars.$on-surface-variant;
       }
 
