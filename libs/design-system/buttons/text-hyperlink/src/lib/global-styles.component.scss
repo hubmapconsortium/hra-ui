@@ -21,13 +21,14 @@
       color: var(--ang-text-link-color, #{vars.$tertiary});
     }
 
+    // With the AtlasNG token set, focus keeps the link color and draws the ring in it, as AtlasNG's text links do
     &:focus-visible {
-      color: vars.$secondary;
-      outline: 0.125rem solid vars.$tertiary;
+      color: var(--ang-text-link-color, #{vars.$secondary});
+      outline: 0.125rem solid var(--ang-text-link-color, #{vars.$tertiary});
       border-radius: 0.25rem;
 
       & mat-icon {
-        color: vars.$secondary;
+        color: var(--ang-text-link-color, #{vars.$secondary});
       }
     }
 
