@@ -1,4 +1,5 @@
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { RichTooltipModule } from '@hra-ui/design-system/tooltips/rich-tooltip';
 import { render, screen, waitFor } from '@testing-library/angular';
@@ -88,5 +89,42 @@ describe('InfoButtonComponent', () => {
 
     const actionButtons = screen.getAllByRole('button', { name: /action/i });
     expect(actionButtons).toHaveLength(2);
+  });
+
+  it('reports whether the rich tooltip is open', async () => {
+    const user = userEvent.setup();
+    await setup(`<hra-info-button>Test description</hra-info-button>`);
+
+    const button = screen.getByRole('button', { name: /more information/i });
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+
+    await user.click(button);
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  it('closes the rich tooltip on Escape', async () => {
+    const user = userEvent.setup();
+    await setup(`<hra-info-button>Test description</hra-info-button>`);
+
+    const button = screen.getByRole('button', { name: /more information/i });
+    await user.click(button);
+    await waitFor(() => expect(screen.getByText('Test description')).toBeInTheDocument());
+
+    await user.keyboard('{Escape}');
+    await waitFor(() => expect(screen.queryByText('Test description')).not.toBeInTheDocument());
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('disables the plain Info tooltip while the rich tooltip is open', async () => {
+    const user = userEvent.setup();
+    const { fixture } = await setup(`<hra-info-button>Test description</hra-info-button>`);
+    const button = screen.getByRole('button', { name: /more information/i });
+    const plainTooltip = fixture.debugElement.query((el) => el.nativeElement === button).injector.get(MatTooltip);
+
+    await user.click(button);
+    expect(plainTooltip.disabled).toBe(true);
+
+    await user.click(button);
+    expect(plainTooltip.disabled).toBe(false);
   });
 });
