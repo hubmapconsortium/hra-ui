@@ -8,16 +8,17 @@
   top: 0;
   width: 100%;
   z-index: 200;
-  background-color: utils.with-alpha(vars.$surface-bright, 80%);
+  // The container color reads AtlasNG's header shell token (--ang-header-shell-container-color) when an app sets it
+  background-color: var(--ang-header-shell-container-color, #{utils.with-alpha(vars.$surface-bright, 80%)});
   backdrop-filter: blur(10rem);
-  box-shadow: 0rem 0.25rem 0.25rem 0rem utils.with-alpha(vars.$secondary, 20%);
+  box-shadow: var(--hra-header-shadow, 0rem 0.25rem 0.25rem 0rem #{utils.with-alpha(vars.$secondary, 20%)});
 
   .header {
     .menus,
     .navigation {
       display: flex;
       align-items: center;
-      padding: 0 0.75rem;
+      padding: var(--hra-header-padding, 0 0.75rem);
 
       .filler {
         flex-grow: 1;
