@@ -161,11 +161,12 @@ html {
     @include utils.use-font(title, small);
   }
 
-  // The header matches AtlasNG's header shell: a flat surface-variant bar at 80%, AtlasNG's side padding,
-  // and an on-surface focus outline on the logo (with small corners) and icon buttons
+  // The header matches AtlasNG's header shell: a flat surface-variant bar at 80% with an outline-variant line
+  // along its bottom, AtlasNG's side padding, and an on-surface focus outline on the logo (with small corners)
+  // and icon buttons. The line is an inset shadow, so it doesn't change the header's height.
   hra-header {
     --ang-header-shell-container-color: #{utils.with-alpha(vars.$surface-variant, 80%)};
-    --hra-header-shadow: none;
+    --hra-header-shadow: inset 0 -1px 0 0 #{vars.$outline-variant};
     --hra-header-padding: 0 0.25rem;
 
     @media (min-width: 960px) {
