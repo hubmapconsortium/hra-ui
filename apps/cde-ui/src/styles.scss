@@ -3,6 +3,7 @@
 @use 'theming';
 @use 'utils';
 @use 'vars';
+@use 'app/shared/styles/landing';
 
 // Follow the system color scheme until the theme toggle picks one (see ThemeService)
 html {
@@ -232,7 +233,8 @@ html {
   }
 
   // Content pages (the Spatial Omics Gallery and study pages) match AtlasNG's content sections and headers:
-  // on-surface-variant body large text, AtlasNG's heading scale, and outline underlines
+  // AtlasNG's heading scale, outline underlines, and section spacing. Section text, including markdown
+  // paragraphs, uses AtlasNG's content paragraph scale in on-surface-variant, like the landing copy.
   hra-page-section {
     $heading-roles: (
       1: display-medium,
@@ -242,14 +244,18 @@ html {
       5: headline-small,
       6: title-large,
     );
+    $paragraph-line-height: calc(#{landing.$paragraph-scale} * #{vars.$body-large-line-height});
 
     --ang-content-section-font: #{vars.$body-large-font};
-    --ang-content-section-size: #{vars.$body-large-size};
+    --ang-content-section-size: calc(#{landing.$paragraph-scale} * #{vars.$body-large-size});
     --ang-content-section-weight: #{vars.$body-large-weight};
-    --ang-content-section-line-height: #{vars.$body-large-line-height};
+    --ang-content-section-line-height: #{$paragraph-line-height};
     --ang-content-section-tracking: #{vars.$body-large-tracking};
     --ang-content-section-color: #{vars.$on-surface-variant};
     --ang-content-header-underline-color: #{vars.$outline};
+    --hra-markdown-paragraph-line-height: #{$paragraph-line-height};
+    --hra-page-section-content-offset: 0.75rem;
+    --hra-page-section-content-gap: 2rem;
 
     @each $level, $role in $heading-roles {
       --ang-content-header-level-#{$level}-font: var(--mat-sys-#{$role}-font);

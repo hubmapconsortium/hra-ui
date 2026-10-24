@@ -3,7 +3,8 @@
 :host {
   display: block;
 
-  // Type and color read AtlasNG content section tokens (--ang-content-section-*) when an app sets them
+  // Type and color read AtlasNG content section tokens (--ang-content-section-*),
+  // and spacing reads --hra-page-section-* tokens, when an app sets them
   .content {
     font-family: var(--ang-content-section-font, #{vars.$body-xl-font});
     font-size: var(--ang-content-section-size, #{vars.$body-xl-size});
@@ -11,9 +12,9 @@
     line-height: var(--ang-content-section-line-height, #{vars.$body-xl-line-height});
     letter-spacing: var(--ang-content-section-tracking, #{vars.$body-xl-tracking});
     color: var(--ang-content-section-color, #{vars.$primary});
-    margin-top: 1rem;
+    margin-top: var(--hra-page-section-content-offset, 1rem);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--hra-page-section-content-gap, 1.5rem);
   }
 }
