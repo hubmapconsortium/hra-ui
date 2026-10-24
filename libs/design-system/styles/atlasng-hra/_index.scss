@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../utils';
 @use '../vars';
+@use './mat-defaults';
 @use './palettes';
 @use './shape';
 @use './typography';
@@ -28,6 +29,13 @@ $overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);
   p {
     color: vars.$on-surface-variant;
   }
+
+  // Material buttons and form field hints use AtlasNG's defaults
+  & {
+    @include mat-defaults.button-defaults;
+  }
+
+  @include mat-defaults.form-field-defaults;
 
   // Scrollbars match the AtlasNG scroll area. ngx-scrollbar reads these variables.
   ng-scrollbar {
