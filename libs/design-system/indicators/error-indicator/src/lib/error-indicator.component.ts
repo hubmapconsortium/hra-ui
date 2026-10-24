@@ -15,6 +15,9 @@ export class ErrorIndicatorComponent {
   /** List of errors to be shown in the indicator */
   readonly errors = input<string[]>();
 
+  /** Material icon shown before the errors, such as `warning` for problems that aren't critical */
+  readonly icon = input('error');
+
   /** Call to action link */
   readonly actionLink = input<string>();
 
