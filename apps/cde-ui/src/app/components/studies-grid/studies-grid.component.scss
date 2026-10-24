@@ -4,12 +4,12 @@
 :host {
   display: block;
 
-  // Study cards in theme roles: an outline-variant card on surface-bright, with on-surface titles and authors
+  // Study cards in theme roles: an outline card on surface-bright, with on-surface titles and authors
   // and on-surface-variant affiliations. The shared card fills with on-primary, which is deep red in the
   // dark theme, and colors its text secondary and primary.
   hra-collection-card {
     --hra-collection-card-container-color: #{vars.$surface-bright};
-    --hra-collection-card-outline-color: #{vars.$outline-variant};
+    --hra-collection-card-outline-color: #{vars.$outline};
     --hra-collection-card-title-color: #{vars.$on-surface};
     --hra-collection-card-label-color: #{vars.$on-surface};
     --hra-collection-card-supporting-text-color: #{vars.$on-surface-variant};
