@@ -44,8 +44,7 @@
     }
 
     &:focus-visible {
-      outline: 0.125rem solid vars.$tertiary;
-      outline-offset: -0.125rem;
+      @include landing.focus-ring;
     }
   }
 
@@ -106,7 +105,7 @@
     margin-left: auto;
     border-radius: vars.$corner-full;
     background-color: utils.with-alpha(vars.$primary, 10%);
-    color: vars.$on-surface-variant;
+    color: vars.$on-primary-container;
   }
 
   // Compact layout for narrow rows, such as on phones or when zoomed in

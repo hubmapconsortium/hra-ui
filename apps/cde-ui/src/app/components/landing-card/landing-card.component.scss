@@ -18,6 +18,11 @@
     }
   }
 
+  // The ring goes on the whole card rather than the stretched link, so it can sit outside the card's edge
+  &:has(.primary-link:focus-visible) {
+    @include landing.focus-ring;
+  }
+
   .icon-container {
     padding: 1rem 1rem 0;
   }
@@ -67,10 +72,6 @@
 
     &:focus-visible {
       outline: none;
-
-      &::after {
-        @include utils.inset-outline(vars.$tertiary);
-      }
     }
   }
 
@@ -89,7 +90,7 @@
     align-items: center;
     gap: 0.25rem;
     @include utils.use-font(title, small);
-    color: vars.$primary;
+    color: vars.$on-primary-container;
   }
 
   @media (prefers-reduced-motion: no-preference) {
