@@ -32,7 +32,7 @@ export class ButtonComponent {
   readonly href = input.required<string>();
 
   /** Button version */
-  readonly type = input<'default' | 'flat' | 'cta' | 'fab'>('default');
+  readonly type = input<'default' | 'flat' | 'tonal' | 'cta' | 'fab'>('default');
 
   /** Button color variant */
   readonly variant = input<ButtonVariant>('primary');
