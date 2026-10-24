@@ -26,9 +26,11 @@
   background: linear-gradient(to top, var(--_hra-scroll-overflow-fade-color), transparent);
 }
 
-ng-scrollbar[isVerticallyScrollable='false'] {
-  & .hra-scroll-overflow-fade-gradient-top,
-  & .hra-scroll-overflow-fade-gradient-bottom {
+// Without a scroll range the scroll timeline is inactive and wouldn't fade the gradients out, so they're hidden.
+// ng-scrollbar marks the viewport, which is the ng-scrollbar element itself or the element given as externalViewport.
+.ng-scroll-viewport[isVerticallyScrollable='false'] {
+  & > .hra-scroll-overflow-fade-gradient-top,
+  & > .hra-scroll-overflow-fade-gradient-bottom {
     display: none;
   }
 }
