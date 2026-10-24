@@ -1,7 +1,7 @@
 @use '../../../../../../libs/design-system/styles/utils';
 @use '../../../../../../libs/design-system/styles/vars';
 
-// A Material side sheet with AtlasNG spacing: 24px insets, files 20px apart with their formats as tonal buttons
+// A Material side sheet with AtlasNG spacing: 24px insets, files 20px apart with their formats as outlined buttons
 // below the description, and groups split by an outline-variant divider
 :host {
   display: flex;

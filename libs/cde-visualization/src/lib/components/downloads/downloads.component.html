@@ -27,7 +27,7 @@
               <div class="formats">
                 @for (format of file.formats; track format.id) {
                   <button
-                    matButton="tonal"
+                    matButton="outlined"
                     hraClickEvent
                     [hraFeature]="`download-${format.id}`"
                     [attr.aria-label]="format.ariaLabel"
