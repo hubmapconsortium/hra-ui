@@ -332,18 +332,16 @@ html {
     }
   }
 
-  // The table of contents follows AtlasNG's, with a larger title medium heading: an on-surface heading with
-  // AtlasNG's padding over on-surface-variant body medium links in 44px pill rows, indented from level 2,
-  // with on-surface hover and focus and a primary-container active link
-  hra-table-of-contents {
-    $item-height: 2.75rem;
+  // The table of contents follows AtlasNG's (see the options in app.config.ts), with a larger title medium heading:
+  // an on-surface heading with AtlasNG's padding over a Material navigation list of on-surface-variant body medium
+  // links in 44px rows, indented from level 2, with a primary-container active link in the side column.
+  // The side column is AtlasNG's maximum table of contents width.
+  hra-table-of-contents-layout {
+    --hra-table-of-contents-layout-side-column-width: 18.75rem;
+  }
 
-    --ang-table-of-contents-item-height: #{$item-height};
-    --hra-table-of-contents-item-padding: calc((#{$item-height} - #{vars.$body-medium-line-height}) / 2) 1rem;
-    --hra-table-of-contents-item-spacing: 0.25rem;
-    --hra-table-of-contents-item-shape: #{vars.$corner-full};
-    --hra-table-of-contents-item-state-layer-color: #{vars.$on-surface};
-    --hra-table-of-contents-item-focus-color: #{vars.$on-surface};
+  hra-table-of-contents {
+    --ang-table-of-contents-item-height: 2.75rem;
     --hra-table-of-contents-indentation-start: 2;
     --hra-table-of-contents-indentation-step: 1rem;
     --ang-table-of-contents-tagline-color: #{vars.$on-surface};
