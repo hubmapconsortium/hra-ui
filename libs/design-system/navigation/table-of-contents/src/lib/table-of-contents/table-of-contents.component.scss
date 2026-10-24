@@ -32,20 +32,25 @@
     letter-spacing: var(--ang-table-of-contents-item-tracking, #{vars.$label-medium-tracking});
     padding: 0.5rem;
 
+    // Link layout and states read --hra-table-of-contents-item-* and -indentation-* tokens when an app sets them
     .link {
-      min-height: 2rem;
-      border-radius: 0.5rem;
-      padding: 0.3438rem 1rem;
-      margin-left: calc((var(--indentation-level, 1) - 1) * 0.75rem);
+      min-height: var(--ang-table-of-contents-item-height, 2rem);
+      margin-block: var(--hra-table-of-contents-item-spacing, 0);
+      border-radius: var(--hra-table-of-contents-item-shape, 0.5rem);
+      padding: var(--hra-table-of-contents-item-padding, 0.3438rem 1rem);
+      margin-left: calc(
+        (var(--indentation-level, 1) - var(--hra-table-of-contents-indentation-start, 1)) *
+          var(--hra-table-of-contents-indentation-step, 0.75rem)
+      );
       color: var(--ang-table-of-contents-item-color, #{vars.$primary});
       text-decoration: none;
 
       &:hover {
-        background-color: utils.with-alpha(vars.$secondary, 8%);
+        background-color: utils.with-alpha(var(--hra-table-of-contents-item-state-layer-color, #{vars.$secondary}), 8%);
       }
 
       &:focus-visible {
-        @include utils.inset-outline(vars.$primary);
+        @include utils.inset-outline(var(--hra-table-of-contents-item-focus-color, #{vars.$primary}));
       }
     }
   }
