@@ -6,7 +6,9 @@
   height: 2rem;
   align-items: center;
 
+  // The swatch and anchor icon keep their size, so a long label can't squish them into ellipses
   .color-pick {
+    flex-shrink: 0;
     height: 1.25rem;
     width: 1.25rem;
     background-color: vars.$secondary;
@@ -20,6 +22,7 @@
   }
 
   .anchor {
+    flex-shrink: 0;
     background-color: vars.$secondary;
     border-radius: 50%;
     color: vars.$on-secondary;
@@ -102,7 +105,7 @@
         }
       }
 
-      .arrow.arrow-right,
+      .arrow,
       .type-policy {
         display: none;
       }
