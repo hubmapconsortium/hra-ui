@@ -13,35 +13,11 @@ import { registerStyleComponents } from '@hra-ui/cdk/styling';
 import { ViewportAdapter } from 'ngx-scrollbar';
 import { SCROLL_TIMELINE, ScrollTimelineFunc } from '../scroll-timeline/scroll-timeline';
 
-/** Keyframes for the top gradient */
-const GRADIENT_TOP_KEYFRAMES: Keyframe[] = [
-  {
-    top: 'var(--_hra-scroll-overflow-fade-gradient-top-start)',
-    opacity: 0,
-  },
-  {
-    offset: 0.02,
-    opacity: 1,
-  },
-  {
-    top: 'var(--_hra-scroll-overflow-fade-gradient-top-end)',
-  },
-];
+/** Keyframes for the top gradient: hidden at the start of the scroll range */
+const GRADIENT_TOP_KEYFRAMES: Keyframe[] = [{ opacity: 0 }, { offset: 0.02, opacity: 1 }, { opacity: 1 }];
 
-/** Keyframes for the bottom gradient */
-const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] = [
-  {
-    top: 'var(--_hra-scroll-overflow-fade-gradient-bottom-start)',
-  },
-  {
-    offset: 0.98,
-    opacity: 1,
-  },
-  {
-    top: 'var(--_hra-scroll-overflow-fade-gradient-bottom-end)',
-    opacity: 0,
-  },
-];
+/** Keyframes for the bottom gradient: hidden at the end of the scroll range */
+const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] = [{ opacity: 1 }, { offset: 0.98, opacity: 1 }, { opacity: 0 }];
 
 /** Scroll overflow fade global styles component */
 @Component({
@@ -57,6 +33,9 @@ export class ScrollOverflowFadeStylesComponent {}
  * Directive that can be used along ng-scrollbar to apply a gradient
  * to the top and bottom of the scroll area to indicate that there
  * is additional content available through scrolling.
+ *
+ * The gradients are sticky children of the viewport, so they stay pinned to its edges while scrolling,
+ * and the scroll timeline only fades them in and out.
  */
 @Directive({
   selector: '[hraScrollOverflowFade]',
@@ -104,9 +83,9 @@ export class ScrollOverflowFadeDirective {
    * Creates and attaches a gradient element to a scroll area.
    *
    * @param viewport The scroll area viewport
-   * @param placement Whether to place the gradient on top or bottom
+   * @param placement Whether to place the gradient on top (first child) or bottom (last child)
    * @param scrollTimeline Reference to ScrollTimeline
-   * @param keyframes Keyframes used to animate/move the gradient
+   * @param keyframes Keyframes used to fade the gradient
    * @returns A cleanup function
    */
   private attachGradient(
@@ -116,7 +95,11 @@ export class ScrollOverflowFadeDirective {
     keyframes: Keyframe[],
   ): () => void {
     const el = this.createGradientElement(placement);
-    this.renderer.appendChild(viewport, el);
+    if (placement === 'top') {
+      this.renderer.insertBefore(viewport, el, viewport.firstChild);
+    } else {
+      this.renderer.appendChild(viewport, el);
+    }
 
     const animation = this.animateGradient(scrollTimeline, el, viewport, keyframes);
     return () => {
