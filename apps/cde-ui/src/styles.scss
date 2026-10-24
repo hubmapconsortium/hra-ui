@@ -18,6 +18,27 @@ html {
   );
   @include atlasng-hra.base-styles();
 
+  // Text fields and selects use secondary for their focus accents instead of Material's primary,
+  // which falls below 4.5:1 against the field background in the light theme
+  & {
+    @include mat.form-field-overrides(
+      (
+        filled-caret-color: vars.$secondary,
+        filled-focus-active-indicator-color: vars.$secondary,
+        filled-focus-label-text-color: vars.$secondary,
+        focus-select-arrow-color: vars.$secondary,
+        outlined-caret-color: vars.$secondary,
+        outlined-focus-label-text-color: vars.$secondary,
+        outlined-focus-outline-color: vars.$secondary,
+      )
+    );
+    @include mat.select-overrides(
+      (
+        focused-arrow-color: vars.$secondary,
+      )
+    );
+  }
+
   input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
   }
