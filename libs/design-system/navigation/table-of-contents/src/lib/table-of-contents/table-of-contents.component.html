@@ -1,20 +1,38 @@
-<ng-scrollbar class="scrollbar">
+<ng-scrollbar class="scrollbar" orientation="vertical">
   <nav class="nav" aria-labelledby="table-of-contents-navigation">
     <div id="table-of-contents-navigation" class="tagline">{{ tagline() }}</div>
-    <div class="links">
-      @for (section of sections(); track section) {
-        @if (section.anchor(); as anchor) {
-          <a
-            class="link"
-            matRipple
-            [class.active]="activeSection() === section"
-            [style.--indentation-level]="section.level()"
-            [hraFragmentLink]="anchor"
-          >
-            {{ section.tagline() }}
-          </a>
+    @if (options.navList) {
+      <mat-nav-list class="nav-list">
+        @for (section of sections(); track section) {
+          @if (section.anchor(); as anchor) {
+            <a
+              class="nav-list-item"
+              mat-list-item
+              [activated]="activeSection() === section"
+              [style.--indentation-level]="section.level()"
+              [hraFragmentLink]="anchor"
+            >
+              <span matListItemTitle>{{ section.tagline() }}</span>
+            </a>
+          }
         }
-      }
-    </div>
+      </mat-nav-list>
+    } @else {
+      <div class="links">
+        @for (section of sections(); track section) {
+          @if (section.anchor(); as anchor) {
+            <a
+              class="link"
+              matRipple
+              [class.active]="activeSection() === section"
+              [style.--indentation-level]="section.level()"
+              [hraFragmentLink]="anchor"
+            >
+              {{ section.tagline() }}
+            </a>
+          }
+        }
+      </div>
+    }
   </nav>
 </ng-scrollbar>
