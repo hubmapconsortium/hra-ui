@@ -1,3 +1,4 @@
+@use 'utils';
 @use 'vars';
 
 :host {
@@ -125,13 +126,12 @@
     .requirement-label,
     .requirement-list li {
       padding-block: 0.125rem;
-      font: vars.$label-large;
-      font-weight: vars.$label-large-weight;
     }
 
     .requirement-label {
       display: block;
       padding-left: 1rem;
+      @include utils.use-font(title, small);
     }
 
     .requirement-list {
@@ -141,6 +141,7 @@
 
       li {
         padding-left: 1.5rem;
+        @include utils.use-font(body, medium);
       }
     }
   }
@@ -151,7 +152,7 @@
       display: grid;
       grid: 'subheader subheader';
       column-gap: 1.5rem;
-      font: vars.$label-large;
+      @include utils.use-font(title, small);
     }
 
     .subheader {
