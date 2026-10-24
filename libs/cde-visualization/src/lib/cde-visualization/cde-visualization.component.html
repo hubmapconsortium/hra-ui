@@ -8,6 +8,7 @@
       aria-modal="true"
       hraFeature="downloads-drawer"
       [attr.aria-labelledby]="downloads.titleId"
+      [attr.aria-describedby]="downloads.descriptionId"
       (opened)="onDownloadsOpened()"
       (keydown.escape)="closeDownloads('keyboard')"
       #downloadsDrawer

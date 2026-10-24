@@ -7,14 +7,15 @@ describe('DownloadsComponent', () => {
   const files = DOWNLOADS_CONTENT.groups.flatMap((group) => group.files);
   const formats = files.flatMap((file) => file.formats.map((format) => ({ file, format })));
 
-  it('should render the title, groups, and files', async () => {
+  it('should render the title, description, groups, notices, and files', async () => {
     await render(DownloadsComponent);
 
     expect(screen.getByRole('heading', { level: 2, name: DOWNLOADS_CONTENT.title })).toBeInTheDocument();
+    expect(screen.getByText(DOWNLOADS_CONTENT.description)).toBeInTheDocument();
     for (const group of DOWNLOADS_CONTENT.groups) {
       expect(screen.getByRole('heading', { level: 3, name: group.heading })).toBeInTheDocument();
-      for (const note of group.notes ?? []) {
-        expect(screen.getByText(note.text, { exact: false })).toBeInTheDocument();
+      if (group.notice) {
+        expect(screen.getByText(group.notice.text, { exact: false })).toBeInTheDocument();
       }
     }
 
@@ -24,10 +25,10 @@ describe('DownloadsComponent', () => {
     }
   });
 
-  it('should render note links that open in a new tab', async () => {
+  it('should render notice links that open in a new tab', async () => {
     await render(DownloadsComponent);
 
-    const links = DOWNLOADS_CONTENT.groups.flatMap((group) => group.notes ?? []).flatMap((note) => note.link ?? []);
+    const links = DOWNLOADS_CONTENT.groups.flatMap((group) => group.notice?.link ?? []);
     expect(links).not.toHaveLength(0);
     for (const link of links) {
       const anchor = screen.getByRole('link', { name: link.label });
@@ -75,5 +76,14 @@ describe('DownloadsComponent', () => {
 
     expect(fixture.nativeElement.querySelector('h2')).toHaveAttribute('id', titleId);
     expect(otherFixture.componentInstance.titleId).not.toEqual(titleId);
+  });
+
+  it('should give each instance a unique description id', async () => {
+    const { fixture } = await render(DownloadsComponent);
+    const otherFixture = TestBed.createComponent(DownloadsComponent);
+    const { descriptionId } = fixture.componentInstance;
+
+    expect(fixture.nativeElement.querySelector('.description')).toHaveAttribute('id', descriptionId);
+    expect(otherFixture.componentInstance.descriptionId).not.toEqual(descriptionId);
   });
 });

@@ -1,29 +1,51 @@
 @use '../../../../../../libs/design-system/styles/utils';
 @use '../../../../../../libs/design-system/styles/vars';
 
+// A Material side sheet with AtlasNG spacing: 24px insets, files 20px apart with their formats as tonal buttons
+// below the description, and groups split by an outline-variant divider
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
   color: vars.$on-surface-variant;
+  --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
 
   .header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'title close'
+      'description description';
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 0.75rem 1rem 1.5rem;
+    gap: 0.25rem 0.5rem;
+    padding: 1rem 0.75rem 1.5rem 1.5rem;
   }
 
   .title {
-    flex-grow: 1;
+    grid-area: title;
     margin: 0;
     color: vars.$on-surface;
     @include utils.use-font(title, large);
   }
 
+  .close {
+    grid-area: close;
+  }
+
+  .description {
+    grid-area: description;
+    margin: 0;
+    padding-right: 0.75rem;
+    color: vars.$on-surface-variant;
+    @include utils.use-font(body, medium);
+  }
+
   .body {
-    flex-grow: 1;
-    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .groups {
     padding: 0 1.5rem 1.5rem;
   }
 
@@ -39,44 +61,70 @@
     @include utils.use-font(title, medium);
   }
 
-  .note {
-    margin: 0.5rem 0 0;
-    @include utils.use-font(body, medium);
-  }
-
   .files {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 1rem 0 0;
     padding: 0;
     list-style: none;
   }
 
-  // Description follows the name in the DOM so screen readers announce it before the buttons
   .file {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      'name formats'
-      'description description';
-    align-items: center;
-    gap: 0.25rem 0.5rem;
-    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .file-name {
-    grid-area: name;
     color: vars.$on-surface;
     @include utils.use-font(title, small);
   }
 
   .file-description {
-    grid-area: description;
     margin: 0;
+    color: vars.$on-surface-variant;
     @include utils.use-font(body, medium);
   }
 
   .formats {
-    grid-area: formats;
     display: flex;
-    gap: 0.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  // Matches AtlasNG's info notice and reads the same token hooks in the same order
+  // (--ang-notice-*, then --ang-ext-*, then system tokens), so swapping in <ang-notice variant="info">
+  // during the AtlasNG move keeps the look and any token customizations
+  .notice {
+    $info-color: var(--ang-notice-info-color, var(--ang-ext-info, #{vars.$outline}));
+
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border: 2px solid $info-color;
+    border-radius: var(--ang-notice-container-shape, #{vars.$corner-extra-small});
+    background-color: var(
+      --ang-notice-info-container-color,
+      var(--ang-ext-info-container, #{vars.$surface-container-highest})
+    );
+
+    .notice-icon {
+      flex-shrink: 0;
+      color: $info-color;
+    }
+
+    .notice-body {
+      flex: 1;
+      min-width: 0;
+      margin: 0;
+      overflow-wrap: anywhere;
+      color: var(--ang-notice-info-body-color, var(--ang-ext-on-info-container-variant, #{vars.$on-surface-variant}));
+      // Body medium like the file descriptions, smaller than AtlasNG's body large notice text
+      @include utils.use-font(body, medium);
+    }
   }
 }

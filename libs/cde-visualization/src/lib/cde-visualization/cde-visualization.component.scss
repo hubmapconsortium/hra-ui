@@ -29,7 +29,7 @@ $panel-background: vars.$background;
       container-background-color: vars.$surface-container-low,
       container-elevation-shadow: var(--mat-sys-level1),
       container-shape: vars.$corner-large,
-      container-width: 25rem,
+      container-width: 28rem,
       scrim-color: utils.with-alpha(vars.$scrim, 0.24),
     )
   );

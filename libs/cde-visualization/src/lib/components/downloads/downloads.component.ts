@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { DOWNLOADS_CONTENT, DownloadRequest } from './downloads.content';
 
@@ -14,7 +15,7 @@ let idCounter = 0;
  */
 @Component({
   selector: 'cde-downloads',
-  imports: [HraCommonModule, MatIconModule, ButtonsModule, PlainTooltipDirective],
+  imports: [HraCommonModule, MatIconModule, ButtonsModule, PlainTooltipDirective, ScrollingModule],
   templateUrl: './downloads.component.html',
   styleUrl: './downloads.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,7 +28,10 @@ export class DownloadsComponent {
   readonly download = output<DownloadRequest>();
 
   /** Id attribute for the title, used to label the drawer */
-  readonly titleId = `cde-downloads-title-${idCounter++}`;
+  readonly titleId = `cde-downloads-title-${idCounter}`;
+
+  /** Id attribute for the description, used to describe the drawer */
+  readonly descriptionId = `cde-downloads-description-${idCounter++}`;
 
   /** Text content */
   protected readonly content = DOWNLOADS_CONTENT;
