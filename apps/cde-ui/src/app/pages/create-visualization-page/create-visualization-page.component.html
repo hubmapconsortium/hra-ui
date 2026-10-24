@@ -79,7 +79,7 @@
     </div>
 
     @if (visualizationForm.controls.headers.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator icon="warning" [errors]="['Please upload a dataset.']" />
     }
 
     <div class="required-headers">
@@ -143,7 +143,7 @@
     </div>
 
     @if (columnErrorActionMessage) {
-      <hra-error-indicator role="alert" [errors]="[columnErrorActionMessage]" />
+      <hra-error-indicator role="alert" icon="warning" [errors]="[columnErrorActionMessage]" />
     }
 
     <div class="optional-headers">
@@ -204,7 +204,7 @@
     </div>
 
     @if (visualizationForm.controls.parameters.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator icon="warning" [errors]="['Please upload a dataset.']" />
     }
 
     <div class="parameters-1">
@@ -421,9 +421,13 @@
 
     @let canVisualize = hasValidNodes() && hasValidData();
     @if (!hasDataset()) {
-      <hra-error-indicator id="visualize-requirements" [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator id="visualize-requirements" icon="warning" [errors]="['Please upload a dataset.']" />
     } @else if (!canVisualize) {
-      <hra-error-indicator id="visualize-requirements" [errors]="['Please complete the required fields above.']" />
+      <hra-error-indicator
+        id="visualize-requirements"
+        icon="warning"
+        [errors]="['Please complete the required fields above.']"
+      />
     }
 
     <button

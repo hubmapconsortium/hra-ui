@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../utils';
 @use '../vars';
+@use './ext-colors';
 @use './mat-defaults';
 @use './palettes';
 @use './shape';
@@ -24,6 +25,11 @@ $overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);
   // Text uses on-surface, and paragraphs use on-surface-variant
   & {
     color: vars.$on-surface;
+  }
+
+  // AtlasNG's extended warning colors, read by notices (see _ext-colors.scss)
+  & {
+    @include ext-colors.ext-level-colors(warning, ext-colors.$warning-palette);
   }
 
   p {
