@@ -295,10 +295,11 @@ html {
     --ang-table-of-contents-active-item-background-color: #{vars.$primary-container};
   }
 
-  // Tables match AtlasNG's striped table: outline borders, an on-surface title small header on surface-variant,
-  // and on-surface-variant body medium cells on a transparent background, striped with surface-container-low
+  // Tables match AtlasNG's striped table, with lighter outline-variant borders: an on-surface title small header
+  // on surface-variant, and on-surface-variant body medium cells on a transparent background, striped with
+  // surface-container-low
   hra-table {
-    --ang-table-border-color: #{vars.$outline};
+    --ang-table-border-color: #{vars.$outline-variant};
     --ang-table-border-radius: #{vars.$corner-small};
     --ang-table-header-background-color: #{vars.$surface-variant};
     --ang-table-header-state-layer-color: #{vars.$on-surface-variant};
