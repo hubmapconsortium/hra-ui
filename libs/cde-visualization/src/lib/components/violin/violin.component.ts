@@ -94,8 +94,11 @@ const MIN_VIOLIN_HEIGHT = 20;
 /** Maximum height for individual violin plots */
 const MAX_VIOLIN_HEIGHT = 35;
 
-/** Width offset for individual violin plots */
-const VIOLIN_WIDTH_OFFSET = 170;
+/**
+ * Width offset for individual violin plots: an estimate of the space the cell type labels, titles, and padding take.
+ * The chart is fitted to its container after it renders (see fitViolinWidth).
+ */
+const VIOLIN_WIDTH_OFFSET = 178;
 
 /** Height offset for individual violin plots */
 const VIOLIN_HEIGHT_OFFSET = 76;
@@ -244,7 +247,7 @@ export class ViolinComponent {
   /** Resizes view after full screen toggle or viewport resize */
   /* istanbul ignore next */
   resizeAndSyncView() {
-    setTimeout(() => {
+    setTimeout(async () => {
       const view = this.view();
       if (view) {
         const container: HTMLElement = this.violinEl().rootNodes()[0];
@@ -259,9 +262,30 @@ export class ViolinComponent {
           }
           view.signal('child_width', el.clientWidth - VIOLIN_WIDTH_OFFSET);
         }
-        view.resize().runAsync();
+        await view.resize().runAsync();
+        if (el) {
+          await this.fitViolinWidth(view, el);
+        }
       }
     });
+  }
+
+  /**
+   * Widens or narrows the violins so the chart fills its container exactly.
+   * The width offset only estimates the space the labels take, which varies with the cell type names,
+   * so without this the chart could leave a gap on its right side.
+   *
+   * @param view Vega view
+   * @param el Scroll container holding the chart
+   */
+  /* istanbul ignore next */
+  private async fitViolinWidth(view: View, el: HTMLElement): Promise<void> {
+    const chart = el.querySelector('.violin-container canvas, .violin-container svg');
+    const gap = chart ? el.clientWidth - chart.getBoundingClientRect().width : 0;
+    if (Math.abs(gap) >= 1) {
+      view.signal('child_width', (view.signal('child_width') as number) + gap);
+      await view.resize().runAsync();
+    }
   }
 
   /**
