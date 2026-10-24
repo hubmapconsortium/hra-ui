@@ -88,20 +88,20 @@ const EXPORT_IMAGE_HEIGHT = 40;
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;
 
-/** Minimum height for individual violin plots */
-const MIN_VIOLIN_HEIGHT = 20;
+/** Minimum height for individual violin plots. Below it, the violins scroll at their maximum height instead. */
+const MIN_VIOLIN_HEIGHT = 40;
 
 /** Maximum height for individual violin plots */
-const MAX_VIOLIN_HEIGHT = 35;
+const MAX_VIOLIN_HEIGHT = 44;
 
 /**
- * Width offset for individual violin plots: an estimate of the space the cell type labels, titles, and padding take.
- * The chart is fitted to its container after it renders (see fitViolinWidth).
+ * Width offset for individual violin plots: an estimate of the space the cell type labels and padding take.
+ * The chart is fitted to its container after it renders (see fitViolinView).
  */
-const VIOLIN_WIDTH_OFFSET = 178;
+const VIOLIN_WIDTH_OFFSET = 150;
 
-/** Height offset for individual violin plots */
-const VIOLIN_HEIGHT_OFFSET = 76;
+/** Height offset for individual violin plots: an estimate of the space the titles, axis, and padding take */
+const VIOLIN_HEIGHT_OFFSET = 60;
 
 /** Configuration for the legend in the exported image */
 const EXPORT_IMAGE_LEGEND_CONFIG = {
@@ -264,26 +264,48 @@ export class ViolinComponent {
         }
         await view.resize().runAsync();
         if (el) {
-          await this.fitViolinWidth(view, el);
+          await this.fitViolinView(view, el);
         }
       }
     });
   }
 
   /**
-   * Widens or narrows the violins so the chart fills its container exactly.
-   * The width offset only estimates the space the labels take, which varies with the cell type names,
-   * so without this the chart could leave a gap on its right side.
+   * Fits the chart to its container after it renders. The width and height offsets only estimate the space
+   * the labels, titles, and padding take, which varies with the cell type names.
+   * - The violins widen or narrow so the chart fills the container's width, with no gap on its right side.
+   * - When the violins don't scroll but the chart is taller than the container, they shrink to fit,
+   *   or scroll at their maximum height if that would take them below the minimum.
    *
    * @param view Vega view
    * @param el Scroll container holding the chart
    */
   /* istanbul ignore next */
-  private async fitViolinWidth(view: View, el: HTMLElement): Promise<void> {
+  private async fitViolinView(view: View, el: HTMLElement): Promise<void> {
     const chart = el.querySelector('.violin-container canvas, .violin-container svg');
-    const gap = chart ? el.clientWidth - chart.getBoundingClientRect().width : 0;
-    if (Math.abs(gap) >= 1) {
-      view.signal('child_width', (view.signal('child_width') as number) + gap);
+    if (!chart) {
+      return;
+    }
+
+    const { width, height } = chart.getBoundingClientRect();
+    const widthGap = el.clientWidth - width;
+    const heightGap = el.clientHeight - height;
+    let changed = false;
+
+    if (Math.abs(widthGap) >= 1) {
+      view.signal('child_width', (view.signal('child_width') as number) + widthGap);
+      changed = true;
+    }
+
+    if (!this.enableScroll() && heightGap <= -1) {
+      const violinHeight = (view.signal('child_height') as number) + heightGap / Math.max(this.colorCount(), 1);
+      const scroll = violinHeight < MIN_VIOLIN_HEIGHT;
+      view.signal('child_height', scroll ? MAX_VIOLIN_HEIGHT : violinHeight);
+      this.enableScroll.set(scroll);
+      changed = true;
+    }
+
+    if (changed) {
       await view.resize().runAsync();
     }
   }

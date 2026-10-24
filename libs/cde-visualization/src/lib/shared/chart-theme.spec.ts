@@ -113,6 +113,18 @@ describe('applyChartTheme(spec, theme)', () => {
   });
 });
 
+describe('applyChartTheme(spec, theme) with a chart title', () => {
+  it('gives the title the same type as the axis titles', () => {
+    const spec: ThemeableChartSpec = {
+      params: [],
+      config: { font: '', axis: {}, title: { fontSize: 12 } },
+    };
+    applyChartTheme(spec, theme);
+
+    expect(spec.config.title).toEqual({ fontSize: 13, fontWeight: 450, lineHeight: 19 });
+  });
+});
+
 describe('updateChartTheme(view, theme)', () => {
   it('sets the theme color signals and runs the view', () => {
     const view = mock<View>();

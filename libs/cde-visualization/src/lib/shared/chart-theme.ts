@@ -51,6 +51,16 @@ interface ChartTextConfig {
   titleLineHeight?: number;
 }
 
+/** Chart title type, in Vega's title config */
+interface ChartTitleConfig {
+  /** Font size */
+  fontSize?: number;
+  /** Font weight */
+  fontWeight?: number;
+  /** Line height */
+  lineHeight?: number;
+}
+
 /** Vega-Lite spec properties set from the chart theme */
 export interface ThemeableChartSpec {
   /** Spec params, including the theme color params */
@@ -63,6 +73,8 @@ export interface ThemeableChartSpec {
     axis: ChartTextConfig;
     /** Facet header text configuration */
     header?: ChartTextConfig;
+    /** Chart title configuration, themed when the spec has one */
+    title?: ChartTitleConfig;
   };
 }
 
@@ -194,6 +206,14 @@ export function applyChartTheme(spec: ThemeableChartSpec, theme: ChartTheme): vo
   spec.config.font = theme.font;
   Object.assign(spec.config.axis, text);
   spec.config.header = { ...spec.config.header, ...text };
+  if (spec.config.title) {
+    spec.config.title = {
+      ...spec.config.title,
+      fontSize: theme.fontSize,
+      fontWeight: theme.fontWeight,
+      lineHeight: theme.lineHeight,
+    };
+  }
   for (const param of spec.params) {
     const color = getThemeColorKey(param.name);
     if (color) {

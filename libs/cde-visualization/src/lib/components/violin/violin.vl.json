@@ -1,6 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "spacing": -2,
+  "title": {
+    "text": "Cell types",
+    "anchor": "start",
+    "frame": "bounds",
+    "orient": "top",
+    "offset": -14
+  },
   "background": {
     "expr": "themeBackground"
   },
@@ -36,6 +43,14 @@
     },
     "scale": {
       "continuousPadding": 20
+    },
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": 21,
+      "color": {
+        "expr": "themeTitleColor"
+      }
     },
     "header": {
       "titleColor": {
@@ -94,14 +109,13 @@
         "field": "Count",
         "order": "descending"
       },
-      "title": "Cell types",
+      "title": null,
       "header": {
         "labelAngle": 0,
         "labelPadding": 12,
         "labelAlign": "left",
         "labelLimit": 100,
-        "labelBaseline": "middle",
-        "titlePadding": 8
+        "labelBaseline": "middle"
       }
     }
   },
