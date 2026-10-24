@@ -27,8 +27,9 @@ $overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);
     color: vars.$on-surface;
   }
 
-  // AtlasNG's extended warning colors, read by notices (see _ext-colors.scss)
+  // AtlasNG's extended info and warning colors, read by notices (see _ext-colors.scss)
   & {
+    @include ext-colors.ext-level-colors(info, ext-colors.$info-palette);
     @include ext-colors.ext-level-colors(warning, ext-colors.$warning-palette);
   }
 

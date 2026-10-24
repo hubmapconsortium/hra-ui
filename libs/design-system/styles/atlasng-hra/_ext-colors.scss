@@ -1,7 +1,22 @@
 // Mirrors cns-iu/AtlasNG at d4d87d7: libs/design-system/src/sass/_ext-colors.scss (tone mapping) and the HRA
-// warning palette from libs/internal/storybook/src/themes/hra/palette.tokens.json.
+// warning palette from libs/internal/storybook/src/themes/hra/palette.tokens.json (info palette at 462d923).
 // AtlasNG token changes are not picked up automatically; compare the files again to update them.
 @use 'sass:map';
+
+// HRA info palette, with the variant tones AtlasNG uses for body text on info containers
+$info-palette: (
+  10: #001a42,
+  20: #002e6a,
+  30: #004395,
+  40: #185bbb,
+  80: #aec6ff,
+  90: #edf0ff,
+  100: #ffffff,
+  variant: (
+    30: #434751,
+    80: #c3c6d3,
+  ),
+);
 
 // HRA warning palette, with the variant tones AtlasNG uses for body text on warning containers
 $warning-palette: (
