@@ -10,6 +10,20 @@ html {
   color-scheme: light dark;
 }
 
+// Theme switches crossfade quickly once every view has updated (see ThemeService),
+// and switch instantly when reduced motion is preferred
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 150ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 @include utils.global-styles() {
   // Default Material buttons, button toggles, checkboxes, form fields, menus, and selects, without the HRA overrides
   @include theming.theme(

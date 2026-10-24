@@ -87,4 +87,25 @@ describe('ThemeService', () => {
     service.toggle();
     expect(service.theme()).toEqual('dark');
   });
+
+  it('switches themes inside a view transition when the browser supports them', async () => {
+    let update: Promise<void> | undefined;
+    const startViewTransition = jest.fn((callback: () => Promise<void>) => {
+      update = callback();
+      return {} as ViewTransition;
+    });
+    Object.defineProperty(document, 'startViewTransition', { configurable: true, value: startViewTransition });
+
+    try {
+      const service = createService();
+      service.toggle();
+      await update;
+
+      expect(startViewTransition).toHaveBeenCalledTimes(1);
+      expect(service.theme()).toEqual('dark');
+      expect(root.style.colorScheme).toEqual('dark');
+    } finally {
+      delete (document as { startViewTransition?: unknown }).startViewTransition;
+    }
+  });
 });

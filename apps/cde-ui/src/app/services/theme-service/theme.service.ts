@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { ApplicationRef, computed, effect, inject, Injectable, signal } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 
 /** Color theme */
@@ -20,6 +20,9 @@ export class ThemeService {
   /** Document whose root element gets the picked color scheme */
   private readonly document = inject(DOCUMENT);
 
+  /** Application, used to wait until every view has updated to the new theme */
+  private readonly appRef = inject(ApplicationRef);
+
   /** Whether the system prefers dark colors */
   private readonly systemPrefersDark = watchBreakpoint('(prefers-color-scheme: dark)');
 
@@ -39,12 +42,28 @@ export class ThemeService {
     });
   }
 
-  /** Switches to the opposite theme. Switching back to the system theme forgets the pick. */
+  /**
+   * Switches to the opposite theme. Switching back to the system theme forgets the pick.
+   * Where view transitions are supported, the page keeps showing the old theme until everything,
+   * including the charts that redraw in the new colors, has updated, then switches all at once.
+   */
   toggle(): void {
     const theme = this.theme() === 'dark' ? 'light' : 'dark';
     const picked = theme === this.systemTheme() ? undefined : theme;
-    this.pickedTheme.set(picked);
-    this.savePickedTheme(picked);
+    const apply = () => {
+      this.pickedTheme.set(picked);
+      this.savePickedTheme(picked);
+    };
+
+    if (typeof this.document.startViewTransition !== 'function') {
+      apply();
+      return;
+    }
+
+    this.document.startViewTransition(async () => {
+      apply();
+      await this.appRef.whenStable();
+    });
   }
 
   /**
