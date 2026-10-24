@@ -31,10 +31,6 @@
     }
   }
 
-  hra-nav-header {
-    border-bottom: 1px solid vars.$outline;
-  }
-
   hra-footer {
     margin-top: auto;
   }
@@ -44,13 +40,6 @@
     border: 1px solid vars.$outline-variant;
     border-radius: vars.$corner-large;
     box-shadow: var(--mat-sys-level3);
-  }
-
-  ::ng-deep .app-logo .app-description {
-    border-radius: 0.125rem;
-    width: fit-content;
-    padding: 0 0.25rem;
-    font: 500 0.625rem/1rem Metropolis !important;
   }
 
   .content {
