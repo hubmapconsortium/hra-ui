@@ -10,11 +10,11 @@ html {
 }
 
 @include utils.global-styles() {
-  // Default Material buttons, button toggles, checkboxes, and menus, without the HRA overrides
+  // Default Material buttons, button toggles, checkboxes, form fields, menus, and selects, without the HRA overrides
   @include theming.theme(
     atlasng-hra.$theme,
     atlasng-hra.$overrides,
-    $skip-overrides: (button, button-toggle, checkbox, icon-button, menu)
+    $skip-overrides: (button, button-toggle, checkbox, form-field, icon-button, menu, select)
   );
   @include atlasng-hra.base-styles();
 
