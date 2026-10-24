@@ -124,6 +124,18 @@ $panel-background: vars.$background;
   --hra-scroll-overflow-fade-color: #{$panel-background};
 }
 
+// Fullscreen views use the panels' 16px inset: the title on the 16px line, the close button's icon on the 16px line
+// at the right, 8px above and below the 56px header, and 16px of space below the content
+::ng-deep .hra-app .fullscreen-panel {
+  .header {
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+  }
+
+  .content {
+    height: calc(100vh - 4.5rem);
+  }
+}
+
 // The Info submenus hold a paragraph of text rather than menu items
 ::ng-deep div.mat-mdc-menu-panel.info-sub-menu .mat-mdc-menu-content {
   padding: 0.75rem 1rem;
