@@ -48,6 +48,7 @@ import {
   updateChartTheme,
   watchColorScheme,
 } from '../../shared/chart-theme';
+import { setUpChartTooltips } from '../../shared/chart-tooltip';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
@@ -258,6 +259,7 @@ export class HistogramComponent {
       actions: false,
     });
 
+    setUpChartTooltips(view);
     onCleanup(finalize);
     this.view.set(view);
   });

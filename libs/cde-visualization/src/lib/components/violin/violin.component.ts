@@ -37,6 +37,7 @@ import {
   updateChartTheme,
   watchColorScheme,
 } from '../../shared/chart-theme';
+import { setUpChartTooltips } from '../../shared/chart-tooltip';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
 
@@ -240,6 +241,7 @@ export class ViolinComponent {
       actions: false,
     });
 
+    setUpChartTooltips(view);
     onCleanup(finalize);
     this.view.set(view);
   });
