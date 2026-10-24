@@ -6,8 +6,12 @@
   display: block;
   overflow: hidden;
   height: 100%;
-  border: 0.0625rem solid vars.$outline;
-  border-radius: 0.5rem;
+  // Colors and type read AtlasNG table tokens (--ang-table-*) when an app sets them
+  $border-color: var(--ang-table-border-color, #{vars.$outline});
+  $sort-indicator-color: var(--ang-table-sort-indicator-color, #{vars.$secondary});
+
+  border: 0.0625rem solid $border-color;
+  border-radius: var(--ang-table-border-radius, 0.5rem);
 
   .vertical-divider th:not(:first-child),
   .vertical-divider td:not(:first-child) {
@@ -19,13 +23,12 @@
       background-color: transparent,
 
       header-container-height: 2.5rem,
-      header-headline-color: vars.$secondary,
-      header-headline-font: vars.$label-medium-font,
-      header-headline-line-height: vars.$label-medium-line-height,
-      header-headline-size: vars.$label-medium-size,
-      header-headline-tracking: vars.$label-medium-tracking,
-      header-headline-weight: vars.$label-medium-weight,
-
+      header-headline-color: var(--ang-table-header-text-color, #{vars.$secondary}),
+      header-headline-font: var(--ang-table-header-text-font, #{vars.$label-medium-font}),
+      header-headline-line-height: var(--ang-table-header-text-line-height, #{vars.$label-medium-line-height}),
+      header-headline-size: var(--ang-table-header-text-size, #{vars.$label-medium-size}),
+      header-headline-tracking: var(--ang-table-header-text-tracking, #{vars.$label-medium-tracking}),
+      header-headline-weight: var(--ang-table-header-text-weight, #{vars.$label-medium-weight}),
       footer-container-height: 2.5rem,
       footer-supporting-text-font: vars.$label-medium-font,
       footer-supporting-text-line-height: vars.$label-medium-line-height,
@@ -34,19 +37,19 @@
       footer-supporting-text-weight: vars.$label-medium-weight,
 
       row-item-container-height: 2.5rem,
-      row-item-label-text-color: vars.$primary,
-      row-item-label-text-font: vars.$label-medium-font,
-      row-item-label-text-line-height: vars.$label-medium-line-height,
-      row-item-label-text-size: vars.$label-medium-size,
-      row-item-label-text-tracking: vars.$label-medium-tracking,
-      row-item-label-text-weight: vars.$label-medium-weight,
+      row-item-label-text-color: var(--ang-table-cell-text-color, #{vars.$primary}),
+      row-item-label-text-font: var(--ang-table-cell-text-font, #{vars.$label-medium-font}),
+      row-item-label-text-line-height: var(--ang-table-cell-text-line-height, #{vars.$label-medium-line-height}),
+      row-item-label-text-size: var(--ang-table-cell-text-size, #{vars.$label-medium-size}),
+      row-item-label-text-tracking: var(--ang-table-cell-text-tracking, #{vars.$label-medium-tracking}),
+      row-item-label-text-weight: var(--ang-table-cell-text-weight, #{vars.$label-medium-weight}),
       row-item-outline-width: 0px,
     )
   );
 
   @include mat.sort-overrides(
     (
-      arrow-color: vars.$secondary,
+      arrow-color: $sort-indicator-color,
     )
   );
 
@@ -62,7 +65,7 @@
       inset: 0;
       border-radius: 0.25rem;
       z-index: -1;
-      background-color: utils.with-alpha(vars.$secondary, 12%);
+      background-color: utils.with-alpha(var(--ang-table-header-state-layer-color, #{vars.$secondary}), 12%);
     }
 
     ::ng-deep .mat-focus-indicator {
@@ -78,7 +81,7 @@
 
   th[mat-sort-header] {
     ::ng-deep .mat-sort-header-arrow {
-      color: vars.$secondary;
+      color: $sort-indicator-color;
     }
   }
 
@@ -136,8 +139,8 @@
   &.hra-table-variant-alternating {
     @include mat.table-overrides(
       (
-        background-color: vars.$on-primary,
-        row-item-outline-color: vars.$outline-variant,
+        background-color: var(--ang-table-cell-background-color, #{vars.$on-primary}),
+        row-item-outline-color: var(--ang-table-border-color, #{vars.$outline-variant}),
         row-item-outline-width: 0.0625rem,
       )
     );
@@ -147,10 +150,10 @@
     }
 
     ::ng-deep thead {
-      background-color: vars.$surface-container;
+      background-color: var(--ang-table-header-background-color, #{vars.$surface-container});
 
       th {
-        border-bottom: 0.0625rem solid vars.$outline;
+        border-bottom: 0.0625rem solid $border-color;
         padding-bottom: 0.5rem;
         padding-top: 0.5rem;
         vertical-align: bottom;
@@ -179,7 +182,7 @@
 
   &.hra-table-variant-alternating {
     ::ng-deep tbody tr:nth-child(even) {
-      background-color: vars.$surface-bright;
+      background-color: var(--ang-table-striped-row-background-color, #{vars.$surface-bright});
     }
   }
 }

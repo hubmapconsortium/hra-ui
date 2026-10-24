@@ -277,4 +277,40 @@ html {
     --ang-table-of-contents-item-tracking: #{vars.$body-medium-tracking};
     --ang-table-of-contents-active-item-background-color: #{vars.$primary-container};
   }
+
+  // Tables match AtlasNG's striped table: outline borders, an on-surface title small header on surface-variant,
+  // and on-surface-variant body medium cells on a transparent background, striped with surface-container-low
+  hra-table {
+    --ang-table-border-color: #{vars.$outline};
+    --ang-table-border-radius: #{vars.$corner-small};
+    --ang-table-header-background-color: #{vars.$surface-variant};
+    --ang-table-header-state-layer-color: #{vars.$on-surface-variant};
+    --ang-table-header-text-color: #{vars.$on-surface};
+    --ang-table-header-text-font: #{vars.$title-small-font};
+    --ang-table-header-text-size: #{vars.$title-small-size};
+    --ang-table-header-text-weight: #{vars.$title-small-weight};
+    --ang-table-header-text-line-height: #{vars.$title-small-line-height};
+    --ang-table-header-text-tracking: #{vars.$title-small-tracking};
+    --ang-table-cell-background-color: transparent;
+    --ang-table-cell-text-color: #{vars.$on-surface-variant};
+    --ang-table-cell-text-font: #{vars.$body-medium-font};
+    --ang-table-cell-text-size: #{vars.$body-medium-size};
+    --ang-table-cell-text-weight: #{vars.$body-medium-weight};
+    --ang-table-cell-text-line-height: #{vars.$body-medium-line-height};
+    --ang-table-cell-text-tracking: #{vars.$body-medium-tracking};
+    --ang-table-sort-indicator-color: #{vars.$on-surface-variant};
+    --ang-table-striped-row-background-color: #{vars.$surface-container-low};
+  }
+
+  // Result counts match AtlasNG's results indicator, at the height of the search field beside them.
+  // AtlasNG sets label large, which matches title small in the AtlasNG HRA type scale.
+  hra-results-indicator {
+    --hra-results-indicator-height: 3.5rem;
+    padding: 0.5rem 1rem;
+    border-color: vars.$outline-variant;
+    border-radius: vars.$corner-small;
+    background-color: vars.$surface-bright;
+    color: vars.$on-surface-variant;
+    @include utils.use-font(title, small);
+  }
 }
