@@ -1,13 +1,10 @@
 $schema: ../../../../src/app/schemas/content-page/content-page.schema.json
 title: Spatial Omics Gallery
-subtitle: Collection of all cell distance distributions of spatial omics datasets.
+subtitle: |
+  This gallery showcases a collection of cell feature tables from single-cell spatial omics—spatial proteomics and spatial
+  transcriptomics—datasets collected by the Human Reference Atlas team and processed and visualized in the Cell Distance Explorer.
 icons: product:cde
 headerContent:
-  - component: Markdown
-    data: |
-      This gallery showcases a collection of cell feature tables from single-cell spatial omics—spatial proteomics and spatial
-      transcriptomics—datasets collected by the Human Reference Atlas team and processed and visualized in the Cell Distance Explorer.
-
   - component: Button
     label: Publication
     href: 'https://doi.org/10.1101/2025.09.23.678129'
