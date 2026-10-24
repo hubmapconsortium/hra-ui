@@ -156,6 +156,26 @@ html {
     @include utils.use-font(title, small);
   }
 
+  // The header matches AtlasNG's header shell: a flat surface-variant bar at 80%, AtlasNG's side padding,
+  // and an on-surface focus outline on the logo (with small corners) and icon buttons
+  hra-header {
+    --ang-header-shell-container-color: #{utils.with-alpha(vars.$surface-variant, 80%)};
+    --hra-header-shadow: none;
+    --hra-header-padding: 0 0.25rem;
+
+    @media (min-width: 960px) {
+      --hra-header-padding: 0 0.5rem;
+    }
+
+    hra-brand-logo .logo {
+      border-radius: vars.$corner-small;
+    }
+
+    :is(hra-brand-logo .logo, .mat-mdc-icon-button):focus-visible {
+      outline: 0.125rem solid vars.$on-surface;
+    }
+  }
+
   // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
   // with on-surface links and on-surface-variant for the rest
   hra-breadcrumbs {
