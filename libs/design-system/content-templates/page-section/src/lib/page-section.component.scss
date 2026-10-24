@@ -1,12 +1,16 @@
-@use '../../../../styles/utils';
 @use '../../../../styles/vars' as vars;
 
 :host {
   display: block;
 
+  // Type and color read AtlasNG content section tokens (--ang-content-section-*) when an app sets them
   .content {
-    @include utils.use-font(body, xl);
-    color: vars.$primary;
+    font-family: var(--ang-content-section-font, #{vars.$body-xl-font});
+    font-size: var(--ang-content-section-size, #{vars.$body-xl-size});
+    font-weight: var(--ang-content-section-weight, #{vars.$body-xl-weight});
+    line-height: var(--ang-content-section-line-height, #{vars.$body-xl-line-height});
+    letter-spacing: var(--ang-content-section-tracking, #{vars.$body-xl-tracking});
+    color: var(--ang-content-section-color, #{vars.$primary});
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
