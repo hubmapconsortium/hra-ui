@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use 'atlasng-hra';
 @use 'theming';
 @use 'utils';
@@ -21,6 +22,17 @@ html {
     -moz-appearance: textfield; /* Firefox */
   }
 
+  // Text links match AtlasNG's text links: underlined on-surface at a weight of 600
+  & {
+    --ang-text-link-color: #{vars.$on-surface};
+  }
+
+  a.hra-text-hyperlink,
+  button.hra-text-button,
+  markdown a {
+    font-weight: 600;
+  }
+
   // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
   // with on-surface links and on-surface-variant for the rest
   hra-breadcrumbs {
@@ -31,7 +43,33 @@ html {
     --ang-breadcrumbs-text-weight: 600;
     --ang-breadcrumbs-text-line-height: #{vars.$body-small-line-height};
     --ang-breadcrumbs-text-tracking: #{vars.$body-small-tracking};
-    --ang-text-link-color: #{vars.$on-surface};
+  }
+
+  // Snackbars match AtlasNG and default Material: inverse-on-surface body medium text, level 3 elevation,
+  // and an inverse-on-surface close button. The shared snackbar sets surface text, label medium type,
+  // and a tinted shadow. The overlay container also carries .hra-app, so these reach the snackbar.
+  .hra-snackbar-panel {
+    @include mat.snack-bar-overrides(
+      (
+        supporting-text-color: vars.$inverse-on-surface,
+      )
+    );
+
+    .mat-mdc-snackbar-surface {
+      box-shadow: var(--mat-sys-level3);
+    }
+
+    hra-snackbar {
+      @include utils.use-font(body, medium);
+    }
+
+    button[mat-icon-button] {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$inverse-on-surface,
+        )
+      );
+    }
   }
 
   hra-footer {
