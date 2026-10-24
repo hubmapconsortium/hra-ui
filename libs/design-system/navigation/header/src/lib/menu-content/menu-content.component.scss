@@ -45,8 +45,14 @@ $item-vertical-padding: 0.375rem;
     color: var(--hra-header-menu-supporting-text-color, #{vars.$on-primary-fixed});
   }
 
+  .group-description {
+    font: var(--hra-header-menu-description-font, #{vars.$label-medium});
+    letter-spacing: var(--hra-header-menu-description-tracking, #{vars.$label-medium-tracking});
+  }
+
   .subgroup-label {
-    @include utils.use-font(label, small);
+    font: var(--hra-header-menu-section-label-font, #{vars.$label-small});
+    letter-spacing: var(--hra-header-menu-section-label-tracking, #{vars.$label-small-tracking});
   }
 
   .subgroup-items {

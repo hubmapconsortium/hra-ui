@@ -15,6 +15,8 @@
     padding: 0 $padding;
     align-content: center;
     color: var(--hra-header-menu-supporting-text-color, #{vars.$on-primary-fixed});
+    font: var(--hra-header-menu-section-label-font, #{vars.$label-medium});
+    letter-spacing: var(--hra-header-menu-section-label-tracking, #{vars.$label-medium-tracking});
   }
 
   .group-items {

@@ -40,13 +40,15 @@
     .tagline {
       grid-area: tagline;
       color: var(--hra-app-nav-button-tagline-color, #{vars.$secondary});
-      @include utils.use-font('label', 'large');
+      font: var(--hra-app-nav-button-tagline-font, #{vars.$label-large});
+      letter-spacing: var(--hra-app-nav-button-tagline-tracking, #{vars.$label-large-tracking});
     }
 
     .description {
       grid-area: description;
       color: var(--hra-app-nav-button-description-color, #{vars.$inverse-surface});
-      @include utils.use-font('label', 'medium');
+      font: var(--hra-app-nav-button-description-font, #{vars.$label-medium});
+      letter-spacing: var(--hra-app-nav-button-description-tracking, #{vars.$label-medium-tracking});
     }
   }
 }
