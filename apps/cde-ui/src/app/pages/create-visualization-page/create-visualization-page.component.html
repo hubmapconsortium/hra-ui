@@ -35,27 +35,20 @@
       </a>
     </div>
     <div class="requirements" role="group" aria-label="Data upload requirements">
-      <div class="requirement-group">
-        <span class="requirement-label" id="data-required-columns">Required columns</span>
-        <ul class="requirement-list" aria-labelledby="data-required-columns">
-          <li>X</li>
-          <li>Y</li>
-          <li>Cell type</li>
-        </ul>
-      </div>
-      <div class="requirement-group">
-        <span class="requirement-label" id="data-optional-columns">Optional columns</span>
-        <ul class="requirement-list" aria-labelledby="data-optional-columns">
-          <li>Z</li>
-          <li>Cell ontology ID</li>
-        </ul>
-      </div>
-      <div class="requirement-group">
-        <span class="requirement-label" id="data-supported-format">Supported format</span>
-        <ul class="requirement-list" aria-labelledby="data-supported-format">
-          <li>CSV</li>
-        </ul>
-      </div>
+      <dl>
+        <div class="requirement">
+          <dt>Required columns</dt>
+          <dd>X, Y, cell type</dd>
+        </div>
+        <div class="requirement">
+          <dt>Optional columns</dt>
+          <dd>Z, cell ontology ID</dd>
+        </div>
+        <div class="requirement">
+          <dt>Supported format</dt>
+          <dd>CSV</dd>
+        </div>
+      </dl>
     </div>
 
     <cde-file-upload
@@ -90,7 +83,7 @@
     }
 
     <div class="required-headers">
-      <span class="subheader">Required: Verify column headers</span>
+      <span class="subheader"><strong>Required:</strong> Verify column headers</span>
 
       <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="x-axis-selector">
         <mat-label>X axis</mat-label>
@@ -154,7 +147,7 @@
     }
 
     <div class="optional-headers">
-      <span class="subheader">Optional: Add column headers</span>
+      <span class="subheader"><strong>Optional:</strong> Add column headers</span>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="z-axis-selector">
         <mat-label>Z axis</mat-label>
@@ -383,19 +376,16 @@
 
     @if (useCustomColorMap) {
       <div class="requirements" role="group" aria-label="Custom color map requirements">
-        <div class="requirement-group">
-          <span class="requirement-label" id="color-required-columns">Required columns</span>
-          <ul class="requirement-list" aria-labelledby="color-required-columns">
-            <li>Cell type</li>
-            <li>Cell color</li>
-          </ul>
-        </div>
-        <div class="requirement-group">
-          <span class="requirement-label" id="color-supported-format">Supported format</span>
-          <ul class="requirement-list" aria-labelledby="color-supported-format">
-            <li>CSV</li>
-          </ul>
-        </div>
+        <dl>
+          <div class="requirement">
+            <dt>Required columns</dt>
+            <dd>Cell type, cell color</dd>
+          </div>
+          <div class="requirement">
+            <dt>Supported format</dt>
+            <dd>CSV</dd>
+          </div>
+        </dl>
       </div>
       <cde-file-upload
         class="upload-colormap"
