@@ -13,6 +13,14 @@
     )
   );
 
+  // Checkbox state layers match the 2rem checkbox cells (Material's density -2), so the hover and focus circles
+  // aren't clipped at the edge of the scroll area
+  @include mat.checkbox-overrides(
+    (
+      state-layer-size: 2rem,
+    )
+  );
+
   // All table text uses on-surface-variant
   @include mat.table-overrides(
     (
