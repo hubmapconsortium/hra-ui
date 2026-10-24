@@ -9,6 +9,7 @@ import {
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
+import { provideCustomScrollOptions } from '@hra-ui/common/custom-scroll';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
@@ -64,6 +65,9 @@ export const appConfig: ApplicationConfig = {
       CopyEmailButtonDef,
       StudiesGridDef,
     ]),
+    // Page changes jump to the top instead of animating with the design system's smooth scrolling.
+    // hubmapconsortium/hra-ui#2361 tracks the fix for every HRA app.
+    provideCustomScrollOptions({ instantNavigation: true }),
     provideDesignSystem(),
     provideEnvironmentInitializer(() => {
       inject(IconConfigRegistryService).setIconConfig('cde', 'product', CDE_LOGO_CONFIG);
