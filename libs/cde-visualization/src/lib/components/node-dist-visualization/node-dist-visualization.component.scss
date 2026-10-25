@@ -56,6 +56,11 @@
   }
 }
 
+// Positions the empty state over the visualization, docked and fullscreen
+hra-fullscreen-portal-content {
+  position: relative;
+}
+
 ::ng-deep div.node-dist-vis-fullscreen-panel {
   --mat-dialog-container-color: black;
 

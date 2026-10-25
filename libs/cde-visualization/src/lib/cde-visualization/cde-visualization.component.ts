@@ -1,4 +1,4 @@
-import { FocusOrigin } from '@angular/cdk/a11y';
+import { FocusOrigin, LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -51,7 +51,12 @@ import {
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { DownloadsComponent } from '../components/downloads/downloads.component';
-import { DownloadRequest } from '../components/downloads/downloads.content';
+import { DOWNLOADS_CONTENT, DownloadRequest, UnavailableDownloads } from '../components/downloads/downloads.content';
+import {
+  EmptyStateContent,
+  NO_CELL_TYPES_SELECTED_CONTENT,
+  noDistancesContent,
+} from '../components/empty-state/empty-state.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
@@ -355,6 +360,48 @@ export class CdeVisualizationComponent {
     { equal: emptyArrayEquals },
   );
 
+  /** Whether the cell types have loaded and none of them are selected, so every panel is empty */
+  private readonly noCellTypesSelected = computed(
+    () => this.cellTypes().length > 0 && this.cellTypesSelection().length === 0,
+  );
+
+  /**
+   * Whether there are cell types besides the anchor type but none of them are selected.
+   * The charts leave the anchor type out, so they have no distances to show.
+   */
+  private readonly noDistancesSelected = computed(() => {
+    const anchor = this.nodeTargetSelectorWithDefault();
+    return this.cellTypes().some(({ name }) => name !== anchor) && this.filteredCellTypes().length === 0;
+  });
+
+  /** Empty state for the distance visualization */
+  protected readonly visualizationEmptyState = computed(() =>
+    this.noCellTypesSelected() ? NO_CELL_TYPES_SELECTED_CONTENT : undefined,
+  );
+
+  /** Empty state for the violin graph and histogram */
+  protected readonly chartsEmptyState = computed((): EmptyStateContent | undefined => {
+    if (this.noCellTypesSelected()) {
+      return NO_CELL_TYPES_SELECTED_CONTENT;
+    } else if (this.noDistancesSelected()) {
+      return noDistancesContent(this.nodeTargetSelectorWithDefault());
+    }
+    return undefined;
+  });
+
+  /** Files that would be empty with the current selection, so the downloads drawer disables them */
+  protected readonly unavailableDownloads = computed((): UnavailableDownloads | undefined => {
+    const { unavailable, groups } = DOWNLOADS_CONTENT;
+    if (this.noCellTypesSelected()) {
+      const files = groups.flatMap((group) => group.files.map((file) => file.id));
+      return { files, notice: unavailable.noCellTypes };
+    } else if (this.noDistancesSelected()) {
+      const notice = unavailable.noDistances(this.nodeTargetSelectorWithDefault());
+      return { files: ['violin-graph', 'histogram'], notice };
+    }
+    return undefined;
+  });
+
   /** Computed distances between nodes */
   protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
 
@@ -369,6 +416,9 @@ export class CdeVisualizationComponent {
 
   /** Renderer used to toggle inert on the content behind the downloads drawer */
   private readonly renderer = inject(Renderer2);
+
+  /** Announces the charts' empty state to screen readers */
+  private readonly liveAnnouncer = inject(LiveAnnouncer);
 
   /** Downloads drawer */
   private readonly downloadsDrawer = viewChild.required(MatDrawer);
@@ -400,6 +450,14 @@ export class CdeVisualizationComponent {
       this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
     });
 
+    // Announced once here, not by each panel's empty state
+    effect(() => {
+      const emptyState = this.chartsEmptyState();
+      if (emptyState) {
+        this.liveAnnouncer.announce(`${emptyState.heading}. ${emptyState.description}`);
+      }
+    });
+
     // Connect outputs
     this.bindDataOutput(this.nodesView, this.nodesChange);
     this.bindDataOutput(this.edgesView, this.edgesChange);
@@ -409,6 +467,11 @@ export class CdeVisualizationComponent {
   /** Reset cell types */
   resetCellTypes(): void {
     this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
+  }
+
+  /** Selects every cell type, like the cell types table's select all checkbox */
+  selectAllCellTypes(): void {
+    this.cellTypesSelection.set(this.cellTypes().map((entry) => entry.name));
   }
 
   /** Update the color of a specific cell type entry */
@@ -444,6 +507,10 @@ export class CdeVisualizationComponent {
 
   /** Downloads the requested file */
   async handleDownload({ file, format }: DownloadRequest): Promise<void> {
+    if (this.unavailableDownloads()?.files.includes(file)) {
+      return;
+    }
+
     switch (file) {
       case 'cells':
         return this.downloadNodes();

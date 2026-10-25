@@ -35,7 +35,16 @@
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content>
-      <hra-node-dist-vis cdkOverlayOrigin class="vis" data-testid="node-dist-vis" #cellInfoOrigin="cdkOverlayOrigin" />
+      <hra-node-dist-vis
+        cdkOverlayOrigin
+        class="vis"
+        data-testid="node-dist-vis"
+        [attr.inert]="emptyState() ? '' : null"
+        #cellInfoOrigin="cdkOverlayOrigin"
+      />
+      @if (emptyState(); as content) {
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>

@@ -28,8 +28,12 @@
         style="height: 100%; width: 100%"
         data-testid="histogram"
         hraFeature="histogram-chart"
+        [attr.inert]="emptyState() ? '' : null"
         #histogram
       ></div>
+      @if (emptyState(); as content) {
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>

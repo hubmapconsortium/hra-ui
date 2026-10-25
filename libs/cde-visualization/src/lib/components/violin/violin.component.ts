@@ -9,6 +9,7 @@ import {
   ElementRef,
   inject,
   input,
+  output,
   PendingTasks,
   Renderer2,
   signal,
@@ -40,6 +41,8 @@ import {
   watchColorScheme,
 } from '../../shared/chart-theme';
 import { setUpChartTooltips } from '../../shared/chart-tooltip';
+import { EmptyStateComponent } from '../empty-state/empty-state.component';
+import { EmptyStateContent } from '../empty-state/empty-state.content';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 import * as VIOLIN_FULLSCREEN_OVERRIDES from './violin-fullscreen.vl.json';
 import * as VIOLIN_SPEC from './violin.vl.json';
@@ -165,6 +168,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     FullscreenPortalContentComponent,
     FullscreenActionsComponent,
     ViolinMenuComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
@@ -179,6 +183,12 @@ export class ViolinComponent {
 
   /** Colors for the violin visualization */
   readonly colors = input.required<string[]>();
+
+  /** Empty state shown in place of the violins, or undefined when there are distances to show */
+  readonly emptyState = input<EmptyStateContent>();
+
+  /** Emits when the empty state's action is clicked */
+  readonly emptyStateAction = output<void>();
 
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);

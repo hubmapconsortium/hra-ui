@@ -50,6 +50,8 @@ import {
 } from '../../shared/chart-theme';
 import { setUpChartTooltips } from '../../shared/chart-tooltip';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { EmptyStateComponent } from '../empty-state/empty-state.component';
+import { EmptyStateContent } from '../empty-state/empty-state.content';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
@@ -146,6 +148,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     FullscreenPortalContentComponent,
     FullscreenActionsComponent,
     HistogramMenuComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './histogram.component.html',
   styleUrl: './histogram.component.scss',
@@ -170,6 +173,12 @@ export class HistogramComponent {
 
   /** Cell types to use for the visualization */
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
+
+  /** Empty state shown in place of the histogram, or undefined when there are distances to show */
+  readonly emptyState = input<EmptyStateContent>();
+
+  /** Emits when the empty state's action is clicked */
+  readonly emptyStateAction = output<void>();
 
   /** Toggles full screen mode */
   protected readonly fullscreen = signal(false);
@@ -247,7 +256,9 @@ export class HistogramComponent {
 
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(async (onCleanup) => {
-    const el = this.histogramEl().rootNodes()[0];
+    // vega-embed clears the element it embeds into, so it gets the chart's own element and leaves the empty state alone
+    const container: HTMLElement = this.histogramEl().rootNodes()[0];
+    const el = container.querySelector('.histogram') as HTMLElement;
     const theme = untracked(this.theme);
     await this.ensureFontsLoaded(theme.font);
 

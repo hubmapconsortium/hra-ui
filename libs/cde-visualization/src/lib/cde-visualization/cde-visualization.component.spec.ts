@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
@@ -19,6 +20,7 @@ import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
 import embed, { Result } from 'vega-embed';
 import { DOWNLOADS_CONTENT, DownloadRequest } from '../components/downloads/downloads.content';
+import { NO_CELL_TYPES_SELECTED_CONTENT, noDistancesContent } from '../components/empty-state/empty-state.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ViolinComponent } from '../components/violin/violin.component';
@@ -191,6 +193,102 @@ describe('CdeVisualizationComponent', () => {
 
         await fixture.componentInstance.downloadColorMap();
         expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'color-map.csv');
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('empty states', () => {
+    const { heading, description, actionLabel } = NO_CELL_TYPES_SELECTED_CONTENT;
+
+    it(
+      'shows no empty states while cell types are selected',
+      async () => {
+        await setup();
+
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows an empty state in every visualization panel when no cell types are selected',
+      async () => {
+        const { fixture } = await setup();
+        const announce = jest.spyOn(TestBed.inject(LiveAnnouncer), 'announce');
+        fixture.componentInstance.cellTypesSelection.set([]);
+        fixture.detectChanges();
+
+        expect(screen.getAllByText(heading)).toHaveLength(3);
+        expect(announce).toHaveBeenCalledTimes(1);
+        expect(announce).toHaveBeenCalledWith(`${heading}. ${description}`);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'selects every cell type from an empty state',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        instance.cellTypesSelection.set([]);
+        fixture.detectChanges();
+
+        fireEvent.click(screen.getAllByRole('button', { name: actionLabel })[0]);
+        fixture.detectChanges();
+
+        expect(instance.cellTypesSelection()).toEqual(instance.cellTypes().map(({ name }) => name));
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows an empty state in the charts only when just the anchor cell type is selected',
+      async () => {
+        const { fixture } = await setup({ inputs: { nodeTargetSelector: 'epithelial' } });
+        fixture.componentInstance.cellTypesSelection.set(['epithelial']);
+        fixture.detectChanges();
+
+        expect(screen.getAllByText(noDistancesContent('epithelial').heading)).toHaveLength(2);
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables every download when no cell types are selected',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const downloadNodes = jest.spyOn(instance, 'downloadNodes').mockResolvedValue();
+        instance.cellTypesSelection.set([]);
+        fixture.detectChanges();
+
+        const files = DOWNLOADS_CONTENT.groups.flatMap((group) => group.files).map(({ id }) => id);
+        expect(instance['unavailableDownloads']()).toEqual({
+          files,
+          notice: DOWNLOADS_CONTENT.unavailable.noCellTypes,
+        });
+
+        await instance.handleDownload({ file: 'cells', format: 'csv' });
+        expect(downloadNodes).not.toHaveBeenCalled();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the chart downloads when just the anchor cell type is selected',
+      async () => {
+        const { fixture } = await setup({ inputs: { nodeTargetSelector: 'epithelial' } });
+        const instance = fixture.componentInstance;
+        instance.cellTypesSelection.set(['epithelial']);
+        fixture.detectChanges();
+
+        expect(instance['unavailableDownloads']()).toEqual({
+          files: ['violin-graph', 'histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.noDistances('epithelial'),
+        });
       },
       TIMEOUT,
     );

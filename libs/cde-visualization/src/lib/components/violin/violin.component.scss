@@ -34,6 +34,11 @@
   }
 }
 
+// Positions the empty state over the violins, docked and fullscreen
+hra-fullscreen-portal-content {
+  position: relative;
+}
+
 ::ng-deep hra-fullscreen-portal-content {
   display: flex;
 

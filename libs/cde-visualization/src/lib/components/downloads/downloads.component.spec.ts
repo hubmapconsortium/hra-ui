@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { DownloadsComponent } from './downloads.component';
-import { DOWNLOADS_CONTENT } from './downloads.content';
+import { DOWNLOADS_CONTENT, UnavailableDownloads } from './downloads.content';
 
 describe('DownloadsComponent', () => {
   const files = DOWNLOADS_CONTENT.groups.flatMap((group) => group.files);
@@ -67,6 +67,43 @@ describe('DownloadsComponent', () => {
 
     fireEvent.click(screen.getByRole('button', { name: DOWNLOADS_CONTENT.closeLabel }));
     expect(closeClick).toHaveBeenCalledWith('keyboard');
+  });
+
+  describe('unavailable files', () => {
+    const unavailable: UnavailableDownloads = { files: ['violin-graph', 'histogram'], notice: 'Charts are empty.' };
+
+    it('should disable only the unavailable files', async () => {
+      await render(DownloadsComponent, { inputs: { unavailable } });
+
+      for (const { file, format } of formats) {
+        const button = screen.getByRole('button', { name: format.ariaLabel });
+        if (unavailable.files.includes(file.id)) {
+          expect(button).toBeDisabled();
+        } else {
+          expect(button).toBeEnabled();
+        }
+      }
+    });
+
+    it('should show the notice and describe the drawer with it', async () => {
+      const { fixture } = await render(DownloadsComponent, { inputs: { unavailable } });
+      const { descriptionId, unavailableNoticeId } = fixture.componentInstance;
+
+      expect(fixture.nativeElement.querySelector(`#${unavailableNoticeId}`)).toHaveTextContent(unavailable.notice);
+      expect(fixture.componentInstance.describedBy()).toEqual(`${descriptionId} ${unavailableNoticeId}`);
+    });
+
+    it('should not show the notice when every file is available', async () => {
+      const { fixture } = await render(DownloadsComponent);
+      const { descriptionId, unavailableNoticeId } = fixture.componentInstance;
+
+      expect(fixture.nativeElement.querySelector(`#${unavailableNoticeId}`)).toBeNull();
+      expect(fixture.componentInstance.describedBy()).toEqual(descriptionId);
+    });
+
+    it('should name the anchor cell type in the no distances notice', () => {
+      expect(DOWNLOADS_CONTENT.unavailable.noDistances('Endothelial')).toContain('Endothelial');
+    });
   });
 
   it('should give each instance a unique title id', async () => {
