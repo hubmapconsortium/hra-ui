@@ -58,10 +58,11 @@
   width: 100%;
   height: 100%;
 
-  // Block layout leaves no line gap below the chart, unlike vega-embed's inline-block,
+  // Block layout leaves no line gap below the chart, unlike vega-embed's inline-block and inline SVG,
   // so the chart fills its container exactly and the fullscreen view doesn't scroll
   &.vega-embed,
-  canvas {
+  canvas,
+  svg {
     display: block;
   }
 
