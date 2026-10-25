@@ -34,8 +34,9 @@
             }
           }
 
+          // Fills the panel below the 56px header, so no strip of the black background shows below the visualization
           .content {
-            height: calc(100% - 4rem + 2px);
+            height: calc(100% - 3.5rem);
 
             .expansion-body {
               height: 100%;
@@ -63,6 +64,11 @@ hra-fullscreen-portal-content {
 
 ::ng-deep div.node-dist-vis-fullscreen-panel {
   --mat-dialog-container-color: black;
+
+  // The empty state covers the black visualization, so the 16px below it matches the panel background too
+  &:has(cde-empty-state) {
+    --mat-dialog-container-color: #{vars.$background};
+  }
 
   // Matches the panel background used by the other fullscreen views
   .header {
