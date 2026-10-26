@@ -58,6 +58,17 @@ export function formatLength(micrometers: number): string {
 }
 
 /**
+ * Checks whether the view is rotated away from the flat, top-down view
+ *
+ * @param viewState Current state of deckgl
+ * @returns Whether the view is rotated
+ */
+export function isRotated(viewState: object): boolean {
+  const { rotationX, rotationOrbit } = viewState as { rotationX?: number; rotationOrbit?: number };
+  return !!rotationX || !!rotationOrbit;
+}
+
+/**
  * Create the scale bar for the current zoom. Node positions are in micrometers and scaled so the nodes'
  * full extent spans one world unit, and the orbit view draws one world unit as 2^zoom pixels at its target.
  * The bar is hidden while the view is rotated: perspective makes on-screen distances vary across a tilted view,
@@ -70,13 +81,9 @@ export function formatLength(micrometers: number): string {
 export function createScaleBar(nodes: Signal<NodesView>, viewState: Signal<object>): Signal<ScaleBar | undefined> {
   return computed(() => {
     const view = nodes();
-    const { zoom, rotationX, rotationOrbit } = viewState() as {
-      zoom?: number;
-      rotationX?: number;
-      rotationOrbit?: number;
-    };
+    const { zoom } = viewState() as { zoom?: number };
     const micrometersPerPixel = view.getScale() / 2 ** (zoom ?? 0);
-    if (rotationX || rotationOrbit) {
+    if (isRotated(viewState())) {
       return undefined;
     } else if (view.length === 0 || !Number.isFinite(micrometersPerPixel) || micrometersPerPixel <= 0) {
       return undefined;
