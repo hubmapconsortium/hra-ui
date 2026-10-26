@@ -324,11 +324,8 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @returns
    */
   getColor(value: number): string {
-    const { minExpression, maxExpression } = this;
-    const normalized =
-      minExpression !== undefined && maxExpression !== undefined
-        ? this.normalizeMinMaxClamped(value, minExpression, maxExpression)
-        : value;
+    const { minExpression = 0, maxExpression = 0 } = this;
+    const normalized = this.normalizeMinMaxClamped(value, minExpression, maxExpression);
     const { minPercentage, maxPercentage, minValue, maxValue } = this.getMinMaxColor(normalized * 100);
     const progress = this.normalizeMinMaxClamped(normalized * 100, minPercentage, maxPercentage);
     return (
