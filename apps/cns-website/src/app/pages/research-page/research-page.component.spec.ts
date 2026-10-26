@@ -235,8 +235,9 @@ describe('ResearchPageComponent', () => {
       const searchInput = await screen.findByRole('searchbox', { name: /search/i });
       await user.type(searchInput, 'Network Science');
 
-      const results = await screen.findAllByText(/Research on Network Science/i);
+      const results = await screen.findAllByText('A test research description');
       expect(results.length).toBeGreaterThan(0);
+      expect(screen.queryByText('Details about the publication.')).not.toBeInTheDocument();
     });
   });
 
