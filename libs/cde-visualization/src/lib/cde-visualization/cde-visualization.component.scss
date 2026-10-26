@@ -137,31 +137,3 @@ $panel-background: vars.$background;
   color: vars.$on-surface-variant;
   @include utils.use-font(body, medium);
 }
-
-::ng-deep .download-snackbar-panel {
-  translate: 0 -2rem;
-  text-align: center;
-  @include mat.snack-bar-overrides(
-    (
-      container-color: vars.$inverse-surface,
-      supporting-text-color: vars.$surface,
-    )
-  );
-
-  .mdc-snackbar__surface {
-    border-radius: 0.5rem !important;
-    min-width: 13rem !important;
-  }
-
-  button[mat-button][matSnackBarAction] {
-    color: vars.$inverse-primary;
-  }
-
-  button[mat-icon-button] {
-    @include mat.icon-button-overrides(
-      (
-        icon-color: vars.$surface,
-      )
-    );
-  }
-}
