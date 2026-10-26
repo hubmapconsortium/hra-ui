@@ -42,7 +42,7 @@
           @if (element[$index + 2] !== undefined) {
             <ftu-biomarker-table-data-icon
               class="icon"
-              [color]="getColor(normalizeExpression(element[$index + 2].color))"
+              [color]="getColor(element[$index + 2].color)"
               [size]="getSize(element[$index + 2].size)"
             />
           } @else {

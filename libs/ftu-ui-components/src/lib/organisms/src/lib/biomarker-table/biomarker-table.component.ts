@@ -32,6 +32,20 @@ import { BiomarkerTableDataIconComponent } from '../../../../molecules/src';
 type RGBTriplet = [number, number, number];
 
 /**
+ * The two legend entries surrounding a value along with their percentages
+ */
+interface MinMaxResult<T> {
+  /** Percentage of the lower entry */
+  minPercentage: number;
+  /** Percentage of the upper entry */
+  maxPercentage: number;
+  /** Value of the lower entry */
+  minValue: T;
+  /** Value of the upper entry */
+  maxValue: T;
+}
+
+/**
  * An interface representing a single cell of the table.
  */
 export interface DataCell {
@@ -244,14 +258,23 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   }
 
   /**
-   * Computes the relative position (0-1) of a value within a segment
-   * @param value
-   * @param start
-   * @param end
-   * @returns
+   * Scales a value linearly to the range [0, 1] relative to start and end,
+   * clamping values outside the range
+   * @param value Value to scale
+   * @param start Value mapped to 0
+   * @param end Value mapped to 1
+   * @returns The normalized value
    */
-  segmentProgress(value: number, start: number, end: number): number {
-    return end === start ? 0 : (value - start) / (end - start);
+  normalizeMinMaxClamped(value: number, start: number, end: number): number {
+    if (start === end) {
+      return 0;
+    } else if (value < start) {
+      return 0;
+    } else if (value > end) {
+      return 1;
+    }
+
+    return (value - start) / (end - start);
   }
 
   /**
@@ -268,76 +291,50 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
 
   /**
    * Gets Min and Max color grade based on the meanExpression value
-   * @param meanExpression
+   * @param meanExpression Mean expression in the range [0, 100]
    * @returns
    */
-  getMinMaxColor(meanExpression: number): {
-    minColor: RGBTriplet;
-    maxColor: RGBTriplet;
-    minPercentage: number;
-    maxPercentage: number;
-  } {
-    const index = this.gradient.findIndex((item, i, arr) => {
-      return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;
-    });
-
-    const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);
-    const maxColor: RGBTriplet = this.hex2rgb(this.gradient[index + 1].color);
-    const minPercentage: number = this.gradient[index]?.percentage ?? this.gradient[0].percentage;
-    const maxPercentage: number = this.gradient[index + 1].percentage;
-
-    return { minColor, maxColor, minPercentage, maxPercentage };
+  getMinMaxColor(meanExpression: number): MinMaxResult<RGBTriplet> {
+    return this.getMinMax(
+      meanExpression,
+      this.gradient,
+      (item) => item.percentage,
+      (item) => this.hex2rgb(item.color),
+    );
   }
 
   /**
    * Gets Min and Max size grade based on the Percentage value
-   * @param percentage
+   * @param percentage Percentage in the range [0, 1]
    * @returns
    */
-  getMinMaxSize(percentage: number): {
-    minSize: number;
-    maxSize: number;
-    minPercentage: number;
-    maxPercentage: number;
-  } {
-    const index = this.sizes.findIndex((item, i, arr) => {
-      return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;
-    });
-    const minSize: number = this.sizes[index]?.radius;
-    const maxSize: number = this.sizes[index + 1].radius;
-    const minPercentage: number = parseFloat(this.sizes[index]?.label) / 100;
-    const maxPercentage: number = parseFloat(this.sizes[index + 1].label) / 100;
-    return { minSize, maxSize, minPercentage, maxPercentage };
+  getMinMaxSize(percentage: number): MinMaxResult<number> {
+    return this.getMinMax(
+      percentage,
+      this.sizes,
+      (item) => parseFloat(item.label) / 100,
+      (item) => item.radius,
+    );
   }
 
   /**
-   * Scales a mean expression value linearly to the range [0, 1] using the
-   * min and max expression of the current view
+   * Calculates the color of this value on this gradient. The value is first
+   * scaled using the min and max expression of the current view, if available
    * @param value Raw mean expression value
-   * @returns The normalized value
-   */
-  normalizeExpression(value: number): number {
-    const { minExpression: min, maxExpression: max } = this;
-    if (min === undefined || max === undefined) {
-      return value;
-    }
-
-    const normalized = this.segmentProgress(value, min, max);
-    return Math.min(Math.max(normalized, 0), 1);
-  }
-
-  /**
-   * Calculates the color of this value on this gradient
-   * @param value
    * @returns
    */
   getColor(value: number): string {
-    const { minColor, maxColor, minPercentage, maxPercentage } = this.getMinMaxColor(value * 100);
-    const progress = this.segmentProgress(value * 100, minPercentage, maxPercentage);
+    const { minExpression, maxExpression } = this;
+    const normalized =
+      minExpression !== undefined && maxExpression !== undefined
+        ? this.normalizeMinMaxClamped(value, minExpression, maxExpression)
+        : value;
+    const { minPercentage, maxPercentage, minValue, maxValue } = this.getMinMaxColor(normalized * 100);
+    const progress = this.normalizeMinMaxClamped(normalized * 100, minPercentage, maxPercentage);
     return (
       '#' +
-      minColor
-        .map((min, index) => this.lerp(progress, min, maxColor[index]))
+      minValue
+        .map((min, index) => this.lerp(progress, min, maxValue[index]))
         .map((component) => {
           const hex = Math.round(component).toString(16);
           return hex.length === 1 ? '0' + hex : hex;
@@ -352,8 +349,8 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @returns
    */
   getSize(value: number): number {
-    const { minSize, maxSize, minPercentage, maxPercentage } = this.getMinMaxSize(value);
-    return this.lerp(this.segmentProgress(value, minPercentage, maxPercentage), minSize, maxSize);
+    const { minPercentage, maxPercentage, minValue, maxValue } = this.getMinMaxSize(value);
+    return this.lerp(this.normalizeMinMaxClamped(value, minPercentage, maxPercentage), minValue, maxValue);
   }
 
   /**
@@ -400,5 +397,40 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   setHoverId(hoverId?: string): void {
     this.highlightedCellId = hoverId ?? '';
     this.rowHover.emit(hoverId);
+  }
+
+  /**
+   * Finds the two consecutive entries surrounding a value. Values outside
+   * the entries are clamped to the first or last segment
+   * @param value Value to look up
+   * @param entries Entries sorted by percentage
+   * @param percentageFn Gets the percentage of an entry
+   * @param valueFn Gets the value of an entry
+   * @returns The surrounding entries' percentages and values
+   */
+  private getMinMax<E, R>(
+    value: number,
+    entries: E[],
+    percentageFn: (entry: E) => number,
+    valueFn: (entry: E) => R,
+  ): MinMaxResult<R> {
+    if (entries.length === 0) {
+      throw new Error('Cannot look up a value without any entries');
+    }
+
+    const lastSegment = Math.max(entries.length - 2, 0);
+    let index = 0;
+    while (index < lastSegment && value > percentageFn(entries[index + 1])) {
+      index++;
+    }
+
+    const entry = entries[index];
+    const nextEntry = entries[Math.min(index + 1, entries.length - 1)];
+    return {
+      minPercentage: percentageFn(entry),
+      maxPercentage: percentageFn(nextEntry),
+      minValue: valueFn(entry),
+      maxValue: valueFn(nextEntry),
+    };
   }
 }

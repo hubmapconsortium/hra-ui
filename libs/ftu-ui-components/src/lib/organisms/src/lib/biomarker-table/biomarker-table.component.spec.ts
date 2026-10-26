@@ -155,13 +155,18 @@ describe('BiomarkerTableComponent', () => {
   it('returns a size - getMinMaxSize function', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.getSize(0.9)).toBeDefined();
-    instance.getMinMaxSize(150);
+    expect(instance.getMinMaxSize(150)).toEqual({ minPercentage: 0.5, maxPercentage: 1, minValue: 0.5, maxValue: 1.0 });
   });
 
   it('returns a color - getMinMaxColor function', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.getColor(0.9)).toBeDefined();
-    instance.getMinMaxColor(150);
+    expect(instance.getMinMaxColor(150)).toEqual({
+      minPercentage: 50,
+      maxPercentage: 100,
+      minValue: [0, 255, 255],
+      maxValue: [255, 255, 255],
+    });
   });
 
   it('interpolates sizes within each breakpoint segment', async () => {
@@ -173,19 +178,45 @@ describe('BiomarkerTableComponent', () => {
     expect(instance.getSize(1)).toBeCloseTo(1.0);
   });
 
-  it('normalizes expression values using the min and max expression', async () => {
+  it('normalizes values to [0, 1] and clamps values outside the range', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    expect(instance.normalizeMinMaxClamped(2, 2, 10)).toBe(0);
+    expect(instance.normalizeMinMaxClamped(6, 2, 10)).toBe(0.5);
+    expect(instance.normalizeMinMaxClamped(10, 2, 10)).toBe(1);
+    expect(instance.normalizeMinMaxClamped(20, 2, 10)).toBe(1);
+    expect(instance.normalizeMinMaxClamped(-5, 2, 10)).toBe(0);
+    expect(instance.normalizeMinMaxClamped(5, 3, 3)).toBe(0);
+  });
+
+  it('scales colors using the min and max expression', async () => {
     const { instance } = await shallow.render({
       bind: { columns: columns, data: data, gradient, sizes, tissueInfo, minExpression: 2, maxExpression: 10 },
     });
-    expect(instance.normalizeExpression(2)).toBe(0);
-    expect(instance.normalizeExpression(6)).toBe(0.5);
-    expect(instance.normalizeExpression(10)).toBe(1);
-    expect(instance.normalizeExpression(20)).toBe(1);
+    expect(instance.getColor(2)).toBe('#00000f');
+    expect(instance.getColor(6)).toBe('#00ffff');
+    expect(instance.getColor(10)).toBe('#ffffff');
+    expect(instance.getColor(20)).toBe('#ffffff');
   });
 
-  it('does not normalize expression values without a range', async () => {
+  it('clamps values outside the gradient and sizes', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
-    expect(instance.normalizeExpression(0.3)).toBe(0.3);
+    expect(instance.getColor(-1)).toBe('#00000f');
+    expect(instance.getColor(1.5)).toBe('#ffffff');
+    expect(instance.getSize(-1)).toBeCloseTo(0.1);
+    expect(instance.getSize(1.5)).toBeCloseTo(1.0);
+  });
+
+  it('uses the only entry when there is a single gradient point', async () => {
+    const { instance } = await shallow.render({
+      bind: { columns: columns, data: data, gradient: [{ color: '#123456', percentage: 0 }], sizes, tissueInfo },
+    });
+    expect(instance.getColor(0.5)).toBe('#123456');
+  });
+
+  it('throws when there are no gradient points', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    instance.gradient = [];
+    expect(() => instance.getMinMaxColor(50)).toThrow();
   });
 
   it('interpolates colors within each gradient segment', async () => {

@@ -115,16 +115,20 @@ export class AggregateBuilder {
   } {
     const { columns, order } = this.sortColumns();
     const rows = this.sortRows(order);
+    if (rows.length === 0) {
+      return { columns, rows };
+    }
+
     const totalCount = rows.reduce((acc, row) => acc + (row[1] ?? 0), 0);
-    let minExpression: number | undefined;
-    let maxExpression: number | undefined;
+    let minExpression = Infinity;
+    let maxExpression = -Infinity;
     for (const entry of this.entries()) {
       const percentage = entry.data.count / totalCount;
       entry.size = entry.data.percentage = percentage;
 
       const { meanExpression } = entry.data;
-      minExpression = Math.min(minExpression ?? meanExpression, meanExpression);
-      maxExpression = Math.max(maxExpression ?? meanExpression, meanExpression);
+      minExpression = Math.min(minExpression, meanExpression);
+      maxExpression = Math.max(maxExpression, meanExpression);
     }
 
     return { columns, rows, minExpression, maxExpression };
