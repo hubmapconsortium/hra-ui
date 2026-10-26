@@ -12,7 +12,7 @@
     "expr": "themeBackground"
   },
   "config": {
-    "font": "Metropolis",
+    "font": "Nunito Sans Variable",
     "padding": {
       "top": 0,
       "right": 16,
@@ -72,23 +72,23 @@
     },
     {
       "name": "themeBackground",
-      "value": "#fcfcfc"
+      "value": "#fcfbfd"
     },
     {
       "name": "themeTitleColor",
-      "value": "#201e3d"
+      "value": "#1a1c1e"
     },
     {
       "name": "themeLabelColor",
-      "value": "#4b4b5e"
+      "value": "#414751"
     },
     {
       "name": "themeGridColor",
-      "value": "#dddddd"
+      "value": "#c1c7d4"
     },
     {
       "name": "themeMarkColor",
-      "value": "#000000"
+      "value": "#1a1c1e"
     }
   ],
   "transform": [
