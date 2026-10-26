@@ -60,18 +60,25 @@ export function formatLength(micrometers: number): string {
 /**
  * Create the scale bar for the current zoom. Node positions are in micrometers and scaled so the nodes'
  * full extent spans one world unit, and the orbit view draws one world unit as 2^zoom pixels at its target.
- * When the view is rotated, the bar measures distances at the target, where the view rotates around.
+ * The bar is hidden while the view is rotated: perspective makes on-screen distances vary across a tilted view,
+ * so a single bar would only be accurate at one point. It comes back once the rotation is reset.
  *
  * @param nodes Nodes view
  * @param viewState Current state of deckgl
- * @returns The scale bar, or undefined when there are no nodes to measure
+ * @returns The scale bar, or undefined when there are no nodes to measure or the view is rotated
  */
 export function createScaleBar(nodes: Signal<NodesView>, viewState: Signal<object>): Signal<ScaleBar | undefined> {
   return computed(() => {
     const view = nodes();
-    const { zoom } = viewState() as { zoom?: number };
+    const { zoom, rotationX, rotationOrbit } = viewState() as {
+      zoom?: number;
+      rotationX?: number;
+      rotationOrbit?: number;
+    };
     const micrometersPerPixel = view.getScale() / 2 ** (zoom ?? 0);
-    if (view.length === 0 || !Number.isFinite(micrometersPerPixel) || micrometersPerPixel <= 0) {
+    if (rotationX || rotationOrbit) {
+      return undefined;
+    } else if (view.length === 0 || !Number.isFinite(micrometersPerPixel) || micrometersPerPixel <= 0) {
       return undefined;
     }
 
