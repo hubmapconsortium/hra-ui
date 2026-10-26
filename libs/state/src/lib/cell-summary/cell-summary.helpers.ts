@@ -107,16 +107,27 @@ export class AggregateBuilder {
    *
    * @returns The finalized rows and columns
    */
-  finalize(): { columns: string[]; rows: CellSummaryAggregateRow[] } {
+  finalize(): {
+    columns: string[];
+    rows: CellSummaryAggregateRow[];
+    minExpression?: number;
+    maxExpression?: number;
+  } {
     const { columns, order } = this.sortColumns();
     const rows = this.sortRows(order);
     const totalCount = rows.reduce((acc, row) => acc + (row[1] ?? 0), 0);
+    let minExpression: number | undefined;
+    let maxExpression: number | undefined;
     for (const entry of this.entries()) {
       const percentage = entry.data.count / totalCount;
       entry.size = entry.data.percentage = percentage;
+
+      const { meanExpression } = entry.data;
+      minExpression = Math.min(minExpression ?? meanExpression, meanExpression);
+      maxExpression = Math.max(maxExpression ?? meanExpression, meanExpression);
     }
 
-    return { columns, rows };
+    return { columns, rows, minExpression, maxExpression };
   }
 
   /**

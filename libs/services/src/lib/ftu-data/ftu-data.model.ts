@@ -99,7 +99,8 @@ export const DATA_FILE_REFERENCE = z.object({
 export const SOURCE_REFERENCE = z.object({
   title: z.string().optional(),
   doi: z.string().optional(),
-  year: z.number(),
+  /** Publication year, or a string such as 'none' */
+  year: z.union([z.number(), z.string()]),
   datasetTitle: z.string(),
   datasetId: z.string(),
   cellType: z.string().optional(),
@@ -164,7 +165,7 @@ export const RAW_DATASETS = z.object({
           label: z.string(),
           description: z.string(),
           authors: z.string().array().optional(),
-          year: z.number().optional(),
+          year: z.union([z.number(), z.string()]).optional(),
           doi: z.string().optional(),
           link: z.string(),
           cell_type_annotation_tool: z.string().optional(),

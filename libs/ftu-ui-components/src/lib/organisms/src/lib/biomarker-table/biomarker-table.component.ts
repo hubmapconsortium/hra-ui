@@ -104,6 +104,12 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Taking input for the radius of the circle and the label to be displayed. */
   @Input() sizes: SizeLegend[] = [];
 
+  /** Smallest mean expression value in the current view, mapped to the start of the gradient */
+  @Input() minExpression?: number;
+
+  /** Largest mean expression value in the current view, mapped to the end of the gradient */
+  @Input() maxExpression?: number;
+
   /** Cell id which is hovered, used for highlighting */
   @Input() highlightedCellId = '';
 
@@ -238,6 +244,17 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   }
 
   /**
+   * Computes the relative position (0-1) of a value within a segment
+   * @param value
+   * @param start
+   * @param end
+   * @returns
+   */
+  segmentProgress(value: number, start: number, end: number): number {
+    return end === start ? 0 : (value - start) / (end - start);
+  }
+
+  /**
    * Converts HexCode to RGB
    * @param hex
    * @returns
@@ -254,15 +271,22 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @param meanExpression
    * @returns
    */
-  getMinMaxColor(meanExpression: number): { minColor: RGBTriplet; maxColor: RGBTriplet } {
+  getMinMaxColor(meanExpression: number): {
+    minColor: RGBTriplet;
+    maxColor: RGBTriplet;
+    minPercentage: number;
+    maxPercentage: number;
+  } {
     const index = this.gradient.findIndex((item, i, arr) => {
       return meanExpression >= item.percentage && meanExpression <= arr[i + 1]?.percentage;
     });
 
     const minColor: RGBTriplet = this.hex2rgb(this.gradient[index]?.color ?? this.gradient[0].color);
     const maxColor: RGBTriplet = this.hex2rgb(this.gradient[index + 1].color);
+    const minPercentage: number = this.gradient[index]?.percentage ?? this.gradient[0].percentage;
+    const maxPercentage: number = this.gradient[index + 1].percentage;
 
-    return { minColor, maxColor };
+    return { minColor, maxColor, minPercentage, maxPercentage };
   }
 
   /**
@@ -270,13 +294,36 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @param percentage
    * @returns
    */
-  getMinMaxSize(percentage: number): { minSize: number; maxSize: number } {
+  getMinMaxSize(percentage: number): {
+    minSize: number;
+    maxSize: number;
+    minPercentage: number;
+    maxPercentage: number;
+  } {
     const index = this.sizes.findIndex((item, i, arr) => {
       return percentage >= parseFloat(item.label) / 100 && percentage <= parseFloat(arr[i + 1]?.label) / 100;
     });
     const minSize: number = this.sizes[index]?.radius;
     const maxSize: number = this.sizes[index + 1].radius;
-    return { minSize, maxSize };
+    const minPercentage: number = parseFloat(this.sizes[index]?.label) / 100;
+    const maxPercentage: number = parseFloat(this.sizes[index + 1].label) / 100;
+    return { minSize, maxSize, minPercentage, maxPercentage };
+  }
+
+  /**
+   * Scales a mean expression value linearly to the range [0, 1] using the
+   * min and max expression of the current view
+   * @param value Raw mean expression value
+   * @returns The normalized value
+   */
+  normalizeExpression(value: number): number {
+    const { minExpression: min, maxExpression: max } = this;
+    if (min === undefined || max === undefined) {
+      return value;
+    }
+
+    const normalized = this.segmentProgress(value, min, max);
+    return Math.min(Math.max(normalized, 0), 1);
   }
 
   /**
@@ -285,11 +332,12 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @returns
    */
   getColor(value: number): string {
-    const { minColor, maxColor } = this.getMinMaxColor(value * 100);
+    const { minColor, maxColor, minPercentage, maxPercentage } = this.getMinMaxColor(value * 100);
+    const progress = this.segmentProgress(value * 100, minPercentage, maxPercentage);
     return (
       '#' +
       minColor
-        .map((min, index) => this.lerp(value, min, maxColor[index]))
+        .map((min, index) => this.lerp(progress, min, maxColor[index]))
         .map((component) => {
           const hex = Math.round(component).toString(16);
           return hex.length === 1 ? '0' + hex : hex;
@@ -304,8 +352,8 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @returns
    */
   getSize(value: number): number {
-    const { minSize, maxSize } = this.getMinMaxSize(value);
-    return this.lerp(value, minSize, maxSize);
+    const { minSize, maxSize, minPercentage, maxPercentage } = this.getMinMaxSize(value);
+    return this.lerp(this.segmentProgress(value, minPercentage, maxPercentage), minSize, maxSize);
   }
 
   /**

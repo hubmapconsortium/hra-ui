@@ -164,6 +164,37 @@ describe('BiomarkerTableComponent', () => {
     instance.getMinMaxColor(150);
   });
 
+  it('interpolates sizes within each breakpoint segment', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    expect(instance.getSize(0)).toBeCloseTo(0.1);
+    expect(instance.getSize(0.25)).toBeCloseTo(0.3);
+    expect(instance.getSize(0.5)).toBeCloseTo(0.5);
+    expect(instance.getSize(0.75)).toBeCloseTo(0.75);
+    expect(instance.getSize(1)).toBeCloseTo(1.0);
+  });
+
+  it('normalizes expression values using the min and max expression', async () => {
+    const { instance } = await shallow.render({
+      bind: { columns: columns, data: data, gradient, sizes, tissueInfo, minExpression: 2, maxExpression: 10 },
+    });
+    expect(instance.normalizeExpression(2)).toBe(0);
+    expect(instance.normalizeExpression(6)).toBe(0.5);
+    expect(instance.normalizeExpression(10)).toBe(1);
+    expect(instance.normalizeExpression(20)).toBe(1);
+  });
+
+  it('does not normalize expression values without a range', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    expect(instance.normalizeExpression(0.3)).toBe(0.3);
+  });
+
+  it('interpolates colors within each gradient segment', async () => {
+    const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
+    expect(instance.getColor(0)).toBe('#00000f');
+    expect(instance.getColor(0.5)).toBe('#00ffff');
+    expect(instance.getColor(1)).toBe('#ffffff');
+  });
+
   it('returns a result from getHoverData function', async () => {
     const { instance } = await shallow.render({ bind: { columns: columns, data: data, gradient, sizes, tissueInfo } });
     expect(instance.getHoverData([2, data[2]])).toBeDefined();

@@ -26,4 +26,18 @@ describe('GradientLegendComponent', () => {
       expect(instance.gradientCss).toEqual('linear-gradient(90deg, #ffffff 100%)');
     });
   });
+
+  describe('labels', () => {
+    it('defaults to 0.0 and 1.0 without an expression range', async () => {
+      const { instance } = await shallow.render();
+      expect(instance.startLabel).toEqual('0.0');
+      expect(instance.endLabel).toEqual('1.0');
+    });
+
+    it('shows the min and max expression with 3 decimal places', async () => {
+      const { instance } = await shallow.render({ bind: { minExpression: 0.012345, maxExpression: 2.5 } });
+      expect(instance.startLabel).toEqual('0.012');
+      expect(instance.endLabel).toEqual('2.500');
+    });
+  });
 });

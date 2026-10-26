@@ -281,7 +281,7 @@ export class FtuDataImplService extends FtuDataService {
       label,
       link,
       description,
-      year = -1,
+      year = 'None',
       cell_type_annotation_tool: cellType,
       health_status: healthStatus,
       sex,
