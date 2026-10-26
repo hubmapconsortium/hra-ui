@@ -158,8 +158,8 @@
           background-color: vars.$surface-container-high;
 
           td:first-child {
-            border-top-left-radius: 0.5rem;
-            border-bottom-left-radius: 0.5rem;
+            border-top-left-radius: vars.$corner-small;
+            border-bottom-left-radius: vars.$corner-small;
             border-top: solid vars.$outline-variant 0.0625rem;
             border-left: solid vars.$outline-variant 0.0625rem;
             border-bottom: solid vars.$outline-variant 0.0625rem;
@@ -171,8 +171,8 @@
           }
 
           td:last-child {
-            border-top-right-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
+            border-top-right-radius: vars.$corner-small;
+            border-bottom-right-radius: vars.$corner-small;
             border-top: solid vars.$outline-variant 0.0625rem;
             border-right: solid vars.$outline-variant 0.0625rem;
             border-bottom: solid vars.$outline-variant 0.0625rem;
@@ -210,11 +210,13 @@
   }
 }
 
+// The anchor and cell type name tooltips match cde-ui's rich tooltips:
+// a surface-container panel with level 2 elevation and medium corners
 ::ng-deep {
   .info-tooltip-panel {
-    background-color: vars.$surface-container-lowest;
-    box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);
-    border-radius: 0.5rem;
+    background-color: vars.$surface-container;
+    box-shadow: var(--mat-sys-level2);
+    border-radius: vars.$corner-medium;
     max-width: 21rem;
     @include utils.use-font(body, medium);
     color: vars.$on-surface-variant;

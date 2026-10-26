@@ -18,7 +18,8 @@
     margin: 0.25rem 0.5rem 0.25rem 0.25rem;
     position: relative;
     cursor: pointer;
-    border: 1px solid vars.$secondary;
+    // The outline keeps swatches close to the panel background visible
+    border: 1px solid vars.$outline;
   }
 
   .anchor {
@@ -63,9 +64,9 @@
     div.color-picker {
       // ngx-color-picker defaults to a white panel, which hides on-surface text in the dark theme
       background-color: vars.$surface-container;
-      border-radius: 0.5rem;
+      border-radius: vars.$corner-small;
       border: none;
-      box-shadow: 0px 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);
+      box-shadow: var(--mat-sys-level2);
 
       .hex-text {
         display: flex !important;
@@ -146,7 +147,7 @@
           @include utils.use-font(body, medium);
 
           &:hover {
-            background-color: utils.with-alpha(vars.$on-surface, 8%);
+            background-color: utils.with-alpha(vars.$on-surface, var(--mat-sys-hover-state-layer-opacity));
           }
 
           &:focus-visible {
@@ -174,7 +175,7 @@
         }
         .hue,
         .alpha {
-          border-radius: 0.25rem;
+          border-radius: vars.$corner-full;
           height: 0.5rem;
         }
       }
