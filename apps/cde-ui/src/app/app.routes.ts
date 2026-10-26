@@ -144,6 +144,7 @@ export const ROUTES: Routes = [
     component: ServerErrorPageComponent,
     data: {
       isErrorPage: true,
+      reportIssueLink: 'https://github.com/hubmapconsortium/hra-ui/issues/new',
     },
   },
   {
