@@ -267,7 +267,7 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    */
   normalizeMinMaxClamped(value: number, start: number, end: number): number {
     if (start === end) {
-      return 0;
+      return Math.min(Math.max(value, 0), 1);
     } else if (value < start) {
       return 0;
     } else if (value > end) {

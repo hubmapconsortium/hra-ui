@@ -185,7 +185,7 @@ describe('BiomarkerTableComponent', () => {
     expect(instance.normalizeMinMaxClamped(10, 2, 10)).toBe(1);
     expect(instance.normalizeMinMaxClamped(20, 2, 10)).toBe(1);
     expect(instance.normalizeMinMaxClamped(-5, 2, 10)).toBe(0);
-    expect(instance.normalizeMinMaxClamped(5, 3, 3)).toBe(0);
+    expect(instance.normalizeMinMaxClamped(5, 3, 3)).toBe(1);
   });
 
   it('scales colors using the min and max expression', async () => {
