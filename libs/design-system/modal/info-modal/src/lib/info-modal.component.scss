@@ -3,7 +3,8 @@
 @use '../../../../styles/vars';
 
 // A floating card like a rich tooltip: surface-container with level 2 elevation and medium corners.
-// A title small header over labels and values in two body medium on-surface-variant columns, with a 16px inset.
+// A title small header over labels and values in two body medium columns, with a 16px inset.
+// Labels use on-surface and values on-surface-variant, so the two columns read apart.
 :host {
   display: block;
   min-width: 23.625rem;
@@ -63,6 +64,7 @@
         width: 1%;
         padding-right: 1rem;
         white-space: nowrap;
+        color: vars.$on-surface;
       }
 
       .value {
