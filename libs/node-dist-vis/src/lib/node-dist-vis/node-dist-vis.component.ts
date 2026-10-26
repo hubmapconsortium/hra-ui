@@ -126,8 +126,9 @@ const INITIAL_VIEW_STATE = {
     }
 
     /*
-     * Locked to the bottom right corner with 16px around it, so it stays put while the view pans, zooms, and rotates.
-     * White by default for the dark visualization background, and customizable through the color hook
+     * Locked to the bottom right corner with 16px around it, so it stays put while the view pans and zooms.
+     * Hidden while the view is rotated. White by default for the dark visualization background,
+     * and customizable through the color hook
      */
     .scale-bar {
       position: absolute;
