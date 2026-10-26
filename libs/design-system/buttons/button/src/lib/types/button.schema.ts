@@ -9,7 +9,7 @@ export const ButtonSchema = ContentTemplateSchema.extend({
   component: z.literal('Button'),
   label: z.string(),
   href: z.string(),
-  type: z.enum(['default', 'flat', 'tonal', 'cta', 'fab']).optional(),
+  type: z.enum(['default', 'flat', 'cta', 'fab']).optional(),
   variant: z.enum(['primary', 'secondary']).optional(),
   size: z.enum(['small', 'medium']).optional(),
   disabled: z.boolean().optional(),
