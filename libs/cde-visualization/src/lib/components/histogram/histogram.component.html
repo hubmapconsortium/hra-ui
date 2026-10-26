@@ -31,7 +31,9 @@
         [attr.inert]="emptyState() ? '' : null"
         #histogram
       ></div>
-      @if (emptyState(); as content) {
+      @if (loading()) {
+        <cde-chart-skeleton />
+      } @else if (emptyState(); as content) {
         <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
       }
     </hra-fullscreen-portal-content>

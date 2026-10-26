@@ -55,7 +55,9 @@
         height: calc(100% - 3.5rem);
       }
 
+      // Positions the skeleton over the table body
       .expansion-body {
+        position: relative;
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -94,6 +96,65 @@
     padding-right: 1.5rem;
     text-align: end;
     color: vars.$on-surface;
+  }
+
+  // Covers the table body and totals below the 2rem column headers. The rows and totals use the table's heights
+  // and columns, with an 18px checkbox, the color swatch, a name bar, and right-aligned counts.
+  .skeleton {
+    position: absolute;
+    inset: 2rem 0 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: vars.$background;
+    @include utils.use-font(body, medium);
+  }
+
+  .skeleton-rows {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .skeleton-row {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    grid-auto-columns: 5rem;
+    grid-auto-flow: column;
+    align-items: center;
+    height: 1.75rem;
+  }
+
+  .skeleton-checkbox {
+    --ang-skeleton-rect-shape: #{vars.$corner-extra-small};
+    width: 18px;
+    height: 18px;
+    margin-left: calc((2rem - 18px) / 2);
+  }
+
+  .skeleton-name {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  // The color swatch's size and margins
+  .skeleton-swatch {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0.25rem 0.5rem 0.25rem 0.25rem;
+  }
+
+  .skeleton-count {
+    justify-self: end;
+    width: 2.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .skeleton-total-label {
+    width: 7rem;
+    margin-left: calc((2rem - 18px) / 2);
   }
 
   // Hides text visually while keeping it available to screen readers

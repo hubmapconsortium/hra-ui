@@ -39,6 +39,18 @@ describe('MetadataComponent', () => {
     expect(screen.getByText('3:24:00 AM')).toBeInTheDocument();
   });
 
+  it('should show skeleton rows in place of the fields while loading', async () => {
+    const { container } = await render(MetadataComponent, {
+      componentInputs: { metadata, loading: true },
+      providers: [provideNoopAnimations()],
+    });
+    const details = container.querySelector('.metadata-details');
+
+    expect(details).toHaveAttribute('aria-busy', 'true');
+    expect(details?.querySelectorAll('cde-skeleton')).toHaveLength(12);
+    expect(screen.queryByText(metadata.organ ?? '')).not.toBeInTheDocument();
+  });
+
   it('should toggle the empty fields signal', async () => {
     const { fixture } = await render(MetadataComponent, {
       componentInputs: {

@@ -168,4 +168,32 @@
       </span>
     }
   </div>
+
+  <!-- Skeleton rows and totals cover the table body while the cell types load, below the column headers -->
+  @if (loading()) {
+    <div class="skeleton">
+      <div class="skeleton-rows">
+        @for (width of skeletonNameWidths; track $index) {
+          <div class="skeleton-row">
+            <cde-skeleton class="skeleton-checkbox" shape="rect" />
+            <span class="skeleton-name">
+              <cde-skeleton class="skeleton-swatch" shape="circle" />
+              <cde-skeleton [style.width]="width" />
+            </span>
+            <cde-skeleton class="skeleton-count" />
+            @if (!hideCellLinkData()) {
+              <cde-skeleton class="skeleton-count" />
+            }
+          </div>
+        }
+      </div>
+      <div class="totals">
+        <cde-skeleton class="skeleton-total-label" />
+        <cde-skeleton class="skeleton-count" />
+        @if (!hideCellLinkData()) {
+          <cde-skeleton class="skeleton-count" />
+        }
+      </div>
+    </div>
+  }
 </hra-expansion-panel>

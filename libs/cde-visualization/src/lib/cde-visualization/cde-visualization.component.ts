@@ -17,7 +17,7 @@ import {
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MatDrawer, MatDrawerContent, MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
@@ -48,6 +48,7 @@ import {
   toCsv,
   withDataViewDefaultGenerator,
 } from '@hra-ui/node-dist-vis/models';
+import { debounceTime, distinctUntilChanged, pairwise } from 'rxjs';
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { DownloadsComponent } from '../components/downloads/downloads.component';
@@ -66,7 +67,7 @@ import { loadMetadata, MetadataInput } from '../models/metadata';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
-import { LoadingManager } from '../shared/loading-manager';
+import { loadingObserver } from '../shared/loading-observer';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
@@ -78,6 +79,12 @@ export interface DistanceEntry {
   distance: number;
 }
 
+/** Announced to screen readers once all data has loaded */
+const LOADED_ANNOUNCEMENT = 'Visualization loaded';
+
+/** Time in ms that loading must stay finished before the loaded announcement */
+const LOADED_ANNOUNCEMENT_DEBOUNCE = 250;
+
 /**
  * CDE Visualization Root Component
  */
@@ -85,7 +92,6 @@ export interface DistanceEntry {
   selector: 'cde-visualization-root',
   imports: [
     HraCommonModule,
-    MatProgressBarModule,
     MatSidenavModule,
     CellTypesComponent,
     DownloadsComponent,
@@ -209,8 +215,33 @@ export class CdeVisualizationComponent {
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
   readonly vcRef = inject(ViewContainerRef);
 
-  /** Whether there are loading resources, etc. */
-  protected loadingManager = new LoadingManager();
+  /** Whether the nodes are loading */
+  protected readonly nodesLoading = signal(false);
+
+  /** Whether the edges are loading */
+  private readonly edgesLoading = signal(false);
+
+  /** Whether the edges are being generated from the nodes */
+  private readonly edgesGenerating = signal(false);
+
+  /** Whether the color map is loading */
+  private readonly colorMapLoading = signal(false);
+
+  /** Whether the metadata is loading */
+  protected readonly metadataLoading = signal(false);
+
+  /** Whether the cell types are loading. They come from the nodes and the color map. */
+  protected readonly cellTypesLoading = computed(() => this.nodesLoading() || this.colorMapLoading());
+
+  /** Whether the distances are loading. They need the nodes and the loaded or generated edges. */
+  protected readonly distancesLoading = computed(
+    () => this.nodesLoading() || this.edgesLoading() || this.edgesGenerating(),
+  );
+
+  /** Whether any data is loading */
+  private readonly anyLoading = computed(
+    () => this.cellTypesLoading() || this.distancesLoading() || this.metadataLoading(),
+  );
 
   /** Sets the node target selector (uses default if not available) */
   protected readonly nodeTargetSelectorWithDefault = computed(() => {
@@ -222,18 +253,18 @@ export class CdeVisualizationComponent {
     this.nodes,
     this.nodeKeys,
     this.nodeTargetKey,
-    this.loadingManager.createObserver(),
+    loadingObserver(this.nodesLoading),
   );
 
   /** View of the edge data */
   protected readonly edgesView = withDataViewDefaultGenerator(
-    loadEdges(this.edges, this.edgeKeys, this.loadingManager.createObserver()),
+    loadEdges(this.edges, this.edgeKeys, loadingObserver(this.edgesLoading)),
     createEdgeGenerator(
       this.nodesView,
       this.edges,
       this.nodeTargetSelectorWithDefault,
       this.maxEdgeDistance,
-      this.loadingManager.createObserver(),
+      loadingObserver(this.edgesGenerating),
     ),
     EMPTY_EDGES_VIEW,
     false,
@@ -246,7 +277,7 @@ export class CdeVisualizationComponent {
       this.colorMapKeys,
       this.colorMapKey,
       this.colorMapValue,
-      this.loadingManager.createObserver(),
+      loadingObserver(this.colorMapLoading),
     ),
     createColorMapGenerator(this.nodesView, this.colorMap),
     EMPTY_COLOR_MAP_VIEW,
@@ -267,7 +298,7 @@ export class CdeVisualizationComponent {
       sourceFileName: this.sourceFileName,
       colorMapFileName: this.colorMapFileName,
     },
-    this.loadingManager.createObserver(),
+    loadingObserver(this.metadataLoading),
   );
 
   /** Filter for node data */
@@ -457,6 +488,16 @@ export class CdeVisualizationComponent {
         this.liveAnnouncer.announce(`${emptyState.heading}. ${emptyState.description}`);
       }
     });
+
+    // Announced once everything has loaded. The debounce skips the short gap between loading the nodes
+    // and generating the edges.
+    toObservable(this.anyLoading)
+      .pipe(debounceTime(LOADED_ANNOUNCEMENT_DEBOUNCE), distinctUntilChanged(), pairwise(), takeUntilDestroyed())
+      .subscribe(([wasLoading, isLoading]) => {
+        if (wasLoading && !isLoading) {
+          this.liveAnnouncer.announce(LOADED_ANNOUNCEMENT);
+        }
+      });
 
     // Connect outputs
     this.bindDataOutput(this.nodesView, this.nodesChange);

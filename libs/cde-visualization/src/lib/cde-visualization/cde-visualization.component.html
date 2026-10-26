@@ -22,14 +22,11 @@
     </mat-drawer>
 
     <mat-drawer-content class="layout">
-      @if (loadingManager.isLoading$ | async) {
-        <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress" />
-      }
-
       <div class="metadata">
         <cde-metadata
           hraFeature="metadata"
           [metadata]="metadataView()"
+          [loading]="metadataLoading()"
           [downloadsOpen]="downloadsDrawer.opened"
           (downloadsClick)="openDownloads()"
         />
@@ -37,6 +34,7 @@
           hraFeature="cell-types"
           [selectedCellType]="nodeTargetSelectorWithDefault()"
           [countAdjustments]="countAdjustments()"
+          [loading]="cellTypesLoading()"
           [(cellTypes)]="cellTypes"
           [(cellTypesSelection)]="cellTypesSelection"
           (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
@@ -52,6 +50,7 @@
             [edges]="edgesView()"
             [maxEdgeDistance]="maxEdgeDistance()"
             [colorMap]="cellTypesAsColorMap()"
+            [loading]="nodesLoading()"
             [emptyState]="visualizationEmptyState()"
             [(nodeFilter)]="nodeFilterView"
             (nodeClick)="nodeClick.emit($event)"
@@ -64,6 +63,7 @@
             hraFeature="violin-graph"
             [colors]="filteredColors()"
             [data]="filteredDistances()"
+            [loading]="distancesLoading()"
             [emptyState]="chartsEmptyState()"
             (emptyStateAction)="selectAllCellTypes()"
           />
@@ -74,6 +74,7 @@
           [colors]="filteredColors()"
           [data]="filteredDistances()"
           [filteredCellTypes]="filteredCellTypes()"
+          [loading]="distancesLoading()"
           [emptyState]="chartsEmptyState()"
           (updateColor)="updateColor($event.entry, $event.color)"
           (emptyStateAction)="selectAllCellTypes()"

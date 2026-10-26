@@ -24,6 +24,7 @@ import {
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Metadata } from '../../models/metadata';
 import { DOWNLOADS_CONTENT } from '../downloads/downloads.content';
+import { SkeletonComponent } from '../skeleton/skeleton.component';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -37,6 +38,16 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'thickness',
   'pixelSize',
   'creationTimestamp',
+];
+
+/** Label and value widths of the skeleton rows shown while the metadata loads, varied like real rows */
+const SKELETON_ROWS = [
+  { label: '8.5rem', value: '90%' },
+  { label: '6rem', value: '70%' },
+  { label: '3.5rem', value: '45%' },
+  { label: '6.5rem', value: '30%' },
+  { label: '8rem', value: '15%' },
+  { label: '7rem', value: '55%' },
 ];
 
 /** Defines a pipe that provides a default value if the input is undefined or empty */
@@ -67,6 +78,7 @@ export class DefaultToPipe implements PipeTransform {
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
+    SkeletonComponent,
   ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
@@ -79,8 +91,14 @@ export class MetadataComponent {
   /** Whether the downloads drawer is open */
   readonly downloadsOpen = input(false);
 
+  /** Whether the metadata is loading, which shows skeleton rows in place of the fields */
+  readonly loading = input(false);
+
   /** Emits when the downloads button is clicked */
   readonly downloadsClick = output<void>();
+
+  /** Skeleton rows shown while the metadata loads */
+  protected readonly skeletonRows = SKELETON_ROWS;
 
   /** Label and tooltip for the downloads button */
   protected readonly downloadsLabel = DOWNLOADS_CONTENT.title;
@@ -113,6 +131,10 @@ export class MetadataComponent {
 
   /** Checks if a field is visible based on its value and the showEmptyFields signal */
   isFieldVisible(field: keyof Metadata): boolean {
+    if (this.loading()) {
+      return false;
+    }
+
     const value = this.metadata()[field];
     return this.showEmptyFields() || (value !== undefined && value !== '');
   }

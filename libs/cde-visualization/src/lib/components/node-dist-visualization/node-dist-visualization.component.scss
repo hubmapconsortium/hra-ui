@@ -62,6 +62,15 @@ hra-fullscreen-portal-content {
   position: relative;
 }
 
+// The skeleton fills the whole black visualization area, edge to edge with square corners. Its theme roles
+// resolve to their dark values in either theme, the way they would on any dark surface.
+cde-chart-skeleton {
+  --ang-skeleton-rect-shape: #{vars.$corner-none};
+  color-scheme: dark;
+  padding: 0;
+  background-color: transparent;
+}
+
 ::ng-deep div.node-dist-vis-fullscreen-panel {
   --mat-dialog-container-color: black;
 

@@ -71,7 +71,13 @@
       <mat-icon>download</mat-icon>
     </button>
   </hra-expansion-panel-header-content>
-  <div class="metadata-details" hraFeature="details">
+  <div class="metadata-details" hraFeature="details" [attr.aria-busy]="loading() || null">
+    @if (loading()) {
+      @for (row of skeletonRows; track $index) {
+        <cde-skeleton [style.width]="row.label" />
+        <cde-skeleton [style.width]="row.value" />
+      }
+    }
     @if (isFieldVisible('title')) {
       <div class="metadata-row">
         <span class="metadata-row-label"> Source publication </span>

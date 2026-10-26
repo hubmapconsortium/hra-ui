@@ -198,6 +198,46 @@ describe('CdeVisualizationComponent', () => {
     );
   });
 
+  describe('loading', () => {
+    /** Waits longer than the loaded announcement's debounce */
+    const waitForDebounce = () => new Promise((resolve) => setTimeout(resolve, 300));
+
+    it(
+      'shows skeletons in the panels whose data is loading',
+      async () => {
+        const { fixture, container } = await setup();
+        fixture.componentInstance['nodesLoading'].set(true);
+        fixture.componentInstance['metadataLoading'].set(true);
+        fixture.detectChanges();
+
+        expect(container.querySelectorAll('cde-chart-skeleton')).toHaveLength(3);
+        expect(container.querySelector('cde-cell-types')).toHaveAttribute('aria-busy', 'true');
+        expect(container.querySelector('cde-metadata .metadata-details')).toHaveAttribute('aria-busy', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'announces once everything has loaded',
+      async () => {
+        const { fixture } = await setup();
+        const announce = jest.spyOn(TestBed.inject(LiveAnnouncer), 'announce');
+        const nodesLoading = fixture.componentInstance['nodesLoading'];
+
+        nodesLoading.set(true);
+        fixture.detectChanges();
+        await waitForDebounce();
+        nodesLoading.set(false);
+        fixture.detectChanges();
+        await waitForDebounce();
+
+        expect(announce).toHaveBeenCalledTimes(1);
+        expect(announce).toHaveBeenCalledWith('Visualization loaded');
+      },
+      TIMEOUT,
+    );
+  });
+
   describe('empty states', () => {
     const { heading, description, actionLabel } = NO_CELL_TYPES_SELECTED_CONTENT;
 

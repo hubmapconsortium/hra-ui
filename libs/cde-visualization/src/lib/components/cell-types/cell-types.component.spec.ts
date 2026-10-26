@@ -55,6 +55,26 @@ describe('CellTypesComponent', () => {
     expect(screen.getByText('total cell links')).toBeInTheDocument();
   });
 
+  it('should show skeleton rows and totals while loading', async () => {
+    const { container, fixture } = await setup({
+      componentInputs: { cellTypes: [], cellTypesSelection: [], loading: true },
+    });
+
+    expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
+    expect(container.querySelectorAll('.skeleton-row')).toHaveLength(20);
+    expect(container.querySelectorAll('.skeleton .totals cde-skeleton')).toHaveLength(3);
+  });
+
+  it('should leave out the links column from the skeleton when cell link data is hidden', async () => {
+    const { container, fixture } = await setup({
+      componentInputs: { cellTypes: [], cellTypesSelection: [], loading: true },
+    });
+    fixture.componentInstance['hideCellLinkData'].set(true);
+    fixture.detectChanges();
+
+    expect(container.querySelectorAll('.skeleton .totals cde-skeleton')).toHaveLength(2);
+  });
+
   it('should label a single selected cell type in the singular', async () => {
     await setup({
       componentInputs: { cellTypes, cellTypesSelection: ['Cell Type 1'] },

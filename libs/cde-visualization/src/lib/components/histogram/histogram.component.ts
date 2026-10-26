@@ -50,6 +50,7 @@ import {
 } from '../../shared/chart-theme';
 import { setUpChartTooltips } from '../../shared/chart-tooltip';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
 import { EmptyStateContent } from '../empty-state/empty-state.content';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
@@ -143,6 +144,7 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     FullscreenPortalContentComponent,
     FullscreenActionsComponent,
     HistogramMenuComponent,
+    ChartSkeletonComponent,
     EmptyStateComponent,
   ],
   templateUrl: './histogram.component.html',
@@ -158,6 +160,9 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.aria-busy]': 'loading() || null',
+  },
 })
 export class HistogramComponent {
   /** Data for the visualization */
@@ -168,6 +173,9 @@ export class HistogramComponent {
 
   /** Cell types to use for the visualization */
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
+
+  /** Whether the data is loading, which shows a skeleton in place of the histogram */
+  readonly loading = input(false);
 
   /** Empty state shown in place of the histogram, or undefined when there are distances to show */
   readonly emptyState = input<EmptyStateContent>();

@@ -41,6 +41,7 @@ import {
   watchColorScheme,
 } from '../../shared/chart-theme';
 import { setUpChartTooltips } from '../../shared/chart-tooltip';
+import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
 import { EmptyStateContent } from '../empty-state/empty-state.content';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
@@ -163,12 +164,14 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     FullscreenPortalContentComponent,
     FullscreenActionsComponent,
     ViolinMenuComponent,
+    ChartSkeletonComponent,
     EmptyStateComponent,
   ],
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[attr.aria-busy]': 'loading() || null',
     '(window:resize)': 'resizeAndSyncView()',
   },
 })
@@ -178,6 +181,9 @@ export class ViolinComponent {
 
   /** Colors for the violin visualization */
   readonly colors = input.required<string[]>();
+
+  /** Whether the data is loading, which shows a skeleton in place of the violins */
+  readonly loading = input(false);
 
   /** Empty state shown in place of the violins, or undefined when there are distances to show */
   readonly emptyState = input<EmptyStateContent>();

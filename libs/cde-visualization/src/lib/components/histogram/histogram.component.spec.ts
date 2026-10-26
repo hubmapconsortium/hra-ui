@@ -114,6 +114,22 @@ describe('HistogramComponent', () => {
     expect(emptyStateAction).toHaveBeenCalled();
   });
 
+  it('should show a skeleton in place of the empty state while loading', async () => {
+    const { container, fixture } = await setup({
+      inputs: {
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
+        emptyState: NO_CELL_TYPES_SELECTED_CONTENT,
+        loading: true,
+      },
+    });
+
+    expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
+    expect(container.querySelector('cde-chart-skeleton')).toBeInTheDocument();
+    expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
+  });
+
   it('should set empty data when input data is empty', async () => {
     const { fixture } = await setup({
       inputs: {
