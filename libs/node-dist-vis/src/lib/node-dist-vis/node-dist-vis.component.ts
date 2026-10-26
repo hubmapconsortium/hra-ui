@@ -47,7 +47,7 @@ import { createEdgesLayer } from '../deckgl/edges';
 import { createNodesLayer } from '../deckgl/nodes';
 import { createSelectionLayer } from '../deckgl/selection';
 import { scalePosition } from '../deckgl/utils/position-scaling';
-import { createScaleBar, drawScaleBar } from './scale-bar';
+import { createScaleBar, drawScaleBar, isRotated } from './scale-bar';
 
 /** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
@@ -115,6 +115,8 @@ const INITIAL_VIEW_STATE = {
         <div class="scale-bar-line" [style.width.px]="scaleBar.width" #scaleBarLine></div>
         <span class="scale-bar-label" aria-hidden="true" #scaleBarLabel>{{ scaleBar.label }}</span>
       </div>
+    } @else if (rotated()) {
+      <button type="button" class="flatten-button" (click)="flattenView()">Flatten view</button>
     }
   `,
   styles: `
@@ -152,6 +154,46 @@ const INITIAL_VIEW_STATE = {
       font: var(--mat-sys-title-small, 600 0.875rem / 1.3125rem sans-serif);
       letter-spacing: var(--mat-sys-title-small-tracking, 0.1px);
       white-space: nowrap;
+    }
+
+    /*
+     * Takes the scale bar's place while the view is rotated. Styled as an outlined button in the scale bar's color,
+     * on a translucent black fill with a background blur so it reads over bright nodes
+     */
+    .flatten-button {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      height: 2.5rem;
+      padding: 0 1.5rem;
+      border: 1px solid currentColor;
+      border-radius: 1.25rem;
+      background-color: rgb(0 0 0 / 32%);
+      backdrop-filter: blur(16px);
+      color: var(--hra-node-dist-vis-scale-bar-color, white);
+      font: var(--mat-sys-label-large, 500 0.875rem / 1.25rem sans-serif);
+      letter-spacing: var(--mat-sys-label-large-tracking, 0.1px);
+      cursor: pointer;
+    }
+
+    /* State layers go over the fill instead of replacing it */
+    .flatten-button:hover {
+      background-image: linear-gradient(
+        color-mix(in srgb, currentColor 8%, transparent),
+        color-mix(in srgb, currentColor 8%, transparent)
+      );
+    }
+
+    .flatten-button:active {
+      background-image: linear-gradient(
+        color-mix(in srgb, currentColor 10%, transparent),
+        color-mix(in srgb, currentColor 10%, transparent)
+      );
+    }
+
+    .flatten-button:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -294,6 +336,8 @@ export class NodeDistVisComponent {
   protected readonly scaleBar = createScaleBar(this.nodesView, this.viewState);
   /** Accessible name for the scale bar */
   protected readonly scaleBarAriaLabel = computed(() => `Scale bar: ${this.scaleBar()?.label}`);
+  /** Whether the loaded nodes are viewed rotated, which hides the scale bar and shows the flatten button */
+  protected readonly rotated = computed(() => this.nodesView().length !== 0 && isRotated(this.viewState()));
   /** Scale bar line element */
   private readonly scaleBarLine = viewChild<ElementRef<HTMLElement>>('scaleBarLine');
   /** Scale bar label element */
@@ -417,10 +461,15 @@ export class NodeDistVisComponent {
     this.zoomToFit();
   }
 
-  /** Resets the rotation of the orbit view */
+  /**
+   * Resets the rotation of the orbit view, keeping the zoom and location. It doesn't animate:
+   * a transition left over from keyboard rotation would report rotated states again on the way back,
+   * so the scale bar and flatten button would flicker.
+   */
   resetOrbit(): void {
     this.setViewState({
       ...untracked(this.viewState),
+      transitionDuration: 0,
       rotationX: 0,
       rotationOrbit: 0,
       version: ++this.viewStateVersion,
@@ -459,6 +508,12 @@ export class NodeDistVisComponent {
       drawScaleBar(context, canvas, line, label);
       image.toBlob(resolve, type, quality);
     });
+  }
+
+  /** Flattens the view so the scale bar shows again, and moves focus to the canvas since the button goes away */
+  protected flattenView(): void {
+    this.resetOrbit();
+    this.canvas().focus();
   }
 
   /**
