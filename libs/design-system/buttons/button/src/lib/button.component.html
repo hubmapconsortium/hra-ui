@@ -20,14 +20,6 @@
       <mat-icon>{{ icon() }}</mat-icon>
     </a>
   }
-  @case ('tonal') {
-    <a matButton="tonal" target="_blank" [disabled]="disabled()" [href]="href()">
-      {{ label() }}
-      @if (icon(); as fontIcon) {
-        <mat-icon iconPositionEnd>{{ fontIcon }}</mat-icon>
-      }
-    </a>
-  }
   @case ('cta') {
     <a mat-button hraCtaButton target="_blank" [hraButtonVariant]="variant()" [disabled]="disabled()" [href]="href()">
       {{ label() }}
