@@ -55,11 +55,6 @@ $panel-background: vars.$background;
   .progress {
     position: absolute;
     inset: 0 0 auto 0;
-    @include mat.progress-bar-overrides(
-      (
-        active-indicator-color: vars.$tertiary,
-      )
-    );
   }
 
   // Panel dividers sit on the layout containers, so they run the full length of each panel.
