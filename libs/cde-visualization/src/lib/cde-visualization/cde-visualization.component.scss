@@ -55,11 +55,6 @@ $panel-background: vars.$background;
   .progress {
     position: absolute;
     inset: 0 0 auto 0;
-    @include mat.progress-bar-overrides(
-      (
-        active-indicator-color: vars.$tertiary,
-      )
-    );
   }
 
   // Panel dividers sit on the layout containers, so they run the full length of each panel.
@@ -141,32 +136,4 @@ $panel-background: vars.$background;
   padding: 0.75rem 1rem;
   color: vars.$on-surface-variant;
   @include utils.use-font(body, medium);
-}
-
-::ng-deep .download-snackbar-panel {
-  translate: 0 -2rem;
-  text-align: center;
-  @include mat.snack-bar-overrides(
-    (
-      container-color: vars.$inverse-surface,
-      supporting-text-color: vars.$surface,
-    )
-  );
-
-  .mdc-snackbar__surface {
-    border-radius: 0.5rem !important;
-    min-width: 13rem !important;
-  }
-
-  button[mat-button][matSnackBarAction] {
-    color: vars.$inverse-primary;
-  }
-
-  button[mat-icon-button] {
-    @include mat.icon-button-overrides(
-      (
-        icon-color: vars.$surface,
-      )
-    );
-  }
 }

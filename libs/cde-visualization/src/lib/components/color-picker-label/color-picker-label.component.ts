@@ -6,9 +6,6 @@ import { ColorPickerDirective } from 'ngx-color-picker';
 import { Rgb, colorEquals, hexToRgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { TOOLTIP_POSITION_COLOR_PICKER_LABEL } from '../../shared/tooltip-position';
 
-/** Maximum cell width for the cell type label */
-const MAX_LABEL_WIDTH = 104;
-
 /**
  * Color Picker Label Component
  */
@@ -55,10 +52,10 @@ export class ColorPickerLabelComponent {
     }
   }
 
-  /** Handle hover event to open the tooltip if label width exceeds the max width */
+  /** Handle hover event to open the tooltip if the label is truncated */
   handleHover(event: MouseEvent): void {
-    const width = Math.floor((event.target as HTMLElement).getBoundingClientRect().width);
-    if (width >= MAX_LABEL_WIDTH) {
+    const label = event.currentTarget as HTMLElement;
+    if (label.scrollWidth > label.clientWidth) {
       this.tooltipOpen = true;
     }
   }

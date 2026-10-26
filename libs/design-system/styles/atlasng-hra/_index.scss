@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use '@angular/material' as mat;
 @use '../utils';
 @use '../vars';
 @use './ext-colors';
@@ -43,6 +44,33 @@ $overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);
   }
 
   @include mat-defaults.form-field-defaults;
+
+  // Snackbars match AtlasNG and default Material: inverse-on-surface body medium text, level 3 elevation,
+  // and an inverse-on-surface close button. The shared snackbar sets surface text, label medium type,
+  // and a tinted shadow. Apps put .hra-app on the overlay container too, so these reach the snackbar.
+  .hra-snackbar-panel {
+    @include mat.snack-bar-overrides(
+      (
+        supporting-text-color: vars.$inverse-on-surface,
+      )
+    );
+
+    .mat-mdc-snackbar-surface {
+      box-shadow: var(--mat-sys-level3);
+    }
+
+    hra-snackbar {
+      @include utils.use-font(body, medium);
+    }
+
+    button[mat-icon-button] {
+      @include mat.icon-button-overrides(
+        (
+          icon-color: vars.$inverse-on-surface,
+        )
+      );
+    }
+  }
 
   // Scrollbars match the AtlasNG scroll area. ngx-scrollbar reads these variables.
   ng-scrollbar {

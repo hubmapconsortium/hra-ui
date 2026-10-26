@@ -51,6 +51,9 @@ interface ChartTextConfig {
   titleLineHeight?: number;
 }
 
+/** Font size, weight, and line height of legend labels and titles. Vega legends have no label line height. */
+type ChartLegendTextConfig = Omit<ChartTextConfig, 'labelLineHeight'>;
+
 /** Chart title type, in Vega's title config */
 interface ChartTitleConfig {
   /** Font size */
@@ -73,6 +76,8 @@ export interface ThemeableChartSpec {
     axis: ChartTextConfig;
     /** Facet header text configuration */
     header?: ChartTextConfig;
+    /** Legend text configuration, used by legends in exported images */
+    legend?: ChartLegendTextConfig;
     /** Chart title configuration, themed when the spec has one */
     title?: ChartTitleConfig;
   };
@@ -81,16 +86,16 @@ export interface ThemeableChartSpec {
 /** Type token used for all chart text */
 const CHART_FONT_TOKEN = '--mat-sys-body-medium';
 
-/** Chart font to use if the type token is not set */
-const CHART_FONT_FALLBACK: ChartFont = { font: 'Metropolis', fontSize: 14, fontWeight: 400, lineHeight: 21 };
+/** Chart font to use if the type token is not set: body medium in the AtlasNG HRA theme */
+const CHART_FONT_FALLBACK: ChartFont = { font: 'Nunito Sans Variable', fontSize: 14, fontWeight: 400, lineHeight: 21 };
 
-/** Theme token and fallback value for each chart theme color */
+/** Theme token and fallback value for each chart theme color. Fallbacks are the AtlasNG HRA light theme's values. */
 const CHART_THEME_TOKENS: Record<ChartThemeColor, [token: string, fallback: string]> = {
-  background: ['--mat-sys-background', '#fcfcfc'],
-  titleColor: ['--mat-sys-on-surface', '#201e3d'],
-  labelColor: ['--mat-sys-on-surface-variant', '#4b4b5e'],
-  gridColor: ['--mat-sys-outline-variant', '#dddddd'],
-  markColor: ['--mat-sys-on-surface', '#000000'],
+  background: ['--mat-sys-background', '#fcfbfd'],
+  titleColor: ['--mat-sys-on-surface', '#1a1c1e'],
+  labelColor: ['--mat-sys-on-surface-variant', '#414751'],
+  gridColor: ['--mat-sys-outline-variant', '#c1c7d4'],
+  markColor: ['--mat-sys-on-surface', '#1a1c1e'],
 };
 
 /** Spec param (Vega signal) holding each chart theme color */
@@ -110,7 +115,7 @@ const PREFERS_DARK_QUERY = '(prefers-color-scheme: dark)';
 
 /**
  * Reads the chart theme from the CSS custom properties in effect on an element.
- * Properties whose token is not set use the default HRA value.
+ * Properties whose token is not set use the AtlasNG HRA light theme's value.
  *
  * @param el Element to read the computed styles of
  * @returns The chart theme
@@ -206,6 +211,14 @@ export function applyChartTheme(spec: ThemeableChartSpec, theme: ChartTheme): vo
   spec.config.font = theme.font;
   Object.assign(spec.config.axis, text);
   spec.config.header = { ...spec.config.header, ...text };
+  spec.config.legend = {
+    ...spec.config.legend,
+    labelFontSize: theme.fontSize,
+    titleFontSize: theme.fontSize,
+    labelFontWeight: theme.fontWeight,
+    titleFontWeight: theme.fontWeight,
+    titleLineHeight: theme.lineHeight,
+  };
   if (spec.config.title) {
     spec.config.title = {
       ...spec.config.title,

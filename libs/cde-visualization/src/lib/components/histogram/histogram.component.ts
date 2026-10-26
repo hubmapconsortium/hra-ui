@@ -108,16 +108,11 @@ const EXPORT_IMAGE_HEIGHT = 500;
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;
 
-/** Configuration for the legend in the exported image */
+/** Configuration for the legend in the exported image. Its text uses the chart theme's type (see applyChartTheme). */
 const EXPORT_IMAGE_LEGEND_CONFIG = {
   title: null,
   symbolType: 'circle',
   symbolStrokeWidth: 10,
-  labelFontSize: 14,
-  titleFontSize: 14,
-  titleLineHeight: 21,
-  titleFontWeight: 500,
-  labelFontWeight: 500,
 };
 
 /** Length of the dynamic color range */

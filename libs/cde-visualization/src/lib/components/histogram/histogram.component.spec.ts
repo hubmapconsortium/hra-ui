@@ -166,8 +166,8 @@ describe('HistogramComponent', () => {
     expect(priedInstance.totalCellTypeColor()).toEqual([1, 2, 3]);
 
     instance.resetAllCellsColor();
-    // jsdom doesn't resolve theme tokens, so the theme's mark color is the default black
-    expect(priedInstance.totalCellTypeColor()).toEqual([0, 0, 0]);
+    // jsdom doesn't resolve theme tokens, so the theme's mark color is the on-surface fallback (#1a1c1e)
+    expect(priedInstance.totalCellTypeColor()).toEqual([26, 28, 30]);
   });
 
   it('should update the theme colors in place when the color scheme changes', async () => {
@@ -188,8 +188,8 @@ describe('HistogramComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(embedResult.view.signal).toHaveBeenCalledWith('themeBackground', '#fcfcfc');
-    expect(embedResult.view.signal).toHaveBeenCalledWith('themeMarkColor', '#000000');
+    expect(embedResult.view.signal).toHaveBeenCalledWith('themeBackground', '#fcfbfd');
+    expect(embedResult.view.signal).toHaveBeenCalledWith('themeMarkColor', '#1a1c1e');
     expect(embed).not.toHaveBeenCalled();
   });
 });

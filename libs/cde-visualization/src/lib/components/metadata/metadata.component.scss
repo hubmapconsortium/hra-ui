@@ -35,7 +35,7 @@
     }
 
     // Labels and values line up in two columns, and long values truncate instead of wrapping.
-    // All table text uses on-surface-variant.
+    // Labels use on-surface and values on-surface-variant, so the two columns read apart.
     .metadata-details {
       display: grid;
       grid-template-columns: max-content minmax(0, 1fr);
@@ -55,6 +55,7 @@
 
     .metadata-row-label {
       white-space: nowrap;
+      color: vars.$on-surface;
     }
 
     .metadata-row > :last-child {

@@ -128,16 +128,11 @@ const FULLSCREEN_FIT_PASSES = 3;
  */
 const VIOLIN_FULLSCREEN_SPEC = { ...VIOLIN_SPEC, title: undefined, ...VIOLIN_FULLSCREEN_OVERRIDES };
 
-/** Configuration for the legend in the exported image */
+/** Configuration for the legend in the exported image. Its text uses the chart theme's type (see applyChartTheme). */
 const EXPORT_IMAGE_LEGEND_CONFIG = {
   title: null,
   symbolType: 'circle',
   symbolStrokeWidth: 10,
-  labelFontSize: 14,
-  titleFontSize: 14,
-  titleLineHeight: 21,
-  titleFontWeight: 500,
-  labelFontWeight: 500,
   symbolStrokeColor: 'type',
   symbolSize: 400,
 };
