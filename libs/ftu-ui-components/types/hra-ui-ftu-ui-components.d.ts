@@ -48,10 +48,14 @@ interface GradientPoint {
 declare class GradientLegendComponent {
     /** Gradient colors along with their stop points */
     gradient: GradientPoint[];
+    /** Smallest mean expression value in the current view, shown at the start of the bar */
+    minExpression?: number;
+    /** Largest mean expression value in the current view, shown at the end of the bar */
+    maxExpression?: number;
     /** Computes the css linear-gradient function for the gradient bar */
     get gradientCss(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<GradientLegendComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GradientLegendComponent, "ftu-gradient-legend", never, { "gradient": { "alias": "gradient"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GradientLegendComponent, "ftu-gradient-legend", never, { "gradient": { "alias": "gradient"; "required": false; }; "minExpression": { "alias": "minExpression"; "required": false; }; "maxExpression": { "alias": "maxExpression"; "required": false; }; }, {}, never, never, true, never>;
 }
 
 /** Label box component for reuse accross the page. The content with "end" selector will be added to the end of the label box */
@@ -290,7 +294,7 @@ declare class SourceListComponent {
     /** Mat sort element */
     private readonly sort;
     datasource: MatTableDataSource<{
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -306,7 +310,7 @@ declare class SourceListComponent {
     private readonly defaultSortingDataAccessor;
     /** List of sources with titles and links displayed to the user */
     readonly sources: i0.InputSignal<{
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -332,7 +336,7 @@ declare class SourceListComponent {
     readonly numPublications: i0.Signal<number>;
     /** Emits when source selection changed */
     readonly selectionChanged: i0.OutputEmitterRef<{
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -348,8 +352,8 @@ declare class SourceListComponent {
     /** Sort data on load and set columns */
     constructor();
     /**
-     * Sorting data accessor that sorts string ages/BMIs among the numeric ones: ranges such as
-     * '60-69' by their lower bound, other strings such as 'unknown' after all numbers
+     * Sorting data accessor that sorts string years/ages/BMIs among the numeric ones: ranges such as
+     * '60-69' by their lower bound, other strings such as 'unknown' or 'none' after all numbers
      */
     private sortingDataAccessor;
     /** Opens the source list in fullscreen mode */
@@ -498,6 +502,19 @@ declare class TissueTreeListComponent<K extends string, T extends DataNode<K>> i
  */
 type RGBTriplet = [number, number, number];
 /**
+ * The two legend entries surrounding a value along with their percentages
+ */
+interface MinMaxResult<T> {
+    /** Percentage of the lower entry */
+    minPercentage: number;
+    /** Percentage of the upper entry */
+    maxPercentage: number;
+    /** Value of the lower entry */
+    minValue: T;
+    /** Value of the upper entry */
+    maxValue: T;
+}
+/**
  * An interface representing a single cell of the table.
  */
 interface DataCell {
@@ -544,6 +561,10 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     gradient: GradientPoint[];
     /** Taking input for the radius of the circle and the label to be displayed. */
     sizes: SizeLegend[];
+    /** Smallest mean expression value in the current view, mapped to the start of the gradient */
+    minExpression?: number;
+    /** Largest mean expression value in the current view, mapped to the end of the gradient */
+    maxExpression?: number;
     /** Cell id which is hovered, used for highlighting */
     highlightedCellId: string;
     /** List of cell ids in the illustration */
@@ -599,6 +620,15 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
      */
     lerp(value: number, min: number, max: number): number;
     /**
+     * Scales a value linearly to the range [0, 1] relative to start and end,
+     * clamping values outside the range
+     * @param value Value to scale
+     * @param start Value mapped to 0
+     * @param end Value mapped to 1
+     * @returns The normalized value
+     */
+    normalizeMinMaxClamped(value: number, start: number, end: number): number;
+    /**
      * Converts HexCode to RGB
      * @param hex
      * @returns
@@ -606,25 +636,20 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     hex2rgb(hex: string): RGBTriplet;
     /**
      * Gets Min and Max color grade based on the meanExpression value
-     * @param meanExpression
+     * @param meanExpression Mean expression in the range [0, 100]
      * @returns
      */
-    getMinMaxColor(meanExpression: number): {
-        minColor: RGBTriplet;
-        maxColor: RGBTriplet;
-    };
+    getMinMaxColor(meanExpression: number): MinMaxResult<RGBTriplet>;
     /**
      * Gets Min and Max size grade based on the Percentage value
-     * @param percentage
+     * @param percentage Percentage in the range [0, 1]
      * @returns
      */
-    getMinMaxSize(percentage: number): {
-        minSize: number;
-        maxSize: number;
-    };
+    getMinMaxSize(percentage: number): MinMaxResult<number>;
     /**
-     * Calculates the color of this value on this gradient
-     * @param value
+     * Calculates the color of this value on this gradient. The value is first
+     * scaled using the min and max expression of the current view, if available
+     * @param value Raw mean expression value
      * @returns
      */
     getColor(value: number): string;
@@ -646,8 +671,18 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
      * @param hoverId cell type id
      */
     setHoverId(hoverId?: string): void;
+    /**
+     * Finds the two consecutive entries surrounding a value. Values outside
+     * the entries are clamped to the first or last segment
+     * @param value Value to look up
+     * @param entries Entries sorted by percentage
+     * @param percentageFn Gets the percentage of an entry
+     * @param valueFn Gets the value of an entry
+     * @returns The surrounding entries' percentages and values
+     */
+    private getMinMax;
     static ɵfac: i0.ɵɵFactoryDeclaration<BiomarkerTableComponent<any>, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<BiomarkerTableComponent<any>, "ftu-biomarker-table", never, { "tissueInfo": { "alias": "tissueInfo"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "dataSources": { "alias": "dataSources"; "required": false; }; "data": { "alias": "data"; "required": false; }; "gradient": { "alias": "gradient"; "required": false; }; "sizes": { "alias": "sizes"; "required": false; }; "highlightedCellId": { "alias": "highlightedCellId"; "required": false; }; "illustrationIds": { "alias": "illustrationIds"; "required": false; }; }, { "rowHover": "rowHover"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BiomarkerTableComponent<any>, "ftu-biomarker-table", never, { "tissueInfo": { "alias": "tissueInfo"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "dataSources": { "alias": "dataSources"; "required": false; }; "data": { "alias": "data"; "required": false; }; "gradient": { "alias": "gradient"; "required": false; }; "sizes": { "alias": "sizes"; "required": false; }; "minExpression": { "alias": "minExpression"; "required": false; }; "maxExpression": { "alias": "maxExpression"; "required": false; }; "highlightedCellId": { "alias": "highlightedCellId"; "required": false; }; "illustrationIds": { "alias": "illustrationIds"; "required": false; }; }, { "rowHover": "rowHover"; }, never, never, true, never>;
 }
 
 /** The component displays the biomarker details which includes the details, gradient legends, size legends and source lists*/
@@ -678,6 +713,8 @@ declare class BiomarkerDetailsComponent {
                 dataset_count?: number | undefined;
             };
         } | undefined)[]][];
+        minExpression?: number | undefined;
+        maxExpression?: number | undefined;
     }[];
     /** Info to be shown on the tooltip for Gradient Legend */
     readonly gradientHoverInfo: <Res = string, Args extends _hra_ui_utils_types_hra_ui_utils_types.Any[] = []>(...args: Args) => Res;
@@ -691,7 +728,7 @@ declare class BiomarkerDetailsComponent {
     readonly sizes: () => SizeLegend[];
     /** List of sources with titles and links displayed to the user */
     readonly source: () => {
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -748,7 +785,7 @@ declare class BiomarkerDetailsComponent {
     };
     /** Action to set selected sources */
     readonly setSelectedSources: (sources: {
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -764,7 +801,7 @@ declare class BiomarkerDetailsComponent {
         readonly type: string;
     };
     readonly selectedSources: () => {
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -1026,7 +1063,7 @@ declare class TissueLibraryBehaviorComponent {
         }[];
     }[];
     protected readonly sourceReferences: () => {
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -1039,7 +1076,7 @@ declare class TissueLibraryBehaviorComponent {
         ethnicity?: string | undefined;
     }[];
     protected readonly downloadCsv: (sourceRefs: {
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -1188,6 +1225,8 @@ declare class BiomarkerDetailsWcComponent {
                 dataset_count?: number | undefined;
             };
         } | undefined)[]][];
+        minExpression?: number | undefined;
+        maxExpression?: number | undefined;
     }[];
     /** Info to be shown on the tooltip for Gradient Legend */
     readonly gradientHoverInfo: <Res = string, Args extends _hra_ui_utils_types_hra_ui_utils_types.Any[] = []>(...args: Args) => Res;
@@ -1206,7 +1245,7 @@ declare class BiomarkerDetailsWcComponent {
     readonly sizes: () => SizeLegend[];
     /** List of sources with titles and links displayed to the user */
     readonly source: () => {
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -1220,7 +1259,7 @@ declare class BiomarkerDetailsWcComponent {
     }[];
     /** List of selected sources */
     readonly selectedSources: i0.WritableSignal<{
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;
@@ -1262,7 +1301,7 @@ declare class BiomarkerDetailsWcComponent {
     readonly message = "We currently do not have cell type data for this biomarker.\n<br><br> Please contact us to discuss your dataset.";
     /** Sets currently selected sources */
     readonly setSelectedSources: (sources: {
-        year: number;
+        year: string | number;
         datasetTitle: string;
         datasetId: string;
         title?: string | undefined;

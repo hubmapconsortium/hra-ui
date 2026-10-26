@@ -282,12 +282,20 @@ class AggregateBuilder {
     finalize() {
         const { columns, order } = this.sortColumns();
         const rows = this.sortRows(order);
+        if (rows.length === 0) {
+            return { columns, rows };
+        }
         const totalCount = rows.reduce((acc, row) => acc + (row[1] ?? 0), 0);
+        let minExpression = Infinity;
+        let maxExpression = -Infinity;
         for (const entry of this.entries()) {
             const percentage = entry.data.count / totalCount;
             entry.size = entry.data.percentage = percentage;
+            const { meanExpression } = entry.data;
+            minExpression = Math.min(minExpression, meanExpression);
+            maxExpression = Math.max(maxExpression, meanExpression);
         }
-        return { columns, rows };
+        return { columns, rows, minExpression, maxExpression };
     }
     /**
      * Get the index for a column object. Adds a new column if necessary.
@@ -410,6 +418,10 @@ const AGGREGATE = z.object({
     label: z.string(),
     columns: z.string().array(),
     rows: AGGREGATE_ROW.array(),
+    /** Smallest mean expression value across all cells */
+    minExpression: z.number().optional(),
+    /** Largest mean expression value across all cells */
+    maxExpression: z.number().optional(),
 });
 
 /** State handling cell summary data */

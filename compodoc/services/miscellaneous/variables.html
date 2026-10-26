@@ -1328,7 +1328,7 @@
           label: z.string(),
           description: z.string(),
           authors: z.string().array().optional(),
-          year: z.number().optional(),
+          year: z.union([z.number(), z.string()]).optional(),
           doi: z.string().optional(),
           link: z.string(),
           cell_type_annotation_tool: z.string().optional(),
@@ -1485,7 +1485,8 @@
                         <i>Default value : </i><code>z.object({
   title: z.string().optional(),
   doi: z.string().optional(),
-  year: z.number(),
+  /** Publication year, or a string such as &#x27;none&#x27; */
+  year: z.union([z.number(), z.string()]),
   datasetTitle: z.string(),
   datasetId: z.string(),
   cellType: z.string().optional(),

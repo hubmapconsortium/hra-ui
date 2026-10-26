@@ -110,6 +110,8 @@ declare const AGGREGATE: z.ZodObject<{
             dataset_count: z.ZodOptional<z.ZodNumber>;
         }, z.core.$strip>;
     }, z.core.$strip>>>>;
+    minExpression: z.ZodOptional<z.ZodNumber>;
+    maxExpression: z.ZodOptional<z.ZodNumber>;
 }, z.core.$strip>;
 
 /** Selectors for the CellSummary state */

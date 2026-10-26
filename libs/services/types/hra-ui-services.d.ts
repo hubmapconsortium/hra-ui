@@ -68,7 +68,7 @@ declare const DATA_FILE_REFERENCE: z.ZodObject<{
 declare const SOURCE_REFERENCE: z.ZodObject<{
     title: z.ZodOptional<z.ZodString>;
     doi: z.ZodOptional<z.ZodString>;
-    year: z.ZodNumber;
+    year: z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>;
     datasetTitle: z.ZodString;
     datasetId: z.ZodString;
     cellType: z.ZodOptional<z.ZodString>;
@@ -151,7 +151,7 @@ declare const RAW_DATASETS: z.ZodObject<{
             label: z.ZodString;
             description: z.ZodString;
             authors: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            year: z.ZodOptional<z.ZodNumber>;
+            year: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
             doi: z.ZodOptional<z.ZodString>;
             link: z.ZodString;
             cell_type_annotation_tool: z.ZodOptional<z.ZodString>;
@@ -686,7 +686,7 @@ declare const RAW_DATASETS_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.
             label: z.ZodString;
             description: z.ZodString;
             authors: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            year: z.ZodOptional<z.ZodNumber>;
+            year: z.ZodOptional<z.ZodUnion<readonly [z.ZodNumber, z.ZodString]>>;
             doi: z.ZodOptional<z.ZodString>;
             link: z.ZodString;
             cell_type_annotation_tool: z.ZodOptional<z.ZodString>;
@@ -713,7 +713,7 @@ declare function rawDatasetsInput(value: unknown): string | {
             description: string;
             link: string;
             authors?: string[] | undefined;
-            year?: number | undefined;
+            year?: string | number | undefined;
             doi?: string | undefined;
             cell_type_annotation_tool?: string | undefined;
             health_status?: string | undefined;
