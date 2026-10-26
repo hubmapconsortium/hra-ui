@@ -143,6 +143,9 @@
                 <p>Directive that can be used along ng-scrollbar to apply a gradient
 to the top and bottom of the scroll area to indicate that there
 is additional content available through scrolling.</p>
+<p>The gradients are sticky children of the content wrapper, so they stay pinned to the viewport edges while scrolling,
+and the scroll timeline only fades them in and out. ng-scrollbar draws its scrollbars in the content wrapper too,
+which is its own stacking context, so the gradients have to be there to stay under the scrollbars.</p>
 
             </p>
 
@@ -205,7 +208,7 @@ is additional content available through scrolling.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:79</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -236,7 +239,7 @@ is additional content available through scrolling.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:52</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -271,38 +274,14 @@ Primarily useful when there are sticky headers on a table, etc.</p>
   numberAttribute,
 } from &#x27;@angular/core&#x27;;
 import { registerStyleComponents } from &#x27;@hra-ui/cdk/styling&#x27;;
-import { NgScrollbar } from &#x27;ngx-scrollbar&#x27;;
+import { ViewportAdapter } from &#x27;ngx-scrollbar&#x27;;
 import { SCROLL_TIMELINE, ScrollTimelineFunc } from &#x27;../scroll-timeline/scroll-timeline&#x27;;
 
-/** Keyframes for the top gradient */
-const GRADIENT_TOP_KEYFRAMES: Keyframe[] &#x3D; [
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-top-start)&#x27;,
-    opacity: 0,
-  },
-  {
-    offset: 0.02,
-    opacity: 1,
-  },
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-top-end)&#x27;,
-  },
-];
+/** Keyframes for the top gradient: hidden at the start of the scroll range */
+const GRADIENT_TOP_KEYFRAMES: Keyframe[] &#x3D; [{ opacity: 0 }, { offset: 0.02, opacity: 1 }, { opacity: 1 }];
 
-/** Keyframes for the bottom gradient */
-const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] &#x3D; [
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-bottom-start)&#x27;,
-  },
-  {
-    offset: 0.98,
-    opacity: 1,
-  },
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-bottom-end)&#x27;,
-    opacity: 0,
-  },
-];
+/** Keyframes for the bottom gradient: hidden at the end of the scroll range */
+const GRADIENT_BOTTOM_KEYFRAMES: Keyframe[] &#x3D; [{ opacity: 1 }, { offset: 0.98, opacity: 1 }, { opacity: 0 }];
 
 /** Scroll overflow fade global styles component */
 @Component({
@@ -318,6 +297,10 @@ export class ScrollOverflowFadeStylesComponent {}
  * Directive that can be used along ng-scrollbar to apply a gradient
  * to the top and bottom of the scroll area to indicate that there
  * is additional content available through scrolling.
+ *
+ * The gradients are sticky children of the content wrapper, so they stay pinned to the viewport edges while scrolling,
+ * and the scroll timeline only fades them in and out. ng-scrollbar draws its scrollbars in the content wrapper too,
+ * which is its own stacking context, so the gradients have to be there to stay under the scrollbars.
  */
 @Directive({
   selector: &#x27;[hraScrollOverflowFade]&#x27;,
@@ -334,8 +317,8 @@ export class ScrollOverflowFadeDirective {
 
   /** Renderer instance */
   private readonly renderer &#x3D; inject(Renderer2);
-  /** Nearest ng-scrollbar instance */
-  private readonly scrollbar &#x3D; inject(NgScrollbar);
+  /** Viewport adapter of the ng-scrollbar, with or without an external viewport */
+  private readonly adapter &#x3D; inject(ViewportAdapter);
   /** Signal providing access to ScrollTimeline though browser builtin or polyfill */
   private readonly scrollTimeline &#x3D; inject(SCROLL_TIMELINE);
 
@@ -347,14 +330,14 @@ export class ScrollOverflowFadeDirective {
 
     effect((onCleanup) &#x3D;&gt; {
       const scrollTimeline &#x3D; this.scrollTimeline();
-      if (!this.scrollbar.adapter.initialized() || !scrollTimeline) {
+      if (!this.adapter.initialized() || !scrollTimeline) {
         return;
       }
 
-      const viewport &#x3D; this.scrollbar.adapter.viewportElement;
+      const { viewportElement: viewport, contentWrapperElement: content } &#x3D; this.adapter;
       const cleanupFns &#x3D; [
-        this.attachGradient(viewport, &#x27;top&#x27;, scrollTimeline, GRADIENT_TOP_KEYFRAMES),
-        this.attachGradient(viewport, &#x27;bottom&#x27;, scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),
+        this.attachGradient(viewport, content, &#x27;top&#x27;, scrollTimeline, GRADIENT_TOP_KEYFRAMES),
+        this.attachGradient(viewport, content, &#x27;bottom&#x27;, scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),
       ];
 
       onCleanup(() &#x3D;&gt; cleanupFns.forEach((fn) &#x3D;&gt; fn()));
@@ -364,20 +347,26 @@ export class ScrollOverflowFadeDirective {
   /**
    * Creates and attaches a gradient element to a scroll area.
    *
-   * @param viewport The scroll area viewport
-   * @param placement Whether to place the gradient on top or bottom
+   * @param viewport The scroll area viewport, which drives the fade
+   * @param content The content wrapper the gradient is added to, next to ng-scrollbar&#x27;s scrollbars
+   * @param placement Whether to place the gradient on top (first child) or bottom (last child)
    * @param scrollTimeline Reference to ScrollTimeline
-   * @param keyframes Keyframes used to animate/move the gradient
+   * @param keyframes Keyframes used to fade the gradient
    * @returns A cleanup function
    */
   private attachGradient(
     viewport: HTMLElement,
+    content: HTMLElement,
     placement: &#x27;top&#x27; | &#x27;bottom&#x27;,
     scrollTimeline: ScrollTimelineFunc,
     keyframes: Keyframe[],
   ): () &#x3D;&gt; void {
     const el &#x3D; this.createGradientElement(placement);
-    this.renderer.appendChild(viewport, el);
+    if (placement &#x3D;&#x3D;&#x3D; &#x27;top&#x27;) {
+      this.renderer.insertBefore(content, el, content.firstChild);
+    } else {
+      this.renderer.appendChild(content, el);
+    }
 
     const animation &#x3D; this.animateGradient(scrollTimeline, el, viewport, keyframes);
     return () &#x3D;&gt; {

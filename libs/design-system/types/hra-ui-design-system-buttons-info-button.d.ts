@@ -12,8 +12,10 @@ declare class InfoButtonActionsDirective {
 }
 /** Info Button Component */
 declare class InfoButtonComponent {
+    /** Accessible name of the button, such as "More information about Upload data" */
+    readonly label: i0.InputSignal<string>;
     static ɵfac: i0.ɵɵFactoryDeclaration<InfoButtonComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InfoButtonComponent, "hra-info-button", never, {}, {}, never, ["[hraInfoButtonTagline]", "*", "[hraInfoButtonActions]"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InfoButtonComponent, "hra-info-button", never, { "label": { "alias": "label"; "required": false; "isSignal": true; }; }, {}, never, ["[hraInfoButtonTagline]", "*", "[hraInfoButtonActions]"], true, never>;
 }
 
 export { InfoButtonActionsDirective, InfoButtonComponent, InfoButtonTaglineDirective };

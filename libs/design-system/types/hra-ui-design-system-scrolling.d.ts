@@ -14,6 +14,10 @@ declare class ScrollOverflowFadeStylesComponent {
  * Directive that can be used along ng-scrollbar to apply a gradient
  * to the top and bottom of the scroll area to indicate that there
  * is additional content available through scrolling.
+ *
+ * The gradients are sticky children of the content wrapper, so they stay pinned to the viewport edges while scrolling,
+ * and the scroll timeline only fades them in and out. ng-scrollbar draws its scrollbars in the content wrapper too,
+ * which is its own stacking context, so the gradients have to be there to stay under the scrollbars.
  */
 declare class ScrollOverflowFadeDirective {
     /**
@@ -23,8 +27,8 @@ declare class ScrollOverflowFadeDirective {
     readonly scrollOverflowFadeOffset: i0.InputSignalWithTransform<number, unknown>;
     /** Renderer instance */
     private readonly renderer;
-    /** Nearest ng-scrollbar instance */
-    private readonly scrollbar;
+    /** Viewport adapter of the ng-scrollbar, with or without an external viewport */
+    private readonly adapter;
     /** Signal providing access to ScrollTimeline though browser builtin or polyfill */
     private readonly scrollTimeline;
     /**
@@ -34,10 +38,11 @@ declare class ScrollOverflowFadeDirective {
     /**
      * Creates and attaches a gradient element to a scroll area.
      *
-     * @param viewport The scroll area viewport
-     * @param placement Whether to place the gradient on top or bottom
+     * @param viewport The scroll area viewport, which drives the fade
+     * @param content The content wrapper the gradient is added to, next to ng-scrollbar's scrollbars
+     * @param placement Whether to place the gradient on top (first child) or bottom (last child)
      * @param scrollTimeline Reference to ScrollTimeline
-     * @param keyframes Keyframes used to animate/move the gradient
+     * @param keyframes Keyframes used to fade the gradient
      * @returns A cleanup function
      */
     private attachGradient;

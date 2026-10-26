@@ -1,9 +1,23 @@
 import { ViewportScroller } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, Injectable } from '@angular/core';
+import { InjectionToken, inject, Injectable } from '@angular/core';
 import { Router, Scroll, NavigationEnd, NavigationSkipped } from '@angular/router';
 import { filter, startWith, pairwise } from 'rxjs/operators';
 
+/** Injection token for custom scroll options */
+const CUSTOM_SCROLL_OPTIONS = new InjectionToken('CustomScrollOptions', {
+    providedIn: 'root',
+    factory: () => ({ instantNavigation: false }),
+});
+/**
+ * Provides custom scroll options
+ *
+ * @param options Custom scroll options
+ * @returns A provider for the options
+ */
+function provideCustomScrollOptions(options) {
+    return { provide: CUSTOM_SCROLL_OPTIONS, useValue: options };
+}
 /**
  * Custom scroll service to handle scroll restoration on navigation events
  */
@@ -16,6 +30,12 @@ class CustomScrollService {
      * Injects the ViewportScroller.
      */
     viewportScroller = inject(ViewportScroller);
+    /**
+     * Scroll options for route changes and restored positions
+     */
+    navigationScrollOptions = inject(CUSTOM_SCROLL_OPTIONS).instantNavigation
+        ? { behavior: 'instant' }
+        : undefined;
     /**
      * CustomScrollService constructor
      * @param router The Angular Router instance to listen for navigation events
@@ -39,7 +59,7 @@ class CustomScrollService {
             const previous = e[0];
             const current = e[1];
             if (current.position) {
-                this.viewportScroller.scrollToPosition(current.position);
+                this.viewportScroller.scrollToPosition(current.position, this.navigationScrollOptions);
             }
             else if (current.anchor) {
                 this.viewportScroller.scrollToAnchor(current.anchor);
@@ -48,7 +68,7 @@ class CustomScrollService {
                 const previousUrl = this.getUrlFromRouterEvent(previous.routerEvent);
                 const currentUrl = this.getUrlFromRouterEvent(current.routerEvent);
                 if (previousUrl && currentUrl && this.getBaseRoute(previousUrl) !== this.getBaseRoute(currentUrl)) {
-                    this.viewportScroller.scrollToPosition([0, 0]);
+                    this.viewportScroller.scrollToPosition([0, 0], this.navigationScrollOptions);
                 }
             }
         });
@@ -87,5 +107,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { CustomScrollService };
+export { CUSTOM_SCROLL_OPTIONS, CustomScrollService, provideCustomScrollOptions };
 //# sourceMappingURL=hra-ui-common-custom-scroll.mjs.map

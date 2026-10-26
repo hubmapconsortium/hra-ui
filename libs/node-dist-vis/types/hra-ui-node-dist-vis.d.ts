@@ -155,7 +155,10 @@ declare class NodeDistVisComponent {
      * @param enable Whether to enable `zoomToFit`
      */
     setZoomToFitOnResize(enable: boolean): void;
-    /** Resets the view to the original location and rotation */
+    /**
+     * Resets the view to the fitted zoom, location, and rotation the nodes first load with,
+     * and fits the nodes again on resize until the next interaction
+     */
     resetView(): void;
     /** Resets the rotation of the orbit view */
     resetOrbit(): void;
@@ -200,6 +203,17 @@ declare class NodeDistVisComponent {
      * @param state Current interactions
      */
     private onInteraction;
+    /**
+     * Sets a new view state. deckgl only reports view state changes from interactions and transitions,
+     * so the `viewState` signal is updated here too. Otherwise later updates that build on it,
+     * like the zoom to fit on resize, would bring back the previous rotation and location.
+     * Methods that build on the current view state read it untracked: they can be called from effects
+     * (the CDE resets the orbit when entering select mode), and a tracked read followed by this write
+     * would rerun those effects in an endless loop.
+     *
+     * @param viewState New view state
+     */
+    private setViewState;
     /**
      * Handle canvas resizing
      */

@@ -159,7 +159,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">custom-scroll/src/lib/custom-scroll.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">custom-scroll/src/lib/custom-scroll.service.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -180,9 +180,34 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ViewportScroller } from &#x27;@angular/common&#x27;;
-import { inject, Injectable } from &#x27;@angular/core&#x27;;
+import { inject, Injectable, InjectionToken, Provider } from &#x27;@angular/core&#x27;;
 import { Event, NavigationEnd, NavigationSkipped, Router, RouterEvent, Scroll } from &#x27;@angular/router&#x27;;
 import { filter, pairwise, startWith } from &#x27;rxjs/operators&#x27;;
+
+/** Custom scroll options */
+export interface CustomScrollOptions {
+  /**
+   * Whether route changes and restored positions jump instantly, skipping the document&#x27;s smooth scroll-behavior,
+   * so a new page starts at the top right away. Anchor links still scroll smoothly.
+   */
+  instantNavigation: boolean;
+}
+
+/** Injection token for custom scroll options */
+export const CUSTOM_SCROLL_OPTIONS &#x3D; new InjectionToken&lt;CustomScrollOptions&gt;(&#x27;CustomScrollOptions&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; ({ instantNavigation: false }),
+});
+
+/**
+ * Provides custom scroll options
+ *
+ * @param options Custom scroll options
+ * @returns A provider for the options
+ */
+export function provideCustomScrollOptions(options: CustomScrollOptions): Provider {
+  return { provide: CUSTOM_SCROLL_OPTIONS, useValue: options };
+}
 
 /**
  * Custom scroll service to handle scroll restoration on navigation events
@@ -197,6 +222,12 @@ export class CustomScrollService {
    * Injects the ViewportScroller.
    */
   private viewportScroller &#x3D; inject(ViewportScroller);
+  /**
+   * Scroll options for route changes and restored positions
+   */
+  private navigationScrollOptions: ScrollOptions | undefined &#x3D; inject(CUSTOM_SCROLL_OPTIONS).instantNavigation
+    ? { behavior: &#x27;instant&#x27; }
+    : undefined;
 
   /**
    * CustomScrollService constructor
@@ -227,7 +258,7 @@ export class CustomScrollService {
         const current &#x3D; e[1];
 
         if (current.position) {
-          this.viewportScroller.scrollToPosition(current.position);
+          this.viewportScroller.scrollToPosition(current.position, this.navigationScrollOptions);
         } else if (current.anchor) {
           this.viewportScroller.scrollToAnchor(current.anchor);
         } else {
@@ -235,7 +266,7 @@ export class CustomScrollService {
           const currentUrl &#x3D; this.getUrlFromRouterEvent(current.routerEvent);
 
           if (previousUrl &amp;&amp; currentUrl &amp;&amp; this.getBaseRoute(previousUrl) !&#x3D;&#x3D; this.getBaseRoute(currentUrl)) {
-            this.viewportScroller.scrollToPosition([0, 0]);
+            this.viewportScroller.scrollToPosition([0, 0], this.navigationScrollOptions);
           }
         }
       });

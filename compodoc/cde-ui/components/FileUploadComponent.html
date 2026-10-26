@@ -1099,7 +1099,7 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;file-upload&quot;&gt;
   @if (!file &amp;&amp; errorMessage()) {
-    &lt;hra-error-indicator role&#x3D;&quot;alert&quot; [errors]&#x3D;&quot;[errorMessage(), errorActionMessage()]&quot; /&gt;
+    &lt;hra-error-indicator announce [errors]&#x3D;&quot;[errorMessage(), errorActionMessage()]&quot; /&gt;
   }
 
   @if (file &amp;&amp; !errorMessage()) {
@@ -1158,7 +1158,7 @@ export class FileUploadComponent&lt;T, OptionsT&gt; {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="file-upload">  @if (!file && errorMessage()) {    <hra-error-indicator role="alert" [errors]="[errorMessage(), errorActionMessage()]" />  }  @if (file && !errorMessage()) {    <hra-delete-file-button hraFeature="delete" hraClickEvent [fileName]="file.name" (cancelLoad)="cancelLoad()" />  } @else {    <button      mat-flat-button      class="upload"      hraPrimaryButton      hraButtonSize="large"      hraFeature="upload"      hraClickEvent      [attr.aria-label]="uploadAriaLabel() ?? null"      (click)="fileInput.click()"      #uploadButton    >      Upload CSV    </button>    <input      type="file"      style="display: none"      name="fileInput"      data-testid="file-upload"      [attr.accept]="accept()"      (change)="load(fileInput)"      #fileInput    />  }</ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="file-upload">  @if (!file && errorMessage()) {    <hra-error-indicator announce [errors]="[errorMessage(), errorActionMessage()]" />  }  @if (file && !errorMessage()) {    <hra-delete-file-button hraFeature="delete" hraClickEvent [fileName]="file.name" (cancelLoad)="cancelLoad()" />  } @else {    <button      mat-flat-button      class="upload"      hraPrimaryButton      hraButtonSize="large"      hraFeature="upload"      hraClickEvent      [attr.aria-label]="uploadAriaLabel() ?? null"      (click)="fileInput.click()"      #uploadButton    >      Upload CSV    </button>    <input      type="file"      style="display: none"      name="fileInput"      data-testid="file-upload"      [attr.accept]="accept()"      (change)="load(fileInput)"      #fileInput    />  }</ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'FileUploadComponent'};

@@ -1,5 +1,23 @@
 import * as i0 from '@angular/core';
+import { InjectionToken, Provider } from '@angular/core';
 
+/** Custom scroll options */
+interface CustomScrollOptions {
+    /**
+     * Whether route changes and restored positions jump instantly, skipping the document's smooth scroll-behavior,
+     * so a new page starts at the top right away. Anchor links still scroll smoothly.
+     */
+    instantNavigation: boolean;
+}
+/** Injection token for custom scroll options */
+declare const CUSTOM_SCROLL_OPTIONS: InjectionToken<CustomScrollOptions>;
+/**
+ * Provides custom scroll options
+ *
+ * @param options Custom scroll options
+ * @returns A provider for the options
+ */
+declare function provideCustomScrollOptions(options: CustomScrollOptions): Provider;
 /**
  * Custom scroll service to handle scroll restoration on navigation events
  */
@@ -12,6 +30,10 @@ declare class CustomScrollService {
      * Injects the ViewportScroller.
      */
     private viewportScroller;
+    /**
+     * Scroll options for route changes and restored positions
+     */
+    private navigationScrollOptions;
     /**
      * CustomScrollService constructor
      * @param router The Angular Router instance to listen for navigation events
@@ -42,4 +64,5 @@ declare class CustomScrollService {
     static ɵprov: i0.ɵɵInjectableDeclaration<CustomScrollService>;
 }
 
-export { CustomScrollService };
+export { CUSTOM_SCROLL_OPTIONS, CustomScrollService, provideCustomScrollOptions };
+export type { CustomScrollOptions };

@@ -262,6 +262,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/CsvFileLoaderOptions.html" data-type="entity-link" >CsvFileLoaderOptions</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/CustomScrollOptions.html" data-type="entity-link" >CustomScrollOptions</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/ErrorEventProps.html" data-type="entity-link" >ErrorEventProps</a>
                             </li>
                             <li class="link">

@@ -139,6 +139,11 @@ declare class RichTooltipDirective implements RichTooltipController {
      */
     private readonly overlay;
     /**
+     * Plain tooltip on the same element, such as the "Info" label on info buttons,
+     * which is disabled while the rich tooltip is open so the two don't overlap
+     */
+    private readonly plainTooltip;
+    /**
      * Position strategy for the rich tooltip
      */
     private readonly positionStrategy;
@@ -147,10 +152,9 @@ declare class RichTooltipDirective implements RichTooltipController {
      */
     private readonly overlayRef;
     /**
-     * Boolean flag indicating whether the
-     * rich tooltip is currently visible
+     * Whether the rich tooltip is currently visible
      */
-    private isOpen;
+    protected readonly isOpen: i0.WritableSignal<boolean>;
     /**
      * Container element variable for the rich tooltip
      */

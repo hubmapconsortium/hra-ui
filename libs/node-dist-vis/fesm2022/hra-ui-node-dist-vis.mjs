@@ -743,15 +743,13 @@ class NodeDistVisComponent {
         const zoomX = Math.log2((scale * (width - 2 * marginX)) / (pixelRatio * scaleX));
         const zoomY = Math.log2((scale * (height - 2 * marginY)) / (pixelRatio * scaleY));
         const zoom = Math.min(zoomX, zoomY);
-        this.deck().setProps({
-            initialViewState: {
-                ...this.viewState(),
-                transitionDuration,
-                zoom,
-                ...(resetTarget ? { target } : {}),
-                ...(resetRotation ? { rotationX: 0, rotationOrbit: 0 } : {}),
-                version: ++this.viewStateVersion,
-            },
+        this.setViewState({
+            ...untracked(this.viewState),
+            transitionDuration,
+            zoom,
+            ...(resetTarget ? { target } : {}),
+            ...(resetRotation ? { rotationX: 0, rotationOrbit: 0 } : {}),
+            version: ++this.viewStateVersion,
         });
     }
     /**
@@ -762,24 +760,28 @@ class NodeDistVisComponent {
     setZoomToFitOnResize(enable) {
         this.zoomToFitOnResize.set(enable);
     }
-    /** Resets the view to the original location and rotation */
+    /**
+     * Resets the view to the fitted zoom, location, and rotation the nodes first load with,
+     * and fits the nodes again on resize until the next interaction
+     */
     resetView() {
-        this.deck().setProps({
-            initialViewState: {
+        if (this.nodesView().length === 0) {
+            this.setViewState({
                 ...INITIAL_VIEW_STATE,
                 version: ++this.viewStateVersion,
-            },
-        });
+            });
+            return;
+        }
+        this.setZoomToFitOnResize(true);
+        this.zoomToFit();
     }
     /** Resets the rotation of the orbit view */
     resetOrbit() {
-        this.deck().setProps({
-            initialViewState: {
-                ...this.viewState(),
-                rotationX: 0,
-                rotationOrbit: 0,
-                version: ++this.viewStateVersion,
-            },
+        this.setViewState({
+            ...untracked(this.viewState),
+            rotationX: 0,
+            rotationOrbit: 0,
+            version: ++this.viewStateVersion,
         });
     }
     /** Clears any active selection */
@@ -869,6 +871,20 @@ class NodeDistVisComponent {
         if (isInteracting) {
             this.setZoomToFitOnResize(false);
         }
+    }
+    /**
+     * Sets a new view state. deckgl only reports view state changes from interactions and transitions,
+     * so the `viewState` signal is updated here too. Otherwise later updates that build on it,
+     * like the zoom to fit on resize, would bring back the previous rotation and location.
+     * Methods that build on the current view state read it untracked: they can be called from effects
+     * (the CDE resets the orbit when entering select mode), and a tracked read followed by this write
+     * would rerun those effects in an endless loop.
+     *
+     * @param viewState New view state
+     */
+    setViewState(viewState) {
+        this.viewState.set(viewState);
+        this.deck().setProps({ initialViewState: viewState });
     }
     /**
      * Handle canvas resizing

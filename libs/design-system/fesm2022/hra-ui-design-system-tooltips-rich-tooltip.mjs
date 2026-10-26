@@ -1,8 +1,11 @@
+import { hasModifierKey } from '@angular/cdk/keycodes';
 import { Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import * as i0 from '@angular/core';
-import { Directive, ChangeDetectionStrategy, Component, viewChild, TemplateRef, contentChildren, input, output, inject, ElementRef, ViewContainerRef, computed, effect, NgModule } from '@angular/core';
+import { Directive, ChangeDetectionStrategy, Component, viewChild, TemplateRef, contentChildren, input, output, inject, ElementRef, ViewContainerRef, computed, signal, effect, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatTooltip } from '@angular/material/tooltip';
+import { filter } from 'rxjs';
 import * as i1 from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -204,6 +207,11 @@ class RichTooltipDirective {
      */
     overlay = inject(Overlay);
     /**
+     * Plain tooltip on the same element, such as the "Info" label on info buttons,
+     * which is disabled while the rich tooltip is open so the two don't overlap
+     */
+    plainTooltip = inject(MatTooltip, { optional: true, self: true });
+    /**
      * Position strategy for the rich tooltip
      */
     positionStrategy = computed(() => {
@@ -225,10 +233,9 @@ class RichTooltipDirective {
         scrollStrategy: this.overlay.scrollStrategies.reposition(),
     });
     /**
-     * Boolean flag indicating whether the
-     * rich tooltip is currently visible
+     * Whether the rich tooltip is currently visible
      */
-    isOpen = false;
+    isOpen = signal(false, ...(ngDevMode ? [{ debugName: "isOpen" }] : []));
     /**
      * Container element variable for the rich tooltip
      */
@@ -259,30 +266,43 @@ class RichTooltipDirective {
                 this.close();
             }
         });
+        this.overlayRef
+            .keydownEvents()
+            .pipe(filter((event) => event.key === 'Escape' && !hasModifierKey(event)), takeUntilDestroyed())
+            .subscribe((event) => {
+            event.preventDefault();
+            this.close();
+        });
     }
     /**
      * Function to open the rich tooltip.
      */
     open() {
-        if (!this.isOpen) {
+        if (!this.isOpen()) {
             this.attach();
-            this.isOpen = true;
+            this.isOpen.set(true);
+            if (this.plainTooltip) {
+                this.plainTooltip.disabled = true;
+            }
         }
     }
     /**
      * Function to close the rich tooltip.
      */
     close() {
-        if (this.isOpen) {
+        if (this.isOpen()) {
             this.detach();
-            this.isOpen = false;
+            this.isOpen.set(false);
+            if (this.plainTooltip) {
+                this.plainTooltip.disabled = false;
+            }
         }
     }
     /**
      * Function to toggles the rich tooltip.
      */
     toggle() {
-        if (this.isOpen) {
+        if (this.isOpen()) {
             this.close();
         }
         else {
@@ -305,13 +325,14 @@ class RichTooltipDirective {
         this.overlayRef.detach();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: RichTooltipDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: RichTooltipDirective, isStandalone: true, selector: "[hraRichTooltip]", inputs: { customContainer: { classPropertyName: "customContainer", publicName: "hraRichTooltip", isSignal: true, isRequired: false, transformFunction: null }, tagline: { classPropertyName: "tagline", publicName: "hraRichTooltipTagline", isSignal: true, isRequired: false, transformFunction: null }, description: { classPropertyName: "description", publicName: "hraRichTooltipDescription", isSignal: true, isRequired: false, transformFunction: null }, actionText: { classPropertyName: "actionText", publicName: "hraRichTooltipActionText", isSignal: true, isRequired: false, transformFunction: null }, positions: { classPropertyName: "positions", publicName: "hraRichTooltipPositions", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { actionClick: "hraRichTooltipActionClick" }, host: { listeners: { "click": "toggle()" } }, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: RichTooltipDirective, isStandalone: true, selector: "[hraRichTooltip]", inputs: { customContainer: { classPropertyName: "customContainer", publicName: "hraRichTooltip", isSignal: true, isRequired: false, transformFunction: null }, tagline: { classPropertyName: "tagline", publicName: "hraRichTooltipTagline", isSignal: true, isRequired: false, transformFunction: null }, description: { classPropertyName: "description", publicName: "hraRichTooltipDescription", isSignal: true, isRequired: false, transformFunction: null }, actionText: { classPropertyName: "actionText", publicName: "hraRichTooltipActionText", isSignal: true, isRequired: false, transformFunction: null }, positions: { classPropertyName: "positions", publicName: "hraRichTooltipPositions", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { actionClick: "hraRichTooltipActionClick" }, host: { listeners: { "click": "toggle()" }, properties: { "attr.aria-expanded": "isOpen()" } }, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: RichTooltipDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraRichTooltip]',
                     host: {
+                        '[attr.aria-expanded]': 'isOpen()',
                         '(click)': 'toggle()',
                     },
                 }]

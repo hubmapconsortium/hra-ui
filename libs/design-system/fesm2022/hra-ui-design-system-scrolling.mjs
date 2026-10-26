@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, PLATFORM_ID, signal, ViewEncapsulation, ChangeDetectionStrategy, Component, input, numberAttribute, Renderer2, effect, Directive, makeEnvironmentProviders, NgModule } from '@angular/core';
 import { registerStyleComponents, provideStyleComponents } from '@hra-ui/cdk/styling';
-import { NgScrollbar, provideScrollbarPolyfill, provideScrollbarOptions, NgScrollbarModule } from 'ngx-scrollbar';
+import { ViewportAdapter, provideScrollbarPolyfill, provideScrollbarOptions, NgScrollbarModule } from 'ngx-scrollbar';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { interval, takeWhile, ignoreElements, endWith, map } from 'rxjs';
@@ -38,47 +38,27 @@ const SCROLL_TIMELINE = new InjectionToken('SCROLL_TIMELINE', {
     },
 });
 
-/** Keyframes for the top gradient */
-const GRADIENT_TOP_KEYFRAMES = [
-    {
-        top: 'var(--_hra-scroll-overflow-fade-gradient-top-start)',
-        opacity: 0,
-    },
-    {
-        offset: 0.02,
-        opacity: 1,
-    },
-    {
-        top: 'var(--_hra-scroll-overflow-fade-gradient-top-end)',
-    },
-];
-/** Keyframes for the bottom gradient */
-const GRADIENT_BOTTOM_KEYFRAMES = [
-    {
-        top: 'var(--_hra-scroll-overflow-fade-gradient-bottom-start)',
-    },
-    {
-        offset: 0.98,
-        opacity: 1,
-    },
-    {
-        top: 'var(--_hra-scroll-overflow-fade-gradient-bottom-end)',
-        opacity: 0,
-    },
-];
+/** Keyframes for the top gradient: hidden at the start of the scroll range */
+const GRADIENT_TOP_KEYFRAMES = [{ opacity: 0 }, { offset: 0.02, opacity: 1 }, { opacity: 1 }];
+/** Keyframes for the bottom gradient: hidden at the end of the scroll range */
+const GRADIENT_BOTTOM_KEYFRAMES = [{ opacity: 1 }, { offset: 0.98, opacity: 1 }, { opacity: 0 }];
 /** Scroll overflow fade global styles component */
 class ScrollOverflowFadeStylesComponent {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollOverflowFadeStylesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.5", type: ScrollOverflowFadeStylesComponent, isStandalone: true, selector: "hra-scroll-overflow-fade-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:absolute;pointer-events:none;z-index:99;left:0;right:0;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{--_hra-scroll-overflow-fade-gradient-top-start: var(--hra-scroll-overflow-fade-offset);--_hra-scroll-overflow-fade-gradient-top-end: calc( (var(--content-height) - var(--viewport-height)) * 1px + 2 * var(--hra-scroll-overflow-fade-offset) - 1px );top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-gradient-bottom-start: calc( var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height) );--_hra-scroll-overflow-fade-gradient-bottom-end: calc( var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset) );top:100%;background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-top,ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bottom{display:none}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.5", type: ScrollOverflowFadeStylesComponent, isStandalone: true, selector: "hra-scroll-overflow-fade-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:sticky;pointer-events:none;z-index:99;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{top:var(--hra-scroll-overflow-fade-offset, 0px);margin-bottom:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{bottom:0;margin-top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-top,.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-bottom{display:none}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollOverflowFadeStylesComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-scroll-overflow-fade-styles', template: '', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:absolute;pointer-events:none;z-index:99;left:0;right:0;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{--_hra-scroll-overflow-fade-gradient-top-start: var(--hra-scroll-overflow-fade-offset);--_hra-scroll-overflow-fade-gradient-top-end: calc( (var(--content-height) - var(--viewport-height)) * 1px + 2 * var(--hra-scroll-overflow-fade-offset) - 1px );top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-gradient-bottom-start: calc( var(--viewport-height) * 1px - var(--_hra-scroll-overflow-fade-height) );--_hra-scroll-overflow-fade-gradient-bottom-end: calc( var(--content-height) * 1px - var(--_hra-scroll-overflow-fade-height) + var(--hra-scroll-overflow-fade-offset) );top:100%;background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-top,ng-scrollbar[isVerticallyScrollable=false] .hra-scroll-overflow-fade-gradient-bottom{display:none}\n"] }]
+            args: [{ selector: 'hra-scroll-overflow-fade-styles', template: '', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:sticky;pointer-events:none;z-index:99;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{top:var(--hra-scroll-overflow-fade-offset, 0px);margin-bottom:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{bottom:0;margin-top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-top,.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-bottom{display:none}\n"] }]
         }] });
 /**
  * Directive that can be used along ng-scrollbar to apply a gradient
  * to the top and bottom of the scroll area to indicate that there
  * is additional content available through scrolling.
+ *
+ * The gradients are sticky children of the content wrapper, so they stay pinned to the viewport edges while scrolling,
+ * and the scroll timeline only fades them in and out. ng-scrollbar draws its scrollbars in the content wrapper too,
+ * which is its own stacking context, so the gradients have to be there to stay under the scrollbars.
  */
 class ScrollOverflowFadeDirective {
     /**
@@ -88,8 +68,8 @@ class ScrollOverflowFadeDirective {
     scrollOverflowFadeOffset = input(0, { ...(ngDevMode ? { debugName: "scrollOverflowFadeOffset" } : {}), transform: numberAttribute });
     /** Renderer instance */
     renderer = inject(Renderer2);
-    /** Nearest ng-scrollbar instance */
-    scrollbar = inject(NgScrollbar);
+    /** Viewport adapter of the ng-scrollbar, with or without an external viewport */
+    adapter = inject(ViewportAdapter);
     /** Signal providing access to ScrollTimeline though browser builtin or polyfill */
     scrollTimeline = inject(SCROLL_TIMELINE);
     /**
@@ -99,13 +79,13 @@ class ScrollOverflowFadeDirective {
         registerStyleComponents([ScrollOverflowFadeStylesComponent]);
         effect((onCleanup) => {
             const scrollTimeline = this.scrollTimeline();
-            if (!this.scrollbar.adapter.initialized() || !scrollTimeline) {
+            if (!this.adapter.initialized() || !scrollTimeline) {
                 return;
             }
-            const viewport = this.scrollbar.adapter.viewportElement;
+            const { viewportElement: viewport, contentWrapperElement: content } = this.adapter;
             const cleanupFns = [
-                this.attachGradient(viewport, 'top', scrollTimeline, GRADIENT_TOP_KEYFRAMES),
-                this.attachGradient(viewport, 'bottom', scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),
+                this.attachGradient(viewport, content, 'top', scrollTimeline, GRADIENT_TOP_KEYFRAMES),
+                this.attachGradient(viewport, content, 'bottom', scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),
             ];
             onCleanup(() => cleanupFns.forEach((fn) => fn()));
         });
@@ -113,15 +93,21 @@ class ScrollOverflowFadeDirective {
     /**
      * Creates and attaches a gradient element to a scroll area.
      *
-     * @param viewport The scroll area viewport
-     * @param placement Whether to place the gradient on top or bottom
+     * @param viewport The scroll area viewport, which drives the fade
+     * @param content The content wrapper the gradient is added to, next to ng-scrollbar's scrollbars
+     * @param placement Whether to place the gradient on top (first child) or bottom (last child)
      * @param scrollTimeline Reference to ScrollTimeline
-     * @param keyframes Keyframes used to animate/move the gradient
+     * @param keyframes Keyframes used to fade the gradient
      * @returns A cleanup function
      */
-    attachGradient(viewport, placement, scrollTimeline, keyframes) {
+    attachGradient(viewport, content, placement, scrollTimeline, keyframes) {
         const el = this.createGradientElement(placement);
-        this.renderer.appendChild(viewport, el);
+        if (placement === 'top') {
+            this.renderer.insertBefore(content, el, content.firstChild);
+        }
+        else {
+            this.renderer.appendChild(content, el);
+        }
         const animation = this.animateGradient(scrollTimeline, el, viewport, keyframes);
         return () => {
             el.remove();
