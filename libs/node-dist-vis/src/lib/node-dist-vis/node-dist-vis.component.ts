@@ -45,9 +45,9 @@ import { createController } from '../deckgl/controller';
 import { createDeck } from '../deckgl/deck';
 import { createEdgesLayer } from '../deckgl/edges';
 import { createNodesLayer } from '../deckgl/nodes';
-import { createScaleBarLayer } from '../deckgl/scale-bar';
 import { createSelectionLayer } from '../deckgl/selection';
 import { scalePosition } from '../deckgl/utils/position-scaling';
+import { createScaleBar, drawScaleBar } from './scale-bar';
 
 /** CursorState is not exported by deckgl */
 type CursorState = Parameters<NonNullable<DeckProps['getCursor']>>[0];
@@ -108,8 +108,51 @@ const INITIAL_VIEW_STATE = {
 /** Node distance visualization */
 @Component({
   selector: 'hra-node-dist-vis',
-  template: '<canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>',
-  styles: ':host { display: block; position: relative; width: 100%; height: 100%; }',
+  template: `
+    <canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>
+    @if (scaleBar(); as scaleBar) {
+      <div class="scale-bar" role="img" [attr.aria-label]="scaleBarAriaLabel()">
+        <div class="scale-bar-line" [style.width.px]="scaleBar.width" #scaleBarLine></div>
+        <span class="scale-bar-label" aria-hidden="true" #scaleBarLabel>{{ scaleBar.label }}</span>
+      </div>
+    }
+  `,
+  styles: `
+    :host {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /*
+     * Locked to the bottom right corner with 16px around it, so it stays put while the view pans, zooms, and rotates.
+     * White by default for the dark visualization background, and customizable through the color hook
+     */
+    .scale-bar {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      color: var(--hra-node-dist-vis-scale-bar-color, white);
+      pointer-events: none;
+    }
+
+    .scale-bar-line {
+      height: 0.5rem;
+      background-color: currentColor;
+    }
+
+    .scale-bar-label {
+      font: var(--mat-sys-title-small, 600 0.875rem / 1.3125rem sans-serif);
+      letter-spacing: var(--mat-sys-title-small-tracking, 0.1px);
+      white-space: nowrap;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
@@ -246,17 +289,18 @@ export class NodeDistVisComponent {
     this.colorMapView,
     this.edgesDisabled,
   );
-  /** Scale bar layer */
-  private readonly scaleBarLayer = createScaleBarLayer(this.nodesView, this.canvas, this.viewState);
+  /** Scale bar, drawn over the canvas so it stays in the corner */
+  protected readonly scaleBar = createScaleBar(this.nodesView, this.viewState);
+  /** Accessible name for the scale bar */
+  protected readonly scaleBarAriaLabel = computed(() => `Scale bar: ${this.scaleBar()?.label}`);
+  /** Scale bar line element */
+  private readonly scaleBarLine = viewChild<ElementRef<HTMLElement>>('scaleBarLine');
+  /** Scale bar label element */
+  private readonly scaleBarLabel = viewChild<ElementRef<HTMLElement>>('scaleBarLabel');
   /** Selection layer */
   private readonly selectionLayer = createSelectionLayer(this.mode, this.nodesLayer, this.onSelect.bind(this));
   /** All layers as an array */
-  private readonly layers = computed(() => [
-    this.nodesLayer(),
-    this.edgesLayer(),
-    this.scaleBarLayer(),
-    this.selectionLayer(),
-  ]);
+  private readonly layers = computed(() => [this.nodesLayer(), this.edgesLayer(), this.selectionLayer()]);
 
   /** Controller options */
   private readonly controller = createController(this.mode);
@@ -397,7 +441,22 @@ export class NodeDistVisComponent {
   toBlob(type?: string, quality?: number): Promise<Blob | null> {
     return new Promise((resolve) => {
       this.deck().redraw('toDataUrl');
-      this.canvas().toBlob(resolve, type, quality);
+      const canvas = this.canvas();
+      const line = this.scaleBarLine()?.nativeElement;
+      const label = this.scaleBarLabel()?.nativeElement;
+      const image = document.createElement('canvas');
+      const context = image.getContext('2d');
+      if (!line || !label || !context) {
+        canvas.toBlob(resolve, type, quality);
+        return;
+      }
+
+      // The scale bar is drawn over the canvas, so it's added to the exported image here
+      image.width = canvas.width;
+      image.height = canvas.height;
+      context.drawImage(canvas, 0, 0);
+      drawScaleBar(context, canvas, line, label);
+      image.toBlob(resolve, type, quality);
     });
   }
 
