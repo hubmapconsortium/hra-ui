@@ -34,8 +34,9 @@ export class ScrollOverflowFadeStylesComponent {}
  * to the top and bottom of the scroll area to indicate that there
  * is additional content available through scrolling.
  *
- * The gradients are sticky children of the viewport, so they stay pinned to its edges while scrolling,
- * and the scroll timeline only fades them in and out.
+ * The gradients are sticky children of the content wrapper, so they stay pinned to the viewport edges while scrolling,
+ * and the scroll timeline only fades them in and out. ng-scrollbar draws its scrollbars in the content wrapper too,
+ * which is its own stacking context, so the gradients have to be there to stay under the scrollbars.
  */
 @Directive({
   selector: '[hraScrollOverflowFade]',
@@ -69,10 +70,10 @@ export class ScrollOverflowFadeDirective {
         return;
       }
 
-      const viewport = this.adapter.viewportElement;
+      const { viewportElement: viewport, contentWrapperElement: content } = this.adapter;
       const cleanupFns = [
-        this.attachGradient(viewport, 'top', scrollTimeline, GRADIENT_TOP_KEYFRAMES),
-        this.attachGradient(viewport, 'bottom', scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),
+        this.attachGradient(viewport, content, 'top', scrollTimeline, GRADIENT_TOP_KEYFRAMES),
+        this.attachGradient(viewport, content, 'bottom', scrollTimeline, GRADIENT_BOTTOM_KEYFRAMES),
       ];
 
       onCleanup(() => cleanupFns.forEach((fn) => fn()));
@@ -82,7 +83,8 @@ export class ScrollOverflowFadeDirective {
   /**
    * Creates and attaches a gradient element to a scroll area.
    *
-   * @param viewport The scroll area viewport
+   * @param viewport The scroll area viewport, which drives the fade
+   * @param content The content wrapper the gradient is added to, next to ng-scrollbar's scrollbars
    * @param placement Whether to place the gradient on top (first child) or bottom (last child)
    * @param scrollTimeline Reference to ScrollTimeline
    * @param keyframes Keyframes used to fade the gradient
@@ -90,15 +92,16 @@ export class ScrollOverflowFadeDirective {
    */
   private attachGradient(
     viewport: HTMLElement,
+    content: HTMLElement,
     placement: 'top' | 'bottom',
     scrollTimeline: ScrollTimelineFunc,
     keyframes: Keyframe[],
   ): () => void {
     const el = this.createGradientElement(placement);
     if (placement === 'top') {
-      this.renderer.insertBefore(viewport, el, viewport.firstChild);
+      this.renderer.insertBefore(content, el, content.firstChild);
     } else {
-      this.renderer.appendChild(viewport, el);
+      this.renderer.appendChild(content, el);
     }
 
     const animation = this.animateGradient(scrollTimeline, el, viewport, keyframes);

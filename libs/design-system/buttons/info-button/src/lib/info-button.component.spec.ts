@@ -21,8 +21,18 @@ describe('InfoButtonComponent', () => {
 
     const button = screen.getByRole('button', { name: /more information/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute('aria-label', 'Click for more information');
+    expect(button).toHaveAttribute('aria-label', 'More information');
     expect(screen.getByText('info')).toBeInTheDocument();
+  });
+
+  it('uses the given label as the accessible name', async () => {
+    await setup(`
+      <hra-info-button label="More information about Upload data">
+        Test description
+      </hra-info-button>
+    `);
+
+    expect(screen.getByRole('button', { name: 'More information about Upload data' })).toBeInTheDocument();
   });
 
   it('opens rich tooltip with simple content on click', async () => {

@@ -15,7 +15,7 @@
         <span class="visually-hidden">Step 1 of 6: </span>
         <span class="card-title">Upload data</span>
       </h2>
-      <hra-info-button>
+      <hra-info-button label="More information about Upload data">
         Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
         damage and proliferation markers.
       </hra-info-button>
@@ -75,7 +75,9 @@
         <span class="visually-hidden">Step 2 of 6: </span>
         <span class="card-title">Organize data</span>
       </h2>
-      <hra-info-button> Verify column headers and edit as needed. Select optional column headers. </hra-info-button>
+      <hra-info-button label="More information about Organize data">
+        Verify column headers and edit as needed. Select optional column headers.
+      </hra-info-button>
     </div>
 
     @if (visualizationForm.controls.headers.disabled) {
@@ -143,7 +145,7 @@
     </div>
 
     @if (columnErrorActionMessage) {
-      <hra-error-indicator role="alert" icon="warning" [errors]="[columnErrorActionMessage]" />
+      <hra-error-indicator announce icon="warning" [errors]="[columnErrorActionMessage]" />
     }
 
     <div class="optional-headers">
@@ -190,7 +192,7 @@
         <span class="visually-hidden">Step 3 of 6: </span>
         <span class="card-title">Configure parameters</span>
       </h2>
-      <hra-info-button>
+      <hra-info-button label="More information about Configure parameters">
         The anchor cell type represents the cell type to which the nearest cell distance distributions should be
         computed and visualized. Euclidean distance is used to compute the distance between two cells. "Endothelial" is
         used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell type
@@ -266,7 +268,7 @@
         <span class="visually-hidden">Step 4 of 6: </span>
         <span class="card-title">Optional: Add metadata</span>
       </h2>
-      <hra-info-button>
+      <hra-info-button label="More information about Add metadata">
         Information in these fields will not change the visualization output. Metadata may be helpful for taking
         screenshots of the uploaded data and resulting visualizations in the Visualization App.
       </hra-info-button>
@@ -345,7 +347,7 @@
         <span class="visually-hidden">Step 5 of 6: </span>
         <span class="card-title">Optional: Configure colors</span>
       </h2>
-      <hra-info-button>
+      <hra-info-button label="More information about Configure colors">
         Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
         may be changed individually while exploring the visualization in the Visualization App.
       </hra-info-button>
@@ -412,7 +414,7 @@
         <span class="visually-hidden">Step 6 of 6: </span>
         <span class="card-title">Visualize cell distance data</span>
       </h2>
-      <hra-info-button>
+      <hra-info-button label="More information about Visualize cell distance data">
         <div hraInfoButtonTooltipContent>
           Data on the Create Visualization page cannot be modified after a visualization is generated.
         </div>

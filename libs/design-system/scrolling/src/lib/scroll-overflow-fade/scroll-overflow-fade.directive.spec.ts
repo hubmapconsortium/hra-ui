@@ -72,15 +72,16 @@ describe('ScrollOverflowFadeDirective', () => {
     expect(bottomEl).toBeDefined();
   });
 
-  it('places the gradients at the start and end of the viewport so they can stick to its edges', async () => {
+  it('places the gradients at the start and end of the content wrapper, next to the scrollbars', async () => {
     const context = await render(template, { ...getSharedOptions() });
     const scrollTimelineSignal = TestBed.inject(SCROLL_TIMELINE) as WritableSignal<ScrollTimelineFunc>;
 
     scrollTimelineSignal.set(jest.fn().mockReturnValue(undefined));
     context.detectChanges();
 
-    const viewport = context.container.querySelector('ng-scrollbar') as HTMLElement;
-    expect(viewport.firstElementChild).toHaveClass('hra-scroll-overflow-fade-gradient-top');
-    expect(viewport.lastElementChild).toHaveClass('hra-scroll-overflow-fade-gradient-bottom');
+    const content = context.container.querySelector('ng-scrollbar > ng-scroll-content') as HTMLElement;
+    expect(content.firstElementChild).toHaveClass('hra-scroll-overflow-fade-gradient-top');
+    expect(content.lastElementChild).toHaveClass('hra-scroll-overflow-fade-gradient-bottom');
+    expect(content.querySelector(':scope > scrollbars')).not.toBeNull();
   });
 });

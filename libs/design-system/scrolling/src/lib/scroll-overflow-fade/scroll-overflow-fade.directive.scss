@@ -11,6 +11,7 @@
   display: block;
   position: sticky;
   pointer-events: none;
+  // Over the content, under ng-scrollbar's scrollbars (z-index 100) in the same content wrapper
   z-index: 99;
   width: 100%;
   height: var(--_hra-scroll-overflow-fade-height);
@@ -30,7 +31,8 @@
 
 // Without a scroll range the scroll timeline is inactive and wouldn't fade the gradients out, so they're hidden.
 // ng-scrollbar marks the viewport, which is the ng-scrollbar element itself or the element given as externalViewport.
-.ng-scroll-viewport[isVerticallyScrollable='false'] {
+// The gradients sit in its content wrapper (or virtual scroll spacer), a direct child of the viewport.
+.ng-scroll-viewport[isVerticallyScrollable='false'] > * {
   & > .hra-scroll-overflow-fade-gradient-top,
   & > .hra-scroll-overflow-fade-gradient-bottom {
     display: none;
