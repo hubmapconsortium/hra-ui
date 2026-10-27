@@ -10,7 +10,7 @@ const meta: Meta = {
     },
   },
   args: {
-    reportIssueLink: '/',
+    reportIssueLink: 'https://github.com/hubmapconsortium/hra-ui/issues/new',
   },
   component: ServerErrorPageComponent,
 };

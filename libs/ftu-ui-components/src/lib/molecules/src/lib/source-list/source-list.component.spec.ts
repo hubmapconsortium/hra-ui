@@ -73,6 +73,7 @@ describe('SourceListComponent', () => {
     expect(datasource.sortingDataAccessor({ ...testItem, age: 7 }, 'age')).toBe(7);
     expect(datasource.sortingDataAccessor({ ...testItem, age: 'unknown' }, 'age')).toBe(Number.MAX_SAFE_INTEGER);
     expect(datasource.sortingDataAccessor({ ...testItem, bmi: 'unknown' }, 'bmi')).toBe(Number.MAX_SAFE_INTEGER);
+    expect(datasource.sortingDataAccessor({ ...testItem, year: 'none' }, 'year')).toBe(Number.MAX_SAFE_INTEGER);
   });
 
   it('should toggle showTable on toggleTable() method call', async () => {
@@ -214,11 +215,8 @@ describe('SourceListComponent', () => {
       }),
     ).toBeInTheDocument();
 
-    expect(
-      screen.getByText((content) => {
-        return content.includes('10.1000/test.doi');
-      }),
-    ).toBeInTheDocument();
+    const links = screen.getAllByRole('link', { name: 'Link' });
+    expect(links.map((link) => link.getAttribute('href'))).toEqual(['10.1000/test.doi', '10.1000/testdataset.doi']);
 
     expect(screen.getByText('2023')).toBeInTheDocument();
   });
