@@ -107,7 +107,8 @@ const DATA_FILE_REFERENCE = z.object({
 const SOURCE_REFERENCE = z.object({
     title: z.string().optional(),
     doi: z.string().optional(),
-    year: z.number(),
+    /** Publication year, or a string such as 'none' */
+    year: z.union([z.number(), z.string()]),
     datasetTitle: z.string(),
     datasetId: z.string(),
     cellType: z.string().optional(),
@@ -166,7 +167,7 @@ const RAW_DATASETS = z.object({
             label: z.string(),
             description: z.string(),
             authors: z.string().array().optional(),
-            year: z.number().optional(),
+            year: z.union([z.number(), z.string()]).optional(),
             doi: z.string().optional(),
             link: z.string(),
             cell_type_annotation_tool: z.string().optional(),
@@ -403,7 +404,7 @@ class FtuDataImplService extends FtuDataService {
      */
     toSourceReferences(data) {
         const results = [];
-        for (const { '@id': id, label, link, description, year = -1, cell_type_annotation_tool: cellType, health_status: healthStatus, sex, age, bmi, ethnicity, } of data) {
+        for (const { '@id': id, label, link, description, year = 'None', cell_type_annotation_tool: cellType, health_status: healthStatus, sex, age, bmi, ethnicity, } of data) {
             results.push({
                 datasetId: id,
                 datasetTitle: label,
