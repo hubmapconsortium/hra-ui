@@ -12,4 +12,30 @@ describe('ErrorIndicatorComponent', () => {
 
     expect(screen.getByText('Error 1')).toBeInTheDocument();
   });
+
+  it('shows the error icon by default', async () => {
+    const { container } = await render(ErrorIndicatorComponent, { componentInputs: { errors: ['Error 1'] } });
+
+    expect(container.querySelector('mat-icon')).toHaveTextContent('error');
+  });
+
+  it('shows the given icon', async () => {
+    const { container } = await render(ErrorIndicatorComponent, {
+      componentInputs: { errors: ['Error 1'], icon: 'warning' },
+    });
+
+    expect(container.querySelector('mat-icon')).toHaveTextContent('warning');
+  });
+
+  it('is not announced by default', async () => {
+    await render(ErrorIndicatorComponent, { componentInputs: { errors: ['Error 1'] } });
+
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('announces the errors when announce is set', async () => {
+    await render(ErrorIndicatorComponent, { componentInputs: { errors: ['Error 1'], announce: true } });
+
+    expect(screen.getByRole('alert')).toHaveTextContent('Error 1');
+  });
 });
