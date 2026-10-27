@@ -63,7 +63,12 @@
             [hraRichTooltipDescription]="expressionTooltipText"
           >
             <span class="legend-header-gradient">Biomarker expression mean</span>
-            <ftu-gradient-legend class="content" [gradient]="gradients()" />
+            <ftu-gradient-legend
+              class="content"
+              [gradient]="gradients()"
+              [minExpression]="tab.minExpression"
+              [maxExpression]="tab.maxExpression"
+            />
           </button>
         </div>
         <mat-button-toggle-group
@@ -84,6 +89,8 @@
           [columns]="tab.columns"
           [gradient]="gradients()"
           [sizes]="sizes()"
+          [minExpression]="tab.minExpression"
+          [maxExpression]="tab.maxExpression"
           [tissueInfo]="tissueInfo"
           [illustrationIds]="illustrationIds"
           [dataSources]="source()"
