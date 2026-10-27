@@ -99,11 +99,15 @@ GradientLegendInfo:
 GradientLegend:
   type: gradient
   points:
-    - color: '#FF9078'
+    - color: '#ffffb2' # now uses Color Brewer: https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=5
       percentage: 0
-    - color: '#8185CF'
-      percentage: 49.78
-    - color: '#201E3D'
+    - color: '#fecc5c'
+      percentage: 16.67
+    - color: '#fd8d3c'
+      percentage: 44.44
+    - color: '#f03b20'
+      percentage: 72.22
+    - color: '#bd0026'
       percentage: 100
 
 SizeLegendInfo:
@@ -116,13 +120,13 @@ SizeLegend:
   type: size
   sizes:
     - label: '0%'
-      radius: .125
+      radius: .45
     - label: '25%'
-      radius: .3125
+      radius: .65
     - label: '50%'
-      radius: .625
+      radius: .85
     - label: '75%'
-      radius: .9375
+      radius: 1.05
     - label: '100%'
       radius: 1.25
 

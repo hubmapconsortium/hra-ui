@@ -95,7 +95,7 @@ describe('FileUploadComponent', () => {
     screen.getByRole('button', { name: 'Upload CSV' }).focus();
     instance.load({ files: mockFiles } as HTMLInputElement);
     await rerender(fixture);
-    expect(screen.getByRole('button', { name: 'Delete file' })).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Delete nodes.csv' })).toHaveFocus();
 
     instance.cancelLoad();
     await rerender(fixture);
@@ -113,7 +113,7 @@ describe('FileUploadComponent', () => {
 
     fixture.componentInstance.load({ files: mockFiles } as HTMLInputElement);
     await rerender(fixture);
-    expect(screen.getByRole('button', { name: 'Delete file' })).not.toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Delete nodes.csv' })).not.toHaveFocus();
   });
 
   it('should cancel load', async () => {

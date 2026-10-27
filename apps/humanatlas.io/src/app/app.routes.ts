@@ -180,6 +180,10 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'organ-gallery-in-vr',
+    redirectTo: '/hra-organ-gallery',
+  },
+  {
     path: 'overview-data',
     component: ContentPageComponent,
     resolve: {
