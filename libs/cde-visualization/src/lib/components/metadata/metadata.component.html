@@ -71,92 +71,95 @@
       <mat-icon>download</mat-icon>
     </button>
   </hra-expansion-panel-header-content>
-  <div class="metadata-details" hraFeature="details" [attr.aria-busy]="loading() || null">
+  <!-- A description list: each row holds a label (dt) and its value (dd) -->
+  <dl class="metadata-details" hraFeature="details" [attr.aria-busy]="loading() || null">
     @if (loading()) {
       @for (row of skeletonRows; track $index) {
-        <cde-skeleton [style.width]="row.label" />
-        <cde-skeleton [style.width]="row.value" />
+        <div aria-hidden="true">
+          <dt><cde-skeleton [style.width]="row.label" /></dt>
+          <dd><cde-skeleton [style.width]="row.value" /></dd>
+        </div>
       }
     }
     @if (isFieldVisible('title')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label"> Source publication </span>
-        <span class="metadata-row-value">
+      <div>
+        <dt>Source publication</dt>
+        <dd>
           @if (metadata().sampleExtra; as extra) {
             <a hraHyperlink target="_blank" rel="noreferrer noopener" [attr.href]="extra.sampleUrl">
-              {{ extra.sampleUrl }}
+              {{ extra.sampleUrl | withoutProtocol }}
             </a>
           } @else {
-            <span class="metadata-row-value">{{ metadata().title | defaultTo: 'Unknown' }}</span>
+            {{ metadata().title | defaultTo: 'Unknown' }}
           }
-        </span>
+        </dd>
       </div>
     }
     @if (isFieldVisible('sourceFileName')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Source data</span>
-        <span>
+      <div>
+        <dt>Source data</dt>
+        <dd>
           @if (metadata().sampleExtra; as extra) {
             <a hraHyperlink target="_blank" rel="noreferrer noopener" [attr.href]="extra.sourceDataUrl">
               {{ metadata().sourceFileName }}
             </a>
           } @else {
-            <span>{{ metadata().sourceFileName | defaultTo: 'Unknown' }}</span>
+            {{ metadata().sourceFileName | defaultTo: 'Unknown' }}
           }
-        </span>
+        </dd>
       </div>
     }
     @if (isFieldVisible('colorMapFileName')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Color map</span>
-        <span class="metadata-row-value">{{ metadata().colorMapFileName | defaultTo: 'Default' }}</span>
+      <div>
+        <dt>Color map</dt>
+        <dd>{{ metadata().colorMapFileName | defaultTo: 'Default' }}</dd>
       </div>
     }
     @if (isFieldVisible('organ')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Organ</span>
-        <span class="metadata-row-value">{{ metadata().organ | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Organ</dt>
+        <dd>{{ metadata().organ | defaultTo: 'Unknown' }}</dd>
       </div>
     }
     @if (isFieldVisible('technology')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Technology</span>
-        <span class="metadata-row-value">{{ metadata().technology | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Technology</dt>
+        <dd>{{ metadata().technology | defaultTo: 'Unknown' }}</dd>
       </div>
     }
     @if (isFieldVisible('sex')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Sex</span>
-        <span class="metadata-row-value">{{ metadata().sex | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Sex</dt>
+        <dd>{{ metadata().sex | defaultTo: 'Unknown' }}</dd>
       </div>
     }
     @if (isFieldVisible('age')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Age</span>
-        <span class="metadata-row-value">{{ metadata().age | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Age</dt>
+        <dd>{{ metadata().age | defaultTo: 'Unknown' }}</dd>
       </div>
     }
     @if (isFieldVisible('thickness')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Thickness (µm)</span>
-        <span class="metadata-row-value">{{ metadata().thickness | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Thickness (µm)</dt>
+        <dd>{{ metadata().thickness | defaultTo: 'Unknown' }}</dd>
       </div>
     }
     @if (isFieldVisible('pixelSize')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Pixel size (µm/pixel)</span>
-        <span class="metadata-row-value">{{ metadata().pixelSize | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Pixel size (µm/pixel)</dt>
+        <dd>{{ metadata().pixelSize | defaultTo: 'Unknown' }}</dd>
       </div>
     }
     @if (isFieldVisible('creationTimestamp')) {
-      <div class="metadata-row">
-        <span class="metadata-row-label">Creation date</span>
-        <span class="metadata-row-value">{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Creation date</dt>
+        <dd>{{ formatCreationTimestamp(dateFormat) | defaultTo: 'Unknown' }}</dd>
       </div>
-      <div class="metadata-row">
-        <span class="metadata-row-label">Creation time</span>
-        <span class="metadata-row-value">{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</span>
+      <div>
+        <dt>Creation time</dt>
+        <dd>{{ formatCreationTimestamp(timeFormat) | defaultTo: 'Unknown' }}</dd>
       </div>
     }
-  </div>
+  </dl>
 </hra-expansion-panel>

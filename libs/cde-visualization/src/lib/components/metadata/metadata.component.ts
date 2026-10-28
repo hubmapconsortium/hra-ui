@@ -61,6 +61,17 @@ export class DefaultToPipe implements PipeTransform {
   }
 }
 
+/** Defines a pipe that drops a URL's protocol, so a link reads as `doi.org/...` instead of `https://doi.org/...` */
+@Pipe({
+  name: 'withoutProtocol',
+  pure: true,
+})
+export class WithoutProtocolPipe implements PipeTransform {
+  transform(url: string): string {
+    return url.replace(/^https?:\/\//, '');
+  }
+}
+
 /**
  * Metadata Component
  */
@@ -72,6 +83,7 @@ export class DefaultToPipe implements PipeTransform {
     MatIconModule,
     MatExpansionModule,
     DefaultToPipe,
+    WithoutProtocolPipe,
     MatMenuModule,
     PlainTooltipDirective,
     ButtonsModule,

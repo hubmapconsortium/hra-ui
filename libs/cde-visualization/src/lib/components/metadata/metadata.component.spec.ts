@@ -91,6 +91,22 @@ describe('MetadataComponent', () => {
     expect(screen.getByText('Metadata')).toBeInTheDocument();
   });
 
+  it('should show the source publication link without its protocol', async () => {
+    const sampleUrl = 'https://doi.org/10.1016/j.cell.2022.12.028';
+    await render(MetadataComponent, {
+      componentInputs: {
+        metadata: {
+          ...metadata,
+          sampleExtra: { type: '2D', organ: 'Brain', sampleUrl, sourceDataUrl: 'https://example.com/data.csv' },
+        },
+      },
+      providers: [provideNoopAnimations()],
+    });
+
+    const link = screen.getByRole('link', { name: 'doi.org/10.1016/j.cell.2022.12.028' });
+    expect(link).toHaveAttribute('href', sampleUrl);
+  });
+
   describe('downloads button', () => {
     async function setup(downloadsOpen?: boolean) {
       const downloadsClick = jest.fn();

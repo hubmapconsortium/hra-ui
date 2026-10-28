@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
-@use '../../../../../../libs/design-system/styles/utils' as utils;
+@use '../../../../../../libs/design-system/styles/description-list';
 
 :host {
   display: block;
@@ -34,35 +34,19 @@
       padding: 0.5rem 1rem 0.5rem 0.5rem;
     }
 
-    // Labels and values line up in two columns, and long values truncate instead of wrapping.
-    // Labels use on-surface and values on-surface-variant, so the two columns read apart.
+    // Labels and values in a description list, like the cell types table: on-surface labels and
+    // on-surface-variant values in striped rows. Links stay on one line and truncate, to keep the panel short.
     .metadata-details {
-      display: grid;
-      grid-template-columns: max-content minmax(0, 1fr);
-      gap: 0.125rem 1rem;
+      @include description-list.description-list();
       margin: 0 1rem 1rem;
-      color: vars.$on-surface-variant;
-      @include utils.use-font(body, medium);
 
       a {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         color: vars.$on-surface-variant;
       }
-    }
-
-    .metadata-row {
-      display: contents;
-    }
-
-    .metadata-row-label {
-      white-space: nowrap;
-      color: vars.$on-surface;
-    }
-
-    .metadata-row > :last-child {
-      min-width: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
   }
 }

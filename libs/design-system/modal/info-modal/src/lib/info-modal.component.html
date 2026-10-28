@@ -7,25 +7,13 @@
     </button>
   </h2>
 
-  <div class="table-container">
-    <table mat-table aria-label="info table" [dataSource]="data()">
-      <!-- Label Column -->
-      <ng-container matColumnDef="label">
-        <th *matHeaderCellDef class="sr-only" mat-header-cell>Item Label</th>
-        <td *matCellDef="let element" class="label" mat-cell>
-          {{ element.label }}
-        </td>
-      </ng-container>
-
-      <!-- Value Column -->
-      <ng-container matColumnDef="value">
-        <th *matHeaderCellDef class="sr-only" mat-header-cell>Item Value</th>
-        <td *matCellDef="let element" class="value" mat-cell>
-          {{ element.value }}
-        </td>
-      </ng-container>
-
-      <tr *matRowDef="let row; columns: ['label', 'value']" mat-row></tr>
-    </table>
-  </div>
+  <!-- A description list: each row holds a label (dt) and its value (dd) -->
+  <dl class="details">
+    @for (item of data(); track $index) {
+      <div>
+        <dt>{{ item.label }}</dt>
+        <dd>{{ item.value }}</dd>
+      </div>
+    }
+  </dl>
 </ng-container>
