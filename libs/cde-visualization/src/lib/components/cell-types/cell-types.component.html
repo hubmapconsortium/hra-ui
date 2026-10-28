@@ -30,7 +30,7 @@
           [hraFeature]="hideCellLinkData() ? 'show-cell-link' : 'hide-cell-link'"
           (click)="toggleLinksColumn()"
         >
-          <mat-icon>{{ hideCellLinkData() ? 'visibility' : 'visibility_off' }}visibility</mat-icon>
+          <mat-icon>{{ hideCellLinkData() ? 'visibility' : 'visibility_off' }}</mat-icon>
           {{ hideCellLinkData() ? 'Show' : 'Hide' }} cell link data
         </button>
         <button mat-menu-item hraFeature="reset-all-colors" hraClickEvent (click)="resetAllColors.emit()">
