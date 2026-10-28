@@ -82,6 +82,31 @@ describe('MetadataComponent', () => {
     expect(screen.getByText('Creation date')).toBeInTheDocument();
   });
 
+  it('should show the placeholder creation date and time of example datasets only with all metadata', async () => {
+    const { fixture } = await render(MetadataComponent, {
+      componentInputs: {
+        metadata: {
+          ...metadata,
+          sampleExtra: {
+            type: '2D',
+            organ: 'Brain',
+            sampleUrl: 'https://example.com',
+            sourceDataUrl: 'https://example.com',
+          },
+        },
+      },
+      providers: [provideNoopAnimations()],
+    });
+
+    expect(fixture.componentInstance.hasEmptyFields()).toBe(true);
+    expect(screen.queryByText('Creation date')).toBeNull();
+    expect(screen.queryByText('Creation time')).toBeNull();
+    fixture.componentInstance.toggleEmptyFields();
+    fixture.detectChanges();
+    expect(screen.getByText('Creation date')).toBeInTheDocument();
+    expect(screen.getByText('December 17, 1995')).toBeInTheDocument();
+  });
+
   it('should render the panel title', async () => {
     await render(MetadataComponent, {
       componentInputs: { metadata },

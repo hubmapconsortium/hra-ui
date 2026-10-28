@@ -40,6 +40,9 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'creationTimestamp',
 ];
 
+/** Fields that example datasets show only with all metadata, since their values are placeholders */
+const EXAMPLE_PLACEHOLDER_FIELDS: (keyof Metadata)[] = ['creationTimestamp'];
+
 /** Label and value widths of the skeleton rows shown while the metadata loads, varied like real rows */
 const SKELETON_ROWS = [
   { label: '8.5rem', value: '90%' },
@@ -121,10 +124,10 @@ export class MetadataComponent {
   /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields = signal(false);
 
-  /** Defines a computed property to check for empty fields */
+  /** Defines a computed property to check for fields that show only with all metadata: empty ones and placeholders */
   readonly hasEmptyFields = computed(() => {
     const metadata = this.metadata();
-    return HIDABLE_FIELDS.some((field) => metadata[field] === undefined);
+    return HIDABLE_FIELDS.some((field) => metadata[field] === undefined || this.isPlaceholder(field));
   });
 
   /** Creates a date formatter with default locale */
@@ -148,7 +151,12 @@ export class MetadataComponent {
     }
 
     const value = this.metadata()[field];
-    return this.showEmptyFields() || (value !== undefined && value !== '');
+    return this.showEmptyFields() || (value !== undefined && value !== '' && !this.isPlaceholder(field));
+  }
+
+  /** Checks if a field holds a placeholder value, which example datasets have in place of real metadata */
+  private isPlaceholder(field: keyof Metadata): boolean {
+    return this.metadata().sampleExtra !== undefined && EXAMPLE_PLACEHOLDER_FIELDS.includes(field);
   }
 
   /** Toggle function for the show/hide buttons */
