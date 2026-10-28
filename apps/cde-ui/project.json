@@ -23,6 +23,9 @@
             "output": "./assets"
           }
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/", "libs/design-system/styles", "apps/cde-ui/src/sass"]
+        },
         "polyfills": ["zone.js"]
       },
       "configurations": {

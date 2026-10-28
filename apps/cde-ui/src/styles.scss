@@ -3,7 +3,7 @@
 @use 'theming';
 @use 'utils';
 @use 'vars';
-@use 'app/shared/styles/landing';
+@use 'cde-utils';
 
 // Follow the system color scheme until the theme toggle picks one (see ThemeService)
 html {
@@ -298,10 +298,10 @@ html {
       5: headline-small,
       6: title-large,
     );
-    $paragraph-line-height: calc(#{landing.$paragraph-scale} * #{vars.$body-large-line-height});
+    $paragraph-line-height: calc(#{cde-utils.$paragraph-scale} * #{vars.$body-large-line-height});
 
     --ang-content-section-font: #{vars.$body-large-font};
-    --ang-content-section-size: calc(#{landing.$paragraph-scale} * #{vars.$body-large-size});
+    --ang-content-section-size: calc(#{cde-utils.$paragraph-scale} * #{vars.$body-large-size});
     --ang-content-section-weight: #{vars.$body-large-weight};
     --ang-content-section-line-height: #{$paragraph-line-height};
     --ang-content-section-tracking: #{vars.$body-large-tracking};

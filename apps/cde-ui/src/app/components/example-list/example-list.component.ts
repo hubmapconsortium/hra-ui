@@ -5,7 +5,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 
 /** Example dataset shown in the list */
-export interface LandingExample {
+export interface ExampleItem {
   /** Example name */
   title: string;
   /** Short metadata line, such as technology and cell count */
@@ -30,5 +30,5 @@ export interface LandingExample {
 })
 export class ExampleListComponent {
   /** Examples to list */
-  readonly examples = input.required<LandingExample[]>();
+  readonly examples = input.required<ExampleItem[]>();
 }
