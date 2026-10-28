@@ -1,0 +1,28 @@
+@use './navigation-rail-tokens' as tokens;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  box-sizing: border-box;
+  width: tokens.slot(container-width);
+  height: 100%;
+  padding-block: 1.25rem;
+  overflow-y: auto;
+  background-color: tokens.slot(container-color);
+
+  .hra-navigation-rail--bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    gap: inherit;
+    margin-top: auto;
+  }
+
+  ::ng-deep .mat-divider {
+    width: 3.5rem;
+    margin-block: 0.25rem;
+  }
+}
