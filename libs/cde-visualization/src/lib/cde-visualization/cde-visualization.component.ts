@@ -340,14 +340,12 @@ export class CdeVisualizationComponent {
     const edgeCounts = this.edgeCounts();
     const colorLookup = this.colorMapView().getColorLookup();
 
-    return Array.from(nodeCounts).map(
-      ([name, count]): CellTypeEntry => ({
-        name,
-        count,
-        outgoingEdgeCount: edgeCounts.get(name) ?? 0,
-        color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
-      }),
-    );
+    return Array.from(nodeCounts).map(([name, count]): CellTypeEntry => ({
+      name,
+      count,
+      outgoingEdgeCount: edgeCounts.get(name) ?? 0,
+      color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
+    }));
   });
 
   /** Adjustments for cell type counts */
