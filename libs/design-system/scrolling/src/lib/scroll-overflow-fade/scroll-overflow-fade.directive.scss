@@ -24,7 +24,7 @@
 }
 
 .hra-scroll-overflow-fade-gradient-bottom {
-  bottom: 0;
+  bottom: var(--hra-scroll-overflow-fade-bottom-offset, 0px);
   margin-top: calc(-1 * var(--_hra-scroll-overflow-fade-height));
   background: linear-gradient(to top, var(--_hra-scroll-overflow-fade-color), transparent);
 }
