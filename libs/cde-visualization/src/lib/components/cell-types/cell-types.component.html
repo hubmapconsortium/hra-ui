@@ -55,145 +55,152 @@
     </span>
   </hra-expansion-panel-actions>
 
-  <!-- The fade starts below the 32px sticky header row -->
-  <ng-scrollbar
-    class="table-overflow-container"
-    orientation="vertical"
-    externalViewport=".scroll-viewport"
-    hraScrollOverflowFade
-    scrollOverflowFadeOffset="32"
-    hraFeature="cell-types-table"
-  >
-    <div class="scroll-viewport">
-      <table
-        mat-table
-        matSort
-        matSortDirection="desc"
-        matSortActive="count"
-        aria-label="Cell types count table"
-        [dataSource]="dataSource"
-        [trackBy]="trackByName"
-      >
-        <ng-container matColumnDef="select">
-          <th *matHeaderCellDef mat-header-cell>
-            <mat-checkbox
-              hraFeature="select-all"
+  <!-- The fades start inside the 40px sticky header row and the 36px sticky totals row -->
+  <div class="table-frame">
+    <ng-scrollbar
+      class="table-overflow-container"
+      orientation="vertical"
+      externalViewport=".scroll-viewport"
+      hraScrollOverflowFade
+      scrollOverflowFadeOffset="40"
+      scrollOverflowFadeBottomOffset="36"
+      hraFeature="cell-types-table"
+    >
+      <div class="scroll-viewport">
+        <table
+          mat-table
+          matSort
+          matSortDirection="desc"
+          matSortActive="count"
+          aria-label="Cell types count table"
+          [dataSource]="dataSource"
+          [trackBy]="trackByName"
+        >
+          <ng-container matColumnDef="select">
+            <th *matHeaderCellDef mat-header-cell>
+              <mat-checkbox
+                hraFeature="select-all"
+                hraClickEvent
+                [checked]="selectionState() === 'full'"
+                [indeterminate]="selectionState() === 'partial'"
+                [aria-label]="getCheckboxLabel(selectionState() === 'full')"
+                (change)="toggleAllRows()"
+              />
+            </th>
+            <td *matCellDef="let row; let index = index" mat-cell>
+              <mat-checkbox
+                hraClickEvent
+                [checked]="isSelected(row)"
+                [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
+                [hraFeature]="row.name | slugify"
+                (click)="$event.stopPropagation()"
+                (change)="toggleRow(row)"
+              />
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cellType">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              mat-sort-header="name"
+              start="desc"
+              hraFeature="sort-by-cell-type"
               hraClickEvent
-              [checked]="selectionState() === 'full'"
-              [indeterminate]="selectionState() === 'partial'"
-              [aria-label]="getCheckboxLabel(selectionState() === 'full')"
-              (change)="toggleAllRows()"
-            />
-          </th>
-          <td *matCellDef="let row; let index = index" mat-cell>
-            <mat-checkbox
+            >
+              Cell type
+            </th>
+            <td *matCellDef="let element" mat-cell>
+              <cde-color-picker-label
+                [label]="element.name"
+                [color]="element.color"
+                [isAnchor]="element.name === selectedCellType()"
+                (colorChange)="updateColor(element, $event)"
+              />
+            </td>
+          </ng-container>
+
+          <!-- Count headers put the sort arrow before the label, so the label lines up with the numbers -->
+          <ng-container matColumnDef="count">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              mat-sort-header="count"
+              arrowPosition="before"
+              start="desc"
+              hraFeature="sort-by-cell-count"
               hraClickEvent
-              [checked]="isSelected(row)"
-              [aria-label]="getCheckboxLabel(isSelected(row), index + 1)"
-              [hraFeature]="row.name | slugify"
-              (click)="$event.stopPropagation()"
-              (change)="toggleRow(row)"
-            />
-          </td>
-        </ng-container>
+            >
+              #Cells
+            </th>
+            <td *matCellDef="let element" mat-cell>{{ getCount(element, 'count') }}</td>
+            <td *matFooterCellDef mat-footer-cell hraFeature="total-cells">
+              <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
+              <span class="visually-hidden"> total cells</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="cellType">
-          <th
-            *matHeaderCellDef
-            mat-header-cell
-            mat-sort-header="name"
-            start="desc"
-            hraFeature="sort-by-cell-type"
-            hraClickEvent
-          >
-            Cell type
-          </th>
-          <td *matCellDef="let element" mat-cell class="name">
-            <cde-color-picker-label
-              [label]="element.name"
-              [color]="element.color"
-              [isAnchor]="element.name === selectedCellType()"
-              (colorChange)="updateColor(element, $event)"
-            />
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="links">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              mat-sort-header="outgoingEdgeCount"
+              arrowPosition="before"
+              start="desc"
+              hraFeature="sort-by-links-count"
+              hraClickEvent
+            >
+              #Links
+            </th>
+            <td *matCellDef="let element" mat-cell>{{ getCount(element, 'outgoingEdgeCount') }}</td>
+            <td *matFooterCellDef mat-footer-cell hraFeature="total-cell-links">
+              <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
+              <span class="visually-hidden"> total cell links</span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="count">
-          <th
-            *matHeaderCellDef
-            mat-header-cell
-            mat-sort-header="count"
-            start="desc"
-            hraFeature="sort-by-cell-count"
-            hraClickEvent
-          >
-            #Cells
-          </th>
-          <td *matCellDef="let element" mat-cell>{{ getCount(element, 'count') }}</td>
-        </ng-container>
+          <!-- The totals label spans the checkbox and cell type columns -->
+          <ng-container matColumnDef="total">
+            <td *matFooterCellDef mat-footer-cell colspan="2" hraFeature="total-cell-types">
+              <span class="total-label">
+                Total ({{ selection().length }} cell type{{ selection().length === 1 ? '' : 's' }})
+              </span>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="links">
-          <th
-            *matHeaderCellDef
-            mat-header-cell
-            mat-sort-header="outgoingEdgeCount"
-            start="desc"
-            hraFeature="sort-by-links-count"
-            hraClickEvent
-          >
-            #Links
-          </th>
-          <td *matCellDef="let element" mat-cell>{{ getCount(element, 'outgoingEdgeCount') }}</td>
-        </ng-container>
+          <tr *matHeaderRowDef="columns(); sticky: true" mat-header-row></tr>
+          <tr *matRowDef="let row; columns: columns()" mat-row></tr>
+          <tr *matFooterRowDef="footerColumns(); sticky: true" mat-footer-row></tr>
+        </table>
+      </div>
+    </ng-scrollbar>
 
-        <tr *matHeaderRowDef="columns(); sticky: true" mat-header-row></tr>
-        <tr *matRowDef="let row; columns: columns()" mat-row></tr>
-      </table>
-    </div>
-  </ng-scrollbar>
-
-  <!-- Totals stay below the scroll area, lined up with the #Cells and #Links columns -->
-  <div class="totals">
-    <span class="total-cell-types" hraFeature="total-cell-types">
-      Total ({{ selection().length }} cell type{{ selection().length === 1 ? '' : 's' }})
-    </span>
-    <span class="total-count" hraFeature="total-cells">
-      <span data-testid="total-cell-count">{{ totalCellCount() | number }}</span>
-      <span class="visually-hidden"> total cells</span>
-    </span>
-    @if (!hideCellLinkData()) {
-      <span class="total-count" hraFeature="total-cell-links">
-        <span data-testid="total-cell-link-count">{{ totalCellLinksCount() | number }}</span>
-        <span class="visually-hidden"> total cell links</span>
-      </span>
+    <!-- Skeleton rows and totals cover the table body while the cell types load, below the column headers -->
+    @if (loading()) {
+      <div class="skeleton">
+        <div class="skeleton-rows">
+          @for (width of skeletonNameWidths; track $index) {
+            <div class="skeleton-row">
+              <cde-skeleton class="skeleton-checkbox" shape="rect" />
+              <span class="skeleton-name">
+                <cde-skeleton class="skeleton-swatch" shape="circle" />
+                <cde-skeleton [style.width]="width" />
+              </span>
+              <cde-skeleton class="skeleton-count" />
+              @if (!hideCellLinkData()) {
+                <cde-skeleton class="skeleton-count" />
+              }
+            </div>
+          }
+        </div>
+        <div class="totals">
+          <cde-skeleton class="skeleton-total-label" />
+          <cde-skeleton class="skeleton-count" />
+          @if (!hideCellLinkData()) {
+            <cde-skeleton class="skeleton-count" />
+          }
+        </div>
+      </div>
     }
   </div>
-
-  <!-- Skeleton rows and totals cover the table body while the cell types load, below the column headers -->
-  @if (loading()) {
-    <div class="skeleton">
-      <div class="skeleton-rows">
-        @for (width of skeletonNameWidths; track $index) {
-          <div class="skeleton-row">
-            <cde-skeleton class="skeleton-checkbox" shape="rect" />
-            <span class="skeleton-name">
-              <cde-skeleton class="skeleton-swatch" shape="circle" />
-              <cde-skeleton [style.width]="width" />
-            </span>
-            <cde-skeleton class="skeleton-count" />
-            @if (!hideCellLinkData()) {
-              <cde-skeleton class="skeleton-count" />
-            }
-          </div>
-        }
-      </div>
-      <div class="totals">
-        <cde-skeleton class="skeleton-total-label" />
-        <cde-skeleton class="skeleton-count" />
-        @if (!hideCellLinkData()) {
-          <cde-skeleton class="skeleton-count" />
-        }
-      </div>
-    </div>
-  }
 </hra-expansion-panel>

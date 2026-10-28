@@ -111,6 +111,14 @@ export class CellTypesComponent {
     return ['select', 'cellType', 'count', 'links'];
   });
 
+  /** Columns of the totals row, where the label spans the checkbox and cell type columns */
+  protected readonly footerColumns = computed(() => {
+    if (this.hideCellLinkData()) {
+      return ['total', 'count'];
+    }
+    return ['total', 'count', 'links'];
+  });
+
   /** Reference to MatSort directive */
   protected readonly sort = viewChild.required(MatSort);
 
