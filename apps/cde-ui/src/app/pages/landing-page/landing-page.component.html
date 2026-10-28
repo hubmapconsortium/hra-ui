@@ -44,14 +44,14 @@
         <!-- sizes mirrors $hero-image-width and $hero-image-stacked-width in the stylesheet -->
         <img
           class="hero-image"
+          ngSrc="assets/screenshots/large-intestine-visualization-1080x633.webp"
+          ngSrcset="540w, 720w, 1080w, 1440w"
           width="1080"
           height="633"
           sizes="(min-width: 64rem) clamp(34rem, min(50vh, 45vw), 56rem), (min-width: 36rem) clamp(34rem, (100vh - 113px - 54rem) * 1.7, 100vw - 5rem), calc(100vw - 2rem)"
-          fetchpriority="high"
+          priority
           alt="Cell Distance Explorer visualizing a large intestine sample, with violin and histogram charts of cell distances"
           [class.loaded]="heroImageLoaded()"
-          [attr.srcset]="heroScreenshotSrcset()"
-          [attr.src]="heroScreenshotFallback | assetUrl"
           (load)="heroImageLoaded.set(true)"
           (error)="heroImageLoaded.set(true)"
         />
@@ -104,7 +104,7 @@
       <div class="section-content">
         <h2 id="developer-tools-title" class="section-title">Developer tools</h2>
         <p class="section-description">Bring the Cell Distance Explorer into your own websites and analyses.</p>
-        <ul class="cards" role="list">
+        <ul class="cards">
           @for (card of developerTools(); track card.title) {
             <li>
               <cde-landing-card [card]="card" />

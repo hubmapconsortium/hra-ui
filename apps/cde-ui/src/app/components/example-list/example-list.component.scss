@@ -1,14 +1,12 @@
 @use 'utils';
 @use 'vars';
-@use '../../shared/styles/landing';
+@use 'cde-utils';
 
 :host {
   display: block;
-  // Evens out wrapped lines in titles, metadata and credits
   text-wrap: balance;
 
   .examples {
-    // Side by side when there is room, stacked on smaller screens
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
     gap: 1rem 1.5rem;
@@ -18,23 +16,19 @@
   }
 
   li {
-    // Lets each row adapt to its own width rather than the viewport
     container-type: inline-size;
   }
 
   .example {
     display: flex;
-    // Top aligned so titles line up across rows whose credits wrap differently
     align-items: flex-start;
     gap: 1rem;
-    // Fill the grid cell so rows side by side share the same height
     height: 100%;
     box-sizing: border-box;
     padding: 0.75rem;
     color: inherit;
     text-decoration: none;
-    // Same lift as the developer tools cards
-    @include landing.card(0.625rem);
+    @include cde-utils.card(0.625rem);
 
     &:hover,
     &:focus-visible {
@@ -49,10 +43,8 @@
     }
   }
 
-  // Clips the image so it zooms within its frame on hover
   .thumbnail {
     flex-shrink: 0;
-    // Shrinks on narrow screens and when zoomed so the text keeps room to wrap
     width: min(6.5rem, 30%);
     aspect-ratio: 16 / 10;
     overflow: hidden;
@@ -75,24 +67,20 @@
   }
 
   .title {
-    // 18/24, semibold
-    @include landing.font(1.125rem, 1.5rem, 600, 0);
+    @include cde-utils.font(vars.$body-medium-font, 1.125rem, 1.5rem, 600, 0);
     color: vars.$secondary;
   }
 
   .description {
-    // Body medium: 14/20, regular, 0.2px tracking
-    @include landing.font(0.875rem, 1.25rem, 400, 0.0125rem);
+    @include cde-utils.font(vars.$body-medium-font, 0.875rem, 1.25rem, 400, 0.0125rem);
     color: vars.$primary;
   }
 
   .credit {
-    // Body medium: 14/20, regular, 0.2px tracking
-    @include landing.font(0.875rem, 1.25rem, 400, 0.0125rem);
+    @include cde-utils.font(vars.$body-medium-font, 0.875rem, 1.25rem, 400, 0.0125rem);
     color: vars.$on-surface-variant;
   }
 
-  // Pale red circle so the row reads as something to click
   .arrow {
     flex-shrink: 0;
     align-self: center;
@@ -107,7 +95,6 @@
     color: vars.$on-tertiary-fixed;
   }
 
-  // Compact layout for narrow rows, such as on phones or when zoomed in
   @container (max-width: 28rem) {
     .example {
       gap: 0.75rem;
