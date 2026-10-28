@@ -4,7 +4,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { fireEvent, render, screen, within } from '@testing-library/angular';
-import { LandingExample } from '../../components/example-list/example-list.component';
+import { ExampleItem } from '../../components/example-list/example-list.component';
 import { LandingCard } from '../../components/landing-card/landing-card.component';
 import { Theme, ThemeService } from '../../services/theme-service/theme.service';
 import { LandingPageComponent } from './landing-page.component';
@@ -14,7 +14,7 @@ jest.mock('vega-embed', () => ({ default: jest.fn() }));
 describe('LandingPageComponent', () => {
   const providers = [provideHttpClient(), provideHttpClientTesting(), provideIcons(), provideRouter([])];
 
-  const MOCK_EXAMPLES: LandingExample[] = [
+  const MOCK_EXAMPLES: ExampleItem[] = [
     { title: 'Example A', description: '', image: '', url: '/example/0' },
     { title: 'Example B', description: '', image: '', url: '/example/1' },
   ];
@@ -71,11 +71,12 @@ describe('LandingPageComponent', () => {
     await setup();
 
     const image = screen.getByRole('img', { name: /Cell Distance Explorer/ });
-    const widths = image
-      .getAttribute('srcset')
-      ?.split(', ')
-      .map((candidate) => candidate.split(' ')[1]);
-    expect(widths).toEqual(['540w', '720w', '1080w', '1440w']);
+    expect(image.getAttribute('srcset')?.split(', ')).toEqual([
+      expect.stringMatching(/-540x316\.webp 540w$/),
+      expect.stringMatching(/-720x422\.webp 720w$/),
+      expect.stringMatching(/-1080x633\.webp 1080w$/),
+      expect.stringMatching(/-1440x844\.webp 1440w$/),
+    ]);
   });
 
   it('should collapse and trim whitespace in the copied citation', async () => {
