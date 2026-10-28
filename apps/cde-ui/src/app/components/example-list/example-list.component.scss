@@ -1,14 +1,12 @@
 @use 'utils';
 @use 'vars';
-@use '../../shared/styles/landing';
+@use 'cde-utils';
 
 :host {
   display: block;
-  // Evens out wrapped lines in titles, metadata and credits
   text-wrap: balance;
 
   .examples {
-    // Side by side when there is room, stacked on smaller screens
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
     gap: 1rem 1.5rem;
@@ -18,23 +16,19 @@
   }
 
   li {
-    // Lets each row adapt to its own width rather than the viewport
     container-type: inline-size;
   }
 
   .example {
     display: flex;
-    // Top aligned so titles line up across rows whose credits wrap differently
     align-items: flex-start;
     gap: 1rem;
-    // Fill the grid cell so rows side by side share the same height
     height: 100%;
     box-sizing: border-box;
     padding: 0.75rem;
     color: inherit;
     text-decoration: none;
-    // Same lift as the developer tools cards
-    @include landing.card(vars.$corner-small);
+    @include cde-utils.card(vars.$corner-small);
 
     &:hover,
     &:focus-visible {
@@ -44,23 +38,19 @@
     }
 
     &:focus-visible {
-      @include landing.focus-ring;
+      @include cde-utils.focus-ring;
     }
   }
 
-  // Clips the image so it zooms within its frame on hover
   .thumbnail {
     position: relative;
     flex-shrink: 0;
-    // Shrinks on narrow screens and when zoomed so the text keeps room to wrap
     width: min(6.5rem, 30%);
     aspect-ratio: 16 / 10;
     overflow: hidden;
     border-radius: vars.$corner-small;
-    // Neutral placeholder while the image loads
     background-color: vars.$surface-container-high;
 
-    // Extends 1px past each edge, so rounding while the image zooms can't leave a sliver of the frame showing
     img {
       position: absolute;
       top: -1px;
@@ -93,7 +83,6 @@
     color: vars.$on-surface-variant;
   }
 
-  // Pale red circle so the row reads as something to click
   .arrow {
     flex-shrink: 0;
     align-self: center;
@@ -108,7 +97,6 @@
     color: vars.$on-primary-container;
   }
 
-  // Compact layout for narrow rows, such as on phones or when zoomed in
   @container (max-width: 28rem) {
     .example {
       gap: 0.75rem;

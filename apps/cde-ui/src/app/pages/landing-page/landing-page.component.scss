@@ -1,11 +1,9 @@
 @use 'vars';
 @use 'utils';
-@use '../../shared/styles/landing';
+@use 'cde-utils';
 
-// Keyframes are only named in rules outside @media and @supports. Once styles are minified, Angular's
-// view encapsulation stops renaming names inside those blocks to match its scoped keyframes.
+// Keep animation names out of @media and @supports: Angular doesn't scope them there once minified
 
-// Hero screenshot rises into place as it fades in
 @keyframes riseIn {
   from {
     opacity: 0;
@@ -17,7 +15,6 @@
   }
 }
 
-// Hero background drifts down by half the scroll distance, so it moves at half the speed of the content
 @keyframes parallax {
   to {
     transform: translateY(100vh);
@@ -25,14 +22,9 @@
 }
 
 :host {
-  // App header height
   $header-height: 113px;
-  // Matches the footer content column so sections line up on wide screens
   $content-max-width: 101.25rem;
-  // Hero screenshot width on desktop: grows with tall windows, but leaves the text column room on narrow ones
   $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
-  // Hero screenshot width when stacked: grows toward the full column only with the height left over after
-  // the header and the rest of the first screen (about 54rem), so the examples stay above the fold
   $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);
 
   background-color: vars.$background;
@@ -53,9 +45,6 @@
     }
   }
 
-  // Each pair of sections fills at least the window below the header, so on tall windows the next pair starts
-  // below the fold. Shorter windows and phones are unaffected because their content is already taller.
-  // The hero takes two thirds of any extra height in the first screen; the citation and developer tools share theirs equally.
   .fill-screen {
     display: flex;
     flex-direction: column;
@@ -71,12 +60,10 @@
     padding-block: 3.5rem;
     background-color: vars.$surface-container-lowest;
 
-    // Decorative background on its own layer so it can move independently of the content
     .hero-background {
       position: absolute;
       inset: 0;
       z-index: -1;
-      // Zero length, so it has no visible effect until the scroll timeline below drives it
       animation: parallax linear;
 
       img {
@@ -88,10 +75,6 @@
       }
     }
 
-    // Parallax only plays for people who haven't asked for reduced motion,
-    // and only in browsers that support scroll-driven animations.
-    // Follows the page scroll so it starts right away instead of once the hero reaches the sticky header,
-    // over a range long enough for heroes taller than the viewport on phones
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: scroll()) {
         .hero-background {
@@ -136,7 +119,6 @@
       margin: 0;
       @include utils.use-font(display, medium);
       color: vars.$on-surface;
-      // Evens out the lines when the title wraps on phones
       text-wrap: balance;
 
       @media (max-width: 40rem) {
@@ -146,7 +128,7 @@
 
     .hero-description {
       margin: 0;
-      @include landing.paragraph;
+      @include cde-utils.paragraph;
       color: vars.$on-surface-variant;
       text-wrap: balance;
     }
@@ -163,14 +145,13 @@
       width: 100%;
       max-width: $hero-image-width;
       height: auto;
-      @include landing.card-surface(vars.$corner-small);
+      @include cde-utils.card-surface(vars.$corner-small);
       box-shadow: var(--mat-sys-level3);
 
       @media (max-width: 64rem) {
         max-width: $hero-image-stacked-width;
       }
 
-      // Hidden until it loads so the entrance plays on the image rather than an empty frame
       @media (prefers-reduced-motion: no-preference) {
         opacity: 0;
       }
@@ -199,13 +180,10 @@
     }
   }
 
-  // Same spacing as the hero, with no description so the rows show above the fold on smaller laptops
   .examples {
     flex-grow: 1;
     justify-content: center;
     padding-block: 3.5rem;
-    // Mesh of glows behind the rows: tertiary container and a hint of primary along the bottom,
-    // tertiary container and surface variant along the top
     background:
       radial-gradient(40% 90% at 18% 100%, vars.$tertiary-container, transparent),
       radial-gradient(35% 80% at 70% 100%, utils.with-alpha(vars.$primary, 14%), transparent),
@@ -219,12 +197,9 @@
   }
 
   .developer-tools {
-    // Zero basis so the two sections end up the same height when the window has room
     flex: 1 1 0;
     justify-content: center;
     padding-block: 4rem 5rem;
-    // Deeper mesh than the examples so the section stands apart from the footer,
-    // kept to the plain surface behind the heading and description for contrast
     background:
       radial-gradient(50% 60% at 20% 10%, utils.with-alpha(vars.$surface, 90%), transparent),
       radial-gradient(40% 90% at 90% 20%, vars.$tertiary-container, transparent),
@@ -239,7 +214,7 @@
 
     .section-description {
       margin: 0 0 1.5rem;
-      @include landing.paragraph;
+      @include cde-utils.paragraph;
       color: vars.$on-surface-variant;
     }
 
@@ -266,8 +241,6 @@
       background-attachment: scroll;
     }
 
-    // Holds the section's 28rem minimum (18rem plus the padding) here rather than on the section,
-    // so the zero flex basis can never squeeze the section below its content
     .content-container {
       display: flex;
       flex-direction: column;
@@ -287,10 +260,9 @@
       }
 
       .description {
-        @include landing.paragraph;
+        @include cde-utils.paragraph;
         color: vars.$on-surface-variant;
 
-        // The citation link keeps the paragraph's weight instead of the 600 of text links
         a {
           font-weight: inherit;
         }
