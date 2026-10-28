@@ -3,10 +3,10 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { provideIcons } from '@hra-ui/design-system/icons';
 import { render, screen } from '@testing-library/angular';
-import { ExampleListComponent, LandingExample } from './example-list.component';
+import { ExampleItem, ExampleListComponent } from './example-list.component';
 
 describe('ExampleListComponent', () => {
-  const MOCK_EXAMPLES: LandingExample[] = [
+  const MOCK_EXAMPLES: ExampleItem[] = [
     { title: 'Example A', description: 'Details A', credit: 'Lab A', image: 'assets/a.png', url: '/example/0' },
     { title: 'Example B', description: 'Details B', image: 'assets/b.png', url: '/example/1' },
   ];
