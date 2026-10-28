@@ -1,20 +1,29 @@
 @use 'utils';
 @use 'vars';
-@use '../../shared/styles/landing';
+@use 'cde-utils';
 
 :host {
-  $radius: 0.75rem;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: 100%;
-  overflow: hidden;
-  @include landing.card($radius);
 
-  &:hover {
-    .cta-icon {
-      transform: translateX(0.25rem);
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    @include cde-utils.card(0.75rem);
+
+    &:hover {
+      .cta-icon {
+        transform: translateX(0.25rem);
+      }
+    }
+
+    &:focus-visible {
+      @include utils.inset-outline(vars.$tertiary);
     }
   }
 
@@ -22,7 +31,6 @@
     padding: 1rem 1rem 0;
   }
 
-  // Light outlined glyph on a tinted tile, so the icon supports the title rather than outweighing it
   .icon {
     box-sizing: content-box;
     width: 1.5rem;
@@ -49,36 +57,13 @@
 
   .title {
     margin: 0 0 0.5rem;
-    // Title medium: 16/24, semibold, 0.15px tracking
-    @include landing.font(1rem, 1.5rem, 600, 0.009375rem);
+    @include cde-utils.font(vars.$body-medium-font, 1rem, 1.5rem, 600, 0.009375rem);
     color: vars.$secondary;
-  }
-
-  .primary-link {
-    color: inherit;
-    text-decoration: none;
-
-    // Stretch the link over the whole card
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: $radius;
-    }
-
-    &:focus-visible {
-      outline: none;
-
-      &::after {
-        @include utils.inset-outline(vars.$tertiary);
-      }
-    }
   }
 
   .description {
     margin: 0;
-    // Body large: 16/24, regular
-    @include landing.font(1rem, 1.5rem, 400, 0);
+    @include cde-utils.font(vars.$body-medium-font, 1rem, 1.5rem, 400, 0);
     color: vars.$primary;
   }
 
@@ -90,8 +75,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    // Label large: 14/21, semibold, 0.1px tracking
-    @include landing.font(0.875rem, 1.3125rem, 600, 0.00625rem);
+    @include cde-utils.font(vars.$body-medium-font, 0.875rem, 1.3125rem, 600, 0.00625rem);
     color: vars.$on-tertiary-fixed;
   }
 

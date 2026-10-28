@@ -20,12 +20,13 @@ describe('LandingCardComponent', () => {
     });
   }
 
-  it('should render the title as a heading link to the card destination', async () => {
-    await setup();
+  it('should link the whole card to its destination', async () => {
+    const { container } = await setup();
 
-    const heading = screen.getByRole('heading', { level: 3, name: 'Embed the web component' });
-    const link = screen.getByRole('link', { name: 'Embed the web component' });
-    expect(heading).toContainElement(link);
+    const link = screen.getByRole('link', { name: /Embed the web component/ });
+    expect(link).toContainElement(screen.getByRole('heading', { level: 3, name: 'Embed the web component' }));
+    expect(link).toContainElement(container.querySelector<HTMLElement>('.icon'));
+    expect(link).toContainElement(container.querySelector<HTMLElement>('.cta'));
     expect(link).toHaveAttribute('href', '/guide');
     expect(link).not.toHaveAttribute('target');
   });
@@ -63,7 +64,7 @@ describe('LandingCardComponent', () => {
       action: { label: 'Go to GitHub', url: 'https://example.com/repo', external: true },
     });
 
-    const link = screen.getByRole('link', { name: 'Embed the web component' });
+    const link = screen.getByRole('link', { name: /Embed the web component/ });
     expect(link).toHaveAttribute('href', 'https://example.com/repo');
     expect(link).toHaveAttribute('target', '_blank');
     expect(container.querySelector('.cta-icon')).toHaveTextContent('open_in_new');
