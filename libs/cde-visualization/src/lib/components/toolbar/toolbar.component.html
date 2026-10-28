@@ -1,0 +1,151 @@
+<hra-navigation-rail [attr.aria-label]="content.label">
+  <button
+    hraNavigationRailItem
+    icon="layers"
+    hraFeature="display"
+    hraClickEvent
+    [hraPlainTooltip]="content.display.tooltip"
+    [matMenuTriggerFor]="displayMenu"
+  >
+    {{ content.display.label }}
+  </button>
+  <button
+    hraNavigationRailItem
+    icon="restart_alt"
+    hraFeature="reset"
+    hraClickEvent
+    [hraPlainTooltip]="content.reset.tooltip"
+    [matMenuTriggerFor]="resetMenu"
+  >
+    {{ content.reset.label }}
+  </button>
+
+  <mat-divider />
+
+  <button
+    hraNavigationRailItem
+    icon="download"
+    aria-haspopup="dialog"
+    hraFeature="downloads"
+    hraClickEvent
+    [active]="openSheet() === 'downloads'"
+    [hraPlainTooltip]="content.downloads.tooltip"
+    (click)="sheetClick.emit('downloads')"
+    #downloadsItem
+  >
+    {{ content.downloads.label }}
+  </button>
+  <a
+    hraNavigationRailItem
+    icon="code"
+    target="_blank"
+    rel="noopener noreferrer"
+    hraFeature="embed"
+    hraClickEvent
+    [attr.href]="content.embed.url"
+    [hraPlainTooltip]="content.embed.tooltip"
+  >
+    {{ content.embed.label }}
+  </a>
+
+  <button
+    hraNavigationRailItem
+    hraNavigationRailBottom
+    icon="info"
+    aria-haspopup="dialog"
+    hraFeature="info"
+    hraClickEvent
+    [active]="openSheet() === 'about'"
+    [hraPlainTooltip]="content.info.tooltip"
+    (click)="sheetClick.emit('about')"
+    #infoItem
+  >
+    {{ content.info.label }}
+  </button>
+  <button
+    hraNavigationRailItem
+    hraNavigationRailBottom
+    icon="help"
+    hraFeature="help"
+    hraClickEvent
+    [hraPlainTooltip]="content.help.tooltip"
+    [matMenuTriggerFor]="helpMenu"
+  >
+    {{ content.help.label }}
+  </button>
+</hra-navigation-rail>
+
+<!-- Clicks stop propagating so the menu stays open while options are toggled -->
+<mat-menu hraNavigationRailMenu hraFeature="display-menu" #displayMenu="matMenu">
+  <button
+    mat-menu-item
+    role="menuitemcheckbox"
+    hraFeature="cell-links"
+    hraClickEvent
+    [attr.aria-checked]="cellLinks()"
+    (click)="$event.stopPropagation(); cellLinks.set(!cellLinks())"
+  >
+    <mat-icon>{{ cellLinks() ? 'check_box' : 'check_box_outline_blank' }}</mat-icon>
+    {{ content.display.cellLinks }}
+  </button>
+  <button
+    mat-menu-item
+    role="menuitemcheckbox"
+    hraFeature="cell-link-data"
+    hraClickEvent
+    [attr.aria-checked]="cellLinkData()"
+    (click)="$event.stopPropagation(); cellLinkData.set(!cellLinkData())"
+  >
+    <mat-icon>{{ cellLinkData() ? 'check_box' : 'check_box_outline_blank' }}</mat-icon>
+    {{ content.display.cellLinkData }}
+  </button>
+  <button
+    mat-menu-item
+    role="menuitemcheckbox"
+    hraFeature="all-metadata"
+    hraClickEvent
+    [attr.aria-checked]="allMetadata()"
+    [disabled]="!hasHiddenMetadata()"
+    (click)="$event.stopPropagation(); allMetadata.set(!allMetadata())"
+  >
+    <mat-icon>{{ allMetadata() ? 'check_box' : 'check_box_outline_blank' }}</mat-icon>
+    {{ content.display.allMetadata }}
+  </button>
+</mat-menu>
+
+<mat-menu hraNavigationRailMenu hraFeature="reset-menu" #resetMenu="matMenu">
+  <button mat-menu-item hraFeature="reset-view" hraClickEvent (click)="resetViewClick.emit()">
+    <mat-icon>fit_screen</mat-icon>
+    {{ content.reset.view }}
+  </button>
+  <button
+    mat-menu-item
+    hraFeature="restore-deleted-cells"
+    hraClickEvent
+    [disabled]="!hasDeletedCells()"
+    (click)="restoreDeletedCellsClick.emit()"
+  >
+    <mat-icon>restore_from_trash</mat-icon>
+    {{ content.reset.deletedCells }}
+  </button>
+  <button mat-menu-item hraFeature="reset-colors" hraClickEvent (click)="resetColorsClick.emit()">
+    <mat-icon>format_color_reset</mat-icon>
+    {{ content.reset.colors }}
+  </button>
+</mat-menu>
+
+<mat-menu hraNavigationRailMenu yPosition="above" hraFeature="help-menu" #helpMenu="matMenu">
+  @for (link of content.help.links; track link.id) {
+    <a
+      mat-menu-item
+      target="_blank"
+      rel="noopener noreferrer"
+      hraClickEvent
+      [hraFeature]="link.id"
+      [attr.href]="link.url"
+    >
+      <mat-icon>open_in_new</mat-icon>
+      {{ link.label }}
+    </a>
+  }
+</mat-menu>

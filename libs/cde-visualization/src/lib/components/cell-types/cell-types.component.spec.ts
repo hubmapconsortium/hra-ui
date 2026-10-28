@@ -1,6 +1,5 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
-import { MatMenuHarness } from '@angular/material/menu/testing';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
@@ -32,18 +31,6 @@ describe('CellTypesComponent', () => {
     });
   }
 
-  it('should not include download options in the menu', async () => {
-    const { fixture } = await setup({
-      inputs: { cellTypes, cellTypesSelection },
-    });
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-    await menu.open();
-
-    const items = await menu.getItems({ text: /Download/ });
-    expect(items).toHaveLength(0);
-  });
-
   it('should render the component', async () => {
     await setup({
       componentInputs: { cellTypes, cellTypesSelection },
@@ -66,11 +53,9 @@ describe('CellTypesComponent', () => {
   });
 
   it('should leave out the links column from the skeleton when cell link data is hidden', async () => {
-    const { container, fixture } = await setup({
-      componentInputs: { cellTypes: [], cellTypesSelection: [], loading: true },
+    const { container } = await setup({
+      componentInputs: { cellTypes: [], cellTypesSelection: [], loading: true, hideCellLinkData: true },
     });
-    fixture.componentInstance['hideCellLinkData'].set(true);
-    fixture.detectChanges();
 
     expect(container.querySelectorAll('.skeleton .totals cde-skeleton')).toHaveLength(2);
   });

@@ -5,6 +5,9 @@
 // Background of every panel, chart, and scroll fade
 $panel-background: vars.$background;
 
+// Width of the toolbar: the navigation rail's default 96px plus its 1px divider
+$toolbar-width: calc(6rem + 1px);
+
 :host {
   display: block;
   width: 100%;
@@ -45,11 +48,18 @@ $panel-background: vars.$background;
   .layout {
     display: grid;
     position: relative;
-    grid-template-columns: 22.75rem minmax(64.1875rem, calc(100% - 22.75rem));
+    grid-template-columns: $toolbar-width 22.75rem minmax(64.1875rem, calc(100% - 22.75rem - #{$toolbar-width}));
     grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
     grid-template-areas:
-      'metadata visualization'
-      'metadata visualization';
+      'toolbar metadata visualization'
+      'toolbar metadata visualization';
+  }
+
+  // The rail fills with surface-container, and the outline divider matches the panel dividers
+  .toolbar {
+    grid-area: toolbar;
+    border-right: 1px solid vars.$outline;
+    --hra-navigation-rail-container-color: #{vars.$surface-container};
   }
 
   // Panel dividers sit on the layout containers, so they run the full length of each panel.
@@ -124,11 +134,4 @@ $panel-background: vars.$background;
   .content {
     height: calc(100vh - 4.5rem);
   }
-}
-
-// The Info submenus hold a paragraph of text rather than menu items
-::ng-deep div.mat-mdc-menu-panel.info-sub-menu .mat-mdc-menu-content {
-  padding: 0.75rem 1rem;
-  color: vars.$on-surface-variant;
-  @include utils.use-font(body, medium);
 }

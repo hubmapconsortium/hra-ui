@@ -63,8 +63,10 @@
         height: 100%;
       }
 
+      // Panel headers stay 56px without buttons, so the content below fills the panel down to its 16px inset
       .header {
         padding: 0.5rem 1rem;
+        min-height: 3.5rem;
       }
 
       .content {
