@@ -59,7 +59,7 @@ describe('CellTypesComponent', () => {
     const loader = TestbedHarnessEnvironment.loader(fixture);
     const menu = await loader.getHarness(MatMenuHarness);
 
-    await menu.clickItem({ text: /Download/ }, { text: /Cell Links CSV/ });
+    await menu.clickItem({ text: /Download/ }, { text: /Cell links CSV/ });
     expect(emitFn).toHaveBeenCalled();
   });
 
@@ -75,7 +75,7 @@ describe('CellTypesComponent', () => {
     const loader = TestbedHarnessEnvironment.loader(fixture);
     const menu = await loader.getHarness(MatMenuHarness);
 
-    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
+    await menu.clickItem({ text: /Download/ }, { text: /Cell color map CSV/ });
     expect(emitFn).toHaveBeenCalled();
   });
 
@@ -84,9 +84,9 @@ describe('CellTypesComponent', () => {
       componentInputs: { cellTypes, cellTypesSelection },
     });
 
-    expect(screen.getByText('Cell Types')).toBeInTheDocument();
-    expect(screen.getByText('Total Cell Types')).toBeInTheDocument();
-    expect(screen.getByText('Total Cells')).toBeInTheDocument();
+    expect(screen.getByText('Cell types')).toBeInTheDocument();
+    expect(screen.getByText('Total cell types')).toBeInTheDocument();
+    expect(screen.getByText('Total cells')).toBeInTheDocument();
   });
 
   it('should toggle row selection', async () => {

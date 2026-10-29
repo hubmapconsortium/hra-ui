@@ -1,6 +1,6 @@
 <ng-container hraFeature="file-upload">
   @if (!file && errorMessage()) {
-    <hra-error-indicator [errors]="[errorMessage(), errorActionMessage()]" />
+    <hra-error-indicator announce [errors]="[errorMessage(), errorActionMessage()]" />
   }
 
   @if (file && !errorMessage()) {
@@ -13,7 +13,9 @@
       hraButtonSize="large"
       hraFeature="upload"
       hraClickEvent
+      [attr.aria-label]="uploadAriaLabel() ?? null"
       (click)="fileInput.click()"
+      #uploadButton
     >
       Upload CSV
     </button>

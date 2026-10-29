@@ -143,12 +143,12 @@ export class NodeDistVisualizationComponent {
     const z = DISTANCE_FORMAT.format(nodes.getZFor(node) ?? 0);
 
     return [
-      { label: 'Cell Type', value: type },
+      { label: 'Cell type', value: type },
       { label: 'CL ID', value: ontologyId },
-      { label: 'Distance to Closest Anchor Cell', value: distance },
-      { label: 'X Coordinate', value: `${x} µm` },
-      { label: 'Y Coordinate', value: `${y} µm` },
-      { label: 'Z Coordinate', value: `${z} µm` },
+      { label: 'Distance to closest anchor cell', value: distance },
+      { label: 'X coordinate', value: `${x} µm` },
+      { label: 'Y coordinate', value: `${y} µm` },
+      { label: 'Z coordinate', value: `${z} µm` },
     ];
   });
 

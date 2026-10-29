@@ -52,7 +52,7 @@
   @if (!fullscreenMode()) {
     <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="fullscreenClick.emit()">
       <mat-icon>fullscreen</mat-icon>
-      Full Screen
+      Full screen
     </button>
   }
   <button
@@ -62,7 +62,7 @@
     (click)="this.edgesDisabled.set(!this.edgesDisabled())"
   >
     <mat-icon>{{ edgesDisabled() ? 'visibility' : 'visibility_off' }}</mat-icon>
-    {{ edgesDisabled() ? 'Show' : 'Hide' }} Cell Links
+    {{ edgesDisabled() ? 'Show' : 'Hide' }} cell links
   </button>
   <a
     mat-menu-item
@@ -73,27 +73,27 @@
     hraClickEvent
   >
     <mat-icon>code</mat-icon>
-    Embed App
+    Embed app
   </a>
 </mat-menu>
 
 <mat-menu class="info-sub-menu" #infoSubMenu="matMenu">
   <div>
     <ul>
-      Zoom Options
+      Zoom options
       <li>Mouse pinwheel</li>
-      <li>Trackpad Pinch</li>
+      <li>Trackpad pinch</li>
     </ul>
     <ul>
-      Pan Options
+      Pan options
       <li>CTRL/CMD + mouse drag</li>
       <li>Right click + mouse drag</li>
       <li>Keyboard arrows</li>
     </ul>
     <ul>
-      Rotation Options
+      Rotation options
       <li>CTRL/CMD + keyboard arrows</li>
-      <li>Mouse Drag</li>
+      <li>Mouse drag</li>
     </ul>
   </div>
 </mat-menu>
@@ -108,11 +108,11 @@
 <mat-menu class="reset-sub-menu" #resetSubMenu="matMenu">
   <button mat-menu-item hraFeature="reset-visualization-view" hraClickEvent (click)="resetViewClick.emit()">
     <mat-icon>reset_wrench</mat-icon>
-    <span>Reset Visualization View</span>
+    <span>Reset visualization view</span>
   </button>
 
   <button mat-menu-item hraFeature="reset-deleted-cells" hraClickEvent (click)="resetDeletedClick.emit()">
     <mat-icon>reset_wrench</mat-icon>
-    <span>Reset Deleted Cells</span>
+    <span>Reset deleted cells</span>
   </button>
 </mat-menu>
