@@ -18,6 +18,7 @@ import embed from 'vega-embed';
 
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { applyChartTheme, getChartTheme, ThemeableChartSpec } from '../../shared/chart-theme';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 import * as VIOLIN_SPEC from './violin.vl.json';
 
@@ -57,8 +58,8 @@ interface ModifiableViolinSpec {
   };
 }
 
-/** Fonts used in the violin */
-const VIOLIN_FONTS = ['12px Metropolis', '14px Metropolis'];
+/** Font sizes used in the violin, in pixels */
+const VIOLIN_FONT_SIZES = [12, 14];
 
 /** Width of the exported image */
 const EXPORT_IMAGE_WIDTH = 1000;
@@ -89,10 +90,8 @@ const EXPORT_IMAGE_LEGEND_CONFIG = {
   labelFontSize: 14,
   titleFontSize: 14,
   titleLineHeight: 21,
-  titleColor: '#201E3D',
   titleFontWeight: 500,
   labelFontWeight: 500,
-  labelColor: '#4B4B5E',
   symbolStrokeColor: 'type',
   symbolSize: 400,
 };
@@ -181,8 +180,10 @@ export class ViolinComponent {
   protected readonly viewCreateRef = effect(async (onCleanup) => {
     const container: HTMLElement = this.violinEl().rootNodes()[0];
     const el = container.querySelector('.violin-container') as HTMLElement;
-    await this.ensureFontsLoaded();
+    const theme = getChartTheme(container);
+    await this.ensureFontsLoaded(theme.font);
     const spec = produce(VIOLIN_SPEC, (draft) => {
+      applyChartTheme(draft, theme);
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
           layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
@@ -236,11 +237,17 @@ export class ViolinComponent {
   /** Download the violin as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
-    const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec, (draft) => {
+    const theme = getChartTheme(this.violinEl().rootNodes()[0]);
+    const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec & ThemeableChartSpec, (draft) => {
+      applyChartTheme(draft, theme);
       draft.spec.width = EXPORT_IMAGE_WIDTH;
       for (const layer of draft.spec.layer) {
         if (layer.encoding.color.legend === null) {
-          layer.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
+          layer.encoding.color.legend = {
+            ...EXPORT_IMAGE_LEGEND_CONFIG,
+            titleColor: theme.titleColor,
+            labelColor: theme.labelColor,
+          };
           layer.encoding.color.scale = { range: this.colors() };
         }
       }
@@ -263,9 +270,13 @@ export class ViolinComponent {
     finalize();
   }
 
-  /** Ensure required fonts are loaded for the violin */
-  private async ensureFontsLoaded(): Promise<void> {
-    const loadPromises = VIOLIN_FONTS.map((font) => this.document.fonts.load(font));
+  /**
+   * Ensure required fonts are loaded for the violin
+   *
+   * @param font Font family used by the violin
+   */
+  private async ensureFontsLoaded(font: string): Promise<void> {
+    const loadPromises = VIOLIN_FONT_SIZES.map((size) => this.document.fonts.load(`${size}px ${font}`));
     await Promise.all(loadPromises);
   }
 }
