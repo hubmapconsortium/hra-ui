@@ -50,33 +50,7 @@
     list-style: none;
   }
 
-  // Description follows the name in the DOM so screen readers announce it before the buttons
   .file {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      'name formats'
-      'description description';
-    align-items: center;
-    gap: 0.25rem 0.5rem;
     padding-top: 1rem;
-  }
-
-  .file-name {
-    grid-area: name;
-    color: vars.$on-surface;
-    @include utils.use-font(title, small);
-  }
-
-  .file-description {
-    grid-area: description;
-    margin: 0;
-    @include utils.use-font(body, medium);
-  }
-
-  .formats {
-    grid-area: formats;
-    display: flex;
-    gap: 0.25rem;
   }
 }
