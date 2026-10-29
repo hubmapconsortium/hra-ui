@@ -1,18 +1,9 @@
-import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, model, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { Metadata } from '../../models/metadata';
-import { DOWNLOADS_CONTENT } from '../downloads/downloads.content';
 import { SkeletonComponent } from '../skeleton/skeleton.component';
 
 /** List of metadata fields that can be hidden */
@@ -31,6 +22,27 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
 
 /** Fields that example datasets show only with all metadata, since their values are placeholders */
 const EXAMPLE_PLACEHOLDER_FIELDS: (keyof Metadata)[] = ['creationTimestamp'];
+
+/**
+ * Checks whether a field holds a placeholder value, which example datasets have in place of real metadata
+ *
+ * @param metadata Metadata to check
+ * @param field Field to check
+ * @returns Whether the field holds a placeholder
+ */
+function isPlaceholder(metadata: Metadata, field: keyof Metadata): boolean {
+  return metadata.sampleExtra !== undefined && EXAMPLE_PLACEHOLDER_FIELDS.includes(field);
+}
+
+/**
+ * Checks whether the metadata has fields that only show with all metadata: empty ones and placeholders
+ *
+ * @param metadata Metadata to check
+ * @returns Whether any field is hidden until all metadata shows
+ */
+export function hasHiddenFields(metadata: Metadata): boolean {
+  return HIDABLE_FIELDS.some((field) => metadata[field] === undefined || isPlaceholder(metadata, field));
+}
 
 /** Label and value widths of the skeleton rows shown while the metadata loads, varied like real rows */
 const SKELETON_ROWS = [
@@ -71,17 +83,11 @@ export class WithoutProtocolPipe implements PipeTransform {
   selector: 'cde-metadata',
   imports: [
     HraCommonModule,
-    MatButtonModule,
-    MatIconModule,
     MatExpansionModule,
     DefaultToPipe,
     WithoutProtocolPipe,
-    MatMenuModule,
-    PlainTooltipDirective,
     ButtonsModule,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
-    ExpansionPanelHeaderContentComponent,
     SkeletonComponent,
   ],
   templateUrl: './metadata.component.html',
@@ -92,26 +98,14 @@ export class MetadataComponent {
   /** Input for Metadata Component */
   readonly metadata = input.required<Metadata>();
 
-  /** Whether the downloads drawer is open. The downloads button opens it */
-  readonly downloadsOpen = model(false);
-
   /** Whether the metadata is loading, which shows skeleton rows in place of the fields */
   readonly loading = input(false);
 
   /** Skeleton rows shown while the metadata loads */
   protected readonly skeletonRows = SKELETON_ROWS;
 
-  /** Label and tooltip for the downloads button */
-  protected readonly downloadsLabel = DOWNLOADS_CONTENT.title;
-
-  /** Defines a reactive signal to track the visibility of empty fields */
-  readonly showEmptyFields = signal(false);
-
-  /** Defines a computed property to check for fields that show only with all metadata: empty ones and placeholders */
-  readonly hasEmptyFields = computed(() => {
-    const metadata = this.metadata();
-    return HIDABLE_FIELDS.some((field) => metadata[field] === undefined || this.isPlaceholder(field));
-  });
+  /** Whether every field shows, including empty ones and placeholders. Set from the toolbar's Display menu. */
+  readonly showEmptyFields = input(false);
 
   /** Creates a date formatter with default locale */
   readonly dateFormat = new Intl.DateTimeFormat(undefined, {
@@ -134,17 +128,7 @@ export class MetadataComponent {
     }
 
     const value = this.metadata()[field];
-    return this.showEmptyFields() || (value !== undefined && value !== '' && !this.isPlaceholder(field));
-  }
-
-  /** Checks if a field holds a placeholder value, which example datasets have in place of real metadata */
-  private isPlaceholder(field: keyof Metadata): boolean {
-    return this.metadata().sampleExtra !== undefined && EXAMPLE_PLACEHOLDER_FIELDS.includes(field);
-  }
-
-  /** Toggle function for the show/hide buttons */
-  toggleEmptyFields(): void {
-    this.showEmptyFields.set(!this.showEmptyFields());
+    return this.showEmptyFields() || (value !== undefined && value !== '' && !isPlaceholder(this.metadata(), field));
   }
 
   /** Formats the creation timestamp using a given formatter */

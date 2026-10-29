@@ -1,9 +1,8 @@
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { fireEvent, render, screen } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 
 import { Metadata } from '../../models/metadata';
-import { DOWNLOADS_CONTENT } from '../downloads/downloads.content';
-import { MetadataComponent } from './metadata.component';
+import { hasHiddenFields, MetadataComponent } from './metadata.component';
 
 describe('MetadataComponent', () => {
   const metadata: Metadata = {
@@ -51,22 +50,13 @@ describe('MetadataComponent', () => {
     expect(screen.queryByText(metadata.organ ?? '')).not.toBeInTheDocument();
   });
 
-  it('should toggle the empty fields signal', async () => {
-    const { fixture } = await render(MetadataComponent, {
-      componentInputs: {
-        metadata,
-      },
-      providers: [provideNoopAnimations()],
-    });
-    const component = fixture.componentInstance;
-    component.toggleEmptyFields();
-    expect(component.showEmptyFields()).toBe(true);
-    component.toggleEmptyFields();
-    expect(component.showEmptyFields()).toBe(false);
+  it('should report whether any fields only show with all metadata', () => {
+    expect(hasHiddenFields(metadata)).toBe(false);
+    expect(hasHiddenFields({ ...metadata, organ: undefined })).toBe(true);
   });
 
   it('should hide empty metadata fields', async () => {
-    const { fixture } = await render(MetadataComponent, {
+    const { rerender } = await render(MetadataComponent, {
       componentInputs: {
         metadata: {
           ...metadata,
@@ -77,32 +67,29 @@ describe('MetadataComponent', () => {
     });
 
     expect(screen.queryByText('Creation date')).toBeNull();
-    fixture.componentInstance.toggleEmptyFields();
-    fixture.detectChanges();
+    await rerender({ componentInputs: { showEmptyFields: true }, partialUpdate: true });
     expect(screen.getByText('Creation date')).toBeInTheDocument();
   });
 
   it('should show the placeholder creation date and time of example datasets only with all metadata', async () => {
-    const { fixture } = await render(MetadataComponent, {
-      componentInputs: {
-        metadata: {
-          ...metadata,
-          sampleExtra: {
-            type: '2D',
-            organ: 'Brain',
-            sampleUrl: 'https://example.com',
-            sourceDataUrl: 'https://example.com',
-          },
-        },
+    const exampleMetadata: Metadata = {
+      ...metadata,
+      sampleExtra: {
+        type: '2D',
+        organ: 'Brain',
+        sampleUrl: 'https://example.com',
+        sourceDataUrl: 'https://example.com',
       },
+    };
+    const { rerender } = await render(MetadataComponent, {
+      componentInputs: { metadata: exampleMetadata },
       providers: [provideNoopAnimations()],
     });
 
-    expect(fixture.componentInstance.hasEmptyFields()).toBe(true);
+    expect(hasHiddenFields(exampleMetadata)).toBe(true);
     expect(screen.queryByText('Creation date')).toBeNull();
     expect(screen.queryByText('Creation time')).toBeNull();
-    fixture.componentInstance.toggleEmptyFields();
-    fixture.detectChanges();
+    await rerender({ componentInputs: { showEmptyFields: true }, partialUpdate: true });
     expect(screen.getByText('Creation date')).toBeInTheDocument();
     expect(screen.getByText('December 17, 1995')).toBeInTheDocument();
   });
@@ -130,34 +117,5 @@ describe('MetadataComponent', () => {
 
     const link = screen.getByRole('link', { name: 'doi.org/10.1016/j.cell.2022.12.028' });
     expect(link).toHaveAttribute('href', sampleUrl);
-  });
-
-  describe('downloads button', () => {
-    async function setup() {
-      const downloadsOpenChange = jest.fn();
-      const result = await render(MetadataComponent, {
-        inputs: { metadata },
-        on: { downloadsOpen: downloadsOpenChange },
-        providers: [provideNoopAnimations()],
-      });
-      const button = screen.getByRole('button', { name: DOWNLOADS_CONTENT.title });
-      return { ...result, button, downloadsOpenChange };
-    }
-
-    it('should report whether the downloads drawer is expanded', async () => {
-      const { button, fixture } = await setup();
-      expect(button).toHaveAttribute('aria-expanded', 'false');
-
-      fixture.componentRef.setInput('downloadsOpen', true);
-      await fixture.whenStable();
-      expect(button).toHaveAttribute('aria-expanded', 'true');
-    });
-
-    it('should open the downloads drawer when clicked', async () => {
-      const { button, downloadsOpenChange } = await setup();
-      fireEvent.click(button);
-      expect(downloadsOpenChange).toHaveBeenCalledWith(true);
-      expect(button).toHaveAttribute('aria-expanded', 'true');
-    });
   });
 });

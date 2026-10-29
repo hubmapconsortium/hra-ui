@@ -21,19 +21,11 @@ import {
   MatExpansionPanelDefaultOptions,
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { colorEquals, hexToRgb, Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
-import {
-  FullscreenActionsComponent,
-  FullscreenPortalComponent,
-  FullscreenPortalContentComponent,
-} from '@hra-ui/design-system/fullscreen';
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
+import { FullscreenPortalComponent, FullscreenPortalContentComponent } from '@hra-ui/design-system/fullscreen';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { produce } from 'immer';
 import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
@@ -53,7 +45,6 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
 import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
 import { EmptyStateContent } from '../empty-state/empty-state.content';
-import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
 /** Interface for updated color data */
@@ -136,14 +127,11 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatExpansionModule,
     ColorPickerLabelComponent,
     ScrollingModule,
-    MatMenuModule,
+    PlainTooltipDirective,
     FullscreenPortalComponent,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenPortalContentComponent,
-    FullscreenActionsComponent,
-    HistogramMenuComponent,
     ChartSkeletonComponent,
     EmptyStateComponent,
   ],

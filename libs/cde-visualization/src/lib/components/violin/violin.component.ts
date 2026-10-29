@@ -19,14 +19,10 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
-import {
-  FullscreenActionsComponent,
-  FullscreenPortalComponent,
-  FullscreenPortalContentComponent,
-} from '@hra-ui/design-system/fullscreen';
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
+import { FullscreenPortalComponent, FullscreenPortalContentComponent } from '@hra-ui/design-system/fullscreen';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { produce } from 'immer';
 import { View } from 'vega';
 import embed from 'vega-embed';
@@ -44,7 +40,6 @@ import { setUpChartTooltips } from '../../shared/chart-tooltip';
 import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
 import { EmptyStateContent } from '../empty-state/empty-state.content';
-import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
 import * as VIOLIN_FULLSCREEN_OVERRIDES from './violin-fullscreen.vl.json';
 import * as VIOLIN_SPEC from './violin.vl.json';
 
@@ -157,13 +152,11 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatButtonModule,
     MatExpansionModule,
     ScrollingModule,
-    MatMenuModule,
+    PlainTooltipDirective,
     FullscreenPortalComponent,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
     FullscreenPortalContentComponent,
-    FullscreenActionsComponent,
-    ViolinMenuComponent,
     ChartSkeletonComponent,
     EmptyStateComponent,
   ],

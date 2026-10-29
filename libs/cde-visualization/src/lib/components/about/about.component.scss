@@ -1,0 +1,78 @@
+@use '../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../libs/design-system/styles/vars';
+
+// The same side sheet layout as the downloads sheet: 24px insets and sections split by an outline-variant divider
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: vars.$on-surface-variant;
+  --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'title close'
+      'description description';
+    align-items: center;
+    gap: 0.25rem 0.5rem;
+    padding: 1rem 0.75rem 1.5rem 1.5rem;
+  }
+
+  .title {
+    grid-area: title;
+    margin: 0;
+    color: vars.$on-surface;
+    @include utils.use-font(title, large);
+  }
+
+  .close {
+    grid-area: close;
+  }
+
+  .description {
+    grid-area: description;
+    margin: 0;
+    padding-right: 0.75rem;
+    @include utils.use-font(body, medium);
+  }
+
+  .body {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .sections {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .section + .section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid vars.$outline-variant;
+  }
+
+  .section-heading {
+    margin: 0;
+    color: vars.$on-surface;
+    @include utils.use-font(title, medium);
+  }
+
+  .section-description {
+    margin: 0.5rem 0 0;
+    @include utils.use-font(body, medium);
+  }
+
+  .list-heading {
+    margin: 1rem 0 0;
+    color: vars.$on-surface;
+    @include utils.use-font(title, small);
+  }
+
+  .list {
+    margin: 0.25rem 0 0;
+    padding-left: 1.5rem;
+    @include utils.use-font(body, medium);
+  }
+}

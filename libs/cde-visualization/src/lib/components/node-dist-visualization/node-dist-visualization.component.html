@@ -1,13 +1,4 @@
 <hra-expansion-panel tagline="Distance visualization" disabled>
-  <hra-expansion-panel-actions>
-    <cde-node-dist-visualization-menu
-      [(edgesDisabled)]="edgesDisabled"
-      (fullscreenClick)="fullscreen.open()"
-      (resetViewClick)="resetView()"
-      (resetDeletedClick)="resetDeletedNodes()"
-    />
-  </hra-expansion-panel-actions>
-
   <hra-expansion-panel-header-content>
     <cde-node-dist-visualization-controls
       [deleteDisabled]="!hasSelection()"
@@ -15,12 +6,23 @@
       (deleteClick)="deleteSelection()"
       (viewModeChange)="cellInfo.set(undefined)"
     />
+    <button
+      mat-icon-button
+      class="fullscreen"
+      aria-label="Open the distance visualization in full screen"
+      hraPlainTooltip="Full screen"
+      hraFeature="open-fullscreen"
+      hraClickEvent
+      (click)="fullscreen.open()"
+    >
+      <mat-icon>fullscreen</mat-icon>
+    </button>
   </hra-expansion-panel-header-content>
 
   <hra-fullscreen-portal tagline="Distance visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>
     <hra-fullscreen-actions>
       <cde-node-dist-visualization-menu
-        fullscreenMode
+        [hasDeletedCells]="hasDeletedCells()"
         [(edgesDisabled)]="edgesDisabled"
         (resetViewClick)="resetView()"
         (resetDeletedClick)="resetDeletedNodes()"

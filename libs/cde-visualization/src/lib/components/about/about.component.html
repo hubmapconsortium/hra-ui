@@ -1,0 +1,34 @@
+<div class="header">
+  <h2 class="title" [id]="titleId">{{ content.title }}</h2>
+  <button
+    mat-icon-button
+    class="close"
+    hraFeature="close"
+    hraClickEvent
+    [attr.aria-label]="content.closeLabel"
+    [hraPlainTooltip]="content.closeLabel"
+    (click)="closeClick.emit()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <p class="description" [id]="descriptionId">{{ content.description }}</p>
+</div>
+
+<ng-scrollbar class="body" orientation="vertical" hraScrollOverflowFade>
+  <div class="sections">
+    @for (section of content.sections; track section.heading) {
+      <section class="section">
+        <h3 class="section-heading">{{ section.heading }}</h3>
+        <p class="section-description">{{ section.description }}</p>
+        @for (list of section.lists; track list.heading) {
+          <h4 class="list-heading">{{ list.heading }}</h4>
+          <ul class="list">
+            @for (item of list.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        }
+      </section>
+    }
+  </div>
+</ng-scrollbar>

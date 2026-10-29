@@ -16,17 +16,17 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
 import {
   FullscreenActionsComponent,
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
 import { DataItem, InfoModalComponent } from '@hra-ui/design-system/modal/info-modal';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -54,9 +54,12 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
 @Component({
   selector: 'cde-node-dist-visualization',
   imports: [
+    HraCommonModule,
+    MatButtonModule,
+    MatIconModule,
     OverlayModule,
+    PlainTooltipDirective,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenActionsComponent,
     FullscreenPortalComponent,
@@ -106,8 +109,11 @@ export class NodeDistVisualizationComponent {
   /** Output emitter for node hover events */
   readonly nodeHover = output<NodeEvent | undefined>();
 
-  /** Flag to check cell links visibility */
-  protected readonly edgesDisabled = signal(false);
+  /** Whether cell links are hidden. Shared with the toolbar's Display menu. */
+  readonly edgesDisabled = model(false);
+
+  /** Whether any cells were deleted */
+  protected readonly hasDeletedCells = computed(() => (this.nodeFilter().exclude?.length ?? 0) > 0);
 
   /** Current view mode */
   protected readonly viewMode = signal<ViewMode>('explore');
