@@ -161,7 +161,7 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
       notice: {
         text: 'Embedding the visualization? It needs the Cells CSV. Cell links and the cell color map are optional and are generated when missing.',
         link: {
-          label: 'Embedding guide',
+          label: 'Embedding guide on GitHub',
           url: EMBEDDING_GUIDE_URL,
         },
       },

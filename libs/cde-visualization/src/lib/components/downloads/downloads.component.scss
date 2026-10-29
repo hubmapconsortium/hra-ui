@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/utils';
 @use '../../../../../../libs/design-system/styles/vars';
 
@@ -75,6 +76,10 @@
   // during the AtlasNG move keeps the look and any token customizations
   .notice {
     $info-color: var(--ang-notice-info-color, var(--ang-ext-info, #{vars.$outline}));
+    $body-color: var(
+      --ang-notice-info-body-color,
+      var(--ang-ext-on-info-container-variant, #{vars.$on-surface-variant})
+    );
 
     display: flex;
     align-items: flex-start;
@@ -88,33 +93,40 @@
       var(--ang-ext-info-container, #{vars.$surface-container-highest})
     );
 
+    @include mat.button-overrides(
+      (
+        outlined-outline-color: $info-color,
+        outlined-label-text-color: $body-color,
+        outlined-state-layer-color: $body-color,
+        outlined-ripple-color: utils.with-alpha($body-color, var(--mat-sys-pressed-state-layer-opacity)),
+      )
+    );
+
     .notice-icon {
       flex-shrink: 0;
       color: $info-color;
     }
-
-    .notice-body {
-      flex: 1;
-      min-width: 0;
-      margin: 0;
-      overflow-wrap: anywhere;
-      color: var(--ang-notice-info-body-color, var(--ang-ext-on-info-container-variant, #{vars.$on-surface-variant}));
-      // Body medium like the file descriptions, smaller than AtlasNG's body large notice text
-      @include utils.use-font(body, medium);
-    }
-  }
-
-  // Leads the drawer body, so it's the first thing read and seen when files are disabled
-  .unavailable-notice {
-    margin: 0 0 1.5rem;
 
     .notice-content {
       flex: 1;
       min-width: 0;
     }
 
+    .notice-body {
+      margin: 0;
+      overflow-wrap: anywhere;
+      color: $body-color;
+      // Body medium like the file descriptions, smaller than AtlasNG's body large notice text
+      @include utils.use-font(body, medium);
+    }
+
     .notice-action {
       margin-top: 0.75rem;
     }
+  }
+
+  // Leads the drawer body, so it's the first thing read and seen when files are disabled
+  .unavailable-notice {
+    margin: 0 0 1.5rem;
   }
 }

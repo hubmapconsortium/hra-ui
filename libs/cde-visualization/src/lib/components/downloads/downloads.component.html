@@ -32,6 +32,7 @@
               hraClickEvent
               (click)="showAllPanels()"
             >
+              <mat-icon>visibility</mat-icon>
               {{ content.unavailable.showAllPanels }}
             </button>
           }
@@ -57,20 +58,26 @@
         @if (group.notice; as notice) {
           <div class="notice">
             <mat-icon class="notice-icon">info</mat-icon>
-            <p class="notice-body">
-              <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
-              {{ notice.text }}
+            <div class="notice-content">
+              <p class="notice-body">
+                <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+                {{ notice.text }}
+              </p>
               @if (notice.link; as link) {
                 <a
-                  hraHyperlink
-                  hraFeature="embedding-guide"
+                  matButton="outlined"
+                  class="notice-action"
                   target="_blank"
                   rel="noopener noreferrer"
+                  hraFeature="embedding-guide"
+                  hraClickEvent
                   [attr.href]="link.url"
-                  >{{ link.label }}</a
                 >
+                  <mat-icon>open_in_new</mat-icon>
+                  {{ link.label }}
+                </a>
               }
-            </p>
+            </div>
           </div>
         }
       </section>
