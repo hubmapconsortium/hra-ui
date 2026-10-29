@@ -15,16 +15,18 @@
           [unavailable]="unavailableDownloads()"
           (closeClick)="openSheet.set(undefined)"
           (download)="handleDownload($event)"
+          (showAllPanelsClick)="showAllPanels()"
         />
       } @else {
         <cde-about (closeClick)="openSheet.set(undefined)" />
       }
     </mat-drawer>
 
-    <mat-drawer-content class="layout">
+    <mat-drawer-content class="layout" [class.visualizations-hidden]="!layout().visualizations">
       <cde-toolbar
         class="toolbar"
         hraFeature="toolbar"
+        [hiddenPanels]="panelsHidden()"
         [cellLinks]="!edgesDisabled()"
         [hasHiddenMetadata]="hasHiddenMetadata()"
         [hasDeletedCells]="hasDeletedCells()"
@@ -34,6 +36,7 @@
         [(openSheet)]="openSheet"
         [(cellLinkData)]="showCellLinkData"
         [(allMetadata)]="showAllMetadata"
+        (hiddenPanelsChange)="setHiddenPanels($event)"
         (cellLinksChange)="edgesDisabled.set(!$event)"
         (resetViewClick)="resetView()"
         (restoreDeletedCellsClick)="restoreDeletedCells()"
@@ -43,9 +46,11 @@
         (allCellsColorChange)="allCellsColor.set($event)"
       />
 
-      <div class="metadata">
+      <!-- Hidden panels stay rendered, so they keep their views and state -->
+      <div class="metadata" [class.fill]="!layout().visualizations">
         <cde-metadata
           hraFeature="metadata"
+          [class.panel-hidden]="!layout().metadata"
           [metadata]="metadataView()"
           [loading]="metadataLoading()"
           [showEmptyFields]="showAllMetadata()"
@@ -61,10 +66,11 @@
         />
       </div>
 
-      <div class="visualizations">
-        <div class="top">
+      <div class="visualizations" [class.panel-hidden]="!layout().visualizations">
+        <div class="top" [class.panel-hidden]="!layout().topRow" [class.fill]="!layout().histogram">
           <cde-node-dist-visualization
             hraFeature="visualization"
+            [class.panel-hidden]="!layout().distanceVisualization"
             [nodes]="nodesView()"
             [edges]="edgesView()"
             [maxEdgeDistance]="maxEdgeDistance()"
@@ -81,6 +87,8 @@
 
           <cde-violin
             hraFeature="violin-graph"
+            [class.panel-hidden]="!layout().violinGraph"
+            [class.fill]="!layout().distanceVisualization"
             [colors]="filteredColors()"
             [data]="filteredDistances()"
             [loading]="distancesLoading()"
@@ -91,6 +99,8 @@
 
         <cde-histogram
           hraFeature="histogram"
+          [class.panel-hidden]="!layout().histogram"
+          [class.fill]="!layout().topRow"
           [colors]="filteredColors()"
           [data]="filteredDistances()"
           [filteredCellTypes]="filteredCellTypes()"

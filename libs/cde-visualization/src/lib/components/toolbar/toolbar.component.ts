@@ -7,6 +7,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { Rgb } from '@hra-ui/design-system/color-picker';
 import { NavigationRailModule } from '@hra-ui/design-system/navigation-rail';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { PANEL_IDS, PanelId } from '../../models/panels';
 import { ThemePreference } from '../../services/theme-switch/theme-switch.service';
 import { ColorPickerComponent } from '../color-picker/color-picker.component';
 import { TOOLBAR_CONTENT, ToolbarSheet } from './toolbar.content';
@@ -15,7 +16,7 @@ import { TOOLBAR_CONTENT, ToolbarSheet } from './toolbar.content';
 let idCounter = 0;
 
 /**
- * Vertical toolbar with the visualization's app-wide actions: display options, colors, resets, downloads,
+ * Vertical toolbar with the visualization's app-wide actions: panels, display options, colors, resets, downloads,
  * the embedding guide, the theme menu, the About sheet and help links
  */
 @Component({
@@ -35,6 +36,9 @@ let idCounter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent {
+  /** Panels hidden from the Panels menu */
+  readonly hiddenPanels = model<PanelId[]>([]);
+
   /** Whether the distance visualization shows cell links */
   readonly cellLinks = model(true);
 
@@ -85,6 +89,16 @@ export class ToolbarComponent {
 
   /** Whether the all cells color picker opens once the Colors menu has closed and returned focus to its item */
   private allCellsPickerPending = false;
+
+  /** Shows or hides a panel */
+  protected togglePanel(id: PanelId): void {
+    const hidden = this.hiddenPanels();
+    this.hiddenPanels.set(
+      hidden.includes(id)
+        ? hidden.filter((panel) => panel !== id)
+        : PANEL_IDS.filter((panel) => panel === id || hidden.includes(panel)),
+    );
+  }
 
   /** Opens the all cells color picker once the Colors menu has closed */
   protected requestAllCellsPicker(): void {

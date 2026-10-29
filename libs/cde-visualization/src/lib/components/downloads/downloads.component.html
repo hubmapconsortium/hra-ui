@@ -19,10 +19,23 @@
     @if (unavailable(); as unavailable) {
       <div class="notice unavailable-notice" hraFeature="unavailable-notice">
         <mat-icon class="notice-icon">info</mat-icon>
-        <p class="notice-body" [id]="unavailableNoticeId">
-          <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
-          {{ unavailable.notice }}
-        </p>
+        <div class="notice-content">
+          <p class="notice-body" [id]="unavailableNoticeId">
+            <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+            {{ unavailable.notice }}
+          </p>
+          @if (unavailable.showPanels) {
+            <button
+              matButton="outlined"
+              class="notice-action"
+              hraFeature="show-all-panels"
+              hraClickEvent
+              (click)="showAllPanels()"
+            >
+              {{ content.unavailable.showAllPanels }}
+            </button>
+          }
+        </div>
       </div>
     }
 

@@ -107,5 +107,14 @@
   // Leads the drawer body, so it's the first thing read and seen when files are disabled
   .unavailable-notice {
     margin: 0 0 1.5rem;
+
+    .notice-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notice-action {
+      margin-top: 0.75rem;
+    }
   }
 }

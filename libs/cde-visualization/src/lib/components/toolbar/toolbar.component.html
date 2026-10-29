@@ -1,6 +1,16 @@
 <hra-navigation-rail [attr.aria-label]="content.label">
   <button
     hraNavigationRailItem
+    icon="space_dashboard"
+    hraFeature="panels"
+    hraClickEvent
+    [hraPlainTooltip]="content.panels.tooltip"
+    [matMenuTriggerFor]="panelsMenu"
+  >
+    {{ content.panels.label }}
+  </button>
+  <button
+    hraNavigationRailItem
     icon="layers"
     hraFeature="display"
     hraClickEvent
@@ -111,6 +121,34 @@
     <span class="menu-item-description" [id]="`${id}-description`">{{ item.description }}</span>
   </span>
 </ng-template>
+
+<!-- Panel clicks stop propagating so the menu stays open while panels are shown and hidden -->
+<mat-menu hraNavigationRailMenu hraFeature="panels-menu" #panelsMenu="matMenu">
+  @for (panel of content.panels.options; track panel.id) {
+    <button
+      mat-menu-item
+      role="menuitemcheckbox"
+      hraClickEvent
+      [hraFeature]="panel.id"
+      [attr.aria-checked]="!hiddenPanels().includes(panel.id)"
+      (click)="$event.stopPropagation(); togglePanel(panel.id)"
+    >
+      <mat-icon>{{ hiddenPanels().includes(panel.id) ? 'check_box_outline_blank' : 'check_box' }}</mat-icon>
+      {{ panel.label }}
+    </button>
+  }
+  <mat-divider />
+  <button
+    mat-menu-item
+    hraFeature="show-all-panels"
+    hraClickEvent
+    [disabled]="hiddenPanels().length === 0"
+    (click)="hiddenPanels.set([])"
+  >
+    <mat-icon>visibility</mat-icon>
+    {{ content.panels.showAll }}
+  </button>
+</mat-menu>
 
 <!-- Clicks stop propagating so the menu stays open while options are toggled -->
 <mat-menu hraNavigationRailMenu hraFeature="display-menu" #displayMenu="matMenu">

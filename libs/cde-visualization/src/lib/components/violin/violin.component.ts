@@ -292,6 +292,10 @@ export class ViolinComponent {
     if (view) {
       const container: HTMLElement = this.violinEl().rootNodes()[0];
       const el = container.querySelector('.violin') as HTMLElement;
+      // A hidden panel has no size. The violins resize when it shows again.
+      if (el?.clientWidth === 0) {
+        return;
+      }
       if (el && this.fullscreen()) {
         this.enableScroll.set(false);
         // The fullscreen violins start at 0 by 0 (see the spec). They are sized from the estimates the first time,

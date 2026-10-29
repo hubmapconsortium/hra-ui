@@ -68,6 +68,8 @@ cde.colorMap = {
 | _source-file-name_     | Dataset nodes file name                        | A string                              | None          |
 | _color-map-file-name_  | Dataset color map file name                    | A string                              | None          |
 | _hide-theme-menu_      | Hides the toolbar's Theme menu                 | A boolean attribute                   | Shown         |
+| _hidden-panels_        | Panels hidden at first, see [Panels](#panels)  | A list of panel ids                   | None          |
+| _remember-panels_      | Remembers hidden panels in local storage       | A boolean attribute                   | Off           |
 
 ### Nodes, edges, and color maps
 
@@ -134,6 +136,16 @@ Any columns not specified will be inferred as usual. The default column names an
 ### Metadata
 
 Metadata can be set either as an object or as individual metadata attributes. Using an object is particularly useful when setting the metadata from javascript or a json file url. If both an metadata object and individual attributes are set at the same time the value from the attributes takes priority. The available metadata attributes are described the [inputs table](#available-inputs).
+
+### Panels
+
+The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comma or space separated list of `metadata`, `distance-visualization`, `violin-graph`, and `histogram`. The Cell types panel always shows. The toolbar's Panels menu can still show hidden panels, and Reset everything hides them again.
+
+```html
+<cde-visualization hidden-panels="violin-graph, histogram" nodes="https://..."></cde-visualization>
+```
+
+With `remember-panels`, the panels shown and hidden from the Panels menu are stored in the browser's local storage and stay that way after a reload.
 
 ## Outputs
 

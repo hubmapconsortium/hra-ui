@@ -1,3 +1,4 @@
+import { PanelId } from '../../models/panels';
 import { ThemePreference } from '../../services/theme-switch/theme-switch.service';
 
 /** Sheets that toolbar items open in the drawer */
@@ -21,6 +22,14 @@ export interface ToolbarMenuItemContent {
   label: string;
   /** Supporting text, which describes the item */
   description: string;
+}
+
+/** A panel in the Panels menu */
+export interface ToolbarPanelOption {
+  /** Panel id */
+  id: PanelId;
+  /** Menu item label */
+  label: string;
 }
 
 /** A link in the Help menu */
@@ -47,6 +56,8 @@ export interface ToolbarThemeOption {
 export interface ToolbarContent {
   /** Accessible name of the toolbar */
   label: string;
+  /** Panels menu, its panels and the item that shows them all */
+  panels: ToolbarItemContent & { options: ToolbarPanelOption[]; showAll: string };
   /** Display menu and its options */
   display: ToolbarItemContent & {
     cellLinks: ToolbarMenuItemContent;
@@ -77,6 +88,17 @@ export interface ToolbarContent {
 /** Text content for the toolbar */
 export const TOOLBAR_CONTENT: ToolbarContent = {
   label: 'Visualization actions',
+  panels: {
+    label: 'Panels',
+    tooltip: 'Show or hide panels',
+    options: [
+      { id: 'metadata', label: 'Metadata' },
+      { id: 'distance-visualization', label: 'Distance visualization' },
+      { id: 'violin-graph', label: 'Violin graph' },
+      { id: 'histogram', label: 'Histogram' },
+    ],
+    showAll: 'Show all panels',
+  },
   display: {
     label: 'Display',
     tooltip: 'Show or hide cell links and metadata',
@@ -96,7 +118,10 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
     view: { label: 'Reset view', description: 'Zoom to fit and undo rotation' },
     deletedCells: { label: 'Restore deleted cells', description: 'Cells deleted in the distance visualization' },
     colors: { label: 'Reset colors', description: 'Use default colors for all cell types' },
-    everything: { label: 'Reset everything', description: 'View, cells, colors, selection and display options' },
+    everything: {
+      label: 'Reset everything',
+      description: 'View, panels, cells, colors, selection and display options',
+    },
   },
   downloads: {
     label: 'Downloads',

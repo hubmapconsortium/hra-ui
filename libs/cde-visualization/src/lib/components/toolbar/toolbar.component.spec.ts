@@ -24,6 +24,35 @@ describe('ToolbarComponent', () => {
     );
   });
 
+  it('shows and hides every panel but cell types, and keeps the menu open', async () => {
+    const { fixture } = await setup({ inputs: { hiddenPanels: ['metadata'] } });
+    const instance = fixture.componentInstance;
+    await openMenu(TOOLBAR_CONTENT.panels.label);
+
+    expect(screen.getAllByRole('menuitemcheckbox')).toHaveLength(4);
+    expect(screen.queryByRole('menuitemcheckbox', { name: 'Cell types' })).not.toBeInTheDocument();
+
+    const histogram = screen.getByRole('menuitemcheckbox', { name: 'Histogram' });
+    expect(histogram).toHaveAttribute('aria-checked', 'true');
+    fireEvent.click(histogram);
+    fixture.detectChanges();
+    expect(instance.hiddenPanels()).toEqual(['metadata', 'histogram']);
+    expect(histogram).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByRole('menu')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: 'Metadata' }));
+    fixture.detectChanges();
+    expect(instance.hiddenPanels()).toEqual(['histogram']);
+  });
+
+  it('shows all panels', async () => {
+    const { fixture } = await setup({ inputs: { hiddenPanels: ['histogram'] } });
+    await openMenu(TOOLBAR_CONTENT.panels.label);
+
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.panels.showAll }));
+    expect(fixture.componentInstance.hiddenPanels()).toEqual([]);
+  });
+
   it('toggles display options and keeps the menu open', async () => {
     const { fixture } = await setup({ inputs: { hasHiddenMetadata: true } });
     const instance = fixture.componentInstance;

@@ -21,6 +21,13 @@ describe('DownloadFileComponent', () => {
     expect(screen.getAllByRole('button')).toHaveLength(file.formats.length);
   });
 
+  it('should focus its first format button', async () => {
+    const { fixture } = await render(DownloadFileComponent, { inputs: { file } });
+
+    fixture.componentInstance.focus();
+    expect(screen.getByRole('button', { name: file.formats[0].ariaLabel })).toHaveFocus();
+  });
+
   it('should disable every format button when the file is disabled', async () => {
     await render(DownloadFileComponent, { inputs: { file, disabled: true } });
 

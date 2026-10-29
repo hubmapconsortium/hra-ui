@@ -29,6 +29,7 @@ import { NodeDistVisualizationComponent } from '../components/node-dist-visualiz
 import { ToolbarComponent } from '../components/toolbar/toolbar.component';
 import { TOOLBAR_CONTENT } from '../components/toolbar/toolbar.content';
 import { ViolinComponent } from '../components/violin/violin.component';
+import { HIDDEN_PANELS_STORAGE_KEY, loadHiddenPanels } from '../models/panels';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
@@ -113,6 +114,7 @@ describe('CdeVisualizationComponent', () => {
     jest.mocked(embed).mockReturnValue(Promise.resolve(embedResult));
     embedResult.view.data.mockReturnThis();
     embedResult.view.signal.mockReturnThis();
+    embedResult.view.resize.mockReturnThis();
   });
 
   it(
@@ -333,6 +335,41 @@ describe('CdeVisualizationComponent', () => {
         expect(instance['unavailableDownloads']()).toEqual({
           files: ['violin-graph', 'histogram'],
           notice: DOWNLOADS_CONTENT.unavailable.noDistances('epithelial'),
+          showPanels: false,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the images of hidden panels',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization histogram' } });
+
+        expect(fixture.componentInstance['unavailableDownloads']()).toEqual({
+          files: ['visualization', 'histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.hiddenPanels,
+          showPanels: true,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'combines the notices when the charts are empty and panels are hidden',
+      async () => {
+        const { fixture } = await setup({
+          inputs: { nodeTargetSelector: 'epithelial', hiddenPanels: 'distance-visualization violin-graph' },
+        });
+        const instance = fixture.componentInstance;
+        instance.cellTypesSelection.set(['epithelial']);
+        fixture.detectChanges();
+
+        const { noDistances, hiddenPanels } = DOWNLOADS_CONTENT.unavailable;
+        expect(instance['unavailableDownloads']()).toEqual({
+          files: ['violin-graph', 'histogram', 'visualization'],
+          notice: `${noDistances('epithelial')} ${hiddenPanels}`,
+          showPanels: true,
         });
       },
       TIMEOUT,
@@ -426,7 +463,7 @@ describe('CdeVisualizationComponent', () => {
     it(
       'resets everything and undoes all but the view from the snackbar',
       async () => {
-        const { fixture } = await setup();
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'histogram' } });
         const undo$ = new Subject<void>();
         const snackbarRef = mock<MatSnackBarRef<SnackbarComponent>>();
         snackbarRef.onAction.mockReturnValue(undo$);
@@ -445,6 +482,7 @@ describe('CdeVisualizationComponent', () => {
         instance['showCellLinkData'].set(false);
         instance['showAllMetadata'].set(true);
         instance['viewMode'].set('select');
+        getToolbar(fixture).hiddenPanels.set(['violin-graph']);
         fixture.detectChanges();
         expect(panel.viewMode()).toBe('select');
 
@@ -459,6 +497,7 @@ describe('CdeVisualizationComponent', () => {
         expect(instance['showCellLinkData']()).toBe(true);
         expect(instance['showAllMetadata']()).toBe(false);
         expect(panel.viewMode()).toBe('explore');
+        expect(instance['panelsHidden']()).toEqual(['histogram']);
         expect(snackbarOpen).toHaveBeenCalledWith('Visualization reset', 'Undo', false, 'end', expect.anything());
 
         undo$.next();
@@ -472,6 +511,7 @@ describe('CdeVisualizationComponent', () => {
         expect(instance['showCellLinkData']()).toBe(false);
         expect(instance['showAllMetadata']()).toBe(true);
         expect(panel.viewMode()).toBe('select');
+        expect(instance['panelsHidden']()).toEqual(['violin-graph']);
       },
       TIMEOUT,
     );
@@ -512,6 +552,78 @@ describe('CdeVisualizationComponent', () => {
         const { fixture } = await setup({ inputs: { hideThemeMenu: '' } });
 
         expect(getToolbar(fixture).showThemeMenu()).toBe(false);
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('panels', () => {
+    function getToolbar(fixture: Awaited<ReturnType<typeof setup>>['fixture']): ToolbarComponent {
+      return fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
+    }
+
+    function getElement(fixture: Awaited<ReturnType<typeof setup>>['fixture'], selector: string): HTMLElement {
+      return fixture.nativeElement.querySelector(selector);
+    }
+
+    afterEach(() => localStorage.clear());
+
+    it(
+      'hides panels from the hiddenPanels input and the toolbar, and lets the others fill the space',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'violin-graph, histogram' } });
+        const toolbar = getToolbar(fixture);
+        expect(toolbar.hiddenPanels()).toEqual(['violin-graph', 'histogram']);
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-histogram')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.top')).toHaveClass('fill');
+
+        toolbar.hiddenPanels.set(['metadata', 'distance-visualization', 'violin-graph', 'histogram']);
+        fixture.detectChanges();
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.visualizations')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.layout')).toHaveClass('visualizations-hidden');
+        expect(getElement(fixture, '.metadata')).toHaveClass('fill');
+        expect(getElement(fixture, 'cde-cell-types')).not.toHaveClass('panel-hidden');
+        expect(localStorage.getItem(HIDDEN_PANELS_STORAGE_KEY)).toBeNull();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'starts from and remembers the hidden panels in local storage when rememberPanels is set',
+      async () => {
+        localStorage.setItem(HIDDEN_PANELS_STORAGE_KEY, JSON.stringify(['histogram']));
+        const { fixture } = await setup({ inputs: { rememberPanels: true } });
+        const toolbar = getToolbar(fixture);
+        expect(toolbar.hiddenPanels()).toEqual(['histogram']);
+
+        toolbar.hiddenPanels.set(['violin-graph']);
+        fixture.detectChanges();
+        expect(loadHiddenPanels()).toEqual(['violin-graph']);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows all panels from the downloads notice without closing the drawer',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization' } });
+        const announce = jest.spyOn(TestBed.inject(LiveAnnouncer), 'announce');
+        const drawer = fixture.debugElement.query(By.directive(MatDrawer)).injector.get(MatDrawer);
+        fireEvent.click(screen.getByRole('button', { name: TOOLBAR_CONTENT.downloads.label }));
+        const region = await screen.findByRole('region', { name: DOWNLOADS_CONTENT.title });
+        await waitFor(() => expect(drawer.opened).toBe(true));
+
+        const { showAllPanels } = DOWNLOADS_CONTENT.unavailable;
+        fireEvent.click(within(region).getByRole('button', { name: showAllPanels }));
+
+        const files = DOWNLOADS_CONTENT.groups.flatMap((group) => group.files);
+        const [png] = files.find((file) => file.id === 'visualization')?.formats ?? [];
+        await waitFor(() => expect(within(region).getByRole('button', { name: png.ariaLabel })).toHaveFocus());
+        expect(fixture.componentInstance['panelsHidden']()).toEqual([]);
+        expect(drawer.opened).toBe(true);
+        expect(announce).toHaveBeenCalledWith('All panels shown');
       },
       TIMEOUT,
     );
