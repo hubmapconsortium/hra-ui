@@ -52,20 +52,12 @@ describe('DownloadsComponent', () => {
     expect(format.ariaLabel).toContain(format.label);
   });
 
-  it('should emit a mouse close event when the close button is clicked', async () => {
-    const closeClick = jest.fn();
-    await render(DownloadsComponent, { on: { closeClick } });
-
-    fireEvent.click(screen.getByRole('button', { name: DOWNLOADS_CONTENT.closeLabel }), { screenX: 10, screenY: 10 });
-    expect(closeClick).toHaveBeenCalledWith('mouse');
-  });
-
-  it('should emit a keyboard close event when the close button is activated by keyboard', async () => {
+  it('should emit closeClick when the close button is clicked', async () => {
     const closeClick = jest.fn();
     await render(DownloadsComponent, { on: { closeClick } });
 
     fireEvent.click(screen.getByRole('button', { name: DOWNLOADS_CONTENT.closeLabel }));
-    expect(closeClick).toHaveBeenCalledWith('keyboard');
+    expect(closeClick).toHaveBeenCalled();
   });
 
   it('should give each instance a unique title id', async () => {

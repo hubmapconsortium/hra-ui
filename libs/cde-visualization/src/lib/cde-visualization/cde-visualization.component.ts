@@ -1,16 +1,13 @@
-import { FocusOrigin } from '@angular/cdk/a11y';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
-  ElementRef,
   inject,
   input,
   output,
   OutputEmitterRef,
-  Renderer2,
   Signal,
   signal,
   untracked,
@@ -18,7 +15,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDrawer, MatDrawerContent, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
@@ -304,14 +301,12 @@ export class CdeVisualizationComponent {
     const edgeCounts = this.edgeCounts();
     const colorLookup = this.colorMapView().getColorLookup();
 
-    return Array.from(nodeCounts).map(
-      ([name, count]): CellTypeEntry => ({
-        name,
-        count,
-        outgoingEdgeCount: edgeCounts.get(name) ?? 0,
-        color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
-      }),
-    );
+    return Array.from(nodeCounts).map(([name, count]): CellTypeEntry => ({
+      name,
+      count,
+      outgoingEdgeCount: edgeCounts.get(name) ?? 0,
+      color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
+    }));
   });
 
   /** Adjustments for cell type counts */
@@ -367,17 +362,8 @@ export class CdeVisualizationComponent {
   /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
 
-  /** Renderer used to toggle inert on the content behind the downloads drawer */
-  private readonly renderer = inject(Renderer2);
-
-  /** Downloads drawer */
-  private readonly downloadsDrawer = viewChild.required(MatDrawer);
-
-  /** Content behind the downloads drawer */
-  private readonly drawerContent = viewChild.required(MatDrawerContent, { read: ElementRef });
-
-  /** Metadata panel, which holds the downloads button */
-  private readonly metadataComponent = viewChild.required(MetadataComponent);
+  /** Whether the downloads drawer is open */
+  protected readonly downloadsOpen = signal(false);
 
   /** Distance visualization panel */
   private readonly nodeDistVisualizationComponent = viewChild.required(NodeDistVisualizationComponent);
@@ -419,27 +405,6 @@ export class CdeVisualizationComponent {
 
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
-  }
-
-  /** Opens the downloads drawer */
-  protected openDownloads(): void {
-    this.downloadsDrawer().open();
-  }
-
-  /** Makes the content behind the downloads drawer inert once the drawer has opened */
-  protected onDownloadsOpened(): void {
-    // The opened event is async and can arrive after the drawer has been closed again
-    if (this.downloadsDrawer().opened) {
-      this.renderer.setAttribute(this.drawerContent().nativeElement, 'inert', '');
-    }
-  }
-
-  /** Closes the downloads drawer and returns focus to the downloads button */
-  protected closeDownloads(origin: FocusOrigin): void {
-    // Inert must be removed before closing so focus can return to the downloads button
-    this.renderer.removeAttribute(this.drawerContent().nativeElement, 'inert');
-    this.downloadsDrawer().close();
-    this.metadataComponent().focusDownloadsButton(origin);
   }
 
   /** Downloads the requested file */

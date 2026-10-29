@@ -1,18 +1,14 @@
 <ng-container hraFeature="cde-visualization">
-  <mat-drawer-container class="drawer-container" (backdropClick)="closeDownloads('mouse')">
+  <mat-drawer-container class="drawer-container">
     <mat-drawer
       position="end"
       mode="over"
-      disableClose
-      role="dialog"
-      aria-modal="true"
+      role="region"
       hraFeature="downloads-drawer"
       [attr.aria-labelledby]="downloads.titleId"
-      (opened)="onDownloadsOpened()"
-      (keydown.escape)="closeDownloads('keyboard')"
-      #downloadsDrawer
+      [(opened)]="downloadsOpen"
     >
-      <cde-downloads (closeClick)="closeDownloads($event)" (download)="handleDownload($event)" #downloads />
+      <cde-downloads (closeClick)="downloadsOpen.set(false)" (download)="handleDownload($event)" #downloads />
     </mat-drawer>
 
     <mat-drawer-content class="layout">
@@ -21,12 +17,7 @@
       }
 
       <div class="metadata">
-        <cde-metadata
-          hraFeature="metadata"
-          [metadata]="metadataView()"
-          [downloadsOpen]="downloadsDrawer.opened"
-          (downloadsClick)="openDownloads()"
-        />
+        <cde-metadata hraFeature="metadata" [metadata]="metadataView()" [(downloadsOpen)]="downloadsOpen" />
         <cde-cell-types
           hraFeature="cell-types"
           [selectedCellType]="nodeTargetSelectorWithDefault()"
