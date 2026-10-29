@@ -1,25 +1,23 @@
 <ng-container hraFeature="cde-visualization">
-  <mat-drawer-container class="drawer-container" (backdropClick)="closeSheet('mouse')">
+  <mat-drawer-container class="drawer-container">
     <mat-drawer
       position="end"
       mode="over"
-      disableClose
-      role="dialog"
-      aria-modal="true"
+      role="region"
       [hraFeature]="sheet() === 'downloads' ? 'downloads-drawer' : 'about-drawer'"
       [attr.aria-labelledby]="sheetLabelledBy()"
       [attr.aria-describedby]="sheetDescribedBy()"
-      (opened)="onSheetOpened()"
-      (keydown.escape)="closeSheet('keyboard')"
+      [opened]="openSheet() !== undefined"
+      (closedStart)="openSheet.set(undefined)"
     >
       @if (sheet() === 'downloads') {
         <cde-downloads
           [unavailable]="unavailableDownloads()"
-          (closeClick)="closeSheet($event)"
+          (closeClick)="openSheet.set(undefined)"
           (download)="handleDownload($event)"
         />
       } @else {
-        <cde-about (closeClick)="closeSheet($event)" />
+        <cde-about (closeClick)="openSheet.set(undefined)" />
       }
     </mat-drawer>
 
@@ -30,14 +28,14 @@
         [cellLinks]="!edgesDisabled()"
         [hasHiddenMetadata]="hasHiddenMetadata()"
         [hasDeletedCells]="hasDeletedCells()"
-        [openSheet]="sheetOpen() ? sheet() : undefined"
+        [openSheet]="openSheet()"
         [(cellLinkData)]="showCellLinkData"
         [(allMetadata)]="showAllMetadata"
         (cellLinksChange)="edgesDisabled.set(!$event)"
         (resetViewClick)="resetView()"
         (restoreDeletedCellsClick)="restoreDeletedCells()"
         (resetColorsClick)="resetColors()"
-        (sheetClick)="openSheet($event)"
+        (sheetClick)="openSheet.set($event)"
       />
 
       <div class="metadata">

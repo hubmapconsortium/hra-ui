@@ -1,16 +1,15 @@
-import { FocusOrigin, LiveAnnouncer } from '@angular/cdk/a11y';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
-  ElementRef,
   inject,
   input,
+  linkedSignal,
   output,
   OutputEmitterRef,
-  Renderer2,
   Signal,
   signal,
   untracked,
@@ -18,7 +17,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { MatDrawer, MatDrawerContent, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
@@ -454,26 +453,20 @@ export class CdeVisualizationComponent {
   /** Whether any cells were deleted from the distance visualization */
   protected readonly hasDeletedCells = computed(() => (this.nodeFilterView().exclude?.length ?? 0) > 0);
 
-  /** Sheet shown in the drawer. It stays set while the drawer closes, so the sheet doesn't vanish mid-animation. */
-  protected readonly sheet = signal<ToolbarSheet>('downloads');
+  /** Sheet that's open in the drawer, if any. The toolbar's Downloads and Info items open it */
+  protected readonly openSheet = signal<ToolbarSheet | undefined>(undefined);
 
-  /** Whether the drawer is open */
-  protected readonly sheetOpen = signal(false);
+  /** Sheet shown in the drawer. Keeps the last open sheet while the drawer closes, so it doesn't vanish mid-animation */
+  protected readonly sheet = linkedSignal<ToolbarSheet | undefined, ToolbarSheet>({
+    source: this.openSheet,
+    computation: (openSheet, previous) => openSheet ?? previous?.value ?? 'downloads',
+  });
 
   /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
 
-  /** Renderer used to toggle inert on the content behind the drawer */
-  private readonly renderer = inject(Renderer2);
-
   /** Announces the charts' empty state to screen readers */
   private readonly liveAnnouncer = inject(LiveAnnouncer);
-
-  /** Drawer that holds the downloads and about sheets */
-  private readonly drawer = viewChild.required(MatDrawer);
-
-  /** Content behind the drawer */
-  private readonly drawerContent = viewChild.required(MatDrawerContent, { read: ElementRef });
 
   /** Downloads sheet, while it's the drawer's sheet */
   private readonly downloadsSheet = viewChild(DownloadsComponent);
@@ -490,9 +483,6 @@ export class CdeVisualizationComponent {
   protected readonly sheetDescribedBy = computed(() =>
     this.sheet() === 'downloads' ? this.downloadsSheet()?.describedBy() : this.aboutSheet()?.descriptionId,
   );
-
-  /** Toolbar, which gets focus back when a sheet closes */
-  private readonly toolbar = viewChild.required(ToolbarComponent);
 
   /** Distance visualization panel */
   private readonly nodeDistVisualizationComponent = viewChild.required(NodeDistVisualizationComponent);
@@ -568,30 +558,6 @@ export class CdeVisualizationComponent {
   resetColors(): void {
     this.cellTypes.set(this.cellTypesFromNodes());
     this.histogramComponent().resetAllCellsColor();
-  }
-
-  /** Opens a sheet in the drawer */
-  protected openSheet(sheet: ToolbarSheet): void {
-    this.sheet.set(sheet);
-    this.sheetOpen.set(true);
-    this.drawer().open();
-  }
-
-  /** Makes the content behind the drawer inert once the drawer has opened */
-  protected onSheetOpened(): void {
-    // The opened event is async and can arrive after the drawer has been closed again
-    if (this.drawer().opened) {
-      this.renderer.setAttribute(this.drawerContent().nativeElement, 'inert', '');
-    }
-  }
-
-  /** Closes the drawer and returns focus to the toolbar item that opened it */
-  protected closeSheet(origin: FocusOrigin): void {
-    // Inert must be removed before closing so focus can return to the toolbar
-    this.renderer.removeAttribute(this.drawerContent().nativeElement, 'inert');
-    this.sheetOpen.set(false);
-    this.drawer().close();
-    this.toolbar().focusSheetItem(this.sheet(), origin);
   }
 
   /** Downloads the requested file */

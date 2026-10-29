@@ -409,32 +409,32 @@ describe('CdeVisualizationComponent', () => {
   });
 
   describe('drawer', () => {
-    async function openDrawer(itemName = TOOLBAR_CONTENT.downloads.label, dialogName = DOWNLOADS_CONTENT.title) {
+    async function openDrawer(itemName = TOOLBAR_CONTENT.downloads.label, regionName = DOWNLOADS_CONTENT.title) {
       const result = await setup();
       const trigger = screen.getByRole('button', { name: itemName });
       const drawer = result.fixture.debugElement.query(By.directive(MatDrawer)).injector.get(MatDrawer);
-      const content = result.container.querySelector('.mat-drawer-content') as HTMLElement;
 
+      // Browsers focus a button when it's clicked, and the drawer returns focus to it on close
+      trigger.focus();
       fireEvent.click(trigger);
-      const dialog = await screen.findByRole('dialog', { name: dialogName });
-      await waitFor(() => expect(content).toHaveAttribute('inert'));
-      await waitFor(() => expect(dialog).toContainElement(document.activeElement as HTMLElement));
-      return { ...result, trigger, drawer, content, dialog };
+      const region = await screen.findByRole('region', { name: regionName });
+      await waitFor(() => expect(drawer.opened).toBe(true));
+      await waitFor(() => expect(region).toContainElement(document.activeElement as HTMLElement));
+      return { ...result, trigger, drawer, region };
     }
 
-    async function expectClosed(drawer: MatDrawer, content: HTMLElement, trigger: HTMLElement) {
+    async function expectClosed(drawer: MatDrawer, trigger: HTMLElement) {
       await waitFor(() => expect(drawer.opened).toBe(false));
-      expect(content).not.toHaveAttribute('inert');
       expect(trigger).toHaveFocus();
-      expect(trigger).not.toHaveClass('hra-navigation-rail-item--active');
+      await waitFor(() => expect(trigger).not.toHaveClass('hra-navigation-rail-item--active'));
     }
 
     it(
-      'opens downloads as a modal dialog from the toolbar',
+      'opens downloads as a labelled region from the toolbar',
       async () => {
-        const { trigger, dialog } = await openDrawer();
+        const { trigger, region } = await openDrawer();
 
-        expect(dialog).toHaveAttribute('aria-modal', 'true');
+        expect(region).not.toHaveAttribute('aria-modal');
         expect(trigger).toHaveClass('hra-navigation-rail-item--active');
       },
       TIMEOUT,
@@ -443,11 +443,11 @@ describe('CdeVisualizationComponent', () => {
     it(
       'opens the about sheet from the toolbar and returns focus to it',
       async () => {
-        const { trigger, drawer, content, dialog } = await openDrawer(TOOLBAR_CONTENT.info.label, ABOUT_CONTENT.title);
+        const { trigger, drawer, region } = await openDrawer(TOOLBAR_CONTENT.info.label, ABOUT_CONTENT.title);
 
-        expect(within(dialog).getByRole('heading', { name: 'Distance visualization' })).toBeInTheDocument();
-        fireEvent.click(within(dialog).getByRole('button', { name: ABOUT_CONTENT.closeLabel }));
-        await expectClosed(drawer, content, trigger);
+        expect(within(region).getByRole('heading', { name: 'Distance visualization' })).toBeInTheDocument();
+        fireEvent.click(within(region).getByRole('button', { name: ABOUT_CONTENT.closeLabel }));
+        await expectClosed(drawer, trigger);
       },
       TIMEOUT,
     );
@@ -455,10 +455,10 @@ describe('CdeVisualizationComponent', () => {
     it(
       'closes from the close button',
       async () => {
-        const { trigger, drawer, content, dialog } = await openDrawer();
+        const { trigger, drawer, region } = await openDrawer();
 
-        fireEvent.click(within(dialog).getByRole('button', { name: DOWNLOADS_CONTENT.closeLabel }));
-        await expectClosed(drawer, content, trigger);
+        fireEvent.click(within(region).getByRole('button', { name: DOWNLOADS_CONTENT.closeLabel }));
+        await expectClosed(drawer, trigger);
       },
       TIMEOUT,
     );
@@ -466,10 +466,10 @@ describe('CdeVisualizationComponent', () => {
     it(
       'closes on escape',
       async () => {
-        const { trigger, drawer, content, dialog } = await openDrawer();
+        const { trigger, drawer, region } = await openDrawer();
 
-        fireEvent.keyDown(dialog, { key: 'Escape' });
-        await expectClosed(drawer, content, trigger);
+        fireEvent.keyDown(region, { key: 'Escape', keyCode: 27 });
+        await expectClosed(drawer, trigger);
       },
       TIMEOUT,
     );
@@ -477,38 +477,10 @@ describe('CdeVisualizationComponent', () => {
     it(
       'closes when clicking outside the drawer',
       async () => {
-        const { trigger, drawer, content, container } = await openDrawer();
+        const { trigger, drawer, container } = await openDrawer();
 
         fireEvent.click(container.querySelector('.mat-drawer-backdrop') as HTMLElement);
-        await expectClosed(drawer, content, trigger);
-      },
-      TIMEOUT,
-    );
-
-    it(
-      'removes inert before closing the drawer',
-      async () => {
-        const { drawer, content, dialog } = await openDrawer();
-        let inertOnClose: boolean | undefined;
-        const close = drawer.close.bind(drawer);
-        jest.spyOn(drawer, 'close').mockImplementation(() => {
-          inertOnClose = content.hasAttribute('inert');
-          return close();
-        });
-
-        fireEvent.keyDown(dialog, { key: 'Escape' });
-        expect(inertOnClose).toBe(false);
-      },
-      TIMEOUT,
-    );
-
-    it(
-      'does not make the content inert if the drawer closed before the opened event',
-      async () => {
-        const { fixture, container } = await setup();
-        fixture.componentInstance['onSheetOpened']();
-
-        expect(container.querySelector('.mat-drawer-content')).not.toHaveAttribute('inert');
+        await expectClosed(drawer, trigger);
       },
       TIMEOUT,
     );
@@ -516,13 +488,13 @@ describe('CdeVisualizationComponent', () => {
     it(
       'downloads files from the drawer',
       async () => {
-        const { fixture, dialog } = await openDrawer();
+        const { drawer, region } = await openDrawer();
         const fileSaver = TestBed.inject(FileSaverService);
         const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
 
-        fireEvent.click(within(dialog).getByRole('button', { name: 'Download cells CSV' }));
+        fireEvent.click(within(region).getByRole('button', { name: 'Download cells CSV' }));
         await waitFor(() => expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv'));
-        expect(fixture.componentInstance['drawer']().opened).toBe(true);
+        expect(drawer.opened).toBe(true);
       },
       TIMEOUT,
     );

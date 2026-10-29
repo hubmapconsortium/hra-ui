@@ -7,7 +7,7 @@
     hraClickEvent
     [attr.aria-label]="content.closeLabel"
     [hraPlainTooltip]="content.closeLabel"
-    (click)="close($event)"
+    (click)="closeClick.emit()"
   >
     <mat-icon>close</mat-icon>
   </button>
@@ -31,24 +31,12 @@
         <h3 class="group-heading">{{ group.heading }}</h3>
         <ul class="files">
           @for (file of group.files; track file.id) {
-            <li class="file" [hraFeature]="file.id">
-              <span class="file-name">{{ file.name }}</span>
-              <p class="file-description">{{ file.description }}</p>
-              <div class="formats">
-                @for (format of file.formats; track format.id) {
-                  <button
-                    matButton="outlined"
-                    hraClickEvent
-                    [hraFeature]="`download-${format.id}`"
-                    [attr.aria-label]="format.ariaLabel"
-                    [disabled]="disabledFiles().has(file.id)"
-                    (click)="download.emit({ file: file.id, format: format.id })"
-                  >
-                    <mat-icon>download</mat-icon>
-                    {{ format.label }}
-                  </button>
-                }
-              </div>
+            <li [hraFeature]="file.id">
+              <cde-download-file
+                [file]="file"
+                [disabled]="disabledFiles().has(file.id)"
+                (download)="download.emit({ file: file.id, format: $event })"
+              />
             </li>
           }
         </ul>
