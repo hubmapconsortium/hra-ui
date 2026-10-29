@@ -1,11 +1,9 @@
 import { AnimationDriver } from '@angular/animations/browser';
 import { MockAnimationDriver } from '@angular/animations/browser/testing';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Signal, WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAssetHref } from '@hra-ui/common/url';
-import { Rgb } from '@hra-ui/design-system/color-picker';
 import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import { BehaviorSubject } from 'rxjs';
@@ -163,7 +161,7 @@ describe('HistogramComponent', () => {
     expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
   });
 
-  it('should reset all cell colors', async () => {
+  it('uses the picked all cells color, or the theme color without one', async () => {
     const {
       fixture: { componentInstance: instance },
     } = await setup({
@@ -174,16 +172,12 @@ describe('HistogramComponent', () => {
       },
     });
 
-    const priedInstance = instance as unknown as {
-      pickedTotalCellTypeColor: WritableSignal<Rgb | undefined>;
-      totalCellTypeColor: Signal<Rgb>;
-    };
-    priedInstance.pickedTotalCellTypeColor.set([1, 2, 3]);
-    expect(priedInstance.totalCellTypeColor()).toEqual([1, 2, 3]);
+    instance.allCellsColor.set([1, 2, 3]);
+    expect(instance.totalCellTypeColor()).toEqual([1, 2, 3]);
 
-    instance.resetAllCellsColor();
+    instance.allCellsColor.set(undefined);
     // jsdom doesn't resolve theme tokens, so the theme's mark color is the on-surface fallback (#1a1c1e)
-    expect(priedInstance.totalCellTypeColor()).toEqual([26, 28, 30]);
+    expect(instance.totalCellTypeColor()).toEqual([26, 28, 30]);
   });
 
   it('should update the theme colors in place when the color scheme changes', async () => {

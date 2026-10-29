@@ -15,6 +15,14 @@ export interface ToolbarItemContent {
   tooltip: string;
 }
 
+/** A menu item's label and the supporting text under it */
+export interface ToolbarMenuItemContent {
+  /** Menu item label, which names the item */
+  label: string;
+  /** Supporting text, which describes the item */
+  description: string;
+}
+
 /** A link in the Help menu */
 export interface ToolbarHelpLink {
   /** Analytics feature id */
@@ -40,9 +48,19 @@ export interface ToolbarContent {
   /** Accessible name of the toolbar */
   label: string;
   /** Display menu and its options */
-  display: ToolbarItemContent & { cellLinks: string; cellLinkData: string; allMetadata: string };
+  display: ToolbarItemContent & {
+    cellLinks: ToolbarMenuItemContent;
+    cellLinkData: ToolbarMenuItemContent;
+    allMetadata: ToolbarMenuItemContent;
+  };
+  /** Colors menu, and the name of the all cells color picker it opens */
+  colors: ToolbarItemContent & { allCells: ToolbarMenuItemContent; allCellsPicker: string };
   /** Reset menu and its actions */
-  reset: ToolbarItemContent & { view: string; deletedCells: string; colors: string };
+  reset: ToolbarItemContent & {
+    view: ToolbarMenuItemContent;
+    deletedCells: ToolbarMenuItemContent;
+    colors: ToolbarMenuItemContent;
+  };
   /** Downloads sheet */
   downloads: ToolbarItemContent;
   /** Embedding guide link */
@@ -60,17 +78,23 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
   label: 'Visualization actions',
   display: {
     label: 'Display',
-    tooltip: 'Choose what the visualization and tables show',
-    cellLinks: 'Cell links',
-    cellLinkData: 'Cell link data',
-    allMetadata: 'All metadata',
+    tooltip: 'Show or hide cell links and metadata',
+    cellLinks: { label: 'Cell links', description: 'Lines from each cell to its nearest anchor cell' },
+    cellLinkData: { label: 'Cell link data', description: 'Link counts in the Cell types table' },
+    allMetadata: { label: 'All metadata', description: 'Include fields with no value' },
+  },
+  colors: {
+    label: 'Colors',
+    tooltip: 'Change or reset colors',
+    allCells: { label: 'Edit all cells color', description: 'Histogram line for all cell types combined' },
+    allCellsPicker: 'All cells color',
   },
   reset: {
     label: 'Reset',
-    tooltip: 'Reset the view, deleted cells or colors',
-    view: 'Reset view',
-    deletedCells: 'Restore deleted cells',
-    colors: 'Reset colors',
+    tooltip: 'Restore the view, cells or colors',
+    view: { label: 'Reset view', description: 'Zoom to fit and undo rotation' },
+    deletedCells: { label: 'Restore deleted cells', description: 'Cells deleted in the distance visualization' },
+    colors: { label: 'Reset colors', description: 'Use default colors for all cell types' },
   },
   downloads: {
     label: 'Downloads',
@@ -78,7 +102,7 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
   },
   embed: {
     label: 'Embed',
-    tooltip: 'Embed this visualization in a website',
+    tooltip: 'Open the embedding guide on GitHub',
     url: EMBEDDING_GUIDE_URL,
   },
   theme: {
@@ -92,11 +116,11 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
   },
   info: {
     label: 'Info',
-    tooltip: 'About this visualization',
+    tooltip: 'What each panel shows',
   },
   help: {
     label: 'Help',
-    tooltip: 'Guides and documentation',
+    tooltip: 'Open guides and source code',
     links: [
       { id: 'user-guide', label: 'User guide', url: 'https://humanatlas.io/user-story/5' },
       {

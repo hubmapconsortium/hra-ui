@@ -5,8 +5,7 @@
       hraClickEvent
       [label]="totalCellTypeLabel"
       [color]="totalCellTypeColor()"
-      (colorChange)="pickedTotalCellTypeColor.set($event)"
-      (colorPickerOpen)="colorPicker.set($event)"
+      (colorChange)="allCellsColor.set($event)"
     />
     <button
       mat-icon-button

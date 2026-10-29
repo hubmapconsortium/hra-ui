@@ -30,6 +30,7 @@
         [hasDeletedCells]="hasDeletedCells()"
         [showThemeMenu]="!hideThemeMenu()"
         [themePreference]="themeSwitch.preference()"
+        [allCellsColor]="allCellsDisplayColor()"
         [(openSheet)]="openSheet"
         [(cellLinkData)]="showCellLinkData"
         [(allMetadata)]="showAllMetadata"
@@ -38,6 +39,7 @@
         (restoreDeletedCellsClick)="restoreDeletedCells()"
         (resetColorsClick)="resetColors()"
         (themePreferenceChange)="themeSwitch.setPreference($event)"
+        (allCellsColorChange)="allCellsColor.set($event)"
       />
 
       <div class="metadata">
@@ -92,6 +94,7 @@
           [filteredCellTypes]="filteredCellTypes()"
           [loading]="distancesLoading()"
           [emptyState]="chartsEmptyState()"
+          [(allCellsColor)]="allCellsColor"
           (updateColor)="updateColor($event.entry, $event.color)"
           (emptyStateAction)="selectAllCellTypes()"
         />

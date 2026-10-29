@@ -29,12 +29,12 @@ describe('ToolbarComponent', () => {
     const instance = fixture.componentInstance;
     await openMenu(TOOLBAR_CONTENT.display.label);
 
-    const cellLinks = screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.cellLinks });
+    const cellLinks = screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.cellLinks.label });
     expect(cellLinks).toHaveAttribute('aria-checked', 'true');
 
     fireEvent.click(cellLinks);
-    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.cellLinkData }));
-    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata }));
+    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.cellLinkData.label }));
+    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata.label }));
     fixture.detectChanges();
 
     expect(instance.cellLinks()).toBe(false);
@@ -44,11 +44,19 @@ describe('ToolbarComponent', () => {
     expect(screen.getByRole('menu')).toBeInTheDocument();
   });
 
+  it('names menu items by their label and describes them with their supporting text', async () => {
+    await setup();
+    await openMenu(TOOLBAR_CONTENT.display.label);
+
+    const { label, description } = TOOLBAR_CONTENT.display.cellLinks;
+    expect(screen.getByRole('menuitemcheckbox', { name: label })).toHaveAccessibleDescription(description);
+  });
+
   it('disables all metadata when no fields are hidden', async () => {
     await setup();
     await openMenu(TOOLBAR_CONTENT.display.label);
 
-    expect(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata })).toBeDisabled();
+    expect(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata.label })).toBeDisabled();
   });
 
   it('emits the reset actions', async () => {
@@ -61,14 +69,31 @@ describe('ToolbarComponent', () => {
     });
 
     await openMenu(TOOLBAR_CONTENT.reset.label);
-    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.view }));
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.view.label }));
     await openMenu(TOOLBAR_CONTENT.reset.label);
-    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.deletedCells }));
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.deletedCells.label }));
     await openMenu(TOOLBAR_CONTENT.reset.label);
-    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.colors }));
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.colors.label }));
 
     expect(resetViewClick).toHaveBeenCalled();
     expect(restoreDeletedCellsClick).toHaveBeenCalled();
+    expect(resetColorsClick).toHaveBeenCalled();
+  });
+
+  it('opens the all cells color picker beside the Colors item once its menu closes', async () => {
+    await setup({ inputs: { allCellsColor: [255, 0, 0] } });
+    await openMenu(TOOLBAR_CONTENT.colors.label);
+
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.colors.allCells.label }));
+    expect(await screen.findByRole('dialog', { name: TOOLBAR_CONTENT.colors.allCellsPicker })).toBeInTheDocument();
+  });
+
+  it('resets colors from the Colors menu', async () => {
+    const resetColorsClick = jest.fn();
+    await setup({ on: { resetColorsClick } });
+    await openMenu(TOOLBAR_CONTENT.colors.label);
+
+    fireEvent.click(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.reset.colors.label) }));
     expect(resetColorsClick).toHaveBeenCalled();
   });
 
@@ -76,7 +101,7 @@ describe('ToolbarComponent', () => {
     await setup();
     await openMenu(TOOLBAR_CONTENT.reset.label);
 
-    expect(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.deletedCells })).toBeDisabled();
+    expect(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.deletedCells.label })).toBeDisabled();
   });
 
   it('opens sheets and shows the open one as active', async () => {

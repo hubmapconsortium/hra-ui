@@ -4,7 +4,9 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { MATERIAL_ANIMATIONS } from '@angular/material/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { MatSnackBarRef } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
+import { SnackbarComponent, SnackbarService } from '@hra-ui/design-system/snackbar';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -17,7 +19,7 @@ import {
 } from '@hra-ui/node-dist-vis/models';
 import { fireEvent, render, RenderComponentOptions, screen, waitFor, within } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
-import { EMPTY } from 'rxjs';
+import { EMPTY, Subject } from 'rxjs';
 import embed, { Result } from 'vega-embed';
 import { ABOUT_CONTENT } from '../components/about/about.content';
 import { DOWNLOADS_CONTENT, DownloadRequest } from '../components/downloads/downloads.content';
@@ -389,20 +391,49 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
-      'resets colors and keeps the cell type selection',
+      'resets colors, keeps the cell type selection, and undoes the reset from the snackbar',
       async () => {
         const { fixture } = await setup();
+        const undo$ = new Subject<void>();
+        const snackbarRef = mock<MatSnackBarRef<SnackbarComponent>>();
+        snackbarRef.onAction.mockReturnValue(undo$);
+        const snackbarOpen = jest.spyOn(TestBed.inject(SnackbarService), 'open').mockReturnValue(snackbarRef);
         const instance = fixture.componentInstance;
         const histogram = fixture.debugElement.query(By.directive(HistogramComponent)).componentInstance;
-        const resetAllCellsColor = jest.spyOn(histogram, 'resetAllCellsColor');
         const originalTypes = instance.cellTypes();
         instance.updateColor(originalTypes[0], [1, 2, 3]);
+        const changedTypes = instance.cellTypes();
+        instance['allCellsColor'].set([4, 5, 6]);
         instance.cellTypesSelection.set(['t-cell']);
+        fixture.detectChanges();
+        expect(histogram.allCellsColor()).toEqual([4, 5, 6]);
 
         getToolbar(fixture).resetColorsClick.emit();
+        fixture.detectChanges();
         expect(instance.cellTypes()).toEqual(originalTypes);
+        expect(histogram.allCellsColor()).toBeUndefined();
         expect(instance.cellTypesSelection()).toEqual(['t-cell']);
-        expect(resetAllCellsColor).toHaveBeenCalled();
+        expect(snackbarOpen).toHaveBeenCalledWith('Colors reset', 'Undo', false, 'end', expect.anything());
+
+        undo$.next();
+        fixture.detectChanges();
+        expect(instance.cellTypes()).toEqual(changedTypes);
+        expect(histogram.allCellsColor()).toEqual([4, 5, 6]);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shares the all cells color between the histogram and the toolbar',
+      async () => {
+        const { fixture } = await setup();
+        const histogram = fixture.debugElement.query(By.directive(HistogramComponent)).componentInstance;
+        const toolbar = getToolbar(fixture);
+
+        toolbar.allCellsColor.set([7, 8, 9]);
+        fixture.detectChanges();
+        expect(histogram.allCellsColor()).toEqual([7, 8, 9]);
+        expect(toolbar.allCellsColor()).toEqual([7, 8, 9]);
       },
       TIMEOUT,
     );

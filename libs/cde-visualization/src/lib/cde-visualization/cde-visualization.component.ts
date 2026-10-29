@@ -1,6 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
-  ApplicationRef,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
@@ -15,12 +14,12 @@ import {
   signal,
   untracked,
   viewChild,
-  ViewContainerRef,
 } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
+import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyData,
@@ -88,6 +87,12 @@ const LOADED_ANNOUNCEMENT = 'Visualization loaded';
 
 /** Time in ms that loading must stay finished before the loaded announcement */
 const LOADED_ANNOUNCEMENT_DEBOUNCE = 250;
+
+/** Snackbar shown after the colors are reset */
+const RESET_COLORS_SNACKBAR = { message: 'Colors reset', action: 'Undo' };
+
+/** Time in ms the reset colors snackbar stays open */
+const RESET_COLORS_SNACKBAR_DURATION = 10000;
 
 /**
  * CDE Visualization Root Component
@@ -222,9 +227,6 @@ export class CdeVisualizationComponent {
   // eslint-disable-next-line @angular-eslint/no-output-rename -- Backwards compatibility
   readonly colorMapChange = output<AnyData>({ alias: 'colorMap' });
 
-  /** View container. Do NOT change the name. It is used by ngx-color-picker! */
-  readonly vcRef = inject(ViewContainerRef);
-
   /** Whether the nodes are loading */
   protected readonly nodesLoading = signal(false);
 
@@ -316,6 +318,9 @@ export class CdeVisualizationComponent {
 
   /** List of cell types */
   readonly cellTypes = signal<CellTypeEntry[]>([]);
+
+  /** All cells color picked in the histogram or the toolbar, or undefined to use the theme's color */
+  protected readonly allCellsColor = signal<Rgb | undefined>(undefined);
 
   /** List of selected cell types */
   readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
@@ -502,12 +507,14 @@ export class CdeVisualizationComponent {
   /** Histogram panel */
   private readonly histogramComponent = viewChild.required(HistogramComponent);
 
+  /** All cells color in effect, including the theme's color when none is picked */
+  protected readonly allCellsDisplayColor = computed(() => this.histogramComponent().totalCellTypeColor());
+
+  /** Shows the reset colors snackbar */
+  private readonly snackbar = inject(SnackbarService);
+
   /** Setup component */
   constructor() {
-    // Workaround for getting ngx-color-picker to attach to the root view
-    // Not populated for standalone/custom components so we forcefully insert ourself
-    inject(ApplicationRef).componentTypes.splice(0, 0, CdeVisualizationComponent);
-
     effect(() => {
       const selection = this.cellTypesSelection();
       const filter = untracked(this.nodeFilterView);
@@ -563,10 +570,27 @@ export class CdeVisualizationComponent {
     this.nodeFilterView.set(this.nodeFilterView().clear(false, true));
   }
 
-  /** Resets every cell type's color and the histogram's all cells color. The cell type selection stays. */
+  /**
+   * Resets every cell type's color and the all cells color. The cell type selection stays.
+   * A snackbar offers to undo the reset, as long as the data hasn't changed since.
+   */
   resetColors(): void {
-    this.cellTypes.set(this.cellTypesFromNodes());
-    this.histogramComponent().resetAllCellsColor();
+    const cellTypes = this.cellTypes();
+    const allCellsColor = this.allCellsColor();
+    const cellTypesFromNodes = this.cellTypesFromNodes();
+    this.cellTypes.set(cellTypesFromNodes);
+    this.allCellsColor.set(undefined);
+
+    const { message, action } = RESET_COLORS_SNACKBAR;
+    this.snackbar
+      .open(message, action, false, 'end', { duration: RESET_COLORS_SNACKBAR_DURATION })
+      .onAction()
+      .subscribe(() => {
+        if (this.cellTypesFromNodes() === cellTypesFromNodes) {
+          this.cellTypes.set(cellTypes);
+          this.allCellsColor.set(allCellsColor);
+        }
+      });
   }
 
   /** Downloads the requested file */
