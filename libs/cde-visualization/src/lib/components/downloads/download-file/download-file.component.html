@@ -1,0 +1,19 @@
+@let data = file();
+
+<span class="name">{{ data.name }}</span>
+<p class="description">{{ data.description }}</p>
+<div class="formats">
+  @for (format of data.formats; track format.id) {
+    <button
+      matButton="outlined"
+      hraClickEvent
+      [hraFeature]="`download-${format.id}`"
+      [attr.aria-label]="format.ariaLabel"
+      [disabled]="disabled()"
+      (click)="download.emit(format.id)"
+    >
+      <mat-icon>download</mat-icon>
+      {{ format.label }}
+    </button>
+  }
+</div>

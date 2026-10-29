@@ -1,16 +1,5 @@
-import { FocusOrigin } from '@angular/cdk/a11y';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Pipe,
-  PipeTransform,
-  computed,
-  input,
-  output,
-  signal,
-  viewChild,
-} from '@angular/core';
-import { MatButtonModule, MatIconButton } from '@angular/material/button';
+import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, model, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -103,23 +92,17 @@ export class MetadataComponent {
   /** Input for Metadata Component */
   readonly metadata = input.required<Metadata>();
 
-  /** Whether the downloads drawer is open */
-  readonly downloadsOpen = input(false);
+  /** Whether the downloads drawer is open. The downloads button opens it */
+  readonly downloadsOpen = model(false);
 
   /** Whether the metadata is loading, which shows skeleton rows in place of the fields */
   readonly loading = input(false);
-
-  /** Emits when the downloads button is clicked */
-  readonly downloadsClick = output<void>();
 
   /** Skeleton rows shown while the metadata loads */
   protected readonly skeletonRows = SKELETON_ROWS;
 
   /** Label and tooltip for the downloads button */
   protected readonly downloadsLabel = DOWNLOADS_CONTENT.title;
-
-  /** Downloads button */
-  private readonly downloadsButton = viewChild.required('downloadsButton', { read: MatIconButton });
 
   /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields = signal(false);
@@ -162,11 +145,6 @@ export class MetadataComponent {
   /** Toggle function for the show/hide buttons */
   toggleEmptyFields(): void {
     this.showEmptyFields.set(!this.showEmptyFields());
-  }
-
-  /** Moves focus to the downloads button */
-  focusDownloadsButton(origin: FocusOrigin): void {
-    this.downloadsButton().focus(origin);
   }
 
   /** Formats the creation timestamp using a given formatter */

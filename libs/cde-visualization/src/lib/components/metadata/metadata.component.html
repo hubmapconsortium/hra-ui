@@ -59,14 +59,12 @@
   <hra-expansion-panel-header-content>
     <button
       mat-icon-button
-      aria-haspopup="dialog"
       hraFeature="downloads"
       hraClickEvent
       [attr.aria-label]="downloadsLabel"
       [attr.aria-expanded]="downloadsOpen()"
       [hraPlainTooltip]="downloadsLabel"
-      (click)="downloadsClick.emit()"
-      #downloadsButton
+      (click)="downloadsOpen.set(true)"
     >
       <mat-icon>download</mat-icon>
     </button>

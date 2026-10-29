@@ -70,30 +70,6 @@
     list-style: none;
   }
 
-  .file {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .file-name {
-    color: vars.$on-surface;
-    @include utils.use-font(title, small);
-  }
-
-  .file-description {
-    margin: 0;
-    color: vars.$on-surface-variant;
-    @include utils.use-font(body, medium);
-  }
-
-  .formats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
   // Matches AtlasNG's info notice and reads the same token hooks in the same order
   // (--ang-notice-*, then --ang-ext-*, then system tokens), so swapping in <ang-notice variant="info">
   // during the AtlasNG move keeps the look and any token customizations

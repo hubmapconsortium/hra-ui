@@ -1,10 +1,10 @@
-import { FocusOrigin } from '@angular/cdk/a11y';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { DownloadFileComponent } from './download-file/download-file.component';
 import { DOWNLOADS_CONTENT, DownloadRequest, UnavailableDownloads } from './downloads.content';
 
 /** Counter to keep track of distinct instances */
@@ -15,14 +15,21 @@ let idCounter = 0;
  */
 @Component({
   selector: 'cde-downloads',
-  imports: [HraCommonModule, MatIconModule, ButtonsModule, PlainTooltipDirective, ScrollingModule],
+  imports: [
+    HraCommonModule,
+    MatIconModule,
+    ButtonsModule,
+    PlainTooltipDirective,
+    ScrollingModule,
+    DownloadFileComponent,
+  ],
   templateUrl: './downloads.component.html',
   styleUrl: './downloads.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DownloadsComponent {
-  /** Emits the origin of the interaction when the close button is clicked */
-  readonly closeClick = output<FocusOrigin>();
+  /** Emits when the close button is clicked */
+  readonly closeClick = output<void>();
 
   /** Emits when a file download is requested */
   readonly download = output<DownloadRequest>();
@@ -49,11 +56,4 @@ export class DownloadsComponent {
 
   /** Text content */
   protected readonly content = DOWNLOADS_CONTENT;
-
-  /** Emits a close event with the origin of the click */
-  protected close(event: MouseEvent): void {
-    // Clicks triggered by the keyboard have no screen coordinates
-    const origin = event.screenX === 0 && event.screenY === 0 ? 'keyboard' : 'mouse';
-    this.closeClick.emit(origin);
-  }
 }
