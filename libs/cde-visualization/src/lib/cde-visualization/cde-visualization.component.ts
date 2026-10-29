@@ -11,9 +11,11 @@ import {
   Signal,
   signal,
   untracked,
+  viewChild,
   ViewContainerRef,
 } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
@@ -45,6 +47,8 @@ import {
 } from '@hra-ui/node-dist-vis/models';
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
+import { DownloadsComponent } from '../components/downloads/downloads.component';
+import { DownloadRequest } from '../components/downloads/downloads.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
@@ -74,7 +78,9 @@ export interface DistanceEntry {
   imports: [
     HraCommonModule,
     MatProgressBarModule,
+    MatSidenavModule,
     CellTypesComponent,
+    DownloadsComponent,
     HistogramComponent,
     MetadataComponent,
     NodeDistVisualizationComponent,
@@ -295,14 +301,12 @@ export class CdeVisualizationComponent {
     const edgeCounts = this.edgeCounts();
     const colorLookup = this.colorMapView().getColorLookup();
 
-    return Array.from(nodeCounts).map(
-      ([name, count]): CellTypeEntry => ({
-        name,
-        count,
-        outgoingEdgeCount: edgeCounts.get(name) ?? 0,
-        color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
-      }),
-    );
+    return Array.from(nodeCounts).map(([name, count]): CellTypeEntry => ({
+      name,
+      count,
+      outgoingEdgeCount: edgeCounts.get(name) ?? 0,
+      color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
+    }));
   });
 
   /** Adjustments for cell type counts */
@@ -358,6 +362,18 @@ export class CdeVisualizationComponent {
   /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
 
+  /** Whether the downloads drawer is open */
+  protected readonly downloadsOpen = signal(false);
+
+  /** Distance visualization panel */
+  private readonly nodeDistVisualizationComponent = viewChild.required(NodeDistVisualizationComponent);
+
+  /** Violin graph panel */
+  private readonly violinComponent = viewChild.required(ViolinComponent);
+
+  /** Histogram panel */
+  private readonly histogramComponent = viewChild.required(HistogramComponent);
+
   /** Setup component */
   constructor() {
     // Workaround for getting ngx-color-picker to attach to the root view
@@ -389,6 +405,24 @@ export class CdeVisualizationComponent {
 
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
+  }
+
+  /** Downloads the requested file */
+  async handleDownload({ file, format }: DownloadRequest): Promise<void> {
+    switch (file) {
+      case 'cells':
+        return this.downloadNodes();
+      case 'cell-links':
+        return this.downloadEdges();
+      case 'color-map':
+        return this.downloadColorMap();
+      case 'visualization':
+        return this.nodeDistVisualizationComponent().download();
+      case 'violin-graph':
+        return this.violinComponent().download(format);
+      case 'histogram':
+        return this.histogramComponent().download(format);
+    }
   }
 
   /** Downloads nodes */

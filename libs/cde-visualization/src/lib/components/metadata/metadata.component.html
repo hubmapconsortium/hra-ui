@@ -1,4 +1,4 @@
-<hra-expansion-panel tagline="Sample metadata">
+<hra-expansion-panel tagline="Metadata">
   <hra-expansion-panel-actions>
     <button
       mat-icon-button
@@ -56,10 +56,24 @@
         hraHoverEventTriggerOn="mouseenter"
         #infoSubMenu="matMenu"
       >
-        Visualization metadata for the sample dataset.
+        Metadata for this dataset.
       </mat-menu>
     </mat-menu>
   </hra-expansion-panel-actions>
+  <hra-expansion-panel-header-content>
+    <button
+      mat-icon-button
+      hraIconButtonSize="large"
+      hraFeature="downloads"
+      hraClickEvent
+      [attr.aria-label]="downloadsLabel"
+      [attr.aria-expanded]="downloadsOpen()"
+      [hraPlainTooltip]="downloadsLabel"
+      (click)="downloadsOpen.set(true)"
+    >
+      <mat-icon>download</mat-icon>
+    </button>
+  </hra-expansion-panel-header-content>
   <div class="metadata-details" hraFeature="details">
     @if (isFieldVisible('title')) {
       <div class="metadata-row">
