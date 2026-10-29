@@ -1,8 +1,10 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { mock } from 'jest-mock-extended';
 import { BehaviorSubject } from 'rxjs';
 import { View } from 'vega';
+import { ThemeSwitchService } from '../services/theme-switch/theme-switch.service';
 import {
   applyChartTheme,
   ChartTheme,
@@ -193,6 +195,16 @@ describe('watchColorScheme()', () => {
 
     root.setAttribute('data-color-scheme', 'dark');
     await Promise.resolve();
+    expect(colorScheme()).not.toEqual(initial);
+  });
+
+  it("changes when the visualization's theme switch changes the theme", () => {
+    const switchTheme = signal<'light' | 'dark'>('light');
+    TestBed.configureTestingModule({ providers: [{ provide: ThemeSwitchService, useValue: { theme: switchTheme } }] });
+    const colorScheme = TestBed.runInInjectionContext(() => watchColorScheme());
+    const initial = colorScheme();
+
+    switchTheme.set('dark');
     expect(colorScheme()).not.toEqual(initial);
   });
 });

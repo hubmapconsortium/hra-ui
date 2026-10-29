@@ -1,24 +1,22 @@
-<span
+<button
+  type="button"
   class="color-pick"
-  cpWidth="264px"
-  cpOutputFormat="hex"
-  cpPositionOffset="-17%"
-  cpOKButtonClass="accept-button"
-  cpOKButtonText="Apply"
-  cpCancelButtonClass="cancel-button"
-  cpAlphaChannel="disabled"
+  aria-haspopup="dialog"
   data-testid="color-picker-button"
-  [style.background]="hexColor()"
-  [colorPicker]="hexColor()"
-  [cpOKButton]="true"
-  [cpCancelButton]="true"
-  [cpUseRootViewContainer]="true"
-  (colorPickerOpen)="colorPickerOpen.emit(colorPicker)"
-  (colorPickerClose)="colorPickerOpen.emit(null)"
-  (colorPickerChange)="hexColor.set($event)"
-  (colorPickerSelect)="selectColor($event)"
-  #colorPicker="ngxColorPicker"
-></span>
+  cdkOverlayOrigin
+  [attr.aria-label]="pickerLabel()"
+  [attr.aria-expanded]="pickerOpen()"
+  [style.background]="swatchColor()"
+  (click)="pickerOpen.set(true)"
+  #swatch="cdkOverlayOrigin"
+></button>
+<cde-color-picker
+  [origin]="swatch"
+  [label]="pickerLabel()"
+  [(open)]="pickerOpen"
+  [(color)]="color"
+  (preview)="swatchColor.set($event)"
+/>
 @if (isAnchor()) {
   <mat-icon
     class="material-symbols-rounded anchor"

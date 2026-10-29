@@ -29,9 +29,10 @@
       }
     }
 
-    // The 8px left padding puts the collapse toggle's icon on the panel's 16px inset
+    // Panel headers stay 56px without buttons
     ::ng-deep .header {
-      padding: 0.5rem 1rem 0.5rem 0.5rem;
+      padding: 0.5rem 1rem;
+      min-height: 3.5rem;
     }
 
     // Labels and values in a description list, like the cell types table: on-surface labels and

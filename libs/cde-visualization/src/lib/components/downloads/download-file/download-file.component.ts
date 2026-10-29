@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -23,4 +23,12 @@ export class DownloadFileComponent {
 
   /** Emits the format to download when a format button is clicked */
   readonly download = output<DownloadFormat>();
+
+  /** Host element */
+  private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
+
+  /** Focuses the first format button */
+  focus(): void {
+    this.el.nativeElement.querySelector('button')?.focus();
+  }
 }

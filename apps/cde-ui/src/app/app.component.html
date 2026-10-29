@@ -30,16 +30,33 @@
     </a>
     <button
       mat-icon-button
-      hraFeature="theme-toggle"
+      aria-label="Theme"
+      hraPlainTooltip="Choose a light or dark theme"
+      hraFeature="theme"
       hraClickEvent
-      [hraPlainTooltip]="themeToggleLabel()"
-      [attr.aria-label]="themeToggleLabel()"
-      (click)="themeService.toggle()"
+      [matMenuTriggerFor]="themeMenu"
     >
-      <mat-icon>{{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      <mat-icon>{{ themeIcon() }}</mat-icon>
     </button>
 
     <hra-help-button action="https://humanatlas.io/user-story/5" />
+
+    <mat-menu hraFeature="theme-menu" #themeMenu>
+      @for (option of themeOptions; track option.id) {
+        @let checked = themeService.preference() === option.id;
+        <button
+          mat-menu-item
+          role="menuitemradio"
+          hraClickEvent
+          [hraFeature]="option.id"
+          [attr.aria-checked]="checked"
+          (click)="themeService.setPreference(option.id)"
+        >
+          <mat-icon>{{ checked ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+          {{ option.label }}
+        </button>
+      }
+    </mat-menu>
 
     <!-- Explore example data Menu -->
     <mat-menu class="more-menu" hraFeature="explore-menu" #exploreMenu>

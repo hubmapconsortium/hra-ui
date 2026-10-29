@@ -1,0 +1,33 @@
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayPush
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  cdkConnectedOverlayPanelClass="cde-color-picker-panel"
+  [cdkConnectedOverlayOrigin]="origin()"
+  [cdkConnectedOverlayOpen]="open()"
+  [cdkConnectedOverlayPositions]="positions"
+  (attach)="handleAttach()"
+  (detach)="open.set(false)"
+  (backdropClick)="apply()"
+  (overlayKeydown)="handleKeydown($event)"
+>
+  <div role="dialog" aria-modal="true" cdkTrapFocus [attr.aria-label]="label()" #panel>
+    <span
+      cpDialogDisplay="inline"
+      cpWidth="264px"
+      cpOutputFormat="hex"
+      cpAlphaChannel="disabled"
+      cpOKButtonClass="accept-button"
+      cpOKButtonText="Apply"
+      cpCancelButtonClass="cancel-button"
+      [colorPicker]="hexColor()"
+      [cpToggle]="true"
+      [cpOKButton]="true"
+      [cpCancelButton]="true"
+      (colorPickerChange)="handleChange($event)"
+      (colorPickerSelect)="apply($event)"
+      (colorPickerCancel)="cancel()"
+    ></span>
+  </div>
+</ng-template>

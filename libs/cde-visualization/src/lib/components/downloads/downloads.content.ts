@@ -68,14 +68,20 @@ export interface UnavailableDownloads {
   files: DownloadFileId[];
   /** Notice explaining why the files are disabled */
   notice: string;
+  /** Whether hidden panels disable some files, so the notice offers to show all panels */
+  showPanels?: boolean;
 }
 
-/** Notices for files that would be empty with the current cell type selection */
+/** Notices for files that would be empty with the current cell type selection, or whose panels are hidden */
 export interface UnavailableDownloadsContent {
   /** Shown when no cell types are selected, so every file would be empty */
   noCellTypes: string;
   /** Shown when only the anchor cell type is selected, so the charts would be empty */
   noDistances: (anchorCellType: string) => string;
+  /** Shown when panels with images are hidden */
+  hiddenPanels: string;
+  /** Label of the notice button that shows all panels */
+  showAllPanels: string;
 }
 
 /** All text content for the downloads button and drawer */
@@ -155,7 +161,7 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
       notice: {
         text: 'Embedding the visualization? It needs the Cells CSV. Cell links and the cell color map are optional and are generated when missing.',
         link: {
-          label: 'Embedding guide',
+          label: 'Embedding guide on GitHub',
           url: EMBEDDING_GUIDE_URL,
         },
       },
@@ -165,5 +171,7 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
     noCellTypes: 'Select at least one cell type to download files.',
     noDistances: (anchorCellType) =>
       `Select a cell type other than ${anchorCellType} to download the violin graph and histogram.`,
+    hiddenPanels: 'Show a hidden panel from the Panels menu to download its image.',
+    showAllPanels: 'Show all panels',
   },
 };

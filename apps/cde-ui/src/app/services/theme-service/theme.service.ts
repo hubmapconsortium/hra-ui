@@ -1,16 +1,19 @@
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, computed, effect, inject, Injectable, signal } from '@angular/core';
+import { ApplicationRef, computed, effect, inject, Injectable, signal, untracked } from '@angular/core';
 import { watchBreakpoint } from '@hra-ui/cdk/breakpoints';
 
 /** Color theme */
 export type Theme = 'light' | 'dark';
 
-/** Local storage key for the theme picked with the theme toggle */
+/** Theme menu choice: the system color scheme, or the light or dark theme */
+export type ThemePreference = 'system' | Theme;
+
+/** Local storage key for the theme picked in the theme menu */
 export const THEME_STORAGE_KEY = 'cde-ui-theme';
 
 /**
- * Switches between the light and dark themes.
- * Follows the system color scheme until the other theme is picked,
+ * Switches between the system color scheme and the light and dark themes.
+ * Follows the system color scheme until the light or dark theme is picked,
  * and remembers that pick across page loads.
  */
 @Injectable({
@@ -29,30 +32,41 @@ export class ThemeService {
   /** System theme */
   private readonly systemTheme = computed<Theme>(() => (this.systemPrefersDark() ? 'dark' : 'light'));
 
-  /** Theme picked with the toggle, or undefined to follow the system */
-  private readonly pickedTheme = signal<Theme | undefined>(this.loadPickedTheme());
+  /** Theme menu choice, writable */
+  private readonly preferenceSignal = signal<ThemePreference>(this.loadPickedTheme() ?? 'system');
+
+  /** Theme menu choice */
+  readonly preference = this.preferenceSignal.asReadonly();
 
   /** Theme in effect */
-  readonly theme = computed(() => this.pickedTheme() ?? this.systemTheme());
+  readonly theme = computed(() => {
+    const preference = this.preference();
+    return preference === 'system' ? this.systemTheme() : preference;
+  });
 
-  /** Applies the picked theme. Without one, the stylesheet's `color-scheme: light dark` follows the system. */
+  /** Applies the picked theme. With System settings, the stylesheet's `color-scheme: light dark` follows the system. */
   constructor() {
     effect(() => {
-      this.document.documentElement.style.colorScheme = this.pickedTheme() ?? '';
+      const preference = this.preference();
+      this.document.documentElement.style.colorScheme = preference === 'system' ? '' : preference;
     });
   }
 
   /**
-   * Switches to the opposite theme. Switching back to the system theme forgets the pick.
+   * Switches to a theme menu choice. System settings forgets the stored pick.
    * Where view transitions are supported, the page keeps showing the old theme until everything,
    * including the charts that redraw in the new colors, has updated, then switches all at once.
+   *
+   * @param preference Theme menu choice
    */
-  toggle(): void {
-    const theme = this.theme() === 'dark' ? 'light' : 'dark';
-    const picked = theme === this.systemTheme() ? undefined : theme;
+  setPreference(preference: ThemePreference): void {
+    if (preference === untracked(this.preference)) {
+      return;
+    }
+
     const apply = () => {
-      this.pickedTheme.set(picked);
-      this.savePickedTheme(picked);
+      this.preferenceSignal.set(preference);
+      this.savePickedTheme(preference === 'system' ? undefined : preference);
     };
 
     if (typeof this.document.startViewTransition !== 'function') {

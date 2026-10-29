@@ -1,4 +1,18 @@
+@use '../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
+
 :host {
   display: block;
   height: 100%;
+}
+
+.menu-item-text {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+
+  .menu-item-description {
+    @include utils.use-font(body, small);
+    color: vars.$on-surface-variant;
+  }
 }

@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  Injector,
+  input,
+  output,
+  viewChildren,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
@@ -34,6 +44,9 @@ export class DownloadsComponent {
   /** Emits when a file download is requested */
   readonly download = output<DownloadRequest>();
 
+  /** Emits when the notice's Show all panels button is clicked */
+  readonly showAllPanelsClick = output<void>();
+
   /** Files that can't be downloaded because they would be empty, or undefined when every file can be */
   readonly unavailable = input<UnavailableDownloads>();
 
@@ -56,4 +69,29 @@ export class DownloadsComponent {
 
   /** Text content */
   protected readonly content = DOWNLOADS_CONTENT;
+
+  /** File rows, in the order they show */
+  private readonly fileRows = viewChildren(DownloadFileComponent);
+
+  /** Injector for the render callback that moves focus */
+  private readonly injector = inject(Injector);
+
+  /**
+   * Asks to show all panels, then moves focus to the first file that became available,
+   * since the notice and its button can go away
+   */
+  protected showAllPanels(): void {
+    const wasDisabled = this.disabledFiles();
+    this.showAllPanelsClick.emit();
+
+    afterNextRender(
+      () => {
+        const isEnabled = (row: DownloadFileComponent) => !this.disabledFiles().has(row.file().id);
+        const rows = this.fileRows();
+        const row = rows.find((r) => wasDisabled.has(r.file().id) && isEnabled(r)) ?? rows.find(isEnabled);
+        row?.focus();
+      },
+      { injector: this.injector },
+    );
+  }
 }

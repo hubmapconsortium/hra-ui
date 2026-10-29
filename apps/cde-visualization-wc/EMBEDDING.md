@@ -67,6 +67,9 @@ cde.colorMap = {
 | _creation-timestamp_   | The number of milliseconds since 1/1/1970 UTC  | A positive integer                    | None          |
 | _source-file-name_     | Dataset nodes file name                        | A string                              | None          |
 | _color-map-file-name_  | Dataset color map file name                    | A string                              | None          |
+| _hide-theme-menu_      | Hides the toolbar's Theme menu                 | A boolean attribute                   | Shown         |
+| _hidden-panels_        | Panels hidden at first, see [Panels](#panels)  | A list of panel ids                   | None          |
+| _remember-panels_      | Remembers hidden panels in local storage       | A boolean attribute                   | Off           |
 
 ### Nodes, edges, and color maps
 
@@ -133,6 +136,16 @@ Any columns not specified will be inferred as usual. The default column names an
 ### Metadata
 
 Metadata can be set either as an object or as individual metadata attributes. Using an object is particularly useful when setting the metadata from javascript or a json file url. If both an metadata object and individual attributes are set at the same time the value from the attributes takes priority. The available metadata attributes are described the [inputs table](#available-inputs).
+
+### Panels
+
+The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comma or space separated list of `metadata`, `distance-visualization`, `violin-graph`, and `histogram`. The Cell types panel always shows. The toolbar's Panels menu can still show hidden panels, and Reset everything hides them again.
+
+```html
+<cde-visualization hidden-panels="violin-graph, histogram" nodes="https://..."></cde-visualization>
+```
+
+With `remember-panels`, the panels shown and hidden from the Panels menu are stored in the browser's local storage and stay that way after a reload.
 
 ## Outputs
 
@@ -215,9 +228,15 @@ html {
 
 A color override with a single value applies to both. To set each, use `light-dark()`, for example `--mat-sys-primary: light-dark(#0b57d0, #a8c7fa);`.
 
+The toolbar's Theme menu starts on System settings, which follows the page's theme. Light theme and Dark theme switch only the _CDE_, not the page, until the page reloads. If your page has its own theme switch, hide the _CDE_'s menu with the `hide-theme-menu` attribute:
+
+```html
+<cde-visualization hide-theme-menu nodes="https://..."></cde-visualization>
+```
+
 ### Charts
 
-The histogram and violin charts read these tokens, and update their colors when the system setting or the `color-scheme` of the `html` element changes:
+The histogram and violin charts read these tokens, and update their colors when the system setting, the `color-scheme` of the `html` element, or the Theme menu changes the theme:
 
 | Token                          | Used for                                                   |
 | ------------------------------ | ---------------------------------------------------------- |

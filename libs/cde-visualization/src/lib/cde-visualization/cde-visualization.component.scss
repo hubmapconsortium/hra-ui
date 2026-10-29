@@ -5,6 +5,8 @@
 // Background of every panel, chart, and scroll fade
 $panel-background: vars.$background;
 
+$drawer-background: light-dark(#{vars.$surface-container-low}, #{vars.$surface-container});
+
 // Width of the toolbar: the navigation rail's default 96px plus its 1px divider
 $toolbar-width: calc(6rem + 1px);
 
@@ -28,8 +30,7 @@ $toolbar-width: calc(6rem + 1px);
       content-text-color: vars.$on-surface,
       content-background-color: $panel-background,
       container-text-color: vars.$on-surface,
-      // The Downloads drawer keeps its own container color
-      container-background-color: vars.$surface-container-low,
+      container-background-color: $drawer-background,
       container-elevation-shadow: var(--mat-sys-level1),
       container-shape: vars.$corner-large,
       container-width: 28rem,
@@ -43,6 +44,8 @@ $toolbar-width: calc(6rem + 1px);
 
   mat-drawer {
     max-width: 100%;
+    border-left: 2px solid vars.$outline;
+    --hra-scroll-overflow-fade-color: #{$drawer-background};
   }
 
   .layout {
@@ -53,6 +56,10 @@ $toolbar-width: calc(6rem + 1px);
     grid-template-areas:
       'toolbar metadata visualization'
       'toolbar metadata visualization';
+
+    &.visualizations-hidden {
+      grid-template-columns: $toolbar-width 1fr 0;
+    }
   }
 
   // The rail fills with surface-container, and the outline divider matches the panel dividers
@@ -69,6 +76,10 @@ $toolbar-width: calc(6rem + 1px);
     flex-direction: column;
     grid-area: metadata;
     border-right: 1px solid vars.$outline;
+
+    &.fill {
+      border-right: none;
+    }
 
     cde-metadata {
       width: 100%;
@@ -88,6 +99,10 @@ $toolbar-width: calc(6rem + 1px);
       height: 0;
       flex-grow: 1;
       border-bottom: 1px solid vars.$outline;
+
+      &.fill {
+        border-bottom: none;
+      }
     }
 
     // Clip the cell visualization so its canvas can't paint over the dividers
@@ -102,6 +117,30 @@ $toolbar-width: calc(6rem + 1px);
       height: 100%;
       width: 31.5rem;
       border-left: 1px solid vars.$outline;
+
+      &.fill {
+        flex-grow: 1;
+        border-left: none;
+      }
+    }
+  }
+
+  .panel-hidden {
+    display: none !important;
+  }
+}
+
+// ThemeSwitchService adds this class to <html> while it switches themes
+::ng-deep html.cde-visualization-theme-switch {
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    animation-duration: 150ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::view-transition-old(root),
+    &::view-transition-new(root) {
+      animation: none;
     }
   }
 }

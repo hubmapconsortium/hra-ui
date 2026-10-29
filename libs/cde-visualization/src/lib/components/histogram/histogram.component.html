@@ -1,12 +1,11 @@
-<hra-expansion-panel tagline="Histogram" hraHoverEvent hraHoverEventTriggerOn="mouseenter">
+<hra-expansion-panel tagline="Histogram" disabled hraHoverEvent hraHoverEventTriggerOn="mouseenter">
   <hra-expansion-panel-header-content>
     <cde-color-picker-label
       hraFeature="color-picker"
       hraClickEvent
       [label]="totalCellTypeLabel"
       [color]="totalCellTypeColor()"
-      (colorChange)="pickedTotalCellTypeColor.set($event)"
-      (colorPickerOpen)="colorPicker.set($event)"
+      (colorChange)="allCellsColor.set($event)"
     />
     <button
       mat-icon-button
