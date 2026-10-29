@@ -73,6 +73,11 @@
   }
 }
 
+// Positions the empty state over the histogram, docked and fullscreen
+hra-fullscreen-portal-content {
+  position: relative;
+}
+
 ::ng-deep .mat-content-hide-toggle {
   margin-right: 0 !important;
 }

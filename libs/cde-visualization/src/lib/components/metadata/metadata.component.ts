@@ -13,6 +13,7 @@ import {
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Metadata } from '../../models/metadata';
 import { DOWNLOADS_CONTENT } from '../downloads/downloads.content';
+import { SkeletonComponent } from '../skeleton/skeleton.component';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -28,6 +29,19 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
   'creationTimestamp',
 ];
 
+/** Fields that example datasets show only with all metadata, since their values are placeholders */
+const EXAMPLE_PLACEHOLDER_FIELDS: (keyof Metadata)[] = ['creationTimestamp'];
+
+/** Label and value widths of the skeleton rows shown while the metadata loads, varied like real rows */
+const SKELETON_ROWS = [
+  { label: '8.5rem', value: '90%' },
+  { label: '6rem', value: '70%' },
+  { label: '3.5rem', value: '45%' },
+  { label: '6.5rem', value: '30%' },
+  { label: '8rem', value: '15%' },
+  { label: '7rem', value: '55%' },
+];
+
 /** Defines a pipe that provides a default value if the input is undefined or empty */
 @Pipe({
   name: 'defaultTo',
@@ -36,6 +50,17 @@ const HIDABLE_FIELDS: (keyof Metadata)[] = [
 export class DefaultToPipe implements PipeTransform {
   transform<T, D>(value: T | undefined, defaultValue: D): T | D {
     return value !== undefined && value !== '' ? value : defaultValue;
+  }
+}
+
+/** Defines a pipe that drops a URL's protocol, so a link reads as `doi.org/...` instead of `https://doi.org/...` */
+@Pipe({
+  name: 'withoutProtocol',
+  pure: true,
+})
+export class WithoutProtocolPipe implements PipeTransform {
+  transform(url: string): string {
+    return url.replace(/^https?:\/\//, '');
   }
 }
 
@@ -50,12 +75,14 @@ export class DefaultToPipe implements PipeTransform {
     MatIconModule,
     MatExpansionModule,
     DefaultToPipe,
+    WithoutProtocolPipe,
     MatMenuModule,
     PlainTooltipDirective,
     ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
+    SkeletonComponent,
   ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
@@ -68,16 +95,22 @@ export class MetadataComponent {
   /** Whether the downloads drawer is open. The downloads button opens it */
   readonly downloadsOpen = model(false);
 
+  /** Whether the metadata is loading, which shows skeleton rows in place of the fields */
+  readonly loading = input(false);
+
+  /** Skeleton rows shown while the metadata loads */
+  protected readonly skeletonRows = SKELETON_ROWS;
+
   /** Label and tooltip for the downloads button */
   protected readonly downloadsLabel = DOWNLOADS_CONTENT.title;
 
   /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields = signal(false);
 
-  /** Defines a computed property to check for empty fields */
+  /** Defines a computed property to check for fields that show only with all metadata: empty ones and placeholders */
   readonly hasEmptyFields = computed(() => {
     const metadata = this.metadata();
-    return HIDABLE_FIELDS.some((field) => metadata[field] === undefined);
+    return HIDABLE_FIELDS.some((field) => metadata[field] === undefined || this.isPlaceholder(field));
   });
 
   /** Creates a date formatter with default locale */
@@ -96,8 +129,17 @@ export class MetadataComponent {
 
   /** Checks if a field is visible based on its value and the showEmptyFields signal */
   isFieldVisible(field: keyof Metadata): boolean {
+    if (this.loading()) {
+      return false;
+    }
+
     const value = this.metadata()[field];
-    return this.showEmptyFields() || (value !== undefined && value !== '');
+    return this.showEmptyFields() || (value !== undefined && value !== '' && !this.isPlaceholder(field));
+  }
+
+  /** Checks if a field holds a placeholder value, which example datasets have in place of real metadata */
+  private isPlaceholder(field: keyof Metadata): boolean {
+    return this.metadata().sampleExtra !== undefined && EXAMPLE_PLACEHOLDER_FIELDS.includes(field);
   }
 
   /** Toggle function for the show/hide buttons */

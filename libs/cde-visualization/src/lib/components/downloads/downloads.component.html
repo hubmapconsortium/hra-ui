@@ -16,13 +16,27 @@
 
 <ng-scrollbar class="body" orientation="vertical" hraScrollOverflowFade>
   <div class="groups">
+    @if (unavailable(); as unavailable) {
+      <div class="notice unavailable-notice" hraFeature="unavailable-notice">
+        <mat-icon class="notice-icon">info</mat-icon>
+        <p class="notice-body" [id]="unavailableNoticeId">
+          <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+          {{ unavailable.notice }}
+        </p>
+      </div>
+    }
+
     @for (group of content.groups; track group.heading) {
       <section class="group">
         <h3 class="group-heading">{{ group.heading }}</h3>
         <ul class="files">
           @for (file of group.files; track file.id) {
             <li [hraFeature]="file.id">
-              <cde-download-file [file]="file" (download)="download.emit({ file: file.id, format: $event })" />
+              <cde-download-file
+                [file]="file"
+                [disabled]="disabledFiles().has(file.id)"
+                (download)="download.emit({ file: file.id, format: $event })"
+              />
             </li>
           }
         </ul>

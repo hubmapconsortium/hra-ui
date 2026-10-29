@@ -1,0 +1,121 @@
+{
+  "padding": {
+    "top": 0,
+    "right": 16,
+    "bottom": 0,
+    "left": 16
+  },
+  "facet": {
+    "column": {
+      "field": "type",
+      "sort": {
+        "field": "Count",
+        "order": "descending"
+      },
+      "title": "Cell types",
+      "header": {
+        "titleOrient": "bottom",
+        "titlePadding": 8,
+        "labelOrient": "bottom",
+        "labelAngle": -45,
+        "labelAlign": "right",
+        "labelBaseline": "middle",
+        "labelPadding": 8,
+        "labelLimit": 160
+      }
+    }
+  },
+  "resolve": {
+    "scale": {
+      "x": "independent"
+    }
+  },
+  "spec": {
+    "height": 0,
+    "width": 0,
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "orient": "horizontal",
+          "stroke": {
+            "expr": "themeMarkColor"
+          },
+          "strokeWidth": 0.5
+        },
+        "transform": [
+          {
+            "density": "distance",
+            "bandwidth": 0,
+            "groupby": ["type"]
+          }
+        ],
+        "encoding": {
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Distance (µm)",
+            "axis": {
+              "minExtent": 25,
+              "labelFlush": false,
+              "grid": true,
+              "labelOverlap": true,
+              "labelSeparation": 4
+            },
+            "scale": {
+              "domainMin": 0
+            }
+          },
+          "x": {
+            "field": "density",
+            "type": "quantitative",
+            "stack": "center",
+            "impute": null,
+            "title": null,
+            "axis": {
+              "labels": false,
+              "grid": false
+            },
+            "scale": {
+              "nice": false,
+              "padding": 4
+            }
+          },
+          "color": {
+            "field": "type",
+            "legend": null,
+            "scale": {
+              "range": [
+                {
+                  "expr": "'Replaced/repeated in javascript' && colors[0] || themeMarkColor"
+                }
+              ]
+            }
+          },
+          "tooltip": {
+            "field": "type",
+            "type": "nominal"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "boxplot",
+          "extent": "min-max",
+          "size": 4,
+          "color": "black"
+        },
+        "encoding": {
+          "y": {
+            "field": "distance",
+            "type": "quantitative",
+            "title": "Distance (µm)",
+            "scale": {
+              "domainMin": 0
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -21,6 +21,14 @@ describe('DownloadFileComponent', () => {
     expect(screen.getAllByRole('button')).toHaveLength(file.formats.length);
   });
 
+  it('should disable every format button when the file is disabled', async () => {
+    await render(DownloadFileComponent, { inputs: { file, disabled: true } });
+
+    for (const button of screen.getAllByRole('button')) {
+      expect(button).toBeDisabled();
+    }
+  });
+
   it('should emit the format of the clicked button', async () => {
     const download = jest.fn();
     await render(DownloadFileComponent, { inputs: { file }, on: { download } });

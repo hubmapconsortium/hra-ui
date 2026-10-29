@@ -6,13 +6,14 @@ import { TestBed } from '@angular/core/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { Rgb } from '@hra-ui/design-system/color-picker';
-import { render, RenderComponentOptions, screen } from '@testing-library/angular';
+import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mockClear, mockDeep } from 'jest-mock-extended';
 import { BehaviorSubject } from 'rxjs';
 import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 import { CellTypeEntry } from '../../models/cell-type';
+import { NO_CELL_TYPES_SELECTED_CONTENT } from '../empty-state/empty-state.content';
 
 jest.mock('vega-embed', () => jest.fn());
 
@@ -88,8 +89,45 @@ describe('HistogramComponent', () => {
     });
     await fixture.whenStable();
 
-    const container = screen.getByTestId('portal-content');
+    const container = screen.getByTestId('histogram');
     expect(embed).toHaveBeenCalledWith(container, expect.anything(), expect.anything());
+  });
+
+  it('should not show an empty state by default', async () => {
+    await setup({ inputs: { data: sampleData, colors: [], filteredCellTypes: sampleCellTypes } });
+
+    expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
+    expect(screen.getByTestId('histogram')).not.toHaveAttribute('inert');
+  });
+
+  it('should show the empty state over an inert chart and emit its action', async () => {
+    const emptyStateAction = jest.fn();
+    await setup({
+      inputs: { data: [], colors: [], filteredCellTypes: [], emptyState: NO_CELL_TYPES_SELECTED_CONTENT },
+      on: { emptyStateAction },
+    });
+
+    expect(screen.getByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).toBeInTheDocument();
+    expect(screen.getByTestId('histogram')).toHaveAttribute('inert');
+
+    fireEvent.click(screen.getByRole('button', { name: NO_CELL_TYPES_SELECTED_CONTENT.actionLabel }));
+    expect(emptyStateAction).toHaveBeenCalled();
+  });
+
+  it('should show a skeleton in place of the empty state while loading', async () => {
+    const { container, fixture } = await setup({
+      inputs: {
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
+        emptyState: NO_CELL_TYPES_SELECTED_CONTENT,
+        loading: true,
+      },
+    });
+
+    expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
+    expect(container.querySelector('cde-chart-skeleton')).toBeInTheDocument();
+    expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
   });
 
   it('should set empty data when input data is empty', async () => {

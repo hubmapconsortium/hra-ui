@@ -5,16 +5,31 @@
   <hra-fullscreen-portal
     tagline="Violin graph"
     hraFeature="fullscreen-violin"
+    viewTransition
+    (beforeOpened)="fullscreen.set(true)"
     (opened)="resizeAndSyncView()"
+    (beforeClosed)="fullscreen.set(false)"
     (closed)="resizeAndSyncView()"
   >
     <hra-fullscreen-actions>
       <cde-violin-menu dialogOpen hraFeature="fullscreen-violin-menu" />
     </hra-fullscreen-actions>
     <hra-fullscreen-portal-content class="violin-fullscreen-portal" [class.enableScroll]="enableScroll()">
-      <ng-scrollbar class="violin" hraScrollOverflowFade hraFeature="violin-scrollbar">
-        <div class="violin-container" data-testid="violin" #violin></div>
+      <ng-scrollbar
+        class="violin"
+        orientation="vertical"
+        hraScrollOverflowFade
+        hraFeature="violin-scrollbar"
+        [attr.inert]="emptyState() ? '' : null"
+      >
+        <div class="violin-container violin-docked-chart" data-testid="violin" [class.hidden]="fullscreen()"></div>
+        <div class="violin-container violin-fullscreen-chart" [class.hidden]="!fullscreen()"></div>
       </ng-scrollbar>
+      @if (loading()) {
+        <cde-chart-skeleton />
+      } @else if (emptyState(); as content) {
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>

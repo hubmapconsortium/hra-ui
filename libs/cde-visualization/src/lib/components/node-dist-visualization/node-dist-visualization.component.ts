@@ -37,6 +37,9 @@ import {
   ViewMode,
 } from '@hra-ui/node-dist-vis/models';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
+import { EmptyStateComponent } from '../empty-state/empty-state.component';
+import { EmptyStateContent } from '../empty-state/empty-state.content';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
 
@@ -61,10 +64,15 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
     InfoModalComponent,
     NodeDistVisualizationControlsComponent,
     NodeDistVisualizationMenuComponent,
+    ChartSkeletonComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.aria-busy]': 'loading() || null',
+  },
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodeDistVisualizationComponent {
@@ -82,6 +90,15 @@ export class NodeDistVisualizationComponent {
 
   /** Input for the maximum edge distance */
   readonly maxEdgeDistance = input.required<number>();
+
+  /** Whether the data is loading, which shows a skeleton in place of the visualization */
+  readonly loading = input(false);
+
+  /** Empty state shown in place of the visualization, or undefined when there are cells to show */
+  readonly emptyState = input<EmptyStateContent>();
+
+  /** Emits when the empty state's action is clicked */
+  readonly emptyStateAction = output<void>();
 
   /** Output emitter for node click events */
   readonly nodeClick = output<NodeEvent>();

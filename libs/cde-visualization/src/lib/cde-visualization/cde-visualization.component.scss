@@ -52,11 +52,6 @@ $panel-background: vars.$background;
       'metadata visualization';
   }
 
-  .progress {
-    position: absolute;
-    inset: 0 0 auto 0;
-  }
-
   // Panel dividers sit on the layout containers, so they run the full length of each panel.
   // They use outline, so the panels read as separate regions.
   .metadata {

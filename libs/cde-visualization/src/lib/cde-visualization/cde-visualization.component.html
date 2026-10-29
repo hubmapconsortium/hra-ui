@@ -6,23 +6,30 @@
       role="region"
       hraFeature="downloads-drawer"
       [attr.aria-labelledby]="downloads.titleId"
-      [attr.aria-describedby]="downloads.descriptionId"
+      [attr.aria-describedby]="downloads.describedBy()"
       [(opened)]="downloadsOpen"
     >
-      <cde-downloads (closeClick)="downloadsOpen.set(false)" (download)="handleDownload($event)" #downloads />
+      <cde-downloads
+        [unavailable]="unavailableDownloads()"
+        (closeClick)="downloadsOpen.set(false)"
+        (download)="handleDownload($event)"
+        #downloads
+      />
     </mat-drawer>
 
     <mat-drawer-content class="layout">
-      @if (loadingManager.isLoading$ | async) {
-        <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress" />
-      }
-
       <div class="metadata">
-        <cde-metadata hraFeature="metadata" [metadata]="metadataView()" [(downloadsOpen)]="downloadsOpen" />
+        <cde-metadata
+          hraFeature="metadata"
+          [metadata]="metadataView()"
+          [loading]="metadataLoading()"
+          [(downloadsOpen)]="downloadsOpen"
+        />
         <cde-cell-types
           hraFeature="cell-types"
           [selectedCellType]="nodeTargetSelectorWithDefault()"
           [countAdjustments]="countAdjustments()"
+          [loading]="cellTypesLoading()"
           [(cellTypes)]="cellTypes"
           [(cellTypesSelection)]="cellTypesSelection"
           (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
@@ -38,13 +45,23 @@
             [edges]="edgesView()"
             [maxEdgeDistance]="maxEdgeDistance()"
             [colorMap]="cellTypesAsColorMap()"
+            [loading]="nodesLoading()"
+            [emptyState]="visualizationEmptyState()"
             [(nodeFilter)]="nodeFilterView"
             (nodeClick)="nodeClick.emit($event)"
             (nodeHover)="nodeHover.emit($event)"
             (resetAllCells)="resetCellTypes()"
+            (emptyStateAction)="selectAllCellTypes()"
           />
 
-          <cde-violin hraFeature="violin-graph" [colors]="filteredColors()" [data]="filteredDistances()" />
+          <cde-violin
+            hraFeature="violin-graph"
+            [colors]="filteredColors()"
+            [data]="filteredDistances()"
+            [loading]="distancesLoading()"
+            [emptyState]="chartsEmptyState()"
+            (emptyStateAction)="selectAllCellTypes()"
+          />
         </div>
 
         <cde-histogram
@@ -52,7 +69,10 @@
           [colors]="filteredColors()"
           [data]="filteredDistances()"
           [filteredCellTypes]="filteredCellTypes()"
+          [loading]="distancesLoading()"
+          [emptyState]="chartsEmptyState()"
           (updateColor)="updateColor($event.entry, $event.color)"
+          (emptyStateAction)="selectAllCellTypes()"
           #histogram
         />
       </div>

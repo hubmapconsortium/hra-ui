@@ -5,9 +5,12 @@ import {
   Component,
   computed,
   effect,
+  EffectCleanupRegisterFn,
   ElementRef,
   inject,
   input,
+  output,
+  PendingTasks,
   Renderer2,
   signal,
   untracked,
@@ -37,7 +40,12 @@ import {
   updateChartTheme,
   watchColorScheme,
 } from '../../shared/chart-theme';
+import { setUpChartTooltips } from '../../shared/chart-tooltip';
+import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
+import { EmptyStateComponent } from '../empty-state/empty-state.component';
+import { EmptyStateContent } from '../empty-state/empty-state.content';
 import { ViolinMenuComponent } from './violin-menu/violin-menu.component';
+import * as VIOLIN_FULLSCREEN_OVERRIDES from './violin-fullscreen.vl.json';
 import * as VIOLIN_SPEC from './violin.vl.json';
 
 /** Interface for modifying the violin specification */
@@ -103,6 +111,24 @@ const VIOLIN_WIDTH_OFFSET = 150;
 /** Height offset for individual violin plots: an estimate of the space the titles, axis, and padding take */
 const VIOLIN_HEIGHT_OFFSET = 60;
 
+/**
+ * Width offset for the fullscreen violins: an estimate of the space the distance axis, the first cell type label,
+ * and padding take. The chart is fitted to its container after it renders (see fitFullscreenViolinView).
+ */
+const FULLSCREEN_VIOLIN_WIDTH_OFFSET = 130;
+
+/** Height offset for the fullscreen violins: an estimate of the space the cell type labels and title take */
+const FULLSCREEN_VIOLIN_HEIGHT_OFFSET = 160;
+
+/** Most passes taken to fit the fullscreen chart to its container */
+const FULLSCREEN_FIT_PASSES = 3;
+
+/**
+ * Spec for the fullscreen view, where the violins stand upright side by side with the cell types along the bottom.
+ * It swaps in its own facet, scales, and layers, and titles the cell types in the facet header, not the chart title.
+ */
+const VIOLIN_FULLSCREEN_SPEC = { ...VIOLIN_SPEC, title: undefined, ...VIOLIN_FULLSCREEN_OVERRIDES };
+
 /** Configuration for the legend in the exported image. Its text uses the chart theme's type (see applyChartTheme). */
 const EXPORT_IMAGE_LEGEND_CONFIG = {
   title: null,
@@ -138,11 +164,14 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     FullscreenPortalContentComponent,
     FullscreenActionsComponent,
     ViolinMenuComponent,
+    ChartSkeletonComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './violin.component.html',
   styleUrl: './violin.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[attr.aria-busy]': 'loading() || null',
     '(window:resize)': 'resizeAndSyncView()',
   },
 })
@@ -153,6 +182,15 @@ export class ViolinComponent {
   /** Colors for the violin visualization */
   readonly colors = input.required<string[]>();
 
+  /** Whether the data is loading, which shows a skeleton in place of the violins */
+  readonly loading = input(false);
+
+  /** Empty state shown in place of the violins, or undefined when there are distances to show */
+  readonly emptyState = input<EmptyStateContent>();
+
+  /** Emits when the empty state's action is clicked */
+  readonly emptyStateAction = output<void>();
+
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
 
@@ -161,6 +199,9 @@ export class ViolinComponent {
 
   /** Service for saving files */
   private readonly fileSaver = inject(FileSaverService);
+
+  /** Pending tasks, used to keep the app unstable while the violins resize */
+  private readonly pendingTasks = inject(PendingTasks);
 
   /** Host element, where the theme colors are read */
   private readonly el: HTMLElement = inject(ElementRef).nativeElement;
@@ -177,11 +218,26 @@ export class ViolinComponent {
   /** Element reference for the violin container */
   protected readonly violinEl = viewChild.required(FullscreenPortalComponent);
 
-  /** Vega view instance for the violin */
-  private readonly view = signal<View | undefined>(undefined);
+  /** Whether the violin is in the fullscreen view, where the violins stand upright and fit without scrolling */
+  protected readonly fullscreen = signal(false);
+
+  /** Vega view for the docked panel */
+  private readonly dockedView = signal<View | undefined>(undefined);
+
+  /** Vega view for the fullscreen view. Both views stay alive, so switching between them doesn't redraw the violins. */
+  private readonly fullscreenView = signal<View | undefined>(undefined);
+
+  /** Vega view that is showing */
+  private readonly view = computed(() => (this.fullscreen() ? this.fullscreenView() : this.dockedView()));
+
+  /** Data each view last received, so a view that already has the current data doesn't estimate the densities again */
+  private readonly viewData = new WeakMap<View, DistanceEntry[]>();
 
   /** Number of colors (cell types) in the visualization */
   readonly colorCount = signal<number>(0);
+
+  /** Number of cell types in the data, one violin each */
+  private readonly cellTypeCount = computed(() => new Set(this.data().map(({ type }) => type)).size);
 
   /** Whether vertical scrolling should be enabled for the violin visualization */
   readonly enableScroll = signal<boolean>(false);
@@ -190,7 +246,8 @@ export class ViolinComponent {
   protected readonly viewDataRef = effect(() => {
     const view = this.view();
     const data = this.data();
-    if (view && data.length > 0) {
+    if (view && data.length > 0 && this.viewData.get(view) !== data) {
+      this.viewData.set(view, data);
       view.data('data', data).run();
     }
   });
@@ -213,56 +270,97 @@ export class ViolinComponent {
     }
   });
 
-  /** Effect for creating the Vega view */
-  protected readonly viewCreateRef = effect(async (onCleanup) => {
+  /** Effect for creating the docked Vega view */
+  protected readonly viewCreateRef = effect((onCleanup) => this.createView(false, onCleanup));
+
+  /** Effect for creating the fullscreen Vega view, sized when the fullscreen view opens */
+  protected readonly fullscreenViewCreateRef = effect((onCleanup) => this.createView(true, onCleanup));
+
+  /**
+   * Resizes view after full screen toggle or viewport resize.
+   * The resize is a pending task, so the fullscreen view transition waits until the violins fit.
+   */
+  /* istanbul ignore next */
+  resizeAndSyncView() {
+    const done = this.pendingTasks.add();
+    setTimeout(async () => {
+      try {
+        await this.resizeView();
+      } finally {
+        done();
+      }
+    });
+  }
+
+  /** Resizes the view that is showing to its container */
+  /* istanbul ignore next */
+  private async resizeView(): Promise<void> {
+    const view = this.view();
+    if (view) {
+      const container: HTMLElement = this.violinEl().rootNodes()[0];
+      const el = container.querySelector('.violin') as HTMLElement;
+      if (el && this.fullscreen()) {
+        this.enableScroll.set(false);
+        // The fullscreen violins start at 0 by 0 (see the spec). They are sized from the estimates the first time,
+        // and fitted from their current size after that, so they don't jump back to the estimates.
+        if ((view.signal('child_height') as number) < 1) {
+          view.signal('child_width', this.calculateFullscreenViolinWidth(el.clientWidth));
+          view.signal('child_height', Math.max(el.clientHeight - FULLSCREEN_VIOLIN_HEIGHT_OFFSET, 1));
+        }
+      } else if (el) {
+        if (this.calculateViolinHeight(el.clientHeight) < MIN_VIOLIN_HEIGHT) {
+          view.signal('child_height', MAX_VIOLIN_HEIGHT);
+          this.enableScroll.set(true);
+        } else {
+          view.signal('child_height', this.calculateViolinHeight(el.clientHeight));
+          this.enableScroll.set(false);
+        }
+        view.signal('child_width', el.clientWidth - VIOLIN_WIDTH_OFFSET);
+      }
+      await view.resize().runAsync();
+      if (el && this.fullscreen()) {
+        await this.fitFullscreenViolinView(view, el);
+      } else if (el) {
+        await this.fitViolinView(view, el);
+      }
+    }
+  }
+
+  /**
+   * Creates the docked or the fullscreen Vega view in its container
+   *
+   * @param fullscreen Whether to create the fullscreen view
+   * @param onCleanup Registers the view's cleanup with the effect creating it
+   */
+  private async createView(fullscreen: boolean, onCleanup: EffectCleanupRegisterFn) {
     const container: HTMLElement = this.violinEl().rootNodes()[0];
-    const el = container.querySelector('.violin-container') as HTMLElement;
+    const el = container.querySelector(fullscreen ? '.violin-fullscreen-chart' : '.violin-docked-chart') as HTMLElement;
     const theme = untracked(this.theme);
     await this.ensureFontsLoaded(theme.font);
-    const spec = produce(VIOLIN_SPEC as ModifiableViolinSpec & ThemeableChartSpec, (draft) => {
-      applyChartTheme(draft, theme);
-      for (const layer of draft.spec.layer) {
-        if (layer.encoding.color?.legend === null) {
-          layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
+    const spec = produce(
+      (fullscreen ? VIOLIN_FULLSCREEN_SPEC : VIOLIN_SPEC) as ModifiableViolinSpec & ThemeableChartSpec,
+      (draft) => {
+        applyChartTheme(draft, theme);
+        for (const layer of draft.spec.layer) {
+          if (layer.encoding.color?.legend === null) {
+            layer.encoding.color.scale = { range: DYNAMIC_COLOR_RANGE };
+          }
         }
-      }
-      draft.spec.width = el.clientWidth - VIOLIN_WIDTH_OFFSET;
-      draft.spec.height = MAX_VIOLIN_HEIGHT;
-    });
+        if (!fullscreen) {
+          draft.spec.width = el.clientWidth - VIOLIN_WIDTH_OFFSET;
+          draft.spec.height = MAX_VIOLIN_HEIGHT;
+        }
+      },
+    );
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { finalize, view } = await embed(el, spec as any, {
       actions: false,
     });
 
+    setUpChartTooltips(view);
     onCleanup(finalize);
-    this.view.set(view);
-  });
-
-  /** Resizes view after full screen toggle or viewport resize */
-  /* istanbul ignore next */
-  resizeAndSyncView() {
-    setTimeout(async () => {
-      const view = this.view();
-      if (view) {
-        const container: HTMLElement = this.violinEl().rootNodes()[0];
-        const el = container.querySelector('.violin') as HTMLElement;
-        if (el) {
-          if (this.calculateViolinHeight(el.clientHeight) < MIN_VIOLIN_HEIGHT) {
-            view.signal('child_height', MAX_VIOLIN_HEIGHT);
-            this.enableScroll.set(true);
-          } else {
-            view.signal('child_height', this.calculateViolinHeight(el.clientHeight));
-            this.enableScroll.set(false);
-          }
-          view.signal('child_width', el.clientWidth - VIOLIN_WIDTH_OFFSET);
-        }
-        await view.resize().runAsync();
-        if (el) {
-          await this.fitViolinView(view, el);
-        }
-      }
-    });
+    (fullscreen ? this.fullscreenView : this.dockedView).set(view);
   }
 
   /**
@@ -277,7 +375,7 @@ export class ViolinComponent {
    */
   /* istanbul ignore next */
   private async fitViolinView(view: View, el: HTMLElement): Promise<void> {
-    const chart = el.querySelector('.violin-container canvas, .violin-container svg');
+    const chart = view.container()?.querySelector('canvas, svg');
     if (!chart) {
       return;
     }
@@ -303,6 +401,46 @@ export class ViolinComponent {
     if (changed) {
       await view.resize().runAsync();
     }
+  }
+
+  /**
+   * Fits the fullscreen chart to its container after it renders, so the whole chart shows without scrolling.
+   * Every violin widens or narrows by an equal share of the width gap, and the violins grow or shrink to fill
+   * the height. The first rotated cell type label can stick out past the distance axis by an amount that depends
+   * on the violin width, so fitting can take more than one pass.
+   *
+   * @param view Vega view
+   * @param el Scroll container holding the chart
+   */
+  /* istanbul ignore next */
+  private async fitFullscreenViolinView(view: View, el: HTMLElement): Promise<void> {
+    const count = Math.max(this.cellTypeCount(), 1);
+    for (let pass = 0; pass < FULLSCREEN_FIT_PASSES; pass++) {
+      const chart = view.container()?.querySelector('canvas, svg');
+      if (!chart) {
+        return;
+      }
+
+      // Layout sizes, unlike the bounding box, aren't scaled by the dialog's opening animation
+      const widthGap = el.clientWidth - chart.clientWidth;
+      const heightGap = el.clientHeight - chart.clientHeight;
+      if (Math.abs(widthGap) < 1 && Math.abs(heightGap) < 1) {
+        return;
+      }
+
+      view.signal('child_width', Math.max((view.signal('child_width') as number) + widthGap / count, 1));
+      view.signal('child_height', Math.max((view.signal('child_height') as number) + heightGap, 1));
+      await view.resize().runAsync();
+    }
+  }
+
+  /**
+   * Calculates the width (in px) of each fullscreen violin based on container width and number of cell types
+   * @param boxW container width
+   * @returns Violin width
+   */
+  private calculateFullscreenViolinWidth(boxW: number) {
+    return Math.max((boxW - FULLSCREEN_VIOLIN_WIDTH_OFFSET) / Math.max(this.cellTypeCount(), 1), 1);
   }
 
   /**
