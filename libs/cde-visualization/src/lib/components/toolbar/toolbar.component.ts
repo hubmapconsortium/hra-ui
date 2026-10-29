@@ -1,15 +1,16 @@
-import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { NavigationRailModule } from '@hra-ui/design-system/navigation-rail';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
+import { ThemePreference } from '../../services/theme-switch/theme-switch.service';
 import { TOOLBAR_CONTENT, ToolbarSheet } from './toolbar.content';
 
 /**
  * Vertical toolbar with the visualization's app-wide actions: display options, resets, downloads,
- * the embedding guide, the About sheet and help links
+ * the embedding guide, the theme menu, the About sheet and help links
  */
 @Component({
   selector: 'cde-toolbar',
@@ -44,6 +45,12 @@ export class ToolbarComponent {
   /** Sheet that's open in the drawer, if any. The Downloads and Info items open their sheets */
   readonly openSheet = model<ToolbarSheet>();
 
+  /** Whether the toolbar shows the Theme menu */
+  readonly showThemeMenu = input(false);
+
+  /** Theme menu choice */
+  readonly themePreference = model<ThemePreference>('system');
+
   /** Emits when Reset view is clicked */
   readonly resetViewClick = output<void>();
 
@@ -55,4 +62,9 @@ export class ToolbarComponent {
 
   /** Text content */
   protected readonly content = TOOLBAR_CONTENT;
+
+  /** Icon of the Theme item, showing the current choice */
+  protected readonly themeIcon = computed(
+    () => this.content.theme.options.find((option) => option.id === this.themePreference())?.icon ?? 'brightness_4',
+  );
 }

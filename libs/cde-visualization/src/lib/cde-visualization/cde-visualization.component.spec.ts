@@ -406,6 +406,31 @@ describe('CdeVisualizationComponent', () => {
       },
       TIMEOUT,
     );
+
+    it(
+      'switches the theme with the Theme menu',
+      async () => {
+        const { fixture } = await setup();
+        const toolbar = getToolbar(fixture);
+        expect(toolbar.showThemeMenu()).toBe(true);
+
+        toolbar.themePreference.set('dark');
+        fixture.detectChanges();
+        expect(fixture.componentInstance['themeSwitch'].theme()).toEqual('dark');
+        expect(fixture.nativeElement.style.colorScheme).toEqual('dark');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'hides the Theme menu',
+      async () => {
+        const { fixture } = await setup({ inputs: { hideThemeMenu: '' } });
+
+        expect(getToolbar(fixture).showThemeMenu()).toBe(false);
+      },
+      TIMEOUT,
+    );
   });
 
   describe('drawer', () => {

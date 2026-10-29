@@ -95,6 +95,32 @@ describe('ToolbarComponent', () => {
     expect(downloads).not.toHaveClass('hra-navigation-rail-item--active');
   });
 
+  it('hides the Theme menu by default', async () => {
+    await setup();
+
+    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.theme.label })).not.toBeInTheDocument();
+  });
+
+  it('picks a theme from the Theme menu', async () => {
+    const themePreferenceChange = jest.fn();
+    const { fixture } = await setup({
+      inputs: { showThemeMenu: true },
+      on: { themePreference: themePreferenceChange },
+    });
+    await openMenu(TOOLBAR_CONTENT.theme.label);
+
+    const [system, , dark] = TOOLBAR_CONTENT.theme.options;
+    expect(screen.getByRole('menuitemradio', { name: new RegExp(system.label) })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+
+    fireEvent.click(screen.getByRole('menuitemradio', { name: new RegExp(dark.label) }));
+    fixture.detectChanges();
+    expect(themePreferenceChange).toHaveBeenCalledWith('dark');
+    expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.theme.label })).toHaveTextContent(dark.icon);
+  });
+
   it('links to the help resources', async () => {
     await setup();
     await openMenu(TOOLBAR_CONTENT.help.label);

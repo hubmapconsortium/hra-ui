@@ -106,6 +106,23 @@ $toolbar-width: calc(6rem + 1px);
   }
 }
 
+// Theme changes crossfade quickly once every view has updated (see ThemeSwitchService), and switch
+// instantly when reduced motion is preferred. Scoped to theme changes, so the page's own
+// view transitions keep their timing.
+::ng-deep html.cde-visualization-theme-switch {
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    animation-duration: 150ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::view-transition-old(root),
+    &::view-transition-new(root) {
+      animation: none;
+    }
+  }
+}
+
 // Panel titles use title small and the rest of the panel text uses body medium, docked or fullscreen
 ::ng-deep .hra-app hra-expansion-panel {
   .title {

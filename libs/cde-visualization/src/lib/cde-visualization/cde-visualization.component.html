@@ -28,6 +28,8 @@
         [cellLinks]="!edgesDisabled()"
         [hasHiddenMetadata]="hasHiddenMetadata()"
         [hasDeletedCells]="hasDeletedCells()"
+        [showThemeMenu]="!hideThemeMenu()"
+        [themePreference]="themeSwitch.preference()"
         [(openSheet)]="openSheet"
         [(cellLinkData)]="showCellLinkData"
         [(allMetadata)]="showAllMetadata"
@@ -35,6 +37,7 @@
         (resetViewClick)="resetView()"
         (restoreDeletedCellsClick)="restoreDeletedCells()"
         (resetColorsClick)="resetColors()"
+        (themePreferenceChange)="themeSwitch.setPreference($event)"
       />
 
       <div class="metadata">

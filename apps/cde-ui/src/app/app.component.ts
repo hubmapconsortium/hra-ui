@@ -15,7 +15,24 @@ import { createNotifier } from 'ngxtension/create-notifier';
 import { CRUMBS_DATA_KEY, removeLastCrumbRoute, ROOT_CRUMBS } from './shared/resolvers/crumbs.resolver';
 import { getOptionalRouteData } from './shared/utils/route-properties';
 import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
-import { ThemeService } from './services/theme-service/theme.service';
+import { ThemePreference, ThemeService } from './services/theme-service/theme.service';
+
+/** A choice in the header's theme menu */
+interface ThemeOption {
+  /** Theme menu choice */
+  id: ThemePreference;
+  /** Menu item label */
+  label: string;
+  /** Icon the theme menu button shows while this choice is on */
+  icon: string;
+}
+
+/** Theme menu choices, matching the visualization toolbar's Theme menu */
+const THEME_OPTIONS: ThemeOption[] = [
+  { id: 'system', label: 'System settings', icon: 'brightness_4' },
+  { id: 'light', label: 'Light theme', icon: 'light_mode' },
+  { id: 'dark', label: 'Dark theme', icon: 'dark_mode' },
+];
 
 /**
  * App component for CDE
@@ -63,9 +80,12 @@ export class AppComponent extends BaseApplicationComponent {
   /** Light and dark theme switcher */
   protected readonly themeService = inject(ThemeService);
 
-  /** Theme toggle label, naming the theme a click switches to */
-  protected readonly themeToggleLabel = computed(() =>
-    this.themeService.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme',
+  /** Theme menu choices */
+  protected readonly themeOptions = THEME_OPTIONS;
+
+  /** Icon of the theme menu button, showing the current choice */
+  protected readonly themeIcon = computed(
+    () => THEME_OPTIONS.find((option) => option.id === this.themeService.preference())?.icon ?? 'brightness_4',
   );
 
   /** Computed breadcrumbs for the current route */

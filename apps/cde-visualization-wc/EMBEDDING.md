@@ -67,6 +67,7 @@ cde.colorMap = {
 | _creation-timestamp_   | The number of milliseconds since 1/1/1970 UTC  | A positive integer                    | None          |
 | _source-file-name_     | Dataset nodes file name                        | A string                              | None          |
 | _color-map-file-name_  | Dataset color map file name                    | A string                              | None          |
+| _hide-theme-menu_      | Hides the toolbar's Theme menu                 | A boolean attribute                   | Shown         |
 
 ### Nodes, edges, and color maps
 
@@ -215,9 +216,15 @@ html {
 
 A color override with a single value applies to both. To set each, use `light-dark()`, for example `--mat-sys-primary: light-dark(#0b57d0, #a8c7fa);`.
 
+The toolbar's Theme menu starts on System settings, which follows the page's theme. Light theme and Dark theme switch only the _CDE_, not the page, until the page reloads. If your page has its own theme switch, hide the _CDE_'s menu with the `hide-theme-menu` attribute:
+
+```html
+<cde-visualization hide-theme-menu nodes="https://..."></cde-visualization>
+```
+
 ### Charts
 
-The histogram and violin charts read these tokens, and update their colors when the system setting or the `color-scheme` of the `html` element changes:
+The histogram and violin charts read these tokens, and update their colors when the system setting, the `color-scheme` of the `html` element, or the Theme menu changes the theme:
 
 | Token                          | Used for                                                   |
 | ------------------------------ | ---------------------------------------------------------- |

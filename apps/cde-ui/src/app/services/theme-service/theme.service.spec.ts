@@ -32,6 +32,7 @@ describe('ThemeService', () => {
 
   it('follows the system theme when no theme is picked', () => {
     const service = createService();
+    expect(service.preference()).toEqual('system');
     expect(service.theme()).toEqual('light');
 
     setSystemPrefersDark(true);
@@ -39,9 +40,9 @@ describe('ThemeService', () => {
     expect(root.style.colorScheme).toEqual('');
   });
 
-  it('switches to the opposite theme and remembers it', () => {
+  it('switches to a picked theme and remembers it', () => {
     const service = createService();
-    service.toggle();
+    service.setPreference('dark');
     TestBed.tick();
 
     expect(service.theme()).toEqual('dark');
@@ -49,10 +50,21 @@ describe('ThemeService', () => {
     expect(localStorage.getItem(THEME_STORAGE_KEY)).toEqual('dark');
   });
 
-  it('forgets the pick when switching back to the system theme', () => {
+  it('remembers a picked theme that matches the system theme', () => {
     const service = createService();
-    service.toggle();
-    service.toggle();
+    service.setPreference('light');
+    TestBed.tick();
+
+    setSystemPrefersDark(true);
+    expect(service.theme()).toEqual('light');
+    expect(root.style.colorScheme).toEqual('light');
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toEqual('light');
+  });
+
+  it('forgets the pick when switching back to system settings', () => {
+    const service = createService();
+    service.setPreference('dark');
+    service.setPreference('system');
     TestBed.tick();
 
     expect(service.theme()).toEqual('light');
@@ -64,7 +76,7 @@ describe('ThemeService', () => {
     localStorage.setItem(THEME_STORAGE_KEY, 'dark');
     const service = createService();
 
-    expect(service.theme()).toEqual('dark');
+    expect(service.preference()).toEqual('dark');
     expect(root.style.colorScheme).toEqual('dark');
   });
 
@@ -84,7 +96,7 @@ describe('ThemeService', () => {
     });
 
     const service = createService();
-    service.toggle();
+    service.setPreference('dark');
     expect(service.theme()).toEqual('dark');
   });
 
@@ -98,7 +110,10 @@ describe('ThemeService', () => {
 
     try {
       const service = createService();
-      service.toggle();
+      service.setPreference('system');
+      expect(startViewTransition).not.toHaveBeenCalled();
+
+      service.setPreference('dark');
       await update;
 
       expect(startViewTransition).toHaveBeenCalledTimes(1);

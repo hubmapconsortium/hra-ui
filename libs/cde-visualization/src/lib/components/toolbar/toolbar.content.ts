@@ -1,3 +1,5 @@
+import { ThemePreference } from '../../services/theme-switch/theme-switch.service';
+
 /** Sheets that toolbar items open in the drawer */
 export type ToolbarSheet = 'downloads' | 'about';
 
@@ -23,6 +25,16 @@ export interface ToolbarHelpLink {
   url: string;
 }
 
+/** A choice in the Theme menu */
+export interface ToolbarThemeOption {
+  /** Theme menu choice */
+  id: ThemePreference;
+  /** Menu item label */
+  label: string;
+  /** Icon the Theme item shows while this choice is on */
+  icon: string;
+}
+
 /** All text content for the toolbar */
 export interface ToolbarContent {
   /** Accessible name of the toolbar */
@@ -35,6 +47,8 @@ export interface ToolbarContent {
   downloads: ToolbarItemContent;
   /** Embedding guide link */
   embed: ToolbarItemContent & { url: string };
+  /** Theme menu and its choices */
+  theme: ToolbarItemContent & { options: ToolbarThemeOption[] };
   /** About sheet */
   info: ToolbarItemContent;
   /** Help menu and its links */
@@ -66,6 +80,15 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
     label: 'Embed',
     tooltip: 'Embed this visualization in a website',
     url: EMBEDDING_GUIDE_URL,
+  },
+  theme: {
+    label: 'Theme',
+    tooltip: 'Choose a light or dark theme',
+    options: [
+      { id: 'system', label: 'System settings', icon: 'brightness_4' },
+      { id: 'light', label: 'Light theme', icon: 'light_mode' },
+      { id: 'dark', label: 'Dark theme', icon: 'dark_mode' },
+    ],
   },
   info: {
     label: 'Info',

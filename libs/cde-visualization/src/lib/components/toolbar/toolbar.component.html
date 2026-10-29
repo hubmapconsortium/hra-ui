@@ -46,6 +46,19 @@
     {{ content.embed.label }}
   </a>
 
+  @if (showThemeMenu()) {
+    <button
+      hraNavigationRailItem
+      hraNavigationRailBottom
+      hraFeature="theme"
+      hraClickEvent
+      [icon]="themeIcon()"
+      [hraPlainTooltip]="content.theme.tooltip"
+      [matMenuTriggerFor]="themeMenu"
+    >
+      {{ content.theme.label }}
+    </button>
+  }
   <button
     hraNavigationRailItem
     hraNavigationRailBottom
@@ -128,6 +141,22 @@
     <mat-icon>format_color_reset</mat-icon>
     {{ content.reset.colors }}
   </button>
+</mat-menu>
+
+<mat-menu hraNavigationRailMenu yPosition="above" hraFeature="theme-menu" #themeMenu="matMenu">
+  @for (option of content.theme.options; track option.id) {
+    <button
+      mat-menu-item
+      role="menuitemradio"
+      hraClickEvent
+      [hraFeature]="option.id"
+      [attr.aria-checked]="themePreference() === option.id"
+      (click)="themePreference.set(option.id)"
+    >
+      <mat-icon>{{ themePreference() === option.id ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+      {{ option.label }}
+    </button>
+  }
 </mat-menu>
 
 <mat-menu hraNavigationRailMenu yPosition="above" hraFeature="help-menu" #helpMenu="matMenu">

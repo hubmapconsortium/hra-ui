@@ -1,6 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   ApplicationRef,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -67,6 +68,7 @@ import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
 import { loadMetadata, MetadataInput } from '../models/metadata';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
+import { ThemeSwitchService } from '../services/theme-switch/theme-switch.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
 import { loadingObserver } from '../shared/loading-observer';
@@ -106,6 +108,7 @@ const LOADED_ANNOUNCEMENT_DEBOUNCE = 250;
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
+  providers: [ThemeSwitchService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
@@ -197,6 +200,9 @@ export class CdeVisualizationComponent {
 
   /** Name of color map file */
   readonly colorMapFileName = input<string>();
+
+  /** Hides the toolbar's Theme menu, for pages that switch the theme themselves */
+  readonly hideThemeMenu = input(false, { transform: booleanAttribute });
 
   /** Event emitted when a node is clicked */
   readonly nodeClick = output<NodeEvent>();
@@ -467,6 +473,9 @@ export class CdeVisualizationComponent {
 
   /** Announces the charts' empty state to screen readers */
   private readonly liveAnnouncer = inject(LiveAnnouncer);
+
+  /** Switches the visualization between the page's theme and the light and dark themes */
+  protected readonly themeSwitch = inject(ThemeSwitchService);
 
   /** Downloads sheet, while it's the drawer's sheet */
   private readonly downloadsSheet = viewChild(DownloadsComponent);
