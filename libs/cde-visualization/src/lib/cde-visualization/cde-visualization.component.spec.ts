@@ -424,6 +424,59 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
+      'resets everything and undoes all but the view from the snackbar',
+      async () => {
+        const { fixture } = await setup();
+        const undo$ = new Subject<void>();
+        const snackbarRef = mock<MatSnackBarRef<SnackbarComponent>>();
+        snackbarRef.onAction.mockReturnValue(undo$);
+        const snackbarOpen = jest.spyOn(TestBed.inject(SnackbarService), 'open').mockReturnValue(snackbarRef);
+        const instance = fixture.componentInstance;
+        const panel = fixture.debugElement.query(By.directive(NodeDistVisualizationComponent)).componentInstance;
+        const resetView = jest.spyOn(panel, 'resetView').mockImplementation(() => undefined);
+        const originalTypes = instance.cellTypes();
+        const allCellTypes = instance.cellTypesSelection();
+        instance.updateColor(originalTypes[0], [1, 2, 3]);
+        const changedTypes = instance.cellTypes();
+        instance['allCellsColor'].set([4, 5, 6]);
+        instance.cellTypesSelection.set(['t-cell']);
+        instance.nodeFilterView.update((prev) => prev.addEntries(undefined, [0]));
+        instance['edgesDisabled'].set(true);
+        instance['showCellLinkData'].set(false);
+        instance['showAllMetadata'].set(true);
+        instance['viewMode'].set('select');
+        fixture.detectChanges();
+        expect(panel.viewMode()).toBe('select');
+
+        getToolbar(fixture).resetEverythingClick.emit();
+        fixture.detectChanges();
+        expect(resetView).toHaveBeenCalledTimes(1);
+        expect(instance.cellTypes()).toEqual(originalTypes);
+        expect(instance['allCellsColor']()).toBeUndefined();
+        expect(instance.cellTypesSelection()).toEqual(allCellTypes);
+        expect(instance['hasDeletedCells']()).toBe(false);
+        expect(instance['edgesDisabled']()).toBe(false);
+        expect(instance['showCellLinkData']()).toBe(true);
+        expect(instance['showAllMetadata']()).toBe(false);
+        expect(panel.viewMode()).toBe('explore');
+        expect(snackbarOpen).toHaveBeenCalledWith('Visualization reset', 'Undo', false, 'end', expect.anything());
+
+        undo$.next();
+        fixture.detectChanges();
+        expect(resetView).toHaveBeenCalledTimes(1);
+        expect(instance.cellTypes()).toEqual(changedTypes);
+        expect(instance['allCellsColor']()).toEqual([4, 5, 6]);
+        expect(instance.cellTypesSelection()).toEqual(['t-cell']);
+        expect(instance['hasDeletedCells']()).toBe(true);
+        expect(instance['edgesDisabled']()).toBe(true);
+        expect(instance['showCellLinkData']()).toBe(false);
+        expect(instance['showAllMetadata']()).toBe(true);
+        expect(panel.viewMode()).toBe('select');
+      },
+      TIMEOUT,
+    );
+
+    it(
       'shares the all cells color between the histogram and the toolbar',
       async () => {
         const { fixture } = await setup();

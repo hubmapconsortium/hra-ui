@@ -63,9 +63,10 @@ describe('ToolbarComponent', () => {
     const resetViewClick = jest.fn();
     const restoreDeletedCellsClick = jest.fn();
     const resetColorsClick = jest.fn();
+    const resetEverythingClick = jest.fn();
     await setup({
       inputs: { hasDeletedCells: true },
-      on: { resetViewClick, restoreDeletedCellsClick, resetColorsClick },
+      on: { resetViewClick, restoreDeletedCellsClick, resetColorsClick, resetEverythingClick },
     });
 
     await openMenu(TOOLBAR_CONTENT.reset.label);
@@ -74,10 +75,13 @@ describe('ToolbarComponent', () => {
     fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.deletedCells.label }));
     await openMenu(TOOLBAR_CONTENT.reset.label);
     fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.colors.label }));
+    await openMenu(TOOLBAR_CONTENT.reset.label);
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.everything.label }));
 
     expect(resetViewClick).toHaveBeenCalled();
     expect(restoreDeletedCellsClick).toHaveBeenCalled();
     expect(resetColorsClick).toHaveBeenCalled();
+    expect(resetEverythingClick).toHaveBeenCalled();
   });
 
   it('opens the all cells color picker beside the Colors item once its menu closes', async () => {

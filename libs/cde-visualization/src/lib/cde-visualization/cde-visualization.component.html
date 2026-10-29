@@ -38,6 +38,7 @@
         (resetViewClick)="resetView()"
         (restoreDeletedCellsClick)="restoreDeletedCells()"
         (resetColorsClick)="resetColors()"
+        (resetEverythingClick)="resetEverything()"
         (themePreferenceChange)="themeSwitch.setPreference($event)"
         (allCellsColorChange)="allCellsColor.set($event)"
       />
@@ -72,6 +73,7 @@
             [emptyState]="visualizationEmptyState()"
             [(nodeFilter)]="nodeFilterView"
             [(edgesDisabled)]="edgesDisabled"
+            [(viewMode)]="viewMode"
             (nodeClick)="nodeClick.emit($event)"
             (nodeHover)="nodeHover.emit($event)"
             (emptyStateAction)="selectAllCellTypes()"

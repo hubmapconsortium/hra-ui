@@ -248,6 +248,23 @@
       *ngTemplateOutlet="menuItemText; context: { $implicit: content.reset.colors, id: `${idPrefix}-reset-colors` }"
     />
   </button>
+  <mat-divider />
+  <button
+    mat-menu-item
+    hraFeature="reset-everything"
+    hraClickEvent
+    [attr.aria-labelledby]="`${idPrefix}-reset-everything`"
+    [attr.aria-describedby]="`${idPrefix}-reset-everything-description`"
+    (click)="resetEverythingClick.emit()"
+  >
+    <mat-icon>restart_alt</mat-icon>
+    <ng-container
+      *ngTemplateOutlet="
+        menuItemText;
+        context: { $implicit: content.reset.everything, id: `${idPrefix}-reset-everything` }
+      "
+    />
+  </button>
 </mat-menu>
 
 <mat-menu hraNavigationRailMenu yPosition="above" hraFeature="theme-menu" #themeMenu="matMenu">

@@ -45,6 +45,7 @@ import {
   NodeKeysInput,
   NodesInput,
   toCsv,
+  ViewMode,
   withDataViewDefaultGenerator,
 } from '@hra-ui/node-dist-vis/models';
 import { debounceTime, distinctUntilChanged, pairwise } from 'rxjs';
@@ -88,11 +89,17 @@ const LOADED_ANNOUNCEMENT = 'Visualization loaded';
 /** Time in ms that loading must stay finished before the loaded announcement */
 const LOADED_ANNOUNCEMENT_DEBOUNCE = 250;
 
-/** Snackbar shown after the colors are reset */
-const RESET_COLORS_SNACKBAR = { message: 'Colors reset', action: 'Undo' };
+/** Action of the snackbars shown after a reset */
+const UNDO_ACTION = 'Undo';
 
-/** Time in ms the reset colors snackbar stays open */
-const RESET_COLORS_SNACKBAR_DURATION = 10000;
+/** Snackbar message after the colors are reset */
+const RESET_COLORS_MESSAGE = 'Colors reset';
+
+/** Snackbar message after everything is reset */
+const RESET_EVERYTHING_MESSAGE = 'Visualization reset';
+
+/** Time in ms the snackbars shown after a reset stay open */
+const UNDO_SNACKBAR_DURATION = 10000;
 
 /**
  * CDE Visualization Root Component
@@ -458,6 +465,9 @@ export class CdeVisualizationComponent {
   /** Whether the metadata panel shows every field, including empty ones */
   protected readonly showAllMetadata = signal(false);
 
+  /** Distance visualization's view mode */
+  protected readonly viewMode = signal<ViewMode>('explore');
+
   /** Whether the metadata has fields that only show with all metadata */
   protected readonly hasHiddenMetadata = computed(() => hasHiddenFields(this.metadataView()));
 
@@ -510,7 +520,7 @@ export class CdeVisualizationComponent {
   /** All cells color in effect, including the theme's color when none is picked */
   protected readonly allCellsDisplayColor = computed(() => this.histogramComponent().totalCellTypeColor());
 
-  /** Shows the reset colors snackbar */
+  /** Shows the snackbars that undo a reset */
   private readonly snackbar = inject(SnackbarService);
 
   /** Setup component */
@@ -577,18 +587,65 @@ export class CdeVisualizationComponent {
   resetColors(): void {
     const cellTypes = this.cellTypes();
     const allCellsColor = this.allCellsColor();
-    const cellTypesFromNodes = this.cellTypesFromNodes();
-    this.cellTypes.set(cellTypesFromNodes);
-    this.allCellsColor.set(undefined);
+    this.useDefaultColors();
 
-    const { message, action } = RESET_COLORS_SNACKBAR;
+    this.openUndoSnackbar(RESET_COLORS_MESSAGE, () => {
+      this.cellTypes.set(cellTypes);
+      this.allCellsColor.set(allCellsColor);
+    });
+  }
+
+  /**
+   * Resets the view, deleted cells and colors, selects every cell type, restores the default display options,
+   * and switches the distance visualization back to explore. A snackbar offers to undo everything but the view,
+   * as long as the data hasn't changed since.
+   */
+  resetEverything(): void {
+    const cellTypes = this.cellTypes();
+    const allCellsColor = this.allCellsColor();
+    const cellTypesSelection = this.cellTypesSelection();
+    const nodeFilterView = this.nodeFilterView();
+    const edgesDisabled = this.edgesDisabled();
+    const showCellLinkData = this.showCellLinkData();
+    const showAllMetadata = this.showAllMetadata();
+    const viewMode = this.viewMode();
+
+    this.resetView();
+    this.restoreDeletedCells();
+    this.useDefaultColors();
+    this.selectAllCellTypes();
+    this.edgesDisabled.set(false);
+    this.showCellLinkData.set(true);
+    this.showAllMetadata.set(false);
+    this.viewMode.set('explore');
+
+    this.openUndoSnackbar(RESET_EVERYTHING_MESSAGE, () => {
+      this.cellTypes.set(cellTypes);
+      this.allCellsColor.set(allCellsColor);
+      this.cellTypesSelection.set(cellTypesSelection);
+      this.nodeFilterView.set(nodeFilterView);
+      this.edgesDisabled.set(edgesDisabled);
+      this.showCellLinkData.set(showCellLinkData);
+      this.showAllMetadata.set(showAllMetadata);
+      this.viewMode.set(viewMode);
+    });
+  }
+
+  /** Gives every cell type its default color and the all cells color back to the theme */
+  private useDefaultColors(): void {
+    this.cellTypes.set(this.cellTypesFromNodes());
+    this.allCellsColor.set(undefined);
+  }
+
+  /** Opens a snackbar whose Undo action calls `undo`, unless the data has changed since */
+  private openUndoSnackbar(message: string, undo: () => void): void {
+    const cellTypesFromNodes = this.cellTypesFromNodes();
     this.snackbar
-      .open(message, action, false, 'end', { duration: RESET_COLORS_SNACKBAR_DURATION })
+      .open(message, UNDO_ACTION, false, 'end', { duration: UNDO_SNACKBAR_DURATION })
       .onAction()
       .subscribe(() => {
         if (this.cellTypesFromNodes() === cellTypesFromNodes) {
-          this.cellTypes.set(cellTypes);
-          this.allCellsColor.set(allCellsColor);
+          undo();
         }
       });
   }

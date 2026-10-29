@@ -60,6 +60,7 @@ export interface ToolbarContent {
     view: ToolbarMenuItemContent;
     deletedCells: ToolbarMenuItemContent;
     colors: ToolbarMenuItemContent;
+    everything: ToolbarMenuItemContent;
   };
   /** Downloads sheet */
   downloads: ToolbarItemContent;
@@ -95,6 +96,7 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
     view: { label: 'Reset view', description: 'Zoom to fit and undo rotation' },
     deletedCells: { label: 'Restore deleted cells', description: 'Cells deleted in the distance visualization' },
     colors: { label: 'Reset colors', description: 'Use default colors for all cell types' },
+    everything: { label: 'Reset everything', description: 'View, cells, colors, selection and display options' },
   },
   downloads: {
     label: 'Downloads',

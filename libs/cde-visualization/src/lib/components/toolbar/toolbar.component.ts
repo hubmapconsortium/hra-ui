@@ -71,6 +71,9 @@ export class ToolbarComponent {
   /** Emits when Reset colors is clicked */
   readonly resetColorsClick = output<void>();
 
+  /** Emits when Reset everything is clicked */
+  readonly resetEverythingClick = output<void>();
+
   /** Text content */
   protected readonly content = TOOLBAR_CONTENT;
 
