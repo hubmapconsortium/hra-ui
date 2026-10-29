@@ -32,7 +32,6 @@
         [hasDeletedCells]="hasDeletedCells()"
         [showThemeMenu]="!hideThemeMenu()"
         [themePreference]="themeSwitch.preference()"
-        [allCellsColor]="allCellsDisplayColor()"
         [(openSheet)]="openSheet"
         [(cellLinkData)]="showCellLinkData"
         [(allMetadata)]="showAllMetadata"
@@ -43,7 +42,6 @@
         (resetColorsClick)="resetColors()"
         (resetEverythingClick)="resetEverything()"
         (themePreferenceChange)="themeSwitch.setPreference($event)"
-        (allCellsColorChange)="allCellsColor.set($event)"
       />
 
       <!-- Hidden panels stay rendered, so they keep their views and state -->

@@ -1,34 +1,29 @@
-import { OverlayModule } from '@angular/cdk/overlay';
-import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
-import { Rgb } from '@hra-ui/design-system/color-picker';
 import { NavigationRailModule } from '@hra-ui/design-system/navigation-rail';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { PANEL_IDS, PanelId } from '../../models/panels';
 import { ThemePreference } from '../../services/theme-switch/theme-switch.service';
-import { ColorPickerComponent } from '../color-picker/color-picker.component';
 import { TOOLBAR_CONTENT, ToolbarSheet } from './toolbar.content';
 
 /** Counter to keep track of distinct instances */
 let idCounter = 0;
 
 /**
- * Vertical toolbar with the visualization's app-wide actions: panels, display options, colors, resets, downloads,
+ * Vertical toolbar with the visualization's app-wide actions: panels, display options, resets, downloads,
  * the embedding guide, the theme menu, the About sheet and help links
  */
 @Component({
   selector: 'cde-toolbar',
   imports: [
-    ColorPickerComponent,
     HraCommonModule,
     MatDividerModule,
     MatIconModule,
     MatMenuModule,
     NavigationRailModule,
-    OverlayModule,
     PlainTooltipDirective,
   ],
   templateUrl: './toolbar.component.html',
@@ -50,9 +45,6 @@ export class ToolbarComponent {
 
   /** Whether the metadata has fields that only show with all metadata */
   readonly hasHiddenMetadata = input(false);
-
-  /** All cells color in effect. The Colors menu changes it. */
-  readonly allCellsColor = model<Rgb>([0, 0, 0]);
 
   /** Whether any cells were deleted from the distance visualization */
   readonly hasDeletedCells = input(false);
@@ -84,12 +76,6 @@ export class ToolbarComponent {
   /** Prefix of the ids that tie menu items to their labels and supporting text */
   protected readonly idPrefix = `cde-toolbar-${idCounter++}`;
 
-  /** Whether the all cells color picker is open */
-  protected readonly allCellsPickerOpen = signal(false);
-
-  /** Whether the all cells color picker opens once the Colors menu has closed and returned focus to its item */
-  private allCellsPickerPending = false;
-
   /** Shows or hides a panel */
   protected togglePanel(id: PanelId): void {
     const hidden = this.hiddenPanels();
@@ -98,19 +84,6 @@ export class ToolbarComponent {
         ? hidden.filter((panel) => panel !== id)
         : PANEL_IDS.filter((panel) => panel === id || hidden.includes(panel)),
     );
-  }
-
-  /** Opens the all cells color picker once the Colors menu has closed */
-  protected requestAllCellsPicker(): void {
-    this.allCellsPickerPending = true;
-  }
-
-  /** Opens the all cells color picker if All cells color was picked in the Colors menu */
-  protected openPendingAllCellsPicker(): void {
-    if (this.allCellsPickerPending) {
-      this.allCellsPickerPending = false;
-      this.allCellsPickerOpen.set(true);
-    }
   }
 
   /** Icon of the Theme item, showing the current choice */

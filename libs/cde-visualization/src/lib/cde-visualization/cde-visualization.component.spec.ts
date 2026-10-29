@@ -517,21 +517,6 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
-      'shares the all cells color between the histogram and the toolbar',
-      async () => {
-        const { fixture } = await setup();
-        const histogram = fixture.debugElement.query(By.directive(HistogramComponent)).componentInstance;
-        const toolbar = getToolbar(fixture);
-
-        toolbar.allCellsColor.set([7, 8, 9]);
-        fixture.detectChanges();
-        expect(histogram.allCellsColor()).toEqual([7, 8, 9]);
-        expect(toolbar.allCellsColor()).toEqual([7, 8, 9]);
-      },
-      TIMEOUT,
-    );
-
-    it(
       'switches the theme with the Theme menu',
       async () => {
         const { fixture } = await setup();

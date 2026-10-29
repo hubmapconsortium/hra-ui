@@ -21,19 +21,6 @@
   </button>
   <button
     hraNavigationRailItem
-    icon="palette"
-    hraFeature="colors"
-    hraClickEvent
-    cdkOverlayOrigin
-    [hraPlainTooltip]="content.colors.tooltip"
-    [matMenuTriggerFor]="colorsMenu"
-    (menuClosed)="openPendingAllCellsPicker()"
-    #colorsItem="cdkOverlayOrigin"
-  >
-    {{ content.colors.label }}
-  </button>
-  <button
-    hraNavigationRailItem
     icon="restart_alt"
     hraFeature="reset"
     hraClickEvent
@@ -106,13 +93,6 @@
     {{ content.help.label }}
   </button>
 </hra-navigation-rail>
-
-<cde-color-picker
-  [origin]="colorsItem"
-  [label]="content.colors.allCellsPicker"
-  [(open)]="allCellsPickerOpen"
-  [(color)]="allCellsColor"
-/>
 
 <!-- Menu items: the label names the item and the supporting text under it describes it -->
 <ng-template let-item let-id="id" #menuItemText>
@@ -201,42 +181,6 @@
       *ngTemplateOutlet="
         menuItemText;
         context: { $implicit: content.display.allMetadata, id: `${idPrefix}-all-metadata` }
-      "
-    />
-  </button>
-</mat-menu>
-
-<mat-menu hraNavigationRailMenu hraFeature="colors-menu" #colorsMenu="matMenu">
-  <button
-    mat-menu-item
-    aria-haspopup="dialog"
-    hraFeature="all-cells-color"
-    hraClickEvent
-    [attr.aria-labelledby]="`${idPrefix}-all-cells-color`"
-    [attr.aria-describedby]="`${idPrefix}-all-cells-color-description`"
-    (click)="requestAllCellsPicker()"
-  >
-    <mat-icon>border_color</mat-icon>
-    <ng-container
-      *ngTemplateOutlet="
-        menuItemText;
-        context: { $implicit: content.colors.allCells, id: `${idPrefix}-all-cells-color` }
-      "
-    />
-  </button>
-  <button
-    mat-menu-item
-    hraFeature="reset-colors"
-    hraClickEvent
-    [attr.aria-labelledby]="`${idPrefix}-colors-reset-colors`"
-    [attr.aria-describedby]="`${idPrefix}-colors-reset-colors-description`"
-    (click)="resetColorsClick.emit()"
-  >
-    <mat-icon>settings_backup_restore</mat-icon>
-    <ng-container
-      *ngTemplateOutlet="
-        menuItemText;
-        context: { $implicit: content.reset.colors, id: `${idPrefix}-colors-reset-colors` }
       "
     />
   </button>

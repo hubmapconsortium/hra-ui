@@ -352,7 +352,7 @@ export class CdeVisualizationComponent {
   /** List of cell types */
   readonly cellTypes = signal<CellTypeEntry[]>([]);
 
-  /** All cells color picked in the histogram or the toolbar, or undefined to use the theme's color */
+  /** All cells color picked in the histogram, or undefined to use the theme's color */
   protected readonly allCellsColor = signal<Rgb | undefined>(undefined);
 
   /** List of selected cell types */
@@ -581,9 +581,6 @@ export class CdeVisualizationComponent {
 
   /** Histogram panel */
   private readonly histogramComponent = viewChild.required(HistogramComponent);
-
-  /** All cells color in effect, including the theme's color when none is picked */
-  protected readonly allCellsDisplayColor = computed(() => this.histogramComponent().totalCellTypeColor());
 
   /** Shows the snackbars that undo a reset */
   private readonly snackbar = inject(SnackbarService);

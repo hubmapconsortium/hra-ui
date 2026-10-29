@@ -64,8 +64,6 @@ export interface ToolbarContent {
     cellLinkData: ToolbarMenuItemContent;
     allMetadata: ToolbarMenuItemContent;
   };
-  /** Colors menu, and the name of the all cells color picker it opens */
-  colors: ToolbarItemContent & { allCells: ToolbarMenuItemContent; allCellsPicker: string };
   /** Reset menu and its actions */
   reset: ToolbarItemContent & {
     view: ToolbarMenuItemContent;
@@ -105,12 +103,6 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
     cellLinks: { label: 'Cell links', description: 'Lines from each cell to its nearest anchor cell' },
     cellLinkData: { label: 'Cell link data', description: 'Link counts in the Cell types table' },
     allMetadata: { label: 'All metadata', description: 'Include fields with no value' },
-  },
-  colors: {
-    label: 'Colors',
-    tooltip: 'Change or reset colors',
-    allCells: { label: 'Edit all cells color', description: 'Histogram line for all cell types combined' },
-    allCellsPicker: 'All cells color',
   },
   reset: {
     label: 'Reset',

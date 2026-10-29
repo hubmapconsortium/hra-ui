@@ -113,23 +113,6 @@ describe('ToolbarComponent', () => {
     expect(resetEverythingClick).toHaveBeenCalled();
   });
 
-  it('opens the all cells color picker beside the Colors item once its menu closes', async () => {
-    await setup({ inputs: { allCellsColor: [255, 0, 0] } });
-    await openMenu(TOOLBAR_CONTENT.colors.label);
-
-    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.colors.allCells.label }));
-    expect(await screen.findByRole('dialog', { name: TOOLBAR_CONTENT.colors.allCellsPicker })).toBeInTheDocument();
-  });
-
-  it('resets colors from the Colors menu', async () => {
-    const resetColorsClick = jest.fn();
-    await setup({ on: { resetColorsClick } });
-    await openMenu(TOOLBAR_CONTENT.colors.label);
-
-    fireEvent.click(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.reset.colors.label) }));
-    expect(resetColorsClick).toHaveBeenCalled();
-  });
-
   it('disables restoring cells when none were deleted', async () => {
     await setup();
     await openMenu(TOOLBAR_CONTENT.reset.label);
