@@ -80,20 +80,19 @@ describe('MetadataComponent', () => {
   });
 
   describe('downloads button', () => {
-    async function setup(downloadsOpen?: boolean) {
-      const downloadsClick = jest.fn();
+    async function setup() {
+      const downloadsOpenChange = jest.fn();
       const result = await render(MetadataComponent, {
-        inputs: { metadata, ...(downloadsOpen !== undefined && { downloadsOpen }) },
-        on: { downloadsClick },
+        inputs: { metadata },
+        on: { downloadsOpen: downloadsOpenChange },
         providers: [provideNoopAnimations()],
       });
       const button = screen.getByRole('button', { name: DOWNLOADS_CONTENT.title });
-      return { ...result, button, downloadsClick };
+      return { ...result, button, downloadsOpenChange };
     }
 
-    it('should open a dialog and report whether it is expanded', async () => {
+    it('should report whether the downloads drawer is expanded', async () => {
       const { button, fixture } = await setup();
-      expect(button).toHaveAttribute('aria-haspopup', 'dialog');
       expect(button).toHaveAttribute('aria-expanded', 'false');
 
       fixture.componentRef.setInput('downloadsOpen', true);
@@ -101,16 +100,11 @@ describe('MetadataComponent', () => {
       expect(button).toHaveAttribute('aria-expanded', 'true');
     });
 
-    it('should emit downloadsClick when clicked', async () => {
-      const { button, downloadsClick } = await setup();
+    it('should open the downloads drawer when clicked', async () => {
+      const { button, downloadsOpenChange } = await setup();
       fireEvent.click(button);
-      expect(downloadsClick).toHaveBeenCalled();
-    });
-
-    it('should move focus to the button', async () => {
-      const { button, fixture } = await setup(true);
-      fixture.componentInstance.focusDownloadsButton('keyboard');
-      expect(button).toHaveFocus();
+      expect(downloadsOpenChange).toHaveBeenCalledWith(true);
+      expect(button).toHaveAttribute('aria-expanded', 'true');
     });
   });
 });
