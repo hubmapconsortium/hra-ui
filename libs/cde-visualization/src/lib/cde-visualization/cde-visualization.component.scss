@@ -130,9 +130,7 @@ $toolbar-width: calc(6rem + 1px);
   }
 }
 
-// Theme changes crossfade quickly once every view has updated (see ThemeSwitchService), and switch
-// instantly when reduced motion is preferred. Scoped to theme changes, so the page's own
-// view transitions keep their timing.
+// ThemeSwitchService adds this class to <html> while it switches themes
 ::ng-deep html.cde-visualization-theme-switch {
   &::view-transition-old(root),
   &::view-transition-new(root) {

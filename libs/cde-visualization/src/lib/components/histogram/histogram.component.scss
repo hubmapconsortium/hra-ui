@@ -75,7 +75,6 @@
   }
 }
 
-// Fills the column when the panels above are hidden
 :host(.fill) {
   height: 0;
   flex-grow: 1;
