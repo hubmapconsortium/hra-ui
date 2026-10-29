@@ -1,5 +1,4 @@
-import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { ChangeDetectionStrategy, Component, ElementRef, inject, input, model, output, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -42,8 +41,8 @@ export class ToolbarComponent {
   /** Whether any cells were deleted from the distance visualization */
   readonly hasDeletedCells = input(false);
 
-  /** Sheet that's open in the drawer, if any */
-  readonly openSheet = input<ToolbarSheet>();
+  /** Sheet that's open in the drawer, if any. The Downloads and Info items open their sheets */
+  readonly openSheet = model<ToolbarSheet>();
 
   /** Emits when Reset view is clicked */
   readonly resetViewClick = output<void>();
@@ -54,29 +53,6 @@ export class ToolbarComponent {
   /** Emits when Reset colors is clicked */
   readonly resetColorsClick = output<void>();
 
-  /** Emits the sheet to open when Downloads or Info is clicked */
-  readonly sheetClick = output<ToolbarSheet>();
-
   /** Text content */
   protected readonly content = TOOLBAR_CONTENT;
-
-  /** Moves focus with an origin, so the focus ring shows for keyboard users */
-  private readonly focusMonitor = inject(FocusMonitor);
-
-  /** Downloads item */
-  private readonly downloadsItem = viewChild.required('downloadsItem', { read: ElementRef });
-
-  /** Info item */
-  private readonly infoItem = viewChild.required('infoItem', { read: ElementRef });
-
-  /**
-   * Moves focus back to the item that opened a sheet
-   *
-   * @param sheet Sheet that was open
-   * @param origin Origin of the interaction that closed the sheet
-   */
-  focusSheetItem(sheet: ToolbarSheet, origin: FocusOrigin): void {
-    const item = sheet === 'downloads' ? this.downloadsItem() : this.infoItem();
-    this.focusMonitor.focusVia(item, origin);
-  }
 }

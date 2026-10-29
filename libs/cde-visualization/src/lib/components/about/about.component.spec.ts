@@ -14,14 +14,11 @@ describe('AboutComponent', () => {
     expect(screen.getByText('Trackpad pinch')).toBeInTheDocument();
   });
 
-  it('emits the close origin', async () => {
+  it('emits closeClick when the close button is clicked', async () => {
     const closeClick = jest.fn();
     await render(AboutComponent, { on: { closeClick } });
-    const close = screen.getByRole('button', { name: ABOUT_CONTENT.closeLabel });
 
-    fireEvent.click(close, { screenX: 0, screenY: 0 });
-    fireEvent.click(close, { screenX: 10, screenY: 10 });
-    expect(closeClick).toHaveBeenNthCalledWith(1, 'keyboard');
-    expect(closeClick).toHaveBeenNthCalledWith(2, 'mouse');
+    fireEvent.click(screen.getByRole('button', { name: ABOUT_CONTENT.closeLabel }));
+    expect(closeClick).toHaveBeenCalled();
   });
 });

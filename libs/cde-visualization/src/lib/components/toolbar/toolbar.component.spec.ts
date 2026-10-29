@@ -80,29 +80,19 @@ describe('ToolbarComponent', () => {
   });
 
   it('opens sheets and shows the open one as active', async () => {
-    const sheetClick = jest.fn();
-    const { rerender } = await setup({ on: { sheetClick } });
+    const openSheetChange = jest.fn();
+    await setup({ on: { openSheet: openSheetChange } });
     const downloads = screen.getByRole('button', { name: TOOLBAR_CONTENT.downloads.label });
     const info = screen.getByRole('button', { name: TOOLBAR_CONTENT.info.label });
 
     fireEvent.click(downloads);
-    fireEvent.click(info);
-    expect(sheetClick).toHaveBeenNthCalledWith(1, 'downloads');
-    expect(sheetClick).toHaveBeenNthCalledWith(2, 'about');
+    expect(openSheetChange).toHaveBeenLastCalledWith('downloads');
+    expect(downloads).toHaveClass('hra-navigation-rail-item--active');
 
-    await rerender({ inputs: { openSheet: 'about' }, partialUpdate: true });
+    fireEvent.click(info);
+    expect(openSheetChange).toHaveBeenLastCalledWith('about');
     expect(info).toHaveClass('hra-navigation-rail-item--active');
     expect(downloads).not.toHaveClass('hra-navigation-rail-item--active');
-  });
-
-  it('moves focus back to the item that opened a sheet', async () => {
-    const { fixture } = await setup();
-
-    fixture.componentInstance.focusSheetItem('downloads', 'keyboard');
-    expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.downloads.label })).toHaveFocus();
-
-    fixture.componentInstance.focusSheetItem('about', 'mouse');
-    expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.info.label })).toHaveFocus();
   });
 
   it('links to the help resources', async () => {

@@ -7,7 +7,7 @@
     hraClickEvent
     [attr.aria-label]="content.closeLabel"
     [hraPlainTooltip]="content.closeLabel"
-    (click)="close($event)"
+    (click)="closeClick.emit()"
   >
     <mat-icon>close</mat-icon>
   </button>

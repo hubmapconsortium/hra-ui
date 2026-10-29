@@ -25,13 +25,11 @@
   <button
     hraNavigationRailItem
     icon="download"
-    aria-haspopup="dialog"
     hraFeature="downloads"
     hraClickEvent
     [active]="openSheet() === 'downloads'"
     [hraPlainTooltip]="content.downloads.tooltip"
-    (click)="sheetClick.emit('downloads')"
-    #downloadsItem
+    (click)="openSheet.set('downloads')"
   >
     {{ content.downloads.label }}
   </button>
@@ -52,13 +50,11 @@
     hraNavigationRailItem
     hraNavigationRailBottom
     icon="info"
-    aria-haspopup="dialog"
     hraFeature="info"
     hraClickEvent
     [active]="openSheet() === 'about'"
     [hraPlainTooltip]="content.info.tooltip"
-    (click)="sheetClick.emit('about')"
-    #infoItem
+    (click)="openSheet.set('about')"
   >
     {{ content.info.label }}
   </button>

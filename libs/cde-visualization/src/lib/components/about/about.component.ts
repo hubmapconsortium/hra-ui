@@ -1,4 +1,3 @@
-import { FocusOrigin } from '@angular/cdk/a11y';
 import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
@@ -21,8 +20,8 @@ let idCounter = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutComponent {
-  /** Emits the origin of the interaction when the close button is clicked */
-  readonly closeClick = output<FocusOrigin>();
+  /** Emits when the close button is clicked */
+  readonly closeClick = output<void>();
 
   /** Id attribute for the title, used to label the drawer */
   readonly titleId = `cde-about-title-${idCounter}`;
@@ -32,11 +31,4 @@ export class AboutComponent {
 
   /** Text content */
   protected readonly content = ABOUT_CONTENT;
-
-  /** Emits a close event with the origin of the click */
-  protected close(event: MouseEvent): void {
-    // Clicks triggered by the keyboard have no screen coordinates
-    const origin = event.screenX === 0 && event.screenY === 0 ? 'keyboard' : 'mouse';
-    this.closeClick.emit(origin);
-  }
 }

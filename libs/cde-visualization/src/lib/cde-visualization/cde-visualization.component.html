@@ -28,14 +28,13 @@
         [cellLinks]="!edgesDisabled()"
         [hasHiddenMetadata]="hasHiddenMetadata()"
         [hasDeletedCells]="hasDeletedCells()"
-        [openSheet]="openSheet()"
+        [(openSheet)]="openSheet"
         [(cellLinkData)]="showCellLinkData"
         [(allMetadata)]="showAllMetadata"
         (cellLinksChange)="edgesDisabled.set(!$event)"
         (resetViewClick)="resetView()"
         (restoreDeletedCellsClick)="restoreDeletedCells()"
         (resetColorsClick)="resetColors()"
-        (sheetClick)="openSheet.set($event)"
       />
 
       <div class="metadata">
