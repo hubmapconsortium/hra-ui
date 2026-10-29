@@ -26,7 +26,6 @@
         href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
         target="_blank"
         rel="noopener noreferrer"
-        hraButtonSize="medium"
         aria-label="Open template for cell data, opens in a new tab"
         hraFeature="data-template"
         hraClickEvent
@@ -36,27 +35,20 @@
       </a>
     </div>
     <div class="requirements" role="group" aria-label="Data upload requirements">
-      <div class="requirement-group">
-        <span class="requirement-label" id="data-required-columns">Required columns</span>
-        <ul class="requirement-list" aria-labelledby="data-required-columns">
-          <li>X</li>
-          <li>Y</li>
-          <li>Cell type</li>
-        </ul>
-      </div>
-      <div class="requirement-group">
-        <span class="requirement-label" id="data-optional-columns">Optional columns</span>
-        <ul class="requirement-list" aria-labelledby="data-optional-columns">
-          <li>Z</li>
-          <li>Cell ontology ID</li>
-        </ul>
-      </div>
-      <div class="requirement-group">
-        <span class="requirement-label" id="data-supported-format">Supported format</span>
-        <ul class="requirement-list" aria-labelledby="data-supported-format">
-          <li>CSV</li>
-        </ul>
-      </div>
+      <dl>
+        <div class="requirement">
+          <dt>Required columns</dt>
+          <dd>X, Y, cell type</dd>
+        </div>
+        <div class="requirement">
+          <dt>Optional columns</dt>
+          <dd>Z, cell ontology ID</dd>
+        </div>
+        <div class="requirement">
+          <dt>Supported format</dt>
+          <dd>CSV</dd>
+        </div>
+      </dl>
     </div>
 
     <cde-file-upload
@@ -89,11 +81,11 @@
     </div>
 
     @if (visualizationForm.controls.headers.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator icon="warning" [errors]="['Please upload a dataset.']" />
     }
 
     <div class="required-headers">
-      <span class="subheader">Required: Verify column headers</span>
+      <span class="subheader"><strong>Required:</strong> Verify column headers</span>
 
       <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="x-axis-selector">
         <mat-label>X axis</mat-label>
@@ -153,11 +145,11 @@
     </div>
 
     @if (columnErrorActionMessage) {
-      <hra-error-indicator announce [errors]="[columnErrorActionMessage]" />
+      <hra-error-indicator announce icon="warning" [errors]="[columnErrorActionMessage]" />
     }
 
     <div class="optional-headers">
-      <span class="subheader">Optional: Add column headers</span>
+      <span class="subheader"><strong>Optional:</strong> Add column headers</span>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="z-axis-selector">
         <mat-label>Z axis</mat-label>
@@ -214,7 +206,7 @@
     </div>
 
     @if (visualizationForm.controls.parameters.disabled) {
-      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator icon="warning" [errors]="['Please upload a dataset.']" />
     }
 
     <div class="parameters-1">
@@ -366,7 +358,6 @@
         href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
         target="_blank"
         rel="noopener noreferrer"
-        hraButtonSize="medium"
         aria-label="Open template for color maps, opens in a new tab"
         hraFeature="color-template"
         hraClickEvent
@@ -376,41 +367,27 @@
       </a>
     </div>
 
-    <mat-button-toggle-group
-      formControlName="colorMapType"
-      name="singleSelect"
-      aria-label="Color map"
-      hideSingleSelectionIndicator
-      hraButtonToggleSize="large"
-    >
-      <mat-button-toggle disableRipple value="default" hraFeature="toggle.default" hraClickEvent
+    <mat-button-toggle-group formControlName="colorMapType" name="singleSelect" aria-label="Color map">
+      <mat-button-toggle value="default" hraFeature="toggle.default" hraClickEvent
         >Use default colors</mat-button-toggle
       >
-      <mat-button-toggle
-        disableRipple
-        value="custom"
-        data-testid="upload-custom"
-        hraFeature="toggle.custom"
-        hraClickEvent
+      <mat-button-toggle value="custom" data-testid="upload-custom" hraFeature="toggle.custom" hraClickEvent
         >Upload color map</mat-button-toggle
       >
     </mat-button-toggle-group>
 
     @if (useCustomColorMap) {
       <div class="requirements" role="group" aria-label="Custom color map requirements">
-        <div class="requirement-group">
-          <span class="requirement-label" id="color-required-columns">Required columns</span>
-          <ul class="requirement-list" aria-labelledby="color-required-columns">
-            <li>Cell type</li>
-            <li>Cell color</li>
-          </ul>
-        </div>
-        <div class="requirement-group">
-          <span class="requirement-label" id="color-supported-format">Supported format</span>
-          <ul class="requirement-list" aria-labelledby="color-supported-format">
-            <li>CSV</li>
-          </ul>
-        </div>
+        <dl>
+          <div class="requirement">
+            <dt>Required columns</dt>
+            <dd>Cell type, cell color</dd>
+          </div>
+          <div class="requirement">
+            <dt>Supported format</dt>
+            <dd>CSV</dd>
+          </div>
+        </dl>
       </div>
       <cde-file-upload
         class="upload-colormap"
@@ -446,16 +423,18 @@
 
     @let canVisualize = hasValidNodes() && hasValidData();
     @if (!hasDataset()) {
-      <hra-error-indicator id="visualize-requirements" [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator id="visualize-requirements" icon="warning" [errors]="['Please upload a dataset.']" />
     } @else if (!canVisualize) {
-      <hra-error-indicator id="visualize-requirements" [errors]="['Please complete the required fields above.']" />
+      <hra-error-indicator
+        id="visualize-requirements"
+        icon="warning"
+        [errors]="['Please complete the required fields above.']"
+      />
     }
 
     <button
       class="visualize-button"
-      mat-button
-      hraCtaButton
-      hraPrimaryButton
+      mat-flat-button
       data-testid="visualize"
       hraFeature="submit"
       hraClickEvent

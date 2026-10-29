@@ -33,6 +33,14 @@ describe('ExampleListComponent', () => {
     expect(screen.getByRole('link', { name: /Example B/ })).toHaveAttribute('href', '/example/1');
   });
 
+  it('should ripple each row when pressed', async () => {
+    await setup();
+
+    for (const link of screen.getAllByRole('link')) {
+      expect(link).toHaveClass('mat-ripple');
+    }
+  });
+
   it('should show the data credit only when provided', async () => {
     const { container } = await setup();
 

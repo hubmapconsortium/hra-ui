@@ -2,21 +2,34 @@
 @use '../../../../../libs/design-system/styles/utils';
 @use '../../../../../libs/design-system/styles/vars' as vars;
 
+// Background of every panel, chart, and scroll fade
+$panel-background: vars.$background;
+
 :host {
   display: block;
   width: 100%;
   height: 100%;
   position: relative;
+  // Scroll fades blend into the panel background
+  --hra-scroll-overflow-fade-color: #{$panel-background};
+  // Text links match AtlasNG's, as in cde-ui: underlined on-surface at a weight of 600.
+  // Set here so the web component, which has no app styles for links, matches too.
+  --ang-text-link-color: #{vars.$on-surface};
+
+  ::ng-deep a.hra-text-hyperlink {
+    font-weight: 600;
+  }
 
   @include mat.sidenav-overrides(
     (
-      content-text-color: vars.$secondary,
-      content-background-color: vars.$surface-container-low,
+      content-text-color: vars.$on-surface,
+      content-background-color: $panel-background,
       container-text-color: vars.$on-surface,
+      // The Downloads drawer keeps its own container color
       container-background-color: vars.$surface-container-low,
       container-elevation-shadow: var(--mat-sys-level1),
       container-shape: vars.$corner-large,
-      container-width: 25rem,
+      container-width: 28rem,
       scrim-color: utils.with-alpha(vars.$scrim, 0.24),
     )
   );
@@ -42,22 +55,20 @@
   .progress {
     position: absolute;
     inset: 0 0 auto 0;
-    @include mat.progress-bar-overrides(
-      (
-        active-indicator-color: vars.$tertiary,
-      )
-    );
   }
 
+  // Panel dividers sit on the layout containers, so they run the full length of each panel.
+  // They use outline, so the panels read as separate regions.
   .metadata {
     display: flex;
     flex-direction: column;
     grid-area: metadata;
+    border-right: 1px solid vars.$outline;
 
     cde-metadata {
       width: 100%;
       height: fit-content;
-      border-bottom: 2px solid vars.$outline-variant;
+      border-bottom: 1px solid vars.$outline;
     }
   }
 
@@ -71,88 +82,58 @@
       display: flex;
       height: 0;
       flex-grow: 1;
+      border-bottom: 1px solid vars.$outline;
     }
 
+    // Clip the cell visualization so its canvas can't paint over the dividers
     cde-node-dist-visualization {
       height: 100%;
       min-width: 32.75rem;
       flex-grow: 1;
-
-      ::ng-deep .header {
-        border-left: 2px solid vars.$outline-variant;
-        border-right: 2px solid vars.$outline-variant;
-      }
-    }
-
-    cde-histogram {
-      border-left: 2px solid vars.$outline-variant;
+      overflow: hidden;
     }
 
     cde-violin {
       height: 100%;
       width: 31.5rem;
-      border-bottom: 2px solid vars.$outline-variant;
+      border-left: 1px solid vars.$outline;
     }
   }
 }
 
-::ng-deep {
-  .metadata-overlay,
-  .histogram-overlay,
-  .vis-overlay,
-  .violin-overlay {
-    .mat-mdc-menu-content {
-      background-color: vars.$on-primary;
-      color: vars.$secondary;
-      .mat-mdc-menu-item {
-        @include mat.menu-overrides(
-          (
-            item-leading-spacing: 1rem,
-            item-trailing-spacing: 1rem,
-          )
-        );
-        .mat-mdc-menu-item-text {
-          font: vars.$label-medium;
-        }
-      }
-    }
+// Panel titles use title small and the rest of the panel text uses body medium, docked or fullscreen
+::ng-deep .hra-app hra-expansion-panel {
+  .title {
+    @include utils.use-font(title, small);
   }
 
-  div.mat-mdc-menu-panel {
-    max-width: 260px;
-    min-width: 208px;
-    &.info-sub-menu .mat-mdc-menu-content {
-      padding: 0.75rem 1rem;
-      background-color: vars.$on-primary;
-      font: vars.$label-medium;
-    }
+  .expansion-body {
+    @include utils.use-font(body, medium);
   }
 }
 
-::ng-deep .download-snackbar-panel {
-  translate: 0 -2rem;
-  text-align: center;
-  @include mat.snack-bar-overrides(
-    (
-      container-color: vars.$inverse-surface,
-      supporting-text-color: vars.$surface,
-    )
-  );
+// Fullscreen views keep the panel background, so the charts and the surrounding UI match.
+// The cell visualization keeps its black background.
+::ng-deep .hra-app .fullscreen-panel:not(.node-dist-vis-fullscreen-panel) {
+  --mat-dialog-container-color: #{$panel-background};
+  --hra-scroll-overflow-fade-color: #{$panel-background};
+}
 
-  .mdc-snackbar__surface {
-    border-radius: 0.5rem !important;
-    min-width: 13rem !important;
+// Fullscreen views use the panels' 16px inset: the title on the 16px line, the close button's icon on the 16px line
+// at the right, 8px above and below the 56px header, and 16px of space below the content
+::ng-deep .hra-app .fullscreen-panel {
+  .header {
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
   }
 
-  button[mat-button][matSnackBarAction] {
-    color: vars.$inverse-primary;
+  .content {
+    height: calc(100vh - 4.5rem);
   }
+}
 
-  button[mat-icon-button] {
-    @include mat.icon-button-overrides(
-      (
-        icon-color: vars.$surface,
-      )
-    );
-  }
+// The Info submenus hold a paragraph of text rather than menu items
+::ng-deep div.mat-mdc-menu-panel.info-sub-menu .mat-mdc-menu-content {
+  padding: 0.75rem 1rem;
+  color: vars.$on-surface-variant;
+  @include utils.use-font(body, medium);
 }

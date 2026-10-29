@@ -1,6 +1,6 @@
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
 import { IMAGE_LOADER, ImageLoader, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
@@ -11,6 +11,7 @@ import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { ExampleItem, ExampleListComponent } from '../../components/example-list/example-list.component';
 import { LandingCard, LandingCardComponent } from '../../components/landing-card/landing-card.component';
+import { Theme, ThemeService } from '../../services/theme-service/theme.service';
 
 /** Hero screenshot files by srcset width */
 const HERO_SCREENSHOTS: Record<number, string> = {
@@ -21,12 +22,26 @@ const HERO_SCREENSHOTS: Record<number, string> = {
 };
 
 /** Hero background sizes by viewport width, largest first, so the first matching media query wins */
-const HERO_BACKGROUND_SOURCES = [
-  { media: '(min-width: 1921px)', src: 'assets/backgrounds/hero/hero-bg-light-2560x1440.webp' },
-  { media: '(min-width: 1441px)', src: 'assets/backgrounds/hero/hero-bg-light-1920x1080.webp' },
-  { media: '(min-width: 1025px)', src: 'assets/backgrounds/hero/hero-bg-light-1440x810.webp' },
-  { media: '(min-width: 641px)', src: 'assets/backgrounds/hero/hero-bg-light-1280x720.webp' },
+const HERO_BACKGROUND_SIZES = [
+  { media: '(min-width: 1921px)', size: '2560x1440' },
+  { media: '(min-width: 1441px)', size: '1920x1080' },
+  { media: '(min-width: 1025px)', size: '1440x810' },
+  { media: '(min-width: 641px)', size: '1280x720' },
 ];
+
+/** Hero background size for phones and browsers without picture support */
+const HERO_BACKGROUND_FALLBACK_SIZE = '960x540';
+
+/**
+ * Builds the path of a hero background image
+ *
+ * @param theme Theme the image is drawn for
+ * @param size Image size, as width x height
+ * @returns The image path
+ */
+function heroBackground(theme: Theme, size: string): string {
+  return `assets/backgrounds/hero/hero-bg-${theme}-${size}.webp`;
+}
 
 /**
  * Landing Page Component
@@ -68,11 +83,25 @@ export class LandingPageComponent {
   /** Whether the hero screenshot has loaded, so its entrance animation plays on the image itself */
   protected readonly heroImageLoaded = signal(false);
 
-  /** Hero background sources for larger viewports */
-  protected readonly heroBackgroundSources = HERO_BACKGROUND_SOURCES;
+  /** Light or dark theme, which picks the hero and citation background images */
+  private readonly theme = inject(ThemeService).theme;
 
-  /** Hero background for phones and browsers without picture support */
-  protected readonly heroBackgroundFallback = 'assets/backgrounds/hero/hero-bg-light-960x540.webp';
+  /** Hero background sources for larger viewports, in the current theme */
+  protected readonly heroBackgroundSources = computed(() =>
+    HERO_BACKGROUND_SIZES.map(({ media, size }) => ({ media, src: heroBackground(this.theme(), size) })),
+  );
+
+  /** Hero background for phones and browsers without picture support, in the current theme */
+  protected readonly heroBackgroundFallback = computed(() =>
+    heroBackground(this.theme(), HERO_BACKGROUND_FALLBACK_SIZE),
+  );
+
+  /** Citation background, in the current theme */
+  protected readonly citeBackground = computed(() =>
+    this.theme() === 'dark'
+      ? 'assets/backgrounds/create-visualization-page-background-dark.png'
+      : 'assets/backgrounds/create-visualization-page-background.png',
+  );
 
   /** Snackbar service */
   private readonly snackbar = inject(SnackbarService);

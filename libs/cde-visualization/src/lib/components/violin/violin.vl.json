@@ -1,31 +1,65 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "spacing": -2,
-  "background": "#fcfcfc",
+  "title": {
+    "text": "Cell types",
+    "anchor": "start",
+    "frame": "bounds",
+    "orient": "top",
+    "offset": -14
+  },
+  "background": {
+    "expr": "themeBackground"
+  },
   "config": {
-    "font": "Metropolis",
+    "font": "Nunito Sans Variable",
     "padding": {
       "top": 0,
-      "right": 12,
-      "bottom": 12,
-      "left": 12
+      "right": 16,
+      "bottom": 16,
+      "left": 16
     },
     "view": {
       "stroke": "transparent"
     },
     "axis": {
-      "labelFontSize": 12,
+      "labelFontSize": 14,
       "titleFontSize": 14,
-      "titleFontWeight": 500,
-      "labelFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelFontWeight": 400,
       "titleLineHeight": 21,
-      "labelLineHeight": 18,
-      "titleColor": "#201E3D",
-      "labelColor": "#4B4B5E",
+      "labelLineHeight": 21,
+      "titleColor": {
+        "expr": "themeTitleColor"
+      },
+      "labelColor": {
+        "expr": "themeLabelColor"
+      },
       "ticks": false,
-      "labelPadding": 8
+      "labelPadding": 8,
+      "gridColor": {
+        "expr": "themeGridColor"
+      }
     },
-    "scale": { "continuousPadding": 20 }
+    "scale": {
+      "continuousPadding": 20
+    },
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": 21,
+      "color": {
+        "expr": "themeTitleColor"
+      }
+    },
+    "header": {
+      "titleColor": {
+        "expr": "themeTitleColor"
+      },
+      "labelColor": {
+        "expr": "themeLabelColor"
+      }
+    }
   },
   "data": {
     "name": "data",
@@ -35,6 +69,26 @@
     {
       "name": "colors",
       "value": []
+    },
+    {
+      "name": "themeBackground",
+      "value": "#fcfbfd"
+    },
+    {
+      "name": "themeTitleColor",
+      "value": "#1a1c1e"
+    },
+    {
+      "name": "themeLabelColor",
+      "value": "#414751"
+    },
+    {
+      "name": "themeGridColor",
+      "value": "#c1c7d4"
+    },
+    {
+      "name": "themeMarkColor",
+      "value": "#1a1c1e"
     }
   ],
   "transform": [
@@ -55,18 +109,13 @@
         "field": "Count",
         "order": "descending"
       },
-      "title": "Cell types",
+      "title": null,
       "header": {
         "labelAngle": 0,
-        "labelPadding": 4,
+        "labelPadding": 12,
         "labelAlign": "left",
         "labelLimit": 100,
-        "labelBaseline": "middle",
-        "titlePadding": 8,
-        "labelFontSize": 12,
-        "titleFontSize": 14,
-        "titleFontWeight": 500,
-        "labelFontWeight": 500
+        "labelBaseline": "middle"
       }
     }
   },
@@ -82,7 +131,9 @@
       {
         "mark": {
           "type": "area",
-          "stroke": "black",
+          "stroke": {
+            "expr": "themeMarkColor"
+          },
           "strokeWidth": 0.5
         },
         "transform": [
@@ -131,7 +182,7 @@
             "scale": {
               "range": [
                 {
-                  "expr": "'Replaced/repeated in javascript' && colors[0] || '#000'"
+                  "expr": "'Replaced/repeated in javascript' && colors[0] || themeMarkColor"
                 }
               ]
             }
@@ -146,7 +197,8 @@
         "mark": {
           "type": "boxplot",
           "extent": "min-max",
-          "size": 4
+          "size": 4,
+          "color": "black"
         },
         "encoding": {
           "x": {
@@ -156,9 +208,6 @@
             "scale": {
               "domainMin": 0
             }
-          },
-          "color": {
-            "value": "black"
           }
         }
       }

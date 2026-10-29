@@ -27,6 +27,22 @@
           "includePaths": ["node_modules/", "libs/design-system/styles", "apps/cde-ui/src/sass"]
         },
         "polyfills": ["zone.js"]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "5.5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "8kb",
+              "maximumError": "16kb"
+            }
+          ]
+        }
       }
     },
     "serve": {

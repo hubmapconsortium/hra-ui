@@ -1,14 +1,9 @@
 @use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   display: block;
-  @include mat.button-overrides(
-    (
-      text-hover-state-layer-opacity: 0,
-      text-pressed-state-layer-opacity: 0,
-    )
-  );
 
   @include mat.expansion-overrides(
     (
@@ -34,63 +29,40 @@
       }
     }
 
+    // The 8px left padding puts the collapse toggle's icon on the panel's 16px inset
     ::ng-deep .header {
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 1rem 0.5rem 0.5rem;
     }
 
+    // Labels and values line up in two columns, and long values truncate instead of wrapping.
+    // Labels use on-surface and values on-surface-variant, so the two columns read apart.
     .metadata-details {
-      display: flex;
-      flex-direction: column;
-      margin: 0 0.5rem 1rem 1rem;
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 0.125rem 1rem;
+      margin: 0 1rem 1rem;
+      color: vars.$on-surface-variant;
+      @include utils.use-font(body, medium);
 
-      > div {
-        display: inline-flex;
-        margin: 1px 0;
-
-        span {
-          font: vars.$label-small;
-
-          a {
-            color: vars.$tertiary;
-          }
-        }
-      }
-
-      span {
-        display: block;
+      a {
+        color: vars.$on-surface-variant;
       }
     }
 
     .metadata-row {
-      display: flex;
-      gap: 0.25rem;
+      display: contents;
     }
 
     .metadata-row-label {
-      color: vars.$secondary;
-      min-width: 7.25rem;
+      white-space: nowrap;
+      color: vars.$on-surface;
     }
 
-    .metadata-row-value {
-      color: vars.$primary;
+    .metadata-row > :last-child {
+      min-width: 0;
       overflow: hidden;
-      text-wrap: nowrap;
+      white-space: nowrap;
       text-overflow: ellipsis;
-    }
-
-    .show-hide {
-      height: 21px;
-      line-height: 21px;
-
-      .mdc-button {
-        @include mat.button-overrides(
-          (
-            text-label-text-color: vars.$on-tertiary-fixed,
-          )
-        );
-        height: 100%;
-        padding: 0;
-      }
     }
   }
 }

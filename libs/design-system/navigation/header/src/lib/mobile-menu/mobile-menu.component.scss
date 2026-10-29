@@ -5,14 +5,15 @@
 :host {
   display: block;
   width: 100%;
-  background-color: vars.$surface-dim;
+  $container-color: var(--hra-header-menu-container-color, #{vars.$surface-dim});
+  background-color: $container-color;
 
   $header-height: 4rem;
 
   @include mat.expansion-overrides(
     (
       container-shape: vars.$corner-none,
-      container-background-color: vars.$surface-dim,
+      container-background-color: $container-color,
       header-collapsed-state-height: $header-height,
       header-expanded-state-height: $header-height,
       header-text-font: vars.$label-large-font,
@@ -55,7 +56,7 @@
   }
 
   .mat-expanded .header {
-    text-decoration: underline 0.125rem vars.$tertiary;
+    text-decoration: underline 0.125rem var(--hra-header-mobile-menu-underline-color, #{vars.$tertiary});
     text-underline-offset: 0.375rem;
 
     .toggle-icon::after {

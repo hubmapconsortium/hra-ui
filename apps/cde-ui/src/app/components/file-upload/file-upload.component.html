@@ -1,6 +1,6 @@
 <ng-container hraFeature="file-upload">
   @if (!file && errorMessage()) {
-    <hra-error-indicator announce [errors]="[errorMessage(), errorActionMessage()]" />
+    <hra-error-indicator announce icon="warning" [errors]="[errorMessage(), errorActionMessage()]" />
   }
 
   @if (file && !errorMessage()) {
@@ -9,8 +9,6 @@
     <button
       mat-flat-button
       class="upload"
-      hraPrimaryButton
-      hraButtonSize="large"
       hraFeature="upload"
       hraClickEvent
       [attr.aria-label]="uploadAriaLabel() ?? null"

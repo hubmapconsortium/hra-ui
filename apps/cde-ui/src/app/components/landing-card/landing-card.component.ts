@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
@@ -31,7 +32,7 @@ export interface LandingCard {
  */
 @Component({
   selector: 'cde-landing-card',
-  imports: [HraCommonModule, LinkDirective, MatIconModule, IconsModule],
+  imports: [HraCommonModule, LinkDirective, MatIconModule, MatRippleModule, IconsModule],
   templateUrl: './landing-card.component.html',
   styleUrl: './landing-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,33 +1,65 @@
 @use 'utils';
 @use 'vars';
 
-$card-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$secondary, 24%);
+// AtlasNG's content paragraph size. Replace with <ang-content-paragraph> once CDE moves to AtlasNG.
+$paragraph-scale: 1.0625;
 
-@mixin font($family, $size, $line-height, $weight, $tracking) {
-  font-family: $family;
-  font-size: $size;
-  line-height: $line-height;
-  font-weight: $weight;
-  letter-spacing: $tracking;
+@mixin paragraph {
+  font-family: vars.$body-large-font;
+  font-size: calc(#{$paragraph-scale} * #{vars.$body-large-size});
+  font-weight: vars.$body-large-weight;
+  line-height: calc(#{$paragraph-scale} * #{vars.$body-large-line-height});
+  letter-spacing: vars.$body-large-tracking;
+}
+
+@mixin focus-ring {
+  outline: 3px solid vars.$on-surface;
+  outline-offset: 1px;
 }
 
 @mixin card-surface($radius) {
-  border: 0.0625rem solid vars.$outline;
+  border: 0.0625rem solid vars.$outline-variant;
   border-radius: $radius;
-  background-color: vars.$surface-container-lowest;
+  background-color: vars.$surface-container-low;
 }
 
 @mixin card($radius) {
   @include card-surface($radius);
+  position: relative;
+  isolation: isolate;
+  --mat-ripple-color: #{utils.with-alpha(vars.$on-surface-variant, var(--mat-sys-pressed-state-layer-opacity))};
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: vars.$on-surface-variant;
+    opacity: 0;
+    pointer-events: none;
+  }
 
   &:hover {
-    border-color: vars.$secondary;
-    box-shadow: $card-shadow;
+    box-shadow: var(--mat-sys-level3);
+
+    &::before {
+      opacity: var(--mat-sys-hover-state-layer-opacity);
+    }
+  }
+
+  &:focus-visible,
+  &:has(:focus-visible) {
+    &::before {
+      opacity: var(--mat-sys-focus-state-layer-opacity);
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition:
-      border-color 0.2s ease-in-out,
-      box-shadow 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
+
+    &::before {
+      transition: opacity 0.2s ease-in-out;
+    }
   }
 }

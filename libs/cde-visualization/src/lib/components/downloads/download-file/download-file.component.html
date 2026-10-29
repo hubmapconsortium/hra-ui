@@ -5,7 +5,7 @@
 <div class="formats">
   @for (format of data.formats; track format.id) {
     <button
-      mat-button
+      matButton="outlined"
       hraClickEvent
       [hraFeature]="`download-${format.id}`"
       [attr.aria-label]="format.ariaLabel"

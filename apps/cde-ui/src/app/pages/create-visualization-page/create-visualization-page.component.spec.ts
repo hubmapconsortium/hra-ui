@@ -1,7 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
@@ -11,6 +11,7 @@ import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
+import { Theme, ThemeService } from '../../services/theme-service/theme.service';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
@@ -103,13 +104,20 @@ const csvColorMapWrongKeys = `cell_id,bad_celltype_key,bad_cell_color
   1,cell2,"[1,1,1]"`;
 
 describe('CreateVisualizationPageComponent', () => {
-  const providers = [provideAssetHref('http://localhost/'), provideHttpClient(), provideHttpClientTesting()];
+  const theme = signal<Theme>('light');
+  const providers = [
+    provideAssetHref('http://localhost/'),
+    provideHttpClient(),
+    provideHttpClientTesting(),
+    { provide: ThemeService, useValue: { theme } },
+  ];
 
   let instance: CreateVisualizationPageComponent;
   let fixture: ComponentFixture<CreateVisualizationPageComponent>;
 
   beforeEach(async () => {
     jest.spyOn(Date, 'now').mockReturnValue(0);
+    theme.set('light');
 
     const context = await render(CreateVisualizationPageComponent, {
       providers,
@@ -131,6 +139,16 @@ describe('CreateVisualizationPageComponent', () => {
     );
   });
 
+  it('passes the dark background image in the dark theme', () => {
+    theme.set('dark');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.style.getPropertyValue('--page-background-image')).toContain(
+      'create-visualization-page-background-dark.png',
+    );
+  });
+
   describe('template links', () => {
     it('renders outlined links that open the templates in a new tab', () => {
       const dataTemplate = screen.getByRole('link', { name: 'Open template for cell data, opens in a new tab' });
@@ -141,7 +159,6 @@ describe('CreateVisualizationPageComponent', () => {
         expect(link).toHaveAttribute('mat-stroked-button');
         expect(link).toHaveAttribute('target', '_blank');
         expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-        expect(link).toHaveClass('hra-button-size-medium');
       }
       expect(dataTemplate).toHaveAttribute(
         'href',
@@ -190,20 +207,25 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   describe('requirements', () => {
-    function listItems(group: HTMLElement, name: string): (string | undefined)[] {
-      const list = within(group).getByRole('list', { name });
-      return within(list)
-        .getAllByRole('listitem')
-        .map((item) => item.textContent?.trim());
+    function requirements(group: HTMLElement): Record<string, string | undefined> {
+      const rows = group.querySelectorAll('dl > .requirement');
+      return Object.fromEntries(
+        [...rows].map((row) => [
+          row.querySelector('dt')?.textContent?.trim(),
+          row.querySelector('dd')?.textContent?.trim(),
+        ]),
+      );
     }
 
-    it('lists the data upload requirements as labeled lists', () => {
+    it('lists the data upload requirements as label and value pairs', () => {
       const group = screen.getByRole('group', { name: 'Data upload requirements' });
 
       expect(within(group).queryByRole('table')).toBeNull();
-      expect(listItems(group, 'Required columns')).toEqual(['X', 'Y', 'Cell type']);
-      expect(listItems(group, 'Optional columns')).toEqual(['Z', 'Cell ontology ID']);
-      expect(listItems(group, 'Supported format')).toEqual(['CSV']);
+      expect(requirements(group)).toEqual({
+        'Required columns': 'X, Y, cell type',
+        'Optional columns': 'Z, cell ontology ID',
+        'Supported format': 'CSV',
+      });
     });
 
     it('lists the color map requirements when uploading a color map', async () => {
@@ -212,8 +234,10 @@ describe('CreateVisualizationPageComponent', () => {
       const group = await screen.findByRole('group', { name: 'Custom color map requirements' });
 
       expect(within(group).queryByRole('table')).toBeNull();
-      expect(listItems(group, 'Required columns')).toEqual(['Cell type', 'Cell color']);
-      expect(listItems(group, 'Supported format')).toEqual(['CSV']);
+      expect(requirements(group)).toEqual({
+        'Required columns': 'Cell type, cell color',
+        'Supported format': 'CSV',
+      });
     });
   });
 

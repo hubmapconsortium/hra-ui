@@ -1,3 +1,5 @@
+@use 'sass:list';
+@use 'sass:meta';
 @use '@angular/material' as mat;
 @use './fonts';
 @use './icons';
@@ -5,21 +7,38 @@
 @use './resets';
 @use './typography';
 
-@mixin theme($theme, $overrides: typography.$overrides) {
+// Component overrides included by `theme`, in the order they are applied
+$_component-overrides: (
+  button-toggle,
+  button,
+  checkbox,
+  chips,
+  form-field,
+  icon-button,
+  list,
+  menu,
+  progress-bar,
+  radio-button,
+  slider,
+  select,
+  slide-toggle,
+  tabs
+);
+
+/// @param $skip-overrides Component overrides to leave out, by name, for example `(button, icon-button)`
+@mixin theme($theme, $overrides: typography.$overrides, $skip-overrides: ()) {
+  @each $name in $skip-overrides {
+    @if not list.index($_component-overrides, $name) {
+      @error 'Unknown component override "#{$name}". Expected one of: #{$_component-overrides}';
+    }
+  }
+
   @include mat.theme($theme, $overrides: $overrides);
   @include typography.custom-variants();
-  @include overrides.button-toggle-overrides();
-  @include overrides.button-overrides();
-  @include overrides.checkbox-overrides();
-  @include overrides.chips-overrides();
-  @include overrides.form-field-overrides();
-  @include overrides.icon-button-overrides();
-  @include overrides.list-overrides();
-  @include overrides.menu-overrides();
-  @include overrides.progress-bar-overrides();
-  @include overrides.radio-button-overrides();
-  @include overrides.slider-overrides();
-  @include overrides.select-overrides();
-  @include overrides.slide-toggle-overrides();
-  @include overrides.tabs-overrides();
+
+  @each $name in $_component-overrides {
+    @if not list.index($skip-overrides, $name) {
+      @include meta.apply(meta.get-mixin('#{$name}-overrides', overrides));
+    }
+  }
 }

@@ -1,20 +1,23 @@
+@use 'utils';
+@use 'vars';
+
 :host {
   display: flex;
   flex-direction: column;
   width: 100%;
   min-width: 20rem;
+  min-height: 100vh;
+  background-color: vars.$surface;
 
-  ::ng-deep hra-table-of-contents-layout {
-    @media (min-width: 1100px) {
-      margin: 0;
-      padding: 2.5rem;
-      gap: 0;
-      justify-content: center;
+  ::ng-deep hra-table-of-contents-layout.hra-table-of-contents-layout-side-column {
+    margin: 0;
+    padding: 2.5rem;
+    gap: 0;
+    justify-content: center;
 
-      .content-container {
-        margin: 0 !important;
-        padding: 0 2.5rem !important;
-      }
+    .content-container {
+      margin: 0 !important;
+      padding: 0 2.5rem !important;
     }
   }
 
@@ -24,5 +27,17 @@
     hra-header {
       position: fixed;
     }
+  }
+}
+
+// Explore menu options: the option name over a body medium description
+::ng-deep .more-menu .option-text {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+
+  .option-description {
+    @include utils.use-font(body, medium);
+    color: vars.$on-surface-variant;
   }
 }

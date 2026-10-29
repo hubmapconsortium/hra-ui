@@ -2,7 +2,7 @@
   <h2 class="title" [id]="titleId">{{ content.title }}</h2>
   <button
     mat-icon-button
-    hraIconButtonSize="large"
+    class="close"
     hraFeature="close"
     hraClickEvent
     [attr.aria-label]="content.closeLabel"
@@ -11,34 +11,42 @@
   >
     <mat-icon>close</mat-icon>
   </button>
+  <p class="description" [id]="descriptionId">{{ content.description }}</p>
 </div>
 
-<div class="body">
-  @for (group of content.groups; track group.heading) {
-    <section class="group">
-      <h3 class="group-heading">{{ group.heading }}</h3>
-      @for (note of group.notes; track note.text) {
-        <p class="note">
-          {{ note.text }}
-          @if (note.link; as link) {
-            <a
-              hraHyperlink
-              hraFeature="embedding-guide"
-              target="_blank"
-              rel="noopener noreferrer"
-              [attr.href]="link.url"
-              >{{ link.label }}</a
-            >
+<ng-scrollbar class="body" orientation="vertical" hraScrollOverflowFade>
+  <div class="groups">
+    @for (group of content.groups; track group.heading) {
+      <section class="group">
+        <h3 class="group-heading">{{ group.heading }}</h3>
+        <ul class="files">
+          @for (file of group.files; track file.id) {
+            <li [hraFeature]="file.id">
+              <cde-download-file [file]="file" (download)="download.emit({ file: file.id, format: $event })" />
+            </li>
           }
-        </p>
-      }
-      <ul class="files">
-        @for (file of group.files; track file.id) {
-          <li class="file" [hraFeature]="file.id">
-            <cde-download-file [file]="file" (download)="download.emit({ file: file.id, format: $event })" />
-          </li>
+        </ul>
+
+        @if (group.notice; as notice) {
+          <div class="notice">
+            <mat-icon class="notice-icon">info</mat-icon>
+            <p class="notice-body">
+              <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+              {{ notice.text }}
+              @if (notice.link; as link) {
+                <a
+                  hraHyperlink
+                  hraFeature="embedding-guide"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  [attr.href]="link.url"
+                  >{{ link.label }}</a
+                >
+              }
+            </p>
+          </div>
         }
-      </ul>
-    </section>
-  }
-</div>
+      </section>
+    }
+  </div>
+</ng-scrollbar>
