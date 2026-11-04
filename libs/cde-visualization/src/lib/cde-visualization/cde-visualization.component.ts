@@ -20,7 +20,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MAT_TABS_CONFIG, MatTabsModule } from '@angular/material/tabs';
 import { HraCommonModule, monitorWidth } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
@@ -163,7 +163,8 @@ function nextFrame(): Promise<void> {
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
-  providers: [ThemeSwitchService],
+  // Angular Material's default tab options, not the design system's (provideTabs)
+  providers: [ThemeSwitchService, { provide: MAT_TABS_CONFIG, useValue: {} }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
