@@ -51,7 +51,7 @@ $toolbar-width: calc(6rem + 1px);
   .layout {
     display: grid;
     position: relative;
-    grid-template-columns: $toolbar-width 22.75rem minmax(0, 1fr);
+    grid-template-columns: $toolbar-width clamp(21rem, 26%, 26rem) minmax(0, 1fr);
     grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
     grid-template-areas:
       'toolbar metadata visualization'

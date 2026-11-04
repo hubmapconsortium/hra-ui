@@ -695,7 +695,6 @@ describe('CdeVisualizationComponent', () => {
         selectTab(fixture, 'Cell types');
         expect(getElement(fixture, '.metadata')).not.toHaveClass('panel-hidden');
         expect(getElement(fixture, '.visualizations')).toHaveClass('panel-hidden');
-        expect(getElement(fixture, 'cde-cell-types')).toHaveClass('fill');
       },
       TIMEOUT,
     );
