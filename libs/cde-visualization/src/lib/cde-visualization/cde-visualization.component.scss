@@ -51,7 +51,7 @@ $toolbar-width: calc(6rem + 1px);
   .layout {
     display: grid;
     position: relative;
-    grid-template-columns: $toolbar-width 22.75rem minmax(64.1875rem, calc(100% - 22.75rem - #{$toolbar-width}));
+    grid-template-columns: $toolbar-width 22.75rem minmax(0, 1fr);
     grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
     grid-template-areas:
       'toolbar metadata visualization'
@@ -105,17 +105,19 @@ $toolbar-width: calc(6rem + 1px);
       }
     }
 
-    // Clip the cell visualization so its canvas can't paint over the dividers
+    // Clip the cell visualization so its canvas can't paint over the dividers.
+    // Below 1028px the two top panels shrink in proportion, so they stay about half each down to 1280px screens.
     cde-node-dist-visualization {
       height: 100%;
-      min-width: 32.75rem;
-      flex-grow: 1;
+      flex: 1 1 32.75rem;
+      min-width: 0;
       overflow: hidden;
     }
 
     cde-violin {
       height: 100%;
-      width: 31.5rem;
+      flex: 0 1 31.5rem;
+      min-width: 0;
       border-left: 1px solid vars.$outline;
 
       &.fill {

@@ -312,7 +312,7 @@ export class ViolinComponent {
           view.signal('child_height', this.calculateViolinHeight(el.clientHeight));
           this.enableScroll.set(false);
         }
-        view.signal('child_width', el.clientWidth - VIOLIN_WIDTH_OFFSET);
+        view.signal('child_width', Math.max(el.clientWidth - VIOLIN_WIDTH_OFFSET, 1));
       }
       await view.resize().runAsync();
       if (el && this.fullscreen()) {
@@ -344,7 +344,7 @@ export class ViolinComponent {
           }
         }
         if (!fullscreen) {
-          draft.spec.width = el.clientWidth - VIOLIN_WIDTH_OFFSET;
+          draft.spec.width = Math.max(el.clientWidth - VIOLIN_WIDTH_OFFSET, 1);
           draft.spec.height = MAX_VIOLIN_HEIGHT;
         }
       },
@@ -383,7 +383,7 @@ export class ViolinComponent {
     let changed = false;
 
     if (Math.abs(widthGap) >= 1) {
-      view.signal('child_width', (view.signal('child_width') as number) + widthGap);
+      view.signal('child_width', Math.max((view.signal('child_width') as number) + widthGap, 1));
       changed = true;
     }
 
