@@ -1,4 +1,4 @@
-import { DOWN_ARROW, END, HOME, UP_ARROW } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, END, HOME, LEFT_ARROW, RIGHT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltip } from '@angular/material/tooltip';
 import { By } from '@angular/platform-browser';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -141,6 +141,28 @@ describe('NavigationRailComponent', () => {
     expect(item).toHaveClass('hra-navigation-rail-item--active');
   });
 
+  it('runs along the bottom when horizontal, where the left and right arrow keys move focus', async () => {
+    await setup(`
+      <hra-navigation-rail aria-label="Actions" orientation="horizontal">
+        <button hraNavigationRailItem icon="layers">Display</button>
+        <button hraNavigationRailItem icon="help" hraNavigationRailBottom>Help</button>
+      </hra-navigation-rail>
+    `);
+    const rail = screen.getByRole('toolbar', { name: 'Actions' });
+    expect(rail).toHaveAttribute('aria-orientation', 'horizontal');
+    expect(rail).toHaveClass('hra-navigation-rail--horizontal');
+
+    screen.getByRole('button', { name: 'Display' }).focus();
+    press('ArrowRight', RIGHT_ARROW);
+    expect(screen.getByRole('button', { name: 'Help' })).toHaveFocus();
+
+    press('ArrowDown', DOWN_ARROW);
+    expect(screen.getByRole('button', { name: 'Help' })).toHaveFocus();
+
+    press('ArrowLeft', LEFT_ARROW);
+    expect(screen.getByRole('button', { name: 'Display' })).toHaveFocus();
+  });
+
   it('leaves the tab index alone outside a rail', async () => {
     await setup(`<button hraNavigationRailItem icon="help">Help</button>`);
 
@@ -165,6 +187,22 @@ describe('NavigationRailComponent', () => {
 
       expect(tooltip.position).toBe('after');
       expect(tooltip.showDelay).toBe(250);
+    });
+
+    it('open above a horizontal rail', async () => {
+      const { fixture, rerender } = await render(
+        `
+          <hra-navigation-rail aria-label="Actions" [orientation]="orientation">
+            <button hraNavigationRailItem icon="download" hraPlainTooltip="Download data and images">Downloads</button>
+          </hra-navigation-rail>
+        `,
+        { imports: [NavigationRailModule, PlainTooltipDirective], componentProperties: { orientation: 'horizontal' } },
+      );
+      const tooltip = fixture.debugElement.query(By.directive(MatTooltip)).injector.get(MatTooltip);
+      expect(tooltip.position).toBe('above');
+
+      await rerender({ componentProperties: { orientation: 'vertical' } });
+      expect(tooltip.position).toBe('after');
     });
 
     it('show on keyboard focus', async () => {

@@ -18,6 +18,9 @@ const meta: Meta<NavigationRailComponent> = {
           'Drawers, toggles and the current page show the active indicator; an open menu gets a light highlight. ' +
           'Long labels wrap to two lines, and a plain tooltip beside the rail can describe what each item does. ' +
           'The rail is a toolbar: it takes one tab stop, and the arrow keys, Home and End move between items. ' +
+          'On compact screens, orientation="horizontal" makes it a bar along the bottom, like the Material 3 ' +
+          'navigation bar: items share the width, tooltips and menus open above, and the left and right arrow ' +
+          'keys move between items. ' +
           'Colors and label type come from the app theme, and each can be overridden with a ' +
           '--hra-navigation-rail-* token. ' +
           'The Cell Distance Explorer uses it first. FTU Explorer and the Exploration User Interface ' +
@@ -108,6 +111,62 @@ export const AppActions: Story = {
 
       <mat-menu #help="matMenu" hraNavigationRailMenu yPosition="above">
         <a mat-menu-item href="https://humanatlas.io" target="_blank" rel="noopener noreferrer">Guide</a>
+      </mat-menu>
+    `,
+  }),
+};
+
+/** Phone-sized container with the rail along the bottom */
+const PHONE_FRAME_STYLES = [
+  ...FRAME_STYLES,
+  `.phone { flex-direction: column; justify-content: flex-end; width: 22.5rem; }`,
+];
+
+export const Horizontal: Story = {
+  name: 'Horizontal (compact screens)',
+  render: () => ({
+    props: { downloadsOpen: false },
+    styles: PHONE_FRAME_STYLES,
+    template: `
+      <div class="frame phone">
+        <hra-navigation-rail aria-label="Visualization actions" orientation="horizontal">
+          <button hraNavigationRailItem icon="layers" [matMenuTriggerFor]="display"
+            hraPlainTooltip="Choose what the visualization shows">
+            Display
+          </button>
+          <button hraNavigationRailItem icon="restart_alt" [matMenuTriggerFor]="reset"
+            hraPlainTooltip="Reset the view, deleted cells or colors">
+            Reset
+          </button>
+          <button hraNavigationRailItem icon="download" [active]="downloadsOpen" (click)="downloadsOpen = !downloadsOpen"
+            hraPlainTooltip="Download data and images">
+            Downloads
+          </button>
+          <button hraNavigationRailItem icon="more_horiz" [matMenuTriggerFor]="more" hraPlainTooltip="More actions">
+            More
+          </button>
+        </hra-navigation-rail>
+      </div>
+
+      <mat-menu #display="matMenu" hraNavigationRailMenu hraNavigationRailMenuOrientation="horizontal">
+        <button mat-menu-item>Cell links</button>
+        <button mat-menu-item>All metadata</button>
+      </mat-menu>
+
+      <mat-menu #reset="matMenu" hraNavigationRailMenu hraNavigationRailMenuOrientation="horizontal">
+        <button mat-menu-item>Reset view</button>
+        <button mat-menu-item>Reset colors</button>
+      </mat-menu>
+
+      <mat-menu #more="matMenu" hraNavigationRailMenu hraNavigationRailMenuOrientation="horizontal">
+        <a mat-menu-item href="https://github.com/hubmapconsortium/hra-ui" target="_blank" rel="noopener noreferrer">
+          <mat-icon>open_in_new</mat-icon>
+          Embed
+        </a>
+        <button mat-menu-item>
+          <mat-icon>info</mat-icon>
+          Info
+        </button>
       </mat-menu>
     `,
   }),

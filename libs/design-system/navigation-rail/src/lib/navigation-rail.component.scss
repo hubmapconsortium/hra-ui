@@ -26,3 +26,29 @@
     margin-block: 0.25rem;
   }
 }
+
+// Material 3 navigation bar layout: items share the width, and the bottom items follow the others
+:host(.hra-navigation-rail--horizontal) {
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  height: auto;
+  padding: 0.25rem 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .hra-navigation-rail--bottom {
+    display: contents;
+  }
+
+  ::ng-deep {
+    .hra-navigation-rail-item {
+      flex: 1 1 0;
+      min-width: 3.5rem;
+    }
+
+    .mat-divider {
+      display: none;
+    }
+  }
+}
