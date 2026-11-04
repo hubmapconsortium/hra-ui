@@ -19,8 +19,8 @@ export class NodeDistVisualizationControlsComponent {
   /** Current view mode */
   readonly viewMode = model<ViewMode>('explore');
 
-  /** Whether delete button is disabled */
-  readonly deleteDisabled = input(false, { transform: booleanAttribute });
+  /** Whether cells are selected, which shows the delete button */
+  readonly deleteAvailable = input(false, { transform: booleanAttribute });
 
   /** Emits when delete button clicked */
   readonly deleteClick = output<void>();

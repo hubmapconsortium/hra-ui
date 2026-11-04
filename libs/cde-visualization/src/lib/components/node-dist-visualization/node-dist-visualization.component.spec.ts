@@ -69,7 +69,7 @@ describe('NodeDistVisualizationComponent', () => {
 
   async function getSelectionDeleteButton(fixture: ComponentFixture<NodeDistVisualizationComponent>) {
     const loader = TestbedHarnessEnvironment.loader(fixture);
-    return loader.getHarness(MatButtonHarness.with({ selector: '.delete' }));
+    return loader.getHarnessOrNull(MatButtonHarness.with({ selector: '.delete' }));
   }
 
   async function emitVisualizationEvent(
@@ -185,8 +185,7 @@ describe('NodeDistVisualizationComponent', () => {
       await setViewMode(fixture, /Select/);
       await emitVisualizationEvent(fixture, 'nodeSelectionChange', [SAMPLE_NODE_EVENT]);
 
-      const deleteButton = await getSelectionDeleteButton(fixture);
-      expect(await deleteButton.isDisabled()).toBeFalsy();
+      expect(await getSelectionDeleteButton(fixture)).not.toBeNull();
 
       fixture.componentInstance.deleteSelection();
       fixture.detectChanges();
@@ -201,8 +200,7 @@ describe('NodeDistVisualizationComponent', () => {
       await setViewMode(fixture, /Explore/);
       await setViewMode(fixture, /Select/);
 
-      const deleteButton = await getSelectionDeleteButton(fixture);
-      expect(await deleteButton.isDisabled()).toBeTruthy();
+      expect(await getSelectionDeleteButton(fixture)).toBeNull();
     });
   });
 

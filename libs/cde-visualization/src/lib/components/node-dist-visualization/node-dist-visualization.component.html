@@ -1,7 +1,7 @@
 <hra-expansion-panel tagline="Distance visualization" disabled>
   <hra-expansion-panel-header-content>
     <cde-node-dist-visualization-controls
-      [deleteDisabled]="!hasSelection()"
+      [deleteAvailable]="hasSelection()"
       [(viewMode)]="viewMode"
       (deleteClick)="deleteSelection()"
     />
@@ -36,7 +36,7 @@
       />
 
       <cde-node-dist-visualization-controls
-        [deleteDisabled]="!hasSelection()"
+        [deleteAvailable]="hasSelection()"
         [(viewMode)]="viewMode"
         (deleteClick)="deleteSelection()"
       />
