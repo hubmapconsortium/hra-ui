@@ -96,7 +96,7 @@ describe('NodeDistVisualizationComponent', () => {
 
   it('should render', async () => {
     await setup();
-    expect(screen.getByText('Distance visualization')).toBeInTheDocument();
+    expect(screen.getByText('Spatial view')).toBeInTheDocument();
   });
 
   describe('empty state', () => {
@@ -207,8 +207,6 @@ describe('NodeDistVisualizationComponent', () => {
   it('hides the fullscreen button when full screen is unavailable', async () => {
     await setup({ inputs: { fullscreenAvailable: false } });
 
-    expect(
-      screen.queryByRole('button', { name: 'Open the distance visualization in full screen' }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Open the spatial view in full screen' })).not.toBeInTheDocument();
   });
 });

@@ -112,9 +112,9 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
       files: [
         {
           id: 'visualization',
-          name: 'Distance visualization',
+          name: 'Spatial view',
           description: 'An image of the current view.',
-          formats: [{ id: 'png', label: 'PNG', ariaLabel: 'Download distance visualization PNG' }],
+          formats: [{ id: 'png', label: 'PNG', ariaLabel: 'Download spatial view PNG' }],
         },
         {
           id: 'violin-graph',

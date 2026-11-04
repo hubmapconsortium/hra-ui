@@ -91,7 +91,7 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
     tooltip: 'Show or hide panels',
     options: [
       { id: 'metadata', label: 'Metadata' },
-      { id: 'distance-visualization', label: 'Distance visualization' },
+      { id: 'distance-visualization', label: 'Spatial view' },
       { id: 'violin-graph', label: 'Violin graph' },
       { id: 'histogram', label: 'Histogram' },
     ],
@@ -108,7 +108,7 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
     label: 'Reset',
     tooltip: 'Restore the view, cells or colors',
     view: { label: 'Reset view', description: 'Zoom to fit and undo rotation' },
-    deletedCells: { label: 'Restore deleted cells', description: 'Cells deleted in the distance visualization' },
+    deletedCells: { label: 'Restore deleted cells', description: 'Cells deleted in the spatial view' },
     colors: { label: 'Reset colors', description: 'Use default colors for all cell types' },
     everything: {
       label: 'Reset everything',

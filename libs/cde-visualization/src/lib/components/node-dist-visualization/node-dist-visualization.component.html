@@ -1,4 +1,4 @@
-<hra-expansion-panel tagline="Distance visualization" disabled>
+<hra-expansion-panel tagline="Spatial view" disabled>
   <hra-expansion-panel-header-content>
     <cde-node-dist-visualization-controls
       [deleteAvailable]="hasSelection()"
@@ -9,7 +9,7 @@
       <button
         mat-icon-button
         class="fullscreen"
-        aria-label="Open the distance visualization in full screen"
+        aria-label="Open the spatial view in full screen"
         hraPlainTooltip="Full screen"
         hraFeature="open-fullscreen"
         hraClickEvent
@@ -21,7 +21,7 @@
   </hra-expansion-panel-header-content>
 
   <hra-fullscreen-portal
-    tagline="Distance visualization"
+    tagline="Spatial view"
     panelClass="node-dist-vis-fullscreen-panel"
     (beforeOpened)="fullscreenChange.emit(true)"
     (beforeClosed)="fullscreenChange.emit(false)"

@@ -136,7 +136,7 @@ $toolbar-width: calc(6rem + 1px);
     }
 
     // Clip the cell visualization so its canvas can't paint over the dividers.
-    // Below 1028px the two top panels shrink in proportion, so they stay about half each down to 1280px screens.
+    // Below 1028px the violin graph shrinks twice as fast, so the spatial view's header controls fit at 1280px.
     cde-node-dist-visualization {
       height: 100%;
       flex: 1 1 32.75rem;
@@ -146,7 +146,7 @@ $toolbar-width: calc(6rem + 1px);
 
     cde-violin {
       height: 100%;
-      flex: 0 1 31.5rem;
+      flex: 0 2 31.5rem;
       min-width: 0;
       border-left: 1px solid vars.$outline;
 
@@ -181,6 +181,7 @@ $toolbar-width: calc(6rem + 1px);
 ::ng-deep .hra-app hra-expansion-panel {
   .title {
     @include utils.use-font(title, small);
+    white-space: nowrap;
   }
 
   .expansion-body {

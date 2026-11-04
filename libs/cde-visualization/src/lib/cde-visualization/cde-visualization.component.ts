@@ -130,7 +130,7 @@ const TABS_LABEL = 'Panels';
 /** Labels of the tabs */
 const TAB_LABELS: Record<TabId, string> = {
   'cell-types': 'Cell types',
-  'distance-visualization': 'Distance visualization',
+  'distance-visualization': 'Spatial view',
   'violin-graph': 'Violin graph',
   histogram: 'Histogram',
 };

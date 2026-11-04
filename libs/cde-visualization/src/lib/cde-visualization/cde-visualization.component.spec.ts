@@ -674,14 +674,14 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
-      'shows the panels as tabs below 1280px, starting on the distance visualization',
+      'shows the panels as tabs below 1280px, starting on the spatial view',
       async () => {
         const { fixture } = await setup();
         resize(fixture, 1000);
 
-        expect(getTabNames()).toEqual(['Cell types', 'Distance visualization', 'Violin graph', 'Histogram']);
-        expect(screen.getByRole('tab', { name: 'Distance visualization' })).toHaveAttribute('aria-selected', 'true');
-        expect(screen.getByRole('tabpanel', { name: 'Distance visualization' })).toBeInTheDocument();
+        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram']);
+        expect(screen.getByRole('tab', { name: 'Spatial view' })).toHaveAttribute('aria-selected', 'true');
+        expect(screen.getByRole('tabpanel', { name: 'Spatial view' })).toBeInTheDocument();
         expect(getElement(fixture, '.metadata')).toHaveClass('panel-hidden');
         expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
         expect(getElement(fixture, 'cde-histogram')).toHaveClass('panel-hidden');
@@ -790,7 +790,7 @@ describe('CdeVisualizationComponent', () => {
       async () => {
         const { trigger, drawer, region } = await openDrawer(TOOLBAR_CONTENT.info.label, ABOUT_CONTENT.title);
 
-        expect(within(region).getByRole('heading', { name: 'Distance visualization' })).toBeInTheDocument();
+        expect(within(region).getByRole('heading', { name: 'Spatial view' })).toBeInTheDocument();
         fireEvent.click(within(region).getByRole('button', { name: ABOUT_CONTENT.closeLabel }));
         await expectClosed(drawer, trigger);
       },
