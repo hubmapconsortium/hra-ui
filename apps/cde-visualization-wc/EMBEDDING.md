@@ -139,13 +139,21 @@ Metadata can be set either as an object or as individual metadata attributes. Us
 
 ### Panels
 
-The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comma or space separated list of `metadata`, `distance-visualization`, `violin-graph`, and `histogram`. The Cell types panel always shows. The toolbar's Panels menu can still show hidden panels, and Reset everything hides them again.
+The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comma or space separated list of `metadata`, `distance-visualization` (the Spatial view), `violin-graph`, and `histogram`. The Cell types panel always shows. The toolbar's Panels menu can still show hidden panels, and Reset everything hides them again.
 
 ```html
 <cde-visualization hidden-panels="violin-graph, histogram" nodes="https://..."></cde-visualization>
 ```
 
 With `remember-panels`, the panels shown and hidden from the Panels menu are stored in the browser's local storage and stay that way after a reload.
+
+## Layout
+
+The _CDE_ fits its layout to its own width, so it adapts to its container as well as the screen. The breakpoints are Angular Material's:
+
+- **1280px and wider:** the panels show side by side.
+- **Below 1280px:** the panels show as tabs, one at a time. The Cell types tab also holds the Metadata panel. Panels hidden with `hidden-panels` or the Panels menu have no tab, and full screen is off.
+- **Below 600px:** the toolbar becomes a bar along the bottom, and Embed, Theme, Info and Help move into its More menu.
 
 ## Outputs
 
