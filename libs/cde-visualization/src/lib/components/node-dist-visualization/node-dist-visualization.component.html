@@ -2,6 +2,7 @@
   <hra-expansion-panel-header-content>
     <cde-node-dist-visualization-controls
       [deleteAvailable]="hasSelection()"
+      [compact]="compact()"
       [(viewMode)]="viewMode"
       (deleteClick)="deleteSelection()"
     />
@@ -37,6 +38,7 @@
 
       <cde-node-dist-visualization-controls
         [deleteAvailable]="hasSelection()"
+        [compact]="compact()"
         [(viewMode)]="viewMode"
         (deleteClick)="deleteSelection()"
       />

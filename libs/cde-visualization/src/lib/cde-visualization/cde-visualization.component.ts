@@ -124,6 +124,9 @@ const PANEL_IMAGE_DOWNLOADS: Partial<Record<PanelId, DownloadFileId>> = {
 /** Below this width the panels show as tabs. Angular Material's Large breakpoint starts here. */
 const TABBED_LAYOUT_BREAKPOINT = 1280;
 
+/** Below this width the toolbar is a bar along the bottom. Angular Material's Small breakpoint starts here. */
+const COMPACT_LAYOUT_BREAKPOINT = 600;
+
 /** Name of the tab bar */
 const TABS_LABEL = 'Panels';
 
@@ -550,6 +553,9 @@ export class CdeVisualizationComponent {
 
   /** Whether the panels show as tabs. A visualization that isn't laid out yet (0 wide) keeps the panel layout. */
   protected readonly tabbed = computed(() => this.width() > 0 && this.width() < TABBED_LAYOUT_BREAKPOINT);
+
+  /** Whether the visualization is phone-sized: the toolbar runs along the bottom and the controls get compact */
+  protected readonly compact = computed(() => this.width() > 0 && this.width() < COMPACT_LAYOUT_BREAKPOINT);
 
   /** Tabs that show: the cell types tab and the tabs of the panels that aren't hidden */
   protected readonly tabs = computed(() => {

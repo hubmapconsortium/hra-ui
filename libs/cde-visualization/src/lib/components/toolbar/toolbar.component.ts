@@ -3,7 +3,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
-import { NavigationRailModule } from '@hra-ui/design-system/navigation-rail';
+import { NavigationRailModule, NavigationRailOrientation } from '@hra-ui/design-system/navigation-rail';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { PANEL_IDS, PanelId } from '../../models/panels';
 import { ThemePreference } from '../../services/theme-switch/theme-switch.service';
@@ -14,7 +14,8 @@ let idCounter = 0;
 
 /**
  * Vertical toolbar with the visualization's app-wide actions: panels, display options, resets, downloads,
- * the embedding guide, the theme menu, the About sheet and help links
+ * the embedding guide, the theme menu, the About sheet and help links.
+ * On compact screens it's a bar along the bottom, with Embed, Theme, Info and Help in a More menu.
  */
 @Component({
   selector: 'cde-toolbar',
@@ -55,6 +56,9 @@ export class ToolbarComponent {
   /** Whether the toolbar shows the Theme menu */
   readonly showThemeMenu = input(false);
 
+  /** Whether the toolbar is a bar along the bottom of a compact screen */
+  readonly compact = input(false);
+
   /** Theme menu choice */
   readonly themePreference = model<ThemePreference>('system');
 
@@ -72,6 +76,11 @@ export class ToolbarComponent {
 
   /** Text content */
   protected readonly content = TOOLBAR_CONTENT;
+
+  /** Orientation of the rail and its menus */
+  protected readonly orientation = computed((): NavigationRailOrientation =>
+    this.compact() ? 'horizontal' : 'vertical',
+  );
 
   /** Prefix of the ids that tie menu items to their labels and supporting text */
   protected readonly idPrefix = `cde-toolbar-${idCounter++}`;

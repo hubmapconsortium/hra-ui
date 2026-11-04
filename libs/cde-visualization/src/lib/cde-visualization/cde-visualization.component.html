@@ -25,6 +25,7 @@
     <mat-drawer-content
       class="layout"
       [class.tabbed]="tabbed()"
+      [class.compact]="compact()"
       [class.visualizations-hidden]="!layout().visualizations"
     >
       <cde-toolbar
@@ -35,6 +36,7 @@
         [hasHiddenMetadata]="hasHiddenMetadata()"
         [hasDeletedCells]="hasDeletedCells()"
         [showThemeMenu]="!hideThemeMenu()"
+        [compact]="compact()"
         [themePreference]="themeSwitch.preference()"
         [(openSheet)]="openSheet"
         [(cellLinkData)]="showCellLinkData"
@@ -104,6 +106,7 @@
               [loading]="nodesLoading()"
               [emptyState]="visualizationEmptyState()"
               [fullscreenAvailable]="!tabbed()"
+              [compact]="compact()"
               [(nodeFilter)]="nodeFilterView"
               [(edgesDisabled)]="edgesDisabled"
               [(viewMode)]="viewMode"

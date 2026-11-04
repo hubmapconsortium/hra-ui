@@ -1,4 +1,4 @@
-<hra-navigation-rail [attr.aria-label]="content.label">
+<hra-navigation-rail [attr.aria-label]="content.label" [orientation]="orientation()">
   <button
     hraNavigationRailItem
     icon="space_dashboard"
@@ -30,7 +30,9 @@
     {{ content.reset.label }}
   </button>
 
-  <mat-divider />
+  @if (!compact()) {
+    <mat-divider />
+  }
 
   <button
     hraNavigationRailItem
@@ -43,20 +45,23 @@
   >
     {{ content.downloads.label }}
   </button>
-  <a
-    hraNavigationRailItem
-    icon="code"
-    target="_blank"
-    rel="noopener noreferrer"
-    hraFeature="embed"
-    hraClickEvent
-    [attr.href]="content.embed.url"
-    [hraPlainTooltip]="content.embed.tooltip"
-  >
-    {{ content.embed.label }}
-  </a>
+  <!-- One item per block, so each block projects by its item's selector (the bottom items pin to the bottom) -->
+  @if (!compact()) {
+    <a
+      hraNavigationRailItem
+      icon="code"
+      target="_blank"
+      rel="noopener noreferrer"
+      hraFeature="embed"
+      hraClickEvent
+      [attr.href]="content.embed.url"
+      [hraPlainTooltip]="content.embed.tooltip"
+    >
+      {{ content.embed.label }}
+    </a>
+  }
 
-  @if (showThemeMenu()) {
+  @if (showThemeMenu() && !compact()) {
     <button
       hraNavigationRailItem
       hraNavigationRailBottom
@@ -69,29 +74,45 @@
       {{ content.theme.label }}
     </button>
   }
-  <button
-    hraNavigationRailItem
-    hraNavigationRailBottom
-    icon="info"
-    hraFeature="info"
-    hraClickEvent
-    [active]="openSheet() === 'about'"
-    [hraPlainTooltip]="content.info.tooltip"
-    (click)="openSheet.set('about')"
-  >
-    {{ content.info.label }}
-  </button>
-  <button
-    hraNavigationRailItem
-    hraNavigationRailBottom
-    icon="help"
-    hraFeature="help"
-    hraClickEvent
-    [hraPlainTooltip]="content.help.tooltip"
-    [matMenuTriggerFor]="helpMenu"
-  >
-    {{ content.help.label }}
-  </button>
+  @if (!compact()) {
+    <button
+      hraNavigationRailItem
+      hraNavigationRailBottom
+      icon="info"
+      hraFeature="info"
+      hraClickEvent
+      [active]="openSheet() === 'about'"
+      [hraPlainTooltip]="content.info.tooltip"
+      (click)="openSheet.set('about')"
+    >
+      {{ content.info.label }}
+    </button>
+  }
+  @if (!compact()) {
+    <button
+      hraNavigationRailItem
+      hraNavigationRailBottom
+      icon="help"
+      hraFeature="help"
+      hraClickEvent
+      [hraPlainTooltip]="content.help.tooltip"
+      [matMenuTriggerFor]="helpMenu"
+    >
+      {{ content.help.label }}
+    </button>
+  } @else {
+    <button
+      hraNavigationRailItem
+      icon="more_horiz"
+      hraFeature="more"
+      hraClickEvent
+      [active]="openSheet() === 'about'"
+      [hraPlainTooltip]="content.more.tooltip"
+      [matMenuTriggerFor]="moreMenu"
+    >
+      {{ content.more.label }}
+    </button>
+  }
 </hra-navigation-rail>
 
 <!-- Menu items: the label names the item and the supporting text under it describes it -->
@@ -103,7 +124,12 @@
 </ng-template>
 
 <!-- Panel clicks stop propagating so the menu stays open while panels are shown and hidden -->
-<mat-menu hraNavigationRailMenu hraFeature="panels-menu" #panelsMenu="matMenu">
+<mat-menu
+  hraNavigationRailMenu
+  hraFeature="panels-menu"
+  [hraNavigationRailMenuOrientation]="orientation()"
+  #panelsMenu="matMenu"
+>
   @for (panel of content.panels.options; track panel.id) {
     <button
       mat-menu-item
@@ -131,7 +157,12 @@
 </mat-menu>
 
 <!-- Clicks stop propagating so the menu stays open while options are toggled -->
-<mat-menu hraNavigationRailMenu hraFeature="display-menu" #displayMenu="matMenu">
+<mat-menu
+  hraNavigationRailMenu
+  hraFeature="display-menu"
+  [hraNavigationRailMenuOrientation]="orientation()"
+  #displayMenu="matMenu"
+>
   <button
     mat-menu-item
     role="menuitemcheckbox"
@@ -186,7 +217,12 @@
   </button>
 </mat-menu>
 
-<mat-menu hraNavigationRailMenu hraFeature="reset-menu" #resetMenu="matMenu">
+<mat-menu
+  hraNavigationRailMenu
+  hraFeature="reset-menu"
+  [hraNavigationRailMenuOrientation]="orientation()"
+  #resetMenu="matMenu"
+>
   <button
     mat-menu-item
     hraFeature="reset-view"
@@ -249,7 +285,13 @@
   </button>
 </mat-menu>
 
-<mat-menu hraNavigationRailMenu yPosition="above" hraFeature="theme-menu" #themeMenu="matMenu">
+<mat-menu
+  hraNavigationRailMenu
+  yPosition="above"
+  hraFeature="theme-menu"
+  [hraNavigationRailMenuOrientation]="orientation()"
+  #themeMenu="matMenu"
+>
   @for (option of content.theme.options; track option.id) {
     <button
       mat-menu-item
@@ -265,7 +307,13 @@
   }
 </mat-menu>
 
-<mat-menu hraNavigationRailMenu yPosition="above" hraFeature="help-menu" #helpMenu="matMenu">
+<mat-menu
+  hraNavigationRailMenu
+  yPosition="above"
+  hraFeature="help-menu"
+  [hraNavigationRailMenuOrientation]="orientation()"
+  #helpMenu="matMenu"
+>
   @for (link of content.help.links; track link.id) {
     <a
       mat-menu-item
@@ -279,4 +327,38 @@
       {{ link.label }}
     </a>
   }
+</mat-menu>
+
+<!-- On compact screens, Embed, Theme, Info and Help move here. Theme and Help open as submenus. -->
+<mat-menu
+  hraNavigationRailMenu
+  hraFeature="more-menu"
+  [hraNavigationRailMenuOrientation]="orientation()"
+  #moreMenu="matMenu"
+>
+  <a
+    mat-menu-item
+    target="_blank"
+    rel="noopener noreferrer"
+    hraFeature="embed"
+    hraClickEvent
+    [attr.href]="content.embed.url"
+  >
+    <mat-icon>open_in_new</mat-icon>
+    {{ content.embed.label }}
+  </a>
+  @if (showThemeMenu()) {
+    <button mat-menu-item hraFeature="theme" hraClickEvent [matMenuTriggerFor]="themeMenu">
+      <mat-icon>{{ themeIcon() }}</mat-icon>
+      {{ content.theme.label }}
+    </button>
+  }
+  <button mat-menu-item hraFeature="info" hraClickEvent (click)="openSheet.set('about')">
+    <mat-icon>info</mat-icon>
+    {{ content.info.label }}
+  </button>
+  <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">
+    <mat-icon>help</mat-icon>
+    {{ content.help.label }}
+  </button>
 </mat-menu>

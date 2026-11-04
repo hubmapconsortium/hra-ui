@@ -162,6 +162,26 @@ describe('ToolbarComponent', () => {
     expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.theme.label })).toHaveTextContent(dark.icon);
   });
 
+  it('is a bar along the bottom on compact screens, with Embed, Info and Help in the More menu', async () => {
+    const openSheetChange = jest.fn();
+    await setup({ inputs: { compact: true }, on: { openSheet: openSheetChange } });
+
+    const toolbar = screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label });
+    expect(toolbar).toHaveAttribute('aria-orientation', 'horizontal');
+    expect(screen.queryByRole('link', { name: TOOLBAR_CONTENT.embed.label })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.info.label })).not.toBeInTheDocument();
+
+    await openMenu(TOOLBAR_CONTENT.more.label);
+    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.embed.label) })).toHaveAttribute(
+      'href',
+      EMBEDDING_GUIDE_URL,
+    );
+    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.help.label) })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.info.label) }));
+    expect(openSheetChange).toHaveBeenLastCalledWith('about');
+  });
+
   it('links to the help resources', async () => {
     await setup();
     await openMenu(TOOLBAR_CONTENT.help.label);

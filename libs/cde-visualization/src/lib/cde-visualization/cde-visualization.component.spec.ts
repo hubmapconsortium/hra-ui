@@ -700,6 +700,22 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
+      'moves the toolbar to the bottom below 600px',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 500);
+
+        expect(getElement(fixture, '.layout')).toHaveClass('compact');
+        expect(screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label })).toHaveAttribute(
+          'aria-orientation',
+          'horizontal',
+        );
+        expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.more.label })).toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
       'drops the tabs of hidden panels and falls back when the active tab hides',
       async () => {
         const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization' } });

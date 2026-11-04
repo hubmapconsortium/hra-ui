@@ -68,6 +68,21 @@ $toolbar-width: calc(6rem + 1px);
         'toolbar tabs'
         'toolbar panels';
     }
+
+    &.compact {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      grid-template-areas:
+        'tabs'
+        'panels'
+        'toolbar';
+
+      .toolbar {
+        height: auto;
+        border-right: none;
+        border-top: 1px solid vars.$outline;
+      }
+    }
   }
 
   .tabs {

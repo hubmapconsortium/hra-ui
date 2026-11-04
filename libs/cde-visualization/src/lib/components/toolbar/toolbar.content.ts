@@ -81,6 +81,8 @@ export interface ToolbarContent {
   info: ToolbarItemContent;
   /** Help menu and its links */
   help: ToolbarItemContent & { links: ToolbarHelpLink[] };
+  /** More menu, which holds Embed, Theme, Info and Help on compact screens */
+  more: ToolbarItemContent;
 }
 
 /** Text content for the toolbar */
@@ -149,5 +151,9 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
       },
       { id: 'embedding-guide', label: 'Embedding guide', url: EMBEDDING_GUIDE_URL },
     ],
+  },
+  more: {
+    label: 'More',
+    tooltip: 'More actions',
   },
 };

@@ -108,6 +108,9 @@ export class NodeDistVisualizationComponent {
   /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
   readonly fullscreenAvailable = input(true);
 
+  /** Whether the screen is compact, which shows the view mode toggles as icons */
+  readonly compact = input(false);
+
   /** Emits true when the panel opens in full screen and false when it closes */
   readonly fullscreenChange = output<boolean>();
 
