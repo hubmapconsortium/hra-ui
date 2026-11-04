@@ -20,11 +20,11 @@ interface ViewModeOption {
 /** View mode toggles, in order */
 const VIEW_MODES: ViewModeOption[] = [
   { value: 'select', label: 'Select', icon: 'highlight_alt', tooltip: 'Select cells to delete from this dataset' },
-  { value: 'inspect', label: 'Inspect', icon: 'info', tooltip: 'Get information about individual cell types' },
+  { value: 'inspect', label: 'Inspect', icon: 'frame_inspect', tooltip: 'Get information about individual cell types' },
   {
     value: 'explore',
     label: 'Explore',
-    icon: 'pan_tool',
+    icon: 'explore',
     tooltip: 'Zoom, pan, and rotate the view of this visualization',
   },
 ];
