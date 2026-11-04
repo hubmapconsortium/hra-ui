@@ -60,6 +60,36 @@ $toolbar-width: calc(6rem + 1px);
     &.visualizations-hidden {
       grid-template-columns: $toolbar-width 1fr 0;
     }
+
+    &.tabbed {
+      grid-template-columns: $toolbar-width minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
+      grid-template-areas:
+        'toolbar tabs'
+        'toolbar panels';
+    }
+  }
+
+  .tabs {
+    grid-area: tabs;
+  }
+
+  // In the panel layout the tab panel adds no box, so the two columns stay grid items
+  .panels {
+    display: contents;
+  }
+
+  .layout.tabbed .panels {
+    grid-area: panels;
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+
+    .metadata,
+    .visualizations {
+      flex-grow: 1;
+      min-width: 0;
+    }
   }
 
   // The rail fills with surface-container, and the outline divider matches the panel dividers

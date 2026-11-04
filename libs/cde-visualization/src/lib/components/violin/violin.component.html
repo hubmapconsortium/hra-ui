@@ -1,23 +1,25 @@
 <hra-expansion-panel tagline="Violin graph" disabled hraHoverEvent hraHoverEventTriggerOn="mouseenter">
   <hra-expansion-panel-header-content>
-    <button
-      mat-icon-button
-      aria-label="Open the violin graph in full screen"
-      hraPlainTooltip="Full screen"
-      hraFeature="open-fullscreen"
-      hraClickEvent
-      (click)="violinEl().open()"
-    >
-      <mat-icon>fullscreen</mat-icon>
-    </button>
+    @if (fullscreenAvailable()) {
+      <button
+        mat-icon-button
+        aria-label="Open the violin graph in full screen"
+        hraPlainTooltip="Full screen"
+        hraFeature="open-fullscreen"
+        hraClickEvent
+        (click)="violinEl().open()"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
   </hra-expansion-panel-header-content>
   <hra-fullscreen-portal
     tagline="Violin graph"
     hraFeature="fullscreen-violin"
     viewTransition
-    (beforeOpened)="fullscreen.set(true)"
+    (beforeOpened)="fullscreen.set(true); fullscreenChange.emit(true)"
     (opened)="resizeAndSyncView()"
-    (beforeClosed)="fullscreen.set(false)"
+    (beforeClosed)="fullscreen.set(false); fullscreenChange.emit(false)"
     (closed)="resizeAndSyncView()"
   >
     <hra-fullscreen-portal-content class="violin-fullscreen-portal" [class.enableScroll]="enableScroll()">

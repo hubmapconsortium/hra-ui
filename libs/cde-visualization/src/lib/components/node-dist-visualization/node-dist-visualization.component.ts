@@ -6,6 +6,7 @@ import {
   OutputEmitterRef,
   Signal,
   WritableSignal,
+  afterRenderEffect,
   computed,
   effect,
   inject,
@@ -14,6 +15,7 @@ import {
   linkedSignal,
   model,
   output,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -103,6 +105,12 @@ export class NodeDistVisualizationComponent {
   /** Emits when the empty state's action is clicked */
   readonly emptyStateAction = output<void>();
 
+  /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
+  readonly fullscreenAvailable = input(true);
+
+  /** Emits true when the panel opens in full screen and false when it closes */
+  readonly fullscreenChange = output<boolean>();
+
   /** Output emitter for node click events */
   readonly nodeClick = output<NodeEvent>();
 
@@ -183,6 +191,13 @@ export class NodeDistVisualizationComponent {
 
   /** Full screen portal element */
   private readonly fullscreenPortal = viewChild.required(FullscreenPortalComponent);
+
+  /** Closes an open fullscreen view when full screen becomes unavailable */
+  protected readonly closeFullscreenRef = afterRenderEffect(() => {
+    if (!this.fullscreenAvailable()) {
+      untracked(() => this.fullscreenPortal().close());
+    }
+  });
 
   /** Visualization element */
   private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);

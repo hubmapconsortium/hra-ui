@@ -4,6 +4,15 @@ export const PANEL_IDS = ['metadata', 'distance-visualization', 'violin-graph', 
 /** Id of a panel */
 export type PanelId = (typeof PANEL_IDS)[number];
 
+/**
+ * Tabs of the tabbed layout, in layout order. The cell types tab also holds the metadata panel,
+ * and the other tabs show when their panel does.
+ */
+export const TAB_IDS = ['cell-types', 'distance-visualization', 'violin-graph', 'histogram'] as const;
+
+/** Id of a tab */
+export type TabId = (typeof TAB_IDS)[number];
+
 /** Local storage key for the hidden panels, when the visualization remembers them */
 export const HIDDEN_PANELS_STORAGE_KEY = 'cde-visualization-hidden-panels';
 

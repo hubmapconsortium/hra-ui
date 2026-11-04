@@ -302,3 +302,8 @@
     color: vars.$on-surface-variant;
   }
 }
+
+// The cell types tab is as wide as the visualization, so the table fills it
+:host(.fill) ::ng-deep .celltypes-panel {
+  max-width: none;
+}

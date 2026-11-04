@@ -205,4 +205,12 @@ describe('NodeDistVisualizationComponent', () => {
       expect(await deleteButton.isDisabled()).toBeTruthy();
     });
   });
+
+  it('hides the fullscreen button when full screen is unavailable', async () => {
+    await setup({ inputs: { fullscreenAvailable: false } });
+
+    expect(
+      screen.queryByRole('button', { name: 'Open the distance visualization in full screen' }),
+    ).not.toBeInTheDocument();
+  });
 });
