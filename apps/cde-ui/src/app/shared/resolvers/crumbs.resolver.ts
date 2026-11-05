@@ -10,7 +10,8 @@ export const BREADCRUMBS_DATA_KEY = 'breadcrumbs';
 
 /** Root crumbs */
 export const ROOT_CRUMBS: BreadcrumbItem[] = [
-  { name: 'Home', route: 'https://humanatlas.io' },
+  { name: 'Home', route: 'https://humanatlas.io', icon: 'home' },
+  { name: 'Apps', route: 'https://apps.humanatlas.io' },
   { name: 'Cell Distance Explorer', route: '/' },
 ];
 

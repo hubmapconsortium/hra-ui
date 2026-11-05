@@ -22,7 +22,7 @@
 }
 
 :host {
-  $header-height: 72px;
+  $header-height: var(--hra-header-height);
   $content-max-width: 101.25rem;
   $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
   $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);
@@ -103,6 +103,11 @@
       flex-direction: column;
       align-items: flex-start;
       row-gap: 1.5rem;
+    }
+
+    // With the row gap, 2.25rem above the logo, like the space above page titles
+    .breadcrumbs {
+      margin-bottom: 0.75rem;
     }
 
     .logo {

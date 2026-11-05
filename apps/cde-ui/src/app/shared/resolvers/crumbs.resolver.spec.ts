@@ -24,12 +24,15 @@ describe('ROOT_CRUMBS', () => {
     expect(ROOT_CRUMBS.length).toBeGreaterThan(0);
   });
 
-  it('should start at the Human Reference Atlas home page', () => {
-    expect(ROOT_CRUMBS[0]).toEqual({ name: 'Home', route: 'https://humanatlas.io' });
+  it('should start at the Human Reference Atlas home page, shown as a house icon', () => {
+    expect(ROOT_CRUMBS[0]).toEqual({ name: 'Home', route: 'https://humanatlas.io', icon: 'home' });
   });
 
-  it('should have Cell Distance Explorer as second item', () => {
-    expect(ROOT_CRUMBS[1].name).toBe('Cell Distance Explorer');
+  it('should go through the HRA apps to Cell Distance Explorer', () => {
+    expect(ROOT_CRUMBS.slice(1)).toEqual([
+      { name: 'Apps', route: 'https://apps.humanatlas.io' },
+      { name: 'Cell Distance Explorer', route: '/' },
+    ]);
   });
 });
 

@@ -34,8 +34,11 @@ html {
   @include atlasng-hra.base-styles();
 
   // Text fields and selects use secondary for their focus accents instead of Material's primary,
-  // which falls below 4.5:1 against the field background in the light theme
+  // which falls below 4.5:1 against the field background in the light theme.
+  // The header is 56px, like AtlasNG's header shell, and pages subtract the same height.
   & {
+    --hra-header-height: 3.5rem;
+
     @include mat.form-field-overrides(
       (
         filled-caret-color: vars.$secondary,
@@ -192,8 +195,13 @@ html {
       --hra-header-padding: 0 0.5rem;
     }
 
-    hra-brand-logo .logo {
-      border-radius: vars.$corner-small;
+    // A 40px logo balances the 56px header
+    hra-brand-logo {
+      --hra-brand-logo-height: 2.5rem;
+
+      .logo {
+        border-radius: vars.$corner-small;
+      }
     }
 
     :is(hra-brand-logo .logo, .mat-mdc-icon-button):focus-visible {
@@ -222,6 +230,9 @@ html {
     --hra-navigation-category-toggle-text-color: #{vars.$on-surface};
     --hra-navigation-category-toggle-underline-color: #{vars.$primary};
     --hra-navigation-category-toggle-focus-color: #{vars.$on-surface};
+    --hra-navigation-category-toggle-text-font: #{vars.$title-medium};
+    --hra-navigation-category-toggle-text-tracking: #{vars.$title-medium-tracking};
+    --hra-navigation-category-toggle-icon-size: 1.25rem;
     --hra-app-nav-button-tagline-color: #{vars.$on-surface};
     --hra-app-nav-button-tagline-font: #{vars.$title-small};
     --hra-app-nav-button-tagline-tracking: #{vars.$title-small-tracking};
@@ -242,16 +253,16 @@ html {
     );
   }
 
-  // Breadcrumbs on every page use body small (12px) at AtlasNG's weight of 600,
+  // Breadcrumbs on every page use body medium (14px) at 500,
   // with on-surface links and on-surface-variant for the rest
   hra-breadcrumbs {
     --ang-breadcrumbs-crumb-color: #{vars.$on-surface-variant};
     --ang-breadcrumbs-separator-color: #{vars.$on-surface-variant};
-    --ang-breadcrumbs-text-font: #{vars.$body-small-font};
-    --ang-breadcrumbs-text-size: #{vars.$body-small-size};
-    --ang-breadcrumbs-text-weight: 600;
-    --ang-breadcrumbs-text-line-height: #{vars.$body-small-line-height};
-    --ang-breadcrumbs-text-tracking: #{vars.$body-small-tracking};
+    --ang-breadcrumbs-text-font: #{vars.$body-medium-font};
+    --ang-breadcrumbs-text-size: #{vars.$body-medium-size};
+    --ang-breadcrumbs-text-weight: 500;
+    --ang-breadcrumbs-text-line-height: #{vars.$body-medium-line-height};
+    --ang-breadcrumbs-text-tracking: #{vars.$body-medium-tracking};
   }
 
   hra-footer {

@@ -62,6 +62,7 @@ export const ROUTES: Routes = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
+      [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver(),
       examples: jsonFileResolver<ExampleItem[]>(LANDING_PAGE_EXAMPLES_URL, { cache: true }),
       developerTools: jsonFileResolver<LandingCard[]>(LANDING_PAGE_DEVELOPER_TOOLS_URL, { cache: true }),
     },

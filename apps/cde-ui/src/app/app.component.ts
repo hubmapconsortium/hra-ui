@@ -97,8 +97,8 @@ export class AppComponent extends BaseApplicationComponent {
     inject(CustomScrollService);
     inject(Router).initialNavigation();
 
-    // Anchors scroll to 24px below the 72px header
+    // Anchors scroll to 24px below the 56px header
     const scroller = inject(ViewportScroller);
-    scroller.setOffset([0, 72 + 24]);
+    scroller.setOffset([0, 56 + 24]);
   }
 }

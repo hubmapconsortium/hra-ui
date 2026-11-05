@@ -57,6 +57,21 @@ describe('LandingPageComponent', () => {
     expect(within(hero).getByRole('img', { name: /Cell Distance Explorer/ })).toBeInTheDocument();
   });
 
+  it('should show breadcrumbs above the hero logo', async () => {
+    const { fixture } = await setup();
+    fixture.componentRef.setInput('breadcrumbs', [
+      { name: 'Home', route: 'https://humanatlas.io', icon: 'home' },
+      { name: 'Apps', route: 'https://apps.humanatlas.io' },
+      { name: 'Cell Distance Explorer' },
+    ]);
+    fixture.detectChanges();
+
+    const crumbs = fixture.nativeElement.querySelector('.hero-text hra-breadcrumbs');
+    const logo = fixture.nativeElement.querySelector('.hero-text .logo');
+    expect(screen.getByRole('link', { name: 'Apps' })).toHaveAttribute('href', 'https://apps.humanatlas.io');
+    expect(crumbs.compareDocumentPosition(logo)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
   it('should start the hero screenshot entrance once the image has loaded', async () => {
     await setup();
 
