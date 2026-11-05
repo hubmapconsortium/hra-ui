@@ -136,6 +136,7 @@ const TAB_LABELS: Record<TabId, string> = {
   'distance-visualization': 'Spatial view',
   'violin-graph': 'Violin graph',
   histogram: 'Histogram',
+  metadata: 'Metadata',
 };
 
 /** Number of visualizations created so far, which keeps each one's tab ids unique */
@@ -508,15 +509,18 @@ export class CdeVisualizationComponent {
       notices.push(unavailable.noDistances(this.nodeTargetSelectorWithDefault()));
     }
 
-    const hiddenImages = this.panelsHidden()
+    // The tabs have no Panels menu, so their notice doesn't point to it or offer to show the panels
+    const tabbed = this.tabbed();
+    const hiddenImages = this.layoutHiddenPanels()
       .map((panel) => PANEL_IMAGE_DOWNLOADS[panel])
       .filter((file): file is DownloadFileId => file !== undefined && !files.includes(file));
     if (hiddenImages.length > 0) {
       files.push(...hiddenImages);
-      notices.push(unavailable.hiddenPanels);
+      notices.push(tabbed ? unavailable.hiddenPanelsInTabs : unavailable.hiddenPanels);
     }
 
-    return files.length > 0 ? { files, notice: notices.join(' '), showPanels: hiddenImages.length > 0 } : undefined;
+    const showPanels = hiddenImages.length > 0 && !tabbed;
+    return files.length > 0 ? { files, notice: notices.join(' '), showPanels } : undefined;
   });
 
   /** Computed distances between nodes */
@@ -557,9 +561,15 @@ export class CdeVisualizationComponent {
   /** Whether the visualization is phone-sized: the toolbar runs along the bottom and the controls get compact */
   protected readonly compact = computed(() => this.width() > 0 && this.width() < COMPACT_LAYOUT_BREAKPOINT);
 
-  /** Tabs that show: the cell types tab and the tabs of the panels that aren't hidden */
+  /**
+   * Panels hidden in the current layout. The tabs have no Panels menu, so they follow only the hiddenPanels input,
+   * and panels hidden from the toolbar apply to the panel layout.
+   */
+  protected readonly layoutHiddenPanels = computed(() => (this.tabbed() ? this.hiddenPanels() : this.panelsHidden()));
+
+  /** Tabs that show: the cell types tab and the tabs of the panels that the hiddenPanels input doesn't hide */
   protected readonly tabs = computed(() => {
-    const hidden: readonly string[] = this.panelsHidden();
+    const hidden: readonly string[] = this.hiddenPanels();
     return TAB_IDS.filter((tab) => tab === 'cell-types' || !hidden.includes(tab));
   });
 
@@ -593,17 +603,18 @@ export class CdeVisualizationComponent {
    * In the tabbed layout, only the active tab's panels show.
    */
   protected readonly layout = computed(() => {
-    const hidden = this.panelsHidden();
+    const hidden = this.layoutHiddenPanels();
     const tab = this.tabbed() ? this.activeTab() : undefined;
     const shows = (panel: PanelId) => !hidden.includes(panel) && (tab === undefined || tab === panel);
-    const sidebar = tab === undefined || tab === 'cell-types';
-    const metadata = sidebar && !hidden.includes('metadata');
+    const cellTypes = tab === undefined || tab === 'cell-types';
+    const metadata = shows('metadata');
     const distanceVisualization = shows('distance-visualization');
     const violinGraph = shows('violin-graph');
     const histogram = shows('histogram');
     const topRow = distanceVisualization || violinGraph;
     return {
-      sidebar,
+      sidebar: cellTypes || metadata,
+      cellTypes,
       metadata,
       distanceVisualization,
       violinGraph,

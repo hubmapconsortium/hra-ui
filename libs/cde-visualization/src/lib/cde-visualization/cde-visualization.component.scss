@@ -105,6 +105,14 @@ $toolbar-width: calc(6rem + 1px);
       flex-grow: 1;
       min-width: 0;
     }
+
+    // The metadata panel is alone on its tab, so it scrolls and drops the divider above the cell types
+    cde-metadata {
+      height: auto;
+      min-height: 0;
+      overflow-y: auto;
+      border-bottom: none;
+    }
   }
 
   // The rail fills with surface-container, and the outline divider matches the panel dividers

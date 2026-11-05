@@ -53,6 +53,13 @@ describe('ToolbarComponent', () => {
     expect(fixture.componentInstance.hiddenPanels()).toEqual([]);
   });
 
+  it('hides the Panels menu when showPanelsMenu is off', async () => {
+    await setup({ inputs: { showPanelsMenu: false } });
+
+    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.panels.label })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.display.label })).toBeInTheDocument();
+  });
+
   it('toggles display options and keeps the menu open', async () => {
     const { fixture } = await setup({ inputs: { hasHiddenMetadata: true } });
     const instance = fixture.componentInstance;

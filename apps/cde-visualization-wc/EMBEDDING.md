@@ -145,14 +145,14 @@ The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comm
 <cde-visualization hidden-panels="violin-graph, histogram" nodes="https://..."></cde-visualization>
 ```
 
-With `remember-panels`, the panels shown and hidden from the Panels menu are stored in the browser's local storage and stay that way after a reload.
+With `remember-panels`, the panels shown and hidden from the Panels menu are stored in the browser's local storage and stay that way after a reload. The Panels menu shows at 1280px and wider (see [Layout](#layout)).
 
 ## Layout
 
 The _CDE_ fits its layout to its own width, so it adapts to its container as well as the screen. The breakpoints are Angular Material's:
 
 - **1280px and wider:** the panels show side by side.
-- **Below 1280px:** the panels show as tabs, one at a time. The Cell types tab also holds the Metadata panel. Panels hidden with `hidden-panels` or the Panels menu have no tab, and full screen is off.
+- **Below 1280px:** the panels show as tabs, one at a time, with Metadata last. The tabs replace the Panels menu, so only `hidden-panels` removes a tab. Panels hidden from the Panels menu at a wider size come back as tabs. Full screen is off.
 - **Below 600px:** the toolbar becomes a bar along the bottom, and Embed, Theme, Info and Help move into its More menu.
 
 ## Outputs

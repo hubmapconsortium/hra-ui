@@ -1,14 +1,16 @@
 <hra-navigation-rail [attr.aria-label]="content.label" [orientation]="orientation()">
-  <button
-    hraNavigationRailItem
-    icon="space_dashboard"
-    hraFeature="panels"
-    hraClickEvent
-    [hraPlainTooltip]="content.panels.tooltip"
-    [matMenuTriggerFor]="panelsMenu"
-  >
-    {{ content.panels.label }}
-  </button>
+  @if (showPanelsMenu()) {
+    <button
+      hraNavigationRailItem
+      icon="space_dashboard"
+      hraFeature="panels"
+      hraClickEvent
+      [hraPlainTooltip]="content.panels.tooltip"
+      [matMenuTriggerFor]="panelsMenu"
+    >
+      {{ content.panels.label }}
+    </button>
+  }
   <button
     hraNavigationRailItem
     icon="layers"

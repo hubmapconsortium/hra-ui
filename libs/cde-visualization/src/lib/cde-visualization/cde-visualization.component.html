@@ -36,6 +36,7 @@
         [hasHiddenMetadata]="hasHiddenMetadata()"
         [hasDeletedCells]="hasDeletedCells()"
         [showThemeMenu]="!hideThemeMenu()"
+        [showPanelsMenu]="!tabbed()"
         [compact]="compact()"
         [themePreference]="themeSwitch.preference()"
         [(openSheet)]="openSheet"
@@ -85,6 +86,7 @@
           />
           <cde-cell-types
             hraFeature="cell-types"
+            [class.panel-hidden]="!layout().cellTypes"
             [selectedCellType]="nodeTargetSelectorWithDefault()"
             [countAdjustments]="countAdjustments()"
             [loading]="cellTypesLoading()"

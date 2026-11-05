@@ -16,6 +16,7 @@ let idCounter = 0;
  * Vertical toolbar with the visualization's app-wide actions: panels, display options, resets, downloads,
  * the embedding guide, the theme menu, the About sheet and help links.
  * On compact screens it's a bar along the bottom, with Embed, Theme, Info and Help in a More menu.
+ * The tabbed layout hides the Panels menu.
  */
 @Component({
   selector: 'cde-toolbar',
@@ -55,6 +56,9 @@ export class ToolbarComponent {
 
   /** Whether the toolbar shows the Theme menu */
   readonly showThemeMenu = input(false);
+
+  /** Whether the toolbar shows the Panels menu. The tabbed layout hides it, since the tabs reach every panel. */
+  readonly showPanelsMenu = input(true);
 
   /** Whether the toolbar is a bar along the bottom of a compact screen */
   readonly compact = input(false);

@@ -679,7 +679,7 @@ describe('CdeVisualizationComponent', () => {
         const { fixture } = await setup();
         resize(fixture, 1000);
 
-        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram']);
+        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram', 'Metadata']);
         expect(screen.getByRole('tab', { name: 'Spatial view' })).toHaveAttribute('aria-selected', 'true');
         expect(screen.getByRole('tabpanel', { name: 'Spatial view' })).toBeInTheDocument();
         expect(getElement(fixture, '.metadata')).toHaveClass('panel-hidden');
@@ -695,6 +695,13 @@ describe('CdeVisualizationComponent', () => {
         selectTab(fixture, 'Cell types');
         expect(getElement(fixture, '.metadata')).not.toHaveClass('panel-hidden');
         expect(getElement(fixture, '.visualizations')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-cell-types')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+
+        selectTab(fixture, 'Metadata');
+        expect(getElement(fixture, 'cde-metadata')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-cell-types')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.metadata')).toHaveClass('fill');
       },
       TIMEOUT,
     );
@@ -716,20 +723,55 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
-      'drops the tabs of hidden panels and falls back when the active tab hides',
+      'drops the tabs of panels in the hiddenPanels input and falls back when the active tab hides',
       async () => {
         const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization' } });
         resize(fixture, 800);
-        expect(getTabNames()).toEqual(['Cell types', 'Violin graph', 'Histogram']);
+        expect(getTabNames()).toEqual(['Cell types', 'Violin graph', 'Histogram', 'Metadata']);
         expect(screen.getByRole('tab', { name: 'Cell types' })).toHaveAttribute('aria-selected', 'true');
 
         selectTab(fixture, 'Histogram');
-        const toolbar: ToolbarComponent = fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
-        toolbar.hiddenPanels.set(['distance-visualization', 'histogram']);
+        fixture.componentRef.setInput('hiddenPanels', 'distance-visualization histogram');
         fixture.detectChanges();
 
-        expect(getTabNames()).toEqual(['Cell types', 'Violin graph']);
+        expect(getTabNames()).toEqual(['Cell types', 'Violin graph', 'Metadata']);
         expect(screen.getByRole('tab', { name: 'Cell types' })).toHaveAttribute('aria-selected', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'hides the Panels menu and shows the panels hidden from it as tabs',
+      async () => {
+        const { fixture } = await setup();
+        const toolbar: ToolbarComponent = fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
+        toolbar.hiddenPanels.set(['violin-graph', 'metadata']);
+        fixture.detectChanges();
+
+        resize(fixture, 800);
+        expect(toolbar.showPanelsMenu()).toBe(false);
+        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram', 'Metadata']);
+        expect(fixture.componentInstance['unavailableDownloads']()).toBeUndefined();
+
+        resize(fixture, 1280);
+        expect(toolbar.showPanelsMenu()).toBe(true);
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the images of hidden panels without pointing to the Panels menu',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'histogram' } });
+        resize(fixture, 1000);
+
+        expect(fixture.componentInstance['unavailableDownloads']()).toEqual({
+          files: ['histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.hiddenPanelsInTabs,
+          showPanels: false,
+        });
       },
       TIMEOUT,
     );

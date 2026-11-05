@@ -5,10 +5,10 @@ export const PANEL_IDS = ['metadata', 'distance-visualization', 'violin-graph', 
 export type PanelId = (typeof PANEL_IDS)[number];
 
 /**
- * Tabs of the tabbed layout, in layout order. The cell types tab also holds the metadata panel,
- * and the other tabs show when their panel does.
+ * Tabs of the tabbed layout, in order: the cell types tab, the visualizations, and the metadata last.
+ * Every tab but cell types shows when its panel does.
  */
-export const TAB_IDS = ['cell-types', 'distance-visualization', 'violin-graph', 'histogram'] as const;
+export const TAB_IDS = ['cell-types', 'distance-visualization', 'violin-graph', 'histogram', 'metadata'] as const;
 
 /** Id of a tab */
 export type TabId = (typeof TAB_IDS)[number];
