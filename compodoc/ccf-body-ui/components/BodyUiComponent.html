@@ -1110,7 +1110,7 @@ export class BodyUiComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;canvas role&#x3D;&quot;img&quot; part&#x3D;&quot;canvas&quot; #canvas&gt;&lt;/canvas&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;canvas role&#x3D;&quot;img&quot; part&#x3D;&quot;canvas&quot; (contextmenu)&#x3D;&quot;$event.preventDefault()&quot; #canvas&gt;&lt;/canvas&gt;
 </code></pre>
     </div>
 
@@ -1140,7 +1140,7 @@ export class BodyUiComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><canvas role="img" part="canvas" #canvas></canvas></div>'
+        var COMPONENT_TEMPLATE = '<div><canvas role="img" part="canvas" (contextmenu)="$event.preventDefault()" #canvas></canvas></div>'
     var COMPONENTS = [{'name': 'BodyUiComponent', 'selector': 'hra-body-ui'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BodyUiComponent'};
