@@ -198,6 +198,14 @@ describe('ToolbarComponent', () => {
     }
   });
 
+  it('keeps Theme, Info and Help in the bottom group', async () => {
+    await setup({ inputs: { showThemeMenu: true } });
+
+    for (const label of [TOOLBAR_CONTENT.theme.label, TOOLBAR_CONTENT.info.label, TOOLBAR_CONTENT.help.label]) {
+      expect(screen.getByRole('button', { name: label }).closest('.hra-navigation-rail--bottom')).not.toBeNull();
+    }
+  });
+
   it('hides the Help menu', async () => {
     await setup({ inputs: { showHelpMenu: false } });
 

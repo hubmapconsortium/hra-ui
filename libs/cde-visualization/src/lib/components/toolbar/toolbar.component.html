@@ -90,21 +90,21 @@
       {{ content.info.label }}
     </button>
   }
-  @if (!compact()) {
-    @if (showHelpMenu()) {
-      <button
-        hraNavigationRailItem
-        hraNavigationRailBottom
-        icon="help"
-        hraFeature="help"
-        hraClickEvent
-        [hraPlainTooltip]="content.help.tooltip"
-        [matMenuTriggerFor]="helpMenu"
-      >
-        {{ content.help.label }}
-      </button>
-    }
-  } @else {
+  <!-- Each block holds one element, so the rail can project it into its bottom group -->
+  @if (showHelpMenu() && !compact()) {
+    <button
+      hraNavigationRailItem
+      hraNavigationRailBottom
+      icon="help"
+      hraFeature="help"
+      hraClickEvent
+      [hraPlainTooltip]="content.help.tooltip"
+      [matMenuTriggerFor]="helpMenu"
+    >
+      {{ content.help.label }}
+    </button>
+  }
+  @if (compact()) {
     <button
       hraNavigationRailItem
       icon="more_horiz"
