@@ -115,6 +115,48 @@ $toolbar-width: calc(6rem + 1px);
     }
   }
 
+  // The active tab already names its panel, so the panel titles are hidden visually. Screen readers still get
+  // them, since they name the panels' regions. Headers left with only a title collapse.
+  .layout.tabbed ::ng-deep {
+    hra-expansion-panel .title {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    :is(cde-cell-types, cde-metadata, cde-violin) hra-expansion-panel {
+      .header {
+        min-height: 0;
+        padding: 0;
+      }
+
+      .content {
+        height: 100%;
+      }
+    }
+
+    :is(cde-cell-types, cde-violin) hra-expansion-panel .content {
+      padding-top: 1rem;
+    }
+
+    cde-metadata .metadata-details {
+      margin-top: 1rem;
+    }
+
+    // Without the fullscreen buttons, the header controls sit on the 16px inset too.
+    // The histogram header stays 56px, which its chart height accounts for.
+    cde-histogram hra-expansion-panel .header {
+      padding: 1rem 1rem 0.5rem;
+    }
+
+    cde-node-dist-visualization hra-expansion-panel .header {
+      padding-right: 1rem;
+    }
+  }
+
   // The rail fills with surface-container, and the outline divider matches the panel dividers
   .toolbar {
     grid-area: toolbar;

@@ -8,7 +8,7 @@
     height: 100%;
 
     // 8px on the right puts the fullscreen button's icon on the 16px line.
-    // The header stays 56px when the tabbed layout hides the button.
+    // The tabbed layout collapses this header (see the cde-visualization styles).
     .header {
       padding: 0.5rem 0.5rem 0.5rem 1rem;
       min-height: 3.5rem;
