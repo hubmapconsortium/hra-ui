@@ -5,6 +5,9 @@
 ::ng-deep .cde-color-picker-panel {
   color-picker {
     div.color-picker {
+      // ngx-color-picker only switches the inline picker from absolute to relative after a timeout.
+      // Until then the overlay measures 0px wide, so it opens off screen beside swatches near the right edge.
+      position: relative;
       // ngx-color-picker defaults to a white panel, which hides on-surface text in the dark theme
       background-color: vars.$surface-container;
       border-radius: vars.$corner-small;
