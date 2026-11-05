@@ -422,7 +422,7 @@ export class CreateVisualizationPageComponent {
   hasValidCustomColorMap(): boolean {
     const { customColorMap: colors, colorHeaders } = this;
     return !!(
-      (colors && colors.length > 0 && colorHeaders.length === 2)
+      colors && colors.length > 0 && colorHeaders.length === 2
       // DEFAULT_COLOR_MAP_KEY in colors[0] &&
       // DEFAULT_COLOR_MAP_VALUE_KEY in colors[0]
     );
