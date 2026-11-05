@@ -167,6 +167,11 @@ html {
     }
   }
 
+  // Notice messages are body text. The design system colors them primary, which is red in this theme.
+  hra-notice {
+    --hra-notice-message-color: #{vars.$on-surface-variant};
+  }
+
   // The file pill shown after an upload, in theme roles
   hra-delete-file-button {
     border-radius: vars.$corner-full;
