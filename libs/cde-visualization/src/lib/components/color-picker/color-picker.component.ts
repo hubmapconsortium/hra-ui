@@ -1,6 +1,6 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { hasModifierKey } from '@angular/cdk/keycodes';
-import { CdkOverlayOrigin, ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, ConnectedPosition, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
@@ -56,6 +56,9 @@ export class ColorPickerComponent {
 
   /** Positions beside the origin */
   protected readonly positions = COLOR_PICKER_POSITIONS;
+
+  /** Keeps the page from scrolling under the open picker, so a swipe on a phone doesn't move it */
+  protected readonly scrollStrategy = inject(Overlay).scrollStrategies.block();
 
   /** Hex representation of the color */
   protected readonly hexColor = computed(() => rgbToHex(this.color()));

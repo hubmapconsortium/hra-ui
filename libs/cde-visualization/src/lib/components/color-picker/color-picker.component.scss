@@ -71,6 +71,12 @@
         display: none;
       }
 
+      // The picker listens for touch drags on the document, where browsers ignore its preventDefault,
+      // so without this, dragging a slider on a phone also scrolls the page
+      [slider] {
+        touch-action: none;
+      }
+
       .button-area {
         display: flex;
         justify-content: flex-end;
