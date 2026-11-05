@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../styles/vars' as vars;
 
 :host {
@@ -32,6 +33,27 @@
 
     .label {
       padding: 0.125rem;
+    }
+
+    // An extra small Material 3 icon button: a 20px icon in a 32px container. The negative margins line the
+    // icon up with the start of the trail and space it from the separator like the text crumbs.
+    .icon {
+      @include mat.icon-button-overrides(
+        (
+          icon-size: 1.25rem,
+          state-layer-size: 2rem,
+          icon-color: currentColor,
+        )
+      );
+      margin-inline: -0.375rem -0.25rem;
+
+      // Material sizes only SVG and image icons to the token, so a font icon would stay 24px and sit off center
+      mat-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+      }
     }
 
     .separator {

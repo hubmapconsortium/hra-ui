@@ -19,7 +19,16 @@
     .text {
       display: inline-block;
       margin-right: 0.125rem;
-      @include utils.use-font(label, large);
+      font: var(--hra-navigation-category-toggle-text-font, #{vars.$label-large});
+      letter-spacing: var(--hra-navigation-category-toggle-text-tracking, #{vars.$label-large-tracking});
+    }
+
+    .icon {
+      $size: var(--hra-navigation-category-toggle-icon-size, 1.5rem);
+      width: $size;
+      height: $size;
+      font-size: $size;
+      line-height: $size;
     }
 
     :is(&.mat-button-toggle-checked, &:hover, &:active) .text {

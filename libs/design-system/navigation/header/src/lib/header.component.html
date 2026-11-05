@@ -18,11 +18,16 @@
   #mobileMenuOrigin="cdkOverlayOrigin"
 >
   <div hraFeature="navigation" class="menus" #desktopMenuOrigin>
-    <hra-brand-logo hraFeature="brand-logo" size="small" />
+    <hra-brand-logo hraFeature="brand-logo" size="small" tooltip="Homepage" />
 
-    <div class="filler"></div>
+    @if (navigationPosition() === 'end') {
+      <div class="filler"></div>
+    }
 
     @if (!isMobile()) {
+      @if (navigationPosition() === 'start') {
+        <mat-divider class="logo-divider" vertical />
+      }
       @for (menu of menus(); track menu.id) {
         <hra-navigation-category-toggle
           hraClickEvent
@@ -52,6 +57,10 @@
       }
     }
 
+    @if (navigationPosition() === 'start') {
+      <div class="filler"></div>
+    }
+
     <ng-content select="[hraHeaderActions]" />
 
     <button
@@ -59,6 +68,7 @@
       mat-icon-button
       cdkOverlayOrigin
       aria-label="Open the main navigation menu"
+      [hraPlainTooltip]="isMobile() ? 'Menu' : 'HuBMAP apps'"
       [hraClickEvent]="{ action: 'toggle-menu', isMobile: isMobile(), currentState: isMenuActive('main') }"
       (click)="toggleMenu('main')"
       #mainMenuOrigin="cdkOverlayOrigin"

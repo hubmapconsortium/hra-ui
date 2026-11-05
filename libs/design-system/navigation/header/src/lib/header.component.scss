@@ -26,7 +26,13 @@
     }
 
     .menus {
-      height: 4.5rem;
+      height: var(--hra-header-height, 4.5rem);
+    }
+
+    // Sized like AtlasNG's header shell divider
+    .logo-divider {
+      height: 2.5rem;
+      margin: 0 1.25rem;
     }
 
     .navigation {
