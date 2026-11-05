@@ -115,6 +115,12 @@ export class NodeDistVisualizationComponent {
    */
   readonly floatingControls = input(false);
 
+  /**
+   * Whether cell info docks at the bottom of the visualization instead of opening beside the cell.
+   * Compact screens dock it, since a card beside the cell can run off a phone screen.
+   */
+  readonly dockCellInfo = input(false);
+
   /** Emits true when the panel opens in full screen and false when it closes */
   readonly fullscreenChange = output<boolean>();
 

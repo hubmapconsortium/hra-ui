@@ -92,6 +92,19 @@ hra-fullscreen-portal-content {
   }
 }
 
+// On compact screens, cell info docks along the bottom of the visualization instead of beside the cell,
+// where it could run off the screen. It scrolls when the visualization is too short for it.
+.docked-cell-info {
+  position: absolute;
+  inset-inline: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  min-width: 0;
+  max-width: none;
+  max-height: calc(100% - 2rem);
+  overflow-y: auto;
+}
+
 // The skeleton fills the whole black visualization area, edge to edge with square corners. Its theme roles
 // resolve to their dark values in either theme, the way they would on any dark surface.
 cde-chart-skeleton {

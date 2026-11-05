@@ -69,6 +69,16 @@
       } @else if (emptyState(); as content) {
         <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
       }
+      @if (cellInfoOpen() && dockCellInfo()) {
+        <hra-info-modal
+          class="docked-cell-info"
+          title="Cell info"
+          closeLabel="Close cell info"
+          data-testid="cell-info"
+          [data]="cellInfoContent()"
+          (close)="cellInfo.set(undefined)"
+        />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>
@@ -77,7 +87,7 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayDisposeOnNavigation]="true"
   [cdkConnectedOverlayHasBackdrop]="false"
-  [cdkConnectedOverlayOpen]="cellInfoOpen()"
+  [cdkConnectedOverlayOpen]="cellInfoOpen() && !dockCellInfo()"
   [cdkConnectedOverlayOrigin]="cellInfoOrigin"
   [cdkConnectedOverlayPositions]="cellInfoPosition()"
   [cdkConnectedOverlayPush]="true"
