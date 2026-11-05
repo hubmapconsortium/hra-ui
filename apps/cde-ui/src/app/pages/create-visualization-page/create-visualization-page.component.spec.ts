@@ -173,15 +173,24 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   describe('template links', () => {
-    it('renders outlined links that open the templates in a new tab', () => {
-      const dataTemplate = screen.getByRole('link', { name: 'Open template for cell data, opens in a new tab' });
-      const colorTemplate = screen.getByRole('link', { name: 'Open template for color maps, opens in a new tab' });
+    const dataTemplateName = 'Open template for cell data, opens in a new tab';
+    const colorTemplateName = 'Open template for color maps, opens in a new tab';
 
+    it('renders outlined links beside the upload buttons that open the templates in a new tab', async () => {
+      expect(screen.queryByRole('link', { name: colorTemplateName })).not.toBeInTheDocument();
+
+      instance.visualizationForm.controls.colorMapType.setValue('custom');
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const dataTemplate = screen.getByRole('link', { name: dataTemplateName });
+      const colorTemplate = screen.getByRole('link', { name: colorTemplateName });
       for (const link of [dataTemplate, colorTemplate]) {
         expect(link).toHaveTextContent(/^\s*Open template/);
         expect(link).toHaveAttribute('mat-stroked-button');
         expect(link).toHaveAttribute('target', '_blank');
         expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+        expect(link.closest('cde-file-upload .actions')?.querySelector('.upload')).toBeInTheDocument();
       }
       expect(dataTemplate).toHaveAttribute(
         'href',
@@ -191,6 +200,18 @@ describe('CreateVisualizationPageComponent', () => {
         'href',
         expect.stringContaining('1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE'),
       );
+    });
+  });
+
+  describe('card descriptions', () => {
+    it('describe each step below its heading, with no info buttons', () => {
+      const headers = Array.from(fixture.nativeElement.querySelectorAll('hra-workflow-card .header')) as HTMLElement[];
+
+      expect(headers).toHaveLength(6);
+      for (const header of headers) {
+        expect(header.querySelector('h2 + .description')?.textContent?.trim()).toBeTruthy();
+      }
+      expect(fixture.nativeElement.querySelector('hra-info-button')).toBeNull();
     });
   });
 

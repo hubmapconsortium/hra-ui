@@ -22,24 +22,10 @@
         <span class="visually-hidden">Step 1 of 6: </span>
         <span class="card-title">Upload data</span>
       </h2>
-      <hra-info-button label="More information about Upload data">
+      <p class="description">
         Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
         damage and proliferation markers.
-      </hra-info-button>
-      <div class="filler"></div>
-      <a
-        mat-stroked-button
-        class="use-template"
-        href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open template for cell data, opens in a new tab"
-        hraFeature="data-template"
-        hraClickEvent
-      >
-        Open template
-        <mat-icon iconPositionEnd>open_in_new</mat-icon>
-      </a>
+      </p>
     </div>
     <div class="requirements" role="group" aria-label="Data upload requirements">
       <dl>
@@ -72,7 +58,21 @@
       (loadErrored)="nodesLoadError = $event; nodeProgress = 0"
       (progress)="nodeProgress = $event"
       #nodesFileUpload
-    />
+    >
+      <a
+        mat-stroked-button
+        class="use-template"
+        href="https://docs.google.com/spreadsheets/d/1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY/edit?gid=47698780#gid=47698780"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open template for cell data, opens in a new tab"
+        hraFeature="data-template"
+        hraClickEvent
+      >
+        Open template
+        <mat-icon iconPositionEnd>open_in_new</mat-icon>
+      </a>
+    </cde-file-upload>
   </hra-workflow-card>
 
   <hra-workflow-card class="card organize-data" formGroupName="headers" hraFeature="organize-data">
@@ -82,9 +82,7 @@
         <span class="visually-hidden">Step 2 of 6: </span>
         <span class="card-title">Organize data</span>
       </h2>
-      <hra-info-button label="More information about Organize data">
-        Verify column headers and edit as needed. Select optional column headers.
-      </hra-info-button>
+      <p class="description">Verify column headers and edit as needed. Select optional column headers.</p>
     </div>
 
     @if (visualizationForm.controls.headers.disabled) {
@@ -199,17 +197,19 @@
         <span class="visually-hidden">Step 3 of 6: </span>
         <span class="card-title">Configure parameters</span>
       </h2>
-      <hra-info-button label="More information about Configure parameters">
-        The anchor cell type represents the cell type to which the nearest cell distance distributions should be
-        computed and visualized. Euclidean distance is used to compute the distance between two cells. "Endothelial" is
-        used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell type
-        label is used as the anchor cell type.
-        <br /><br />
-        Configure the distance threshold to modify visualizations for analysis.
-        <br /><br />
-        Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
-        in micrometers.
-      </hra-info-button>
+      <div class="description">
+        <p>
+          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
+          computed and visualized. Euclidean distance is used to compute the distance between two cells. "Endothelial"
+          is used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell
+          type label is used as the anchor cell type.
+        </p>
+        <p>Configure the distance threshold to modify visualizations for analysis.</p>
+        <p>
+          Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
+          in micrometers.
+        </p>
+      </div>
     </div>
 
     @if (visualizationForm.controls.parameters.disabled) {
@@ -275,10 +275,10 @@
         <span class="visually-hidden">Step 4 of 6: </span>
         <span class="card-title">Optional: Add metadata</span>
       </h2>
-      <hra-info-button label="More information about Add metadata">
+      <p class="description">
         Information in these fields will not change the visualization output. Metadata may be helpful for taking
         screenshots of the uploaded data and resulting visualizations in the Visualization App.
-      </hra-info-button>
+      </p>
     </div>
 
     <div class="row">
@@ -354,24 +354,10 @@
         <span class="visually-hidden">Step 5 of 6: </span>
         <span class="card-title">Optional: Configure colors</span>
       </h2>
-      <hra-info-button label="More information about Configure colors">
+      <p class="description">
         Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
         may be changed individually while exploring the visualization in the Visualization App.
-      </hra-info-button>
-      <div class="filler"></div>
-      <a
-        mat-stroked-button
-        class="use-template"
-        href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open template for color maps, opens in a new tab"
-        hraFeature="color-template"
-        hraClickEvent
-      >
-        Open template
-        <mat-icon iconPositionEnd>open_in_new</mat-icon>
-      </a>
+      </p>
     </div>
 
     <mat-button-toggle-group formControlName="colorMapType" name="singleSelect" aria-label="Color map">
@@ -410,7 +396,21 @@
         (loadErrored)="customColorMapLoadError = $event; colorProgress = 0"
         (progress)="colorProgress = $event"
         #customColorMapFileUpload
-      />
+      >
+        <a
+          mat-stroked-button
+          class="use-template"
+          href="https://docs.google.com/spreadsheets/d/1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE/edit?gid=0#gid=0"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open template for color maps, opens in a new tab"
+          hraFeature="color-template"
+          hraClickEvent
+        >
+          Open template
+          <mat-icon iconPositionEnd>open_in_new</mat-icon>
+        </a>
+      </cde-file-upload>
     }
   </hra-workflow-card>
 
@@ -421,11 +421,9 @@
         <span class="visually-hidden">Step 6 of 6: </span>
         <span class="card-title">Visualize cell distance data</span>
       </h2>
-      <hra-info-button label="More information about Visualize cell distance data">
-        <div hraInfoButtonTooltipContent>
-          Data on the Create Visualization page cannot be modified after a visualization is generated.
-        </div>
-      </hra-info-button>
+      <p class="description">
+        Data on the Create Visualization page cannot be modified after a visualization is generated.
+      </p>
     </div>
 
     @let canVisualize = hasValidNodes() && hasValidData();
