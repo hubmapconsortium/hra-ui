@@ -697,6 +697,18 @@ describe('CdeVisualizationComponent', () => {
         expect(screen.queryByRole('tablist')).not.toBeInTheDocument();
         expect(getElement(fixture, '.panels')).not.toHaveAttribute('role');
         expect(getElement(fixture, '.layout')).not.toHaveClass('tabbed');
+        expect(getElement(fixture, 'cde-node-dist-visualization')).not.toHaveClass('floating-controls');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'floats the spatial view controls in tabs',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1000);
+
+        expect(getElement(fixture, 'cde-node-dist-visualization')).toHaveClass('floating-controls');
       },
       TIMEOUT,
     );

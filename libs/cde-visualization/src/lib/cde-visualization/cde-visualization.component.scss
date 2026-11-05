@@ -146,14 +146,10 @@ $toolbar-width: calc(6rem + 1px);
       margin-top: 1rem;
     }
 
-    // Without the fullscreen buttons, the header controls sit on the 16px inset too.
-    // The histogram header stays 56px, which its chart height accounts for.
+    // Without the fullscreen button, the histogram's header controls sit on the 16px inset too.
+    // Its header stays 56px, which its chart height accounts for.
     cde-histogram hra-expansion-panel .header {
       padding: 1rem 1rem 0.5rem;
-    }
-
-    cde-node-dist-visualization hra-expansion-panel .header {
-      padding-right: 1rem;
     }
   }
 

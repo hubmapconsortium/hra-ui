@@ -77,6 +77,7 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.aria-busy]': 'loading() || null',
+    '[class.floating-controls]': 'floatingControls()',
   },
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -108,8 +109,11 @@ export class NodeDistVisualizationComponent {
   /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
   readonly fullscreenAvailable = input(true);
 
-  /** Whether the screen is compact, which shows the view mode toggles as icons */
-  readonly compact = input(false);
+  /**
+   * Whether the view mode controls float at the top of the visualization instead of sitting in the header.
+   * The tabbed layout floats them, so the header row's height goes to the visualization.
+   */
+  readonly floatingControls = input(false);
 
   /** Emits true when the panel opens in full screen and false when it closes */
   readonly fullscreenChange = output<boolean>();
@@ -202,8 +206,10 @@ export class NodeDistVisualizationComponent {
     }
   });
 
-  /** Visualization element */
-  private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+  /** Visualization element, found by tag since the floating controls come before it */
+  private readonly visEl = computed(
+    () => (this.fullscreenPortal().rootNodes()[0] as Element).querySelector('hra-node-dist-vis') as NodeDistVisElement,
+  );
 
   /** Cell info overlay element */
   private readonly cellInfoOverlay = viewChild.required<CdkConnectedOverlay>('cellInfoOverlay');

@@ -209,4 +209,35 @@ describe('NodeDistVisualizationComponent', () => {
 
     expect(screen.queryByRole('button', { name: 'Open the spatial view in full screen' })).not.toBeInTheDocument();
   });
+
+  describe('floating controls', () => {
+    it('keeps the view mode controls in the header by default', async () => {
+      const { container } = await setup();
+
+      expect(
+        container.querySelector('hra-expansion-panel-header-content cde-node-dist-visualization-controls'),
+      ).not.toBeNull();
+      expect(container.querySelector('.floating-controls')).toBeNull();
+    });
+
+    it('floats the controls over the visualization, before it in focus order, and collapses the header', async () => {
+      const { container, fixture } = await setup({ inputs: { floatingControls: true } });
+
+      const controls = container.querySelector('.floating-controls cde-node-dist-visualization-controls');
+      expect(fixture.nativeElement).toHaveClass('floating-controls');
+      expect(controls).toHaveClass('floating');
+      expect(controls?.compareDocumentPosition(await getVisualizationEl())).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+      expect(
+        container.querySelector('hra-expansion-panel-header-content cde-node-dist-visualization-controls'),
+      ).toBeNull();
+    });
+
+    it('hides the floating controls while the skeleton or empty state covers the visualization', async () => {
+      const { container, rerender } = await setup({ inputs: { floatingControls: true, loading: true } });
+      expect(container.querySelector('.floating-controls')).toBeNull();
+
+      await rerender({ inputs: { loading: false, emptyState: NO_CELL_TYPES_SELECTED_CONTENT }, partialUpdate: true });
+      expect(container.querySelector('.floating-controls')).toBeNull();
+    });
+  });
 });

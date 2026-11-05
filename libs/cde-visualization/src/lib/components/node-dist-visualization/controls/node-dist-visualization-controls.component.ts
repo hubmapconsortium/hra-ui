@@ -9,24 +9,17 @@ import { ViewMode } from '@hra-ui/node-dist-vis/models';
 interface ViewModeOption {
   /** View mode the toggle picks */
   value: ViewMode;
-  /** Label, which also names the toggle when it shows its icon */
+  /** Label */
   label: string;
-  /** Icon shown in place of the label on compact screens */
-  icon: string;
   /** What the mode does */
   tooltip: string;
 }
 
 /** View mode toggles, in order */
 const VIEW_MODES: ViewModeOption[] = [
-  { value: 'select', label: 'Select', icon: 'highlight_alt', tooltip: 'Select cells to delete from this dataset' },
-  { value: 'inspect', label: 'Inspect', icon: 'frame_inspect', tooltip: 'Get information about individual cell types' },
-  {
-    value: 'explore',
-    label: 'Explore',
-    icon: 'explore',
-    tooltip: 'Zoom, pan, and rotate the view of this visualization',
-  },
+  { value: 'select', label: 'Select', tooltip: 'Select cells to delete from this dataset' },
+  { value: 'inspect', label: 'Inspect', tooltip: 'Get information about individual cell types' },
+  { value: 'explore', label: 'Explore', tooltip: 'Zoom, pan, and rotate the view of this visualization' },
 ];
 
 /**
@@ -38,6 +31,9 @@ const VIEW_MODES: ViewModeOption[] = [
   templateUrl: './node-dist-visualization-controls.component.html',
   styleUrl: './node-dist-visualization-controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.floating]': 'floating()',
+  },
 })
 export class NodeDistVisualizationControlsComponent {
   /** Current view mode */
@@ -46,8 +42,8 @@ export class NodeDistVisualizationControlsComponent {
   /** Whether cells are selected, which shows the delete button */
   readonly deleteAvailable = input(false, { transform: booleanAttribute });
 
-  /** Whether the view mode toggles show icons instead of labels, so the header fits compact screens */
-  readonly compact = input(false, { transform: booleanAttribute });
+  /** Whether the controls float over the visualization, each on its own raised surface */
+  readonly floating = input(false, { transform: booleanAttribute });
 
   /** Emits when delete button clicked */
   readonly deleteClick = output<void>();

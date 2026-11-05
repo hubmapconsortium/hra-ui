@@ -1,3 +1,5 @@
+@use '../../../../../../../libs/design-system/styles/vars';
+
 :host {
   display: flex;
   flex-direction: row;
@@ -6,14 +8,21 @@
   .delete {
     margin-right: 1rem;
   }
+}
 
-  // Keeps the label as the toggle's name while its icon shows
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+// Over the visualization, each control sits on its own raised surface, so it reads over any cell colors
+:host(.floating) {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+
+  .delete {
+    margin-right: 0;
+  }
+
+  .delete,
+  mat-button-toggle-group {
+    background-color: vars.$surface-container;
+    box-shadow: var(--mat-sys-level3);
   }
 }

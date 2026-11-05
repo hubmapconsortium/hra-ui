@@ -14,13 +14,21 @@ describe('NodeDistVisualizationControlsComponent', () => {
     expect(screen.getByRole('button', { name: 'Delete selected cells' })).toBeInTheDocument();
   });
 
-  it('shows the view mode toggles as icons on compact screens, still named by their labels', async () => {
-    const { rerender } = await render(NodeDistVisualizationControlsComponent);
-    expect(screen.queryByText('highlight_alt')).not.toBeInTheDocument();
-    expect(screen.getByText('Select')).not.toHaveClass('visually-hidden');
+  it('labels the view mode toggles', async () => {
+    await render(NodeDistVisualizationControlsComponent);
 
-    await rerender({ inputs: { compact: true }, partialUpdate: true });
-    expect(screen.getByText('highlight_alt')).toBeInTheDocument();
-    expect(screen.getByText('Select')).toHaveClass('visually-hidden');
+    for (const label of ['Select', 'Inspect', 'Explore']) {
+      expect(screen.getByRole('radio', { name: label })).toBeInTheDocument();
+    }
+  });
+
+  it('is not floating by default', async () => {
+    const { fixture } = await render(NodeDistVisualizationControlsComponent);
+    expect(fixture.nativeElement).not.toHaveClass('floating');
+  });
+
+  it('marks the controls as floating', async () => {
+    const { fixture } = await render(NodeDistVisualizationControlsComponent, { inputs: { floating: true } });
+    expect(fixture.nativeElement).toHaveClass('floating');
   });
 });
