@@ -226,6 +226,21 @@ describe('CdeVisualizationComponent', () => {
     );
   });
 
+  describe('metadata', () => {
+    it(
+      'shows the study from the study and study-url attributes first in the metadata panel',
+      async () => {
+        const { container } = await setup({
+          inputs: { study: 'Bone marrow, CODEX', studyUrl: '/gallery/bone-marrow' },
+        });
+
+        expect(container.querySelector('cde-metadata dt')).toHaveTextContent('Study');
+        expect(container.querySelector('cde-metadata dd a')).toHaveAttribute('href', '/gallery/bone-marrow');
+      },
+      TIMEOUT,
+    );
+  });
+
   describe('loading', () => {
     /** Waits longer than the loaded announcement's debounce */
     const waitForDebounce = () => new Promise((resolve) => setTimeout(resolve, 300));
@@ -558,6 +573,19 @@ describe('CdeVisualizationComponent', () => {
         const { fixture } = await setup({ inputs: { hideThemeMenu: '' } });
 
         expect(getToolbar(fixture).showThemeMenu()).toBe(false);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows the Help menu unless hideHelpMenu is set',
+      async () => {
+        const { fixture } = await setup();
+        expect(getToolbar(fixture).showHelpMenu()).toBe(true);
+
+        fixture.componentRef.setInput('hideHelpMenu', '');
+        fixture.detectChanges();
+        expect(getToolbar(fixture).showHelpMenu()).toBe(false);
       },
       TIMEOUT,
     );

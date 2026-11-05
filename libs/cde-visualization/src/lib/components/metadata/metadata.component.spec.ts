@@ -118,4 +118,44 @@ describe('MetadataComponent', () => {
     const link = screen.getByRole('link', { name: 'doi.org/10.1016/j.cell.2022.12.028' });
     expect(link).toHaveAttribute('href', sampleUrl);
   });
+
+  describe('study', () => {
+    async function setup(study: Partial<Metadata>, showEmptyFields = false) {
+      return render(MetadataComponent, {
+        componentInputs: { metadata: { ...metadata, ...study }, showEmptyFields },
+        providers: [provideNoopAnimations()],
+      });
+    }
+
+    it('should show the study first, linked to its page in the same tab', async () => {
+      const { container } = await setup({ study: 'Bone marrow, CODEX', studyUrl: '/gallery/bonemarrow-codex-chop' });
+
+      expect(container.querySelector('dt')).toHaveTextContent('Study');
+      const link = screen.getByRole('link', { name: 'Bone marrow, CODEX' });
+      expect(link).toHaveAttribute('href', '/gallery/bonemarrow-codex-chop');
+      expect(link).not.toHaveAttribute('target');
+    });
+
+    it('should show the study as text when it has no url', async () => {
+      await setup({ study: 'Bone marrow, CODEX' });
+
+      expect(screen.getByText('Bone marrow, CODEX')).toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Bone marrow, CODEX' })).not.toBeInTheDocument();
+    });
+
+    it('should leave out the study row when there is no study, even with all metadata', async () => {
+      await setup({}, true);
+
+      expect(screen.queryByText('Study')).not.toBeInTheDocument();
+    });
+
+    it('should hide the study while loading', async () => {
+      await render(MetadataComponent, {
+        componentInputs: { metadata: { ...metadata, study: 'Bone marrow, CODEX' }, loading: true },
+        providers: [provideNoopAnimations()],
+      });
+
+      expect(screen.queryByText('Bone marrow, CODEX')).not.toBeInTheDocument();
+    });
+  });
 });

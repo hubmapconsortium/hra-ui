@@ -9,6 +9,18 @@
         </div>
       }
     }
+    @if (metadata().study && !loading()) {
+      <div>
+        <dt>Study</dt>
+        <dd>
+          @if (metadata().studyUrl; as url) {
+            <a hraHyperlink [attr.href]="url">{{ metadata().study }}</a>
+          } @else {
+            {{ metadata().study }}
+          }
+        </dd>
+      </div>
+    }
     @if (isFieldVisible('title')) {
       <div>
         <dt>Source publication</dt>

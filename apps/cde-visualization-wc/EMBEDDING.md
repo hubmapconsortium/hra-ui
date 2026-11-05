@@ -57,6 +57,8 @@ cde.colorMap = {
 | _color-map_            | Custom color map                               | A csv file url or an array of objects | None          |
 | _color-map-keys_       | Color map csv column configuration             | A json file url or a mapping object   | None          |
 | _metadata_             | Metadata object                                | An object                             | None          |
+| _study_                | Study the dataset comes from                   | A string                              | None          |
+| _study-url_            | Url of the study's page                        | An url                                | None          |
 | _title_                | Dataset title                                  | A string                              | None          |
 | _organ_                | Dataset organ                                  | A string                              | None          |
 | _technology_           | Dataset imaging technology                     | A string                              | None          |
@@ -68,6 +70,7 @@ cde.colorMap = {
 | _source-file-name_     | Dataset nodes file name                        | A string                              | None          |
 | _color-map-file-name_  | Dataset color map file name                    | A string                              | None          |
 | _hide-theme-menu_      | Hides the toolbar's Theme menu                 | A boolean attribute                   | Shown         |
+| _hide-help-menu_       | Hides the toolbar's Help menu                  | A boolean attribute                   | Shown         |
 | _hidden-panels_        | Panels hidden at first, see [Panels](#panels)  | A list of panel ids                   | None          |
 | _remember-panels_      | Remembers hidden panels in local storage       | A boolean attribute                   | Off           |
 
@@ -136,6 +139,8 @@ Any columns not specified will be inferred as usual. The default column names an
 ### Metadata
 
 Metadata can be set either as an object or as individual metadata attributes. Using an object is particularly useful when setting the metadata from javascript or a json file url. If both an metadata object and individual attributes are set at the same time the value from the attributes takes priority. The available metadata attributes are described the [inputs table](#available-inputs).
+
+The _Metadata_ panel lists the study first, but only when `study` is set. With `study-url`, the study name links to that page in the same tab.
 
 ### Panels
 

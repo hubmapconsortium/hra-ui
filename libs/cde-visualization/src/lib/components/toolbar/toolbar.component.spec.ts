@@ -197,4 +197,18 @@ describe('ToolbarComponent', () => {
       expect(screen.getByRole('menuitem', { name: new RegExp(link.label) })).toHaveAttribute('href', link.url);
     }
   });
+
+  it('hides the Help menu', async () => {
+    await setup({ inputs: { showHelpMenu: false } });
+
+    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.help.label })).not.toBeInTheDocument();
+  });
+
+  it('hides the Help item in the More menu on compact screens', async () => {
+    await setup({ inputs: { compact: true, showHelpMenu: false } });
+    await openMenu(TOOLBAR_CONTENT.more.label);
+
+    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.info.label) })).toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.help.label) })).not.toBeInTheDocument();
+  });
 });

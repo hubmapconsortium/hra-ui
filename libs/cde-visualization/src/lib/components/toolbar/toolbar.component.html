@@ -91,17 +91,19 @@
     </button>
   }
   @if (!compact()) {
-    <button
-      hraNavigationRailItem
-      hraNavigationRailBottom
-      icon="help"
-      hraFeature="help"
-      hraClickEvent
-      [hraPlainTooltip]="content.help.tooltip"
-      [matMenuTriggerFor]="helpMenu"
-    >
-      {{ content.help.label }}
-    </button>
+    @if (showHelpMenu()) {
+      <button
+        hraNavigationRailItem
+        hraNavigationRailBottom
+        icon="help"
+        hraFeature="help"
+        hraClickEvent
+        [hraPlainTooltip]="content.help.tooltip"
+        [matMenuTriggerFor]="helpMenu"
+      >
+        {{ content.help.label }}
+      </button>
+    }
   } @else {
     <button
       hraNavigationRailItem
@@ -359,8 +361,10 @@
     <mat-icon>info</mat-icon>
     {{ content.info.label }}
   </button>
-  <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">
-    <mat-icon>help</mat-icon>
-    {{ content.help.label }}
-  </button>
+  @if (showHelpMenu()) {
+    <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">
+      <mat-icon>help</mat-icon>
+      {{ content.help.label }}
+    </button>
+  }
 </mat-menu>
