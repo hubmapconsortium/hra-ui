@@ -24,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
-import { filter, firstValueFrom, MonoTypeOperatorFunction, Observable, pipe } from 'rxjs';
+import { filter, firstValueFrom, MonoTypeOperatorFunction, Observable, pipe, take } from 'rxjs';
 
 /** View outlet directive */
 @Directive({
@@ -120,6 +120,11 @@ export class FullscreenPortalComponent {
   readonly beforeClosed = output<void>();
   /** Event for when the dialog is closed */
   readonly closed = output<void>();
+  /**
+   * Event for when opening or closing has finished, including its view transition. Content can wait for it to
+   * start slow work, so the work doesn't hold up the transition.
+   */
+  readonly transitionEnded = output<void>();
 
   /** Creates embedded view using template */
   readonly viewRef = computed(() => {
@@ -162,9 +167,13 @@ export class FullscreenPortalComponent {
   /** Whether a view transition is opening or closing the dialog */
   private transitioning = false;
 
+  /** Whether the component was destroyed, so a view transition that finishes later doesn't emit */
+  private destroyed = false;
+
   /** Destroys the view */
   constructor() {
     this.destroyRef.onDestroy(() => {
+      this.destroyed = true;
       const dialogRef = this.dialogRef;
       this.dialogRef = undefined;
       dialogRef?.close();
@@ -255,19 +264,25 @@ export class FullscreenPortalComponent {
    * @param change Opens or closes the dialog and returns an observable that emits once it has
    */
   private runTransition(change: () => Observable<unknown>): void {
+    const ended = () => {
+      if (!this.destroyed) {
+        this.transitionEnded.emit();
+      }
+    };
+
     if (!this.useViewTransition()) {
-      change();
+      change().pipe(take(1), takeUntilDestroyed(this.destroyRef)).subscribe(ended);
       return;
     }
 
     const done = () => (this.transitioning = false);
     this.transitioning = true;
-    this.document
-      .startViewTransition(async () => {
-        await firstValueFrom(this.ngZone.run(change));
-        await this.appRef.whenStable();
-      })
-      .updateCallbackDone.then(done, done);
+    const transition = this.document.startViewTransition(async () => {
+      await firstValueFrom(this.ngZone.run(change));
+      await this.appRef.whenStable();
+    });
+    transition.updateCallbackDone.then(done, done);
+    transition.finished.then(ended, ended);
   }
 
   /**
