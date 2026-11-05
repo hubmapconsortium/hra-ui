@@ -155,6 +155,13 @@ describe('CreateVisualizationPageComponent', () => {
     expect(crumbs.compareDocumentPosition(title)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
 
+  it('describes the page under its title', () => {
+    const title = screen.getByRole('heading', { level: 1 });
+    const description = fixture.nativeElement.querySelector('.page-nav .description');
+    expect(description).toHaveTextContent(/anchor cell/);
+    expect(title.compareDocumentPosition(description)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
   it('passes the dark background image in the dark theme', () => {
     theme.set('dark');
     fixture.detectChanges();
@@ -603,12 +610,17 @@ describe('CreateVisualizationPageComponent', () => {
   });
 });
 
-describe('CreateVisualizationPageComponent screen size notice', () => {
+describe('CreateVisualizationPageComponent on small screens', () => {
   const observe = jest.fn();
   const openNotice = jest.fn();
 
-  /** Renders the page on a screen narrower than 600px */
-  async function setup(): Promise<void> {
+  beforeEach(() => {
+    localStorage.clear();
+    observe.mockReset().mockReturnValue(of({ matches: true, breakpoints: { '(width < 600px)': true } }));
+    openNotice.mockReset().mockReturnValue({ afterClosed: () => NEVER, close: jest.fn() });
+  });
+
+  it('works below 600px wide without a screen size notice', async () => {
     const { fixture } = await render(CreateVisualizationPageComponent, {
       providers: [
         provideAssetHref('http://localhost/'),
@@ -622,28 +634,6 @@ describe('CreateVisualizationPageComponent screen size notice', () => {
       componentInputs: { organs: [] },
     });
     await fixture.whenStable();
-  }
-
-  beforeEach(() => {
-    localStorage.clear();
-    observe.mockReset().mockReturnValue(of({ matches: true, breakpoints: { '(width < 600px)': true } }));
-    openNotice.mockReset().mockReturnValue({ afterClosed: () => NEVER, close: jest.fn() });
-  });
-
-  it('shows the notice below 600px wide, checking the width only, even after the shared notice was dismissed', async () => {
-    localStorage.setItem('__hra-screen-size-notice-dismissed', 'true');
-    await setup();
-
-    expect(observe).toHaveBeenCalledWith(['(width < 600px)']);
-    expect(openNotice).toHaveBeenCalledWith(
-      'Heads up!',
-      'This page is optimized for Chrome or Firefox on screens at least 600px wide.',
-    );
-  });
-
-  it("doesn't show the notice again once it was dismissed on this page", async () => {
-    localStorage.setItem('__hra-cde-create-screen-size-notice-dismissed', 'true');
-    await setup();
 
     expect(openNotice).not.toHaveBeenCalled();
   });
