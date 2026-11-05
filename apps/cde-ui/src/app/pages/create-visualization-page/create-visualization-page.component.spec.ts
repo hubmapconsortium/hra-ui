@@ -210,7 +210,7 @@ describe('CreateVisualizationPageComponent', () => {
     function requirements(group: HTMLElement): Record<string, string | undefined> {
       const rows = group.querySelectorAll('dl > .requirement');
       return Object.fromEntries(
-        [...rows].map((row) => [
+        Array.from(rows).map((row) => [
           row.querySelector('dt')?.textContent?.trim(),
           row.querySelector('dd')?.textContent?.trim(),
         ]),
