@@ -61,6 +61,22 @@ describe('HeaderComponent', () => {
     expect(screen.queryAllByText(menu.label).length).toBeGreaterThan(0);
   });
 
+  it('should show actions in the main bar, even without breadcrumbs', async () => {
+    await render(
+      `<hra-header>
+        <button hraHeaderActions>Upload</button>
+        <span>Breadcrumbs row content</span>
+      </hra-header>`,
+      { imports: [HeaderComponent], providers },
+    );
+
+    const action = screen.getByRole('button', { name: 'Upload' });
+    const menuButton = screen.getByRole('button', { name: /main navigation/i });
+    expect(action.closest('.menus')).toBe(menuButton.closest('.menus'));
+    expect(action.compareDocumentPosition(menuButton) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.queryByText('Breadcrumbs row content')).toBeNull();
+  });
+
   it('should show an indeterminate progress bar when `progress === true`', async () => {
     await render(HeaderComponent, { providers, inputs: { progress: true } });
 

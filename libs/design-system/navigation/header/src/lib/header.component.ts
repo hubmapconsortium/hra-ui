@@ -52,6 +52,8 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
 /**
  * Global navigation header.
  * Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar.
+ * Content marked with the `hraHeaderActions` attribute shows in the main bar, before the menu button.
+ * Other content shows at the end of the breadcrumbs row.
  */
 @Component({
   selector: 'hra-header',

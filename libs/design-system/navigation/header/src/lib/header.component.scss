@@ -29,6 +29,10 @@
       height: 4.5rem;
     }
 
+    .navigation {
+      min-height: 2.5rem;
+    }
+
     &.mobile-menu-open {
       background-color: var(--hra-header-menu-container-color, #{vars.$surface-dim});
       backdrop-filter: none;

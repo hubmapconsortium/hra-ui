@@ -6,9 +6,9 @@
   // Colors and type read AtlasNG breadcrumbs tokens (--ang-breadcrumbs-*) when an app sets them
   .navigation .crumbs {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     list-style-type: none;
-    height: 2.5rem;
     width: 100%;
     margin: 0;
     padding: 0;
