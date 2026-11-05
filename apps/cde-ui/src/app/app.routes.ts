@@ -16,13 +16,13 @@ import {
   visualizationDataCanActivate,
   visualizationDataResolver,
 } from './services/visualization-data-service/visualization-data.service';
-import { createCrumbsResolver, CRUMBS_DATA_KEY } from './shared/resolvers/crumbs.resolver';
 import {
-  createExampleResolver,
-  EXAMPLE_INDEX_PARAM,
-  EXAMPLES_DATA_KEY,
-  getExampleCrumbs,
-} from './shared/resolvers/example.resolver';
+  BREADCRUMBS_DATA_KEY,
+  createBreadcrumbsResolver,
+  createCrumbsResolver,
+  CRUMBS_DATA_KEY,
+} from './shared/resolvers/crumbs.resolver';
+import { createExampleResolver, EXAMPLE_INDEX_PARAM, EXAMPLES_DATA_KEY } from './shared/resolvers/example.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
 import { organsResolver } from './shared/resolvers/organs.resolver';
 import {
@@ -30,7 +30,6 @@ import {
   createStudyResolver,
   DATASET_ID_PARAM,
   getStudyCrumbs,
-  getStudyDatasetCrumbs,
   STUDIES_DATA_KEY,
   STUDY_DATA_KEY,
   STUDY_ID_PARAM,
@@ -63,7 +62,6 @@ export const ROUTES: Routes = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
-      [CRUMBS_DATA_KEY]: createCrumbsResolver(),
       examples: jsonFileResolver<ExampleItem[]>(LANDING_PAGE_EXAMPLES_URL, { cache: true }),
       developerTools: jsonFileResolver<LandingCard[]>(LANDING_PAGE_DEVELOPER_TOOLS_URL, { cache: true }),
     },
@@ -72,7 +70,9 @@ export const ROUTES: Routes = [
     path: 'create',
     component: CreateVisualizationPageComponent,
     resolve: {
-      [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Create Visualization', route: '/create' }]),
+      [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver([
+        { name: 'Create a distance visualization', route: '/create' },
+      ]),
       organs: organsResolver(),
     },
   },
@@ -88,6 +88,7 @@ export const ROUTES: Routes = [
         pathMatch: 'full',
         component: ContentPageComponent,
         resolve: {
+          [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver(),
           data: createYamlSpecResolver('assets/content/gallery/data.yaml', ContentPageDataSchema),
         },
       },
@@ -102,14 +103,13 @@ export const ROUTES: Routes = [
             pathMatch: 'full',
             component: StudyPageComponent,
             resolve: {
-              [CRUMBS_DATA_KEY]: createCrumbsResolver(getStudyCrumbs),
+              [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver(getStudyCrumbs),
             },
           },
           {
             path: `:${DATASET_ID_PARAM}`,
             component: VisualizationPageComponent,
             resolve: {
-              [CRUMBS_DATA_KEY]: createCrumbsResolver(getStudyDatasetCrumbs),
               data: createStudyDatasetVisualizationResolver(),
             },
           },
@@ -127,7 +127,6 @@ export const ROUTES: Routes = [
         path: `:${EXAMPLE_INDEX_PARAM}`,
         component: VisualizationPageComponent,
         resolve: {
-          [CRUMBS_DATA_KEY]: createCrumbsResolver(getExampleCrumbs),
           data: createExampleResolver(),
         },
       },
@@ -141,7 +140,6 @@ export const ROUTES: Routes = [
       isCustomVisualization: true,
     },
     resolve: {
-      [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Custom Visualization', route: '/visualize' }]),
       data: visualizationDataResolver(),
     },
   },

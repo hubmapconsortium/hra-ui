@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, convertToParamMap, RouterStateSnapshot } from '@angular/router';
 import { CdeVisualizationElementProps, Metadata } from '@hra-ui/cde-visualization';
 import { NotFoundError } from '../utils/not-found-error';
-import { createExampleResolver, EXAMPLE_INDEX_PARAM, EXAMPLES_DATA_KEY, getExampleCrumbs } from './example.resolver';
+import { createExampleResolver, EXAMPLE_INDEX_PARAM, EXAMPLES_DATA_KEY } from './example.resolver';
 
 function createMockRoute(
   data: Record<string, unknown> = {},
@@ -32,53 +32,6 @@ describe('EXAMPLE_INDEX_PARAM', () => {
 
   it('should have value "index"', () => {
     expect(EXAMPLE_INDEX_PARAM).toBe('index');
-  });
-});
-
-describe('getExampleCrumbs', () => {
-  const exampleWithMetadata = {
-    metadata: { sourceFileName: 'Test Example' } as Metadata,
-    data: 'test',
-  };
-  const exampleWithoutMetadata = { data: 'test' };
-  const examples = [exampleWithMetadata, exampleWithoutMetadata];
-
-  it('should return breadcrumbs with file name from metadata', () => {
-    const route = createMockRoute({ [EXAMPLES_DATA_KEY]: examples }, { [EXAMPLE_INDEX_PARAM]: '0' });
-    const result = getExampleCrumbs(route);
-
-    expect(result).toEqual([{ name: 'Test Example', route: '/example/0' }]);
-  });
-
-  it('should return breadcrumbs with default name when metadata is missing', () => {
-    const route = createMockRoute({ [EXAMPLES_DATA_KEY]: examples }, { [EXAMPLE_INDEX_PARAM]: '1' });
-    const result = getExampleCrumbs(route);
-
-    expect(result).toEqual([{ name: 'Example 1', route: '/example/1' }]);
-  });
-
-  it('should use index parameter in route', () => {
-    const route = createMockRoute({ [EXAMPLES_DATA_KEY]: examples }, { [EXAMPLE_INDEX_PARAM]: '0' });
-    const result = getExampleCrumbs(route);
-
-    expect(result[0].route).toBe('/example/0');
-  });
-
-  it('should throw NotFoundError when index parameter is missing', () => {
-    const route = createMockRoute({ [EXAMPLES_DATA_KEY]: examples });
-    expect(() => getExampleCrumbs(route)).toThrow(NotFoundError);
-  });
-
-  it('should throw NotFoundError when examples data is missing', () => {
-    const route = createMockRoute({}, { [EXAMPLE_INDEX_PARAM]: '0' });
-    expect(() => getExampleCrumbs(route)).toThrow(NotFoundError);
-  });
-
-  it('should throw NotFoundError when example at index does not exist', () => {
-    const route = createMockRoute({ [EXAMPLES_DATA_KEY]: examples }, { [EXAMPLE_INDEX_PARAM]: '10' });
-
-    expect(() => getExampleCrumbs(route)).toThrow(NotFoundError);
-    expect(() => getExampleCrumbs(route)).toThrow('Example 10 not found');
   });
 });
 

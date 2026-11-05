@@ -22,7 +22,7 @@
 }
 
 :host {
-  $header-height: 113px;
+  $header-height: 72px;
   $content-max-width: 101.25rem;
   $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
   $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);

@@ -17,6 +17,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { assetUrl, cssUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
@@ -96,6 +97,9 @@ function optionalValue<T>(): T | null {
 export class CreateVisualizationPageComponent {
   /** Organ entries */
   readonly organs = input.required<OrganEntry[]>();
+
+  /** Breadcrumbs shown above the page title */
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
 
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');

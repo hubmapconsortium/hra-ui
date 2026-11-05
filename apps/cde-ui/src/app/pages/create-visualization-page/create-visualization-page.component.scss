@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   // Fill at least the window below the header, so the footer sits at the bottom of short pages
-  min-height: calc(100vh - 7.0625rem);
-  top: 7.0625rem;
+  min-height: calc(100vh - 4.5rem);
+  top: 4.5rem;
   background-color: vars.$background;
   position: relative;
   // Keeps the background layer below this page's content
@@ -57,7 +57,7 @@
     margin-bottom: -0.5rem;
 
     .nav {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.25rem;
     }
 
     .title {
