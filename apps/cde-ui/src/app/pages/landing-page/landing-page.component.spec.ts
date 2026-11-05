@@ -115,7 +115,7 @@ describe('LandingPageComponent', () => {
   describe('hero background', () => {
     function getHeroBackgroundUrls(container: Element): string[] {
       const picture = container.querySelector('.hero-background') as HTMLElement;
-      const sources = [...picture.querySelectorAll('source')].map((source) => source.getAttribute('srcset') ?? '');
+      const sources = Array.from(picture.querySelectorAll('source'), (source) => source.getAttribute('srcset') ?? '');
       return [...sources, picture.querySelector('img')?.getAttribute('src') ?? ''];
     }
 
