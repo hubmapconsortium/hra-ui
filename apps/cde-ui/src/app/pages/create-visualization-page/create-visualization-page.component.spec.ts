@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -7,10 +8,12 @@ import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing'
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY, Metadata } from '@hra-ui/cde-visualization';
+import { DialogService } from '@hra-ui/design-system/dialog';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
 import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
+import { NEVER, of } from 'rxjs';
 import { Theme, ThemeService } from '../../services/theme-service/theme.service';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
@@ -584,5 +587,51 @@ describe('CreateVisualizationPageComponent', () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(instance.nodesErrorMessage).toMatch(/and 1 more rows/);
     });
+  });
+});
+
+describe('CreateVisualizationPageComponent screen size notice', () => {
+  const observe = jest.fn();
+  const openNotice = jest.fn();
+
+  /** Renders the page on a screen narrower than 600px */
+  async function setup(): Promise<void> {
+    const { fixture } = await render(CreateVisualizationPageComponent, {
+      providers: [
+        provideAssetHref('http://localhost/'),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: ThemeService, useValue: { theme: signal<Theme>('light') } },
+        { provide: BreakpointObserver, useValue: { observe } },
+        { provide: DialogService, useValue: { openNotice } },
+      ],
+      imports: [MatIconTestingModule],
+      componentInputs: { organs: [] },
+    });
+    await fixture.whenStable();
+  }
+
+  beforeEach(() => {
+    localStorage.clear();
+    observe.mockReset().mockReturnValue(of({ matches: true, breakpoints: { '(width < 600px)': true } }));
+    openNotice.mockReset().mockReturnValue({ afterClosed: () => NEVER, close: jest.fn() });
+  });
+
+  it('shows the notice below 600px wide, checking the width only, even after the shared notice was dismissed', async () => {
+    localStorage.setItem('__hra-screen-size-notice-dismissed', 'true');
+    await setup();
+
+    expect(observe).toHaveBeenCalledWith(['(width < 600px)']);
+    expect(openNotice).toHaveBeenCalledWith(
+      'Heads up!',
+      'This page is optimized for Chrome or Firefox on screens at least 600px wide.',
+    );
+  });
+
+  it("doesn't show the notice again once it was dismissed on this page", async () => {
+    localStorage.setItem('__hra-cde-create-screen-size-notice-dismissed', 'true');
+    await setup();
+
+    expect(openNotice).not.toHaveBeenCalled();
   });
 });

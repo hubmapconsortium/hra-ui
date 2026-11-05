@@ -110,7 +110,8 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Initialize app */
   constructor() {
-    // No screen size notice: the visualization switches to tabs on small screens
+    // No app-wide screen size notice: the visualization switches to tabs on small screens,
+    // and only the create page shows the notice
     super();
 
     inject(CustomScrollService);
