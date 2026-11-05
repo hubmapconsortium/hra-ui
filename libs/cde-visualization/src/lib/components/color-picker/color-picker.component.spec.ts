@@ -1,4 +1,4 @@
-import { OverlayModule } from '@angular/cdk/overlay';
+import { BlockScrollStrategy, CdkConnectedOverlay, OverlayModule } from '@angular/cdk/overlay';
 import { Component, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Rgb } from '@hra-ui/design-system/color-picker';
@@ -85,5 +85,14 @@ describe('ColorPickerComponent', () => {
       .injector.get(ColorPickerDirective)
       .colorPickerCancel.emit('#000000');
     await waitFor(() => expect(host.open()).toBe(false));
+  });
+
+  it('keeps the page from scrolling while open', async () => {
+    const { fixture } = await setup();
+
+    const overlay = fixture.debugElement
+      .queryAllNodes(By.directive(CdkConnectedOverlay))[0]
+      .injector.get(CdkConnectedOverlay);
+    expect(overlay.scrollStrategy).toBeInstanceOf(BlockScrollStrategy);
   });
 });
