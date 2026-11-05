@@ -87,17 +87,17 @@
     flex-direction: column;
     gap: 0.5rem;
 
-    // Keep only the step number and title in the heading so its accessible name stays short
+    // Keep only the step number and title in the heading so its accessible name stays short.
+    // The step number sits 12px above the title.
     .heading {
       display: flex;
-      align-items: center;
-      min-height: 2.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
       margin: 0;
     }
 
     .step-number {
-      margin-right: 0.75rem;
-
       ::ng-deep .step-number {
         @include utils.use-font(title, small);
         border-radius: vars.$corner-full;
@@ -107,7 +107,6 @@
     }
 
     .card-title {
-      margin-right: 0.75rem;
       @include utils.use-font(title, large);
     }
 

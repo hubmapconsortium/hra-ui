@@ -241,10 +241,10 @@ describe('CreateVisualizationPageComponent', () => {
 
   describe('required column headers', () => {
     it('marks the required selects as required for assistive technology', () => {
-      for (const name of ['X axis', 'Y axis', 'Cell type']) {
+      for (const name of ['X column', 'Y column', 'Cell type column']) {
         expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'true');
       }
-      for (const name of ['Z axis', 'Cell ontology ID']) {
+      for (const name of ['Z column', 'Cell Ontology (CL) ID column']) {
         expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'false');
       }
     });
@@ -267,8 +267,8 @@ describe('CreateVisualizationPageComponent', () => {
       expect(within(group).queryByRole('table')).toBeNull();
       expect(requirements(group)).toEqual({
         'Required columns': 'X, Y, cell type',
-        'Optional columns': 'Z, cell ontology ID',
-        'Supported format': 'CSV',
+        'Optional columns': 'Z, Cell Ontology (CL) ID',
+        'Supported format': 'Comma-separated values (CSV)',
       });
     });
 
@@ -313,7 +313,7 @@ describe('CreateVisualizationPageComponent', () => {
       const button = getVisualizeButton();
       expect(button).not.toHaveAttribute('disabled');
       expect(button).toHaveAttribute('aria-disabled', 'true');
-      expect(button).toHaveAccessibleDescription('Please upload a dataset.');
+      expect(button).toHaveAccessibleDescription('Upload a dataset first.');
 
       const submitSpy = jest.spyOn(instance, 'submit');
       await userEvent.click(button);
@@ -326,7 +326,7 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
       fixture.detectChanges();
 
-      expect(getVisualizeButton()).toHaveAccessibleDescription('Please complete the required fields above.');
+      expect(getVisualizeButton()).toHaveAccessibleDescription('Fill in the required fields above.');
     });
   });
 
@@ -345,8 +345,8 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: cell type/);
-      expect(screen.getByText(/Please select the required column header/).closest('[role="alert"]')).not.toBeNull();
+      expect(instance.columnErrorActionMessage).toMatch(/Select the required column: cell type/);
+      expect(screen.getByText(/Select the required column/).closest('[role="alert"]')).not.toBeNull();
     });
 
     it('sets nodes', async () => {
@@ -403,7 +403,7 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.upload(colorMapEl, data, { applyAccept: false });
       fixture.autoDetectChanges();
 
-      expect(instance.colorErrorMessage).toMatch(/Invalid file type/);
+      expect(instance.colorErrorMessage).toMatch(/Unsupported file type/);
     });
     it('shows error if invalid color map keys', async () => {
       const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
@@ -416,7 +416,7 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.upload(colorMapEl, data);
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.colorErrorMessage).toMatch(/Required columns? missing/);
+      expect(instance.colorErrorMessage).toMatch(/Missing required columns?/);
     });
   });
 
@@ -579,7 +579,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.clearCustomColorMap();
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.nodesErrorMessage).toMatch(/Invalid file/);
+      expect(instance.nodesErrorMessage).toMatch(/Couldn't read rows?/);
     });
 
     it('shows parse error (cause is Error type)', async () => {
@@ -588,9 +588,7 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: new Error(),
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(
-        'Required color format not detected. Please use #RRGGBB or [R, G, B].',
-      );
+      expect(priedInstance.formatErrorMessage(testError)).toMatch('Colors must be #RRGGBB or [R, G, B].');
     });
 
     it('shows parse errors (cause is some other type)', async () => {
@@ -599,7 +597,13 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: 'whatever',
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Invalid file: too many invalid rows/);
+      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Too many rows couldn't be read/);
+    });
+
+    it('says row for a single row, even with a multi-digit row number', () => {
+      const priedInstance = instance as unknown as { formatErrorMessage: (error: ExtendedFileLoadError) => string };
+      const testError = { type: 'parse-error', cause: [{ row: 12 }] } as unknown as ExtendedFileLoadError;
+      expect(priedInstance.formatErrorMessage(testError)).toBe("Couldn't read row 12");
     });
 
     it('returns empty string if no error type', async () => {
@@ -626,7 +630,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.clearCustomColorMap();
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.nodesErrorMessage).toMatch(/and 1 more rows/);
+      expect(instance.nodesErrorMessage).toMatch(/and 1 more$/);
     });
   });
 });

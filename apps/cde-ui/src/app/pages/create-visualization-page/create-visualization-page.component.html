@@ -23,8 +23,8 @@
         <span class="card-title">Upload data</span>
       </h2>
       <p class="description">
-        Use the template to format single-cell spatial feature tables for exploration. The cell type column can include
-        damage and proliferation markers.
+        Format a table of positions and labels with the template, then upload it. The cell type column can hold any
+        label, such as cell types, clusters, cell states, damage and proliferation markers, or tissue structures.
       </p>
     </div>
     <div class="requirements" role="group" aria-label="Data upload requirements">
@@ -35,11 +35,11 @@
         </div>
         <div class="requirement">
           <dt>Optional columns</dt>
-          <dd>Z, cell ontology ID</dd>
+          <dd>Z, Cell Ontology (CL) ID</dd>
         </div>
         <div class="requirement">
           <dt>Supported format</dt>
-          <dd>CSV</dd>
+          <dd>Comma-separated values (CSV)</dd>
         </div>
       </dl>
     </div>
@@ -82,18 +82,21 @@
         <span class="visually-hidden">Step 2 of 6: </span>
         <span class="card-title">Organize data</span>
       </h2>
-      <p class="description">Verify column headers and edit as needed. Select optional column headers.</p>
+      <p class="description">
+        Match each field to a column header in the uploaded table. Headers named as in the template are matched
+        automatically.
+      </p>
     </div>
 
     @if (visualizationForm.controls.headers.disabled) {
-      <hra-error-indicator icon="warning" [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator icon="warning" [errors]="['Upload a dataset first.']" />
     }
 
     <div class="required-headers">
-      <span class="subheader"><strong>Required:</strong> Verify column headers</span>
+      <span class="subheader"><strong>Required:</strong> check each match</span>
 
       <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="x-axis-selector">
-        <mat-label>X axis</mat-label>
+        <mat-label>X column</mat-label>
         <mat-select
           disableRipple
           formControlName="xAxis"
@@ -110,7 +113,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hideRequiredMarker hraFeature="y-axis-selector">
-        <mat-label>Y axis</mat-label>
+        <mat-label>Y column</mat-label>
         <mat-select
           disableRipple
           formControlName="yAxis"
@@ -132,7 +135,7 @@
         hideRequiredMarker
         hraFeature="cell-type-selector"
       >
-        <mat-label>Cell type</mat-label>
+        <mat-label>Cell type column</mat-label>
         <mat-select
           disableRipple
           formControlName="cellType"
@@ -154,10 +157,10 @@
     }
 
     <div class="optional-headers">
-      <span class="subheader"><strong>Optional:</strong> Add column headers</span>
+      <span class="subheader"><strong>Optional:</strong> match these if the table has them</span>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="z-axis-selector">
-        <mat-label>Z axis</mat-label>
+        <mat-label>Z column</mat-label>
         <mat-select
           disableRipple
           formControlName="zAxis"
@@ -173,7 +176,7 @@
       </mat-form-field>
 
       <mat-form-field subscriptSizing="dynamic" hraFeature="cell-ontology-selector">
-        <mat-label>Cell ontology ID</mat-label>
+        <mat-label>Cell Ontology (CL) ID column</mat-label>
         <mat-select
           disableRipple
           formControlName="ontologyId"
@@ -199,21 +202,17 @@
       </h2>
       <div class="description">
         <p>
-          The anchor cell type represents the cell type to which the nearest cell distance distributions should be
-          computed and visualized. Euclidean distance is used to compute the distance between two cells. "Endothelial"
-          is used as the default anchor cell type. If an "Endothelial" cell label is not present, the first listed cell
-          type label is used as the anchor cell type.
+          Distances are measured from each cell to its closest cell of the anchor cell type, in a straight line
+          (Euclidean distance). The anchor cell type is "Endothelial" by default, or the first cell type when the data
+          has no "Endothelial" cells.
         </p>
-        <p>Configure the distance threshold to modify visualizations for analysis.</p>
-        <p>
-          Pixel size is used as a scaling factor to convert coordinates to micrometers. Use 1 if coordinates are already
-          in micrometers.
-        </p>
+        <p>Distances longer than the distance threshold aren't shown or counted.</p>
+        <p>Pixel size converts coordinates to micrometers. Enter 1 if the coordinates are already in micrometers.</p>
       </div>
     </div>
 
     @if (visualizationForm.controls.parameters.disabled) {
-      <hra-error-indicator icon="warning" [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator icon="warning" [errors]="['Upload a dataset first.']" />
     }
 
     <div class="parameters-1">
@@ -276,8 +275,8 @@
         <span class="card-title">Optional: Add metadata</span>
       </h2>
       <p class="description">
-        Information in these fields will not change the visualization output. Metadata may be helpful for taking
-        screenshots of the uploaded data and resulting visualizations in the Visualization App.
+        Metadata doesn't change the visualization. It shows in the visualization's Metadata panel, which helps when
+        sharing screenshots.
       </p>
     </div>
 
@@ -355,8 +354,8 @@
         <span class="card-title">Optional: Configure colors</span>
       </h2>
       <p class="description">
-        Use default colors or customize the visualization by uploading a preferred color map CSV file. Cell type colors
-        may be changed individually while exploring the visualization in the Visualization App.
+        Use the default colors or upload a color map. Cell type colors can also be changed one at a time in the
+        visualization.
       </p>
     </div>
 
@@ -421,19 +420,17 @@
         <span class="visually-hidden">Step 6 of 6: </span>
         <span class="card-title">Visualize cell distance data</span>
       </h2>
-      <p class="description">
-        Data on the Create Visualization page cannot be modified after a visualization is generated.
-      </p>
+      <p class="description">The data can't be changed after the visualization is created.</p>
     </div>
 
     @let canVisualize = hasValidNodes() && hasValidData();
     @if (!hasDataset()) {
-      <hra-error-indicator id="visualize-requirements" icon="warning" [errors]="['Please upload a dataset.']" />
+      <hra-error-indicator id="visualize-requirements" icon="warning" [errors]="['Upload a dataset first.']" />
     } @else if (!canVisualize) {
       <hra-error-indicator
         id="visualize-requirements"
         icon="warning"
-        [errors]="['Please complete the required fields above.']"
+        [errors]="['Fill in the required fields above.']"
       />
     }
 
