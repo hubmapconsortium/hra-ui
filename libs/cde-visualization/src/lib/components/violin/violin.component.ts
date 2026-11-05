@@ -221,6 +221,12 @@ export class ViolinComponent {
   /** Whether the violin is in the fullscreen view, where the violins stand upright and fit without scrolling */
   protected readonly fullscreen = signal(false);
 
+  /** Whether the fullscreen dialog has finished opening, so the fullscreen view can draw new data */
+  protected readonly fullscreenReady = signal(false);
+
+  /** Whether the fullscreen view is waiting to draw new data, which shows a skeleton */
+  protected readonly fullscreenLoading = signal(false);
+
   /** Vega view for the docked panel */
   private readonly dockedView = signal<View | undefined>(undefined);
 
@@ -242,13 +248,24 @@ export class ViolinComponent {
   /** Whether vertical scrolling should be enabled for the violin visualization */
   readonly enableScroll = signal<boolean>(false);
 
-  /** Effect for updating view data */
+  /**
+   * Effect for updating view data. Estimating the densities can take seconds for large datasets, so the fullscreen
+   * view shows a skeleton and waits until its dialog has finished opening. Otherwise opening would wait on it.
+   */
   protected readonly viewDataRef = effect(() => {
     const view = this.view();
     const data = this.data();
-    if (view && data.length > 0 && this.viewData.get(view) !== data) {
+    if (!view || data.length === 0 || this.viewData.get(view) === data) {
+      return;
+    }
+
+    if (!this.fullscreen()) {
       this.viewData.set(view, data);
       view.data('data', data).run();
+    } else if (this.fullscreenReady()) {
+      this.drawFullscreenData(view, data);
+    } else {
+      this.fullscreenLoading.set(true);
     }
   });
 
@@ -287,6 +304,37 @@ export class ViolinComponent {
       try {
         await this.resizeView();
       } finally {
+        done();
+      }
+    });
+  }
+
+  /** Leaves the fullscreen view. A fullscreen view still waiting for its data draws it the next time it opens. */
+  protected closeFullscreen(): void {
+    this.fullscreen.set(false);
+    this.fullscreenReady.set(false);
+    this.fullscreenLoading.set(false);
+  }
+
+  /**
+   * Draws new data in the fullscreen view and fits it, then hides the skeleton.
+   * It's a pending task, so a view transition that closes the dialog meanwhile waits for it.
+   *
+   * @param view Fullscreen Vega view
+   * @param data Data to draw
+   */
+  private drawFullscreenData(view: View, data: DistanceEntry[]): void {
+    this.viewData.set(view, data);
+    this.fullscreenLoading.set(true);
+    const done = this.pendingTasks.add();
+    setTimeout(async () => {
+      try {
+        await view.data('data', data).runAsync();
+        await this.resizeView();
+      } finally {
+        if (this.viewData.get(view) === data) {
+          this.fullscreenLoading.set(false);
+        }
         done();
       }
     });
