@@ -47,6 +47,19 @@ describe('FullscreenComponent', () => {
     expect(closed).toHaveBeenCalledTimes(1);
   });
 
+  it('should emit transitionEnded once opening and closing finish', async () => {
+    const transitionEnded = jest.fn();
+    const { fixture } = await setup({ on: { transitionEnded } });
+
+    fixture.componentInstance.open();
+    await fixture.whenStable();
+    expect(transitionEnded).toHaveBeenCalledTimes(1);
+
+    fixture.componentInstance.close();
+    await fixture.whenStable();
+    expect(transitionEnded).toHaveBeenCalledTimes(2);
+  });
+
   describe('with view transitions', () => {
     let startViewTransition: jest.Mock;
 
@@ -56,8 +69,34 @@ describe('FullscreenComponent', () => {
     }
 
     beforeEach(() => {
-      startViewTransition = jest.fn((callback: () => Promise<void>) => ({ updateCallbackDone: callback() }));
+      // The mock transition has no animation, so it finishes when its update callback does
+      startViewTransition = jest.fn((callback: () => Promise<void>) => {
+        const updateCallbackDone = callback();
+        return { updateCallbackDone, finished: updateCallbackDone };
+      });
       Object.defineProperty(document, 'startViewTransition', { configurable: true, value: startViewTransition });
+    });
+
+    it('should emit transitionEnded after the view transition finishes', async () => {
+      const transitionEnded = jest.fn();
+      const { fixture } = await setup({ inputs: { viewTransition: true }, on: { transitionEnded } });
+
+      fixture.componentInstance.open();
+      expect(transitionEnded).not.toHaveBeenCalled();
+      await startViewTransition.mock.results[0].value.finished;
+      await Promise.resolve();
+      expect(transitionEnded).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not emit transitionEnded after it is destroyed', async () => {
+      const transitionEnded = jest.fn();
+      const { fixture } = await setup({ inputs: { viewTransition: true }, on: { transitionEnded } });
+
+      fixture.componentInstance.open();
+      fixture.destroy();
+      await startViewTransition.mock.results[0].value.finished.catch(() => undefined);
+      await Promise.resolve();
+      expect(transitionEnded).not.toHaveBeenCalled();
     });
 
     afterEach(() => {

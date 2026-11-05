@@ -19,7 +19,8 @@
     viewTransition
     (beforeOpened)="fullscreen.set(true); fullscreenChange.emit(true)"
     (opened)="resizeAndSyncView()"
-    (beforeClosed)="fullscreen.set(false); fullscreenChange.emit(false)"
+    (transitionEnded)="fullscreenReady.set(fullscreen())"
+    (beforeClosed)="closeFullscreen(); fullscreenChange.emit(false)"
     (closed)="resizeAndSyncView()"
   >
     <hra-fullscreen-portal-content class="violin-fullscreen-portal" [class.enableScroll]="enableScroll()">
@@ -33,7 +34,7 @@
         <div class="violin-container violin-docked-chart" data-testid="violin" [class.hidden]="fullscreen()"></div>
         <div class="violin-container violin-fullscreen-chart" [class.hidden]="!fullscreen()"></div>
       </ng-scrollbar>
-      @if (loading()) {
+      @if (loading() || fullscreenLoading()) {
         <cde-chart-skeleton />
       } @else if (emptyState(); as content) {
         <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
