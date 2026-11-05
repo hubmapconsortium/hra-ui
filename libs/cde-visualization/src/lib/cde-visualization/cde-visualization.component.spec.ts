@@ -718,6 +718,9 @@ describe('CdeVisualizationComponent', () => {
           'horizontal',
         );
         expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.more.label })).toBeInTheDocument();
+
+        const spatialView = fixture.debugElement.query(By.directive(NodeDistVisualizationComponent)).componentInstance;
+        expect(spatialView.dockCellInfo()).toBe(true);
       },
       TIMEOUT,
     );

@@ -154,6 +154,21 @@ describe('NodeDistVisualizationComponent', () => {
 
       expect(screen.queryByTestId('cell-info')).toBeInTheDocument();
     });
+
+    it('docks cell info at the bottom of the visualization on compact screens, until it closes', async () => {
+      const { container, fixture } = await setup({ inputs: { dockCellInfo: true } });
+      await setViewMode(fixture, /Inspect/);
+      await emitVisualizationEvent(fixture, 'nodeClick', SAMPLE_NODE_EVENT);
+
+      const cards = screen.getAllByTestId('cell-info');
+      expect(cards).toHaveLength(1);
+      expect(cards[0]).toHaveClass('docked-cell-info');
+      expect(container.querySelector('hra-fullscreen-portal-content')).toContainElement(cards[0]);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Close cell info' }));
+      fixture.detectChanges();
+      expect(screen.queryByTestId('cell-info')).not.toBeInTheDocument();
+    });
   });
 
   describe('download', () => {

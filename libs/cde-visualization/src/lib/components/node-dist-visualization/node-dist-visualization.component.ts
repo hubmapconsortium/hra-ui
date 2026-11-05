@@ -111,6 +111,12 @@ export class NodeDistVisualizationComponent {
   /** Whether the screen is compact, which shows the view mode toggles as icons */
   readonly compact = input(false);
 
+  /**
+   * Whether cell info docks at the bottom of the visualization instead of opening beside the cell.
+   * Compact screens dock it, since a card beside the cell can run off a phone screen.
+   */
+  readonly dockCellInfo = input(false);
+
   /** Emits true when the panel opens in full screen and false when it closes */
   readonly fullscreenChange = output<boolean>();
 
