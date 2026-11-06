@@ -63,6 +63,35 @@ hra-fullscreen-portal-content {
   position: relative;
 }
 
+// Centered at the top of the visualization. The strip lets clicks through to the cells beside the controls.
+.floating-controls {
+  position: absolute;
+  top: 1rem;
+  inset-inline: 1rem;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+
+  cde-node-dist-visualization-controls {
+    pointer-events: auto;
+  }
+}
+
+// With the controls floating, the header keeps only the visually hidden title, so it collapses
+:host(.floating-controls) ::ng-deep hra-expansion-panel cdk-accordion-item {
+  .header {
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .content {
+    height: 100%;
+  }
+}
+
 // On compact screens, cell info docks along the bottom of the visualization instead of beside the cell,
 // where it could run off the screen. It scrolls when the visualization is too short for it.
 .docked-cell-info {

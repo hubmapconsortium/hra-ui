@@ -142,6 +142,19 @@ describe('CreateVisualizationPageComponent', () => {
     );
   });
 
+  it('shows breadcrumbs above the title', () => {
+    fixture.componentRef.setInput('breadcrumbs', [
+      { name: 'Home', route: 'https://humanatlas.io' },
+      { name: 'Create a distance visualization' },
+    ]);
+    fixture.detectChanges();
+
+    const crumbs = fixture.nativeElement.querySelector('hra-breadcrumbs');
+    const title = screen.getByRole('heading', { level: 1 });
+    expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
+    expect(crumbs.compareDocumentPosition(title)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
   it('passes the dark background image in the dark theme', () => {
     theme.set('dark');
     fixture.detectChanges();

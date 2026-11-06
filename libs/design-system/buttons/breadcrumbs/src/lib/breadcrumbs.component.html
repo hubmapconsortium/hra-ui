@@ -2,7 +2,17 @@
   <ol class="crumbs">
     @for (crumb of crumbs(); track $index) {
       <li class="crumb">
-        @if (crumb.route) {
+        @if (crumb.route && crumb.icon) {
+          <a
+            mat-icon-button
+            class="icon"
+            [hraLink]="crumb.route"
+            [attr.aria-label]="crumb.name"
+            [hraPlainTooltip]="crumb.name"
+          >
+            <mat-icon>{{ crumb.icon }}</mat-icon>
+          </a>
+        } @else if (crumb.route) {
           <a class="label" hraHyperlink [hraLink]="crumb.route">{{ crumb.name }}</a>
         } @else {
           <span class="label">{{ crumb.name }}</span>

@@ -231,6 +231,12 @@ export class CdeVisualizationComponent {
   /** Input metadata */
   readonly metadata = input<MetadataInput>();
 
+  /** Study the data comes from, shown first in the metadata panel */
+  readonly study = input<string>();
+
+  /** Url of the study's page, which the study name links to */
+  readonly studyUrl = input<string>();
+
   /** Title of the visualization */
   readonly title = input<string>();
 
@@ -263,6 +269,9 @@ export class CdeVisualizationComponent {
 
   /** Hides the toolbar's Theme menu, for pages that switch the theme themselves */
   readonly hideThemeMenu = input(false, { transform: booleanAttribute });
+
+  /** Hides the toolbar's Help menu, for pages that link to help themselves */
+  readonly hideHelpMenu = input(false, { transform: booleanAttribute });
 
   /**
    * Panels hidden at first and after Reset everything, as an array or a comma or space separated list of
@@ -363,6 +372,8 @@ export class CdeVisualizationComponent {
   protected readonly metadataView = loadMetadata(
     this.metadata,
     {
+      study: this.study,
+      studyUrl: this.studyUrl,
       title: this.title,
       organ: this.organ,
       technology: this.technology,

@@ -1,25 +1,12 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { CdeVisualizationElementProps, Metadata } from '@hra-ui/cde-visualization';
+import { CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 import { getRequiredRouteData, getRequiredRouteParam } from '../utils/route-properties';
-import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { NotFoundError } from '../utils/not-found-error';
 
 /** Examples data key */
 export const EXAMPLES_DATA_KEY = 'examples';
 /** Example index route parameter */
 export const EXAMPLE_INDEX_PARAM = 'index';
-
-/**
- * Gets the example breadcrumbs from the route
- * @param route Activated route snapshot
- * @returns Breadcrumb items for the example
- */
-export function getExampleCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
-  const index = getRequiredRouteParam(route, EXAMPLE_INDEX_PARAM);
-  const { metadata = {} } = getExampleData(route);
-  const name = (metadata as Metadata).sourceFileName ?? `Example ${index}`;
-  return [{ name, route: `/example/${index}` }];
-}
 
 /**
  * Creates a resolver for example visualization data

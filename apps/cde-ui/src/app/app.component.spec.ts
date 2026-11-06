@@ -37,4 +37,26 @@ describe('AppComponent', () => {
     options[0].triggerEventHandler('click', {});
     expect(setPreference).toHaveBeenCalledWith('system');
   });
+
+  it('shows Upload data, Theme and Help in the header', async () => {
+    const { find } = await shallow.render();
+
+    const actions = find('hra-header [hraHeaderActions]');
+    expect(actions.map((action) => action.nativeElement.getAttribute('hraFeature'))).toEqual([
+      'upload-data',
+      'theme',
+      'help',
+    ]);
+  });
+
+  it('links to the guides from the help menu', async () => {
+    const { find } = await shallow.render();
+
+    const links = find('[hraFeature="help-menu"] a[mat-menu-item]');
+    expect(links.map((link) => link.nativeElement.getAttribute('href'))).toEqual([
+      'https://humanatlas.io/user-story/5',
+      'https://github.com/hubmapconsortium/hra-ui/tree/main/apps/cde-ui',
+      'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md',
+    ]);
+  });
 });

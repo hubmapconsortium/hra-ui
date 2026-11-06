@@ -57,6 +57,9 @@ export class ToolbarComponent {
   /** Whether the toolbar shows the Theme menu */
   readonly showThemeMenu = input(false);
 
+  /** Whether the toolbar shows the Help menu */
+  readonly showHelpMenu = input(true);
+
   /** Whether the toolbar shows the Panels menu. The tabbed layout hides it, since the tabs reach every panel. */
   readonly showPanelsMenu = input(true);
 

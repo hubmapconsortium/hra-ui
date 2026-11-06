@@ -1,5 +1,8 @@
 <form class="content" hraFeature="create-visualization-page" [formGroup]="visualizationForm">
   <div class="page-nav">
+    @if (breadcrumbs(); as crumbs) {
+      <hra-breadcrumbs class="nav" hraFeature="breadcrumbs" [crumbs]="crumbs" />
+    }
     <h1 class="title">Create a distance visualization</h1>
   </div>
 

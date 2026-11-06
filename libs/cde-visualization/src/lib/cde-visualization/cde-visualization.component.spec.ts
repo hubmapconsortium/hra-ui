@@ -226,6 +226,21 @@ describe('CdeVisualizationComponent', () => {
     );
   });
 
+  describe('metadata', () => {
+    it(
+      'shows the study from the study and study-url attributes first in the metadata panel',
+      async () => {
+        const { container } = await setup({
+          inputs: { study: 'Bone marrow, CODEX', studyUrl: '/gallery/bone-marrow' },
+        });
+
+        expect(container.querySelector('cde-metadata dt')).toHaveTextContent('Study');
+        expect(container.querySelector('cde-metadata dd a')).toHaveAttribute('href', '/gallery/bone-marrow');
+      },
+      TIMEOUT,
+    );
+  });
+
   describe('loading', () => {
     /** Waits longer than the loaded announcement's debounce */
     const waitForDebounce = () => new Promise((resolve) => setTimeout(resolve, 300));
@@ -561,6 +576,19 @@ describe('CdeVisualizationComponent', () => {
       },
       TIMEOUT,
     );
+
+    it(
+      'shows the Help menu unless hideHelpMenu is set',
+      async () => {
+        const { fixture } = await setup();
+        expect(getToolbar(fixture).showHelpMenu()).toBe(true);
+
+        fixture.componentRef.setInput('hideHelpMenu', '');
+        fixture.detectChanges();
+        expect(getToolbar(fixture).showHelpMenu()).toBe(false);
+      },
+      TIMEOUT,
+    );
   });
 
   describe('panels', () => {
@@ -669,6 +697,18 @@ describe('CdeVisualizationComponent', () => {
         expect(screen.queryByRole('tablist')).not.toBeInTheDocument();
         expect(getElement(fixture, '.panels')).not.toHaveAttribute('role');
         expect(getElement(fixture, '.layout')).not.toHaveClass('tabbed');
+        expect(getElement(fixture, 'cde-node-dist-visualization')).not.toHaveClass('floating-controls');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'floats the spatial view controls in tabs',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1000);
+
+        expect(getElement(fixture, 'cde-node-dist-visualization')).toHaveClass('floating-controls');
       },
       TIMEOUT,
     );

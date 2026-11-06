@@ -90,7 +90,8 @@
       {{ content.info.label }}
     </button>
   }
-  @if (!compact()) {
+  <!-- Each block holds one element, so the rail can project it into its bottom group -->
+  @if (showHelpMenu() && !compact()) {
     <button
       hraNavigationRailItem
       hraNavigationRailBottom
@@ -102,7 +103,8 @@
     >
       {{ content.help.label }}
     </button>
-  } @else {
+  }
+  @if (compact()) {
     <button
       hraNavigationRailItem
       icon="more_horiz"
@@ -359,8 +361,10 @@
     <mat-icon>info</mat-icon>
     {{ content.info.label }}
   </button>
-  <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">
-    <mat-icon>help</mat-icon>
-    {{ content.help.label }}
-  </button>
+  @if (showHelpMenu()) {
+    <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">
+      <mat-icon>help</mat-icon>
+      {{ content.help.label }}
+    </button>
+  }
 </mat-menu>

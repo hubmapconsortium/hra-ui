@@ -15,16 +15,12 @@
 <mat-button-toggle-group
   aria-label="Visualization mode"
   hraFeature="toggle"
-  [hideSingleSelectionIndicator]="compact()"
   [value]="viewMode()"
   (change)="viewMode.set($event.value)"
 >
   @for (mode of viewModes; track mode.value) {
     <mat-button-toggle hraClickEvent [value]="mode.value" [hraPlainTooltip]="mode.tooltip" [hraFeature]="mode.value">
-      @if (compact()) {
-        <mat-icon>{{ mode.icon }}</mat-icon>
-      }
-      <span [class.visually-hidden]="compact()">{{ mode.label }}</span>
+      {{ mode.label }}
     </mat-button-toggle>
   }
 </mat-button-toggle-group>

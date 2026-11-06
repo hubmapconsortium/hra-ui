@@ -6,6 +6,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
 import { injectAssetUrlResolver } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
@@ -79,6 +80,9 @@ export class LandingPageComponent {
 
   /** Developer tools cards */
   readonly developerTools = input<LandingCard[]>([]);
+
+  /** Breadcrumbs shown above the hero logo */
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
 
   /** Whether the hero screenshot has loaded, so its entrance animation plays on the image itself */
   protected readonly heroImageLoaded = signal(false);

@@ -1,4 +1,3 @@
-@use 'utils';
 @use 'vars';
 
 :host {
@@ -27,17 +26,5 @@
     hra-header {
       position: fixed;
     }
-  }
-}
-
-// Explore menu options: the option name over a body medium description
-::ng-deep .more-menu .option-text {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 0;
-
-  .option-description {
-    @include utils.use-font(body, medium);
-    color: vars.$on-surface-variant;
   }
 }

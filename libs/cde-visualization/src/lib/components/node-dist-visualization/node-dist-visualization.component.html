@@ -1,11 +1,12 @@
 <hra-expansion-panel tagline="Spatial view" disabled>
   <hra-expansion-panel-header-content>
-    <cde-node-dist-visualization-controls
-      [deleteAvailable]="hasSelection()"
-      [compact]="compact()"
-      [(viewMode)]="viewMode"
-      (deleteClick)="deleteSelection()"
-    />
+    @if (!floatingControls()) {
+      <cde-node-dist-visualization-controls
+        [deleteAvailable]="hasSelection()"
+        [(viewMode)]="viewMode"
+        (deleteClick)="deleteSelection()"
+      />
+    }
     @if (fullscreenAvailable()) {
       <button
         mat-icon-button
@@ -38,13 +39,24 @@
 
       <cde-node-dist-visualization-controls
         [deleteAvailable]="hasSelection()"
-        [compact]="compact()"
         [(viewMode)]="viewMode"
         (deleteClick)="deleteSelection()"
       />
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content>
+      <!-- Before the visualization in the page, as on screen, so keyboard focus reaches the controls first.
+           Hidden while the skeleton or empty state covers the visualization, so focus never lands on hidden controls. -->
+      @if (floatingControls() && !loading() && !emptyState()) {
+        <div class="floating-controls">
+          <cde-node-dist-visualization-controls
+            floating
+            [deleteAvailable]="hasSelection()"
+            [(viewMode)]="viewMode"
+            (deleteClick)="deleteSelection()"
+          />
+        </div>
+      }
       <hra-node-dist-vis
         cdkOverlayOrigin
         class="vis"
