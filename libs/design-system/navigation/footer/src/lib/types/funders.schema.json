@@ -1,26 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "Funders",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "funders": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/Funder"
-      }
-    }
-  },
-  "required": [
-    "$schema",
-    "funders"
-  ],
-  "additionalProperties": false,
+  "$ref": "#/$defs/Funders",
   "$defs": {
+    "Funders": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "funders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Funder"
+          }
+        }
+      },
+      "required": [
+        "$schema",
+        "funders"
+      ],
+      "additionalProperties": false
+    },
     "Funder": {
-      "id": "Funder",
       "type": "object",
       "properties": {
         "id": {
