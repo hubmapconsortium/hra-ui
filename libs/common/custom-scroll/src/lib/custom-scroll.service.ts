@@ -10,7 +10,7 @@ import {
   Router,
 } from '@angular/router';
 
-/** Bypasses the global `scroll-behavior: smooth` so page changes jump instead of glide */
+/** Jumps even when the page or a site embedding the app sets `scroll-behavior: smooth` */
 const INSTANT_SCROLL: ScrollOptions = { behavior: 'instant' };
 /** How long to keep retrying a back/forward restore while the page is still growing */
 const RESTORE_TIMEOUT_MS = 3000;
