@@ -1,26 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "HeaderMenus",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "menus": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/HeaderMenu"
-      }
-    }
-  },
-  "required": [
-    "$schema",
-    "menus"
-  ],
-  "additionalProperties": false,
+  "$ref": "#/$defs/HeaderMenus",
   "$defs": {
+    "HeaderMenus": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "menus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HeaderMenu"
+          }
+        }
+      },
+      "required": [
+        "$schema",
+        "menus"
+      ],
+      "additionalProperties": false
+    },
     "HeaderMenu": {
-      "id": "HeaderMenu",
       "type": "object",
       "properties": {
         "type": {
@@ -56,7 +57,6 @@
       "additionalProperties": false
     },
     "HeaderMenuGroup": {
-      "id": "HeaderMenuGroup",
       "type": "object",
       "properties": {
         "type": {
@@ -101,7 +101,6 @@
       "additionalProperties": false
     },
     "HeaderMenuSubGroup": {
-      "id": "HeaderMenuSubGroup",
       "type": "object",
       "properties": {
         "type": {
@@ -126,7 +125,6 @@
       "additionalProperties": false
     },
     "HeaderMenuItem": {
-      "id": "HeaderMenuItem",
       "type": "object",
       "properties": {
         "type": {
@@ -155,7 +153,6 @@
       "additionalProperties": false
     },
     "HeaderMenuDivider": {
-      "id": "HeaderMenuDivider",
       "type": "object",
       "properties": {
         "type": {
