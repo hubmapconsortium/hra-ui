@@ -110,7 +110,9 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Initialize app */
   constructor() {
-    super({ screenSizeNotice: { width: 1280, height: 832 } });
+    // No app-wide screen size notice: the visualization switches to tabs on small screens,
+    // and only the create page shows the notice
+    super();
 
     inject(CustomScrollService);
     inject(Router).initialNavigation();

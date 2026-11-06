@@ -3,7 +3,10 @@ import { MAT_MENU_DEFAULT_OPTIONS, MatMenu, MatMenuModule } from '@angular/mater
 import { By } from '@angular/platform-browser';
 import { render, screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
-import { NAVIGATION_RAIL_MENU_PANEL_CLASS } from './navigation-rail-menu.directive';
+import {
+  NAVIGATION_RAIL_MENU_HORIZONTAL_CLASS,
+  NAVIGATION_RAIL_MENU_PANEL_CLASS,
+} from './navigation-rail-menu.directive';
 import { NavigationRailModule } from './navigation-rail.module';
 
 describe('NavigationRailMenuDirective', () => {
@@ -60,5 +63,25 @@ describe('NavigationRailMenuDirective', () => {
     expect(menu.overlayPanelClass).toEqual(['app-menu', NAVIGATION_RAIL_MENU_PANEL_CLASS]);
     expect(menu.yPosition).toBe('above');
     expect(menu.backdropClass).toBe('app-backdrop');
+  });
+
+  it('opens above a horizontal rail without the side offset, and goes back when the rail turns vertical', async () => {
+    const { fixture, rerender } = await render(
+      `
+        <mat-menu #menu="matMenu" hraNavigationRailMenu [hraNavigationRailMenuOrientation]="orientation">
+          <button mat-menu-item>Cell links</button>
+        </mat-menu>
+      `,
+      { imports: [NavigationRailModule, MatMenuModule], componentProperties: { orientation: 'horizontal' } },
+    );
+    const menu = fixture.debugElement.query(By.directive(MatMenu)).injector.get(MatMenu);
+    expect(menu.overlapTrigger).toBe(false);
+    expect(menu.yPosition).toBe('above');
+    expect(menu._classList[NAVIGATION_RAIL_MENU_HORIZONTAL_CLASS]).toBe(true);
+
+    await rerender({ componentProperties: { orientation: 'vertical' } });
+    expect(menu.overlapTrigger).toBe(true);
+    expect(menu.yPosition).toBe('below');
+    expect(menu._classList[NAVIGATION_RAIL_MENU_HORIZONTAL_CLASS]).toBe(false);
   });
 });

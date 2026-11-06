@@ -7,9 +7,11 @@
   ::ng-deep hra-expansion-panel {
     height: 100%;
 
-    // 8px on the right puts the fullscreen button's icon on the 16px line
+    // 8px on the right puts the fullscreen button's icon on the 16px line.
+    // The tabbed layout collapses this header (see the cde-visualization styles).
     .header {
       padding: 0.5rem 0.5rem 0.5rem 1rem;
+      min-height: 3.5rem;
     }
 
     .content {

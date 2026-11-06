@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import {
+  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -184,6 +185,12 @@ export class ViolinComponent {
   /** Emits when the empty state's action is clicked */
   readonly emptyStateAction = output<void>();
 
+  /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
+  readonly fullscreenAvailable = input(true);
+
+  /** Emits true when the panel opens in full screen and false when it closes */
+  readonly fullscreenChange = output<boolean>();
+
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
 
@@ -210,6 +217,13 @@ export class ViolinComponent {
 
   /** Element reference for the violin container */
   protected readonly violinEl = viewChild.required(FullscreenPortalComponent);
+
+  /** Closes an open fullscreen view when full screen becomes unavailable */
+  protected readonly closeFullscreenRef = afterRenderEffect(() => {
+    if (!this.fullscreenAvailable()) {
+      untracked(() => this.violinEl().close());
+    }
+  });
 
   /** Whether the violin is in the fullscreen view, where the violins stand upright and fit without scrolling */
   protected readonly fullscreen = signal(false);
@@ -360,7 +374,7 @@ export class ViolinComponent {
           view.signal('child_height', this.calculateViolinHeight(el.clientHeight));
           this.enableScroll.set(false);
         }
-        view.signal('child_width', el.clientWidth - VIOLIN_WIDTH_OFFSET);
+        view.signal('child_width', Math.max(el.clientWidth - VIOLIN_WIDTH_OFFSET, 1));
       }
       await view.resize().runAsync();
       if (el && this.fullscreen()) {
@@ -392,7 +406,7 @@ export class ViolinComponent {
           }
         }
         if (!fullscreen) {
-          draft.spec.width = el.clientWidth - VIOLIN_WIDTH_OFFSET;
+          draft.spec.width = Math.max(el.clientWidth - VIOLIN_WIDTH_OFFSET, 1);
           draft.spec.height = MAX_VIOLIN_HEIGHT;
         }
       },
@@ -431,7 +445,7 @@ export class ViolinComponent {
     let changed = false;
 
     if (Math.abs(widthGap) >= 1) {
-      view.signal('child_width', (view.signal('child_width') as number) + widthGap);
+      view.signal('child_width', Math.max((view.signal('child_width') as number) + widthGap, 1));
       changed = true;
     }
 

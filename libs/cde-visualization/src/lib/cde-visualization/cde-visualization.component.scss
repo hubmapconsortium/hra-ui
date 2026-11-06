@@ -51,7 +51,7 @@ $toolbar-width: calc(6rem + 1px);
   .layout {
     display: grid;
     position: relative;
-    grid-template-columns: $toolbar-width 22.75rem minmax(64.1875rem, calc(100% - 22.75rem - #{$toolbar-width}));
+    grid-template-columns: $toolbar-width clamp(21rem, 26%, 26rem) minmax(0, 1fr);
     grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
     grid-template-areas:
       'toolbar metadata visualization'
@@ -59,6 +59,101 @@ $toolbar-width: calc(6rem + 1px);
 
     &.visualizations-hidden {
       grid-template-columns: $toolbar-width 1fr 0;
+    }
+
+    &.tabbed {
+      grid-template-columns: $toolbar-width minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
+      grid-template-areas:
+        'toolbar tabs'
+        'toolbar panels';
+    }
+
+    &.compact {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      grid-template-areas:
+        'tabs'
+        'panels'
+        'toolbar';
+
+      .toolbar {
+        height: auto;
+        border-right: none;
+        border-top: 1px solid vars.$outline;
+      }
+    }
+  }
+
+  .tabs {
+    grid-area: tabs;
+  }
+
+  // In the panel layout the tab panel adds no box, so the two columns stay grid items
+  .panels {
+    display: contents;
+  }
+
+  .layout.tabbed .panels {
+    grid-area: panels;
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+
+    .metadata,
+    .visualizations {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    // The metadata panel is alone on its tab, so it scrolls and drops the divider above the cell types
+    cde-metadata {
+      height: auto;
+      min-height: 0;
+      overflow-y: auto;
+      border-bottom: none;
+    }
+  }
+
+  // The active tab already names its panel, so the panel titles are hidden visually. Screen readers still get
+  // them, since they name the panels' regions. Headers left with only a title collapse.
+  .layout.tabbed ::ng-deep {
+    hra-expansion-panel .title {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    :is(cde-cell-types, cde-metadata, cde-violin) hra-expansion-panel {
+      .header {
+        min-height: 0;
+        padding: 0;
+      }
+
+      .content {
+        height: 100%;
+      }
+    }
+
+    :is(cde-cell-types, cde-violin) hra-expansion-panel .content {
+      padding-top: 1rem;
+    }
+
+    cde-metadata .metadata-details {
+      margin-top: 1rem;
+    }
+
+    // Without the fullscreen buttons, the header controls sit on the 16px inset too.
+    // The histogram header stays 56px, which its chart height accounts for.
+    cde-histogram hra-expansion-panel .header {
+      padding: 1rem 1rem 0.5rem;
+    }
+
+    cde-node-dist-visualization hra-expansion-panel .header {
+      padding-right: 1rem;
     }
   }
 
@@ -105,17 +200,19 @@ $toolbar-width: calc(6rem + 1px);
       }
     }
 
-    // Clip the cell visualization so its canvas can't paint over the dividers
+    // Clip the cell visualization so its canvas can't paint over the dividers.
+    // Below 1028px the violin graph shrinks twice as fast, so the spatial view's header controls fit at 1280px.
     cde-node-dist-visualization {
       height: 100%;
-      min-width: 32.75rem;
-      flex-grow: 1;
+      flex: 1 1 32.75rem;
+      min-width: 0;
       overflow: hidden;
     }
 
     cde-violin {
       height: 100%;
-      width: 31.5rem;
+      flex: 0 2 31.5rem;
+      min-width: 0;
       border-left: 1px solid vars.$outline;
 
       &.fill {
@@ -149,6 +246,7 @@ $toolbar-width: calc(6rem + 1px);
 ::ng-deep .hra-app hra-expansion-panel {
   .title {
     @include utils.use-font(title, small);
+    white-space: nowrap;
   }
 
   .expansion-body {

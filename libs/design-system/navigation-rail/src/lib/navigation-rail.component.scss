@@ -26,3 +26,41 @@
     margin-block: 0.25rem;
   }
 }
+
+// Material 3 navigation bar layout: items share the width, and the bottom items follow the others
+:host(.hra-navigation-rail--horizontal) {
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  height: auto;
+  padding: 0.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .hra-navigation-rail--bottom {
+    display: contents;
+  }
+
+  ::ng-deep {
+    .hra-navigation-rail-item {
+      flex: 1 1 0;
+      min-width: 3.5rem;
+      padding-inline: 0;
+      container-type: inline-size;
+    }
+
+    // Labels stay on one line and shrink with the item, down to 10px. At 17.5% of the item's width, a label
+    // about 5.7em long (Downloads in Nunito Sans) fits on 320px screens; longer ones end in an ellipsis.
+    .hra-navigation-rail-item--label {
+      display: block;
+      font-size: clamp(0.625rem, 17.5cqi, #{tokens.slot(label-font-size)});
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mat-divider {
+      display: none;
+    }
+  }
+}

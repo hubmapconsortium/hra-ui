@@ -69,7 +69,7 @@ describe('NodeDistVisualizationComponent', () => {
 
   async function getSelectionDeleteButton(fixture: ComponentFixture<NodeDistVisualizationComponent>) {
     const loader = TestbedHarnessEnvironment.loader(fixture);
-    return loader.getHarness(MatButtonHarness.with({ selector: '.delete' }));
+    return loader.getHarnessOrNull(MatButtonHarness.with({ selector: '.delete' }));
   }
 
   async function emitVisualizationEvent(
@@ -96,7 +96,7 @@ describe('NodeDistVisualizationComponent', () => {
 
   it('should render', async () => {
     await setup();
-    expect(screen.getByText('Distance visualization')).toBeInTheDocument();
+    expect(screen.getByText('Spatial view')).toBeInTheDocument();
   });
 
   describe('empty state', () => {
@@ -154,6 +154,21 @@ describe('NodeDistVisualizationComponent', () => {
 
       expect(screen.queryByTestId('cell-info')).toBeInTheDocument();
     });
+
+    it('docks cell info at the bottom of the visualization on compact screens, until it closes', async () => {
+      const { container, fixture } = await setup({ inputs: { dockCellInfo: true } });
+      await setViewMode(fixture, /Inspect/);
+      await emitVisualizationEvent(fixture, 'nodeClick', SAMPLE_NODE_EVENT);
+
+      const cards = screen.getAllByTestId('cell-info');
+      expect(cards).toHaveLength(1);
+      expect(cards[0]).toHaveClass('docked-cell-info');
+      expect(container.querySelector('hra-fullscreen-portal-content')).toContainElement(cards[0]);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Close cell info' }));
+      fixture.detectChanges();
+      expect(screen.queryByTestId('cell-info')).not.toBeInTheDocument();
+    });
   });
 
   describe('download', () => {
@@ -185,8 +200,7 @@ describe('NodeDistVisualizationComponent', () => {
       await setViewMode(fixture, /Select/);
       await emitVisualizationEvent(fixture, 'nodeSelectionChange', [SAMPLE_NODE_EVENT]);
 
-      const deleteButton = await getSelectionDeleteButton(fixture);
-      expect(await deleteButton.isDisabled()).toBeFalsy();
+      expect(await getSelectionDeleteButton(fixture)).not.toBeNull();
 
       fixture.componentInstance.deleteSelection();
       fixture.detectChanges();
@@ -201,8 +215,13 @@ describe('NodeDistVisualizationComponent', () => {
       await setViewMode(fixture, /Explore/);
       await setViewMode(fixture, /Select/);
 
-      const deleteButton = await getSelectionDeleteButton(fixture);
-      expect(await deleteButton.isDisabled()).toBeTruthy();
+      expect(await getSelectionDeleteButton(fixture)).toBeNull();
     });
+  });
+
+  it('hides the fullscreen button when full screen is unavailable', async () => {
+    await setup({ inputs: { fullscreenAvailable: false } });
+
+    expect(screen.queryByRole('button', { name: 'Open the spatial view in full screen' })).not.toBeInTheDocument();
   });
 });

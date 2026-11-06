@@ -91,6 +91,14 @@ describe('HistogramComponent', () => {
     expect(embed).toHaveBeenCalledWith(container, expect.anything(), expect.anything());
   });
 
+  it('hides the fullscreen button when full screen is unavailable', async () => {
+    await setup({
+      inputs: { data: sampleData, colors: [], filteredCellTypes: sampleCellTypes, fullscreenAvailable: false },
+    });
+
+    expect(screen.queryByRole('button', { name: 'Open the histogram in full screen' })).not.toBeInTheDocument();
+  });
+
   it('should not show an empty state by default', async () => {
     await setup({ inputs: { data: sampleData, colors: [], filteredCellTypes: sampleCellTypes } });
 

@@ -1,44 +1,30 @@
-<button
-  mat-icon-button
-  class="delete"
-  aria-label="Delete selected nodes"
-  hraPlainTooltip="Select at least one cell to delete it from this dataset"
-  hraFeature="delete-selected-cells"
-  hraClickEvent
-  [disabled]="deleteDisabled()"
-  (click)="deleteClick.emit()"
->
-  <mat-icon>delete</mat-icon>
-</button>
+@if (deleteAvailable()) {
+  <button
+    mat-icon-button
+    class="delete"
+    aria-label="Delete selected cells"
+    hraPlainTooltip="Delete the selected cells from this dataset"
+    hraFeature="delete-selected-cells"
+    hraClickEvent
+    (click)="deleteClick.emit()"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+}
 
 <mat-button-toggle-group
   aria-label="Visualization mode"
   hraFeature="toggle"
+  [hideSingleSelectionIndicator]="compact()"
   [value]="viewMode()"
   (change)="viewMode.set($event.value)"
 >
-  <mat-button-toggle
-    value="select"
-    hraPlainTooltip="Select cells to delete from this dataset"
-    hraFeature="select"
-    hraClickEvent
-  >
-    Select
-  </mat-button-toggle>
-  <mat-button-toggle
-    value="inspect"
-    hraPlainTooltip="Get information about individual cell types"
-    hraFeature="inspect"
-    hraClickEvent
-  >
-    Inspect
-  </mat-button-toggle>
-  <mat-button-toggle
-    value="explore"
-    hraPlainTooltip="Zoom, pan, and rotate the view of this visualization"
-    hraFeature="explore"
-    hraClickEvent
-  >
-    Explore
-  </mat-button-toggle>
+  @for (mode of viewModes; track mode.value) {
+    <mat-button-toggle hraClickEvent [value]="mode.value" [hraPlainTooltip]="mode.tooltip" [hraFeature]="mode.value">
+      @if (compact()) {
+        <mat-icon>{{ mode.icon }}</mat-icon>
+      }
+      <span [class.visually-hidden]="compact()">{{ mode.label }}</span>
+    </mat-button-toggle>
+  }
 </mat-button-toggle-group>

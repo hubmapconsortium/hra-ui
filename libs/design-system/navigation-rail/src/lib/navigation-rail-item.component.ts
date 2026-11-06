@@ -2,6 +2,7 @@ import { FocusableOption } from '@angular/cdk/a11y';
 import { booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, inject, input, signal } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltip, TooltipPosition } from '@angular/material/tooltip';
 
 /**
  * Navigation rail item: an icon above a label, on a button or a link.
@@ -38,6 +39,9 @@ export class NavigationRailItemComponent implements FocusableOption {
   /** Host element, which also triggers the ripple */
   protected readonly hostElement = inject<ElementRef<HTMLButtonElement | HTMLAnchorElement>>(ElementRef).nativeElement;
 
+  /** Tooltip on the item, if it has one */
+  private readonly tooltip = inject(MatTooltip, { optional: true, self: true });
+
   /** Whether the item is disabled. The arrow keys skip disabled items. */
   get disabled(): boolean {
     return (
@@ -68,5 +72,16 @@ export class NavigationRailItemComponent implements FocusableOption {
    */
   setTabStop(isTabStop: boolean): void {
     this.tabIndex.set(isTabStop ? 0 : -1);
+  }
+
+  /**
+   * Opens the item's tooltip beside a vertical rail or above a horizontal one. Set by the rail.
+   *
+   * @param position Tooltip position
+   */
+  setTooltipPosition(position: TooltipPosition): void {
+    if (this.tooltip) {
+      this.tooltip.position = position;
+    }
   }
 }

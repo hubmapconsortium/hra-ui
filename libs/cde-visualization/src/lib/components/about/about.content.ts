@@ -45,7 +45,7 @@ export const ABOUT_CONTENT: AboutContent = {
         'Show or hide the cell link columns from Display in the toolbar.',
     },
     {
-      heading: 'Distance visualization',
+      heading: 'Spatial view',
       description: 'Each cell and the link from it to its nearest anchor cell.',
       lists: [
         { heading: 'Zoom', items: ['Mouse pinwheel', 'Trackpad pinch'] },

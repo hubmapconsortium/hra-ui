@@ -46,6 +46,25 @@ jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({
 const TIMEOUT = 10000; // In ms
 const embedResult = mockDeep<Result>();
 
+/** Resize callbacks of the observed elements, since jsdom has no ResizeObserver */
+const resizeCallbacks = new Map<Element, ResizeObserverCallback>();
+
+class MockResizeObserver {
+  constructor(private readonly callback: ResizeObserverCallback) {}
+
+  observe(element: Element): void {
+    resizeCallbacks.set(element, this.callback);
+  }
+
+  unobserve(element: Element): void {
+    resizeCallbacks.delete(element);
+  }
+
+  disconnect(): void {
+    // Nothing to disconnect
+  }
+}
+
 describe('CdeVisualizationComponent', () => {
   const SAMPLE_NODE: AnyDataEntry = ['epithelial', 100, 200];
   const SAMPLE_NODE_2: AnyDataEntry = ['t-cell', 300, 100];
@@ -87,6 +106,8 @@ describe('CdeVisualizationComponent', () => {
   }
 
   beforeAll(() => {
+    globalThis.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver;
+
     if (!URL.createObjectURL) {
       URL.createObjectURL = jest.fn().mockReturnValue('blob:fakeblob');
       URL.revokeObjectURL = jest.fn();
@@ -614,6 +635,184 @@ describe('CdeVisualizationComponent', () => {
     );
   });
 
+  describe('tabbed layout', () => {
+    type Fixture = Awaited<ReturnType<typeof setup>>['fixture'];
+
+    function resize(fixture: Fixture, width: number): void {
+      const callback = resizeCallbacks.get(fixture.nativeElement);
+      callback?.([{ contentRect: { width } } as ResizeObserverEntry], {} as ResizeObserver);
+      fixture.detectChanges();
+    }
+
+    function getElement(fixture: Fixture, selector: string): HTMLElement {
+      return fixture.nativeElement.querySelector(selector);
+    }
+
+    function getTabNames(): (string | undefined)[] {
+      const tablist = screen.getByRole('tablist', { name: 'Panels' });
+      return within(tablist)
+        .getAllByRole('tab')
+        .map((tab) => tab.textContent?.trim());
+    }
+
+    function selectTab(fixture: Fixture, name: string): void {
+      fireEvent.click(screen.getByRole('tab', { name }));
+      fixture.detectChanges();
+    }
+
+    it(
+      'keeps the panel layout at 1280px and wider',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1280);
+
+        expect(screen.queryByRole('tablist')).not.toBeInTheDocument();
+        expect(getElement(fixture, '.panels')).not.toHaveAttribute('role');
+        expect(getElement(fixture, '.layout')).not.toHaveClass('tabbed');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows the panels as tabs below 1280px, starting on the spatial view',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1000);
+
+        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram', 'Metadata']);
+        expect(screen.getByRole('tab', { name: 'Spatial view' })).toHaveAttribute('aria-selected', 'true');
+        expect(screen.getByRole('tabpanel', { name: 'Spatial view' })).toBeInTheDocument();
+        expect(getElement(fixture, '.metadata')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-histogram')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-node-dist-visualization')).not.toHaveClass('panel-hidden');
+
+        selectTab(fixture, 'Violin graph');
+        expect(getElement(fixture, 'cde-violin')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('fill');
+        expect(getElement(fixture, 'cde-node-dist-visualization')).toHaveClass('panel-hidden');
+
+        selectTab(fixture, 'Cell types');
+        expect(getElement(fixture, '.metadata')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.visualizations')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-cell-types')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+
+        selectTab(fixture, 'Metadata');
+        expect(getElement(fixture, 'cde-metadata')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-cell-types')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.metadata')).toHaveClass('fill');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'moves the toolbar to the bottom below 600px',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 500);
+
+        expect(getElement(fixture, '.layout')).toHaveClass('compact');
+        expect(screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label })).toHaveAttribute(
+          'aria-orientation',
+          'horizontal',
+        );
+        expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.more.label })).toBeInTheDocument();
+
+        const spatialView = fixture.debugElement.query(By.directive(NodeDistVisualizationComponent)).componentInstance;
+        expect(spatialView.dockCellInfo()).toBe(true);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'drops the tabs of panels in the hiddenPanels input and falls back when the active tab hides',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization' } });
+        resize(fixture, 800);
+        expect(getTabNames()).toEqual(['Cell types', 'Violin graph', 'Histogram', 'Metadata']);
+        expect(screen.getByRole('tab', { name: 'Cell types' })).toHaveAttribute('aria-selected', 'true');
+
+        selectTab(fixture, 'Histogram');
+        fixture.componentRef.setInput('hiddenPanels', 'distance-visualization histogram');
+        fixture.detectChanges();
+
+        expect(getTabNames()).toEqual(['Cell types', 'Violin graph', 'Metadata']);
+        expect(screen.getByRole('tab', { name: 'Cell types' })).toHaveAttribute('aria-selected', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'hides the Panels menu and shows the panels hidden from it as tabs',
+      async () => {
+        const { fixture } = await setup();
+        const toolbar: ToolbarComponent = fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
+        toolbar.hiddenPanels.set(['violin-graph', 'metadata']);
+        fixture.detectChanges();
+
+        resize(fixture, 800);
+        expect(toolbar.showPanelsMenu()).toBe(false);
+        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram', 'Metadata']);
+        expect(fixture.componentInstance['unavailableDownloads']()).toBeUndefined();
+
+        resize(fixture, 1280);
+        expect(toolbar.showPanelsMenu()).toBe(true);
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the images of hidden panels without pointing to the Panels menu',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'histogram' } });
+        resize(fixture, 1000);
+
+        expect(fixture.componentInstance['unavailableDownloads']()).toEqual({
+          files: ['histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.hiddenPanelsInTabs,
+          showPanels: false,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'turns off full screen and shows the tab of a panel that was in full screen',
+      async () => {
+        const { fixture } = await setup();
+        const violin: ViolinComponent = fixture.debugElement.query(By.directive(ViolinComponent)).componentInstance;
+        violin.fullscreenChange.emit(true);
+        resize(fixture, 1000);
+
+        expect(violin.fullscreenAvailable()).toBe(false);
+        expect(screen.getByRole('tab', { name: 'Violin graph' })).toHaveAttribute('aria-selected', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      "shows a panel's tab before downloading its image",
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1000);
+        const histogram: HistogramComponent = fixture.debugElement.query(
+          By.directive(HistogramComponent),
+        ).componentInstance;
+        const download = jest.spyOn(histogram, 'download').mockResolvedValue();
+
+        await fixture.componentInstance.handleDownload({ file: 'histogram', format: 'png' });
+        fixture.detectChanges();
+
+        expect(screen.getByRole('tab', { name: 'Histogram' })).toHaveAttribute('aria-selected', 'true');
+        expect(download).toHaveBeenCalledWith('png');
+      },
+      TIMEOUT,
+    );
+  });
+
   describe('drawer', () => {
     async function openDrawer(itemName = TOOLBAR_CONTENT.downloads.label, regionName = DOWNLOADS_CONTENT.title) {
       const result = await setup();
@@ -651,7 +850,7 @@ describe('CdeVisualizationComponent', () => {
       async () => {
         const { trigger, drawer, region } = await openDrawer(TOOLBAR_CONTENT.info.label, ABOUT_CONTENT.title);
 
-        expect(within(region).getByRole('heading', { name: 'Distance visualization' })).toBeInTheDocument();
+        expect(within(region).getByRole('heading', { name: 'Spatial view' })).toBeInTheDocument();
         fireEvent.click(within(region).getByRole('button', { name: ABOUT_CONTENT.closeLabel }));
         await expectClosed(drawer, trigger);
       },

@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import {
+  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -171,6 +172,12 @@ export class HistogramComponent {
   /** Emits when the empty state's action is clicked */
   readonly emptyStateAction = output<void>();
 
+  /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
+  readonly fullscreenAvailable = input(true);
+
+  /** Emits true when the panel opens in full screen and false when it closes */
+  readonly fullscreenChange = output<boolean>();
+
   /** Toggles full screen mode */
   protected readonly fullscreen = signal(false);
 
@@ -208,6 +215,13 @@ export class HistogramComponent {
 
   /** Element reference for the histogram container */
   protected readonly histogramEl = viewChild.required(FullscreenPortalComponent);
+
+  /** Closes an open fullscreen view when full screen becomes unavailable */
+  protected readonly closeFullscreenRef = afterRenderEffect(() => {
+    if (!this.fullscreenAvailable()) {
+      untracked(() => this.histogramEl().close());
+    }
+  });
 
   /** Vega view instance for the histogram */
   protected readonly view = signal<View | undefined>(undefined);

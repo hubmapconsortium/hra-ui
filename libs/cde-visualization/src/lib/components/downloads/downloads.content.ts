@@ -80,6 +80,8 @@ export interface UnavailableDownloadsContent {
   noDistances: (anchorCellType: string) => string;
   /** Shown when panels with images are hidden */
   hiddenPanels: string;
+  /** Shown in the tabbed layout when panels with images are hidden. The tabs have no Panels menu. */
+  hiddenPanelsInTabs: string;
   /** Label of the notice button that shows all panels */
   showAllPanels: string;
 }
@@ -112,9 +114,9 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
       files: [
         {
           id: 'visualization',
-          name: 'Distance visualization',
+          name: 'Spatial view',
           description: 'An image of the current view.',
-          formats: [{ id: 'png', label: 'PNG', ariaLabel: 'Download distance visualization PNG' }],
+          formats: [{ id: 'png', label: 'PNG', ariaLabel: 'Download spatial view PNG' }],
         },
         {
           id: 'violin-graph',
@@ -172,6 +174,7 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
     noDistances: (anchorCellType) =>
       `Select a cell type other than ${anchorCellType} to download the violin graph and histogram.`,
     hiddenPanels: 'Show a hidden panel from the Panels menu to download its image.',
+    hiddenPanelsInTabs: "Images aren't available for hidden panels.",
     showAllPanels: 'Show all panels',
   },
 };

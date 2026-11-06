@@ -25,11 +25,11 @@ html {
 }
 
 @include utils.global-styles() {
-  // Default Material buttons, button toggles, checkboxes, form fields, menus, and selects, without the HRA overrides
+  // Default Material buttons, button toggles, checkboxes, form fields, menus, selects, and tabs, without the HRA overrides
   @include theming.theme(
     atlasng-hra.$theme,
     atlasng-hra.$overrides,
-    $skip-overrides: (button, button-toggle, checkbox, form-field, icon-button, menu, select)
+    $skip-overrides: (button, button-toggle, checkbox, form-field, icon-button, menu, select, tabs)
   );
   @include atlasng-hra.base-styles();
 
@@ -165,6 +165,11 @@ html {
     > div.actions:has(> hra-rich-tooltip-actions:empty) {
       display: none;
     }
+  }
+
+  // Notice messages are body text. The design system colors them primary, which is red in this theme.
+  hra-notice {
+    --hra-notice-message-color: #{vars.$on-surface-variant};
   }
 
   // The file pill shown after an upload, in theme roles

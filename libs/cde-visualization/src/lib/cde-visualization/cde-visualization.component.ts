@@ -1,11 +1,13 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   afterRenderEffect,
+  ApplicationRef,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
   linkedSignal,
@@ -18,7 +20,8 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { HraCommonModule } from '@hra-ui/common';
+import { MAT_TABS_CONFIG, MatTabsModule } from '@angular/material/tabs';
+import { HraCommonModule, monitorWidth } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
 import { SnackbarService } from '@hra-ui/design-system/snackbar';
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from '@hra-ui/node-dist-vis';
@@ -73,7 +76,7 @@ import { ToolbarSheet } from '../components/toolbar/toolbar.content';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
 import { loadMetadata, MetadataInput } from '../models/metadata';
-import { loadHiddenPanels, PanelId, parseHiddenPanels, saveHiddenPanels } from '../models/panels';
+import { loadHiddenPanels, PanelId, parseHiddenPanels, saveHiddenPanels, TAB_IDS, TabId } from '../models/panels';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { ThemeSwitchService } from '../services/theme-switch/theme-switch.service';
 import { numberAttribute } from '../shared/attribute-transform';
@@ -118,6 +121,32 @@ const PANEL_IMAGE_DOWNLOADS: Partial<Record<PanelId, DownloadFileId>> = {
   histogram: 'histogram',
 };
 
+/** Below this width the panels show as tabs. Angular Material's Large breakpoint starts here. */
+const TABBED_LAYOUT_BREAKPOINT = 1280;
+
+/** Below this width the toolbar is a bar along the bottom. Angular Material's Small breakpoint starts here. */
+const COMPACT_LAYOUT_BREAKPOINT = 600;
+
+/** Name of the tab bar */
+const TABS_LABEL = 'Panels';
+
+/** Labels of the tabs */
+const TAB_LABELS: Record<TabId, string> = {
+  'cell-types': 'Cell types',
+  'distance-visualization': 'Spatial view',
+  'violin-graph': 'Violin graph',
+  histogram: 'Histogram',
+  metadata: 'Metadata',
+};
+
+/** Number of visualizations created so far, which keeps each one's tab ids unique */
+let visualizationCount = 0;
+
+/** Waits for the next animation frame */
+function nextFrame(): Promise<void> {
+  return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+}
+
 /**
  * CDE Visualization Root Component
  */
@@ -126,6 +155,7 @@ const PANEL_IMAGE_DOWNLOADS: Partial<Record<PanelId, DownloadFileId>> = {
   imports: [
     HraCommonModule,
     MatSidenavModule,
+    MatTabsModule,
     AboutComponent,
     CellTypesComponent,
     DownloadsComponent,
@@ -137,7 +167,8 @@ const PANEL_IMAGE_DOWNLOADS: Partial<Record<PanelId, DownloadFileId>> = {
   ],
   templateUrl: './cde-visualization.component.html',
   styleUrl: './cde-visualization.component.scss',
-  providers: [ThemeSwitchService],
+  // Angular Material's default tab options, not the design system's (provideTabs)
+  providers: [ThemeSwitchService, { provide: MAT_TABS_CONFIG, useValue: {} }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'hra-app',
@@ -478,15 +509,18 @@ export class CdeVisualizationComponent {
       notices.push(unavailable.noDistances(this.nodeTargetSelectorWithDefault()));
     }
 
-    const hiddenImages = this.panelsHidden()
+    // The tabs have no Panels menu, so their notice doesn't point to it or offer to show the panels
+    const tabbed = this.tabbed();
+    const hiddenImages = this.layoutHiddenPanels()
       .map((panel) => PANEL_IMAGE_DOWNLOADS[panel])
       .filter((file): file is DownloadFileId => file !== undefined && !files.includes(file));
     if (hiddenImages.length > 0) {
       files.push(...hiddenImages);
-      notices.push(unavailable.hiddenPanels);
+      notices.push(tabbed ? unavailable.hiddenPanelsInTabs : unavailable.hiddenPanels);
     }
 
-    return files.length > 0 ? { files, notice: notices.join(' '), showPanels: hiddenImages.length > 0 } : undefined;
+    const showPanels = hiddenImages.length > 0 && !tabbed;
+    return files.length > 0 ? { files, notice: notices.join(' '), showPanels } : undefined;
   });
 
   /** Computed distances between nodes */
@@ -515,15 +549,72 @@ export class CdeVisualizationComponent {
     this.rememberPanels() ? (loadHiddenPanels() ?? this.hiddenPanels()) : this.hiddenPanels(),
   );
 
-  /** Which panels show, and whether the top row and the visualizations column still have a panel showing */
+  /** Host element */
+  private readonly elementRef = inject(ElementRef);
+
+  /** Width of the visualization, which picks between the panel and tabbed layouts */
+  private readonly width = monitorWidth(() => this.elementRef);
+
+  /** Whether the panels show as tabs. A visualization that isn't laid out yet (0 wide) keeps the panel layout. */
+  protected readonly tabbed = computed(() => this.width() > 0 && this.width() < TABBED_LAYOUT_BREAKPOINT);
+
+  /** Whether the visualization is phone-sized: the toolbar runs along the bottom and the controls get compact */
+  protected readonly compact = computed(() => this.width() > 0 && this.width() < COMPACT_LAYOUT_BREAKPOINT);
+
+  /**
+   * Panels hidden in the current layout. The tabs have no Panels menu, so they follow only the hiddenPanels input,
+   * and panels hidden from the toolbar apply to the panel layout.
+   */
+  protected readonly layoutHiddenPanels = computed(() => (this.tabbed() ? this.hiddenPanels() : this.panelsHidden()));
+
+  /** Tabs that show: the cell types tab and the tabs of the panels that the hiddenPanels input doesn't hide */
+  protected readonly tabs = computed(() => {
+    const hidden: readonly string[] = this.hiddenPanels();
+    return TAB_IDS.filter((tab) => tab === 'cell-types' || !hidden.includes(tab));
+  });
+
+  /** Tab picked in the tab bar */
+  protected readonly selectedTab = signal<TabId | undefined>(undefined);
+
+  /** Tab that shows: the picked tab while it's available, otherwise the distance visualization or the cell types */
+  protected readonly activeTab = computed((): TabId => {
+    const tabs = this.tabs();
+    const selected = this.selectedTab();
+    if (selected !== undefined && tabs.includes(selected)) {
+      return selected;
+    }
+    return tabs.includes('distance-visualization') ? 'distance-visualization' : 'cell-types';
+  });
+
+  /** Panel open in full screen. It becomes the active tab if the panels switch to tabs. */
+  protected readonly fullscreenPanel = signal<TabId | undefined>(undefined);
+
+  /** Name of the tab bar */
+  protected readonly tabsLabel = TABS_LABEL;
+
+  /** Labels of the tabs */
+  protected readonly tabLabels = TAB_LABELS;
+
+  /** Prefix of this visualization's tab ids */
+  private readonly tabIdPrefix = `cde-visualization-tab-${visualizationCount++}-`;
+
+  /**
+   * Which panels show, and whether the top row and the visualizations column still have a panel showing.
+   * In the tabbed layout, only the active tab's panels show.
+   */
   protected readonly layout = computed(() => {
-    const hidden = this.panelsHidden();
-    const metadata = !hidden.includes('metadata');
-    const distanceVisualization = !hidden.includes('distance-visualization');
-    const violinGraph = !hidden.includes('violin-graph');
-    const histogram = !hidden.includes('histogram');
+    const hidden = this.layoutHiddenPanels();
+    const tab = this.tabbed() ? this.activeTab() : undefined;
+    const shows = (panel: PanelId) => !hidden.includes(panel) && (tab === undefined || tab === panel);
+    const cellTypes = tab === undefined || tab === 'cell-types';
+    const metadata = shows('metadata');
+    const distanceVisualization = shows('distance-visualization');
+    const violinGraph = shows('violin-graph');
+    const histogram = shows('histogram');
     const topRow = distanceVisualization || violinGraph;
     return {
+      sidebar: cellTypes || metadata,
+      cellTypes,
       metadata,
       distanceVisualization,
       violinGraph,
@@ -585,6 +676,9 @@ export class CdeVisualizationComponent {
   /** Shows the snackbars that undo a reset */
   private readonly snackbar = inject(SnackbarService);
 
+  /** Application, used to wait for a tab to render before downloading its image */
+  private readonly appRef = inject(ApplicationRef);
+
   /** Setup component */
   constructor() {
     effect(() => {
@@ -622,6 +716,17 @@ export class CdeVisualizationComponent {
           this.histogramComponent().resizeAndSyncView();
         }
       });
+    });
+
+    // When the panels switch to tabs, an open fullscreen view closes (see the panels' fullscreenAvailable input)
+    // and its panel becomes the active tab
+    effect(() => {
+      if (this.tabbed()) {
+        const panel = untracked(this.fullscreenPanel);
+        if (panel !== undefined) {
+          this.selectedTab.set(panel);
+        }
+      }
     });
 
     // Connect outputs
@@ -756,12 +861,43 @@ export class CdeVisualizationComponent {
       case 'color-map':
         return this.downloadColorMap();
       case 'visualization':
+        await this.showTab('distance-visualization');
         return this.nodeDistVisualizationComponent().download();
       case 'violin-graph':
+        await this.showTab('violin-graph');
         return this.violinComponent().download(format);
       case 'histogram':
+        await this.showTab('histogram');
         return this.histogramComponent().download(format);
     }
+  }
+
+  /**
+   * Id of a tab in the tab bar, which also labels the tab panel
+   *
+   * @param tab Tab to get the id of
+   * @returns The tab's id
+   */
+  protected tabLinkId(tab: TabId): string {
+    return this.tabIdPrefix + tab;
+  }
+
+  /**
+   * Shows a panel's tab before its image downloads. Panels in other tabs aren't laid out, so they have no size
+   * to draw at.
+   *
+   * @param tab Tab of the panel
+   */
+  private async showTab(tab: TabId): Promise<void> {
+    if (!this.tabbed() || this.activeTab() === tab) {
+      return;
+    }
+
+    this.selectedTab.set(tab);
+    // Waits for the render and the violin's resize, then for deck.gl to size its canvas on an animation frame
+    await this.appRef.whenStable();
+    await nextFrame();
+    await nextFrame();
   }
 
   /** Downloads nodes */

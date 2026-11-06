@@ -5,6 +5,30 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ViewMode } from '@hra-ui/node-dist-vis/models';
 
+/** A view mode toggle */
+interface ViewModeOption {
+  /** View mode the toggle picks */
+  value: ViewMode;
+  /** Label, which also names the toggle when it shows its icon */
+  label: string;
+  /** Icon shown in place of the label on compact screens */
+  icon: string;
+  /** What the mode does */
+  tooltip: string;
+}
+
+/** View mode toggles, in order */
+const VIEW_MODES: ViewModeOption[] = [
+  { value: 'select', label: 'Select', icon: 'highlight_alt', tooltip: 'Select cells to delete from this dataset' },
+  { value: 'inspect', label: 'Inspect', icon: 'frame_inspect', tooltip: 'Get information about individual cell types' },
+  {
+    value: 'explore',
+    label: 'Explore',
+    icon: 'explore',
+    tooltip: 'Zoom, pan, and rotate the view of this visualization',
+  },
+];
+
 /**
  * Controls for node dist visualization
  */
@@ -19,9 +43,15 @@ export class NodeDistVisualizationControlsComponent {
   /** Current view mode */
   readonly viewMode = model<ViewMode>('explore');
 
-  /** Whether delete button is disabled */
-  readonly deleteDisabled = input(false, { transform: booleanAttribute });
+  /** Whether cells are selected, which shows the delete button */
+  readonly deleteAvailable = input(false, { transform: booleanAttribute });
+
+  /** Whether the view mode toggles show icons instead of labels, so the header fits compact screens */
+  readonly compact = input(false, { transform: booleanAttribute });
 
   /** Emits when delete button clicked */
   readonly deleteClick = output<void>();
+
+  /** View mode toggles */
+  protected readonly viewModes = VIEW_MODES;
 }

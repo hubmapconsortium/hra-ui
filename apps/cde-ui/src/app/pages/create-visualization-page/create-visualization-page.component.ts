@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { Router, RouterModule } from '@angular/router';
+import { initializeScreenSizeNoticeMonitor } from '@hra-ui/application';
 import {
   ColorMapEntry,
   ColorMapFileLoaderService,
@@ -50,6 +51,15 @@ export type ExtendedFileLoadError = FileLoadError | MissingKeyError | EmptyFileE
 
 /** File upload component for any type */
 type AnyFileUploadComponent = FileUploadComponent<unknown, unknown>;
+
+/** Below this width the page shows a screen size notice. Angular Material's Small breakpoint starts here. */
+const SCREEN_SIZE_NOTICE_WIDTH = 600;
+
+/**
+ * Remembers a dismissed notice on this page only. Visitors who dismissed the app-wide notice that cde-ui used
+ * to show still see this one.
+ */
+const SCREEN_SIZE_NOTICE_STORAGE_KEY = '__hra-cde-create-screen-size-notice-dismissed';
 
 /** Returns null for all optional values */
 function optionalValue<T>(): T | null {
@@ -264,6 +274,11 @@ export class CreateVisualizationPageComponent {
   private nodes?: Record<string, unknown>[];
   /** Current color map */
   private customColorMap?: ColorMapEntry[];
+
+  /** Warns phone-sized screens until the page has a small-screen layout (#2397). Checks the width only (#2347). */
+  constructor() {
+    initializeScreenSizeNoticeMonitor({ width: SCREEN_SIZE_NOTICE_WIDTH, storageKey: SCREEN_SIZE_NOTICE_STORAGE_KEY });
+  }
 
   /**
    * Sets node values

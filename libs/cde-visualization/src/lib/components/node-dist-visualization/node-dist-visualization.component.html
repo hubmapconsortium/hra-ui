@@ -1,24 +1,33 @@
-<hra-expansion-panel tagline="Distance visualization" disabled>
+<hra-expansion-panel tagline="Spatial view" disabled>
   <hra-expansion-panel-header-content>
     <cde-node-dist-visualization-controls
-      [deleteDisabled]="!hasSelection()"
+      [deleteAvailable]="hasSelection()"
+      [compact]="compact()"
       [(viewMode)]="viewMode"
       (deleteClick)="deleteSelection()"
     />
-    <button
-      mat-icon-button
-      class="fullscreen"
-      aria-label="Open the distance visualization in full screen"
-      hraPlainTooltip="Full screen"
-      hraFeature="open-fullscreen"
-      hraClickEvent
-      (click)="fullscreen.open()"
-    >
-      <mat-icon>fullscreen</mat-icon>
-    </button>
+    @if (fullscreenAvailable()) {
+      <button
+        mat-icon-button
+        class="fullscreen"
+        aria-label="Open the spatial view in full screen"
+        hraPlainTooltip="Full screen"
+        hraFeature="open-fullscreen"
+        hraClickEvent
+        (click)="fullscreen.open()"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
   </hra-expansion-panel-header-content>
 
-  <hra-fullscreen-portal tagline="Distance visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>
+  <hra-fullscreen-portal
+    tagline="Spatial view"
+    panelClass="node-dist-vis-fullscreen-panel"
+    (beforeOpened)="fullscreenChange.emit(true)"
+    (beforeClosed)="fullscreenChange.emit(false)"
+    #fullscreen
+  >
     <hra-fullscreen-actions>
       <cde-node-dist-visualization-menu
         [hasDeletedCells]="hasDeletedCells()"
@@ -28,7 +37,8 @@
       />
 
       <cde-node-dist-visualization-controls
-        [deleteDisabled]="!hasSelection()"
+        [deleteAvailable]="hasSelection()"
+        [compact]="compact()"
         [(viewMode)]="viewMode"
         (deleteClick)="deleteSelection()"
       />
@@ -47,6 +57,16 @@
       } @else if (emptyState(); as content) {
         <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
       }
+      @if (cellInfoOpen() && dockCellInfo()) {
+        <hra-info-modal
+          class="docked-cell-info"
+          title="Cell info"
+          closeLabel="Close cell info"
+          data-testid="cell-info"
+          [data]="cellInfoContent()"
+          (close)="cellInfo.set(undefined)"
+        />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>
@@ -55,7 +75,7 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayDisposeOnNavigation]="true"
   [cdkConnectedOverlayHasBackdrop]="false"
-  [cdkConnectedOverlayOpen]="cellInfoOpen()"
+  [cdkConnectedOverlayOpen]="cellInfoOpen() && !dockCellInfo()"
   [cdkConnectedOverlayOrigin]="cellInfoOrigin"
   [cdkConnectedOverlayPositions]="cellInfoPosition()"
   [cdkConnectedOverlayPush]="true"
@@ -65,6 +85,7 @@
 >
   <hra-info-modal
     title="Cell info"
+    closeLabel="Close cell info"
     data-testid="cell-info"
     [data]="cellInfoContent()"
     (close)="cellInfo.set(undefined)"

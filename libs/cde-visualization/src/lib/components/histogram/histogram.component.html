@@ -7,20 +7,24 @@
       [color]="totalCellTypeColor()"
       (colorChange)="allCellsColor.set($event)"
     />
-    <button
-      mat-icon-button
-      aria-label="Open the histogram in full screen"
-      hraPlainTooltip="Full screen"
-      hraFeature="open-fullscreen"
-      hraClickEvent
-      (click)="histogramEl().open()"
-    >
-      <mat-icon>fullscreen</mat-icon>
-    </button>
+    @if (fullscreenAvailable()) {
+      <button
+        mat-icon-button
+        aria-label="Open the histogram in full screen"
+        hraPlainTooltip="Full screen"
+        hraFeature="open-fullscreen"
+        hraClickEvent
+        (click)="histogramEl().open()"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
   </hra-expansion-panel-header-content>
   <hra-fullscreen-portal
     tagline="Histogram"
     hraFeature="fullscreen"
+    (beforeOpened)="fullscreenChange.emit(true)"
+    (beforeClosed)="fullscreenChange.emit(false)"
     (opened)="resizeAndSyncView()"
     (closed)="resizeAndSyncView()"
   >
