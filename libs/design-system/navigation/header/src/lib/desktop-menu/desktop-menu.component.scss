@@ -5,7 +5,7 @@
   display: block;
   max-width: 26.75rem;
   padding: 0.75rem 0;
-  border-radius: 0.5rem;
-  background-color: vars.$surface-dim;
-  box-shadow: 0rem 0.3125rem 1rem 0rem utils.with-alpha(vars.$secondary, 20%);
+  border-radius: var(--hra-header-menu-shape, 0.5rem);
+  background-color: var(--hra-header-menu-container-color, #{vars.$surface-dim});
+  box-shadow: var(--hra-header-menu-shadow, 0rem 0.3125rem 1rem 0rem #{utils.with-alpha(vars.$secondary, 20%)});
 }

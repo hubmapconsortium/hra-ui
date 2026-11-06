@@ -27,7 +27,7 @@
   $hero-image-width: clamp(34rem, min(50vh, 45vw), 56rem);
   $hero-image-stacked-width: clamp(34rem, (100vh - $header-height - 54rem) * 1.7, 100%);
 
-  background-color: vars.$secondary-container;
+  background-color: vars.$background;
   display: block;
 
   section {
@@ -118,7 +118,7 @@
     .hero-title {
       margin: 0;
       @include utils.use-font(display, medium);
-      color: vars.$secondary;
+      color: vars.$on-surface;
       text-wrap: balance;
 
       @media (max-width: 40rem) {
@@ -128,7 +128,7 @@
 
     .hero-description {
       margin: 0;
-      @include utils.use-font(body, xl);
+      @include cde-utils.paragraph;
       color: vars.$on-surface-variant;
       text-wrap: balance;
     }
@@ -145,8 +145,8 @@
       width: 100%;
       max-width: $hero-image-width;
       height: auto;
-      @include cde-utils.card-surface(0.75rem);
-      box-shadow: cde-utils.$card-shadow;
+      @include cde-utils.card-surface(vars.$corner-small);
+      box-shadow: var(--mat-sys-level3);
 
       @media (max-width: 64rem) {
         max-width: $hero-image-stacked-width;
@@ -176,7 +176,7 @@
     .section-title {
       margin: 0;
       @include utils.use-font(headline, medium);
-      color: vars.$secondary;
+      color: vars.$on-surface;
     }
   }
 
@@ -185,10 +185,10 @@
     justify-content: center;
     padding-block: 3.5rem;
     background:
-      radial-gradient(40% 90% at 18% 100%, utils.with-alpha(vars.$secondary-fixed-dim, 85%), transparent),
-      radial-gradient(35% 80% at 70% 100%, utils.with-alpha(vars.$tertiary, 18%), transparent),
-      radial-gradient(45% 90% at 98% 0%, utils.with-alpha(vars.$on-secondary-container, 20%), transparent),
-      radial-gradient(40% 70% at 45% 0%, utils.with-alpha(vars.$secondary-fixed-dim, 55%), transparent),
+      radial-gradient(40% 90% at 18% 100%, vars.$tertiary-container, transparent),
+      radial-gradient(35% 80% at 70% 100%, utils.with-alpha(vars.$primary, 14%), transparent),
+      radial-gradient(45% 90% at 98% 0%, vars.$surface-variant, transparent),
+      radial-gradient(40% 70% at 45% 0%, utils.with-alpha(vars.$tertiary-container, 70%), transparent),
       vars.$surface-container-lowest;
 
     .section-title {
@@ -201,11 +201,11 @@
     justify-content: center;
     padding-block: 4rem 5rem;
     background:
-      radial-gradient(50% 60% at 20% 10%, utils.with-alpha(vars.$surface-bright, 90%), transparent),
-      radial-gradient(40% 90% at 90% 20%, utils.with-alpha(vars.$secondary-fixed-dim, 75%), transparent),
-      radial-gradient(35% 70% at 5% 95%, utils.with-alpha(vars.$secondary-fixed-dim, 60%), transparent),
-      radial-gradient(30% 60% at 50% 105%, utils.with-alpha(vars.$on-secondary-container, 16%), transparent),
-      radial-gradient(30% 60% at 100% 100%, utils.with-alpha(vars.$surface-bright, 70%), transparent),
+      radial-gradient(50% 60% at 20% 10%, utils.with-alpha(vars.$surface, 90%), transparent),
+      radial-gradient(40% 90% at 90% 20%, vars.$tertiary-container, transparent),
+      radial-gradient(35% 70% at 5% 95%, utils.with-alpha(vars.$tertiary-container, 80%), transparent),
+      radial-gradient(30% 60% at 50% 105%, vars.$surface-variant, transparent),
+      radial-gradient(30% 60% at 100% 100%, utils.with-alpha(vars.$surface, 70%), transparent),
       vars.$surface-container-high;
 
     .section-title {
@@ -214,7 +214,7 @@
 
     .section-description {
       margin: 0 0 1.5rem;
-      @include utils.use-font(body, xl);
+      @include cde-utils.paragraph;
       color: vars.$on-surface-variant;
     }
 
@@ -260,8 +260,12 @@
       }
 
       .description {
-        @include utils.use-font(body, xl);
+        @include cde-utils.paragraph;
         color: vars.$on-surface-variant;
+
+        a {
+          font-weight: inherit;
+        }
       }
 
       .copy-citation {

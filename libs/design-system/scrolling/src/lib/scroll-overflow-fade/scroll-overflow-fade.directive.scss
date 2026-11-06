@@ -1,10 +1,12 @@
+@use '../../../../styles/vars';
+
 // Set --hra-scroll-overflow-fade-color to the background of the scroll container.
 // The gradients are sticky, so they stay pinned to the viewport edges while scrolling without lagging behind.
 // Negative margins keep them from adding to the scroll height.
 .hra-scroll-overflow-fade-gradient-top,
 .hra-scroll-overflow-fade-gradient-bottom {
   --_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);
-  --_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);
+  --_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #{vars.$surface-container-lowest});
 
   display: block;
   position: sticky;

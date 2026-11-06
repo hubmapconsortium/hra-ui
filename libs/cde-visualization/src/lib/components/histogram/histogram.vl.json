@@ -2,9 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": "container",
-  "background": "#fcfcfc",
+  "background": {
+    "expr": "themeBackground"
+  },
   "config": {
-    "font": "Metropolis",
+    "font": "Nunito Sans Variable",
     "padding": {
       "top": 0,
       "right": 16,
@@ -12,17 +14,24 @@
       "left": 16
     },
     "axis": {
-      "labelFontSize": 12,
+      "labelFontSize": 14,
       "titleFontSize": 14,
-      "titleFontWeight": 500,
-      "labelFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelFontWeight": 400,
       "titleLineHeight": 21,
-      "labelLineHeight": 18,
-      "titleColor": "#201E3D",
-      "labelColor": "#4B4B5E",
+      "labelLineHeight": 21,
+      "titleColor": {
+        "expr": "themeTitleColor"
+      },
+      "labelColor": {
+        "expr": "themeLabelColor"
+      },
       "ticks": false,
       "domain": false,
-      "labelPadding": 8
+      "labelPadding": 8,
+      "gridColor": {
+        "expr": "themeGridColor"
+      }
     }
   },
   "data": {
@@ -37,6 +46,26 @@
     {
       "name": "colors",
       "value": []
+    },
+    {
+      "name": "themeBackground",
+      "value": "#fcfbfd"
+    },
+    {
+      "name": "themeTitleColor",
+      "value": "#1a1c1e"
+    },
+    {
+      "name": "themeLabelColor",
+      "value": "#414751"
+    },
+    {
+      "name": "themeGridColor",
+      "value": "#c1c7d4"
+    },
+    {
+      "name": "themeMarkColor",
+      "value": "#1a1c1e"
     }
   ],
   "transform": [
@@ -66,7 +95,7 @@
       "axis": {
         "orient": "top",
         "minExtent": 25,
-        "labelFlush": false,
+        "labelFlush": true,
         "grid": true,
         "labelAngle": 0,
         "labelOverlap": true,
@@ -89,7 +118,7 @@
       "scale": {
         "range": [
           {
-            "expr": "'Replaced/repeated in javascript' && colors[0] || '#000'"
+            "expr": "'Replaced/repeated in javascript' && colors[0] || themeMarkColor"
           }
         ]
       }

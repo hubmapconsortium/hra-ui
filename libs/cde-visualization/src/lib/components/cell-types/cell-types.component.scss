@@ -7,39 +7,28 @@
   overflow: hidden;
   flex-grow: 1;
 
-  @include mat.checkbox-overrides(
-    (
-      unselected-icon-color: vars.$secondary,
-      selected-icon-color: vars.$secondary,
-      selected-checkmark-color: vars.$secondary,
-      state-layer-size: 1.75rem,
-    )
-  );
-
-  @include mat.button-overrides(
-    (
-      filled-container-height: 2rem,
-    )
-  );
-
-  @include mat.menu-overrides(
-    (
-      item-label-text-color: vars.$primary,
-    )
-  );
-
   @include mat.sort-overrides(
     (
-      arrow-color: vars.$secondary,
+      arrow-color: vars.$on-surface-variant,
     )
   );
 
+  // Checkbox state layers match the 2rem checkbox cells (Material's density -2), so the hover and focus circles
+  // aren't clipped at the edge of the scroll area
+  @include mat.checkbox-overrides(
+    (
+      state-layer-size: 2rem,
+    )
+  );
+
+  // All table text uses on-surface-variant
   @include mat.table-overrides(
     (
-      background-color: vars.$surface-container-low,
+      background-color: vars.$background,
       row-item-container-height: 1.75rem,
       row-item-outline-width: 0,
-      header-headline-color: vars.$arrow-color,
+      header-headline-color: vars.$on-surface-variant,
+      row-item-label-text-color: vars.$on-surface-variant,
       header-container-height: 2rem,
     )
   );
@@ -58,11 +47,11 @@
       }
 
       .header {
-        padding: 0.5rem 1rem 0.25rem 1rem;
+        padding: 0.5rem 1rem;
       }
 
       .content {
-        padding: 0 0.75rem;
+        padding: 0 1rem 1rem;
         height: calc(100% - 3.5rem);
       }
 
@@ -92,14 +81,13 @@
   .total-ct-label,
   .total-cells,
   .total-cell-links {
-    font: vars.$label-small;
-    letter-spacing: vars.$label-medium-tracking;
+    @include utils.use-font(body, medium);
     margin: 0.25rem;
+    color: vars.$on-surface-variant;
 
     span {
       display: block;
-      color: vars.$primary;
-      font: vars.$label-medium;
+      color: vars.$on-surface;
     }
   }
 
@@ -117,52 +105,52 @@
   }
 
   .table-overflow-container {
-    --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
     overflow: auto;
     grid-area: table;
     height: 100%;
 
+    // Fixed columns keep the table inside the panel, so long cell type names truncate instead of scrolling sideways
     table {
-      ::ng-deep {
-        .mat-mdc-menu-content {
-          color: vars.$primary;
-        }
+      width: 100%;
+      table-layout: fixed;
 
+      .mat-column-select {
+        width: 2.5rem;
+      }
+
+      .mat-column-count,
+      .mat-column-links {
+        width: 5rem;
+      }
+
+      ::ng-deep {
         thead {
           tr {
-            font: vars.$label-small;
-            .mat-mdc-checkbox {
-              .mdc-checkbox__background {
-                background-color: vars.$surface-container-lowest;
-              }
-            }
+            @include utils.use-font(body, medium);
           }
           .mat-sort-header-container {
             max-width: 6rem;
             .mat-sort-header-content {
-              font: vars.$label-small;
-              color: vars.$secondary;
+              @include utils.use-font(body, medium);
             }
           }
 
           tr th:last-child > div {
             justify-content: flex-end;
             margin-right: 0.25rem;
-            color: vars.$primary;
           }
         }
 
         tbody tr td.mdc-data-table__cell:nth-last-child(-n + 2) {
           text-align: end;
           padding-right: 1.5rem;
-          color: vars.$primary;
-          font: vars.$label-small;
+          @include utils.use-font(body, medium);
         }
 
         tbody {
           tr,
           td {
-            font: vars.$label-small;
+            @include utils.use-font(body, medium);
           }
         }
 
@@ -170,8 +158,8 @@
           background-color: vars.$surface-container-high;
 
           td:first-child {
-            border-top-left-radius: 0.5rem;
-            border-bottom-left-radius: 0.5rem;
+            border-top-left-radius: vars.$corner-small;
+            border-bottom-left-radius: vars.$corner-small;
             border-top: solid vars.$outline-variant 0.0625rem;
             border-left: solid vars.$outline-variant 0.0625rem;
             border-bottom: solid vars.$outline-variant 0.0625rem;
@@ -183,21 +171,11 @@
           }
 
           td:last-child {
-            border-top-right-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
+            border-top-right-radius: vars.$corner-small;
+            border-bottom-right-radius: vars.$corner-small;
             border-top: solid vars.$outline-variant 0.0625rem;
             border-right: solid vars.$outline-variant 0.0625rem;
             border-bottom: solid vars.$outline-variant 0.0625rem;
-          }
-        }
-
-        tr {
-          .mat-mdc-checkbox {
-            &.mat-mdc-checkbox-checked {
-              .mdc-checkbox__background {
-                background-color: vars.$surface-container-lowest;
-              }
-            }
           }
         }
       }
@@ -228,30 +206,19 @@
       .mdc-data-table__header-cell {
         padding: 0;
       }
-
-      .mdc-data-table__cell {
-        &:nth-child(2) {
-          max-width: 10rem;
-        }
-      }
     }
   }
 }
 
+// The anchor and cell type name tooltips match cde-ui's rich tooltips:
+// a surface-container panel with level 2 elevation and medium corners
 ::ng-deep {
-  div.mat-mdc-menu-panel {
-    max-width: 19.25rem;
-    &.info-sub-menu .mat-mdc-menu-content {
-      padding: 1rem 1rem;
-    }
-  }
-
   .info-tooltip-panel {
-    background-color: vars.$surface-container-lowest;
-    box-shadow: 0 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);
-    border-radius: 0.5rem;
+    background-color: vars.$surface-container;
+    box-shadow: var(--mat-sys-level2);
+    border-radius: vars.$corner-medium;
     max-width: 21rem;
-    font: vars.$label-medium;
-    color: vars.$primary;
+    @include utils.use-font(body, medium);
+    color: vars.$on-surface-variant;
   }
 }

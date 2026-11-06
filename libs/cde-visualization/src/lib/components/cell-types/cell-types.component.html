@@ -4,7 +4,6 @@
       <button
         mat-icon-button
         hraPlainTooltip="More"
-        hraIconButtonSize="large"
         data-testid="trigger"
         hraFeature="menu"
         hraClickEvent
@@ -16,8 +15,6 @@
         <button
           mat-menu-item
           class="expanded"
-          matRipple
-          matRippleColor="#201E3D14"
           hraFeature="info"
           hraClickEvent
           hraHoverEvent
@@ -26,7 +23,6 @@
         >
           <mat-icon>info</mat-icon>
           <span>Info</span>
-          <mat-icon class="expand-arrow">arrow_right</mat-icon>
         </button>
         <button
           mat-menu-item
@@ -73,7 +69,12 @@
     </div>
   }
 
-  <ng-scrollbar class="table-overflow-container" externalViewport=".scroll-viewport" hraFeature="cell-types-table">
+  <ng-scrollbar
+    class="table-overflow-container"
+    orientation="vertical"
+    externalViewport=".scroll-viewport"
+    hraFeature="cell-types-table"
+  >
     <div class="scroll-viewport">
       <table
         mat-table

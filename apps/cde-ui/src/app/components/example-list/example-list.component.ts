@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { LinkDirective } from '@hra-ui/common/router-ext';
@@ -22,7 +23,7 @@ export interface ExampleItem {
  */
 @Component({
   selector: 'cde-example-list',
-  imports: [HraCommonModule, LinkDirective, MatIconModule],
+  imports: [HraCommonModule, LinkDirective, MatIconModule, MatRippleModule],
   templateUrl: './example-list.component.html',
   styleUrl: './example-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

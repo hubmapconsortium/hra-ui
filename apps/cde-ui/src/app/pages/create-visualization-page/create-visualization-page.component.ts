@@ -25,6 +25,7 @@ import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { ParseError } from 'papaparse';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
+import { ThemeService } from '../../services/theme-service/theme.service';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
 import { validatePositive } from '../../shared/form-validators/is-positive';
@@ -91,9 +92,16 @@ export class CreateVisualizationPageComponent {
   /** Color map upload component */
   private readonly customColorMapFileUpload = viewChild<AnyFileUploadComponent>('customColorMapFileUpload');
 
-  /** Resolved background image URL */
+  /** Light or dark theme, which picks the background image */
+  private readonly theme = inject(ThemeService).theme;
+
+  /** Resolved background image URL, in the current theme */
   protected readonly backgroundImageUrl = cssUrl(
-    assetUrl('assets/backgrounds/create-visualization-page-background.png'),
+    assetUrl(() =>
+      this.theme() === 'dark'
+        ? 'assets/backgrounds/create-visualization-page-background-dark.png'
+        : 'assets/backgrounds/create-visualization-page-background.png',
+    ),
   );
 
   /** Form builder */
@@ -414,7 +422,7 @@ export class CreateVisualizationPageComponent {
   hasValidCustomColorMap(): boolean {
     const { customColorMap: colors, colorHeaders } = this;
     return !!(
-      (colors && colors.length > 0 && colorHeaders.length === 2)
+      colors && colors.length > 0 && colorHeaders.length === 2
       // DEFAULT_COLOR_MAP_KEY in colors[0] &&
       // DEFAULT_COLOR_MAP_VALUE_KEY in colors[0]
     );

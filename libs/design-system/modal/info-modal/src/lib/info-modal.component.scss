@@ -1,30 +1,31 @@
 @use '@angular/material' as mat;
+@use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
+// A floating card like a rich tooltip: surface-container with level 2 elevation and medium corners.
+// A title small header over labels and values in two body medium columns, with a 16px inset.
+// Labels use on-surface and values on-surface-variant, so the two columns read apart.
 :host {
   display: block;
-  box-shadow: 0px 5px 1rem 0px rgb(from vars.$shadow r g b / 0.24);
-  border-radius: 0.5rem;
-  background-color: vars.$surface-container-low;
   min-width: 23.625rem;
   max-width: 33.75rem;
+  border-radius: vars.$corner-medium;
+  background-color: vars.$surface-container;
+  box-shadow: var(--mat-sys-level2);
 
+  // The 8px right padding puts the close button's icon on the 16px inset
   .header {
     display: flex;
     align-items: center;
     height: 3.5rem;
     margin: 0;
-    padding: 0 1rem;
+    padding: 0 0.5rem 0 1rem;
     border-bottom: 1px solid vars.$outline-variant;
-
-    .info {
-      margin: 0.25rem;
-      padding-right: 0.5rem;
-    }
 
     .card-title {
       margin-right: 0.75rem;
-      font: vars.$label-large;
+      color: vars.$on-surface;
+      @include utils.use-font(title, small);
     }
 
     .filler {
@@ -33,35 +34,41 @@
   }
 
   .table-container {
-    padding: 0.5rem;
+    padding: 1rem;
 
     table {
-      overflow: hidden;
       border: none;
 
       @include mat.table-overrides(
         (
-          row-item-label-text-font: vars.$label-large-font,
-          row-item-label-text-line-height: vars.$label-large-line-height,
-          row-item-label-text-size: vars.$label-large-size,
-          row-item-label-text-weight: vars.$label-large-weight,
-          row-item-label-text-tracking: vars.$label-large-tracking,
-          background-color: #{vars.$surface-container-low},
-          row-item-outline-color: transparent,
-          row-item-container-height: 2rem,
+          background-color: transparent,
+          row-item-label-text-color: vars.$on-surface-variant,
+          row-item-label-text-font: vars.$body-medium-font,
+          row-item-label-text-line-height: vars.$body-medium-line-height,
+          row-item-label-text-size: vars.$body-medium-size,
+          row-item-label-text-weight: vars.$body-medium-weight,
+          row-item-label-text-tracking: vars.$body-medium-tracking,
+          row-item-outline-width: 0,
+          row-item-container-height: auto,
         )
       );
 
+      // Labels take their own width and values the rest, with rows 2px apart
+      .label,
+      .value {
+        padding: 0.0625rem 0;
+        vertical-align: top;
+      }
+
       .label {
-        width: 50%;
-        padding-right: 0.5rem;
-        text-align: right;
+        width: 1%;
+        padding-right: 1rem;
+        white-space: nowrap;
+        color: vars.$on-surface;
       }
 
       .value {
-        color: vars.$primary;
-        width: 50%;
-        padding-left: 0.5rem;
+        overflow-wrap: anywhere;
       }
     }
   }

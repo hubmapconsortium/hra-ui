@@ -34,7 +34,7 @@ export interface DownloadFileContent {
   formats: DownloadFormatContent[];
 }
 
-/** A link shown after a note */
+/** A link shown after a notice */
 export interface DownloadLinkContent {
   /** Link text */
   label: string;
@@ -42,9 +42,9 @@ export interface DownloadLinkContent {
   url: string;
 }
 
-/** A note shown below a group heading */
-export interface DownloadNoteContent {
-  /** Note text */
+/** An info notice shown after a group's files */
+export interface DownloadNoticeContent {
+  /** Notice text */
   text: string;
   /** Optional link shown after the text */
   link?: DownloadLinkContent;
@@ -54,18 +54,22 @@ export interface DownloadNoteContent {
 export interface DownloadGroupContent {
   /** Group heading */
   heading: string;
-  /** Optional notes shown below the heading */
-  notes?: DownloadNoteContent[];
   /** Files in the group */
   files: DownloadFileContent[];
+  /** Optional info notice shown after the files */
+  notice?: DownloadNoticeContent;
 }
 
 /** All text content for the downloads button and drawer */
 export interface DownloadsContent {
   /** Drawer title. Also used as the downloads button label and tooltip */
   title: string;
+  /** Supporting text below the title. Also describes the drawer */
+  description: string;
   /** Close button label and tooltip */
   closeLabel: string;
+  /** Hidden label read before each notice */
+  noticeLabel: string;
   /** File groups */
   groups: DownloadGroupContent[];
 }
@@ -73,41 +77,10 @@ export interface DownloadsContent {
 /** Text content for the downloads button and drawer */
 export const DOWNLOADS_CONTENT: DownloadsContent = {
   title: 'Downloads',
+  description: "Files match what's shown: visible cell types only, without deleted cells.",
   closeLabel: 'Close downloads',
+  noticeLabel: 'Info',
   groups: [
-    {
-      heading: 'Data',
-      notes: [
-        { text: 'CSV files include only the cell types currently shown and leave out deleted cells.' },
-        {
-          text: 'The embeddable visualization needs the Cells CSV. Cell links and Cell color map are optional and are generated when missing.',
-          link: {
-            label: 'Embedding guide',
-            url: 'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md',
-          },
-        },
-      ],
-      files: [
-        {
-          id: 'cells',
-          name: 'Cells',
-          description: 'Nodes: one row per cell, with its cell type and coordinates.',
-          formats: [{ id: 'csv', label: 'CSV', ariaLabel: 'Download cells CSV' }],
-        },
-        {
-          id: 'cell-links',
-          name: 'Cell links',
-          description: 'Edges: one row per link between a cell and its closest anchor cell, with the distance.',
-          formats: [{ id: 'csv', label: 'CSV', ariaLabel: 'Download cell links CSV' }],
-        },
-        {
-          id: 'color-map',
-          name: 'Cell color map',
-          description: 'One row per cell type, with its color.',
-          formats: [{ id: 'csv', label: 'CSV', ariaLabel: 'Download cell color map CSV' }],
-        },
-      ],
-    },
     {
       heading: 'Images',
       files: [
@@ -129,13 +102,43 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
         {
           id: 'histogram',
           name: 'Histogram',
-          description: 'Cell counts by distance to the closest anchor cell.',
+          description: 'Cell counts by distance to the nearest anchor cell.',
           formats: [
             { id: 'png', label: 'PNG', ariaLabel: 'Download histogram PNG' },
             { id: 'svg', label: 'SVG', ariaLabel: 'Download histogram SVG' },
           ],
         },
       ],
+    },
+    {
+      heading: 'Data',
+      files: [
+        {
+          id: 'cells',
+          name: 'Cells',
+          description: 'Nodes: one row per cell, with its cell type and coordinates.',
+          formats: [{ id: 'csv', label: 'CSV', ariaLabel: 'Download cells CSV' }],
+        },
+        {
+          id: 'cell-links',
+          name: 'Cell links',
+          description: 'Edges: one row per link from a cell to its nearest anchor cell, with the distance.',
+          formats: [{ id: 'csv', label: 'CSV', ariaLabel: 'Download cell links CSV' }],
+        },
+        {
+          id: 'color-map',
+          name: 'Cell color map',
+          description: 'One row per cell type, with its color.',
+          formats: [{ id: 'csv', label: 'CSV', ariaLabel: 'Download cell color map CSV' }],
+        },
+      ],
+      notice: {
+        text: 'Embedding the visualization? It needs the Cells CSV. Cell links and the cell color map are optional and are generated when missing.',
+        link: {
+          label: 'Embedding guide',
+          url: 'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md',
+        },
+      },
     },
   ],
 };

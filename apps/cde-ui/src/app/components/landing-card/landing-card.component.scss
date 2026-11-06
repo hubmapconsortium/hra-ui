@@ -14,7 +14,7 @@
     overflow: hidden;
     color: inherit;
     text-decoration: none;
-    @include cde-utils.card(0.75rem);
+    @include cde-utils.card(vars.$corner-medium);
 
     &:hover {
       .cta-icon {
@@ -23,7 +23,7 @@
     }
 
     &:focus-visible {
-      @include utils.inset-outline(vars.$tertiary);
+      @include cde-utils.focus-ring;
     }
   }
 
@@ -36,9 +36,9 @@
     width: 1.5rem;
     height: 1.5rem;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: vars.$corner-small;
     font-size: 1.5rem;
-    color: vars.$secondary;
+    color: vars.$on-surface-variant;
     background-color: vars.$surface-container-high;
 
     ::ng-deep mat-icon {
@@ -57,14 +57,14 @@
 
   .title {
     margin: 0 0 0.5rem;
-    @include cde-utils.font(vars.$body-medium-font, 1rem, 1.5rem, 600, 0.009375rem);
-    color: vars.$secondary;
+    @include utils.use-font(title, medium);
+    color: vars.$on-surface;
   }
 
   .description {
     margin: 0;
-    @include cde-utils.font(vars.$body-medium-font, 1rem, 1.5rem, 400, 0);
-    color: vars.$primary;
+    @include utils.use-font(body, large);
+    color: vars.$on-surface-variant;
   }
 
   .actions {
@@ -75,8 +75,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    @include cde-utils.font(vars.$body-medium-font, 0.875rem, 1.3125rem, 600, 0.00625rem);
-    color: vars.$on-tertiary-fixed;
+    @include utils.use-font(title, small);
+    color: vars.$on-primary-container;
   }
 
   @media (prefers-reduced-motion: no-preference) {

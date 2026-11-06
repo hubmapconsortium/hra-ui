@@ -21,6 +21,10 @@ export interface DataItem {
   templateUrl: './info-modal.component.html',
   styleUrl: './info-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    // A static title also lands on the host as a native title attribute, which shows a browser tooltip over the modal
+    '[attr.title]': 'null',
+  },
 })
 export class InfoModalComponent {
   /** List of data items to display */

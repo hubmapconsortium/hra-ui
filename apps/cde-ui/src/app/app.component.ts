@@ -15,6 +15,7 @@ import { createNotifier } from 'ngxtension/create-notifier';
 import { CRUMBS_DATA_KEY, removeLastCrumbRoute, ROOT_CRUMBS } from './shared/resolvers/crumbs.resolver';
 import { getOptionalRouteData } from './shared/utils/route-properties';
 import { Breakpoints, watchBreakpoint } from '@hra-ui/cdk/breakpoints';
+import { ThemeService } from './services/theme-service/theme.service';
 
 /**
  * App component for CDE
@@ -58,6 +59,14 @@ export class AppComponent extends BaseApplicationComponent {
 
   /** Whether the screen size is considered small (mobile) */
   private readonly isSmallScreen = watchBreakpoint(Breakpoints.Mobile);
+
+  /** Light and dark theme switcher */
+  protected readonly themeService = inject(ThemeService);
+
+  /** Theme toggle label, naming the theme a click switches to */
+  protected readonly themeToggleLabel = computed(() =>
+    this.themeService.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme',
+  );
 
   /** Computed breadcrumbs for the current route */
   protected readonly crumbs = computed(() => {

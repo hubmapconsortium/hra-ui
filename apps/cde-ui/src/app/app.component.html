@@ -28,6 +28,16 @@
     >
       <mat-icon>explore</mat-icon>
     </a>
+    <button
+      mat-icon-button
+      hraFeature="theme-toggle"
+      hraClickEvent
+      [hraPlainTooltip]="themeToggleLabel()"
+      [attr.aria-label]="themeToggleLabel()"
+      (click)="themeService.toggle()"
+    >
+      <mat-icon>{{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
 
     <hra-help-button action="https://humanatlas.io/user-story/5" />
 

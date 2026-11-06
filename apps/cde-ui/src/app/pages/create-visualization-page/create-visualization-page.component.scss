@@ -1,3 +1,4 @@
+@use 'utils';
 @use 'vars';
 
 :host {
@@ -30,19 +31,15 @@
     }
   }
 
-  hra-nav-header {
-    border-bottom: 1px solid vars.$outline;
-  }
-
   hra-footer {
     margin-top: auto;
   }
 
-  ::ng-deep .app-logo .app-description {
-    border-radius: 0.125rem;
-    width: fit-content;
-    padding: 0 0.25rem;
-    font: 500 0.625rem/1rem Metropolis !important;
+  // Workflow cards in theme shape and elevation, outlined like the landing page cards
+  .card {
+    border: 1px solid vars.$outline-variant;
+    border-radius: vars.$corner-large;
+    box-shadow: var(--mat-sys-level1);
   }
 
   .content {
@@ -65,8 +62,7 @@
 
     .title {
       margin: 0;
-      font: vars.$display-small;
-      letter-spacing: vars.$display-small-tracking;
+      @include utils.use-font(display, small);
     }
   }
 
@@ -85,11 +81,18 @@
 
     .step-number {
       margin-right: 0.75rem;
+
+      ::ng-deep .step-number {
+        @include utils.use-font(title, small);
+        border-radius: vars.$corner-full;
+        background-color: vars.$tertiary;
+        color: vars.$on-tertiary;
+      }
     }
 
     .card-title {
       margin-right: 0.75rem;
-      font: vars.$title-large;
+      @include utils.use-font(title, large);
     }
 
     .info {
@@ -112,36 +115,26 @@
     white-space: nowrap;
   }
 
-  // Requirement lists keep the spacing of the tables they replaced
-  .requirements {
-    display: flex;
-    gap: 0.125rem;
-    padding: 0.0625rem 0.125rem;
+  // Requirements as label and value rows. The values line up in one column, and wrap within it on narrow cards.
+  .requirements dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.25rem 1.5rem;
+    margin: 0;
 
-    .requirement-group {
-      flex: 0 0 13.5rem;
+    .requirement {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
     }
 
-    .requirement-label,
-    .requirement-list li {
-      padding-block: 0.125rem;
-      font: vars.$label-large;
-      font-weight: vars.$label-large-weight;
+    dt {
+      @include utils.use-font(title, medium);
     }
 
-    .requirement-label {
-      display: block;
-      padding-left: 1rem;
-    }
-
-    .requirement-list {
+    dd {
       margin: 0;
-      padding: 0;
-      list-style: inside '• ';
-
-      li {
-        padding-left: 1.5rem;
-      }
+      @include utils.use-font(body, large);
     }
   }
 
@@ -151,12 +144,16 @@
       display: grid;
       grid: 'subheader subheader';
       column-gap: 1.5rem;
-      font: vars.$label-large;
+      @include utils.use-font(body, large);
     }
 
     .subheader {
       grid-area: subheader;
       margin-bottom: 1rem;
+
+      strong {
+        font-weight: vars.$title-medium-weight;
+      }
     }
 
     .cell-type-select {
@@ -201,10 +198,6 @@
   .color-config {
     mat-button-toggle-group {
       width: fit-content;
-    }
-
-    .requirements .requirement-group {
-      flex-basis: 11rem;
     }
   }
 
