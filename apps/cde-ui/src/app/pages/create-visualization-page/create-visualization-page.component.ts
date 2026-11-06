@@ -6,7 +6,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { Router, RouterModule } from '@angular/router';
-import { initializeScreenSizeNoticeMonitor } from '@hra-ui/application';
 import {
   ColorMapEntry,
   ColorMapFileLoaderService,
@@ -52,15 +51,6 @@ export type ExtendedFileLoadError = FileLoadError | MissingKeyError | EmptyFileE
 
 /** File upload component for any type */
 type AnyFileUploadComponent = FileUploadComponent<unknown, unknown>;
-
-/** Below this width the page shows a screen size notice. Angular Material's Small breakpoint starts here. */
-const SCREEN_SIZE_NOTICE_WIDTH = 600;
-
-/**
- * Remembers a dismissed notice on this page only. Visitors who dismissed the app-wide notice that cde-ui used
- * to show still see this one.
- */
-const SCREEN_SIZE_NOTICE_STORAGE_KEY = '__hra-cde-create-screen-size-notice-dismissed';
 
 /** Returns null for all optional values */
 function optionalValue<T>(): T | null {
@@ -264,13 +254,13 @@ export class CreateVisualizationPageComponent {
       return undefined;
     }
     const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
-    const xError = xAxis ? undefined : 'X axis';
-    const yError = yAxis ? undefined : 'Y axis';
+    const xError = xAxis ? undefined : 'X';
+    const yError = yAxis ? undefined : 'Y';
     const ctError = cellType ? undefined : 'cell type';
     const errorColumns = [xError, yError, ctError].filter((e) => !!e);
 
     return errorColumns.length > 0
-      ? `Please select the required column header${errorColumns.length === 1 ? '' : 's'}: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
+      ? `Select the required column${errorColumns.length === 1 ? '' : 's'}: ${errorColumns.join(', ')}`
       : undefined;
   }
 
@@ -278,11 +268,6 @@ export class CreateVisualizationPageComponent {
   private nodes?: Record<string, unknown>[];
   /** Current color map */
   private customColorMap?: ColorMapEntry[];
-
-  /** Warns phone-sized screens until the page has a small-screen layout (#2397). Checks the width only (#2347). */
-  constructor() {
-    initializeScreenSizeNoticeMonitor({ width: SCREEN_SIZE_NOTICE_WIDTH, storageKey: SCREEN_SIZE_NOTICE_STORAGE_KEY });
-  }
 
   /**
    * Sets node values
@@ -586,22 +571,22 @@ export class CreateVisualizationPageComponent {
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
       case 'missing-key-error':
-        return `Required column${error.keys.length === 1 ? '' : 's'} missing: ${error.keys.join(', ')}`;
+        return `Missing required column${error.keys.length === 1 ? '' : 's'}: ${error.keys.join(', ')}`;
 
       case 'empty-file-error':
-        return 'File is empty.';
+        return 'This file is empty.';
 
       case 'type-error':
-        return `Invalid file type: ${error.received}, expected csv`;
+        return `Unsupported file type: ${error.received}`;
 
       case 'parse-error': {
         if (Array.isArray(error.cause)) {
-          return `Invalid file: ${this.formatCsvErrors(error.cause)}`;
+          return `Couldn't read ${this.formatCsvErrors(error.cause)}`;
         } else if (error.cause instanceof Error) {
-          return `Required color format not detected. Please use #RRGGBB or [R, G, B].`;
+          return 'Colors must be #RRGGBB or [R, G, B].';
         }
 
-        return 'Invalid file: too many invalid rows.';
+        return "Too many rows couldn't be read.";
       }
 
       default:
@@ -619,13 +604,12 @@ export class CreateVisualizationPageComponent {
     const rows = errors
       .slice(0, ROW_SAMPLE_SIZE)
       .map((e) => e.row)
-      .filter((r) => r !== undefined)
-      .join(', ');
+      .filter((r) => r !== undefined);
     const additionalErrorsLength = errors.length - ROW_SAMPLE_SIZE;
-    let message = `errors on row${rows.length > 1 ? 's' : ''} ${rows}`;
+    let message = `row${rows.length + Math.max(additionalErrorsLength, 0) > 1 ? 's' : ''} ${rows.join(', ')}`;
 
     if (additionalErrorsLength > 0) {
-      message += ` and ${additionalErrorsLength} more rows`;
+      message += ` and ${additionalErrorsLength} more`;
     }
 
     return message;
@@ -642,11 +626,11 @@ export class CreateVisualizationPageComponent {
       case undefined:
         return '';
       case 'type-error':
-        return `Please upload a ${fileDescription} CSV file.`;
+        return `Upload a ${fileDescription} CSV file.`;
       case 'empty-file-error':
-        return `Please upload a non-empty ${fileDescription} CSV file.`;
+        return `Upload a ${fileDescription} CSV file with data.`;
       default:
-        return 'Please upload a file with the required columns.';
+        return 'Upload a file with the required columns.';
     }
   }
 }

@@ -155,6 +155,13 @@ describe('CreateVisualizationPageComponent', () => {
     expect(crumbs.compareDocumentPosition(title)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
 
+  it('describes the page under its title', () => {
+    const title = screen.getByRole('heading', { level: 1 });
+    const description = fixture.nativeElement.querySelector('.page-nav .description');
+    expect(description).toHaveTextContent(/anchor cell/);
+    expect(title.compareDocumentPosition(description)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
   it('passes the dark background image in the dark theme', () => {
     theme.set('dark');
     fixture.detectChanges();
@@ -166,15 +173,24 @@ describe('CreateVisualizationPageComponent', () => {
   });
 
   describe('template links', () => {
-    it('renders outlined links that open the templates in a new tab', () => {
-      const dataTemplate = screen.getByRole('link', { name: 'Open template for cell data, opens in a new tab' });
-      const colorTemplate = screen.getByRole('link', { name: 'Open template for color maps, opens in a new tab' });
+    const dataTemplateName = 'Open template for cell data, opens in a new tab';
+    const colorTemplateName = 'Open template for color maps, opens in a new tab';
 
+    it('renders outlined links beside the upload buttons that open the templates in a new tab', async () => {
+      expect(screen.queryByRole('link', { name: colorTemplateName })).not.toBeInTheDocument();
+
+      instance.visualizationForm.controls.colorMapType.setValue('custom');
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const dataTemplate = screen.getByRole('link', { name: dataTemplateName });
+      const colorTemplate = screen.getByRole('link', { name: colorTemplateName });
       for (const link of [dataTemplate, colorTemplate]) {
         expect(link).toHaveTextContent(/^\s*Open template/);
         expect(link).toHaveAttribute('mat-stroked-button');
         expect(link).toHaveAttribute('target', '_blank');
         expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+        expect(link.closest('cde-file-upload .actions')?.querySelector('.upload')).toBeInTheDocument();
       }
       expect(dataTemplate).toHaveAttribute(
         'href',
@@ -184,6 +200,18 @@ describe('CreateVisualizationPageComponent', () => {
         'href',
         expect.stringContaining('1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE'),
       );
+    });
+  });
+
+  describe('card descriptions', () => {
+    it('describe each step below its heading, with no info buttons', () => {
+      const headers = Array.from(fixture.nativeElement.querySelectorAll('hra-workflow-card .header')) as HTMLElement[];
+
+      expect(headers).toHaveLength(6);
+      for (const header of headers) {
+        expect(header.querySelector('h2 + .description')?.textContent?.trim()).toBeTruthy();
+      }
+      expect(fixture.nativeElement.querySelector('hra-info-button')).toBeNull();
     });
   });
 
@@ -213,10 +241,10 @@ describe('CreateVisualizationPageComponent', () => {
 
   describe('required column headers', () => {
     it('marks the required selects as required for assistive technology', () => {
-      for (const name of ['X axis', 'Y axis', 'Cell type']) {
+      for (const name of ['X column', 'Y column', 'Cell type column']) {
         expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'true');
       }
-      for (const name of ['Z axis', 'Cell ontology ID']) {
+      for (const name of ['Z column', 'Cell Ontology (CL) ID column']) {
         expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'false');
       }
     });
@@ -239,8 +267,8 @@ describe('CreateVisualizationPageComponent', () => {
       expect(within(group).queryByRole('table')).toBeNull();
       expect(requirements(group)).toEqual({
         'Required columns': 'X, Y, cell type',
-        'Optional columns': 'Z, cell ontology ID',
-        'Supported format': 'CSV',
+        'Optional columns': 'Z, Cell Ontology (CL) ID',
+        'Supported format': 'Comma-separated values (CSV)',
       });
     });
 
@@ -285,7 +313,7 @@ describe('CreateVisualizationPageComponent', () => {
       const button = getVisualizeButton();
       expect(button).not.toHaveAttribute('disabled');
       expect(button).toHaveAttribute('aria-disabled', 'true');
-      expect(button).toHaveAccessibleDescription('Please upload a dataset.');
+      expect(button).toHaveAccessibleDescription('Upload a dataset first.');
 
       const submitSpy = jest.spyOn(instance, 'submit');
       await userEvent.click(button);
@@ -298,7 +326,7 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
       fixture.detectChanges();
 
-      expect(getVisualizeButton()).toHaveAccessibleDescription('Please complete the required fields above.');
+      expect(getVisualizeButton()).toHaveAccessibleDescription('Fill in the required fields above.');
     });
   });
 
@@ -317,8 +345,8 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: cell type/);
-      expect(screen.getByText(/Please select the required column header/).closest('[role="alert"]')).not.toBeNull();
+      expect(instance.columnErrorActionMessage).toMatch(/Select the required column: cell type/);
+      expect(screen.getByText(/Select the required column/).closest('[role="alert"]')).not.toBeNull();
     });
 
     it('sets nodes', async () => {
@@ -375,7 +403,7 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.upload(colorMapEl, data, { applyAccept: false });
       fixture.autoDetectChanges();
 
-      expect(instance.colorErrorMessage).toMatch(/Invalid file type/);
+      expect(instance.colorErrorMessage).toMatch(/Unsupported file type/);
     });
     it('shows error if invalid color map keys', async () => {
       const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
@@ -388,7 +416,7 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.upload(colorMapEl, data);
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.colorErrorMessage).toMatch(/Required columns? missing/);
+      expect(instance.colorErrorMessage).toMatch(/Missing required columns?/);
     });
   });
 
@@ -551,7 +579,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.clearCustomColorMap();
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.nodesErrorMessage).toMatch(/Invalid file/);
+      expect(instance.nodesErrorMessage).toMatch(/Couldn't read rows?/);
     });
 
     it('shows parse error (cause is Error type)', async () => {
@@ -560,9 +588,7 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: new Error(),
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(
-        'Required color format not detected. Please use #RRGGBB or [R, G, B].',
-      );
+      expect(priedInstance.formatErrorMessage(testError)).toMatch('Colors must be #RRGGBB or [R, G, B].');
     });
 
     it('shows parse errors (cause is some other type)', async () => {
@@ -571,7 +597,13 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: 'whatever',
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Invalid file: too many invalid rows/);
+      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Too many rows couldn't be read/);
+    });
+
+    it('says row for a single row, even with a multi-digit row number', () => {
+      const priedInstance = instance as unknown as { formatErrorMessage: (error: ExtendedFileLoadError) => string };
+      const testError = { type: 'parse-error', cause: [{ row: 12 }] } as unknown as ExtendedFileLoadError;
+      expect(priedInstance.formatErrorMessage(testError)).toBe("Couldn't read row 12");
     });
 
     it('returns empty string if no error type', async () => {
@@ -598,17 +630,22 @@ describe('CreateVisualizationPageComponent', () => {
       instance.clearCustomColorMap();
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.nodesErrorMessage).toMatch(/and 1 more rows/);
+      expect(instance.nodesErrorMessage).toMatch(/and 1 more$/);
     });
   });
 });
 
-describe('CreateVisualizationPageComponent screen size notice', () => {
+describe('CreateVisualizationPageComponent on small screens', () => {
   const observe = jest.fn();
   const openNotice = jest.fn();
 
-  /** Renders the page on a screen narrower than 600px */
-  async function setup(): Promise<void> {
+  beforeEach(() => {
+    localStorage.clear();
+    observe.mockReset().mockReturnValue(of({ matches: true, breakpoints: { '(width < 600px)': true } }));
+    openNotice.mockReset().mockReturnValue({ afterClosed: () => NEVER, close: jest.fn() });
+  });
+
+  it('works below 600px wide without a screen size notice', async () => {
     const { fixture } = await render(CreateVisualizationPageComponent, {
       providers: [
         provideAssetHref('http://localhost/'),
@@ -622,28 +659,6 @@ describe('CreateVisualizationPageComponent screen size notice', () => {
       componentInputs: { organs: [] },
     });
     await fixture.whenStable();
-  }
-
-  beforeEach(() => {
-    localStorage.clear();
-    observe.mockReset().mockReturnValue(of({ matches: true, breakpoints: { '(width < 600px)': true } }));
-    openNotice.mockReset().mockReturnValue({ afterClosed: () => NEVER, close: jest.fn() });
-  });
-
-  it('shows the notice below 600px wide, checking the width only, even after the shared notice was dismissed', async () => {
-    localStorage.setItem('__hra-screen-size-notice-dismissed', 'true');
-    await setup();
-
-    expect(observe).toHaveBeenCalledWith(['(width < 600px)']);
-    expect(openNotice).toHaveBeenCalledWith(
-      'Heads up!',
-      'This page is optimized for Chrome or Firefox on screens at least 600px wide.',
-    );
-  });
-
-  it("doesn't show the notice again once it was dismissed on this page", async () => {
-    localStorage.setItem('__hra-cde-create-screen-size-notice-dismissed', 'true');
-    await setup();
 
     expect(openNotice).not.toHaveBeenCalled();
   });

@@ -35,8 +35,10 @@
     margin-top: auto;
   }
 
-  // Workflow cards in theme shape and elevation, outlined like the landing page cards
+  // Workflow cards in theme shape and elevation, outlined like the landing page cards. The deprecated
+  // workflow card is a fixed 42rem wide, so the cards fill the column instead and shrink on narrow screens.
   .card {
+    width: 100%;
     border: 1px solid vars.$outline-variant;
     border-radius: vars.$corner-large;
     box-shadow: var(--mat-sys-level1);
@@ -47,14 +49,20 @@
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
-    gap: 3rem;
-    max-width: 53.5rem;
+    gap: 1.5rem;
+    // 42rem for the cards, title and description, plus the side padding
+    max-width: 47rem;
     align-items: flex-start;
-    padding: 3rem 2.5rem 6rem;
+    padding: 5rem 2.5rem;
+
+    @media (max-width: 599.98px) {
+      padding-inline: 1.25rem;
+    }
   }
 
+  // With the cards' gap, 2.5rem below the title and description
   .page-nav {
-    margin-bottom: -0.5rem;
+    margin-bottom: 1rem;
 
     .nav {
       margin-bottom: 2.25rem;
@@ -64,24 +72,32 @@
       margin: 0;
       @include utils.use-font(display, small);
     }
+
+    .description {
+      margin: 0.75rem 0 0;
+      color: vars.$on-surface-variant;
+      @include utils.use-font(body, large);
+    }
   }
 
+  // The step heading with its description 8px below. The card's 2rem gap follows the description.
   .header {
     grid-area: header;
     display: flex;
-    align-items: center;
-    height: 2.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
 
-    // Keep only the step number and title in the heading so its accessible name stays short
+    // Keep only the step number and title in the heading so its accessible name stays short.
+    // The step number sits 12px above the title.
     .heading {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
       margin: 0;
     }
 
     .step-number {
-      margin-right: 0.75rem;
-
       ::ng-deep .step-number {
         @include utils.use-font(title, small);
         border-radius: vars.$corner-full;
@@ -91,18 +107,21 @@
     }
 
     .card-title {
-      margin-right: 0.75rem;
       @include utils.use-font(title, large);
     }
 
-    .info {
-      margin: 0.25rem;
-      cursor: pointer;
-    }
-  }
+    .description {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 0;
+      color: vars.$on-surface-variant;
+      @include utils.use-font(body, large);
 
-  .filler {
-    flex-grow: 1;
+      p {
+        margin: 0;
+      }
+    }
   }
 
   // Hides text visually while keeping it available to screen readers
@@ -136,6 +155,12 @@
       margin: 0;
       @include utils.use-font(body, large);
     }
+
+    // On phones, each value goes below its label
+    @media (max-width: 599.98px) {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 0.75rem;
+    }
   }
 
   .organize-data {
@@ -159,13 +184,25 @@
     .cell-type-select {
       margin-top: 1.5rem;
     }
+
+    // On phones, the fields stack in one column
+    @media (max-width: 599.98px) {
+      .required-headers,
+      .optional-headers {
+        grid: 'subheader';
+
+        mat-form-field + mat-form-field {
+          margin-top: 2rem;
+        }
+      }
+    }
   }
 
   .parameters {
     .parameters-1,
     .parameters-2 {
       display: grid;
-      column-gap: 1.5rem;
+      gap: 1.5rem;
       // Keep a field's height when its neighbor shows error text
       align-items: start;
     }
@@ -176,6 +213,19 @@
 
     .parameters-2 {
       grid: '. . .';
+
+      // Three pixel sizes don't fit side by side below Material's Medium breakpoint
+      @media (max-width: 959.98px) {
+        grid: '. .';
+      }
+    }
+
+    @media (max-width: 599.98px) {
+      .parameters-1,
+      .parameters-2 {
+        grid: '.';
+        row-gap: 2rem;
+      }
     }
   }
 
@@ -191,6 +241,16 @@
       mat-form-field {
         flex: 1 1 0;
         min-width: 0;
+      }
+
+      @media (max-width: 599.98px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2rem;
+
+        mat-form-field {
+          flex: none;
+        }
       }
     }
   }
