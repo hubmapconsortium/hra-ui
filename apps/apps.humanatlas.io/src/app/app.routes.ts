@@ -94,7 +94,7 @@ export const appRoutes: Route[] = [
       },
     ],
     data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 1' }] satisfies BreadcrumbItem[],
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Cell Type Population Predictor' }] satisfies BreadcrumbItem[],
       helpUrl: 'https://humanatlas.io/user-story/1',
     },
   },
@@ -118,7 +118,7 @@ export const appRoutes: Route[] = [
       },
     ],
     data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 2' }] satisfies BreadcrumbItem[],
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Tissue Origin Predictor' }] satisfies BreadcrumbItem[],
       helpUrl: 'https://humanatlas.io/user-story/2',
     },
   },
@@ -126,7 +126,7 @@ export const appRoutes: Route[] = [
     path: 'us6',
     component: WebComponentsComponent,
     data: {
-      crumbs: [{ name: 'Apps', route: '/' }, { name: 'User Story 6' }] satisfies BreadcrumbItem[],
+      crumbs: [{ name: 'Apps', route: '/' }, { name: 'Web Components' }] satisfies BreadcrumbItem[],
       helpUrl: 'https://humanatlas.io/user-story/6',
     },
   },

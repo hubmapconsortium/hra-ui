@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { signal } from '@angular/core';
+import { ApplicationRef, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
@@ -21,7 +21,7 @@ describe('TissueOriginPredictorComponent', () => {
     await expect(result).resolves.toBeTruthy();
   });
 
-  it('should use user uploaded file when user clicks on the Upload File', async () => {
+  it('should use user uploaded file when user clicks on the Upload CSV button', async () => {
     const mockCSVFile = new File([''], 'uploaded-file.csv', { type: 'text/csv' });
 
     const { fixture } = await render(TissueOriginPredictorComponent, { imports, providers });
@@ -34,8 +34,8 @@ describe('TissueOriginPredictorComponent', () => {
     expect(file).toBeInTheDocument();
   });
 
-  it('should use sample file when user clicks on the Use sample button', async () => {
-    const mockFile = new File([''], 'sample.csv', { type: 'text/plain' });
+  it('should use the example file when user clicks on the Use example button', async () => {
+    const mockFile = new File([''], 'example.csv', { type: 'text/plain' });
 
     const { fixture } = await render(TissueOriginPredictorComponent, {
       imports,
@@ -44,12 +44,30 @@ describe('TissueOriginPredictorComponent', () => {
 
     TestBed.inject(SAMPLE_FILE);
 
-    const useSampleButton = screen.getByText('Use sample');
-    await userEvent.click(useSampleButton);
+    const useExampleButton = screen.getByText('Use example');
+    await userEvent.click(useExampleButton);
     fixture.detectChanges();
 
-    const file = screen.getByText('sample.csv');
+    const file = screen.getByText('example.csv');
     expect(file).toBeInTheDocument();
+  });
+
+  it('should move focus to the delete button after loading a file, and back after deleting it', async () => {
+    const mockFile = new File([''], 'example.csv', { type: 'text/plain' });
+
+    await render(TissueOriginPredictorComponent, {
+      imports,
+      providers: [...providers, { provide: SAMPLE_FILE, useValue: { value: { asReadonly: () => signal(mockFile) } } }],
+    });
+    const appRef = TestBed.inject(ApplicationRef);
+
+    await userEvent.click(screen.getByRole('button', { name: 'Use example' }));
+    appRef.tick();
+    expect(screen.getByRole('button', { name: 'Delete file' })).toHaveFocus();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Delete file' }));
+    appRef.tick();
+    expect(screen.getByRole('button', { name: 'Use example' })).toHaveFocus();
   });
 
   it('should navigate to the result page when user clicks on the Predict button', async () => {
@@ -66,5 +84,16 @@ describe('TissueOriginPredictorComponent', () => {
     await userEvent.click(predictButton);
 
     expect(routerSpy).toHaveBeenCalled();
+  });
+
+  it('should link to the template in a new tab', async () => {
+    await render(TissueOriginPredictorComponent, { imports, providers });
+
+    const link = screen.getByRole('link', { name: 'View template for cell populations, opens in a new tab' });
+    expect(link).toHaveAttribute(
+      'href',
+      'https://github.com/x-atlas-consortia/hra-apps/blob/main/applications/us2-cell-to-spatial/heart-cell-summary.csv',
+    );
+    expect(link).toHaveAttribute('target', '_blank');
   });
 });
