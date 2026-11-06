@@ -65,15 +65,6 @@ export class CellTypesComponent {
   /** Record of adjustments for cell type counts */
   readonly countAdjustments = input<Record<string, { count: number; outgoingEdgeCount: number }>>({});
 
-  /** Output event for download colormap action */
-  readonly downloadColorMap = output();
-
-  /** Output event for download edges action */
-  readonly downloadNodes = output();
-
-  /** Output event for download edges action */
-  readonly downloadEdges = output();
-
   /** Output event for reset color */
   readonly resetAllColors = output();
 
@@ -90,8 +81,7 @@ export class CellTypesComponent {
 
   /** Content for Info Tooltip card */
   protected readonly infoToolTipDescription: string = `Show/hide cell types in the visualization and plots. Hide cell links from this table view.
-    Update colors for individual cell types. Download CSVs for the current configurations of
-    cell types, cell links, and cell type color map formatting.`;
+    Update colors for individual cell types.`;
 
   /** Flag to toggle cell links row visibility */
   protected readonly hideCellLinkData = signal(false);

@@ -29,18 +29,6 @@
     mat-menu-item
     matRipple
     matRippleColor="#201E3D14"
-    hraFeature="download"
-    hraClickEvent
-    [matMenuTriggerFor]="downloadSubMenu"
-  >
-    <mat-icon>download</mat-icon>
-    <span>Downloads</span>
-    <mat-icon class="expand-arrow">arrow_right</mat-icon>
-  </button>
-  <button
-    mat-menu-item
-    matRipple
-    matRippleColor="#201E3D14"
     hraFeature="reset"
     hraClickEvent
     [matMenuTriggerFor]="resetSubMenu"
@@ -96,13 +84,6 @@
       <li>Mouse drag</li>
     </ul>
   </div>
-</mat-menu>
-
-<mat-menu class="download-sub-menu" #downloadSubMenu="matMenu">
-  <button mat-menu-item hraFeature="download-png" hraClickEvent (click)="downloadClick.emit()">
-    <mat-icon>download</mat-icon>
-    <span>PNG</span>
-  </button>
 </mat-menu>
 
 <mat-menu class="reset-sub-menu" #resetSubMenu="matMenu">

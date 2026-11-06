@@ -1,13 +1,18 @@
-import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, model, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
-import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
+import {
+  ExpansionPanelActionsComponent,
+  ExpansionPanelComponent,
+  ExpansionPanelHeaderContentComponent,
+} from '@hra-ui/design-system/expansion-panel';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Metadata } from '../../models/metadata';
+import { DOWNLOADS_CONTENT } from '../downloads/downloads.content';
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] = [
@@ -50,6 +55,7 @@ export class DefaultToPipe implements PipeTransform {
     ButtonsModule,
     ExpansionPanelComponent,
     ExpansionPanelActionsComponent,
+    ExpansionPanelHeaderContentComponent,
   ],
   templateUrl: './metadata.component.html',
   styleUrl: './metadata.component.scss',
@@ -58,6 +64,12 @@ export class DefaultToPipe implements PipeTransform {
 export class MetadataComponent {
   /** Input for Metadata Component */
   readonly metadata = input.required<Metadata>();
+
+  /** Whether the downloads drawer is open. The downloads button opens it */
+  readonly downloadsOpen = model(false);
+
+  /** Label and tooltip for the downloads button */
+  protected readonly downloadsLabel = DOWNLOADS_CONTENT.title;
 
   /** Defines a reactive signal to track the visibility of empty fields */
   readonly showEmptyFields = signal(false);

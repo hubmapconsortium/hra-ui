@@ -1,0 +1,31 @@
+@use '../../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../../libs/design-system/styles/vars';
+
+// Description follows the name in the DOM so screen readers announce it before the buttons
+:host {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'name formats'
+    'description description';
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+
+  .name {
+    grid-area: name;
+    color: vars.$on-surface;
+    @include utils.use-font(title, small);
+  }
+
+  .description {
+    grid-area: description;
+    margin: 0;
+    @include utils.use-font(body, medium);
+  }
+
+  .formats {
+    grid-area: formats;
+    display: flex;
+    gap: 0.25rem;
+  }
+}

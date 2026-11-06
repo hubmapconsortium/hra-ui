@@ -32,51 +32,16 @@ describe('CellTypesComponent', () => {
     });
   }
 
-  it('should update nodes when downloadNodes is called', async () => {
-    const emitFn = jest.fn();
+  it('should not include download options in the menu', async () => {
     const { fixture } = await setup({
       inputs: { cellTypes, cellTypesSelection },
-      on: {
-        downloadNodes: emitFn,
-      },
     });
     const loader = TestbedHarnessEnvironment.loader(fixture);
     const menu = await loader.getHarness(MatMenuHarness);
+    await menu.open();
 
-    await menu.clickItem({ text: /Download/ }, { text: /Cells CSV/ });
-    expect(emitFn).toHaveBeenCalled();
-  });
-
-  it('should update edges when downloadEdges is called', async () => {
-    const emitFn = jest.fn();
-    const { fixture } = await setup({
-      inputs: { cellTypes, cellTypesSelection },
-      on: {
-        downloadEdges: emitFn,
-      },
-    });
-
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-
-    await menu.clickItem({ text: /Download/ }, { text: /Cell links CSV/ });
-    expect(emitFn).toHaveBeenCalled();
-  });
-
-  it('should update color map when downloadColorMap is called', async () => {
-    const emitFn = jest.fn();
-    const { fixture } = await setup({
-      inputs: { cellTypes, cellTypesSelection },
-      on: {
-        downloadColorMap: emitFn,
-      },
-    });
-
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-
-    await menu.clickItem({ text: /Download/ }, { text: /Cell color map CSV/ });
-    expect(emitFn).toHaveBeenCalled();
+    const items = await menu.getItems({ text: /Download/ });
+    expect(items).toHaveLength(0);
   });
 
   it('should render the component', async () => {

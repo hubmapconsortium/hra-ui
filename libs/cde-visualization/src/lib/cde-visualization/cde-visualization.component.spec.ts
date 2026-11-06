@@ -1,6 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { MATERIAL_ANIMATIONS } from '@angular/material/core';
+import { MatDrawer } from '@angular/material/sidenav';
+import { By } from '@angular/platform-browser';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -11,10 +14,14 @@ import {
   EMPTY_NODES_VIEW,
   NodesView,
 } from '@hra-ui/node-dist-vis/models';
-import { render, RenderComponentOptions } from '@testing-library/angular';
+import { fireEvent, render, RenderComponentOptions, screen, waitFor, within } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
 import embed, { Result } from 'vega-embed';
+import { DOWNLOADS_CONTENT, DownloadRequest } from '../components/downloads/downloads.content';
+import { HistogramComponent } from '../components/histogram/histogram.component';
+import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { ViolinComponent } from '../components/violin/violin.component';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
@@ -61,6 +68,7 @@ describe('CdeVisualizationComponent', () => {
           provide: AnimationDriver,
           useClass: MockAnimationDriver,
         },
+        { provide: MATERIAL_ANIMATIONS, useValue: { animationsDisabled: true } },
         ...(options?.providers ?? []),
       ],
       imports: [MatIconTestingModule],
@@ -183,6 +191,121 @@ describe('CdeVisualizationComponent', () => {
 
         await fixture.componentInstance.downloadColorMap();
         expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'color-map.csv');
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('downloads drawer', () => {
+    async function openDrawer() {
+      const result = await setup();
+      const trigger = screen.getByRole('button', { name: DOWNLOADS_CONTENT.title });
+      const drawer = result.fixture.debugElement.query(By.directive(MatDrawer)).injector.get(MatDrawer);
+
+      // Browsers focus a button when it's clicked, and the drawer returns focus to it on close
+      trigger.focus();
+      fireEvent.click(trigger);
+      const region = await screen.findByRole('region', { name: DOWNLOADS_CONTENT.title });
+      await waitFor(() => expect(drawer.opened).toBe(true));
+      await waitFor(() => expect(region).toContainElement(document.activeElement as HTMLElement));
+      return { ...result, trigger, drawer, region };
+    }
+
+    async function expectClosed(drawer: MatDrawer, trigger: HTMLElement) {
+      await waitFor(() => expect(drawer.opened).toBe(false));
+      expect(trigger).toHaveFocus();
+      await waitFor(() => expect(trigger).toHaveAttribute('aria-expanded', 'false'));
+    }
+
+    it(
+      'opens as a labelled region from the downloads button',
+      async () => {
+        const { trigger, region } = await openDrawer();
+
+        expect(region).not.toHaveAttribute('aria-modal');
+        expect(trigger).toHaveAttribute('aria-expanded', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'closes from the close button',
+      async () => {
+        const { trigger, drawer, region } = await openDrawer();
+
+        fireEvent.click(within(region).getByRole('button', { name: DOWNLOADS_CONTENT.closeLabel }));
+        await expectClosed(drawer, trigger);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'closes on escape',
+      async () => {
+        const { trigger, drawer, region } = await openDrawer();
+
+        fireEvent.keyDown(region, { key: 'Escape', keyCode: 27 });
+        await expectClosed(drawer, trigger);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'closes when clicking outside the drawer',
+      async () => {
+        const { trigger, drawer, container } = await openDrawer();
+
+        fireEvent.click(container.querySelector('.mat-drawer-backdrop') as HTMLElement);
+        await expectClosed(drawer, trigger);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'downloads files from the drawer',
+      async () => {
+        const { drawer, region } = await openDrawer();
+        const fileSaver = TestBed.inject(FileSaverService);
+        const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+
+        fireEvent.click(within(region).getByRole('button', { name: 'Download cells CSV' }));
+        await waitFor(() => expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv'));
+        expect(drawer.opened).toBe(true);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'dispatches each download request to the matching handler',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const getPanel = <T>(type: new (...args: never[]) => T) =>
+          fixture.debugElement.query(By.directive(type)).componentInstance as T;
+
+        const downloadNodes = jest.spyOn(instance, 'downloadNodes').mockResolvedValue();
+        const downloadEdges = jest.spyOn(instance, 'downloadEdges').mockResolvedValue();
+        const downloadColorMap = jest.spyOn(instance, 'downloadColorMap').mockResolvedValue();
+        const visDownload = jest.spyOn(getPanel(NodeDistVisualizationComponent), 'download').mockResolvedValue();
+        const violinDownload = jest.spyOn(getPanel(ViolinComponent), 'download').mockResolvedValue();
+        const histogramDownload = jest.spyOn(getPanel(HistogramComponent), 'download').mockResolvedValue();
+
+        const requests: [DownloadRequest, jest.SpyInstance, unknown[]][] = [
+          [{ file: 'cells', format: 'csv' }, downloadNodes, []],
+          [{ file: 'cell-links', format: 'csv' }, downloadEdges, []],
+          [{ file: 'color-map', format: 'csv' }, downloadColorMap, []],
+          [{ file: 'visualization', format: 'png' }, visDownload, []],
+          [{ file: 'violin-graph', format: 'png' }, violinDownload, ['png']],
+          [{ file: 'violin-graph', format: 'svg' }, violinDownload, ['svg']],
+          [{ file: 'histogram', format: 'png' }, histogramDownload, ['png']],
+          [{ file: 'histogram', format: 'svg' }, histogramDownload, ['svg']],
+        ];
+
+        for (const [request, handler, args] of requests) {
+          handler.mockClear();
+          await instance.handleDownload(request);
+          expect(handler).toHaveBeenCalledWith(...args);
+        }
       },
       TIMEOUT,
     );
