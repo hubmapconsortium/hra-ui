@@ -1,26 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "ComponentDefs",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "defs": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/ComponentDef"
-      }
-    }
-  },
-  "required": [
-    "$schema",
-    "defs"
-  ],
-  "additionalProperties": false,
+  "$ref": "#/$defs/ComponentDefs",
   "$defs": {
+    "ComponentDefs": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "defs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ComponentDef"
+          }
+        }
+      },
+      "required": [
+        "$schema",
+        "defs"
+      ],
+      "additionalProperties": false
+    },
     "ComponentDef": {
-      "id": "ComponentDef",
       "type": "object",
       "properties": {
         "id": {
@@ -62,7 +63,6 @@
       "additionalProperties": false
     },
     "ComponentDefId": {
-      "id": "ComponentDefId",
       "type": "string"
     }
   }
