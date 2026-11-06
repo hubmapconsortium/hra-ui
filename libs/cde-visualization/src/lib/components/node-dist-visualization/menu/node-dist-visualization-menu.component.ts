@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HraCommonModule } from '@hra-ui/common';
@@ -6,7 +6,7 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 
 /**
- * Menu for node dist visualization expansion panel
+ * Menu for the fullscreen distance visualization, which covers the toolbar
  */
 @Component({
   selector: 'cde-node-dist-visualization-menu',
@@ -16,16 +16,15 @@ import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tool
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NodeDistVisualizationMenuComponent {
-  /** If visualization is in full screen */
-  readonly fullscreenMode = input(false, { transform: booleanAttribute });
-
   /** If edges are disabled */
   readonly edgesDisabled = model(false);
 
-  /** Emits when full screen option clicked */
-  readonly fullscreenClick = output<void>();
+  /** Whether any cells were deleted, so they can be restored */
+  readonly hasDeletedCells = input(false);
+
   /** Emits when reset visualization view option clicked */
   readonly resetViewClick = output<void>();
+
   /** Emits when reset deleted cells option option clicked */
   readonly resetDeletedClick = output<void>();
 }

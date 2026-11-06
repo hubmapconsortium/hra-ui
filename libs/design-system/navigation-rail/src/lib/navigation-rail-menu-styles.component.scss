@@ -1,0 +1,10 @@
+@use '../../../styles/utils';
+@use './navigation-rail-tokens' as tokens;
+
+// The menu overlaps its trigger, so a start margin moves it past the rail.
+// Apps that change the rail's container width should set the token on .hra-app so it reaches the overlay container too.
+@include utils.global-styles() {
+  .hra-navigation-rail-menu .mat-mdc-menu-panel {
+    margin-inline-start: calc(#{tokens.slot(container-width)} + 0.25rem);
+  }
+}

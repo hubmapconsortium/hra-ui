@@ -1,3 +1,5 @@
+import { EMBEDDING_GUIDE_URL } from '../toolbar/toolbar.content';
+
 /** Identifiers for each downloadable file */
 export type DownloadFileId = 'cells' | 'cell-links' | 'color-map' | 'visualization' | 'violin-graph' | 'histogram';
 
@@ -154,7 +156,7 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
         text: 'Embedding the visualization? It needs the Cells CSV. Cell links and the cell color map are optional and are generated when missing.',
         link: {
           label: 'Embedding guide',
-          url: 'https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md',
+          url: EMBEDDING_GUIDE_URL,
         },
       },
     },

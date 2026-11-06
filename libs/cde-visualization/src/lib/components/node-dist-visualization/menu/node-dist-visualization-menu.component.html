@@ -1,6 +1,6 @@
 <button
   mat-icon-button
-  aria-label="Icon to open nested menu"
+  aria-label="More"
   hraPlainTooltip="More"
   hraFeature="menu"
   hraClickEvent
@@ -9,79 +9,31 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 
+<!-- The fullscreen view covers the toolbar, so it keeps the distance visualization's own actions -->
 <mat-menu class="vis-overlay" hraFeature="menu" #menu="matMenu">
+  <button mat-menu-item hraFeature="reset-view" hraClickEvent (click)="resetViewClick.emit()">
+    <mat-icon>fit_screen</mat-icon>
+    Reset view
+  </button>
   <button
     mat-menu-item
-    hraFeature="info"
+    hraFeature="restore-deleted-cells"
     hraClickEvent
-    hraHoverEvent
-    hraHoverEventTriggerOn="mouseenter"
-    [matMenuTriggerFor]="infoSubMenu"
+    [disabled]="!hasDeletedCells()"
+    (click)="resetDeletedClick.emit()"
   >
-    <mat-icon>info</mat-icon>
-    <span>Info</span>
+    <mat-icon>restore_from_trash</mat-icon>
+    Restore deleted cells
   </button>
-  <button mat-menu-item hraFeature="reset" hraClickEvent [matMenuTriggerFor]="resetSubMenu">
-    <mat-icon>reset_wrench</mat-icon>
-    <span>Reset</span>
-  </button>
-  @if (!fullscreenMode()) {
-    <button mat-menu-item hraFeature="fullscreen" hraClickEvent (click)="fullscreenClick.emit()">
-      <mat-icon>fullscreen</mat-icon>
-      Full screen
-    </button>
-  }
   <button
     mat-menu-item
+    role="menuitemcheckbox"
+    hraFeature="cell-links"
     hraClickEvent
-    [hraFeature]="edgesDisabled() ? 'show-cell-links' : 'hide-cell-links'"
-    (click)="this.edgesDisabled.set(!this.edgesDisabled())"
+    [attr.aria-checked]="!edgesDisabled()"
+    (click)="$event.stopPropagation(); edgesDisabled.set(!edgesDisabled())"
   >
-    <mat-icon>{{ edgesDisabled() ? 'visibility' : 'visibility_off' }}</mat-icon>
-    {{ edgesDisabled() ? 'Show' : 'Hide' }} cell links
-  </button>
-  <a
-    mat-menu-item
-    href="https://github.com/hubmapconsortium/hra-ui/blob/main/apps/cde-visualization-wc/EMBEDDING.md"
-    target="_blank"
-    rel="noopener noreferrer"
-    hraFeature="embed-app"
-    hraClickEvent
-  >
-    <mat-icon>code</mat-icon>
-    Embed app
-  </a>
-</mat-menu>
-
-<mat-menu class="info-sub-menu" #infoSubMenu="matMenu">
-  <div>
-    <ul>
-      Zoom options
-      <li>Mouse pinwheel</li>
-      <li>Trackpad pinch</li>
-    </ul>
-    <ul>
-      Pan options
-      <li>CTRL/CMD + mouse drag</li>
-      <li>Right click + mouse drag</li>
-      <li>Keyboard arrows</li>
-    </ul>
-    <ul>
-      Rotation options
-      <li>CTRL/CMD + keyboard arrows</li>
-      <li>Mouse drag</li>
-    </ul>
-  </div>
-</mat-menu>
-
-<mat-menu class="reset-sub-menu" #resetSubMenu="matMenu">
-  <button mat-menu-item hraFeature="reset-visualization-view" hraClickEvent (click)="resetViewClick.emit()">
-    <mat-icon>reset_wrench</mat-icon>
-    <span>Reset visualization view</span>
-  </button>
-
-  <button mat-menu-item hraFeature="reset-deleted-cells" hraClickEvent (click)="resetDeletedClick.emit()">
-    <mat-icon>reset_wrench</mat-icon>
-    <span>Reset deleted cells</span>
+    <mat-icon>{{ edgesDisabled() ? 'check_box_outline_blank' : 'check_box' }}</mat-icon>
+    Cell links
   </button>
 </mat-menu>

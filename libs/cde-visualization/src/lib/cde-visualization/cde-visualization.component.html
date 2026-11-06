@@ -4,36 +4,54 @@
       position="end"
       mode="over"
       role="region"
-      hraFeature="downloads-drawer"
-      [attr.aria-labelledby]="downloads.titleId"
-      [attr.aria-describedby]="downloads.describedBy()"
-      [(opened)]="downloadsOpen"
+      [hraFeature]="sheet() === 'downloads' ? 'downloads-drawer' : 'about-drawer'"
+      [attr.aria-labelledby]="sheetLabelledBy()"
+      [attr.aria-describedby]="sheetDescribedBy()"
+      [opened]="openSheet() !== undefined"
+      (closedStart)="openSheet.set(undefined)"
     >
-      <cde-downloads
-        [unavailable]="unavailableDownloads()"
-        (closeClick)="downloadsOpen.set(false)"
-        (download)="handleDownload($event)"
-        #downloads
-      />
+      @if (sheet() === 'downloads') {
+        <cde-downloads
+          [unavailable]="unavailableDownloads()"
+          (closeClick)="openSheet.set(undefined)"
+          (download)="handleDownload($event)"
+        />
+      } @else {
+        <cde-about (closeClick)="openSheet.set(undefined)" />
+      }
     </mat-drawer>
 
     <mat-drawer-content class="layout">
+      <cde-toolbar
+        class="toolbar"
+        hraFeature="toolbar"
+        [cellLinks]="!edgesDisabled()"
+        [hasHiddenMetadata]="hasHiddenMetadata()"
+        [hasDeletedCells]="hasDeletedCells()"
+        [(openSheet)]="openSheet"
+        [(cellLinkData)]="showCellLinkData"
+        [(allMetadata)]="showAllMetadata"
+        (cellLinksChange)="edgesDisabled.set(!$event)"
+        (resetViewClick)="resetView()"
+        (restoreDeletedCellsClick)="restoreDeletedCells()"
+        (resetColorsClick)="resetColors()"
+      />
+
       <div class="metadata">
         <cde-metadata
           hraFeature="metadata"
           [metadata]="metadataView()"
           [loading]="metadataLoading()"
-          [(downloadsOpen)]="downloadsOpen"
+          [showEmptyFields]="showAllMetadata()"
         />
         <cde-cell-types
           hraFeature="cell-types"
           [selectedCellType]="nodeTargetSelectorWithDefault()"
           [countAdjustments]="countAdjustments()"
           [loading]="cellTypesLoading()"
+          [hideCellLinkData]="!showCellLinkData()"
           [(cellTypes)]="cellTypes"
           [(cellTypesSelection)]="cellTypesSelection"
-          (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
-          #cellTypesTable
         />
       </div>
 
@@ -48,9 +66,9 @@
             [loading]="nodesLoading()"
             [emptyState]="visualizationEmptyState()"
             [(nodeFilter)]="nodeFilterView"
+            [(edgesDisabled)]="edgesDisabled"
             (nodeClick)="nodeClick.emit($event)"
             (nodeHover)="nodeHover.emit($event)"
-            (resetAllCells)="resetCellTypes()"
             (emptyStateAction)="selectAllCellTypes()"
           />
 
@@ -73,7 +91,6 @@
           [emptyState]="chartsEmptyState()"
           (updateColor)="updateColor($event.entry, $event.color)"
           (emptyStateAction)="selectAllCellTypes()"
-          #histogram
         />
       </div>
     </mat-drawer-content>

@@ -9,21 +9,15 @@ import {
   inject,
   input,
   model,
-  output,
-  signal,
   viewChild,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { Rgb } from '@hra-ui/design-system/color-picker';
-import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
+import { ExpansionPanelComponent } from '@hra-ui/design-system/expansion-panel';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
-import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { map } from 'rxjs';
 
 import { CellTypeEntry } from '../../models/cell-type';
@@ -61,15 +55,10 @@ const SKELETON_NAME_WIDTHS = [
   selector: 'cde-cell-types',
   imports: [
     HraCommonModule,
-    MatIconModule,
-    MatMenuModule,
     MatTableModule,
     MatCheckboxModule,
     MatSortModule,
-    ButtonsModule,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
-    PlainTooltipDirective,
     ScrollingModule,
     ColorPickerLabelComponent,
     SkeletonComponent,
@@ -100,9 +89,6 @@ export class CellTypesComponent {
   /** Name widths of the skeleton rows */
   protected readonly skeletonNameWidths = SKELETON_NAME_WIDTHS;
 
-  /** Output event for reset color */
-  readonly resetAllColors = output();
-
   /** Columns to be displayed in the table */
   protected readonly columns = computed(() => {
     if (this.hideCellLinkData()) {
@@ -122,12 +108,8 @@ export class CellTypesComponent {
   /** Reference to MatSort directive */
   protected readonly sort = viewChild.required(MatSort);
 
-  /** Content for Info Tooltip card */
-  protected readonly infoToolTipDescription: string = `Show/hide cell types in the visualization and plots. Hide cell links from this table view.
-    Update colors for individual cell types.`;
-
-  /** Flag to toggle cell links row visibility */
-  protected readonly hideCellLinkData = signal(false);
+  /** Whether the cell link columns are hidden. Set from the toolbar's Display menu. */
+  readonly hideCellLinkData = input(false);
 
   /** Bind sort state to data source */
   protected readonly sortBindRef = effect(() => (this.dataSource.sort = this.sort()));
@@ -256,10 +238,5 @@ export class CellTypesComponent {
         sorter.sort(sortable);
       } while (sorter.direction !== 'desc');
     }
-  }
-
-  /** Hides/shows cell link data */
-  toggleLinksColumn(): void {
-    this.hideCellLinkData.set(!this.hideCellLinkData());
   }
 }

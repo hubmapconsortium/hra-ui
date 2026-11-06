@@ -7,6 +7,7 @@ import {
   effect,
   inject,
   input,
+  linkedSignal,
   output,
   OutputEmitterRef,
   Signal,
@@ -48,6 +49,7 @@ import {
 } from '@hra-ui/node-dist-vis/models';
 import { debounceTime, distinctUntilChanged, pairwise } from 'rxjs';
 
+import { AboutComponent } from '../components/about/about.component';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { DownloadsComponent } from '../components/downloads/downloads.component';
 import { DOWNLOADS_CONTENT, DownloadRequest, UnavailableDownloads } from '../components/downloads/downloads.content';
@@ -57,8 +59,10 @@ import {
   noDistancesContent,
 } from '../components/empty-state/empty-state.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
-import { MetadataComponent } from '../components/metadata/metadata.component';
+import { hasHiddenFields, MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { ToolbarComponent } from '../components/toolbar/toolbar.component';
+import { ToolbarSheet } from '../components/toolbar/toolbar.content';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { CellTypeEntry } from '../models/cell-type';
 import { loadMetadata, MetadataInput } from '../models/metadata';
@@ -91,11 +95,13 @@ const LOADED_ANNOUNCEMENT_DEBOUNCE = 250;
   imports: [
     HraCommonModule,
     MatSidenavModule,
+    AboutComponent,
     CellTypesComponent,
     DownloadsComponent,
     HistogramComponent,
     MetadataComponent,
     NodeDistVisualizationComponent,
+    ToolbarComponent,
     ViolinComponent,
   ],
   templateUrl: './cde-visualization.component.html',
@@ -308,9 +314,6 @@ export class CdeVisualizationComponent {
   /** List of selected cell types */
   readonly cellTypesSelection = signal<string[]>([], { equal: emptyArrayEquals });
 
-  /** Counter for resetting cell types */
-  protected readonly cellTypesResetCounter = signal(0);
-
   /** Computed cell types as color map entries */
   protected readonly cellTypesAsColorMap = computed(
     () => new ColorMapView(this.cellTypes(), { 'Cell Type': 'name', 'Cell Color': 'color' }),
@@ -369,9 +372,6 @@ export class CdeVisualizationComponent {
 
   /** Effect to create cell types */
   readonly cellTypesCreateRef = effect(() => {
-    // Grab dependency on the reset counter
-    this.cellTypesResetCounter();
-
     this.cellTypes.set(this.cellTypesFromNodes());
     this.cellTypesSelection.set(this.cellTypesSelectionFromNodes());
   });
@@ -438,14 +438,51 @@ export class CdeVisualizationComponent {
   /** Colors for the histogram visualization */
   protected readonly filteredColors = computed(() => this.computeFilteredColors(), { equal: emptyArrayEquals });
 
+  /** Whether the distance visualization hides cell links. Set from the toolbar and the fullscreen menu. */
+  protected readonly edgesDisabled = signal(false);
+
+  /** Whether the cell types table shows the cell link columns */
+  protected readonly showCellLinkData = signal(true);
+
+  /** Whether the metadata panel shows every field, including empty ones */
+  protected readonly showAllMetadata = signal(false);
+
+  /** Whether the metadata has fields that only show with all metadata */
+  protected readonly hasHiddenMetadata = computed(() => hasHiddenFields(this.metadataView()));
+
+  /** Whether any cells were deleted from the distance visualization */
+  protected readonly hasDeletedCells = computed(() => (this.nodeFilterView().exclude?.length ?? 0) > 0);
+
+  /** Sheet that's open in the drawer, if any. The toolbar's Downloads and Info items open it */
+  protected readonly openSheet = signal<ToolbarSheet | undefined>(undefined);
+
+  /** Sheet shown in the drawer. Keeps the last open sheet while the drawer closes, so it doesn't vanish mid-animation */
+  protected readonly sheet = linkedSignal<ToolbarSheet | undefined, ToolbarSheet>({
+    source: this.openSheet,
+    computation: (openSheet, previous) => openSheet ?? previous?.value ?? 'downloads',
+  });
+
   /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
 
   /** Announces the charts' empty state to screen readers */
   private readonly liveAnnouncer = inject(LiveAnnouncer);
 
-  /** Whether the downloads drawer is open */
-  protected readonly downloadsOpen = signal(false);
+  /** Downloads sheet, while it's the drawer's sheet */
+  private readonly downloadsSheet = viewChild(DownloadsComponent);
+
+  /** About sheet, while it's the drawer's sheet */
+  private readonly aboutSheet = viewChild(AboutComponent);
+
+  /** Id of the sheet's title, which labels the drawer */
+  protected readonly sheetLabelledBy = computed(() =>
+    this.sheet() === 'downloads' ? this.downloadsSheet()?.titleId : this.aboutSheet()?.titleId,
+  );
+
+  /** Ids of the elements that describe the drawer */
+  protected readonly sheetDescribedBy = computed(() =>
+    this.sheet() === 'downloads' ? this.downloadsSheet()?.describedBy() : this.aboutSheet()?.descriptionId,
+  );
 
   /** Distance visualization panel */
   private readonly nodeDistVisualizationComponent = viewChild.required(NodeDistVisualizationComponent);
@@ -492,11 +529,6 @@ export class CdeVisualizationComponent {
     this.bindDataOutput(this.colorMapView, this.colorMapChange);
   }
 
-  /** Reset cell types */
-  resetCellTypes(): void {
-    this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
-  }
-
   /** Selects every cell type, like the cell types table's select all checkbox */
   selectAllCellTypes(): void {
     this.cellTypesSelection.set(this.cellTypes().map((entry) => entry.name));
@@ -510,6 +542,22 @@ export class CdeVisualizationComponent {
 
     copy[index] = { ...copy[index], color };
     this.cellTypes.set(copy);
+  }
+
+  /** Resets the distance visualization's view */
+  resetView(): void {
+    this.nodeDistVisualizationComponent().resetView();
+  }
+
+  /** Restores the cells deleted from the distance visualization */
+  restoreDeletedCells(): void {
+    this.nodeFilterView.set(this.nodeFilterView().clear(false, true));
+  }
+
+  /** Resets every cell type's color and the histogram's all cells color. The cell type selection stays. */
+  resetColors(): void {
+    this.cellTypes.set(this.cellTypesFromNodes());
+    this.histogramComponent().resetAllCellsColor();
   }
 
   /** Downloads the requested file */

@@ -19,10 +19,13 @@ import { fireEvent, render, RenderComponentOptions, screen, waitFor, within } fr
 import { mock, mockDeep } from 'jest-mock-extended';
 import { EMPTY } from 'rxjs';
 import embed, { Result } from 'vega-embed';
+import { ABOUT_CONTENT } from '../components/about/about.content';
 import { DOWNLOADS_CONTENT, DownloadRequest } from '../components/downloads/downloads.content';
 import { NO_CELL_TYPES_SELECTED_CONTENT, noDistancesContent } from '../components/empty-state/empty-state.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { ToolbarComponent } from '../components/toolbar/toolbar.component';
+import { TOOLBAR_CONTENT } from '../components/toolbar/toolbar.content';
 import { ViolinComponent } from '../components/violin/violin.component';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
@@ -334,16 +337,87 @@ describe('CdeVisualizationComponent', () => {
     );
   });
 
-  describe('downloads drawer', () => {
-    async function openDrawer() {
+  describe('toolbar actions', () => {
+    function getToolbar(fixture: Awaited<ReturnType<typeof setup>>['fixture']): ToolbarComponent {
+      return fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
+    }
+
+    it(
+      'shares the display options with the panels',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const toolbar = getToolbar(fixture);
+
+        toolbar.cellLinks.set(false);
+        toolbar.cellLinkData.set(false);
+        toolbar.allMetadata.set(true);
+        fixture.detectChanges();
+
+        expect(instance['edgesDisabled']()).toBe(true);
+        expect(instance['showCellLinkData']()).toBe(false);
+        expect(instance['showAllMetadata']()).toBe(true);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'resets the view',
+      async () => {
+        const { fixture } = await setup();
+        const panel = fixture.debugElement.query(By.directive(NodeDistVisualizationComponent)).componentInstance;
+        const resetView = jest.spyOn(panel, 'resetView').mockImplementation(() => undefined);
+
+        getToolbar(fixture).resetViewClick.emit();
+        expect(resetView).toHaveBeenCalled();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'restores deleted cells',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        instance.nodeFilterView.update((prev) => prev.addEntries(undefined, [0]));
+        expect(instance['hasDeletedCells']()).toBe(true);
+
+        getToolbar(fixture).restoreDeletedCellsClick.emit();
+        expect(instance['hasDeletedCells']()).toBe(false);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'resets colors and keeps the cell type selection',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const histogram = fixture.debugElement.query(By.directive(HistogramComponent)).componentInstance;
+        const resetAllCellsColor = jest.spyOn(histogram, 'resetAllCellsColor');
+        const originalTypes = instance.cellTypes();
+        instance.updateColor(originalTypes[0], [1, 2, 3]);
+        instance.cellTypesSelection.set(['t-cell']);
+
+        getToolbar(fixture).resetColorsClick.emit();
+        expect(instance.cellTypes()).toEqual(originalTypes);
+        expect(instance.cellTypesSelection()).toEqual(['t-cell']);
+        expect(resetAllCellsColor).toHaveBeenCalled();
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('drawer', () => {
+    async function openDrawer(itemName = TOOLBAR_CONTENT.downloads.label, regionName = DOWNLOADS_CONTENT.title) {
       const result = await setup();
-      const trigger = screen.getByRole('button', { name: DOWNLOADS_CONTENT.title });
+      const trigger = screen.getByRole('button', { name: itemName });
       const drawer = result.fixture.debugElement.query(By.directive(MatDrawer)).injector.get(MatDrawer);
 
       // Browsers focus a button when it's clicked, and the drawer returns focus to it on close
       trigger.focus();
       fireEvent.click(trigger);
-      const region = await screen.findByRole('region', { name: DOWNLOADS_CONTENT.title });
+      const region = await screen.findByRole('region', { name: regionName });
       await waitFor(() => expect(drawer.opened).toBe(true));
       await waitFor(() => expect(region).toContainElement(document.activeElement as HTMLElement));
       return { ...result, trigger, drawer, region };
@@ -352,16 +426,28 @@ describe('CdeVisualizationComponent', () => {
     async function expectClosed(drawer: MatDrawer, trigger: HTMLElement) {
       await waitFor(() => expect(drawer.opened).toBe(false));
       expect(trigger).toHaveFocus();
-      await waitFor(() => expect(trigger).toHaveAttribute('aria-expanded', 'false'));
+      await waitFor(() => expect(trigger).not.toHaveClass('hra-navigation-rail-item--active'));
     }
 
     it(
-      'opens as a labelled region from the downloads button',
+      'opens downloads as a labelled region from the toolbar',
       async () => {
         const { trigger, region } = await openDrawer();
 
         expect(region).not.toHaveAttribute('aria-modal');
-        expect(trigger).toHaveAttribute('aria-expanded', 'true');
+        expect(trigger).toHaveClass('hra-navigation-rail-item--active');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'opens the about sheet from the toolbar and returns focus to it',
+      async () => {
+        const { trigger, drawer, region } = await openDrawer(TOOLBAR_CONTENT.info.label, ABOUT_CONTENT.title);
+
+        expect(within(region).getByRole('heading', { name: 'Distance visualization' })).toBeInTheDocument();
+        fireEvent.click(within(region).getByRole('button', { name: ABOUT_CONTENT.closeLabel }));
+        await expectClosed(drawer, trigger);
       },
       TIMEOUT,
     );

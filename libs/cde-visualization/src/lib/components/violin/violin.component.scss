@@ -7,8 +7,9 @@
   ::ng-deep hra-expansion-panel {
     height: 100%;
 
+    // 8px on the right puts the fullscreen button's icon on the 16px line
     .header {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
     }
 
     .content {
