@@ -43,7 +43,7 @@ function createDeck(canvas, props) {
             canvas: canvas(),
             ...props,
         });
-    }, ...(ngDevMode ? [{ debugName: "deck" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "deck" }] : /* istanbul ignore next */ []));
     effect((onCleanup) => {
         const instance = deck();
         onCleanup(() => instance.finalize());
@@ -178,32 +178,32 @@ function createEdgesLayer(nodes, edges, nodeFilter, colorMap, disabled) {
         const accessor = edges().getSourcePositionFor;
         const dimensions = nodes().getDimensions();
         return createScaledPositionAccessor(accessor, dimensions);
-    }, ...(ngDevMode ? [{ debugName: "sourcePositionAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "sourcePositionAccessor" }] : /* istanbul ignore next */ []));
     const targetPositionAccessor = computed(() => {
         const accessor = edges().getTargetPositionFor;
         const dimensions = nodes().getDimensions();
         return createScaledPositionAccessor(accessor, dimensions);
-    }, ...(ngDevMode ? [{ debugName: "targetPositionAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "targetPositionAccessor" }] : /* istanbul ignore next */ []));
     const sourceCellTypeAccessor = computed(() => {
         const nodeIndex = edges().getCellIDFor;
         const nodeCellType = nodes().getCellTypeAt;
         return (obj) => nodeCellType(nodeIndex(obj));
-    }, ...(ngDevMode ? [{ debugName: "sourceCellTypeAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "sourceCellTypeAccessor" }] : /* istanbul ignore next */ []));
     const targetCellTypeAccessor = computed(() => {
         const nodeIndex = edges().getTargetIDFor;
         const nodeCellType = nodes().getCellTypeAt;
         return (obj) => nodeCellType(nodeIndex(obj));
-    }, ...(ngDevMode ? [{ debugName: "targetCellTypeAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "targetCellTypeAccessor" }] : /* istanbul ignore next */ []));
     const colorAccessor = computed(() => {
         const map = colorMap().getColorMap();
         return createColorAccessor(sourceCellTypeAccessor(), map);
-    }, ...(ngDevMode ? [{ debugName: "colorAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "colorAccessor" }] : /* istanbul ignore next */ []));
     const filterValueAccessor = computed(() => {
         const sourceIndex = edges().getCellIDFor;
         const targetIndex = edges().getTargetIDFor;
         const filterFn = nodeFilter().includes;
         return createNodeFilterAccessor2(sourceCellTypeAccessor(), sourceIndex, targetCellTypeAccessor(), targetIndex, filterFn);
-    }, ...(ngDevMode ? [{ debugName: "filterValueAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "filterValueAccessor" }] : /* istanbul ignore next */ []));
     return computed(() => {
         if (nodes().length === 0) {
             return undefined;
@@ -277,17 +277,17 @@ function createNodesLayer(mode, nodes, nodeFilter, colorMap) {
         const accessor = nodes().getPositionFor;
         const dimensions = nodes().getDimensions();
         return createScaledPositionAccessor(accessor, dimensions);
-    }, ...(ngDevMode ? [{ debugName: "positionAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "positionAccessor" }] : /* istanbul ignore next */ []));
     const colorAccessor = computed(() => {
         const accessor = nodes().getCellTypeFor;
         const map = colorMap().getColorMap();
         return createColorAccessor(accessor, map);
-    }, ...(ngDevMode ? [{ debugName: "colorAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "colorAccessor" }] : /* istanbul ignore next */ []));
     const filterValueAccessor = computed(() => {
         const accessor = nodes().getCellTypeFor;
         const filterFn = nodeFilter().includes;
         return createNodeFilterAccessor(accessor, getIndex, filterFn);
-    }, ...(ngDevMode ? [{ debugName: "filterValueAccessor" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "filterValueAccessor" }] : /* istanbul ignore next */ []));
     return computed(() => {
         return new NodesLayer({
             id: 'nodes',
@@ -322,7 +322,7 @@ function createScaleBarLayer(nodes, viewSize, viewState) {
         const [min, max] = nodes().getDimensions();
         const result = (max - min) / (1 - min);
         return Number.isFinite(result) ? result : 1;
-    }, ...(ngDevMode ? [{ debugName: "size" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "size" }] : /* istanbul ignore next */ []));
     const state = computed(() => {
         const { width, height } = viewSize();
         return {
@@ -330,7 +330,7 @@ function createScaleBarLayer(nodes, viewSize, viewState) {
             width: width - 136,
             height: height - 32,
         };
-    }, ...(ngDevMode ? [{ debugName: "state" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "state" }] : /* istanbul ignore next */ []));
     return computed(() => {
         if (nodes().length === 0) {
             return undefined;
@@ -568,57 +568,57 @@ const INITIAL_VIEW_STATE = {
 /** Node distance visualization */
 class NodeDistVisComponent {
     /** View mode of the visualization */
-    mode = input('explore', ...(ngDevMode ? [{ debugName: "mode" }] : []));
+    mode = input('explore', ...(ngDevMode ? [{ debugName: "mode" }] : /* istanbul ignore next */ []));
     /** Node data */
-    nodes = input(...(ngDevMode ? [undefined, { debugName: "nodes" }] : []));
+    nodes = input(...(ngDevMode ? [undefined, { debugName: "nodes" }] : /* istanbul ignore next */ []));
     /** Node key mapping data */
-    nodeKeys = input(...(ngDevMode ? [undefined, { debugName: "nodeKeys" }] : []));
+    nodeKeys = input(...(ngDevMode ? [undefined, { debugName: "nodeKeys" }] : /* istanbul ignore next */ []));
     /** Node target selector used when calculating edges */
-    nodeTargetSelector = input(...(ngDevMode ? [undefined, { debugName: "nodeTargetSelector" }] : []));
+    nodeTargetSelector = input(...(ngDevMode ? [undefined, { debugName: "nodeTargetSelector" }] : /* istanbul ignore next */ []));
     /**
      * Column/property of the node's 'Cell Type' values
      *
      * @deprecated Use `nodeKeys` to specify the column instead
      */
-    nodeTargetKey = input(...(ngDevMode ? [undefined, { debugName: "nodeTargetKey" }] : []));
+    nodeTargetKey = input(...(ngDevMode ? [undefined, { debugName: "nodeTargetKey" }] : /* istanbul ignore next */ []));
     /**
      * Node target selector used when calculating edges
      *
      * @deprecated Use `nodeTargetSelector` instead
      */
-    nodeTargetValue = input(...(ngDevMode ? [undefined, { debugName: "nodeTargetValue" }] : []));
+    nodeTargetValue = input(...(ngDevMode ? [undefined, { debugName: "nodeTargetValue" }] : /* istanbul ignore next */ []));
     /** Edge data if already calculated */
-    edges = input(...(ngDevMode ? [undefined, { debugName: "edges" }] : []));
+    edges = input(...(ngDevMode ? [undefined, { debugName: "edges" }] : /* istanbul ignore next */ []));
     /** Edge key mapping data */
-    edgeKeys = input(...(ngDevMode ? [undefined, { debugName: "edgeKeys" }] : []));
+    edgeKeys = input(...(ngDevMode ? [undefined, { debugName: "edgeKeys" }] : /* istanbul ignore next */ []));
     /** Whether edges are disabled */
-    edgesDisabled = input(false, { ...(ngDevMode ? { debugName: "edgesDisabled" } : {}), transform: booleanAttribute });
+    edgesDisabled = input(false, { ...(ngDevMode ? { debugName: "edgesDisabled" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     /** Max distance to consider when calculating edges */
-    maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, { ...(ngDevMode ? { debugName: "maxEdgeDistance" } : {}), transform: numberAttribute });
+    maxEdgeDistance = input(DEFAULT_MAX_EDGE_DISTANCE, { ...(ngDevMode ? { debugName: "maxEdgeDistance" } : /* istanbul ignore next */ {}), transform: numberAttribute });
     /** Color map data */
-    colorMap = input(...(ngDevMode ? [undefined, { debugName: "colorMap" }] : []));
+    colorMap = input(...(ngDevMode ? [undefined, { debugName: "colorMap" }] : /* istanbul ignore next */ []));
     /** Color map key mapping data */
-    colorMapKeys = input(...(ngDevMode ? [undefined, { debugName: "colorMapKeys" }] : []));
+    colorMapKeys = input(...(ngDevMode ? [undefined, { debugName: "colorMapKeys" }] : /* istanbul ignore next */ []));
     /**
      * Column/property of the color map's 'Cell Type' values
      *
      * @deprecated Use `colorMapKeys` to specify the column instead
      */
-    colorMapKey = input(...(ngDevMode ? [undefined, { debugName: "colorMapKey" }] : []));
+    colorMapKey = input(...(ngDevMode ? [undefined, { debugName: "colorMapKey" }] : /* istanbul ignore next */ []));
     /**
      * Column/property of the color map's 'Cell Color' values
      *
      * @deprecated Use `colorMapKeys` to specify the column instead
      */
-    colorMapValue = input(...(ngDevMode ? [undefined, { debugName: "colorMapValue" }] : []));
+    colorMapValue = input(...(ngDevMode ? [undefined, { debugName: "colorMapValue" }] : /* istanbul ignore next */ []));
     /** Node filter data */
-    nodeFilter = input(...(ngDevMode ? [undefined, { debugName: "nodeFilter" }] : []));
+    nodeFilter = input(...(ngDevMode ? [undefined, { debugName: "nodeFilter" }] : /* istanbul ignore next */ []));
     /**
      * Node 'Cell Type's to display
      *
      * @deprecated Use `nodeFilter`'s `include` property to specify included nodes instead
      */
-    selection = input(...(ngDevMode ? [undefined, { debugName: "selection" }] : []));
+    selection = input(...(ngDevMode ? [undefined, { debugName: "selection" }] : /* istanbul ignore next */ []));
     // eslint-disable-next-line @angular-eslint/no-output-rename
     nodesChange = output({ alias: 'nodes' });
     // eslint-disable-next-line @angular-eslint/no-output-rename
@@ -632,7 +632,7 @@ class NodeDistVisComponent {
     /** Emits when the user selects one or more nodes in the 'select' view mode */
     nodeSelectionChange = output();
     /** Reference to the rendered canvas element */
-    canvas = computed(() => this.canvasElementRef().nativeElement, ...(ngDevMode ? [{ debugName: "canvas" }] : []));
+    canvas = computed(() => this.canvasElementRef().nativeElement, ...(ngDevMode ? [{ debugName: "canvas" }] : /* istanbul ignore next */ []));
     /** Reference to the deckgl instance */
     deck = createDeck(this.canvas, {
         controller: true,
@@ -653,11 +653,11 @@ class NodeDistVisComponent {
     /** Current version value of the deckgl view state */
     viewStateVersion = INITIAL_VIEW_STATE.version;
     /** Current deckgl view state */
-    viewState = signal(INITIAL_VIEW_STATE, ...(ngDevMode ? [{ debugName: "viewState" }] : []));
+    viewState = signal(INITIAL_VIEW_STATE, ...(ngDevMode ? [{ debugName: "viewState" }] : /* istanbul ignore next */ []));
     /** Node target selector with fallbacks applied */
     nodeTargetSelectorWithDefault = computed(() => {
         return this.nodeTargetSelector() || this.nodeTargetValue() || DEFAULT_NODE_TARGET_SELECTOR;
-    }, ...(ngDevMode ? [{ debugName: "nodeTargetSelectorWithDefault" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "nodeTargetSelectorWithDefault" }] : /* istanbul ignore next */ []));
     /** View of the node data */
     nodesView = loadNodes(this.nodes, this.nodeKeys, this.nodeTargetKey);
     /** View of the edge data */
@@ -680,7 +680,7 @@ class NodeDistVisComponent {
         this.edgesLayer(),
         this.scaleBarLayer(),
         this.selectionLayer(),
-    ], ...(ngDevMode ? [{ debugName: "layers" }] : []));
+    ], ...(ngDevMode ? [{ debugName: "layers" }] : /* istanbul ignore next */ []));
     /** Controller options */
     controller = createController(this.mode);
     /** Deckgl props */
@@ -689,11 +689,11 @@ class NodeDistVisComponent {
             controller: this.controller(),
             layers: this.layers(),
         };
-    }, ...(ngDevMode ? [{ debugName: "props" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "props" }] : /* istanbul ignore next */ []));
     /** Canvas resize observer */
     resizeObserver = new ResizeObserver(this.onResize.bind(this));
     /** Whether to call `zoomToFit` on resize events */
-    zoomToFitOnResize = signal(true, ...(ngDevMode ? [{ debugName: "zoomToFitOnResize" }] : []));
+    zoomToFitOnResize = signal(true, ...(ngDevMode ? [{ debugName: "zoomToFitOnResize" }] : /* istanbul ignore next */ []));
     /** Currently hovered node entry */
     activeHover = undefined;
     /** Initialize the visualization */
@@ -910,10 +910,10 @@ class NodeDistVisComponent {
             }
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: NodeDistVisComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "21.1.5", type: NodeDistVisComponent, isStandalone: true, selector: "hra-node-dist-vis", inputs: { mode: { classPropertyName: "mode", publicName: "mode", isSignal: true, isRequired: false, transformFunction: null }, nodes: { classPropertyName: "nodes", publicName: "nodes", isSignal: true, isRequired: false, transformFunction: null }, nodeKeys: { classPropertyName: "nodeKeys", publicName: "nodeKeys", isSignal: true, isRequired: false, transformFunction: null }, nodeTargetSelector: { classPropertyName: "nodeTargetSelector", publicName: "nodeTargetSelector", isSignal: true, isRequired: false, transformFunction: null }, nodeTargetKey: { classPropertyName: "nodeTargetKey", publicName: "nodeTargetKey", isSignal: true, isRequired: false, transformFunction: null }, nodeTargetValue: { classPropertyName: "nodeTargetValue", publicName: "nodeTargetValue", isSignal: true, isRequired: false, transformFunction: null }, edges: { classPropertyName: "edges", publicName: "edges", isSignal: true, isRequired: false, transformFunction: null }, edgeKeys: { classPropertyName: "edgeKeys", publicName: "edgeKeys", isSignal: true, isRequired: false, transformFunction: null }, edgesDisabled: { classPropertyName: "edgesDisabled", publicName: "edgesDisabled", isSignal: true, isRequired: false, transformFunction: null }, maxEdgeDistance: { classPropertyName: "maxEdgeDistance", publicName: "maxEdgeDistance", isSignal: true, isRequired: false, transformFunction: null }, colorMap: { classPropertyName: "colorMap", publicName: "colorMap", isSignal: true, isRequired: false, transformFunction: null }, colorMapKeys: { classPropertyName: "colorMapKeys", publicName: "colorMapKeys", isSignal: true, isRequired: false, transformFunction: null }, colorMapKey: { classPropertyName: "colorMapKey", publicName: "colorMapKey", isSignal: true, isRequired: false, transformFunction: null }, colorMapValue: { classPropertyName: "colorMapValue", publicName: "colorMapValue", isSignal: true, isRequired: false, transformFunction: null }, nodeFilter: { classPropertyName: "nodeFilter", publicName: "nodeFilter", isSignal: true, isRequired: false, transformFunction: null }, selection: { classPropertyName: "selection", publicName: "selection", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { nodesChange: "nodes", edgesChange: "edges", colorMapChange: "colorMap", nodeClick: "nodeClick", nodeHover: "nodeHover", nodeSelectionChange: "nodeSelectionChange" }, host: { classAttribute: "hra-app" }, viewQueries: [{ propertyName: "canvasElementRef", first: true, predicate: ["canvas"], descendants: true, isSignal: true }], ngImport: i0, template: '<canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>', isInline: true, styles: [":host{display:block;position:relative;width:100%;height:100%}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: NodeDistVisComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "21.2.26", type: NodeDistVisComponent, isStandalone: true, selector: "hra-node-dist-vis", inputs: { mode: { classPropertyName: "mode", publicName: "mode", isSignal: true, isRequired: false, transformFunction: null }, nodes: { classPropertyName: "nodes", publicName: "nodes", isSignal: true, isRequired: false, transformFunction: null }, nodeKeys: { classPropertyName: "nodeKeys", publicName: "nodeKeys", isSignal: true, isRequired: false, transformFunction: null }, nodeTargetSelector: { classPropertyName: "nodeTargetSelector", publicName: "nodeTargetSelector", isSignal: true, isRequired: false, transformFunction: null }, nodeTargetKey: { classPropertyName: "nodeTargetKey", publicName: "nodeTargetKey", isSignal: true, isRequired: false, transformFunction: null }, nodeTargetValue: { classPropertyName: "nodeTargetValue", publicName: "nodeTargetValue", isSignal: true, isRequired: false, transformFunction: null }, edges: { classPropertyName: "edges", publicName: "edges", isSignal: true, isRequired: false, transformFunction: null }, edgeKeys: { classPropertyName: "edgeKeys", publicName: "edgeKeys", isSignal: true, isRequired: false, transformFunction: null }, edgesDisabled: { classPropertyName: "edgesDisabled", publicName: "edgesDisabled", isSignal: true, isRequired: false, transformFunction: null }, maxEdgeDistance: { classPropertyName: "maxEdgeDistance", publicName: "maxEdgeDistance", isSignal: true, isRequired: false, transformFunction: null }, colorMap: { classPropertyName: "colorMap", publicName: "colorMap", isSignal: true, isRequired: false, transformFunction: null }, colorMapKeys: { classPropertyName: "colorMapKeys", publicName: "colorMapKeys", isSignal: true, isRequired: false, transformFunction: null }, colorMapKey: { classPropertyName: "colorMapKey", publicName: "colorMapKey", isSignal: true, isRequired: false, transformFunction: null }, colorMapValue: { classPropertyName: "colorMapValue", publicName: "colorMapValue", isSignal: true, isRequired: false, transformFunction: null }, nodeFilter: { classPropertyName: "nodeFilter", publicName: "nodeFilter", isSignal: true, isRequired: false, transformFunction: null }, selection: { classPropertyName: "selection", publicName: "selection", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { nodesChange: "nodes", edgesChange: "edges", colorMapChange: "colorMap", nodeClick: "nodeClick", nodeHover: "nodeHover", nodeSelectionChange: "nodeSelectionChange" }, host: { classAttribute: "hra-app" }, viewQueries: [{ propertyName: "canvasElementRef", first: true, predicate: ["canvas"], descendants: true, isSignal: true }], ngImport: i0, template: '<canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>', isInline: true, styles: [":host{display:block;position:relative;width:100%;height:100%}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: NodeDistVisComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: NodeDistVisComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-node-dist-vis', template: '<canvas (contextmenu)="$event.preventDefault()" #canvas></canvas>', changeDetection: ChangeDetectionStrategy.OnPush, host: {
                         class: 'hra-app',

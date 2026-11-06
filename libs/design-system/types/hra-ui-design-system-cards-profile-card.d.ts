@@ -38,7 +38,7 @@ declare const ProfileCardSchema: z.ZodObject<{
     actions: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -47,7 +47,7 @@ declare const ProfileCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -56,7 +56,7 @@ declare const ProfileCardSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -65,7 +65,7 @@ declare const ProfileCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;

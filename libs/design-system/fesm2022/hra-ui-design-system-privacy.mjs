@@ -22,7 +22,7 @@ class PrivacyPreferencesService {
     /** Scroll strategy that repositions the dialog on scroll */
     repositionScrollStrategy = inject(ScrollStrategyOptions).reposition();
     /** Whether to sync preferences to local storage */
-    syncEnabled = signal(false, ...(ngDevMode ? [{ debugName: "syncEnabled" }] : []));
+    syncEnabled = signal(false, ...(ngDevMode ? [{ debugName: "syncEnabled" }] : /* istanbul ignore next */ []));
     /** Constructor */
     constructor() {
         effect(() => {
@@ -141,10 +141,10 @@ class PrivacyPreferencesService {
             return true;
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PrivacyPreferencesService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PrivacyPreferencesService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PrivacyPreferencesService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PrivacyPreferencesService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PrivacyPreferencesService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PrivacyPreferencesService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',

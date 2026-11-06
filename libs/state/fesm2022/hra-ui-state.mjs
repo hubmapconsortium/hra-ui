@@ -139,8 +139,8 @@ let SourceRefsState = class SourceRefsState {
             selected: [],
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: SourceRefsState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: SourceRefsState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: SourceRefsState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: SourceRefsState }); }
 };
 __decorate([
     Action$1(Load$4, { cancelUncompleted: true })
@@ -163,7 +163,7 @@ SourceRefsState = __decorate([
         },
     })
 ], SourceRefsState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: SourceRefsState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: SourceRefsState, decorators: [{
             type: Injectable
         }], propDecorators: { load: [], setSelectedSources: [], resetSelectedSources: [], reset: [] } });
 
@@ -471,8 +471,8 @@ let CellSummaryState = class CellSummaryState {
     reset({ patchState }) {
         patchState({ summaries: [], filteredSummaries: [], summariesByBiomarker: [], aggregates: [] });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CellSummaryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CellSummaryState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: CellSummaryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: CellSummaryState }); }
 };
 __decorate([
     Action$1(Load$5, { cancelUncompleted: true })
@@ -501,7 +501,7 @@ CellSummaryState = __decorate([
         },
     })
 ], CellSummaryState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CellSummaryState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: CellSummaryState, decorators: [{
             type: Injectable
         }], propDecorators: { load: [], filterSummaries: [], combineSummariesByBiomarker: [], computeAggregates: [], reset: [] } });
 
@@ -895,8 +895,8 @@ let DownloadState = class DownloadState {
     downloadRemoteData(url) {
         return this.http.get(url, { responseType: 'blob' });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: DownloadState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: DownloadState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: DownloadState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: DownloadState }); }
 };
 __decorate([
     Action$1(RegisterFormat)
@@ -928,7 +928,7 @@ DownloadState = __decorate([
         },
     })
 ], DownloadState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: DownloadState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: DownloadState, decorators: [{
             type: Injectable
         }], propDecorators: { registerFormat: [], load: [], addEntry: [], clearEntries: [], download: [], downloadSummaries: [], downloadCsv: [] } });
 
@@ -1002,8 +1002,8 @@ let ScreenModeState = class ScreenModeState {
             draft.size = size;
         }));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScreenModeState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScreenModeState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: ScreenModeState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: ScreenModeState }); }
 };
 __decorate([
     Action$1(Set$1)
@@ -1020,7 +1020,7 @@ ScreenModeState = __decorate([
         },
     })
 ], ScreenModeState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScreenModeState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: ScreenModeState, decorators: [{
             type: Injectable
         }], propDecorators: { set: [], SetSize: [] } });
 
@@ -1169,8 +1169,8 @@ let IllustratorState = class IllustratorState {
         const match = getState().mapping.find((entry) => entry.ontologyId === hoverLabel);
         patchState({ hoveredCellTypeId: match ? match.ontologyId : undefined });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: IllustratorState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: IllustratorState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: IllustratorState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: IllustratorState }); }
 };
 __decorate([
     Action$1(Load$2, { cancelUncompleted: true })
@@ -1198,7 +1198,7 @@ IllustratorState = __decorate([
         },
     })
 ], IllustratorState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: IllustratorState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: IllustratorState, decorators: [{
             type: Injectable
         }], propDecorators: { load: [], setHover: [], setClicked: [], clearSelection: [], reset: [], highlightCellType: [] } });
 
@@ -1450,8 +1450,8 @@ let ActiveFtuState = class ActiveFtuState {
             new ClearEntries(),
         ]);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ActiveFtuState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ActiveFtuState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: ActiveFtuState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: ActiveFtuState }); }
 };
 __decorate([
     Action$1(Load$1, { cancelUncompleted: true })
@@ -1472,7 +1472,7 @@ ActiveFtuState = __decorate([
         children: [CellSummaryState, DownloadState, IllustratorState, SourceRefsState],
     })
 ], ActiveFtuState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ActiveFtuState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: ActiveFtuState, decorators: [{
             type: Injectable
         }], propDecorators: { load: [], setIllustrationUrl: [], clear: [], reset: [] } });
 
@@ -1517,8 +1517,8 @@ let TissueLibraryState = class TissueLibraryState {
     setActive(ctx) {
         return this.dataService.getTissueLibrary().pipe(tap((data) => ctx.setState(data)));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: TissueLibraryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: TissueLibraryState }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: TissueLibraryState, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: TissueLibraryState }); }
 };
 __decorate([
     Action$1(Load)
@@ -1532,7 +1532,7 @@ TissueLibraryState = __decorate([
         },
     })
 ], TissueLibraryState);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: TissueLibraryState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: TissueLibraryState, decorators: [{
             type: Injectable
         }], propDecorators: { setActive: [] } });
 
@@ -1553,9 +1553,9 @@ __decorate([
 
 /** Provides all states */
 class HraStateModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: HraStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.5", ngImport: i0, type: HraStateModule, imports: [i1.ɵNgxsFeatureModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: HraStateModule, imports: [NgxsModule.forFeature([
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: HraStateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.26", ngImport: i0, type: HraStateModule, imports: [i1.ɵNgxsFeatureModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: HraStateModule, imports: [NgxsModule.forFeature([
                 ActiveFtuState,
                 CellSummaryState,
                 DownloadState,
@@ -1565,7 +1565,7 @@ class HraStateModule {
                 TissueLibraryState,
             ])] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: HraStateModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: HraStateModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

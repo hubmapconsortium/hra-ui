@@ -889,21 +889,21 @@ class BodyUiComponent {
     /** Constructor for the component */
     constructor() {
         /** Scene for the deck gl */
-        this.scene = input(undefined, { ...(ngDevMode ? { debugName: "scene" } : {}), transform: parseSceneInput });
+        this.scene = input(undefined, { ...(ngDevMode ? { debugName: "scene" } : /* istanbul ignore next */ {}), transform: parseSceneInput });
         /** Rotation for the deck gl */
-        this.rotation = input(undefined, { ...(ngDevMode ? { debugName: "rotation" } : {}), transform: numberAttribute });
+        this.rotation = input(undefined, { ...(ngDevMode ? { debugName: "rotation" } : /* istanbul ignore next */ {}), transform: numberAttribute });
         /** Rotation X for the deck gl */
-        this.rotationX = input(undefined, { ...(ngDevMode ? { debugName: "rotationX" } : {}), transform: numberAttribute });
+        this.rotationX = input(undefined, { ...(ngDevMode ? { debugName: "rotationX" } : /* istanbul ignore next */ {}), transform: numberAttribute });
         /** Zoom for the deck gl */
-        this.zoom = input(undefined, { ...(ngDevMode ? { debugName: "zoom" } : {}), transform: numberAttribute });
+        this.zoom = input(undefined, { ...(ngDevMode ? { debugName: "zoom" } : /* istanbul ignore next */ {}), transform: numberAttribute });
         /** Target for the deck gl */
-        this.target = input(undefined, { ...(ngDevMode ? { debugName: "target" } : {}), transform: parseTargetInput });
+        this.target = input(undefined, { ...(ngDevMode ? { debugName: "target" } : /* istanbul ignore next */ {}), transform: parseTargetInput });
         /** Bounds for the deck gl */
-        this.bounds = input(undefined, { ...(ngDevMode ? { debugName: "bounds" } : {}), transform: parseBoundsInput });
+        this.bounds = input(undefined, { ...(ngDevMode ? { debugName: "bounds" } : /* istanbul ignore next */ {}), transform: parseBoundsInput });
         /** Camera for the deck gl */
-        this.camera = input(...(ngDevMode ? [undefined, { debugName: "camera" }] : []));
+        this.camera = input(...(ngDevMode ? [undefined, { debugName: "camera" }] : /* istanbul ignore next */ []));
         /** Flag for the interactive for deck gl */
-        this.interactive = input(undefined, { ...(ngDevMode ? { debugName: "interactive" } : {}), transform: booleanAttribute });
+        this.interactive = input(undefined, { ...(ngDevMode ? { debugName: "interactive" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
         /** Output for node click */
         this.nodeClick = output();
         /** Output for node drag */
@@ -977,7 +977,7 @@ class BodyUiComponent {
                 this.initialized.emit();
                 initializeEffect.destroy();
             }
-        }, ...(ngDevMode ? [{ debugName: "initializeEffect" }] : []));
+        }, ...(ngDevMode ? [{ debugName: "initializeEffect" }] : /* istanbul ignore next */ []));
     }
     /** Resets the deck gl view */
     resetView() {
@@ -1008,9 +1008,8 @@ class BodyUiComponent {
         } if (rf & 2) {
             i0.ɵɵqueryAdvance();
         } }, inputs: { scene: [1, "scene"], rotation: [1, "rotation"], rotationX: [1, "rotationX"], zoom: [1, "zoom"], target: [1, "target"], bounds: [1, "bounds"], camera: [1, "camera"], interactive: [1, "interactive"] }, outputs: { nodeClick: "nodeClick", nodeDrag: "nodeDrag", nodeHoverStart: "nodeHoverStart", nodeHoverStop: "nodeHoverStop", rotationChange: "rotationChange", initialized: "initialized" }, decls: 2, vars: 0, consts: [["canvas", ""], ["role", "img", "part", "canvas", 3, "contextmenu"]], template: function BodyUiComponent_Template(rf, ctx) { if (rf & 1) {
-            const _r1 = i0.ɵɵgetCurrentView();
             i0.ɵɵdomElementStart(0, "canvas", 1, 0);
-            i0.ɵɵdomListener("contextmenu", function BodyUiComponent_Template_canvas_contextmenu_0_listener($event) { i0.ɵɵrestoreView(_r1); return i0.ɵɵresetView($event.preventDefault()); });
+            i0.ɵɵdomListener("contextmenu", function BodyUiComponent_Template_canvas_contextmenu_0_listener($event) { return $event.preventDefault(); });
             i0.ɵɵdomElementEnd();
         } }, styles: [":host{display:block;position:relative;width:100%;height:100%}:host canvas{background-color:#000}\n"], encapsulation: 3, changeDetection: 0 }); }
 }

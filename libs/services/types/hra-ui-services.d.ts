@@ -545,7 +545,7 @@ declare class HraServiceModule {
  */
 declare function tryParseJson<R = unknown>(value: unknown): R;
 /** Selected illustration input schema */
-declare const SELECTED_ILLUSTRATION_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
+declare const SELECTED_ILLUSTRATION_INPUT: z.ZodPreprocess<z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
     '@id': z.core.$ZodBranded<z.core.$ZodBranded<z.ZodString, "URL", "out">, "IRI", "out">;
     label: z.ZodString;
     organ_id: z.ZodString;
@@ -561,7 +561,7 @@ declare const SELECTED_ILLUSTRATION_INPUT: z.ZodPipe<z.ZodTransform<unknown, unk
         file: z.ZodString;
         file_format: z.ZodString;
     }, z.core.$strip>>;
-}, z.core.$strip>]>>;
+}, z.core.$strip>]>, unknown>;
 /**
  * Parses selected illustration input
  *
@@ -587,7 +587,7 @@ declare function selectedIllustrationInput(value: unknown): string | {
     }[];
 } | undefined;
 /** Illustrations input schema */
-declare const ILLUSTRATIONS_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
+declare const ILLUSTRATIONS_INPUT: z.ZodPreprocess<z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
     '@graph': z.ZodArray<z.ZodObject<{
         '@id': z.core.$ZodBranded<z.core.$ZodBranded<z.ZodString, "URL", "out">, "IRI", "out">;
         label: z.ZodString;
@@ -605,7 +605,7 @@ declare const ILLUSTRATIONS_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z
             file_format: z.ZodString;
         }, z.core.$strip>>;
     }, z.core.$strip>>;
-}, z.core.$strip>]>>;
+}, z.core.$strip>]>, unknown>;
 /**
  * Parses illustrations input
  *
@@ -633,7 +633,7 @@ declare function illustrationsInput(value: unknown): string | {
     }[];
 } | undefined;
 /** Cell summaries input schema */
-declare const RAW_CELL_SUMMARIES_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
+declare const RAW_CELL_SUMMARIES_INPUT: z.ZodPreprocess<z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
     '@graph': z.ZodArray<z.ZodObject<{
         cell_source: z.core.$ZodBranded<z.core.$ZodBranded<z.ZodString, "URL", "out">, "IRI", "out">;
         biomarker_type: z.ZodString;
@@ -651,7 +651,7 @@ declare const RAW_CELL_SUMMARIES_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknow
             dataset_count: z.ZodOptional<z.ZodNumber>;
         }, z.core.$strip>>;
     }, z.core.$strip>>;
-}, z.core.$strip>]>>;
+}, z.core.$strip>]>, unknown>;
 /**
  * Parses cell summaries input
  *
@@ -678,7 +678,7 @@ declare function rawCellSummariesInput(value: unknown): string | {
     }[];
 } | undefined;
 /** Datasets input schema */
-declare const RAW_DATASETS_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
+declare const RAW_DATASETS_INPUT: z.ZodPreprocess<z.ZodUnion<readonly [z.ZodOptional<z.ZodString>, z.ZodLiteral<"">, z.ZodCustom<string, string>, z.ZodObject<{
     '@graph': z.ZodArray<z.ZodObject<{
         '@id': z.core.$ZodBranded<z.core.$ZodBranded<z.ZodString, "URL", "out">, "IRI", "out">;
         data_sources: z.ZodArray<z.ZodObject<{
@@ -697,7 +697,7 @@ declare const RAW_DATASETS_INPUT: z.ZodPipe<z.ZodTransform<unknown, unknown>, z.
             ethnicity: z.ZodOptional<z.ZodString>;
         }, z.core.$strip>>;
     }, z.core.$strip>>;
-}, z.core.$strip>]>>;
+}, z.core.$strip>]>, unknown>;
 /**
  * Parses datasets input
  *

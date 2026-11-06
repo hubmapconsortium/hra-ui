@@ -21,5 +21,6 @@
       "types": "./types/hra-ui-webcomponents.d.ts",
       "default": "./fesm2022/hra-ui-webcomponents.mjs"
     }
-  }
+  },
+  "type": "module"
 }

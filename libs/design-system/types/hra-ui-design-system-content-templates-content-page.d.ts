@@ -13,7 +13,7 @@ declare class ContentPageComponent {
         content: {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -22,7 +22,7 @@ declare class ContentPageComponent {
         } | {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -47,7 +47,7 @@ declare class ContentPageComponent {
         headerContent?: {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -56,7 +56,7 @@ declare class ContentPageComponent {
         } | {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -68,7 +68,7 @@ declare class ContentPageComponent {
     protected readonly headerContent: _angular_core.Signal<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -79,7 +79,7 @@ declare class ContentPageComponent {
     protected readonly content: _angular_core.Signal<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -115,7 +115,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     headerContent: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -124,7 +124,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -133,7 +133,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -142,7 +142,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -152,7 +152,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     content: z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -161,7 +161,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -170,7 +170,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -179,7 +179,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;

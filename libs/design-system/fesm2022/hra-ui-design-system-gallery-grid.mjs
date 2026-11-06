@@ -6,17 +6,17 @@ import { Subject, isObservable, of } from 'rxjs';
 /** Gallery grid item directive */
 class GalleryGridItemDirective {
     /** Data source reference */
-    hraGalleryGridItemOf = input(...(ngDevMode ? [undefined, { debugName: "hraGalleryGridItemOf" }] : []));
+    hraGalleryGridItemOf = input(...(ngDevMode ? [undefined, { debugName: "hraGalleryGridItemOf" }] : /* istanbul ignore next */ []));
     /** Template reference */
     templateRef = inject((TemplateRef));
     /** Type guard for template type checking */
     static ngTemplateContextGuard(_dir, ctx) {
         return true;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: GalleryGridItemDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: GalleryGridItemDirective, isStandalone: true, selector: "[hraGalleryGridItem]", inputs: { hraGalleryGridItemOf: { classPropertyName: "hraGalleryGridItemOf", publicName: "hraGalleryGridItemOf", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: GalleryGridItemDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.26", type: GalleryGridItemDirective, isStandalone: true, selector: "[hraGalleryGridItem]", inputs: { hraGalleryGridItemOf: { classPropertyName: "hraGalleryGridItemOf", publicName: "hraGalleryGridItemOf", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: GalleryGridItemDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: GalleryGridItemDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraGalleryGridItem]',
@@ -27,13 +27,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
 /** Gallery grid component */
 class GalleryGridComponent {
     /** Data source for grid items */
-    dataSource = input.required(...(ngDevMode ? [{ debugName: "dataSource" }] : []));
+    dataSource = input.required(...(ngDevMode ? [{ debugName: "dataSource" }] : /* istanbul ignore next */ []));
     /** Template directive for rendering items */
     itemTemplate = contentChild.required(GalleryGridItemDirective, { read: GalleryGridItemDirective });
     /** Observable for view range changes */
     viewChange = new Subject();
     /** Current items to display */
-    items = signal([], ...(ngDevMode ? [{ debugName: "items" }] : []));
+    items = signal([], ...(ngDevMode ? [{ debugName: "items" }] : /* istanbul ignore next */ []));
     /** Initializes the component */
     constructor() {
         effect((onCleanup) => {
@@ -58,10 +58,10 @@ class GalleryGridComponent {
     isDataSource(value) {
         return value !== null && typeof value === 'object' && 'connect' in value;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: GalleryGridComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.5", type: GalleryGridComponent, isStandalone: true, selector: "hra-gallery-grid", inputs: { dataSource: { classPropertyName: "dataSource", publicName: "dataSource", isSignal: true, isRequired: true, transformFunction: null } }, queries: [{ propertyName: "itemTemplate", first: true, predicate: GalleryGridItemDirective, descendants: true, read: GalleryGridItemDirective, isSignal: true }], ngImport: i0, template: "@if (itemTemplate()) {\n  @for (item of items(); track $index) {\n    <ng-container *ngTemplateOutlet=\"itemTemplate().templateRef; context: { $implicit: item, index: $index }\" />\n  }\n}\n", styles: [":host{display:grid;grid-template-columns:repeat(auto-fill,minmax(16.25rem,1fr));gap:1.5rem;justify-items:center}\n"], dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: GalleryGridComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.26", type: GalleryGridComponent, isStandalone: true, selector: "hra-gallery-grid", inputs: { dataSource: { classPropertyName: "dataSource", publicName: "dataSource", isSignal: true, isRequired: true, transformFunction: null } }, queries: [{ propertyName: "itemTemplate", first: true, predicate: GalleryGridItemDirective, descendants: true, read: GalleryGridItemDirective, isSignal: true }], ngImport: i0, template: "@if (itemTemplate()) {\n  @for (item of items(); track $index) {\n    <ng-container *ngTemplateOutlet=\"itemTemplate().templateRef; context: { $implicit: item, index: $index }\" />\n  }\n}\n", styles: [":host{display:grid;grid-template-columns:repeat(auto-fill,minmax(16.25rem,1fr));gap:1.5rem;justify-items:center}\n"], dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: GalleryGridComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: GalleryGridComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-gallery-grid', imports: [NgTemplateOutlet], changeDetection: ChangeDetectionStrategy.OnPush, template: "@if (itemTemplate()) {\n  @for (item of items(); track $index) {\n    <ng-container *ngTemplateOutlet=\"itemTemplate().templateRef; context: { $implicit: item, index: $index }\" />\n  }\n}\n", styles: [":host{display:grid;grid-template-columns:repeat(auto-fill,minmax(16.25rem,1fr));gap:1.5rem;justify-items:center}\n"] }]
         }], ctorParameters: () => [], propDecorators: { dataSource: [{ type: i0.Input, args: [{ isSignal: true, alias: "dataSource", required: true }] }], itemTemplate: [{ type: i0.ContentChild, args: [i0.forwardRef(() => GalleryGridItemDirective), { ...{ read: GalleryGridItemDirective }, isSignal: true }] }] } });

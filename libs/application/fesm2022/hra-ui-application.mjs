@@ -60,7 +60,7 @@ function initializeScreenSizeNoticeMonitor(options, disabled) {
                 activeNotice?.close('program');
                 activeNotice = undefined;
             }
-        }, ...(ngDevMode ? [{ debugName: "ref" }] : []));
+        }, ...(ngDevMode ? [{ debugName: "ref" }] : /* istanbul ignore next */ []));
     }
 }
 
@@ -69,13 +69,13 @@ function initializeScreenSizeNoticeMonitor(options, disabled) {
  */
 class BaseApplicationComponent {
     /** Asset base url */
-    assetHref = input(...(ngDevMode ? [undefined, { debugName: "assetHref" }] : []));
+    assetHref = input(...(ngDevMode ? [undefined, { debugName: "assetHref" }] : /* istanbul ignore next */ []));
     /** Page base url */
-    pageHref = input(...(ngDevMode ? [undefined, { debugName: "pageHref" }] : []));
+    pageHref = input(...(ngDevMode ? [undefined, { debugName: "pageHref" }] : /* istanbul ignore next */ []));
     /** Whether analytics is enabled/disabled or the specific analytics settings */
-    analytics = input(undefined, { ...(ngDevMode ? { debugName: "analytics" } : {}), transform: AnalyticsInput.parse });
+    analytics = input(undefined, { ...(ngDevMode ? { debugName: "analytics" } : /* istanbul ignore next */ {}), transform: AnalyticsInput.parse });
     /** Whether to disable the screen size notice popup */
-    disableScreenSizeNotice = input(false, { ...(ngDevMode ? { debugName: "disableScreenSizeNotice" } : {}), transform: coerceBooleanProperty });
+    disableScreenSizeNotice = input(false, { ...(ngDevMode ? { debugName: "disableScreenSizeNotice" } : /* istanbul ignore next */ {}), transform: coerceBooleanProperty });
     /** Emits when the user changes their consent settings */
     consentChange = output();
     /** Initialize the application component */
@@ -98,7 +98,7 @@ class BaseApplicationComponent {
         // Setup analytics
         const consent = inject(ConsentService);
         const privacyPreferences = inject(PrivacyPreferencesService);
-        const analyticsWithDefault = computed(() => this.analytics() ?? options.analytics ?? true, ...(ngDevMode ? [{ debugName: "analyticsWithDefault" }] : []));
+        const analyticsWithDefault = computed(() => this.analytics() ?? options.analytics ?? true, ...(ngDevMode ? [{ debugName: "analyticsWithDefault" }] : /* istanbul ignore next */ []));
         effect(() => {
             const analytics = analyticsWithDefault();
             if (analytics === true) {
@@ -118,10 +118,10 @@ class BaseApplicationComponent {
             initializeScreenSizeNoticeMonitor(options.screenSizeNotice, this.disableScreenSizeNotice);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseApplicationComponent, deps: "invalid", target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: BaseApplicationComponent, isStandalone: true, inputs: { assetHref: { classPropertyName: "assetHref", publicName: "assetHref", isSignal: true, isRequired: false, transformFunction: null }, pageHref: { classPropertyName: "pageHref", publicName: "pageHref", isSignal: true, isRequired: false, transformFunction: null }, analytics: { classPropertyName: "analytics", publicName: "analytics", isSignal: true, isRequired: false, transformFunction: null }, disableScreenSizeNotice: { classPropertyName: "disableScreenSizeNotice", publicName: "disableScreenSizeNotice", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { consentChange: "consentChange" }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: BaseApplicationComponent, deps: "invalid", target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.26", type: BaseApplicationComponent, isStandalone: true, inputs: { assetHref: { classPropertyName: "assetHref", publicName: "assetHref", isSignal: true, isRequired: false, transformFunction: null }, pageHref: { classPropertyName: "pageHref", publicName: "pageHref", isSignal: true, isRequired: false, transformFunction: null }, analytics: { classPropertyName: "analytics", publicName: "analytics", isSignal: true, isRequired: false, transformFunction: null }, disableScreenSizeNotice: { classPropertyName: "disableScreenSizeNotice", publicName: "disableScreenSizeNotice", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { consentChange: "consentChange" }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseApplicationComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: BaseApplicationComponent, decorators: [{
             type: Directive,
             args: [{}]
         }], ctorParameters: () => [{ type: undefined }], propDecorators: { assetHref: [{ type: i0.Input, args: [{ isSignal: true, alias: "assetHref", required: false }] }], pageHref: [{ type: i0.Input, args: [{ isSignal: true, alias: "pageHref", required: false }] }], analytics: [{ type: i0.Input, args: [{ isSignal: true, alias: "analytics", required: false }] }], disableScreenSizeNotice: [{ type: i0.Input, args: [{ isSignal: true, alias: "disableScreenSizeNotice", required: false }] }], consentChange: [{ type: i0.Output, args: ["consentChange"] }] } });

@@ -21,13 +21,13 @@ function getSectionElement(section) {
 /** Service that tracks all page sections on a page */
 class PageSectionService {
     /** All sections (mutable signal) */
-    _sections = signal([], ...(ngDevMode ? [{ debugName: "_sections" }] : []));
+    _sections = signal([], ...(ngDevMode ? [{ debugName: "_sections" }] : /* istanbul ignore next */ []));
     /** All sections */
     sections = this._sections.asReadonly();
     /** All sections that have an anchor id */
-    linkableSections = computed(() => this.filterLinkableSections(this._sections()), ...(ngDevMode ? [{ debugName: "linkableSections" }] : []));
+    linkableSections = computed(() => this.filterLinkableSections(this._sections()), ...(ngDevMode ? [{ debugName: "linkableSections" }] : /* istanbul ignore next */ []));
     /** All sections with an anchor id sorted in dom order */
-    sortedSections = computed(() => this.sortSectionsByDomPosition(this.linkableSections()), ...(ngDevMode ? [{ debugName: "sortedSections" }] : []));
+    sortedSections = computed(() => this.sortSectionsByDomPosition(this.linkableSections()), ...(ngDevMode ? [{ debugName: "sortedSections" }] : /* istanbul ignore next */ []));
     /**
      * Adds a section to be tracked
      *
@@ -69,10 +69,10 @@ class PageSectionService {
         });
         return sections;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionService, decorators: [{
             type: Injectable
         }] });
 
@@ -81,19 +81,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
  */
 class PageSectionComponent {
     /** Title for the section */
-    tagline = input.required(...(ngDevMode ? [{ debugName: "tagline" }] : []));
+    tagline = input.required(...(ngDevMode ? [{ debugName: "tagline" }] : /* istanbul ignore next */ []));
     /** Level of <hx> element to use for the header */
-    level = input(1, { ...(ngDevMode ? { debugName: "level" } : {}), transform: numberAttribute });
+    level = input(1, { ...(ngDevMode ? { debugName: "level" } : /* istanbul ignore next */ {}), transform: numberAttribute });
     /** Icons to display as part of the label */
-    icons = input(...(ngDevMode ? [undefined, { debugName: "icons" }] : []));
+    icons = input(...(ngDevMode ? [undefined, { debugName: "icons" }] : /* istanbul ignore next */ []));
     /** Anchor id for the section */
-    anchor = input(...(ngDevMode ? [undefined, { debugName: "anchor" }] : []));
+    anchor = input(...(ngDevMode ? [undefined, { debugName: "anchor" }] : /* istanbul ignore next */ []));
     /** Breadcrumbs to display above the label */
-    breadcrumbs = input(...(ngDevMode ? [undefined, { debugName: "breadcrumbs" }] : []));
+    breadcrumbs = input(...(ngDevMode ? [undefined, { debugName: "breadcrumbs" }] : /* istanbul ignore next */ []));
     /** Date to display below the label */
-    date = input(...(ngDevMode ? [undefined, { debugName: "date" }] : []));
+    date = input(...(ngDevMode ? [undefined, { debugName: "date" }] : /* istanbul ignore next */ []));
     /** Tags/labels to display below the date */
-    tags = input([], ...(ngDevMode ? [{ debugName: "tags" }] : []));
+    tags = input([], ...(ngDevMode ? [{ debugName: "tags" }] : /* istanbul ignore next */ []));
     /** Reference to the section element */
     elementRef = viewChild.required('section', { read: ElementRef });
     /** Registers this section with the PageSectionService if available */
@@ -105,10 +105,10 @@ class PageSectionComponent {
             destroyRef.onDestroy(() => pageSectionService.removeSection(this));
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "21.1.5", type: PageSectionComponent, isStandalone: true, selector: "hra-page-section", inputs: { tagline: { classPropertyName: "tagline", publicName: "tagline", isSignal: true, isRequired: true, transformFunction: null }, level: { classPropertyName: "level", publicName: "level", isSignal: true, isRequired: false, transformFunction: null }, icons: { classPropertyName: "icons", publicName: "icons", isSignal: true, isRequired: false, transformFunction: null }, anchor: { classPropertyName: "anchor", publicName: "anchor", isSignal: true, isRequired: false, transformFunction: null }, breadcrumbs: { classPropertyName: "breadcrumbs", publicName: "breadcrumbs", isSignal: true, isRequired: false, transformFunction: null }, date: { classPropertyName: "date", publicName: "date", isSignal: true, isRequired: false, transformFunction: null }, tags: { classPropertyName: "tags", publicName: "tags", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "elementRef", first: true, predicate: ["section"], descendants: true, read: ElementRef, isSignal: true }], ngImport: i0, template: "<section [attr.id]=\"anchor() || null\" #section>\n  <hra-page-label\n    class=\"header\"\n    [tagline]=\"tagline()\"\n    [level]=\"level()\"\n    [icons]=\"icons()\"\n    [anchor]=\"anchor()\"\n    [breadcrumbs]=\"breadcrumbs()\"\n    [date]=\"date()\"\n    [tags]=\"tags()\"\n  />\n\n  <div class=\"content\">\n    <ng-content />\n  </div>\n</section>\n", styles: [":host{display:block}:host .content{font:var(--mat-sys-body-xl);letter-spacing:var(--mat-sys-body-xl-tracking);color:var(--mat-sys-primary);margin-top:1rem;display:flex;flex-direction:column;gap:1.5rem}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "ngmodule", type: MatDividerModule }, { kind: "component", type: PageLabelComponent, selector: "hra-page-label", inputs: ["tagline", "level", "icons", "anchor", "breadcrumbs", "date", "tags"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "21.2.26", type: PageSectionComponent, isStandalone: true, selector: "hra-page-section", inputs: { tagline: { classPropertyName: "tagline", publicName: "tagline", isSignal: true, isRequired: true, transformFunction: null }, level: { classPropertyName: "level", publicName: "level", isSignal: true, isRequired: false, transformFunction: null }, icons: { classPropertyName: "icons", publicName: "icons", isSignal: true, isRequired: false, transformFunction: null }, anchor: { classPropertyName: "anchor", publicName: "anchor", isSignal: true, isRequired: false, transformFunction: null }, breadcrumbs: { classPropertyName: "breadcrumbs", publicName: "breadcrumbs", isSignal: true, isRequired: false, transformFunction: null }, date: { classPropertyName: "date", publicName: "date", isSignal: true, isRequired: false, transformFunction: null }, tags: { classPropertyName: "tags", publicName: "tags", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "elementRef", first: true, predicate: ["section"], descendants: true, read: ElementRef, isSignal: true }], ngImport: i0, template: "<section [attr.id]=\"anchor() || null\" #section>\n  <hra-page-label\n    class=\"header\"\n    [tagline]=\"tagline()\"\n    [level]=\"level()\"\n    [icons]=\"icons()\"\n    [anchor]=\"anchor()\"\n    [breadcrumbs]=\"breadcrumbs()\"\n    [date]=\"date()\"\n    [tags]=\"tags()\"\n  />\n\n  <div class=\"content\">\n    <ng-content />\n  </div>\n</section>\n", styles: [":host{display:block}:host .content{font:var(--mat-sys-body-xl);letter-spacing:var(--mat-sys-body-xl-tracking);color:var(--mat-sys-primary);margin-top:1rem;display:flex;flex-direction:column;gap:1.5rem}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "ngmodule", type: MatDividerModule }, { kind: "component", type: PageLabelComponent, selector: "hra-page-label", inputs: ["tagline", "level", "icons", "anchor", "breadcrumbs", "date", "tags"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-page-section', imports: [HraCommonModule, MatDividerModule, PageLabelComponent], changeDetection: ChangeDetectionStrategy.OnPush, template: "<section [attr.id]=\"anchor() || null\" #section>\n  <hra-page-label\n    class=\"header\"\n    [tagline]=\"tagline()\"\n    [level]=\"level()\"\n    [icons]=\"icons()\"\n    [anchor]=\"anchor()\"\n    [breadcrumbs]=\"breadcrumbs()\"\n    [date]=\"date()\"\n    [tags]=\"tags()\"\n  />\n\n  <div class=\"content\">\n    <ng-content />\n  </div>\n</section>\n", styles: [":host{display:block}:host .content{font:var(--mat-sys-body-xl);letter-spacing:var(--mat-sys-body-xl-tracking);color:var(--mat-sys-primary);margin-top:1rem;display:flex;flex-direction:column;gap:1.5rem}\n"] }]
         }], ctorParameters: () => [], propDecorators: { tagline: [{ type: i0.Input, args: [{ isSignal: true, alias: "tagline", required: true }] }], level: [{ type: i0.Input, args: [{ isSignal: true, alias: "level", required: false }] }], icons: [{ type: i0.Input, args: [{ isSignal: true, alias: "icons", required: false }] }], anchor: [{ type: i0.Input, args: [{ isSignal: true, alias: "anchor", required: false }] }], breadcrumbs: [{ type: i0.Input, args: [{ isSignal: true, alias: "breadcrumbs", required: false }] }], date: [{ type: i0.Input, args: [{ isSignal: true, alias: "date", required: false }] }], tags: [{ type: i0.Input, args: [{ isSignal: true, alias: "tags", required: false }] }], elementRef: [{ type: i0.ViewChild, args: ['section', { ...{ read: ElementRef }, isSignal: true }] }] } });
@@ -145,7 +145,7 @@ class PageSectionActivationService {
     /** Set of elements that are currently observer */
     observedElements = new Set();
     /** Currently active element */
-    activeElement = signal(undefined, ...(ngDevMode ? [{ debugName: "activeElement" }] : []));
+    activeElement = signal(undefined, ...(ngDevMode ? [{ debugName: "activeElement" }] : /* istanbul ignore next */ []));
     /** Section intersection observer */
     observer = this.createObserver();
     /** Currently active section */
@@ -156,7 +156,7 @@ class PageSectionActivationService {
         }
         const sections = this.sections();
         return sections.find((s) => getSectionElement(s) === element);
-    }, ...(ngDevMode ? [{ debugName: "activeSection" }] : []));
+    }, ...(ngDevMode ? [{ debugName: "activeSection" }] : /* istanbul ignore next */ []));
     /** Watches for changes to the sections */
     constructor() {
         effect(() => {
@@ -263,10 +263,10 @@ class PageSectionActivationService {
             observedElements.add(el);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionActivationService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionActivationService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionActivationService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionActivationService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PageSectionActivationService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.26", ngImport: i0, type: PageSectionActivationService, decorators: [{
             type: Injectable
         }], ctorParameters: () => [] });
 

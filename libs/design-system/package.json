@@ -490,6 +490,7 @@
   "sideEffects": false,
   "module": "fesm2022/hra-ui-design-system.mjs",
   "typings": "types/hra-ui-design-system.d.ts",
+  "type": "module",
   "dependencies": {
     "tslib": "^2.3.0"
   }
