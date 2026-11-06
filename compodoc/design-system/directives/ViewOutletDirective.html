@@ -220,7 +220,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -257,7 +257,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:35</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -297,8 +297,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -336,8 +336,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">fullscreen/src/lib/fullscreen-portal/fullscreen-portal.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -362,7 +362,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { hasModifierKey } from &#x27;@angular/cdk/keycodes&#x27;;
+import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import {
+  ApplicationRef,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -371,6 +375,7 @@
   effect,
   inject,
   input,
+  NgZone,
   output,
   TemplateRef,
   viewChild,
@@ -383,7 +388,7 @@ import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { ExpansionPanelModule } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
-import { filter, MonoTypeOperatorFunction, pipe } from &#x27;rxjs&#x27;;
+import { filter, firstValueFrom, MonoTypeOperatorFunction, Observable, pipe, take } from &#x27;rxjs&#x27;;
 
 /** View outlet directive */
 @Directive({
@@ -464,6 +469,13 @@ export class FullscreenPortalComponent {
   /** Classes to apply to the dialog panel in fullscreen mode */
   readonly panelClass &#x3D; input&lt;string | string[]&gt;();
 
+  /**
+   * Whether opening and closing cross-fade between the page and the fullscreen view in a view transition,
+   * where the browser supports them. The old view stays on screen until the app is stable after the change,
+   * so content that resizes itself for the new view can finish first by marking that work with &#x60;PendingTasks&#x60;.
+   */
+  readonly viewTransition &#x3D; input(false, { transform: booleanAttribute });
+
   /** Event for before the dialog is opened */
   readonly beforeOpened &#x3D; output&lt;void&gt;();
   /** Event for when the dialog is opened */
@@ -472,6 +484,11 @@ export class FullscreenPortalComponent {
   readonly beforeClosed &#x3D; output&lt;void&gt;();
   /** Event for when the dialog is closed */
   readonly closed &#x3D; output&lt;void&gt;();
+  /**
+   * Event for when opening or closing has finished, including its view transition. Content can wait for it to
+   * start slow work, so the work doesn&#x27;t hold up the transition.
+   */
+  readonly transitionEnded &#x3D; output&lt;void&gt;();
 
   /** Creates embedded view using template */
   readonly viewRef &#x3D; computed(() &#x3D;&gt; {
@@ -490,6 +507,15 @@ export class FullscreenPortalComponent {
   /** Reference to the destroy ref */
   private readonly destroyRef &#x3D; inject(DestroyRef);
 
+  /** Reference to the document, used to start view transitions */
+  private readonly document &#x3D; inject(DOCUMENT);
+
+  /** Reference to the application, used to wait until the content settles in a view transition */
+  private readonly appRef &#x3D; inject(ApplicationRef);
+
+  /** Reference to the zone, used to open and close the dialog in it from a view transition */
+  private readonly ngZone &#x3D; inject(NgZone);
+
   /** Reference to the view outlet directive */
   private readonly viewOutlet &#x3D; viewChild.required(ViewOutletDirective);
 
@@ -502,9 +528,16 @@ export class FullscreenPortalComponent {
   /** Reference to the mat dialog */
   private dialogRef?: MatDialogRef&lt;void&gt;;
 
+  /** Whether a view transition is opening or closing the dialog */
+  private transitioning &#x3D; false;
+
+  /** Whether the component was destroyed, so a view transition that finishes later doesn&#x27;t emit */
+  private destroyed &#x3D; false;
+
   /** Destroys the view */
   constructor() {
     this.destroyRef.onDestroy(() &#x3D;&gt; {
+      this.destroyed &#x3D; true;
       const dialogRef &#x3D; this.dialogRef;
       this.dialogRef &#x3D; undefined;
       dialogRef?.close();
@@ -514,18 +547,54 @@ export class FullscreenPortalComponent {
 
   /** Detaches the view from histogram module and attaches it to the view in the dialog */
   open(): void {
-    if (this.dialogRef !&#x3D;&#x3D; undefined) {
+    if (this.dialogRef !&#x3D;&#x3D; undefined || this.transitioning) {
       return;
     }
 
+    this.runTransition(() &#x3D;&gt; this.openDialog().afterOpened());
+  }
+
+  /** Closes the dialog */
+  close(): void {
+    const dialogRef &#x3D; this.dialogRef;
+    if (dialogRef &#x3D;&#x3D;&#x3D; undefined || this.transitioning) {
+      return;
+    }
+
+    this.runTransition(() &#x3D;&gt; {
+      dialogRef.close();
+      return dialogRef.afterClosed();
+    });
+  }
+
+  /**
+   * Opens the dialog
+   *
+   * @returns Reference to the opened dialog
+   */
+  private openDialog(): MatDialogRef&lt;void&gt; {
     const { dialogService, dialogTemplateRef } &#x3D; this;
     const panelClass &#x3D; this.panelClass() ?? [];
     const normalizedPanelClass &#x3D; typeof panelClass &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? panelClass.split(&#x27; &#x27;) : panelClass;
 
     this.beforeOpened.emit();
+    const useViewTransition &#x3D; this.useViewTransition();
     const dialogRef &#x3D; (this.dialogRef &#x3D; dialogService.open(dialogTemplateRef(), {
       panelClass: [...normalizedPanelClass, &#x27;fullscreen-panel&#x27;],
+      // The view transition fades the dialog in and out, so the dialog&#x27;s own animations are off
+      ...(useViewTransition &amp;&amp; { disableClose: true, enterAnimationDuration: 0, exitAnimationDuration: 0 }),
     }));
+
+    if (useViewTransition) {
+      // Escape closes the dialog through close(), so closing runs in a view transition too
+      dialogRef
+        .keydownEvents()
+        .pipe(
+          this.filterDialogEvents(dialogRef),
+          filter((event) &#x3D;&gt; event.key &#x3D;&#x3D;&#x3D; &#x27;Escape&#x27; &amp;&amp; !hasModifierKey(event)),
+        )
+        .subscribe(() &#x3D;&gt; this.close());
+    }
 
     dialogRef
       .afterOpened()
@@ -549,11 +618,44 @@ export class FullscreenPortalComponent {
         this.dialogRef &#x3D; undefined;
         this.closed.emit();
       });
+
+    return dialogRef;
   }
 
-  /** Closes the dialog */
-  close(): void {
-    this.dialogRef?.close();
+  /**
+   * Opens or closes the dialog, in a view transition when enabled and supported
+   *
+   * @param change Opens or closes the dialog and returns an observable that emits once it has
+   */
+  private runTransition(change: () &#x3D;&gt; Observable&lt;unknown&gt;): void {
+    const ended &#x3D; () &#x3D;&gt; {
+      if (!this.destroyed) {
+        this.transitionEnded.emit();
+      }
+    };
+
+    if (!this.useViewTransition()) {
+      change().pipe(take(1), takeUntilDestroyed(this.destroyRef)).subscribe(ended);
+      return;
+    }
+
+    const done &#x3D; () &#x3D;&gt; (this.transitioning &#x3D; false);
+    this.transitioning &#x3D; true;
+    const transition &#x3D; this.document.startViewTransition(async () &#x3D;&gt; {
+      await firstValueFrom(this.ngZone.run(change));
+      await this.appRef.whenStable();
+    });
+    transition.updateCallbackDone.then(done, done);
+    transition.finished.then(ended, ended);
+  }
+
+  /**
+   * Whether opening and closing run in view transitions
+   *
+   * @returns True if view transitions are enabled and the browser supports them
+   */
+  private useViewTransition(): boolean {
+    return this.viewTransition() &amp;&amp; typeof this.document.startViewTransition &#x3D;&#x3D;&#x3D; &#x27;function&#x27;;
   }
 
   /** Filters the dialog event based on provided dialog reference */

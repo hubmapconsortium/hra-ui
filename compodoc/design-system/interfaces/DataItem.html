@@ -274,8 +274,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, output } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { MatTableModule } from &#x27;@angular/material/table&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 
 /** An item which defines a string label and a string value */
 export interface DataItem {
@@ -287,20 +287,30 @@ export interface DataItem {
 
 /**
  * Modal to display all available information about specific areas of a dataset.
+ * The title names the modal for screen readers and doesn&#x27;t show.
  */
 @Component({
   selector: &#x27;hra-info-modal&#x27;,
-  imports: [HraCommonModule, MatTableModule, MatIconModule, MatButtonModule],
+  imports: [HraCommonModule, MatIconModule, MatButtonModule, PlainTooltipDirective],
   templateUrl: &#x27;./info-modal.component.html&#x27;,
   styleUrl: &#x27;./info-modal.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: &#x27;group&#x27;,
+    &#x27;[attr.aria-label]&#x27;: &#x27;title()&#x27;,
+    // A static title also lands on the host as a native title attribute, which shows a browser tooltip over the modal
+    &#x27;[attr.title]&#x27;: &#x27;null&#x27;,
+  },
 })
 export class InfoModalComponent {
   /** List of data items to display */
   readonly data &#x3D; input&lt;DataItem[]&gt;([]);
 
-  /** Title of modal */
+  /** Title of modal, which names it for screen readers */
   readonly title &#x3D; input.required&lt;string&gt;();
+
+  /** Label and tooltip of the close button */
+  readonly closeLabel &#x3D; input(&#x27;Close&#x27;);
 
   /** Emits when close icon clicked */
   // eslint-disable-next-line @angular-eslint/no-output-native

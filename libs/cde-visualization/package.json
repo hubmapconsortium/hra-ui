@@ -33,5 +33,6 @@
       "types": "./types/hra-ui-cde-visualization.d.ts",
       "default": "./fesm2022/hra-ui-cde-visualization.mjs"
     }
-  }
+  },
+  "type": "module"
 }

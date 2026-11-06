@@ -889,21 +889,21 @@ class BodyUiComponent {
     /** Constructor for the component */
     constructor() {
         /** Scene for the deck gl */
-        this.scene = input(undefined, { ...(ngDevMode ? { debugName: "scene" } : {}), transform: parseSceneInput });
+        this.scene = input(undefined, { ...(ngDevMode ? { debugName: "scene" } : /* istanbul ignore next */ {}), transform: parseSceneInput });
         /** Rotation for the deck gl */
-        this.rotation = input(undefined, { ...(ngDevMode ? { debugName: "rotation" } : {}), transform: numberAttribute });
+        this.rotation = input(undefined, { ...(ngDevMode ? { debugName: "rotation" } : /* istanbul ignore next */ {}), transform: numberAttribute });
         /** Rotation X for the deck gl */
-        this.rotationX = input(undefined, { ...(ngDevMode ? { debugName: "rotationX" } : {}), transform: numberAttribute });
+        this.rotationX = input(undefined, { ...(ngDevMode ? { debugName: "rotationX" } : /* istanbul ignore next */ {}), transform: numberAttribute });
         /** Zoom for the deck gl */
-        this.zoom = input(undefined, { ...(ngDevMode ? { debugName: "zoom" } : {}), transform: numberAttribute });
+        this.zoom = input(undefined, { ...(ngDevMode ? { debugName: "zoom" } : /* istanbul ignore next */ {}), transform: numberAttribute });
         /** Target for the deck gl */
-        this.target = input(undefined, { ...(ngDevMode ? { debugName: "target" } : {}), transform: parseTargetInput });
+        this.target = input(undefined, { ...(ngDevMode ? { debugName: "target" } : /* istanbul ignore next */ {}), transform: parseTargetInput });
         /** Bounds for the deck gl */
-        this.bounds = input(undefined, { ...(ngDevMode ? { debugName: "bounds" } : {}), transform: parseBoundsInput });
+        this.bounds = input(undefined, { ...(ngDevMode ? { debugName: "bounds" } : /* istanbul ignore next */ {}), transform: parseBoundsInput });
         /** Camera for the deck gl */
-        this.camera = input(...(ngDevMode ? [undefined, { debugName: "camera" }] : []));
+        this.camera = input(...(ngDevMode ? [undefined, { debugName: "camera" }] : /* istanbul ignore next */ []));
         /** Flag for the interactive for deck gl */
-        this.interactive = input(undefined, { ...(ngDevMode ? { debugName: "interactive" } : {}), transform: booleanAttribute });
+        this.interactive = input(undefined, { ...(ngDevMode ? { debugName: "interactive" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
         /** Output for node click */
         this.nodeClick = output();
         /** Output for node drag */
@@ -977,7 +977,7 @@ class BodyUiComponent {
                 this.initialized.emit();
                 initializeEffect.destroy();
             }
-        }, ...(ngDevMode ? [{ debugName: "initializeEffect" }] : []));
+        }, ...(ngDevMode ? [{ debugName: "initializeEffect" }] : /* istanbul ignore next */ []));
     }
     /** Resets the deck gl view */
     resetView() {

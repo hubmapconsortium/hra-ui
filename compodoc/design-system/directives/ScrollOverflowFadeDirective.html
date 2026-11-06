@@ -184,6 +184,9 @@ which is its own stacking context, so the gradients have to be there to stay und
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#scrollOverflowFadeBottomOffset" >scrollOverflowFadeBottomOffset</a>
+                            </li>
+                            <li>
                                 <a href="#scrollOverflowFadeOffset" >scrollOverflowFadeOffset</a>
                             </li>
                         </ul>
@@ -208,7 +211,7 @@ which is its own stacking context, so the gradients have to be there to stay und
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -228,6 +231,33 @@ which is its own stacking context, so the gradients have to be there to stay und
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="scrollOverflowFadeBottomOffset"></a>
+                        <b>scrollOverflowFadeBottomOffset</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0, { transform: numberAttribute }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:59</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Additional offset to the bottom gradient element.
+Primarily useful when there are sticky footers on a table, etc.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="scrollOverflowFadeOffset"></a>
                         <b>scrollOverflowFadeOffset</b>
                     </td>
@@ -239,7 +269,7 @@ which is its own stacking context, so the gradients have to be there to stay und
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">scrolling/src/lib/scroll-overflow-fade/scroll-overflow-fade.directive.ts:53</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -306,6 +336,7 @@ export class ScrollOverflowFadeStylesComponent {}
   selector: &#x27;[hraScrollOverflowFade]&#x27;,
   host: {
     &#x27;[style.--hra-scroll-overflow-fade-offset.px]&#x27;: &#x27;scrollOverflowFadeOffset()&#x27;,
+    &#x27;[style.--hra-scroll-overflow-fade-bottom-offset.px]&#x27;: &#x27;scrollOverflowFadeBottomOffset()&#x27;,
   },
 })
 export class ScrollOverflowFadeDirective {
@@ -314,6 +345,12 @@ export class ScrollOverflowFadeDirective {
    * Primarily useful when there are sticky headers on a table, etc.
    */
   readonly scrollOverflowFadeOffset &#x3D; input(0, { transform: numberAttribute });
+
+  /**
+   * Additional offset to the bottom gradient element.
+   * Primarily useful when there are sticky footers on a table, etc.
+   */
+  readonly scrollOverflowFadeBottomOffset &#x3D; input(0, { transform: numberAttribute });
 
   /** Renderer instance */
   private readonly renderer &#x3D; inject(Renderer2);

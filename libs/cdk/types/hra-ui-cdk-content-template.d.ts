@@ -8,7 +8,7 @@ declare class ContentTemplateOutletDirective {
     readonly data: i0.InputSignal<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -149,7 +149,7 @@ type ProjectedContentTemplate = z.infer<typeof ProjectedContentTemplateSchema>;
 declare const ProjectedContentTemplateSchema: z.ZodUnion<readonly [z.ZodType<{
     [x: string]: unknown;
     component: string;
-    classes?: string | Record<string, any> | string[] | undefined;
+    classes?: string | string[] | Record<string, any> | undefined;
     styles?: string | Record<string, any> | undefined;
     controllers?: {
         [x: string]: unknown;
@@ -158,7 +158,7 @@ declare const ProjectedContentTemplateSchema: z.ZodUnion<readonly [z.ZodType<{
 }, unknown, z.core.$ZodTypeInternals<{
     [x: string]: unknown;
     component: string;
-    classes?: string | Record<string, any> | string[] | undefined;
+    classes?: string | string[] | Record<string, any> | undefined;
     styles?: string | Record<string, any> | undefined;
     controllers?: {
         [x: string]: unknown;
@@ -167,7 +167,7 @@ declare const ProjectedContentTemplateSchema: z.ZodUnion<readonly [z.ZodType<{
 }, unknown>>, z.ZodArray<z.ZodType<{
     [x: string]: unknown;
     component: string;
-    classes?: string | Record<string, any> | string[] | undefined;
+    classes?: string | string[] | Record<string, any> | undefined;
     styles?: string | Record<string, any> | undefined;
     controllers?: {
         [x: string]: unknown;
@@ -176,7 +176,7 @@ declare const ProjectedContentTemplateSchema: z.ZodUnion<readonly [z.ZodType<{
 }, unknown, z.core.$ZodTypeInternals<{
     [x: string]: unknown;
     component: string;
-    classes?: string | Record<string, any> | string[] | undefined;
+    classes?: string | string[] | Record<string, any> | undefined;
     styles?: string | Record<string, any> | undefined;
     controllers?: {
         [x: string]: unknown;

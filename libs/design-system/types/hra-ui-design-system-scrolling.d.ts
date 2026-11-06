@@ -25,6 +25,11 @@ declare class ScrollOverflowFadeDirective {
      * Primarily useful when there are sticky headers on a table, etc.
      */
     readonly scrollOverflowFadeOffset: i0.InputSignalWithTransform<number, unknown>;
+    /**
+     * Additional offset to the bottom gradient element.
+     * Primarily useful when there are sticky footers on a table, etc.
+     */
+    readonly scrollOverflowFadeBottomOffset: i0.InputSignalWithTransform<number, unknown>;
     /** Renderer instance */
     private readonly renderer;
     /** Viewport adapter of the ng-scrollbar, with or without an external viewport */
@@ -64,7 +69,7 @@ declare class ScrollOverflowFadeDirective {
      */
     private animateGradient;
     static ɵfac: i0.ɵɵFactoryDeclaration<ScrollOverflowFadeDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ScrollOverflowFadeDirective, "[hraScrollOverflowFade]", never, { "scrollOverflowFadeOffset": { "alias": "scrollOverflowFadeOffset"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ScrollOverflowFadeDirective, "[hraScrollOverflowFade]", never, { "scrollOverflowFadeOffset": { "alias": "scrollOverflowFadeOffset"; "required": false; "isSignal": true; }; "scrollOverflowFadeBottomOffset": { "alias": "scrollOverflowFadeBottomOffset"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /** Basic signature of the ScrollTimeline constructor */

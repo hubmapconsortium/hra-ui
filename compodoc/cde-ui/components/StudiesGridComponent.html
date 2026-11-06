@@ -408,13 +408,7 @@ export class StudiesGridComponent {
     &gt;
       &lt;hra-collection-card-action&gt;
         &lt;div class&#x3D;&quot;left-actions&quot;&gt;
-          &lt;a
-            mat-flat-button
-            hraClickEvent
-            hraFeature&#x3D;&quot;view-datasets&quot;
-            hraButtonSize&#x3D;&quot;medium&quot;
-            [hraLink]&#x3D;&quot;&#x60;/gallery/${study.slug}&#x60;&quot;
-          &gt;
+          &lt;a mat-flat-button hraClickEvent hraFeature&#x3D;&quot;view-datasets&quot; [hraLink]&#x3D;&quot;&#x60;/gallery/${study.slug}&#x60;&quot;&gt;
             View dataset{{ study.datasets.length &#x3D;&#x3D;&#x3D; 1 ? &#x27;&#x27; : &#x27;s&#x27; }}
           &lt;/a&gt;
           @if (study.euiUrl) {
@@ -422,8 +416,6 @@ export class StudiesGridComponent {
               hraFeature&#x3D;&quot;more-options&quot;
               hraClickEvent
               mat-icon-button
-              hraIconButtonSize&#x3D;&quot;large&quot;
-              hraIconButtonVariant&#x3D;&quot;dark&quot;
               hraPlainTooltip&#x3D;&quot;More&quot;
               aria-label&#x3D;&quot;More options&quot;
               [matMenuTriggerFor]&#x3D;&quot;moreMenu&quot;
@@ -475,8 +467,8 @@ export class StudiesGridComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-grid-container hraFeature="spatial-omics-gallery" itemMinWidth="314px">  @for (study of studies(); track study.slug) {    <hra-collection-card      hraFeature="featured-study"      [tagline]="study.tagline"      [image]="study.thumbnail"      [taglineChips]="study.chips"      [label]="study.authors"      [supportingText]="study.affiliations"      [tags]="study.tags"    >      <hra-collection-card-action>        <div class="left-actions">          <a            mat-flat-button            hraClickEvent            hraFeature="view-datasets"            hraButtonSize="medium"            [hraLink]="`/gallery/${study.slug}`"          >            View dataset{{ study.datasets.length === 1 ? \'\' : \'s\' }}          </a>          @if (study.euiUrl) {            <button              hraFeature="more-options"              hraClickEvent              mat-icon-button              hraIconButtonSize="large"              hraIconButtonVariant="dark"              hraPlainTooltip="More"              aria-label="More options"              [matMenuTriggerFor]="moreMenu"            >              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #moreMenu>              <a mat-menu-item hraClickEvent hraLinkExternal hraFeature="view-datasets-in-eui" [hraLink]="study.euiUrl">                <mat-icon>open_in_new</mat-icon>                View datasets in the Exploration User Interface              </a>            </mat-menu>          }        </div>      </hra-collection-card-action>      <hra-collection-card-action alignment="right">        <cde-source-data-menu [publications]="study.publicationItems" />      </hra-collection-card-action>    </hra-collection-card>  }</hra-grid-container></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+        var COMPONENT_TEMPLATE = '<div><hra-grid-container hraFeature="spatial-omics-gallery" itemMinWidth="314px">  @for (study of studies(); track study.slug) {    <hra-collection-card      hraFeature="featured-study"      [tagline]="study.tagline"      [image]="study.thumbnail"      [taglineChips]="study.chips"      [label]="study.authors"      [supportingText]="study.affiliations"      [tags]="study.tags"    >      <hra-collection-card-action>        <div class="left-actions">          <a mat-flat-button hraClickEvent hraFeature="view-datasets" [hraLink]="`/gallery/${study.slug}`">            View dataset{{ study.datasets.length === 1 ? \'\' : \'s\' }}          </a>          @if (study.euiUrl) {            <button              hraFeature="more-options"              hraClickEvent              mat-icon-button              hraPlainTooltip="More"              aria-label="More options"              [matMenuTriggerFor]="moreMenu"            >              <mat-icon>more_vert</mat-icon>            </button>            <mat-menu #moreMenu>              <a mat-menu-item hraClickEvent hraLinkExternal hraFeature="view-datasets-in-eui" [hraLink]="study.euiUrl">                <mat-icon>open_in_new</mat-icon>                View datasets in the Exploration User Interface              </a>            </mat-menu>          }        </div>      </hra-collection-card-action>      <hra-collection-card-action alignment="right">        <cde-source-data-menu [publications]="study.publicationItems" />      </hra-collection-card-action>    </hra-collection-card>  }</hra-grid-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'ExampleListComponent', 'selector': 'cde-example-list'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingCardComponent', 'selector': 'cde-landing-card'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'StudiesGridComponent'};
 </script>

@@ -99,7 +99,7 @@ declare const ActionCardSchema: z.ZodObject<{
     content: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -108,7 +108,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -117,7 +117,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -126,7 +126,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -136,7 +136,7 @@ declare const ActionCardSchema: z.ZodObject<{
     actionsLeft: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -145,7 +145,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -154,7 +154,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -163,7 +163,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -173,7 +173,7 @@ declare const ActionCardSchema: z.ZodObject<{
     actionsRight: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -182,7 +182,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -191,7 +191,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -200,7 +200,7 @@ declare const ActionCardSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;

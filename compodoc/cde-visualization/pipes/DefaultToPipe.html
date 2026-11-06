@@ -191,8 +191,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/lib/components/metadata/metadata.component.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/lib/components/metadata/metadata.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -265,16 +265,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, computed, input, signal } from &#x27;@angular/core&#x27;;
-import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Pipe, PipeTransform, input } from &#x27;@angular/core&#x27;;
 import { MatExpansionModule } from &#x27;@angular/material/expansion&#x27;;
-import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
-import { ExpansionPanelActionsComponent, ExpansionPanelComponent } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
-import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
+import { ExpansionPanelComponent } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
 import { Metadata } from &#x27;../../models/metadata&#x27;;
+import { SkeletonComponent } from &#x27;../skeleton/skeleton.component&#x27;;
 
 /** List of metadata fields that can be hidden */
 const HIDABLE_FIELDS: (keyof Metadata)[] &#x3D; [
@@ -290,6 +287,40 @@ const HIDABLE_FIELDS: (keyof Metadata)[] &#x3D; [
   &#x27;creationTimestamp&#x27;,
 ];
 
+/** Fields that example datasets show only with all metadata, since their values are placeholders */
+const EXAMPLE_PLACEHOLDER_FIELDS: (keyof Metadata)[] &#x3D; [&#x27;creationTimestamp&#x27;];
+
+/**
+ * Checks whether a field holds a placeholder value, which example datasets have in place of real metadata
+ *
+ * @param metadata Metadata to check
+ * @param field Field to check
+ * @returns Whether the field holds a placeholder
+ */
+function isPlaceholder(metadata: Metadata, field: keyof Metadata): boolean {
+  return metadata.sampleExtra !&#x3D;&#x3D; undefined &amp;&amp; EXAMPLE_PLACEHOLDER_FIELDS.includes(field);
+}
+
+/**
+ * Checks whether the metadata has fields that only show with all metadata: empty ones and placeholders
+ *
+ * @param metadata Metadata to check
+ * @returns Whether any field is hidden until all metadata shows
+ */
+export function hasHiddenFields(metadata: Metadata): boolean {
+  return HIDABLE_FIELDS.some((field) &#x3D;&gt; metadata[field] &#x3D;&#x3D;&#x3D; undefined || isPlaceholder(metadata, field));
+}
+
+/** Label and value widths of the skeleton rows shown while the metadata loads, varied like real rows */
+const SKELETON_ROWS &#x3D; [
+  { label: &#x27;8.5rem&#x27;, value: &#x27;90%&#x27; },
+  { label: &#x27;6rem&#x27;, value: &#x27;70%&#x27; },
+  { label: &#x27;3.5rem&#x27;, value: &#x27;45%&#x27; },
+  { label: &#x27;6.5rem&#x27;, value: &#x27;30%&#x27; },
+  { label: &#x27;8rem&#x27;, value: &#x27;15%&#x27; },
+  { label: &#x27;7rem&#x27;, value: &#x27;55%&#x27; },
+];
+
 /** Defines a pipe that provides a default value if the input is undefined or empty */
 @Pipe({
   name: &#x27;defaultTo&#x27;,
@@ -301,6 +332,17 @@ export class DefaultToPipe implements PipeTransform {
   }
 }
 
+/** Defines a pipe that drops a URL&#x27;s protocol, so a link reads as &#x60;doi.org/...&#x60; instead of &#x60;https://doi.org/...&#x60; */
+@Pipe({
+  name: &#x27;withoutProtocol&#x27;,
+  pure: true,
+})
+export class WithoutProtocolPipe implements PipeTransform {
+  transform(url: string): string {
+    return url.replace(/^https?:\/\//, &#x27;&#x27;);
+  }
+}
+
 /**
  * Metadata Component
  */
@@ -308,15 +350,12 @@ export class DefaultToPipe implements PipeTransform {
   selector: &#x27;cde-metadata&#x27;,
   imports: [
     HraCommonModule,
-    MatButtonModule,
-    MatIconModule,
     MatExpansionModule,
     DefaultToPipe,
-    MatMenuModule,
-    PlainTooltipDirective,
+    WithoutProtocolPipe,
     ButtonsModule,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
+    SkeletonComponent,
   ],
   templateUrl: &#x27;./metadata.component.html&#x27;,
   styleUrl: &#x27;./metadata.component.scss&#x27;,
@@ -326,14 +365,14 @@ export class MetadataComponent {
   /** Input for Metadata Component */
   readonly metadata &#x3D; input.required&lt;Metadata&gt;();
 
-  /** Defines a reactive signal to track the visibility of empty fields */
-  readonly showEmptyFields &#x3D; signal(false);
+  /** Whether the metadata is loading, which shows skeleton rows in place of the fields */
+  readonly loading &#x3D; input(false);
 
-  /** Defines a computed property to check for empty fields */
-  readonly hasEmptyFields &#x3D; computed(() &#x3D;&gt; {
-    const metadata &#x3D; this.metadata();
-    return HIDABLE_FIELDS.some((field) &#x3D;&gt; metadata[field] &#x3D;&#x3D;&#x3D; undefined);
-  });
+  /** Skeleton rows shown while the metadata loads */
+  protected readonly skeletonRows &#x3D; SKELETON_ROWS;
+
+  /** Whether every field shows, including empty ones and placeholders. Set from the toolbar&#x27;s Display menu. */
+  readonly showEmptyFields &#x3D; input(false);
 
   /** Creates a date formatter with default locale */
   readonly dateFormat &#x3D; new Intl.DateTimeFormat(undefined, {
@@ -351,13 +390,12 @@ export class MetadataComponent {
 
   /** Checks if a field is visible based on its value and the showEmptyFields signal */
   isFieldVisible(field: keyof Metadata): boolean {
-    const value &#x3D; this.metadata()[field];
-    return this.showEmptyFields() || (value !&#x3D;&#x3D; undefined &amp;&amp; value !&#x3D;&#x3D; &#x27;&#x27;);
-  }
+    if (this.loading()) {
+      return false;
+    }
 
-  /** Toggle function for the show/hide buttons */
-  toggleEmptyFields(): void {
-    this.showEmptyFields.set(!this.showEmptyFields());
+    const value &#x3D; this.metadata()[field];
+    return this.showEmptyFields() || (value !&#x3D;&#x3D; undefined &amp;&amp; value !&#x3D;&#x3D; &#x27;&#x27; &amp;&amp; !isPlaceholder(this.metadata(), field));
   }
 
   /** Formats the creation timestamp using a given formatter */

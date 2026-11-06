@@ -25,6 +25,8 @@ declare const provideBrandLogos: (logos: BrandLogo[]) => ReturnType<(typeof BRAN
 declare class BrandLogoComponent {
     /** Size of the logo */
     readonly size: _angular_core.InputSignal<BrandLogoSize>;
+    /** Tooltip shown on hover and focus. None by default. */
+    readonly tooltip: _angular_core.InputSignal<string | undefined>;
     /** Logos from injection token */
     readonly logos: _angular_core.InputSignal<BrandLogo[]>;
     /** SVG script eval mode */
@@ -32,7 +34,7 @@ declare class BrandLogoComponent {
     /** Logo data */
     protected readonly data: _angular_core.Signal<BrandLogo>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<BrandLogoComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<BrandLogoComponent, "hra-brand-logo", never, { "size": { "alias": "size"; "required": false; "isSignal": true; }; "logos": { "alias": "logos"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<BrandLogoComponent, "hra-brand-logo", never, { "size": { "alias": "size"; "required": false; "isSignal": true; }; "tooltip": { "alias": "tooltip"; "required": false; "isSignal": true; }; "logos": { "alias": "logos"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 export { BrandLogoComponent, provideBrandLogos };

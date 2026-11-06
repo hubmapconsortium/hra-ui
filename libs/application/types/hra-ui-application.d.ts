@@ -1,14 +1,22 @@
 import * as _hra_ui_common_types_hra_ui_common_analytics_events from '@hra-ui/common/types/hra-ui-common-analytics-events';
 import * as _angular_core from '@angular/core';
+import { Signal } from '@angular/core';
 import { ConsentCategories } from '@hra-ui/common/analytics';
 
 /** Options for screen size notice */
 interface ScreenSizeNoticeOptions {
     /** Minimum screen width to not display the screen size notice */
     width: number;
-    /** Maximum screen width to not display the screen size notice */
-    height: number;
+    /** Minimum screen height to not display the screen size notice. Leave it out to check the width only. */
+    height?: number;
+    /**
+     * Local storage key that remembers a dismissed notice. Defaults to the key all HRA apps share,
+     * so a notice dismissed in one app stays dismissed in the others.
+     */
+    storageKey?: string;
 }
+/** Monitors screen size and opens/closes screen size notice dialog as needed */
+declare function initializeScreenSizeNoticeMonitor(options: ScreenSizeNoticeOptions, disabled?: Signal<boolean>): void;
 
 /** Base application options */
 interface BaseApplicationOptions {
@@ -37,5 +45,5 @@ declare abstract class BaseApplicationComponent {
     static ɵdir: _angular_core.ɵɵDirectiveDeclaration<BaseApplicationComponent, never, never, { "assetHref": { "alias": "assetHref"; "required": false; "isSignal": true; }; "pageHref": { "alias": "pageHref"; "required": false; "isSignal": true; }; "analytics": { "alias": "analytics"; "required": false; "isSignal": true; }; "disableScreenSizeNotice": { "alias": "disableScreenSizeNotice"; "required": false; "isSignal": true; }; }, { "consentChange": "consentChange"; }, never, never, true, never>;
 }
 
-export { BaseApplicationComponent };
+export { BaseApplicationComponent, initializeScreenSizeNoticeMonitor };
 export type { BaseApplicationOptions };

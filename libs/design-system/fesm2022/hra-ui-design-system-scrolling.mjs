@@ -44,12 +44,12 @@ const GRADIENT_TOP_KEYFRAMES = [{ opacity: 0 }, { offset: 0.02, opacity: 1 }, { 
 const GRADIENT_BOTTOM_KEYFRAMES = [{ opacity: 1 }, { offset: 0.98, opacity: 1 }, { opacity: 0 }];
 /** Scroll overflow fade global styles component */
 class ScrollOverflowFadeStylesComponent {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollOverflowFadeStylesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.5", type: ScrollOverflowFadeStylesComponent, isStandalone: true, selector: "hra-scroll-overflow-fade-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:sticky;pointer-events:none;z-index:99;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{top:var(--hra-scroll-overflow-fade-offset, 0px);margin-bottom:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{bottom:0;margin-top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-top,.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-bottom{display:none}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollOverflowFadeStylesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.2.25", type: ScrollOverflowFadeStylesComponent, isStandalone: true, selector: "hra-scroll-overflow-fade-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, var(--mat-sys-surface-container-lowest));display:block;position:sticky;pointer-events:none;z-index:99;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{top:var(--hra-scroll-overflow-fade-offset, 0px);margin-bottom:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{bottom:var(--hra-scroll-overflow-fade-bottom-offset, 0px);margin-top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-top,.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-bottom{display:none}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollOverflowFadeStylesComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollOverflowFadeStylesComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'hra-scroll-overflow-fade-styles', template: '', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, #ffffff);display:block;position:sticky;pointer-events:none;z-index:99;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{top:var(--hra-scroll-overflow-fade-offset, 0px);margin-bottom:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{bottom:0;margin-top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-top,.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-bottom{display:none}\n"] }]
+            args: [{ selector: 'hra-scroll-overflow-fade-styles', template: '', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, styles: [".hra-scroll-overflow-fade-gradient-top,.hra-scroll-overflow-fade-gradient-bottom{--_hra-scroll-overflow-fade-height: var(--hra-scroll-overflow-fade-height, 32px);--_hra-scroll-overflow-fade-color: var(--hra-scroll-overflow-fade-color, var(--mat-sys-surface-container-lowest));display:block;position:sticky;pointer-events:none;z-index:99;width:100%;height:var(--_hra-scroll-overflow-fade-height)}.hra-scroll-overflow-fade-gradient-top{top:var(--hra-scroll-overflow-fade-offset, 0px);margin-bottom:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to bottom,var(--_hra-scroll-overflow-fade-color),transparent)}.hra-scroll-overflow-fade-gradient-bottom{bottom:var(--hra-scroll-overflow-fade-bottom-offset, 0px);margin-top:calc(-1 * var(--_hra-scroll-overflow-fade-height));background:linear-gradient(to top,var(--_hra-scroll-overflow-fade-color),transparent)}.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-top,.ng-scroll-viewport[isVerticallyScrollable=false]>*>.hra-scroll-overflow-fade-gradient-bottom{display:none}\n"] }]
         }] });
 /**
  * Directive that can be used along ng-scrollbar to apply a gradient
@@ -65,7 +65,12 @@ class ScrollOverflowFadeDirective {
      * Additional offset to the gradient elements.
      * Primarily useful when there are sticky headers on a table, etc.
      */
-    scrollOverflowFadeOffset = input(0, { ...(ngDevMode ? { debugName: "scrollOverflowFadeOffset" } : {}), transform: numberAttribute });
+    scrollOverflowFadeOffset = input(0, { ...(ngDevMode ? { debugName: "scrollOverflowFadeOffset" } : /* istanbul ignore next */ {}), transform: numberAttribute });
+    /**
+     * Additional offset to the bottom gradient element.
+     * Primarily useful when there are sticky footers on a table, etc.
+     */
+    scrollOverflowFadeBottomOffset = input(0, { ...(ngDevMode ? { debugName: "scrollOverflowFadeBottomOffset" } : /* istanbul ignore next */ {}), transform: numberAttribute });
     /** Renderer instance */
     renderer = inject(Renderer2);
     /** Viewport adapter of the ng-scrollbar, with or without an external viewport */
@@ -141,25 +146,26 @@ class ScrollOverflowFadeDirective {
             timeline: new scrollTimeline({ source, axis: 'y' }),
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollOverflowFadeDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: ScrollOverflowFadeDirective, isStandalone: true, selector: "[hraScrollOverflowFade]", inputs: { scrollOverflowFadeOffset: { classPropertyName: "scrollOverflowFadeOffset", publicName: "scrollOverflowFadeOffset", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "style.--hra-scroll-overflow-fade-offset.px": "scrollOverflowFadeOffset()" } }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollOverflowFadeDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.25", type: ScrollOverflowFadeDirective, isStandalone: true, selector: "[hraScrollOverflowFade]", inputs: { scrollOverflowFadeOffset: { classPropertyName: "scrollOverflowFadeOffset", publicName: "scrollOverflowFadeOffset", isSignal: true, isRequired: false, transformFunction: null }, scrollOverflowFadeBottomOffset: { classPropertyName: "scrollOverflowFadeBottomOffset", publicName: "scrollOverflowFadeBottomOffset", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "style.--hra-scroll-overflow-fade-offset.px": "scrollOverflowFadeOffset()", "style.--hra-scroll-overflow-fade-bottom-offset.px": "scrollOverflowFadeBottomOffset()" } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollOverflowFadeDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollOverflowFadeDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[hraScrollOverflowFade]',
                     host: {
                         '[style.--hra-scroll-overflow-fade-offset.px]': 'scrollOverflowFadeOffset()',
+                        '[style.--hra-scroll-overflow-fade-bottom-offset.px]': 'scrollOverflowFadeBottomOffset()',
                     },
                 }]
-        }], ctorParameters: () => [], propDecorators: { scrollOverflowFadeOffset: [{ type: i0.Input, args: [{ isSignal: true, alias: "scrollOverflowFadeOffset", required: false }] }] } });
+        }], ctorParameters: () => [], propDecorators: { scrollOverflowFadeOffset: [{ type: i0.Input, args: [{ isSignal: true, alias: "scrollOverflowFadeOffset", required: false }] }], scrollOverflowFadeBottomOffset: [{ type: i0.Input, args: [{ isSignal: true, alias: "scrollOverflowFadeBottomOffset", required: false }] }] } });
 
 /** ng-scrollbar global styles component */
 class ScrollbarStylesComponent {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollbarStylesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.5", type: ScrollbarStylesComponent, isStandalone: true, selector: "hra-scrollbar-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-app{--scrollbar-border-radius: 1rem;--scrollbar-track-color: transparent;--scrollbar-track-thickness: 8px;--scrollbar-thumb-color: rgb(from var(--mat-sys-primary) r g b / .72);--scrollbar-thumb-shape: 1rem}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollbarStylesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.2.25", type: ScrollbarStylesComponent, isStandalone: true, selector: "hra-scrollbar-styles", ngImport: i0, template: '', isInline: true, styles: [".hra-app{--scrollbar-border-radius: 1rem;--scrollbar-track-color: transparent;--scrollbar-track-thickness: 8px;--scrollbar-thumb-color: rgb(from var(--mat-sys-primary) r g b / .72);--scrollbar-thumb-shape: 1rem}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollbarStylesComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollbarStylesComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-scrollbar-styles', template: '', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, styles: [".hra-app{--scrollbar-border-radius: 1rem;--scrollbar-track-color: transparent;--scrollbar-track-thickness: 8px;--scrollbar-thumb-color: rgb(from var(--mat-sys-primary) r g b / .72);--scrollbar-thumb-shape: 1rem}\n"] }]
         }] });
@@ -191,11 +197,11 @@ function provideScrolling(options) {
 }
 /** Module exporting ng-scrollbar and related scrolling utilities */
 class ScrollingModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.5", ngImport: i0, type: ScrollingModule, imports: [ScrollOverflowFadeDirective, CdkScrollable], exports: [NgScrollbarModule, ScrollOverflowFadeDirective, CdkScrollable] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollingModule, imports: [NgScrollbarModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.25", ngImport: i0, type: ScrollingModule, imports: [ScrollOverflowFadeDirective, CdkScrollable], exports: [NgScrollbarModule, ScrollOverflowFadeDirective, CdkScrollable] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollingModule, imports: [NgScrollbarModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ScrollingModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ScrollingModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [ScrollOverflowFadeDirective, CdkScrollable],

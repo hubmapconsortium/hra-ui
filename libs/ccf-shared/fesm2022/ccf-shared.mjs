@@ -145,9 +145,9 @@ function OpacitySliderComponent_Conditional_2_Template(rf, ctx) { if (rf & 1) {
  */
 class OpacitySliderComponent {
     /** The value displayed in the slider */
-    opacity = model(20, ...(ngDevMode ? [{ debugName: "opacity" }] : []));
+    opacity = model(20, ...(ngDevMode ? [{ debugName: "opacity" }] : /* istanbul ignore next */ []));
     /** Whether the item is set to visible */
-    visible = input(true, ...(ngDevMode ? [{ debugName: "visible" }] : []));
+    visible = input(true, ...(ngDevMode ? [{ debugName: "visible" }] : /* istanbul ignore next */ []));
     /** Emits the updated opacity when the opacity changes */
     opacityChange = output();
     /** Emitted when slider visibility is toggled */
@@ -157,7 +157,7 @@ class OpacitySliderComponent {
     /** Emitted when slider thumb is moved */
     sliderChanged = output();
     /** Previous opacity */
-    prevOpacity = signal(0, ...(ngDevMode ? [{ debugName: "prevOpacity" }] : []));
+    prevOpacity = signal(0, ...(ngDevMode ? [{ debugName: "prevOpacity" }] : /* istanbul ignore next */ []));
     /** Initialize the component */
     ngOnInit() {
         if (this.visible()) {
@@ -194,7 +194,7 @@ class OpacitySliderComponent {
             i0.ɵɵelementStart(0, "div", 2);
             i0.ɵɵconditionalCreate(1, OpacitySliderComponent_Conditional_1_Template, 3, 0, "button", 3)(2, OpacitySliderComponent_Conditional_2_Template, 3, 0, "button", 4);
             i0.ɵɵelementStart(3, "button", 5);
-            i0.ɵɵlistener("click", function OpacitySliderComponent_Template_button_click_3_listener() { i0.ɵɵrestoreView(_r1); return i0.ɵɵresetView(ctx.resetOpacity()); });
+            i0.ɵɵlistener("click", function OpacitySliderComponent_Template_button_click_3_listener() { return ctx.resetOpacity(); });
             i0.ɵɵelementStart(4, "mat-icon");
             i0.ɵɵtext(5, "reset_settings");
             i0.ɵɵelementEnd()()();
@@ -1337,9 +1337,9 @@ function SpatialSearchListComponent_For_3_Template(rf, ctx) { if (rf & 1) {
  */
 class SpatialSearchListComponent {
     /** Label for the list */
-    label = input('', ...(ngDevMode ? [{ debugName: "label" }] : []));
+    label = input('', ...(ngDevMode ? [{ debugName: "label" }] : /* istanbul ignore next */ []));
     /** Items to display */
-    items = input([], ...(ngDevMode ? [{ debugName: "items" }] : []));
+    items = input([], ...(ngDevMode ? [{ debugName: "items" }] : /* istanbul ignore next */ []));
     /** Emits the new items when a selection changes */
     selectionChanged = output();
     /** Emits the item that has been removed from the list */

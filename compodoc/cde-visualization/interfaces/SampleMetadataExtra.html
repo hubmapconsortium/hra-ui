@@ -373,6 +373,10 @@ export type MetadataMixins &#x3D; { [P in keyof Metadata]: Signal&lt;Metadata[P]
 
 /** Metadata */
 export interface Metadata {
+  /** Name of the study the data comes from. Shows first, and only when set. */
+  study?: string;
+  /** Url of the study&#x27;s page, which the study name links to */
+  studyUrl?: string;
   /** Title of the visualization */
   title?: string;
   /** Name of the organ */

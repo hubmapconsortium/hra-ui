@@ -274,6 +274,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#breadcrumbs" >breadcrumbs</a>
+                            </li>
+                            <li>
                                 <a href="#study" >study</a>
                             </li>
                         </ul>
@@ -290,6 +293,33 @@
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="breadcrumbs"></a>
+                        <b>breadcrumbs</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BreadcrumbItem[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Breadcrumbs shown above the study title</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -311,7 +341,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:64</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -351,8 +381,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/pages/study-page/study-page.component.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/pages/study-page/study-page.component.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -409,7 +439,7 @@ The CSV includes the dataset ID, cell count, and cell type counts.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -456,7 +486,7 @@ The CSV includes the dataset ID, cell count, and cell type counts.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -494,7 +524,7 @@ The CSV includes the dataset ID, cell count, and cell type counts.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -533,7 +563,7 @@ The CSV includes the dataset ID, cell count, and cell type counts.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/pages/study-page/study-page.component.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -557,6 +587,7 @@ import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { BreadcrumbItem } from &#x27;@hra-ui/design-system/buttons/breadcrumbs&#x27;;
 import { TextHyperlinkComponent } from &#x27;@hra-ui/design-system/buttons/text-hyperlink&#x27;;
 import { MarkdownComponent } from &#x27;@hra-ui/design-system/content-templates/markdown&#x27;;
 import { PageSectionComponent } from &#x27;@hra-ui/design-system/content-templates/page-section&#x27;;
@@ -616,6 +647,9 @@ export class StudyPageComponent {
   /** Study data input */
   readonly study &#x3D; input.required&lt;Study&gt;();
 
+  /** Breadcrumbs shown above the study title */
+  readonly breadcrumbs &#x3D; input&lt;BreadcrumbItem[]&gt;();
+
   /** Search query for filtering datasets */
   readonly searchQuery &#x3D; signal(&#x27;&#x27;);
 
@@ -662,7 +696,7 @@ export class StudyPageComponent {
 
 &lt;hra-table-of-contents-layout&gt;
   &lt;hra-table-of-contents-layout-header&gt;
-    &lt;hra-page-section hraFeature&#x3D;&quot;study-page&quot; [tagline]&#x3D;&quot;data.tagline&quot;&gt;
+    &lt;hra-page-section hraFeature&#x3D;&quot;study-page&quot; [tagline]&#x3D;&quot;data.tagline&quot; [breadcrumbs]&#x3D;&quot;breadcrumbs()&quot;&gt;
       &lt;div class&#x3D;&quot;study-header&quot;&gt;
         &lt;mat-chip-set&gt;
           &lt;mat-chip hraChipSize&#x3D;&quot;small&quot;&gt;
@@ -771,8 +805,8 @@ export class StudyPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@let data = study();<hra-table-of-contents-layout>  <hra-table-of-contents-layout-header>    <hra-page-section hraFeature="study-page" [tagline]="data.tagline">      <div class="study-header">        <mat-chip-set>          <mat-chip hraChipSize="small">            {{ data.authors }}          </mat-chip>          <mat-chip hraChipSize="small">            {{ data.affiliations }}          </mat-chip>          @for (chip of data.chips; track chip) {            <mat-chip hraChipSize="small">              {{ chip }}            </mat-chip>          }          @for (tag of data.tags; track tag.text) {            <mat-chip hraChipSize="small">              <mat-icon>{{ tag.icon }}</mat-icon>              {{ tag.text }}            </mat-chip>          }        </mat-chip-set>      </div>      <img class="study-banner" alt="Study Banner" [src]="data.image | assetUrl" />    </hra-page-section>  </hra-table-of-contents-layout-header>  <hra-page-section hraFeature="overview" tagline="Overview" anchor="overview" [level]="2">    <hra-markdown [data]="data.description" />  </hra-page-section>  <hra-page-section hraFeature="publications" tagline="Publications" anchor="publications" [level]="2">    @let publicationItems = data.publicationItems;    @if (publicationItems.length > 0) {      <div class="citations-list">        @for (pub of publicationItems; track pub.url) {          <hra-markdown [data]="pub.label" />        }      </div>    } @else {      <p>No source data available</p>    }  </hra-page-section>  <hra-page-section hraFeature="datasets" tagline="Datasets" anchor="datasets" [level]="2">    @let datasets = data.datasets;    @if (datasets.length > 0) {      Explore datasets from this study in the Cell Distance Explorer visualization app.      <div class="datasets-toolbar">        <hra-search-filter          label="Search"          [totalCount]="datasets.length"          [viewingCount]="filteredDatasets().length"          [(search)]="searchQuery"        />        <mat-icon class="download-icon" (click)="downloadDatasetsAsCsv()">download</mat-icon>      </div>      <hra-table [columns]="tableColumns" [rows]="filteredDatasets()" [enableSort]="true" />    } @else {      <p>No datasets available</p>    }  </hra-page-section>  @if (data.euiUrl; as url) {    <hra-page-section      hraFeature="eui-view"      tagline="View in the Exploration User Interface"      anchor="eui-view"      [level]="2"    >      This data has been registered spatially into the Human Reference Atlas.      <hra-text-hyperlink hraFeature="eui-link" text="Use app" icon="arrow_right_alt" [url]="url" />    </hra-page-section>  }</hra-table-of-contents-layout><hra-footer /></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+        var COMPONENT_TEMPLATE = '<div>@let data = study();<hra-table-of-contents-layout>  <hra-table-of-contents-layout-header>    <hra-page-section hraFeature="study-page" [tagline]="data.tagline" [breadcrumbs]="breadcrumbs()">      <div class="study-header">        <mat-chip-set>          <mat-chip hraChipSize="small">            {{ data.authors }}          </mat-chip>          <mat-chip hraChipSize="small">            {{ data.affiliations }}          </mat-chip>          @for (chip of data.chips; track chip) {            <mat-chip hraChipSize="small">              {{ chip }}            </mat-chip>          }          @for (tag of data.tags; track tag.text) {            <mat-chip hraChipSize="small">              <mat-icon>{{ tag.icon }}</mat-icon>              {{ tag.text }}            </mat-chip>          }        </mat-chip-set>      </div>      <img class="study-banner" alt="Study Banner" [src]="data.image | assetUrl" />    </hra-page-section>  </hra-table-of-contents-layout-header>  <hra-page-section hraFeature="overview" tagline="Overview" anchor="overview" [level]="2">    <hra-markdown [data]="data.description" />  </hra-page-section>  <hra-page-section hraFeature="publications" tagline="Publications" anchor="publications" [level]="2">    @let publicationItems = data.publicationItems;    @if (publicationItems.length > 0) {      <div class="citations-list">        @for (pub of publicationItems; track pub.url) {          <hra-markdown [data]="pub.label" />        }      </div>    } @else {      <p>No source data available</p>    }  </hra-page-section>  <hra-page-section hraFeature="datasets" tagline="Datasets" anchor="datasets" [level]="2">    @let datasets = data.datasets;    @if (datasets.length > 0) {      Explore datasets from this study in the Cell Distance Explorer visualization app.      <div class="datasets-toolbar">        <hra-search-filter          label="Search"          [totalCount]="datasets.length"          [viewingCount]="filteredDatasets().length"          [(search)]="searchQuery"        />        <mat-icon class="download-icon" (click)="downloadDatasetsAsCsv()">download</mat-icon>      </div>      <hra-table [columns]="tableColumns" [rows]="filteredDatasets()" [enableSort]="true" />    } @else {      <p>No datasets available</p>    }  </hra-page-section>  @if (data.euiUrl; as url) {    <hra-page-section      hraFeature="eui-view"      tagline="View in the Exploration User Interface"      anchor="eui-view"      [level]="2"    >      This data has been registered spatially into the Human Reference Atlas.      <hra-text-hyperlink hraFeature="eui-link" text="Use app" icon="arrow_right_alt" [url]="url" />    </hra-page-section>  }</hra-table-of-contents-layout><hra-footer /></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'ExampleListComponent', 'selector': 'cde-example-list'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingCardComponent', 'selector': 'cde-landing-card'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'StudyPageComponent'};
 </script>

@@ -1,4 +1,5 @@
 import * as _angular_core from '@angular/core';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import * as z from 'zod';
 
 /**
@@ -13,7 +14,7 @@ declare class ContentPageComponent {
         content: {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -22,7 +23,7 @@ declare class ContentPageComponent {
         } | {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -47,7 +48,7 @@ declare class ContentPageComponent {
         headerContent?: {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -56,7 +57,7 @@ declare class ContentPageComponent {
         } | {
             [x: string]: unknown;
             component: string;
-            classes?: string | Record<string, any> | string[] | undefined;
+            classes?: string | string[] | Record<string, any> | undefined;
             styles?: string | Record<string, any> | undefined;
             controllers?: {
                 [x: string]: unknown;
@@ -64,11 +65,13 @@ declare class ContentPageComponent {
             }[] | undefined;
         }[] | undefined;
     }>;
+    /** Breadcrumbs shown above the page title. None by default. */
+    readonly breadcrumbs: _angular_core.InputSignal<BreadcrumbItem[] | undefined>;
     /** header content data */
     protected readonly headerContent: _angular_core.Signal<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -79,7 +82,7 @@ declare class ContentPageComponent {
     protected readonly content: _angular_core.Signal<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -87,7 +90,7 @@ declare class ContentPageComponent {
         }[] | undefined;
     }[]>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<ContentPageComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ContentPageComponent, "hra-content-page", never, { "data": { "alias": "data"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ContentPageComponent, "hra-content-page", never, { "data": { "alias": "data"; "required": true; "isSignal": true; }; "breadcrumbs": { "alias": "breadcrumbs"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 /** Content page type */
@@ -115,7 +118,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     headerContent: z.ZodOptional<z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -124,7 +127,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -133,7 +136,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -142,7 +145,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -152,7 +155,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     content: z.ZodUnion<readonly [z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -161,7 +164,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -170,7 +173,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown>>, z.ZodArray<z.ZodType<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;
@@ -179,7 +182,7 @@ declare const ContentPageDataSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         [x: string]: unknown;
         component: string;
-        classes?: string | Record<string, any> | string[] | undefined;
+        classes?: string | string[] | Record<string, any> | undefined;
         styles?: string | Record<string, any> | undefined;
         controllers?: {
             [x: string]: unknown;

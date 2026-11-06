@@ -274,15 +274,19 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
 import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import {
+  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
+  model,
   output,
   Renderer2,
   signal,
+  untracked,
   viewChild,
 } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
@@ -292,28 +296,29 @@ import {
   MatExpansionPanelDefaultOptions,
 } from &#x27;@angular/material/expansion&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
-import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
-import { colorEquals, Rgb, rgbToHex } from &#x27;@hra-ui/design-system/color-picker&#x27;;
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
-import {
-  FullscreenActionsComponent,
-  FullscreenPortalComponent,
-  FullscreenPortalContentComponent,
-} from &#x27;@hra-ui/design-system/fullscreen&#x27;;
+import { colorEquals, hexToRgb, Rgb, rgbToHex } from &#x27;@hra-ui/design-system/color-picker&#x27;;
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
+import { FullscreenPortalComponent, FullscreenPortalContentComponent } from &#x27;@hra-ui/design-system/fullscreen&#x27;;
 import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 import { produce } from &#x27;immer&#x27;;
-import { ColorPickerDirective } from &#x27;ngx-color-picker&#x27;;
 import { View } from &#x27;vega&#x27;;
 import embed, { VisualizationSpec } from &#x27;vega-embed&#x27;;
 import { DistanceEntry } from &#x27;../../cde-visualization/cde-visualization.component&#x27;;
 import { CellTypeEntry } from &#x27;../../models/cell-type&#x27;;
 import { FileSaverService } from &#x27;../../services/file-saver/file-saver.service&#x27;;
+import {
+  applyChartTheme,
+  getChartTheme,
+  ThemeableChartSpec,
+  updateChartTheme,
+  watchColorScheme,
+} from &#x27;../../shared/chart-theme&#x27;;
+import { setUpChartTooltips } from &#x27;../../shared/chart-tooltip&#x27;;
 import { ColorPickerLabelComponent } from &#x27;../color-picker-label/color-picker-label.component&#x27;;
-import { HistogramMenuComponent } from &#x27;./histogram-menu/histogram-menu.component&#x27;;
+import { ChartSkeletonComponent } from &#x27;../chart-skeleton/chart-skeleton.component&#x27;;
+import { EmptyStateComponent } from &#x27;../empty-state/empty-state.component&#x27;;
+import { EmptyStateContent } from &#x27;../empty-state/empty-state.content&#x27;;
 import * as HISTOGRAM_SPEC from &#x27;./histogram.vl.json&#x27;;
 
 /** Interface for updated color data */
@@ -354,8 +359,8 @@ interface ModifiableHistogramSpec {
   };
 }
 
-/** Fonts used in the histogram */
-const HISTOGRAM_FONTS &#x3D; [&#x27;12px Metropolis&#x27;, &#x27;14px Metropolis&#x27;];
+/** Font sizes used in the histogram, in pixels */
+const HISTOGRAM_FONT_SIZES &#x3D; [12, 14];
 
 /** Label for all cell types */
 const ALL_CELLS_TYPE &#x3D; &#x27;All cells&#x27;;
@@ -369,18 +374,11 @@ const EXPORT_IMAGE_HEIGHT &#x3D; 500;
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING &#x3D; 16;
 
-/** Configuration for the legend in the exported image */
+/** Configuration for the legend in the exported image. Its text uses the chart theme&#x27;s type (see applyChartTheme). */
 const EXPORT_IMAGE_LEGEND_CONFIG &#x3D; {
   title: null,
   symbolType: &#x27;circle&#x27;,
   symbolStrokeWidth: 10,
-  labelFontSize: 14,
-  titleFontSize: 14,
-  titleLineHeight: 21,
-  titleColor: &#x27;#201E3D&#x27;,
-  titleFontWeight: 500,
-  labelFontWeight: 500,
-  labelColor: &#x27;#4B4B5E&#x27;,
 };
 
 /** Length of the dynamic color range */
@@ -389,7 +387,7 @@ const DYNAMIC_COLOR_RANGE_LENGTH &#x3D; 2000;
 /** Dynamic color range for the histogram */
 const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
   .fill(0)
-  .map((_value, index) &#x3D;&gt; ({ expr: &#x60;colors[${index}] || &#x27;#000&#x27;&#x60; }));
+  .map((_value, index) &#x3D;&gt; ({ expr: &#x60;colors[${index}] || themeMarkColor&#x60; }));
 
 /**
  * Histogram Component
@@ -403,14 +401,13 @@ const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatExpansionModule,
     ColorPickerLabelComponent,
     ScrollingModule,
-    MatMenuModule,
+    PlainTooltipDirective,
     FullscreenPortalComponent,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenPortalContentComponent,
-    FullscreenActionsComponent,
-    HistogramMenuComponent,
+    ChartSkeletonComponent,
+    EmptyStateComponent,
   ],
   templateUrl: &#x27;./histogram.component.html&#x27;,
   styleUrl: &#x27;./histogram.component.scss&#x27;,
@@ -425,6 +422,9 @@ const DYNAMIC_COLOR_RANGE &#x3D; Array(DYNAMIC_COLOR_RANGE_LENGTH)
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    &#x27;[attr.aria-busy]&#x27;: &#x27;loading() || null&#x27;,
+  },
 })
 export class HistogramComponent {
   /** Data for the visualization */
@@ -436,23 +436,49 @@ export class HistogramComponent {
   /** Cell types to use for the visualization */
   readonly filteredCellTypes &#x3D; input.required&lt;CellTypeEntry[]&gt;();
 
+  /** Whether the data is loading, which shows a skeleton in place of the histogram */
+  readonly loading &#x3D; input(false);
+
+  /** Empty state shown in place of the histogram, or undefined when there are distances to show */
+  readonly emptyState &#x3D; input&lt;EmptyStateContent&gt;();
+
+  /** Emits when the empty state&#x27;s action is clicked */
+  readonly emptyStateAction &#x3D; output&lt;void&gt;();
+
+  /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
+  readonly fullscreenAvailable &#x3D; input(true);
+
+  /** Emits true when the panel opens in full screen and false when it closes */
+  readonly fullscreenChange &#x3D; output&lt;boolean&gt;();
+
   /** Toggles full screen mode */
   protected readonly fullscreen &#x3D; signal(false);
-
-  /** Sets the color picker directive */
-  protected readonly colorPicker &#x3D; signal&lt;ColorPickerDirective | null&gt;(null);
-
-  /** State indicating whether overflow is visible */
-  protected readonly overflowVisible &#x3D; computed(() &#x3D;&gt; !!this.colorPicker());
 
   /** Label for the total cell type */
   protected readonly totalCellTypeLabel &#x3D; ALL_CELLS_TYPE;
 
-  /** Color for the total cell type */
-  protected readonly totalCellTypeColor &#x3D; signal&lt;Rgb&gt;([0, 0, 0], { equal: colorEquals });
-
   /** Reference to the document object */
   private readonly document &#x3D; inject(DOCUMENT);
+
+  /** Host element, where the theme colors are read */
+  private readonly el: HTMLElement &#x3D; inject(ElementRef).nativeElement;
+
+  /** Changes when the color scheme changes */
+  private readonly colorScheme &#x3D; watchColorScheme();
+
+  /** Chart theme, read again when the color scheme changes */
+  private readonly theme &#x3D; computed(() &#x3D;&gt; {
+    this.colorScheme();
+    return getChartTheme(this.el);
+  });
+
+  /** Color picked for the total cell type, or undefined to use the theme&#x27;s mark color */
+  readonly allCellsColor &#x3D; model&lt;Rgb | undefined&gt;(undefined);
+
+  /** Color for the total cell type */
+  readonly totalCellTypeColor &#x3D; computed(() &#x3D;&gt; this.allCellsColor() ?? hexToRgb(this.theme().markColor), {
+    equal: colorEquals,
+  });
 
   /** Reference to the renderer for DOM manipulation */
   private readonly renderer &#x3D; inject(Renderer2);
@@ -462,6 +488,13 @@ export class HistogramComponent {
 
   /** Element reference for the histogram container */
   protected readonly histogramEl &#x3D; viewChild.required(FullscreenPortalComponent);
+
+  /** Closes an open fullscreen view when full screen becomes unavailable */
+  protected readonly closeFullscreenRef &#x3D; afterRenderEffect(() &#x3D;&gt; {
+    if (!this.fullscreenAvailable()) {
+      untracked(() &#x3D;&gt; this.histogramEl().close());
+    }
+  });
 
   /** Vega view instance for the histogram */
   protected readonly view &#x3D; signal&lt;View | undefined&gt;(undefined);
@@ -483,18 +516,32 @@ export class HistogramComponent {
   /** Effect for updating view colors */
   protected readonly viewColorsRef &#x3D; effect(() &#x3D;&gt; this.view()?.signal(&#x27;colors&#x27;, this.allColors()).run());
 
+  /** Effect for updating the view&#x27;s theme colors in place, without redrawing the histogram */
+  protected readonly viewThemeRef &#x3D; effect(() &#x3D;&gt; {
+    const theme &#x3D; this.theme();
+    const view &#x3D; this.view();
+    if (view) {
+      updateChartTheme(view, theme);
+    }
+  });
+
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef &#x3D; effect(async (onCleanup) &#x3D;&gt; {
-    const el &#x3D; this.histogramEl().rootNodes()[0];
-    await this.ensureFontsLoaded();
+    // vega-embed clears the element it embeds into, so it gets the chart&#x27;s own element and leaves the empty state alone
+    const container: HTMLElement &#x3D; this.histogramEl().rootNodes()[0];
+    const el &#x3D; container.querySelector(&#x27;.histogram&#x27;) as HTMLElement;
+    const theme &#x3D; untracked(this.theme);
+    await this.ensureFontsLoaded(theme.font);
 
     const spec &#x3D; produce(HISTOGRAM_SPEC, (draft) &#x3D;&gt; {
+      applyChartTheme(draft, theme);
       draft.encoding.color.scale.range &#x3D; DYNAMIC_COLOR_RANGE;
     });
     const { finalize, view } &#x3D; await embed(el, spec as VisualizationSpec, {
       actions: false,
     });
 
+    setUpChartTooltips(view);
     onCleanup(finalize);
     this.view.set(view);
   });
@@ -513,14 +560,20 @@ export class HistogramComponent {
   /** Download the histogram as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise&lt;void&gt; {
-    const spec &#x3D; produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) &#x3D;&gt; {
+    const theme &#x3D; this.theme();
+    const spec &#x3D; produce(HISTOGRAM_SPEC as ModifiableHistogramSpec &amp; ThemeableChartSpec, (draft) &#x3D;&gt; {
+      applyChartTheme(draft, theme);
       draft.width &#x3D; EXPORT_IMAGE_WIDTH;
       draft.height &#x3D; EXPORT_IMAGE_HEIGHT;
       draft.config.padding.bottom &#x3D; EXPORT_IMAGE_PADDING;
       draft.config.padding.top &#x3D; EXPORT_IMAGE_PADDING;
       draft.config.padding.right &#x3D; EXPORT_IMAGE_PADDING;
       draft.config.padding.left &#x3D; EXPORT_IMAGE_PADDING;
-      draft.encoding.color.legend &#x3D; EXPORT_IMAGE_LEGEND_CONFIG;
+      draft.encoding.color.legend &#x3D; {
+        ...EXPORT_IMAGE_LEGEND_CONFIG,
+        titleColor: theme.titleColor,
+        labelColor: theme.labelColor,
+      };
       draft.data.values &#x3D; this.data();
       draft.encoding.color.scale.range &#x3D; this.allColors();
     });
@@ -535,15 +588,14 @@ export class HistogramComponent {
     finalize();
   }
 
-  /** Ensure required fonts are loaded for the histogram */
-  private async ensureFontsLoaded(): Promise&lt;void&gt; {
-    const loadPromises &#x3D; HISTOGRAM_FONTS.map((font) &#x3D;&gt; this.document.fonts.load(font));
+  /**
+   * Ensure required fonts are loaded for the histogram
+   *
+   * @param font Font family used by the histogram
+   */
+  private async ensureFontsLoaded(font: string): Promise&lt;void&gt; {
+    const loadPromises &#x3D; HISTOGRAM_FONT_SIZES.map((size) &#x3D;&gt; this.document.fonts.load(&#x60;${size}px ${font}&#x60;));
     await Promise.all(loadPromises);
-  }
-
-  /** Reset the color of the total cell type */
-  resetAllCellsColor(): void {
-    this.totalCellTypeColor.set([0, 0, 0]);
   }
 }
 </code></pre>

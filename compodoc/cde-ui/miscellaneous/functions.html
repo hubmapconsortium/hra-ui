@@ -130,6 +130,9 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#createBreadcrumbsResolver" title="src/app/shared/resolvers/crumbs.resolver.ts" ><b>createBreadcrumbsResolver</b>&nbsp;&nbsp;&nbsp;(src/.../crumbs.resolver.ts)</a>
+                        </li>
+                        <li>
                             <a href="#createCrumbsResolver" title="src/app/shared/resolvers/crumbs.resolver.ts" ><b>createCrumbsResolver</b>&nbsp;&nbsp;&nbsp;(src/.../crumbs.resolver.ts)</a>
                         </li>
                         <li>
@@ -148,7 +151,7 @@
                             <a href="#getChips" title="src/app/schemas/studies/utils.ts" ><b>getChips</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
-                            <a href="#getExampleCrumbs" title="src/app/shared/resolvers/example.resolver.ts" ><b>getExampleCrumbs</b>&nbsp;&nbsp;&nbsp;(src/.../example.resolver.ts)</a>
+                            <a href="#getCrumbs" title="src/app/shared/resolvers/crumbs.resolver.ts" ><b>getCrumbs</b>&nbsp;&nbsp;&nbsp;(src/.../crumbs.resolver.ts)</a>
                         </li>
                         <li>
                             <a href="#getExampleData" title="src/app/shared/resolvers/example.resolver.ts" ><b>getExampleData</b>&nbsp;&nbsp;&nbsp;(src/.../example.resolver.ts)</a>
@@ -169,9 +172,6 @@
                             <a href="#getStudyCrumbs" title="src/app/shared/resolvers/study.resolver.ts" ><b>getStudyCrumbs</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
                         </li>
                         <li>
-                            <a href="#getStudyDatasetCrumbs" title="src/app/shared/resolvers/study.resolver.ts" ><b>getStudyDatasetCrumbs</b>&nbsp;&nbsp;&nbsp;(src/.../study.resolver.ts)</a>
-                        </li>
-                        <li>
                             <a href="#getTags" title="src/app/schemas/studies/utils.ts" ><b>getTags</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
@@ -179,6 +179,9 @@
                         </li>
                         <li>
                             <a href="#handleNavigationError" title="src/app/shared/utils/navigation-error-handler.ts" ><b>handleNavigationError</b>&nbsp;&nbsp;&nbsp;(src/.../navigation-error-handler.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#heroBackground" title="src/app/pages/landing-page/landing-page.component.ts" ><b>heroBackground</b>&nbsp;&nbsp;&nbsp;(src/.../landing-page.component.ts)</a>
                         </li>
                         <li>
                             <a href="#jsonFileResolver" title="src/app/shared/resolvers/json-file/json-file.resolver.ts" ><b>jsonFileResolver</b>&nbsp;&nbsp;&nbsp;(src/.../json-file.resolver.ts)</a>
@@ -232,6 +235,75 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="createBreadcrumbsResolver"></a>
+                    <span class="name">
+                        <span ><b>createBreadcrumbsResolver</b></span>
+                        <a href="#createBreadcrumbsResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createBreadcrumbsResolver(crumbs?: <a href="../miscellaneous/typealiases.html#AdditionalCrumbs" target="_self">AdditionalCrumbs</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a resolver function for the breadcrumbs a page shows, which end with the page itself, unlinked</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>crumbs</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#AdditionalCrumbs" target="_self" >AdditionalCrumbs</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Additional crumbs or a function to generate them based on the route</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ResolveFn&lt;BreadcrumbItem[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Resolver function for the page&#39;s breadcrumbs</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="createCrumbsResolver"></a>
                     <span class="name">
                         <span ><b>createCrumbsResolver</b></span>
@@ -241,7 +313,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createCrumbsResolver(crumbs?)</code>
+<code>createCrumbsResolver(crumbs?: <a href="../miscellaneous/typealiases.html#AdditionalCrumbs" target="_self">AdditionalCrumbs</a>)</code>
                 </td>
             </tr>
 
@@ -260,6 +332,7 @@
                                     <thead>
                                         <tr>
                                             <td>Name</td>
+                                                <td>Type</td>
                                             <td>Optional</td>
                                                 <td>Description</td>
                                         </tr>
@@ -267,6 +340,9 @@
                                     <tbody>
                                         <tr>
                                                 <td>crumbs</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#AdditionalCrumbs" target="_self" >AdditionalCrumbs</a></code>
+                                            </td>
 
                                             <td>
                                                     Yes
@@ -287,6 +363,91 @@
                         </div>
                             <div class="io-description">
                                 <p>Resolver function for breadcrumb items</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCrumbs"></a>
+                    <span class="name">
+                        <span ><b>getCrumbs</b></span>
+                        <a href="#getCrumbs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCrumbs(route: <a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank">ActivatedRouteSnapshot</a>, crumbs?: <a href="../miscellaneous/typealiases.html#AdditionalCrumbs" target="_self">AdditionalCrumbs</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Gets a route&#39;s crumbs: its parent&#39;s crumbs (or the root crumbs) followed by the additional crumbs</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>route</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank" >ActivatedRouteSnapshot</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Activated route snapshot</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>crumbs</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#AdditionalCrumbs" target="_self" >AdditionalCrumbs</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Additional crumbs or a function to generate them based on the route</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>BreadcrumbItem[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Breadcrumb items for the route</p>
 
                             </div>
                 </td>
@@ -391,75 +552,6 @@
                         </div>
                             <div class="io-description">
                                 <p>Resolver function for example visualization data</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getExampleCrumbs"></a>
-                    <span class="name">
-                        <span ><b>getExampleCrumbs</b></span>
-                        <a href="#getExampleCrumbs"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getExampleCrumbs(route: <a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank">ActivatedRouteSnapshot</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Gets the example breadcrumbs from the route</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>route</td>
-                                            <td>
-                                                            <code><a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank" >ActivatedRouteSnapshot</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Activated route snapshot</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>BreadcrumbItem[]</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Breadcrumb items for the example</p>
 
                             </div>
                 </td>
@@ -812,75 +904,6 @@
                         </div>
                             <div class="io-description">
                                 <p>Breadcrumb items for the study</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getStudyDatasetCrumbs"></a>
-                    <span class="name">
-                        <span ><b>getStudyDatasetCrumbs</b></span>
-                        <a href="#getStudyDatasetCrumbs"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getStudyDatasetCrumbs(route: <a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank">ActivatedRouteSnapshot</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Gets the study dataset breadcrumbs from the route</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>route</td>
-                                            <td>
-                                                            <code><a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank" >ActivatedRouteSnapshot</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Activated route snapshot</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>BreadcrumbItem[]</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Breadcrumb items for the study dataset</p>
 
                             </div>
                 </td>
@@ -2072,6 +2095,93 @@
                         </div>
                             <div class="io-description">
                                 <p>Either the 404 or 500 error page path</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/landing-page/landing-page.component.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="heroBackground"></a>
+                    <span class="name">
+                        <span ><b>heroBackground</b></span>
+                        <a href="#heroBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>heroBackground(theme: <a href="../miscellaneous/typealiases.html#Theme" target="_self">Theme</a>, size: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Builds the path of a hero background image</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>theme</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Theme" target="_self" >Theme</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Theme the image is drawn for</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>size</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Image size, as width x height</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The image path</p>
 
                             </div>
                 </td>

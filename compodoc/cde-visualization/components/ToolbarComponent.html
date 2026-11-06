@@ -1,0 +1,1803 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Code Documentation for cde-visualization</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Code Documentation for cde-visualization</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ToolbarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/components/toolbar/toolbar.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Vertical toolbar with the visualization&#39;s app-wide actions: panels, display options, resets, downloads,
+the embedding guide, the theme menu, the About sheet and help links.
+On compact screens it&#39;s a bar along the bottom, with Embed, Theme, Info and Help in a More menu.
+The tabbed layout hides the Panels menu.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>cde-toolbar</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>MatDividerModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatMenuModule</code>
+                            <code>NavigationRailModule</code>
+                            <code>PlainTooltipDirective</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./toolbar.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./toolbar.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#content" >content</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#idPrefix" >idPrefix</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#orientation" >orientation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#themeIcon" >themeIcon</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#togglePanel" >togglePanel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#allMetadata" >allMetadata</a>
+                            </li>
+                            <li>
+                                <a href="#cellLinkData" >cellLinkData</a>
+                            </li>
+                            <li>
+                                <a href="#cellLinks" >cellLinks</a>
+                            </li>
+                            <li>
+                                <a href="#compact" >compact</a>
+                            </li>
+                            <li>
+                                <a href="#hasDeletedCells" >hasDeletedCells</a>
+                            </li>
+                            <li>
+                                <a href="#hasHiddenMetadata" >hasHiddenMetadata</a>
+                            </li>
+                            <li>
+                                <a href="#hiddenPanels" >hiddenPanels</a>
+                            </li>
+                            <li>
+                                <a href="#openSheet" >openSheet</a>
+                            </li>
+                            <li>
+                                <a href="#showHelpMenu" >showHelpMenu</a>
+                            </li>
+                            <li>
+                                <a href="#showPanelsMenu" >showPanelsMenu</a>
+                            </li>
+                            <li>
+                                <a href="#showThemeMenu" >showThemeMenu</a>
+                            </li>
+                            <li>
+                                <a href="#themePreference" >themePreference</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#allMetadata" >allMetadata</a>
+                            </li>
+                            <li>
+                                <a href="#cellLinkData" >cellLinkData</a>
+                            </li>
+                            <li>
+                                <a href="#cellLinks" >cellLinks</a>
+                            </li>
+                            <li>
+                                <a href="#hiddenPanels" >hiddenPanels</a>
+                            </li>
+                            <li>
+                                <a href="#openSheet" >openSheet</a>
+                            </li>
+                            <li>
+                                <a href="#resetColorsClick" >resetColorsClick</a>
+                            </li>
+                            <li>
+                                <a href="#resetEverythingClick" >resetEverythingClick</a>
+                            </li>
+                            <li>
+                                <a href="#resetViewClick" >resetViewClick</a>
+                            </li>
+                            <li>
+                                <a href="#restoreDeletedCellsClick" >restoreDeletedCellsClick</a>
+                            </li>
+                            <li>
+                                <a href="#themePreference" >themePreference</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="allMetadata"></a>
+                        <b>allMetadata</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the metadata panel shows every field, including empty ones</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cellLinkData"></a>
+                        <b>cellLinkData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:43</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the cell types table shows the cell link columns</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cellLinks"></a>
+                        <b>cellLinks</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the distance visualization shows cell links</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="compact"></a>
+                        <b>compact</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the toolbar is a bar along the bottom of a compact screen</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasDeletedCells"></a>
+                        <b>hasDeletedCells</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:52</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether any cells were deleted from the distance visualization</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasHiddenMetadata"></a>
+                        <b>hasHiddenMetadata</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:49</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the metadata has fields that only show with all metadata</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hiddenPanels"></a>
+                        <b>hiddenPanels</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#PanelId" target="_self" >PanelId[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:37</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Panels hidden from the Panels menu</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openSheet"></a>
+                        <b>openSheet</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ToolbarSheet" target="_self" >ToolbarSheet</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:55</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sheet that&#39;s open in the drawer, if any. The Downloads and Info items open their sheets</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showHelpMenu"></a>
+                        <b>showHelpMenu</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the toolbar shows the Help menu</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showPanelsMenu"></a>
+                        <b>showPanelsMenu</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the toolbar shows the Panels menu. The tabbed layout hides it, since the tabs reach every panel.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showThemeMenu"></a>
+                        <b>showThemeMenu</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:58</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the toolbar shows the Theme menu</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="themePreference"></a>
+                        <b>themePreference</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ThemePreference" target="_self" >ThemePreference</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;system&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Theme menu choice</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="allMetadata"></a>
+                        <b>allMetadata</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the metadata panel shows every field, including empty ones</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cellLinkData"></a>
+                        <b>cellLinkData</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:43</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the cell types table shows the cell link columns</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cellLinks"></a>
+                        <b>cellLinks</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the distance visualization shows cell links</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hiddenPanels"></a>
+                        <b>hiddenPanels</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#PanelId" target="_self" >PanelId[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:37</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Panels hidden from the Panels menu</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openSheet"></a>
+                        <b>openSheet</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ToolbarSheet" target="_self" >ToolbarSheet</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:55</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sheet that&#39;s open in the drawer, if any. The Downloads and Info items open their sheets</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resetColorsClick"></a>
+                        <b>resetColorsClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:79</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when Reset colors is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resetEverythingClick"></a>
+                        <b>resetEverythingClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:82</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when Reset everything is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resetViewClick"></a>
+                        <b>resetViewClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when Reset view is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="restoreDeletedCellsClick"></a>
+                        <b>restoreDeletedCellsClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:76</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when Restore deleted cells is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="themePreference"></a>
+                        <b>themePreference</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ThemePreference" target="_self" >ThemePreference</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Theme menu choice</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="togglePanel"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>togglePanel</b></span>
+                        <a href="#togglePanel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>togglePanel(id: <a href="../miscellaneous/typealiases.html#PanelId" target="_self">PanelId</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Shows or hides a panel</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#PanelId" target="_self" >PanelId</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="content"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>content</b></span>
+                        <a href="#content"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>TOOLBAR_CONTENT</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Text content</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idPrefix"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>idPrefix</b></span>
+                        <a href="#idPrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;cde-toolbar-${idCounter++}&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Prefix of the ids that tie menu items to their labels and supporting text</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orientation"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>orientation</b></span>
+                        <a href="#orientation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed((): NavigationRailOrientation &#x3D;&gt;
+    this.compact() ? &#x27;horizontal&#x27; : &#x27;vertical&#x27;,
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Orientation of the rail and its menus</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themeIcon"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>themeIcon</b></span>
+                        <a href="#themeIcon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(
+    () &#x3D;&gt; this.content.theme.options.find((option) &#x3D;&gt; option.id &#x3D;&#x3D;&#x3D; this.themePreference())?.icon ?? &#x27;brightness_4&#x27;,
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/lib/components/toolbar/toolbar.component.ts:106</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Icon of the Theme item, showing the current choice</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input, model, output } from &#x27;@angular/core&#x27;;
+import { MatDividerModule } from &#x27;@angular/material/divider&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatMenuModule } from &#x27;@angular/material/menu&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { NavigationRailModule, NavigationRailOrientation } from &#x27;@hra-ui/design-system/navigation-rail&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
+import { PANEL_IDS, PanelId } from &#x27;../../models/panels&#x27;;
+import { ThemePreference } from &#x27;../../services/theme-switch/theme-switch.service&#x27;;
+import { TOOLBAR_CONTENT, ToolbarSheet } from &#x27;./toolbar.content&#x27;;
+
+/** Counter to keep track of distinct instances */
+let idCounter &#x3D; 0;
+
+/**
+ * Vertical toolbar with the visualization&#x27;s app-wide actions: panels, display options, resets, downloads,
+ * the embedding guide, the theme menu, the About sheet and help links.
+ * On compact screens it&#x27;s a bar along the bottom, with Embed, Theme, Info and Help in a More menu.
+ * The tabbed layout hides the Panels menu.
+ */
+@Component({
+  selector: &#x27;cde-toolbar&#x27;,
+  imports: [
+    HraCommonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatMenuModule,
+    NavigationRailModule,
+    PlainTooltipDirective,
+  ],
+  templateUrl: &#x27;./toolbar.component.html&#x27;,
+  styleUrl: &#x27;./toolbar.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ToolbarComponent {
+  /** Panels hidden from the Panels menu */
+  readonly hiddenPanels &#x3D; model&lt;PanelId[]&gt;([]);
+
+  /** Whether the distance visualization shows cell links */
+  readonly cellLinks &#x3D; model(true);
+
+  /** Whether the cell types table shows the cell link columns */
+  readonly cellLinkData &#x3D; model(true);
+
+  /** Whether the metadata panel shows every field, including empty ones */
+  readonly allMetadata &#x3D; model(false);
+
+  /** Whether the metadata has fields that only show with all metadata */
+  readonly hasHiddenMetadata &#x3D; input(false);
+
+  /** Whether any cells were deleted from the distance visualization */
+  readonly hasDeletedCells &#x3D; input(false);
+
+  /** Sheet that&#x27;s open in the drawer, if any. The Downloads and Info items open their sheets */
+  readonly openSheet &#x3D; model&lt;ToolbarSheet&gt;();
+
+  /** Whether the toolbar shows the Theme menu */
+  readonly showThemeMenu &#x3D; input(false);
+
+  /** Whether the toolbar shows the Help menu */
+  readonly showHelpMenu &#x3D; input(true);
+
+  /** Whether the toolbar shows the Panels menu. The tabbed layout hides it, since the tabs reach every panel. */
+  readonly showPanelsMenu &#x3D; input(true);
+
+  /** Whether the toolbar is a bar along the bottom of a compact screen */
+  readonly compact &#x3D; input(false);
+
+  /** Theme menu choice */
+  readonly themePreference &#x3D; model&lt;ThemePreference&gt;(&#x27;system&#x27;);
+
+  /** Emits when Reset view is clicked */
+  readonly resetViewClick &#x3D; output&lt;void&gt;();
+
+  /** Emits when Restore deleted cells is clicked */
+  readonly restoreDeletedCellsClick &#x3D; output&lt;void&gt;();
+
+  /** Emits when Reset colors is clicked */
+  readonly resetColorsClick &#x3D; output&lt;void&gt;();
+
+  /** Emits when Reset everything is clicked */
+  readonly resetEverythingClick &#x3D; output&lt;void&gt;();
+
+  /** Text content */
+  protected readonly content &#x3D; TOOLBAR_CONTENT;
+
+  /** Orientation of the rail and its menus */
+  protected readonly orientation &#x3D; computed((): NavigationRailOrientation &#x3D;&gt;
+    this.compact() ? &#x27;horizontal&#x27; : &#x27;vertical&#x27;,
+  );
+
+  /** Prefix of the ids that tie menu items to their labels and supporting text */
+  protected readonly idPrefix &#x3D; &#x60;cde-toolbar-${idCounter++}&#x60;;
+
+  /** Shows or hides a panel */
+  protected togglePanel(id: PanelId): void {
+    const hidden &#x3D; this.hiddenPanels();
+    this.hiddenPanels.set(
+      hidden.includes(id)
+        ? hidden.filter((panel) &#x3D;&gt; panel !&#x3D;&#x3D; id)
+        : PANEL_IDS.filter((panel) &#x3D;&gt; panel &#x3D;&#x3D;&#x3D; id || hidden.includes(panel)),
+    );
+  }
+
+  /** Icon of the Theme item, showing the current choice */
+  protected readonly themeIcon &#x3D; computed(
+    () &#x3D;&gt; this.content.theme.options.find((option) &#x3D;&gt; option.id &#x3D;&#x3D;&#x3D; this.themePreference())?.icon ?? &#x27;brightness_4&#x27;,
+  );
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;hra-navigation-rail [attr.aria-label]&#x3D;&quot;content.label&quot; [orientation]&#x3D;&quot;orientation()&quot;&gt;
+  @if (showPanelsMenu()) {
+    &lt;button
+      hraNavigationRailItem
+      icon&#x3D;&quot;space_dashboard&quot;
+      hraFeature&#x3D;&quot;panels&quot;
+      hraClickEvent
+      [hraPlainTooltip]&#x3D;&quot;content.panels.tooltip&quot;
+      [matMenuTriggerFor]&#x3D;&quot;panelsMenu&quot;
+    &gt;
+      {{ content.panels.label }}
+    &lt;/button&gt;
+  }
+  &lt;button
+    hraNavigationRailItem
+    icon&#x3D;&quot;layers&quot;
+    hraFeature&#x3D;&quot;display&quot;
+    hraClickEvent
+    [hraPlainTooltip]&#x3D;&quot;content.display.tooltip&quot;
+    [matMenuTriggerFor]&#x3D;&quot;displayMenu&quot;
+  &gt;
+    {{ content.display.label }}
+  &lt;/button&gt;
+  &lt;button
+    hraNavigationRailItem
+    icon&#x3D;&quot;restart_alt&quot;
+    hraFeature&#x3D;&quot;reset&quot;
+    hraClickEvent
+    [hraPlainTooltip]&#x3D;&quot;content.reset.tooltip&quot;
+    [matMenuTriggerFor]&#x3D;&quot;resetMenu&quot;
+  &gt;
+    {{ content.reset.label }}
+  &lt;/button&gt;
+
+  @if (!compact()) {
+    &lt;mat-divider /&gt;
+  }
+
+  &lt;button
+    hraNavigationRailItem
+    icon&#x3D;&quot;download&quot;
+    hraFeature&#x3D;&quot;downloads&quot;
+    hraClickEvent
+    [active]&#x3D;&quot;openSheet() &#x3D;&#x3D;&#x3D; &#x27;downloads&#x27;&quot;
+    [hraPlainTooltip]&#x3D;&quot;content.downloads.tooltip&quot;
+    (click)&#x3D;&quot;openSheet.set(&#x27;downloads&#x27;)&quot;
+  &gt;
+    {{ content.downloads.label }}
+  &lt;/button&gt;
+  &lt;!-- One item per block, so each block projects by its item&#x27;s selector (the bottom items pin to the bottom) --&gt;
+  @if (!compact()) {
+    &lt;a
+      hraNavigationRailItem
+      icon&#x3D;&quot;code&quot;
+      target&#x3D;&quot;_blank&quot;
+      rel&#x3D;&quot;noopener noreferrer&quot;
+      hraFeature&#x3D;&quot;embed&quot;
+      hraClickEvent
+      [attr.href]&#x3D;&quot;content.embed.url&quot;
+      [hraPlainTooltip]&#x3D;&quot;content.embed.tooltip&quot;
+    &gt;
+      {{ content.embed.label }}
+    &lt;/a&gt;
+  }
+
+  @if (showThemeMenu() &amp;&amp; !compact()) {
+    &lt;button
+      hraNavigationRailItem
+      hraNavigationRailBottom
+      hraFeature&#x3D;&quot;theme&quot;
+      hraClickEvent
+      [icon]&#x3D;&quot;themeIcon()&quot;
+      [hraPlainTooltip]&#x3D;&quot;content.theme.tooltip&quot;
+      [matMenuTriggerFor]&#x3D;&quot;themeMenu&quot;
+    &gt;
+      {{ content.theme.label }}
+    &lt;/button&gt;
+  }
+  @if (!compact()) {
+    &lt;button
+      hraNavigationRailItem
+      hraNavigationRailBottom
+      icon&#x3D;&quot;info&quot;
+      hraFeature&#x3D;&quot;info&quot;
+      hraClickEvent
+      [active]&#x3D;&quot;openSheet() &#x3D;&#x3D;&#x3D; &#x27;about&#x27;&quot;
+      [hraPlainTooltip]&#x3D;&quot;content.info.tooltip&quot;
+      (click)&#x3D;&quot;openSheet.set(&#x27;about&#x27;)&quot;
+    &gt;
+      {{ content.info.label }}
+    &lt;/button&gt;
+  }
+  &lt;!-- Each block holds one element, so the rail can project it into its bottom group --&gt;
+  @if (showHelpMenu() &amp;&amp; !compact()) {
+    &lt;button
+      hraNavigationRailItem
+      hraNavigationRailBottom
+      icon&#x3D;&quot;help&quot;
+      hraFeature&#x3D;&quot;help&quot;
+      hraClickEvent
+      [hraPlainTooltip]&#x3D;&quot;content.help.tooltip&quot;
+      [matMenuTriggerFor]&#x3D;&quot;helpMenu&quot;
+    &gt;
+      {{ content.help.label }}
+    &lt;/button&gt;
+  }
+  @if (compact()) {
+    &lt;button
+      hraNavigationRailItem
+      icon&#x3D;&quot;more_horiz&quot;
+      hraFeature&#x3D;&quot;more&quot;
+      hraClickEvent
+      [active]&#x3D;&quot;openSheet() &#x3D;&#x3D;&#x3D; &#x27;about&#x27;&quot;
+      [hraPlainTooltip]&#x3D;&quot;content.more.tooltip&quot;
+      [matMenuTriggerFor]&#x3D;&quot;moreMenu&quot;
+    &gt;
+      {{ content.more.label }}
+    &lt;/button&gt;
+  }
+&lt;/hra-navigation-rail&gt;
+
+&lt;!-- Menu items: the label names the item and the supporting text under it describes it --&gt;
+&lt;ng-template let-item let-id&#x3D;&quot;id&quot; #menuItemText&gt;
+  &lt;span class&#x3D;&quot;menu-item-text&quot;&gt;
+    &lt;span [id]&#x3D;&quot;id&quot;&gt;{{ item.label }}&lt;/span&gt;
+    &lt;span class&#x3D;&quot;menu-item-description&quot; [id]&#x3D;&quot;&#x60;${id}-description&#x60;&quot;&gt;{{ item.description }}&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/ng-template&gt;
+
+&lt;!-- Panel clicks stop propagating so the menu stays open while panels are shown and hidden --&gt;
+&lt;mat-menu
+  hraNavigationRailMenu
+  hraFeature&#x3D;&quot;panels-menu&quot;
+  [hraNavigationRailMenuOrientation]&#x3D;&quot;orientation()&quot;
+  #panelsMenu&#x3D;&quot;matMenu&quot;
+&gt;
+  @for (panel of content.panels.options; track panel.id) {
+    &lt;button
+      mat-menu-item
+      role&#x3D;&quot;menuitemcheckbox&quot;
+      hraClickEvent
+      [hraFeature]&#x3D;&quot;panel.id&quot;
+      [attr.aria-checked]&#x3D;&quot;!hiddenPanels().includes(panel.id)&quot;
+      (click)&#x3D;&quot;$event.stopPropagation(); togglePanel(panel.id)&quot;
+    &gt;
+      &lt;mat-icon&gt;{{ hiddenPanels().includes(panel.id) ? &#x27;check_box_outline_blank&#x27; : &#x27;check_box&#x27; }}&lt;/mat-icon&gt;
+      {{ panel.label }}
+    &lt;/button&gt;
+  }
+  &lt;mat-divider /&gt;
+  &lt;button
+    mat-menu-item
+    hraFeature&#x3D;&quot;show-all-panels&quot;
+    hraClickEvent
+    [disabled]&#x3D;&quot;hiddenPanels().length &#x3D;&#x3D;&#x3D; 0&quot;
+    (click)&#x3D;&quot;hiddenPanels.set([])&quot;
+  &gt;
+    &lt;mat-icon&gt;visibility&lt;/mat-icon&gt;
+    {{ content.panels.showAll }}
+  &lt;/button&gt;
+&lt;/mat-menu&gt;
+
+&lt;!-- Clicks stop propagating so the menu stays open while options are toggled --&gt;
+&lt;mat-menu
+  hraNavigationRailMenu
+  hraFeature&#x3D;&quot;display-menu&quot;
+  [hraNavigationRailMenuOrientation]&#x3D;&quot;orientation()&quot;
+  #displayMenu&#x3D;&quot;matMenu&quot;
+&gt;
+  &lt;button
+    mat-menu-item
+    role&#x3D;&quot;menuitemcheckbox&quot;
+    hraFeature&#x3D;&quot;cell-links&quot;
+    hraClickEvent
+    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-cell-links&#x60;&quot;
+    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-cell-links-description&#x60;&quot;
+    [attr.aria-checked]&#x3D;&quot;cellLinks()&quot;
+    (click)&#x3D;&quot;$event.stopPropagation(); cellLinks.set(!cellLinks())&quot;
+  &gt;
+    &lt;mat-icon&gt;{{ cellLinks() ? &#x27;check_box&#x27; : &#x27;check_box_outline_blank&#x27; }}&lt;/mat-icon&gt;
+    &lt;ng-container
+      *ngTemplateOutlet&#x3D;&quot;menuItemText; context: { $implicit: content.display.cellLinks, id: &#x60;${idPrefix}-cell-links&#x60; }&quot;
+    /&gt;
+  &lt;/button&gt;
+  &lt;button
+    mat-menu-item
+    role&#x3D;&quot;menuitemcheckbox&quot;
+    hraFeature&#x3D;&quot;cell-link-data&quot;
+    hraClickEvent
+    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-cell-link-data&#x60;&quot;
+    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-cell-link-data-description&#x60;&quot;
+    [attr.aria-checked]&#x3D;&quot;cellLinkData()&quot;
+    (click)&#x3D;&quot;$event.stopPropagation(); cellLinkData.set(!cellLinkData())&quot;
+  &gt;
+    &lt;mat-icon&gt;{{ cellLinkData() ? &#x27;check_box&#x27; : &#x27;check_box_outline_blank&#x27; }}&lt;/mat-icon&gt;
+    &lt;ng-container
+      *ngTemplateOutlet&#x3D;&quot;
+        menuItemText;
+        context: { $implicit: content.display.cellLinkData, id: &#x60;${idPrefix}-cell-link-data&#x60; }
+      &quot;
+    /&gt;
+  &lt;/button&gt;
+  &lt;button
+    mat-menu-item
+    role&#x3D;&quot;menuitemcheckbox&quot;
+    hraFeature&#x3D;&quot;all-metadata&quot;
+    hraClickEvent
+    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-all-metadata&#x60;&quot;
+    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-all-metadata-description&#x60;&quot;
+    [attr.aria-checked]&#x3D;&quot;allMetadata()&quot;
+    [disabled]&#x3D;&quot;!hasHiddenMetadata()&quot;
+    (click)&#x3D;&quot;$event.stopPropagation(); allMetadata.set(!allMetadata())&quot;
+  &gt;
+    &lt;mat-icon&gt;{{ allMetadata() ? &#x27;check_box&#x27; : &#x27;check_box_outline_blank&#x27; }}&lt;/mat-icon&gt;
+    &lt;ng-container
+      *ngTemplateOutlet&#x3D;&quot;
+        menuItemText;
+        context: { $implicit: content.display.allMetadata, id: &#x60;${idPrefix}-all-metadata&#x60; }
+      &quot;
+    /&gt;
+  &lt;/button&gt;
+&lt;/mat-menu&gt;
+
+&lt;mat-menu
+  hraNavigationRailMenu
+  hraFeature&#x3D;&quot;reset-menu&quot;
+  [hraNavigationRailMenuOrientation]&#x3D;&quot;orientation()&quot;
+  #resetMenu&#x3D;&quot;matMenu&quot;
+&gt;
+  &lt;button
+    mat-menu-item
+    hraFeature&#x3D;&quot;reset-view&quot;
+    hraClickEvent
+    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-reset-view&#x60;&quot;
+    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-reset-view-description&#x60;&quot;
+    (click)&#x3D;&quot;resetViewClick.emit()&quot;
+  &gt;
+    &lt;mat-icon&gt;fit_screen&lt;/mat-icon&gt;
+    &lt;ng-container
+      *ngTemplateOutlet&#x3D;&quot;menuItemText; context: { $implicit: content.reset.view, id: &#x60;${idPrefix}-reset-view&#x60; }&quot;
+    /&gt;
+  &lt;/button&gt;
+  &lt;button
+    mat-menu-item
+    hraFeature&#x3D;&quot;restore-deleted-cells&quot;
+    hraClickEvent
+    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-restore-deleted-cells&#x60;&quot;
+    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-restore-deleted-cells-description&#x60;&quot;
+    [disabled]&#x3D;&quot;!hasDeletedCells()&quot;
+    (click)&#x3D;&quot;restoreDeletedCellsClick.emit()&quot;
+  &gt;
+    &lt;mat-icon&gt;restore_from_trash&lt;/mat-icon&gt;
+    &lt;ng-container
+      *ngTemplateOutlet&#x3D;&quot;
+        menuItemText;
+        context: { $implicit: content.reset.deletedCells, id: &#x60;${idPrefix}-restore-deleted-cells&#x60; }
+      &quot;
+    /&gt;
+  &lt;/button&gt;
+  &lt;button
+    mat-menu-item
+    hraFeature&#x3D;&quot;reset-colors&quot;
+    hraClickEvent
+    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-reset-colors&#x60;&quot;
+    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-reset-colors-description&#x60;&quot;
+    (click)&#x3D;&quot;resetColorsClick.emit()&quot;
+  &gt;
+    &lt;mat-icon&gt;settings_backup_restore&lt;/mat-icon&gt;
+    &lt;ng-container
+      *ngTemplateOutlet&#x3D;&quot;menuItemText; context: { $implicit: content.reset.colors, id: &#x60;${idPrefix}-reset-colors&#x60; }&quot;
+    /&gt;
+  &lt;/button&gt;
+  &lt;mat-divider /&gt;
+  &lt;button
+    mat-menu-item
+    hraFeature&#x3D;&quot;reset-everything&quot;
+    hraClickEvent
+    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-reset-everything&#x60;&quot;
+    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-reset-everything-description&#x60;&quot;
+    (click)&#x3D;&quot;resetEverythingClick.emit()&quot;
+  &gt;
+    &lt;mat-icon&gt;restart_alt&lt;/mat-icon&gt;
+    &lt;ng-container
+      *ngTemplateOutlet&#x3D;&quot;
+        menuItemText;
+        context: { $implicit: content.reset.everything, id: &#x60;${idPrefix}-reset-everything&#x60; }
+      &quot;
+    /&gt;
+  &lt;/button&gt;
+&lt;/mat-menu&gt;
+
+&lt;mat-menu
+  hraNavigationRailMenu
+  yPosition&#x3D;&quot;above&quot;
+  hraFeature&#x3D;&quot;theme-menu&quot;
+  [hraNavigationRailMenuOrientation]&#x3D;&quot;orientation()&quot;
+  #themeMenu&#x3D;&quot;matMenu&quot;
+&gt;
+  @for (option of content.theme.options; track option.id) {
+    &lt;button
+      mat-menu-item
+      role&#x3D;&quot;menuitemradio&quot;
+      hraClickEvent
+      [hraFeature]&#x3D;&quot;option.id&quot;
+      [attr.aria-checked]&#x3D;&quot;themePreference() &#x3D;&#x3D;&#x3D; option.id&quot;
+      (click)&#x3D;&quot;themePreference.set(option.id)&quot;
+    &gt;
+      &lt;mat-icon&gt;{{ themePreference() &#x3D;&#x3D;&#x3D; option.id ? &#x27;radio_button_checked&#x27; : &#x27;radio_button_unchecked&#x27; }}&lt;/mat-icon&gt;
+      {{ option.label }}
+    &lt;/button&gt;
+  }
+&lt;/mat-menu&gt;
+
+&lt;mat-menu
+  hraNavigationRailMenu
+  yPosition&#x3D;&quot;above&quot;
+  hraFeature&#x3D;&quot;help-menu&quot;
+  [hraNavigationRailMenuOrientation]&#x3D;&quot;orientation()&quot;
+  #helpMenu&#x3D;&quot;matMenu&quot;
+&gt;
+  @for (link of content.help.links; track link.id) {
+    &lt;a
+      mat-menu-item
+      target&#x3D;&quot;_blank&quot;
+      rel&#x3D;&quot;noopener noreferrer&quot;
+      hraClickEvent
+      [hraFeature]&#x3D;&quot;link.id&quot;
+      [attr.href]&#x3D;&quot;link.url&quot;
+    &gt;
+      &lt;mat-icon&gt;open_in_new&lt;/mat-icon&gt;
+      {{ link.label }}
+    &lt;/a&gt;
+  }
+&lt;/mat-menu&gt;
+
+&lt;!-- On compact screens, Embed, Theme, Info and Help move here. Theme and Help open as submenus. --&gt;
+&lt;mat-menu
+  hraNavigationRailMenu
+  hraFeature&#x3D;&quot;more-menu&quot;
+  [hraNavigationRailMenuOrientation]&#x3D;&quot;orientation()&quot;
+  #moreMenu&#x3D;&quot;matMenu&quot;
+&gt;
+  &lt;a
+    mat-menu-item
+    target&#x3D;&quot;_blank&quot;
+    rel&#x3D;&quot;noopener noreferrer&quot;
+    hraFeature&#x3D;&quot;embed&quot;
+    hraClickEvent
+    [attr.href]&#x3D;&quot;content.embed.url&quot;
+  &gt;
+    &lt;mat-icon&gt;open_in_new&lt;/mat-icon&gt;
+    {{ content.embed.label }}
+  &lt;/a&gt;
+  @if (showThemeMenu()) {
+    &lt;button mat-menu-item hraFeature&#x3D;&quot;theme&quot; hraClickEvent [matMenuTriggerFor]&#x3D;&quot;themeMenu&quot;&gt;
+      &lt;mat-icon&gt;{{ themeIcon() }}&lt;/mat-icon&gt;
+      {{ content.theme.label }}
+    &lt;/button&gt;
+  }
+  &lt;button mat-menu-item hraFeature&#x3D;&quot;info&quot; hraClickEvent (click)&#x3D;&quot;openSheet.set(&#x27;about&#x27;)&quot;&gt;
+    &lt;mat-icon&gt;info&lt;/mat-icon&gt;
+    {{ content.info.label }}
+  &lt;/button&gt;
+  @if (showHelpMenu()) {
+    &lt;button mat-menu-item hraFeature&#x3D;&quot;help&quot; hraClickEvent [matMenuTriggerFor]&#x3D;&quot;helpMenu&quot;&gt;
+      &lt;mat-icon&gt;help&lt;/mat-icon&gt;
+      {{ content.help.label }}
+    &lt;/button&gt;
+  }
+&lt;/mat-menu&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><hra-navigation-rail [attr.aria-label]="content.label" [orientation]="orientation()">  @if (showPanelsMenu()) {    <button      hraNavigationRailItem      icon="space_dashboard"      hraFeature="panels"      hraClickEvent      [hraPlainTooltip]="content.panels.tooltip"      [matMenuTriggerFor]="panelsMenu"    >      {{ content.panels.label }}    </button>  }  <button    hraNavigationRailItem    icon="layers"    hraFeature="display"    hraClickEvent    [hraPlainTooltip]="content.display.tooltip"    [matMenuTriggerFor]="displayMenu"  >    {{ content.display.label }}  </button>  <button    hraNavigationRailItem    icon="restart_alt"    hraFeature="reset"    hraClickEvent    [hraPlainTooltip]="content.reset.tooltip"    [matMenuTriggerFor]="resetMenu"  >    {{ content.reset.label }}  </button>  @if (!compact()) {    <mat-divider />  }  <button    hraNavigationRailItem    icon="download"    hraFeature="downloads"    hraClickEvent    [active]="openSheet() === \'downloads\'"    [hraPlainTooltip]="content.downloads.tooltip"    (click)="openSheet.set(\'downloads\')"  >    {{ content.downloads.label }}  </button>  <!-- One item per block, so each block projects by its item\'s selector (the bottom items pin to the bottom) -->  @if (!compact()) {    <a      hraNavigationRailItem      icon="code"      target="_blank"      rel="noopener noreferrer"      hraFeature="embed"      hraClickEvent      [attr.href]="content.embed.url"      [hraPlainTooltip]="content.embed.tooltip"    >      {{ content.embed.label }}    </a>  }  @if (showThemeMenu() && !compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      hraFeature="theme"      hraClickEvent      [icon]="themeIcon()"      [hraPlainTooltip]="content.theme.tooltip"      [matMenuTriggerFor]="themeMenu"    >      {{ content.theme.label }}    </button>  }  @if (!compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      icon="info"      hraFeature="info"      hraClickEvent      [active]="openSheet() === \'about\'"      [hraPlainTooltip]="content.info.tooltip"      (click)="openSheet.set(\'about\')"    >      {{ content.info.label }}    </button>  }  <!-- Each block holds one element, so the rail can project it into its bottom group -->  @if (showHelpMenu() && !compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      icon="help"      hraFeature="help"      hraClickEvent      [hraPlainTooltip]="content.help.tooltip"      [matMenuTriggerFor]="helpMenu"    >      {{ content.help.label }}    </button>  }  @if (compact()) {    <button      hraNavigationRailItem      icon="more_horiz"      hraFeature="more"      hraClickEvent      [active]="openSheet() === \'about\'"      [hraPlainTooltip]="content.more.tooltip"      [matMenuTriggerFor]="moreMenu"    >      {{ content.more.label }}    </button>  }</hra-navigation-rail><!-- Menu items: the label names the item and the supporting text under it describes it --><ng-template let-item let-id="id" #menuItemText>  <span class="menu-item-text">    <span [id]="id">{{ item.label }}</span>    <span class="menu-item-description" [id]="`${id}-description`">{{ item.description }}</span>  </span></ng-template><!-- Panel clicks stop propagating so the menu stays open while panels are shown and hidden --><mat-menu  hraNavigationRailMenu  hraFeature="panels-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #panelsMenu="matMenu">  @for (panel of content.panels.options; track panel.id) {    <button      mat-menu-item      role="menuitemcheckbox"      hraClickEvent      [hraFeature]="panel.id"      [attr.aria-checked]="!hiddenPanels().includes(panel.id)"      (click)="$event.stopPropagation(); togglePanel(panel.id)"    >      <mat-icon>{{ hiddenPanels().includes(panel.id) ? \'check_box_outline_blank\' : \'check_box\' }}</mat-icon>      {{ panel.label }}    </button>  }  <mat-divider />  <button    mat-menu-item    hraFeature="show-all-panels"    hraClickEvent    [disabled]="hiddenPanels().length === 0"    (click)="hiddenPanels.set([])"  >    <mat-icon>visibility</mat-icon>    {{ content.panels.showAll }}  </button></mat-menu><!-- Clicks stop propagating so the menu stays open while options are toggled --><mat-menu  hraNavigationRailMenu  hraFeature="display-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #displayMenu="matMenu">  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="cell-links"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-cell-links`"    [attr.aria-describedby]="`${idPrefix}-cell-links-description`"    [attr.aria-checked]="cellLinks()"    (click)="$event.stopPropagation(); cellLinks.set(!cellLinks())"  >    <mat-icon>{{ cellLinks() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.display.cellLinks, id: `${idPrefix}-cell-links` }"    />  </button>  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="cell-link-data"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-cell-link-data`"    [attr.aria-describedby]="`${idPrefix}-cell-link-data-description`"    [attr.aria-checked]="cellLinkData()"    (click)="$event.stopPropagation(); cellLinkData.set(!cellLinkData())"  >    <mat-icon>{{ cellLinkData() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.display.cellLinkData, id: `${idPrefix}-cell-link-data` }      "    />  </button>  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="all-metadata"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-all-metadata`"    [attr.aria-describedby]="`${idPrefix}-all-metadata-description`"    [attr.aria-checked]="allMetadata()"    [disabled]="!hasHiddenMetadata()"    (click)="$event.stopPropagation(); allMetadata.set(!allMetadata())"  >    <mat-icon>{{ allMetadata() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.display.allMetadata, id: `${idPrefix}-all-metadata` }      "    />  </button></mat-menu><mat-menu  hraNavigationRailMenu  hraFeature="reset-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #resetMenu="matMenu">  <button    mat-menu-item    hraFeature="reset-view"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-view`"    [attr.aria-describedby]="`${idPrefix}-reset-view-description`"    (click)="resetViewClick.emit()"  >    <mat-icon>fit_screen</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.reset.view, id: `${idPrefix}-reset-view` }"    />  </button>  <button    mat-menu-item    hraFeature="restore-deleted-cells"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-restore-deleted-cells`"    [attr.aria-describedby]="`${idPrefix}-restore-deleted-cells-description`"    [disabled]="!hasDeletedCells()"    (click)="restoreDeletedCellsClick.emit()"  >    <mat-icon>restore_from_trash</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.reset.deletedCells, id: `${idPrefix}-restore-deleted-cells` }      "    />  </button>  <button    mat-menu-item    hraFeature="reset-colors"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-colors`"    [attr.aria-describedby]="`${idPrefix}-reset-colors-description`"    (click)="resetColorsClick.emit()"  >    <mat-icon>settings_backup_restore</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.reset.colors, id: `${idPrefix}-reset-colors` }"    />  </button>  <mat-divider />  <button    mat-menu-item    hraFeature="reset-everything"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-everything`"    [attr.aria-describedby]="`${idPrefix}-reset-everything-description`"    (click)="resetEverythingClick.emit()"  >    <mat-icon>restart_alt</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.reset.everything, id: `${idPrefix}-reset-everything` }      "    />  </button></mat-menu><mat-menu  hraNavigationRailMenu  yPosition="above"  hraFeature="theme-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #themeMenu="matMenu">  @for (option of content.theme.options; track option.id) {    <button      mat-menu-item      role="menuitemradio"      hraClickEvent      [hraFeature]="option.id"      [attr.aria-checked]="themePreference() === option.id"      (click)="themePreference.set(option.id)"    >      <mat-icon>{{ themePreference() === option.id ? \'radio_button_checked\' : \'radio_button_unchecked\' }}</mat-icon>      {{ option.label }}    </button>  }</mat-menu><mat-menu  hraNavigationRailMenu  yPosition="above"  hraFeature="help-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #helpMenu="matMenu">  @for (link of content.help.links; track link.id) {    <a      mat-menu-item      target="_blank"      rel="noopener noreferrer"      hraClickEvent      [hraFeature]="link.id"      [attr.href]="link.url"    >      <mat-icon>open_in_new</mat-icon>      {{ link.label }}    </a>  }</mat-menu><!-- On compact screens, Embed, Theme, Info and Help move here. Theme and Help open as submenus. --><mat-menu  hraNavigationRailMenu  hraFeature="more-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #moreMenu="matMenu">  <a    mat-menu-item    target="_blank"    rel="noopener noreferrer"    hraFeature="embed"    hraClickEvent    [attr.href]="content.embed.url"  >    <mat-icon>open_in_new</mat-icon>    {{ content.embed.label }}  </a>  @if (showThemeMenu()) {    <button mat-menu-item hraFeature="theme" hraClickEvent [matMenuTriggerFor]="themeMenu">      <mat-icon>{{ themeIcon() }}</mat-icon>      {{ content.theme.label }}    </button>  }  <button mat-menu-item hraFeature="info" hraClickEvent (click)="openSheet.set(\'about\')">    <mat-icon>info</mat-icon>    {{ content.info.label }}  </button>  @if (showHelpMenu()) {    <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">      <mat-icon>help</mat-icon>      {{ content.help.label }}    </button>  }</mat-menu></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'cde-about'},{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ChartSkeletonComponent', 'selector': 'cde-chart-skeleton'},{'name': 'ColorPickerComponent', 'selector': 'cde-color-picker'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'DownloadFileComponent', 'selector': 'cde-download-file'},{'name': 'DownloadsComponent', 'selector': 'cde-downloads'},{'name': 'EmptyStateComponent', 'selector': 'cde-empty-state'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'SkeletonComponent', 'selector': 'cde-skeleton'},{'name': 'ToolbarComponent', 'selector': 'cde-toolbar'},{'name': 'ViolinComponent', 'selector': 'cde-violin'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ToolbarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ToolbarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -316,24 +316,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LiveAnnouncer } from &#x27;@angular/cdk/a11y&#x27;;
+import {
+  afterRenderEffect,
   ApplicationRef,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
+  linkedSignal,
   output,
   OutputEmitterRef,
   Signal,
   signal,
   untracked,
-  ViewContainerRef,
+  viewChild,
 } from &#x27;@angular/core&#x27;;
-import { MatProgressBarModule } from &#x27;@angular/material/progress-bar&#x27;;
-import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { takeUntilDestroyed, toObservable } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { MatSidenavModule } from &#x27;@angular/material/sidenav&#x27;;
+import { MAT_TABS_CONFIG, MatTabsModule } from &#x27;@angular/material/tabs&#x27;;
+import { HraCommonModule, monitorWidth } from &#x27;@hra-ui/common&#x27;;
 import { Rgb, rgbToHex } from &#x27;@hra-ui/design-system/color-picker&#x27;;
+import { SnackbarService } from &#x27;@hra-ui/design-system/snackbar&#x27;;
 import { DEFAULT_MAX_EDGE_DISTANCE, DEFAULT_NODE_TARGET_SELECTOR, NodeEvent } from &#x27;@hra-ui/node-dist-vis&#x27;;
 import {
   AnyData,
@@ -359,20 +367,39 @@ import {
   NodeKeysInput,
   NodesInput,
   toCsv,
+  ViewMode,
   withDataViewDefaultGenerator,
 } from &#x27;@hra-ui/node-dist-vis/models&#x27;;
+import { debounceTime, distinctUntilChanged, pairwise } from &#x27;rxjs&#x27;;
 
+import { AboutComponent } from &#x27;../components/about/about.component&#x27;;
 import { CellTypesComponent } from &#x27;../components/cell-types/cell-types.component&#x27;;
+import { DownloadsComponent } from &#x27;../components/downloads/downloads.component&#x27;;
+import {
+  DOWNLOADS_CONTENT,
+  DownloadFileId,
+  DownloadRequest,
+  UnavailableDownloads,
+} from &#x27;../components/downloads/downloads.content&#x27;;
+import {
+  EmptyStateContent,
+  NO_CELL_TYPES_SELECTED_CONTENT,
+  noDistancesContent,
+} from &#x27;../components/empty-state/empty-state.content&#x27;;
 import { HistogramComponent } from &#x27;../components/histogram/histogram.component&#x27;;
-import { MetadataComponent } from &#x27;../components/metadata/metadata.component&#x27;;
+import { hasHiddenFields, MetadataComponent } from &#x27;../components/metadata/metadata.component&#x27;;
 import { NodeDistVisualizationComponent } from &#x27;../components/node-dist-visualization/node-dist-visualization.component&#x27;;
+import { ToolbarComponent } from &#x27;../components/toolbar/toolbar.component&#x27;;
+import { ToolbarSheet } from &#x27;../components/toolbar/toolbar.content&#x27;;
 import { ViolinComponent } from &#x27;../components/violin/violin.component&#x27;;
 import { CellTypeEntry } from &#x27;../models/cell-type&#x27;;
 import { loadMetadata, MetadataInput } from &#x27;../models/metadata&#x27;;
+import { loadHiddenPanels, PanelId, parseHiddenPanels, saveHiddenPanels, TAB_IDS, TabId } from &#x27;../models/panels&#x27;;
 import { FileSaverService } from &#x27;../services/file-saver/file-saver.service&#x27;;
+import { ThemeSwitchService } from &#x27;../services/theme-switch/theme-switch.service&#x27;;
 import { numberAttribute } from &#x27;../shared/attribute-transform&#x27;;
 import { emptyArrayEquals } from &#x27;../shared/empty-array-equals&#x27;;
-import { LoadingManager } from &#x27;../shared/loading-manager&#x27;;
+import { loadingObserver } from &#x27;../shared/loading-observer&#x27;;
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
@@ -384,6 +411,60 @@ export interface DistanceEntry {
   distance: number;
 }
 
+/** Announced to screen readers once all data has loaded */
+const LOADED_ANNOUNCEMENT &#x3D; &#x27;Visualization loaded&#x27;;
+
+/** Time in ms that loading must stay finished before the loaded announcement */
+const LOADED_ANNOUNCEMENT_DEBOUNCE &#x3D; 250;
+
+/** Action of the snackbars shown after a reset */
+const UNDO_ACTION &#x3D; &#x27;Undo&#x27;;
+
+/** Snackbar message after the colors are reset */
+const RESET_COLORS_MESSAGE &#x3D; &#x27;Colors reset&#x27;;
+
+/** Snackbar message after everything is reset */
+const RESET_EVERYTHING_MESSAGE &#x3D; &#x27;Visualization reset&#x27;;
+
+/** Time in ms the snackbars shown after a reset stay open */
+const UNDO_SNACKBAR_DURATION &#x3D; 10000;
+
+/** Announced after the downloads notice shows all panels */
+const ALL_PANELS_SHOWN_ANNOUNCEMENT &#x3D; &#x27;All panels shown&#x27;;
+
+/** Image downloads of the panels that can be hidden */
+const PANEL_IMAGE_DOWNLOADS: Partial&lt;Record&lt;PanelId, DownloadFileId&gt;&gt; &#x3D; {
+  &#x27;distance-visualization&#x27;: &#x27;visualization&#x27;,
+  &#x27;violin-graph&#x27;: &#x27;violin-graph&#x27;,
+  histogram: &#x27;histogram&#x27;,
+};
+
+/** Below this width the panels show as tabs. Angular Material&#x27;s Large breakpoint starts here. */
+const TABBED_LAYOUT_BREAKPOINT &#x3D; 1280;
+
+/** Below this width the toolbar is a bar along the bottom. Angular Material&#x27;s Small breakpoint starts here. */
+const COMPACT_LAYOUT_BREAKPOINT &#x3D; 600;
+
+/** Name of the tab bar */
+const TABS_LABEL &#x3D; &#x27;Panels&#x27;;
+
+/** Labels of the tabs */
+const TAB_LABELS: Record&lt;TabId, string&gt; &#x3D; {
+  &#x27;cell-types&#x27;: &#x27;Cell types&#x27;,
+  &#x27;distance-visualization&#x27;: &#x27;Spatial view&#x27;,
+  &#x27;violin-graph&#x27;: &#x27;Violin graph&#x27;,
+  histogram: &#x27;Histogram&#x27;,
+  metadata: &#x27;Metadata&#x27;,
+};
+
+/** Number of visualizations created so far, which keeps each one&#x27;s tab ids unique */
+let visualizationCount &#x3D; 0;
+
+/** Waits for the next animation frame */
+function nextFrame(): Promise&lt;void&gt; {
+  return new Promise((resolve) &#x3D;&gt; requestAnimationFrame(() &#x3D;&gt; resolve()));
+}
+
 /**
  * CDE Visualization Root Component
  */
@@ -391,15 +472,21 @@ export interface DistanceEntry {
   selector: &#x27;cde-visualization-root&#x27;,
   imports: [
     HraCommonModule,
-    MatProgressBarModule,
+    MatSidenavModule,
+    MatTabsModule,
+    AboutComponent,
     CellTypesComponent,
+    DownloadsComponent,
     HistogramComponent,
     MetadataComponent,
     NodeDistVisualizationComponent,
+    ToolbarComponent,
     ViolinComponent,
   ],
   templateUrl: &#x27;./cde-visualization.component.html&#x27;,
   styleUrl: &#x27;./cde-visualization.component.scss&#x27;,
+  // Angular Material&#x27;s default tab options, not the design system&#x27;s (provideTabs)
+  providers: [ThemeSwitchService, { provide: MAT_TABS_CONFIG, useValue: {} }],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: &#x27;hra-app&#x27;,
@@ -462,6 +549,12 @@ export class CdeVisualizationComponent {
   /** Input metadata */
   readonly metadata &#x3D; input&lt;MetadataInput&gt;();
 
+  /** Study the data comes from, shown first in the metadata panel */
+  readonly study &#x3D; input&lt;string&gt;();
+
+  /** Url of the study&#x27;s page, which the study name links to */
+  readonly studyUrl &#x3D; input&lt;string&gt;();
+
   /** Title of the visualization */
   readonly title &#x3D; input&lt;string&gt;();
 
@@ -492,6 +585,21 @@ export class CdeVisualizationComponent {
   /** Name of color map file */
   readonly colorMapFileName &#x3D; input&lt;string&gt;();
 
+  /** Hides the toolbar&#x27;s Theme menu, for pages that switch the theme themselves */
+  readonly hideThemeMenu &#x3D; input(false, { transform: booleanAttribute });
+
+  /** Hides the toolbar&#x27;s Help menu, for pages that link to help themselves */
+  readonly hideHelpMenu &#x3D; input(false, { transform: booleanAttribute });
+
+  /**
+   * Panels hidden at first and after Reset everything, as an array or a comma or space separated list of
+   * metadata, distance-visualization, violin-graph and histogram. The cell types panel always shows.
+   */
+  readonly hiddenPanels &#x3D; input&lt;PanelId[], unknown&gt;([], { transform: parseHiddenPanels });
+
+  /** Remembers the panels shown and hidden from the toolbar in this browser&#x27;s local storage */
+  readonly rememberPanels &#x3D; input(false, { transform: booleanAttribute });
+
   /** Event emitted when a node is clicked */
   readonly nodeClick &#x3D; output&lt;NodeEvent&gt;();
 
@@ -510,11 +618,33 @@ export class CdeVisualizationComponent {
   // eslint-disable-next-line @angular-eslint/no-output-rename -- Backwards compatibility
   readonly colorMapChange &#x3D; output&lt;AnyData&gt;({ alias: &#x27;colorMap&#x27; });
 
-  /** View container. Do NOT change the name. It is used by ngx-color-picker! */
-  readonly vcRef &#x3D; inject(ViewContainerRef);
+  /** Whether the nodes are loading */
+  protected readonly nodesLoading &#x3D; signal(false);
 
-  /** Whether there are loading resources, etc. */
-  protected loadingManager &#x3D; new LoadingManager();
+  /** Whether the edges are loading */
+  private readonly edgesLoading &#x3D; signal(false);
+
+  /** Whether the edges are being generated from the nodes */
+  private readonly edgesGenerating &#x3D; signal(false);
+
+  /** Whether the color map is loading */
+  private readonly colorMapLoading &#x3D; signal(false);
+
+  /** Whether the metadata is loading */
+  protected readonly metadataLoading &#x3D; signal(false);
+
+  /** Whether the cell types are loading. They come from the nodes and the color map. */
+  protected readonly cellTypesLoading &#x3D; computed(() &#x3D;&gt; this.nodesLoading() || this.colorMapLoading());
+
+  /** Whether the distances are loading. They need the nodes and the loaded or generated edges. */
+  protected readonly distancesLoading &#x3D; computed(
+    () &#x3D;&gt; this.nodesLoading() || this.edgesLoading() || this.edgesGenerating(),
+  );
+
+  /** Whether any data is loading */
+  private readonly anyLoading &#x3D; computed(
+    () &#x3D;&gt; this.cellTypesLoading() || this.distancesLoading() || this.metadataLoading(),
+  );
 
   /** Sets the node target selector (uses default if not available) */
   protected readonly nodeTargetSelectorWithDefault &#x3D; computed(() &#x3D;&gt; {
@@ -526,18 +656,18 @@ export class CdeVisualizationComponent {
     this.nodes,
     this.nodeKeys,
     this.nodeTargetKey,
-    this.loadingManager.createObserver(),
+    loadingObserver(this.nodesLoading),
   );
 
   /** View of the edge data */
   protected readonly edgesView &#x3D; withDataViewDefaultGenerator(
-    loadEdges(this.edges, this.edgeKeys, this.loadingManager.createObserver()),
+    loadEdges(this.edges, this.edgeKeys, loadingObserver(this.edgesLoading)),
     createEdgeGenerator(
       this.nodesView,
       this.edges,
       this.nodeTargetSelectorWithDefault,
       this.maxEdgeDistance,
-      this.loadingManager.createObserver(),
+      loadingObserver(this.edgesGenerating),
     ),
     EMPTY_EDGES_VIEW,
     false,
@@ -550,7 +680,7 @@ export class CdeVisualizationComponent {
       this.colorMapKeys,
       this.colorMapKey,
       this.colorMapValue,
-      this.loadingManager.createObserver(),
+      loadingObserver(this.colorMapLoading),
     ),
     createColorMapGenerator(this.nodesView, this.colorMap),
     EMPTY_COLOR_MAP_VIEW,
@@ -560,6 +690,8 @@ export class CdeVisualizationComponent {
   protected readonly metadataView &#x3D; loadMetadata(
     this.metadata,
     {
+      study: this.study,
+      studyUrl: this.studyUrl,
       title: this.title,
       organ: this.organ,
       technology: this.technology,
@@ -571,7 +703,7 @@ export class CdeVisualizationComponent {
       sourceFileName: this.sourceFileName,
       colorMapFileName: this.colorMapFileName,
     },
-    this.loadingManager.createObserver(),
+    loadingObserver(this.metadataLoading),
   );
 
   /** Filter for node data */
@@ -580,11 +712,11 @@ export class CdeVisualizationComponent {
   /** List of cell types */
   readonly cellTypes &#x3D; signal&lt;CellTypeEntry[]&gt;([]);
 
+  /** All cells color picked in the histogram, or undefined to use the theme&#x27;s color */
+  protected readonly allCellsColor &#x3D; signal&lt;Rgb | undefined&gt;(undefined);
+
   /** List of selected cell types */
   readonly cellTypesSelection &#x3D; signal&lt;string[]&gt;([], { equal: emptyArrayEquals });
-
-  /** Counter for resetting cell types */
-  protected readonly cellTypesResetCounter &#x3D; signal(0);
 
   /** Computed cell types as color map entries */
   protected readonly cellTypesAsColorMap &#x3D; computed(
@@ -613,14 +745,12 @@ export class CdeVisualizationComponent {
     const edgeCounts &#x3D; this.edgeCounts();
     const colorLookup &#x3D; this.colorMapView().getColorLookup();
 
-    return Array.from(nodeCounts).map(
-      ([name, count]): CellTypeEntry &#x3D;&gt; ({
-        name,
-        count,
-        outgoingEdgeCount: edgeCounts.get(name) ?? 0,
-        color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
-      }),
-    );
+    return Array.from(nodeCounts).map(([name, count]): CellTypeEntry &#x3D;&gt; ({
+      name,
+      count,
+      outgoingEdgeCount: edgeCounts.get(name) ?? 0,
+      color: (colorLookup.get(name) as Rgb) ?? [255, 255, 255],
+    }));
   });
 
   /** Adjustments for cell type counts */
@@ -646,9 +776,6 @@ export class CdeVisualizationComponent {
 
   /** Effect to create cell types */
   readonly cellTypesCreateRef &#x3D; effect(() &#x3D;&gt; {
-    // Grab dependency on the reset counter
-    this.cellTypesResetCounter();
-
     this.cellTypes.set(this.cellTypesFromNodes());
     this.cellTypesSelection.set(this.cellTypesSelectionFromNodes());
   });
@@ -664,6 +791,67 @@ export class CdeVisualizationComponent {
     { equal: emptyArrayEquals },
   );
 
+  /** Whether the cell types have loaded and none of them are selected, so every panel is empty */
+  private readonly noCellTypesSelected &#x3D; computed(
+    () &#x3D;&gt; this.cellTypes().length &gt; 0 &amp;&amp; this.cellTypesSelection().length &#x3D;&#x3D;&#x3D; 0,
+  );
+
+  /**
+   * Whether there are cell types besides the anchor type but none of them are selected.
+   * The charts leave the anchor type out, so they have no distances to show.
+   */
+  private readonly noDistancesSelected &#x3D; computed(() &#x3D;&gt; {
+    const anchor &#x3D; this.nodeTargetSelectorWithDefault();
+    return this.cellTypes().some(({ name }) &#x3D;&gt; name !&#x3D;&#x3D; anchor) &amp;&amp; this.filteredCellTypes().length &#x3D;&#x3D;&#x3D; 0;
+  });
+
+  /** Empty state for the distance visualization */
+  protected readonly visualizationEmptyState &#x3D; computed(() &#x3D;&gt;
+    this.noCellTypesSelected() ? NO_CELL_TYPES_SELECTED_CONTENT : undefined,
+  );
+
+  /** Empty state for the violin graph and histogram */
+  protected readonly chartsEmptyState &#x3D; computed((): EmptyStateContent | undefined &#x3D;&gt; {
+    if (this.noCellTypesSelected()) {
+      return NO_CELL_TYPES_SELECTED_CONTENT;
+    } else if (this.noDistancesSelected()) {
+      return noDistancesContent(this.nodeTargetSelectorWithDefault());
+    }
+    return undefined;
+  });
+
+  /**
+   * Files that would be empty with the current selection, and images of hidden panels,
+   * so the downloads drawer disables them
+   */
+  protected readonly unavailableDownloads &#x3D; computed((): UnavailableDownloads | undefined &#x3D;&gt; {
+    const { unavailable, groups } &#x3D; DOWNLOADS_CONTENT;
+    if (this.noCellTypesSelected()) {
+      const files &#x3D; groups.flatMap((group) &#x3D;&gt; group.files.map((file) &#x3D;&gt; file.id));
+      return { files, notice: unavailable.noCellTypes };
+    }
+
+    const files: DownloadFileId[] &#x3D; [];
+    const notices: string[] &#x3D; [];
+    if (this.noDistancesSelected()) {
+      files.push(&#x27;violin-graph&#x27;, &#x27;histogram&#x27;);
+      notices.push(unavailable.noDistances(this.nodeTargetSelectorWithDefault()));
+    }
+
+    // The tabs have no Panels menu, so their notice doesn&#x27;t point to it or offer to show the panels
+    const tabbed &#x3D; this.tabbed();
+    const hiddenImages &#x3D; this.layoutHiddenPanels()
+      .map((panel) &#x3D;&gt; PANEL_IMAGE_DOWNLOADS[panel])
+      .filter((file): file is DownloadFileId &#x3D;&gt; file !&#x3D;&#x3D; undefined &amp;&amp; !files.includes(file));
+    if (hiddenImages.length &gt; 0) {
+      files.push(...hiddenImages);
+      notices.push(tabbed ? unavailable.hiddenPanelsInTabs : unavailable.hiddenPanels);
+    }
+
+    const showPanels &#x3D; hiddenImages.length &gt; 0 &amp;&amp; !tabbed;
+    return files.length &gt; 0 ? { files, notice: notices.join(&#x27; &#x27;), showPanels } : undefined;
+  });
+
   /** Computed distances between nodes */
   protected readonly distances &#x3D; computed(() &#x3D;&gt; this.computeDistances(), { equal: emptyArrayEquals });
 
@@ -673,19 +861,201 @@ export class CdeVisualizationComponent {
   /** Colors for the histogram visualization */
   protected readonly filteredColors &#x3D; computed(() &#x3D;&gt; this.computeFilteredColors(), { equal: emptyArrayEquals });
 
+  /** Whether the distance visualization hides cell links. Set from the toolbar and the fullscreen menu. */
+  protected readonly edgesDisabled &#x3D; signal(false);
+
+  /** Whether the cell types table shows the cell link columns */
+  protected readonly showCellLinkData &#x3D; signal(true);
+
+  /** Whether the metadata panel shows every field, including empty ones */
+  protected readonly showAllMetadata &#x3D; signal(false);
+
+  /** Distance visualization&#x27;s view mode */
+  protected readonly viewMode &#x3D; signal&lt;ViewMode&gt;(&#x27;explore&#x27;);
+
+  /** Panels hidden from the toolbar, starting from the remembered panels or the hiddenPanels input */
+  protected readonly panelsHidden &#x3D; linkedSignal(() &#x3D;&gt;
+    this.rememberPanels() ? (loadHiddenPanels() ?? this.hiddenPanels()) : this.hiddenPanels(),
+  );
+
+  /** Host element */
+  private readonly elementRef &#x3D; inject(ElementRef);
+
+  /** Width of the visualization, which picks between the panel and tabbed layouts */
+  private readonly width &#x3D; monitorWidth(() &#x3D;&gt; this.elementRef);
+
+  /** Whether the panels show as tabs. A visualization that isn&#x27;t laid out yet (0 wide) keeps the panel layout. */
+  protected readonly tabbed &#x3D; computed(() &#x3D;&gt; this.width() &gt; 0 &amp;&amp; this.width() &lt; TABBED_LAYOUT_BREAKPOINT);
+
+  /** Whether the visualization is phone-sized: the toolbar runs along the bottom and the controls get compact */
+  protected readonly compact &#x3D; computed(() &#x3D;&gt; this.width() &gt; 0 &amp;&amp; this.width() &lt; COMPACT_LAYOUT_BREAKPOINT);
+
+  /**
+   * Panels hidden in the current layout. The tabs have no Panels menu, so they follow only the hiddenPanels input,
+   * and panels hidden from the toolbar apply to the panel layout.
+   */
+  protected readonly layoutHiddenPanels &#x3D; computed(() &#x3D;&gt; (this.tabbed() ? this.hiddenPanels() : this.panelsHidden()));
+
+  /** Tabs that show: the cell types tab and the tabs of the panels that the hiddenPanels input doesn&#x27;t hide */
+  protected readonly tabs &#x3D; computed(() &#x3D;&gt; {
+    const hidden: readonly string[] &#x3D; this.hiddenPanels();
+    return TAB_IDS.filter((tab) &#x3D;&gt; tab &#x3D;&#x3D;&#x3D; &#x27;cell-types&#x27; || !hidden.includes(tab));
+  });
+
+  /** Tab picked in the tab bar */
+  protected readonly selectedTab &#x3D; signal&lt;TabId | undefined&gt;(undefined);
+
+  /** Tab that shows: the picked tab while it&#x27;s available, otherwise the distance visualization or the cell types */
+  protected readonly activeTab &#x3D; computed((): TabId &#x3D;&gt; {
+    const tabs &#x3D; this.tabs();
+    const selected &#x3D; this.selectedTab();
+    if (selected !&#x3D;&#x3D; undefined &amp;&amp; tabs.includes(selected)) {
+      return selected;
+    }
+    return tabs.includes(&#x27;distance-visualization&#x27;) ? &#x27;distance-visualization&#x27; : &#x27;cell-types&#x27;;
+  });
+
+  /** Panel open in full screen. It becomes the active tab if the panels switch to tabs. */
+  protected readonly fullscreenPanel &#x3D; signal&lt;TabId | undefined&gt;(undefined);
+
+  /** Name of the tab bar */
+  protected readonly tabsLabel &#x3D; TABS_LABEL;
+
+  /** Labels of the tabs */
+  protected readonly tabLabels &#x3D; TAB_LABELS;
+
+  /** Prefix of this visualization&#x27;s tab ids */
+  private readonly tabIdPrefix &#x3D; &#x60;cde-visualization-tab-${visualizationCount++}-&#x60;;
+
+  /**
+   * Which panels show, and whether the top row and the visualizations column still have a panel showing.
+   * In the tabbed layout, only the active tab&#x27;s panels show.
+   */
+  protected readonly layout &#x3D; computed(() &#x3D;&gt; {
+    const hidden &#x3D; this.layoutHiddenPanels();
+    const tab &#x3D; this.tabbed() ? this.activeTab() : undefined;
+    const shows &#x3D; (panel: PanelId) &#x3D;&gt; !hidden.includes(panel) &amp;&amp; (tab &#x3D;&#x3D;&#x3D; undefined || tab &#x3D;&#x3D;&#x3D; panel);
+    const cellTypes &#x3D; tab &#x3D;&#x3D;&#x3D; undefined || tab &#x3D;&#x3D;&#x3D; &#x27;cell-types&#x27;;
+    const metadata &#x3D; shows(&#x27;metadata&#x27;);
+    const distanceVisualization &#x3D; shows(&#x27;distance-visualization&#x27;);
+    const violinGraph &#x3D; shows(&#x27;violin-graph&#x27;);
+    const histogram &#x3D; shows(&#x27;histogram&#x27;);
+    const topRow &#x3D; distanceVisualization || violinGraph;
+    return {
+      sidebar: cellTypes || metadata,
+      cellTypes,
+      metadata,
+      distanceVisualization,
+      violinGraph,
+      histogram,
+      topRow,
+      visualizations: topRow || histogram,
+    };
+  });
+
+  /** Whether the metadata has fields that only show with all metadata */
+  protected readonly hasHiddenMetadata &#x3D; computed(() &#x3D;&gt; hasHiddenFields(this.metadataView()));
+
+  /** Whether any cells were deleted from the distance visualization */
+  protected readonly hasDeletedCells &#x3D; computed(() &#x3D;&gt; (this.nodeFilterView().exclude?.length ?? 0) &gt; 0);
+
+  /** Sheet that&#x27;s open in the drawer, if any. The toolbar&#x27;s Downloads and Info items open it */
+  protected readonly openSheet &#x3D; signal&lt;ToolbarSheet | undefined&gt;(undefined);
+
+  /** Sheet shown in the drawer. Keeps the last open sheet while the drawer closes, so it doesn&#x27;t vanish mid-animation */
+  protected readonly sheet &#x3D; linkedSignal&lt;ToolbarSheet | undefined, ToolbarSheet&gt;({
+    source: this.openSheet,
+    computation: (openSheet, previous) &#x3D;&gt; openSheet ?? previous?.value ?? &#x27;downloads&#x27;,
+  });
+
   /** Injected file saver service */
   private readonly fileSaver &#x3D; inject(FileSaverService);
 
+  /** Announces the charts&#x27; empty state to screen readers */
+  private readonly liveAnnouncer &#x3D; inject(LiveAnnouncer);
+
+  /** Switches the visualization between the page&#x27;s theme and the light and dark themes */
+  protected readonly themeSwitch &#x3D; inject(ThemeSwitchService);
+
+  /** Downloads sheet, while it&#x27;s the drawer&#x27;s sheet */
+  private readonly downloadsSheet &#x3D; viewChild(DownloadsComponent);
+
+  /** About sheet, while it&#x27;s the drawer&#x27;s sheet */
+  private readonly aboutSheet &#x3D; viewChild(AboutComponent);
+
+  /** Id of the sheet&#x27;s title, which labels the drawer */
+  protected readonly sheetLabelledBy &#x3D; computed(() &#x3D;&gt;
+    this.sheet() &#x3D;&#x3D;&#x3D; &#x27;downloads&#x27; ? this.downloadsSheet()?.titleId : this.aboutSheet()?.titleId,
+  );
+
+  /** Ids of the elements that describe the drawer */
+  protected readonly sheetDescribedBy &#x3D; computed(() &#x3D;&gt;
+    this.sheet() &#x3D;&#x3D;&#x3D; &#x27;downloads&#x27; ? this.downloadsSheet()?.describedBy() : this.aboutSheet()?.descriptionId,
+  );
+
+  /** Distance visualization panel */
+  private readonly nodeDistVisualizationComponent &#x3D; viewChild.required(NodeDistVisualizationComponent);
+
+  /** Violin graph panel */
+  private readonly violinComponent &#x3D; viewChild.required(ViolinComponent);
+
+  /** Histogram panel */
+  private readonly histogramComponent &#x3D; viewChild.required(HistogramComponent);
+
+  /** Shows the snackbars that undo a reset */
+  private readonly snackbar &#x3D; inject(SnackbarService);
+
+  /** Application, used to wait for a tab to render before downloading its image */
+  private readonly appRef &#x3D; inject(ApplicationRef);
+
   /** Setup component */
   constructor() {
-    // Workaround for getting ngx-color-picker to attach to the root view
-    // Not populated for standalone/custom components so we forcefully insert ourself
-    inject(ApplicationRef).componentTypes.splice(0, 0, CdeVisualizationComponent);
-
     effect(() &#x3D;&gt; {
       const selection &#x3D; this.cellTypesSelection();
       const filter &#x3D; untracked(this.nodeFilterView);
       this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
+    });
+
+    // Announced once here, not by each panel&#x27;s empty state
+    effect(() &#x3D;&gt; {
+      const emptyState &#x3D; this.chartsEmptyState();
+      if (emptyState) {
+        this.liveAnnouncer.announce(&#x60;${emptyState.heading}. ${emptyState.description}&#x60;);
+      }
+    });
+
+    // Announced once everything has loaded. The debounce skips the short gap between loading the nodes
+    // and generating the edges.
+    toObservable(this.anyLoading)
+      .pipe(debounceTime(LOADED_ANNOUNCEMENT_DEBOUNCE), distinctUntilChanged(), pairwise(), takeUntilDestroyed())
+      .subscribe(([wasLoading, isLoading]) &#x3D;&gt; {
+        if (wasLoading &amp;&amp; !isLoading) {
+          this.liveAnnouncer.announce(LOADED_ANNOUNCEMENT);
+        }
+      });
+
+    // The charts only resize with the window, so they resize again after panels show or hide
+    afterRenderEffect(() &#x3D;&gt; {
+      const { violinGraph, histogram } &#x3D; this.layout();
+      untracked(() &#x3D;&gt; {
+        if (violinGraph) {
+          this.violinComponent().resizeAndSyncView();
+        }
+        if (histogram) {
+          this.histogramComponent().resizeAndSyncView();
+        }
+      });
+    });
+
+    // When the panels switch to tabs, an open fullscreen view closes (see the panels&#x27; fullscreenAvailable input)
+    // and its panel becomes the active tab
+    effect(() &#x3D;&gt; {
+      if (this.tabbed()) {
+        const panel &#x3D; untracked(this.fullscreenPanel);
+        if (panel !&#x3D;&#x3D; undefined) {
+          this.selectedTab.set(panel);
+        }
+      }
     });
 
     // Connect outputs
@@ -694,9 +1064,9 @@ export class CdeVisualizationComponent {
     this.bindDataOutput(this.colorMapView, this.colorMapChange);
   }
 
-  /** Reset cell types */
-  resetCellTypes(): void {
-    this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
+  /** Selects every cell type, like the cell types table&#x27;s select all checkbox */
+  selectAllCellTypes(): void {
+    this.cellTypesSelection.set(this.cellTypes().map((entry) &#x3D;&gt; entry.name));
   }
 
   /** Update the color of a specific cell type entry */
@@ -707,6 +1077,156 @@ export class CdeVisualizationComponent {
 
     copy[index] &#x3D; { ...copy[index], color };
     this.cellTypes.set(copy);
+  }
+
+  /** Resets the distance visualization&#x27;s view */
+  resetView(): void {
+    this.nodeDistVisualizationComponent().resetView();
+  }
+
+  /** Restores the cells deleted from the distance visualization */
+  restoreDeletedCells(): void {
+    this.nodeFilterView.set(this.nodeFilterView().clear(false, true));
+  }
+
+  /**
+   * Resets every cell type&#x27;s color and the all cells color. The cell type selection stays.
+   * A snackbar offers to undo the reset, as long as the data hasn&#x27;t changed since.
+   */
+  resetColors(): void {
+    const cellTypes &#x3D; this.cellTypes();
+    const allCellsColor &#x3D; this.allCellsColor();
+    this.useDefaultColors();
+
+    this.openUndoSnackbar(RESET_COLORS_MESSAGE, () &#x3D;&gt; {
+      this.cellTypes.set(cellTypes);
+      this.allCellsColor.set(allCellsColor);
+    });
+  }
+
+  /** Shows and hides panels, and remembers them if rememberPanels is set */
+  protected setHiddenPanels(panels: PanelId[]): void {
+    this.panelsHidden.set(panels);
+    if (this.rememberPanels()) {
+      saveHiddenPanels(panels);
+    }
+  }
+
+  /** Shows every panel from the downloads notice, and announces it since the notice&#x27;s button goes away */
+  protected showAllPanels(): void {
+    this.setHiddenPanels([]);
+    this.liveAnnouncer.announce(ALL_PANELS_SHOWN_ANNOUNCEMENT);
+  }
+
+  /**
+   * Resets the view, panels, deleted cells and colors, selects every cell type, restores the default display
+   * options, and switches the distance visualization back to explore. Panels go back to the hiddenPanels input.
+   * A snackbar offers to undo everything but the view, as long as the data hasn&#x27;t changed since.
+   */
+  resetEverything(): void {
+    const panelsHidden &#x3D; this.panelsHidden();
+    const cellTypes &#x3D; this.cellTypes();
+    const allCellsColor &#x3D; this.allCellsColor();
+    const cellTypesSelection &#x3D; this.cellTypesSelection();
+    const nodeFilterView &#x3D; this.nodeFilterView();
+    const edgesDisabled &#x3D; this.edgesDisabled();
+    const showCellLinkData &#x3D; this.showCellLinkData();
+    const showAllMetadata &#x3D; this.showAllMetadata();
+    const viewMode &#x3D; this.viewMode();
+
+    this.resetView();
+    this.setHiddenPanels(this.hiddenPanels());
+    this.restoreDeletedCells();
+    this.useDefaultColors();
+    this.selectAllCellTypes();
+    this.edgesDisabled.set(false);
+    this.showCellLinkData.set(true);
+    this.showAllMetadata.set(false);
+    this.viewMode.set(&#x27;explore&#x27;);
+
+    this.openUndoSnackbar(RESET_EVERYTHING_MESSAGE, () &#x3D;&gt; {
+      this.setHiddenPanels(panelsHidden);
+      this.cellTypes.set(cellTypes);
+      this.allCellsColor.set(allCellsColor);
+      this.cellTypesSelection.set(cellTypesSelection);
+      this.nodeFilterView.set(nodeFilterView);
+      this.edgesDisabled.set(edgesDisabled);
+      this.showCellLinkData.set(showCellLinkData);
+      this.showAllMetadata.set(showAllMetadata);
+      this.viewMode.set(viewMode);
+    });
+  }
+
+  /** Gives every cell type its default color and the all cells color back to the theme */
+  private useDefaultColors(): void {
+    this.cellTypes.set(this.cellTypesFromNodes());
+    this.allCellsColor.set(undefined);
+  }
+
+  /** Opens a snackbar whose Undo action calls &#x60;undo&#x60;, unless the data has changed since */
+  private openUndoSnackbar(message: string, undo: () &#x3D;&gt; void): void {
+    const cellTypesFromNodes &#x3D; this.cellTypesFromNodes();
+    this.snackbar
+      .open(message, UNDO_ACTION, false, &#x27;end&#x27;, { duration: UNDO_SNACKBAR_DURATION })
+      .onAction()
+      .subscribe(() &#x3D;&gt; {
+        if (this.cellTypesFromNodes() &#x3D;&#x3D;&#x3D; cellTypesFromNodes) {
+          undo();
+        }
+      });
+  }
+
+  /** Downloads the requested file */
+  async handleDownload({ file, format }: DownloadRequest): Promise&lt;void&gt; {
+    if (this.unavailableDownloads()?.files.includes(file)) {
+      return;
+    }
+
+    switch (file) {
+      case &#x27;cells&#x27;:
+        return this.downloadNodes();
+      case &#x27;cell-links&#x27;:
+        return this.downloadEdges();
+      case &#x27;color-map&#x27;:
+        return this.downloadColorMap();
+      case &#x27;visualization&#x27;:
+        await this.showTab(&#x27;distance-visualization&#x27;);
+        return this.nodeDistVisualizationComponent().download();
+      case &#x27;violin-graph&#x27;:
+        await this.showTab(&#x27;violin-graph&#x27;);
+        return this.violinComponent().download(format);
+      case &#x27;histogram&#x27;:
+        await this.showTab(&#x27;histogram&#x27;);
+        return this.histogramComponent().download(format);
+    }
+  }
+
+  /**
+   * Id of a tab in the tab bar, which also labels the tab panel
+   *
+   * @param tab Tab to get the id of
+   * @returns The tab&#x27;s id
+   */
+  protected tabLinkId(tab: TabId): string {
+    return this.tabIdPrefix + tab;
+  }
+
+  /**
+   * Shows a panel&#x27;s tab before its image downloads. Panels in other tabs aren&#x27;t laid out, so they have no size
+   * to draw at.
+   *
+   * @param tab Tab of the panel
+   */
+  private async showTab(tab: TabId): Promise&lt;void&gt; {
+    if (!this.tabbed() || this.activeTab() &#x3D;&#x3D;&#x3D; tab) {
+      return;
+    }
+
+    this.selectedTab.set(tab);
+    // Waits for the render and the violin&#x27;s resize, then for deck.gl to size its canvas on an animation frame
+    await this.appRef.whenStable();
+    await nextFrame();
+    await nextFrame();
   }
 
   /** Downloads nodes */

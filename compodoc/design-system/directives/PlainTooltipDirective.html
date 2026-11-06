@@ -227,13 +227,13 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">tooltips/plain-tooltip/src/plain-tooltip.directive.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">tooltips/plain-tooltip/src/plain-tooltip.directive.ts:46</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Registers the styles and sets class names for the tooltip container</p>
+                            <div class="io-description"><p>Registers the styles and sets class names for the tooltip container, unless the HRA styles are turned off</p>
 </div>
                     </td>
                 </tr>
@@ -264,7 +264,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">tooltips/plain-tooltip/src/plain-tooltip.directive.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">tooltips/plain-tooltip/src/plain-tooltip.directive.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -311,7 +311,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">tooltips/plain-tooltip/src/plain-tooltip.directive.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">tooltips/plain-tooltip/src/plain-tooltip.directive.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -331,13 +331,35 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, effect, inject, input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, effect, inject, InjectionToken, input, Provider } from &#x27;@angular/core&#x27;;
 import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
 import { registerStyleComponents } from &#x27;@hra-ui/cdk/styling&#x27;;
 import { PlainTooltipStylesComponent } from &#x27;./plain-tooltip-styles/plain-tooltip-styles.component&#x27;;
 
 /** Type of Tooltip size */
 export type PlainTooltipSize &#x3D; &#x27;small&#x27; | &#x27;medium&#x27;;
+
+/** Plain tooltip options */
+export interface PlainTooltipOptions {
+  /** Whether tooltips use the HRA plain tooltip styles. When false, they keep the default Material tooltip styles */
+  hraStyles: boolean;
+}
+
+/** Injection token for plain tooltip options */
+export const PLAIN_TOOLTIP_OPTIONS &#x3D; new InjectionToken&lt;PlainTooltipOptions&gt;(&#x27;PlainTooltipOptions&#x27;, {
+  providedIn: &#x27;root&#x27;,
+  factory: () &#x3D;&gt; ({ hraStyles: true }),
+});
+
+/**
+ * Provides plain tooltip options
+ *
+ * @param options Plain tooltip options
+ * @returns A provider for the options
+ */
+export function providePlainTooltipOptions(options: PlainTooltipOptions): Provider {
+  return { provide: PLAIN_TOOLTIP_OPTIONS, useValue: options };
+}
 
 /** Directive for Tooltip */
 @Directive({
@@ -356,8 +378,12 @@ export class PlainTooltipDirective {
   /** Instance of MatTooltip */
   protected readonly tooltip &#x3D; inject(MatTooltip);
 
-  /** Registers the styles and sets class names for the tooltip container */
+  /** Registers the styles and sets class names for the tooltip container, unless the HRA styles are turned off */
   constructor() {
+    if (!inject(PLAIN_TOOLTIP_OPTIONS).hraStyles) {
+      return;
+    }
+
     registerStyleComponents([PlainTooltipStylesComponent]);
 
     effect(() &#x3D;&gt; {

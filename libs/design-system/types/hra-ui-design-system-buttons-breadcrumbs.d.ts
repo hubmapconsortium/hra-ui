@@ -6,6 +6,8 @@ interface BreadcrumbItem {
     name: string;
     /** Route to page */
     route?: string;
+    /** Icon shown in place of the name on a linked crumb. The name still labels the link and shows as its tooltip. */
+    icon?: string;
 }
 /**
  * Component used to help the user understand their location within websites

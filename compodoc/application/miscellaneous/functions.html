@@ -241,6 +241,9 @@
                             <a href="#monitorHeight" title="/home/workflows/workspace/libs/common/src/lib/utils/monitor-height.ts" ><b>monitorHeight</b>&nbsp;&nbsp;&nbsp;(/.../monitor-height.ts)</a>
                         </li>
                         <li>
+                            <a href="#monitorWidth" title="/home/workflows/workspace/libs/common/src/lib/utils/monitor-height.ts" ><b>monitorWidth</b>&nbsp;&nbsp;&nbsp;(/.../monitor-height.ts)</a>
+                        </li>
+                        <li>
                             <a href="#pageHref" title="/home/workflows/workspace/libs/common/url/src/lib/url/page.ts" ><b>pageHref</b>&nbsp;&nbsp;&nbsp;(/.../page.ts)</a>
                         </li>
                         <li>
@@ -257,6 +260,9 @@
                         </li>
                         <li>
                             <a href="#provideAnalytics" title="/home/workflows/workspace/libs/common/analytics/src/lib/providers.ts" ><b>provideAnalytics</b>&nbsp;&nbsp;&nbsp;(/.../providers.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#provideCustomScrollOptions" title="/home/workflows/workspace/libs/common/custom-scroll/src/lib/custom-scroll.service.ts" ><b>provideCustomScrollOptions</b>&nbsp;&nbsp;&nbsp;(/.../custom-scroll.service.ts)</a>
                         </li>
                         <li>
                             <a href="#provideRouterExt" title="/home/workflows/workspace/libs/common/router-ext/src/lib/providers.ts" ><b>provideRouterExt</b>&nbsp;&nbsp;&nbsp;(/.../providers.ts)</a>
@@ -3652,6 +3658,71 @@ The function also automatically adds the feature path to the event props on each
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="monitorWidth"></a>
+                    <span class="name">
+                        <span ><b>monitorWidth</b></span>
+                        <a href="#monitorWidth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>monitorWidth(elementFn)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Monitors the width of a given element.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>elementFn</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The element function that fetches the element to monitor.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Signal&lt;number&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Width as a signal.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>/home/workflows/workspace/libs/common/url/src/lib/url/page.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -4003,6 +4074,77 @@ The function also automatically adds the feature path to the event props on each
                         </div>
                             <div class="io-description">
                                 <p>An analytics feature</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>/home/workflows/workspace/libs/common/custom-scroll/src/lib/custom-scroll.service.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideCustomScrollOptions"></a>
+                    <span class="name">
+                        <span ><b>provideCustomScrollOptions</b></span>
+                        <a href="#provideCustomScrollOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideCustomScrollOptions(options: <a href="../interfaces/CustomScrollOptions.html" target="_self">CustomScrollOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provides custom scroll options</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CustomScrollOptions.html" target="_self" >CustomScrollOptions</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Custom scroll options</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://angular.io/api/core/Provider" target="_blank" >Provider</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A provider for the options</p>
 
                             </div>
                 </td>

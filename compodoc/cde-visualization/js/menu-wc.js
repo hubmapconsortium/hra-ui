@@ -57,19 +57,34 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
+                                <a href="components/AboutComponent.html" data-type="entity-link" >AboutComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/CdeVisualizationComponent.html" data-type="entity-link" >CdeVisualizationComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/CellTypesComponent.html" data-type="entity-link" >CellTypesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ChartSkeletonComponent.html" data-type="entity-link" >ChartSkeletonComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ColorPickerComponent.html" data-type="entity-link" >ColorPickerComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ColorPickerLabelComponent.html" data-type="entity-link" >ColorPickerLabelComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/HistogramComponent.html" data-type="entity-link" >HistogramComponent</a>
+                                <a href="components/DownloadFileComponent.html" data-type="entity-link" >DownloadFileComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/HistogramMenuComponent.html" data-type="entity-link" >HistogramMenuComponent</a>
+                                <a href="components/DownloadsComponent.html" data-type="entity-link" >DownloadsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EmptyStateComponent.html" data-type="entity-link" >EmptyStateComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/HistogramComponent.html" data-type="entity-link" >HistogramComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/MetadataComponent.html" data-type="entity-link" >MetadataComponent</a>
@@ -84,23 +99,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/NodeDistVisualizationMenuComponent.html" data-type="entity-link" >NodeDistVisualizationMenuComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/SkeletonComponent.html" data-type="entity-link" >SkeletonComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ToolbarComponent.html" data-type="entity-link" >ToolbarComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ViolinComponent.html" data-type="entity-link" >ViolinComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/ViolinMenuComponent.html" data-type="entity-link" >ViolinMenuComponent</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="chapter">
-                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#classes-links"' :
-                            'data-bs-target="#xs-classes-links"' }>
-                            <span class="icon ion-ios-paper"></span>
-                            <span>Classes</span>
-                            <span class="icon ion-ios-arrow-down"></span>
-                        </div>
-                        <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
-                            <li class="link">
-                                <a href="classes/LoadingManager.html" data-type="entity-link" >LoadingManager</a>
                             </li>
                         </ul>
                     </li>
@@ -118,6 +123,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="injectables/FileSaverService.html" data-type="entity-link" >FileSaverService</a>
                                 </li>
+                                <li class="link">
+                                    <a href="injectables/ThemeSwitchService.html" data-type="entity-link" >ThemeSwitchService</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -129,13 +137,58 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/AboutContent.html" data-type="entity-link" >AboutContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/AboutListContent.html" data-type="entity-link" >AboutListContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/AboutSectionContent.html" data-type="entity-link" >AboutSectionContent</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/CellTypeEntry.html" data-type="entity-link" >CellTypeEntry</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ChartFont.html" data-type="entity-link" >ChartFont</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ChartTextConfig.html" data-type="entity-link" >ChartTextConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ChartTheme.html" data-type="entity-link" >ChartTheme</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ChartTitleConfig.html" data-type="entity-link" >ChartTitleConfig</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ColorMapEntry.html" data-type="entity-link" >ColorMapEntry</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/DistanceEntry.html" data-type="entity-link" >DistanceEntry</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadFileContent.html" data-type="entity-link" >DownloadFileContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadFormatContent.html" data-type="entity-link" >DownloadFormatContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadGroupContent.html" data-type="entity-link" >DownloadGroupContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadLinkContent.html" data-type="entity-link" >DownloadLinkContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadNoticeContent.html" data-type="entity-link" >DownloadNoticeContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadRequest.html" data-type="entity-link" >DownloadRequest</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DownloadsContent.html" data-type="entity-link" >DownloadsContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EmptyStateContent.html" data-type="entity-link" >EmptyStateContent</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Metadata.html" data-type="entity-link" >Metadata</a>
@@ -150,7 +203,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/SampleMetadataExtra.html" data-type="entity-link" >SampleMetadataExtra</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ThemeableChartSpec.html" data-type="entity-link" >ThemeableChartSpec</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToolbarContent.html" data-type="entity-link" >ToolbarContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToolbarHelpLink.html" data-type="entity-link" >ToolbarHelpLink</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToolbarItemContent.html" data-type="entity-link" >ToolbarItemContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToolbarMenuItemContent.html" data-type="entity-link" >ToolbarMenuItemContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToolbarPanelOption.html" data-type="entity-link" >ToolbarPanelOption</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToolbarThemeOption.html" data-type="entity-link" >ToolbarThemeOption</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UnavailableDownloads.html" data-type="entity-link" >UnavailableDownloads</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UnavailableDownloadsContent.html" data-type="entity-link" >UnavailableDownloadsContent</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/UpdateColorData.html" data-type="entity-link" >UpdateColorData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ViewModeOption.html" data-type="entity-link" >ViewModeOption</a>
                             </li>
                         </ul>
                     </li>
@@ -164,6 +247,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="pipes-links"' : 'id="xs-pipes-links"' }>
                                 <li class="link">
                                     <a href="pipes/DefaultToPipe.html" data-type="entity-link" >DefaultToPipe</a>
+                                </li>
+                                <li class="link">
+                                    <a href="pipes/WithoutProtocolPipe.html" data-type="entity-link" >WithoutProtocolPipe</a>
                                 </li>
                             </ul>
                         </li>

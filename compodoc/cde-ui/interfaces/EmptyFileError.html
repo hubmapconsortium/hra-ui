@@ -244,6 +244,7 @@ import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
 import { CsvFileLoaderOptions, CsvFileLoaderService } from &#x27;@hra-ui/common/fs&#x27;;
 import { assetUrl, cssUrl } from &#x27;@hra-ui/common/url&#x27;;
 import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
+import { BreadcrumbItem } from &#x27;@hra-ui/design-system/buttons/breadcrumbs&#x27;;
 import { ErrorIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/error-indicator&#x27;;
 import { StepIndicatorComponent } from &#x27;@hra-ui/design-system/indicators/step-indicator&#x27;;
 import { NavigationModule } from &#x27;@hra-ui/design-system/navigation&#x27;;
@@ -253,6 +254,7 @@ import { ColorMapView, NodesView } from &#x27;@hra-ui/node-dist-vis/models&#x27;
 import { ParseError } from &#x27;papaparse&#x27;;
 import { MarkEmptyFormControlDirective } from &#x27;../../components/empty-form-control/empty-form-control.directive&#x27;;
 import { FileLoadError, FileUploadComponent } from &#x27;../../components/file-upload/file-upload.component&#x27;;
+import { ThemeService } from &#x27;../../services/theme-service/theme.service&#x27;;
 import { VisualizationDataService } from &#x27;../../services/visualization-data-service/visualization-data.service&#x27;;
 import { validateInteger } from &#x27;../../shared/form-validators/is-integer&#x27;;
 import { validatePositive } from &#x27;../../shared/form-validators/is-positive&#x27;;
@@ -314,14 +316,24 @@ export class CreateVisualizationPageComponent {
   /** Organ entries */
   readonly organs &#x3D; input.required&lt;OrganEntry[]&gt;();
 
+  /** Breadcrumbs shown above the page title */
+  readonly breadcrumbs &#x3D; input&lt;BreadcrumbItem[]&gt;();
+
   /** Node data upload component */
   private readonly nodesFileUpload &#x3D; viewChild.required&lt;AnyFileUploadComponent&gt;(&#x27;nodesFileUpload&#x27;);
   /** Color map upload component */
   private readonly customColorMapFileUpload &#x3D; viewChild&lt;AnyFileUploadComponent&gt;(&#x27;customColorMapFileUpload&#x27;);
 
-  /** Resolved background image URL */
+  /** Light or dark theme, which picks the background image */
+  private readonly theme &#x3D; inject(ThemeService).theme;
+
+  /** Resolved background image URL, in the current theme */
   protected readonly backgroundImageUrl &#x3D; cssUrl(
-    assetUrl(&#x27;assets/backgrounds/create-visualization-page-background.png&#x27;),
+    assetUrl(() &#x3D;&gt;
+      this.theme() &#x3D;&#x3D;&#x3D; &#x27;dark&#x27;
+        ? &#x27;assets/backgrounds/create-visualization-page-background-dark.png&#x27;
+        : &#x27;assets/backgrounds/create-visualization-page-background.png&#x27;,
+    ),
   );
 
   /** Form builder */
@@ -470,13 +482,13 @@ export class CreateVisualizationPageComponent {
       return undefined;
     }
     const { xAxis, yAxis, cellType } &#x3D; this.visualizationForm.controls[&#x27;headers&#x27;].value;
-    const xError &#x3D; xAxis ? undefined : &#x27;X axis&#x27;;
-    const yError &#x3D; yAxis ? undefined : &#x27;Y axis&#x27;;
+    const xError &#x3D; xAxis ? undefined : &#x27;X&#x27;;
+    const yError &#x3D; yAxis ? undefined : &#x27;Y&#x27;;
     const ctError &#x3D; cellType ? undefined : &#x27;cell type&#x27;;
     const errorColumns &#x3D; [xError, yError, ctError].filter((e) &#x3D;&gt; !!e);
 
     return errorColumns.length &gt; 0
-      ? &#x60;Please select the required column header${errorColumns.length &#x3D;&#x3D;&#x3D; 1 ? &#x27;&#x27; : &#x27;s&#x27;}: ${[xError, yError, ctError].filter((e) &#x3D;&gt; !!e).join(&#x27;, &#x27;)}&#x60;
+      ? &#x60;Select the required column${errorColumns.length &#x3D;&#x3D;&#x3D; 1 ? &#x27;&#x27; : &#x27;s&#x27;}: ${errorColumns.join(&#x27;, &#x27;)}&#x60;
       : undefined;
   }
 
@@ -642,7 +654,7 @@ export class CreateVisualizationPageComponent {
   hasValidCustomColorMap(): boolean {
     const { customColorMap: colors, colorHeaders } &#x3D; this;
     return !!(
-      (colors &amp;&amp; colors.length &gt; 0 &amp;&amp; colorHeaders.length &#x3D;&#x3D;&#x3D; 2)
+      colors &amp;&amp; colors.length &gt; 0 &amp;&amp; colorHeaders.length &#x3D;&#x3D;&#x3D; 2
       // DEFAULT_COLOR_MAP_KEY in colors[0] &amp;&amp;
       // DEFAULT_COLOR_MAP_VALUE_KEY in colors[0]
     );
@@ -787,22 +799,22 @@ export class CreateVisualizationPageComponent {
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
       case &#x27;missing-key-error&#x27;:
-        return &#x60;Required column${error.keys.length &#x3D;&#x3D;&#x3D; 1 ? &#x27;&#x27; : &#x27;s&#x27;} missing: ${error.keys.join(&#x27;, &#x27;)}&#x60;;
+        return &#x60;Missing required column${error.keys.length &#x3D;&#x3D;&#x3D; 1 ? &#x27;&#x27; : &#x27;s&#x27;}: ${error.keys.join(&#x27;, &#x27;)}&#x60;;
 
       case &#x27;empty-file-error&#x27;:
-        return &#x27;File is empty.&#x27;;
+        return &#x27;This file is empty.&#x27;;
 
       case &#x27;type-error&#x27;:
-        return &#x60;Invalid file type: ${error.received}, expected csv&#x60;;
+        return &#x60;Unsupported file type: ${error.received}&#x60;;
 
       case &#x27;parse-error&#x27;: {
         if (Array.isArray(error.cause)) {
-          return &#x60;Invalid file: ${this.formatCsvErrors(error.cause)}&#x60;;
+          return &#x60;Couldn&#x27;t read ${this.formatCsvErrors(error.cause)}&#x60;;
         } else if (error.cause instanceof Error) {
-          return &#x60;Required color format not detected. Please use #RRGGBB or [R, G, B].&#x60;;
+          return &#x27;Colors must be #RRGGBB or [R, G, B].&#x27;;
         }
 
-        return &#x27;Invalid file: too many invalid rows.&#x27;;
+        return &quot;Too many rows couldn&#x27;t be read.&quot;;
       }
 
       default:
@@ -820,13 +832,12 @@ export class CreateVisualizationPageComponent {
     const rows &#x3D; errors
       .slice(0, ROW_SAMPLE_SIZE)
       .map((e) &#x3D;&gt; e.row)
-      .filter((r) &#x3D;&gt; r !&#x3D;&#x3D; undefined)
-      .join(&#x27;, &#x27;);
+      .filter((r) &#x3D;&gt; r !&#x3D;&#x3D; undefined);
     const additionalErrorsLength &#x3D; errors.length - ROW_SAMPLE_SIZE;
-    let message &#x3D; &#x60;errors on row${rows.length &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;} ${rows}&#x60;;
+    let message &#x3D; &#x60;row${rows.length + Math.max(additionalErrorsLength, 0) &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;} ${rows.join(&#x27;, &#x27;)}&#x60;;
 
     if (additionalErrorsLength &gt; 0) {
-      message +&#x3D; &#x60; and ${additionalErrorsLength} more rows&#x60;;
+      message +&#x3D; &#x60; and ${additionalErrorsLength} more&#x60;;
     }
 
     return message;
@@ -843,11 +854,11 @@ export class CreateVisualizationPageComponent {
       case undefined:
         return &#x27;&#x27;;
       case &#x27;type-error&#x27;:
-        return &#x60;Please upload a ${fileDescription} CSV file.&#x60;;
+        return &#x60;Upload a ${fileDescription} CSV file.&#x60;;
       case &#x27;empty-file-error&#x27;:
-        return &#x60;Please upload a non-empty ${fileDescription} CSV file.&#x60;;
+        return &#x60;Upload a ${fileDescription} CSV file with data.&#x60;;
       default:
-        return &#x27;Please upload a file with the required columns.&#x27;;
+        return &#x27;Upload a file with the required columns.&#x27;;
     }
   }
 }

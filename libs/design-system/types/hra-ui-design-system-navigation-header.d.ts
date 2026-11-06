@@ -97,6 +97,8 @@ interface CtaConfig {
 /**
  * Global navigation header.
  * Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar.
+ * Content marked with the `hraHeaderActions` attribute shows in the main bar, before the menu button.
+ * Other content shows at the end of the breadcrumbs row.
  */
 declare class HeaderComponent {
     /** Call to action configuration */
@@ -146,6 +148,11 @@ declare class HeaderComponent {
     }[]>;
     /** Breadcrumb items */
     readonly breadcrumbs: _angular_core.InputSignal<BreadcrumbItem[] | undefined>;
+    /**
+     * Where the navigation categories sit on wide screens: at the end, by the menu button, or at the start,
+     * after the logo and a divider, like AtlasNG's header shell
+     */
+    readonly navigationPosition: _angular_core.InputSignal<"start" | "end">;
     /**
      * Progress bar progress.
      * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.
@@ -221,7 +228,7 @@ declare class HeaderComponent {
      */
     private updateMenuPositions;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<HeaderComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<HeaderComponent, "hra-header", never, { "cta": { "alias": "cta"; "required": false; "isSignal": true; }; "hubmapMenu": { "alias": "hubmapMenu"; "required": false; "isSignal": true; }; "menus": { "alias": "menus"; "required": false; "isSignal": true; }; "breadcrumbs": { "alias": "breadcrumbs"; "required": false; "isSignal": true; }; "progress": { "alias": "progress"; "required": false; "isSignal": true; }; "ctaDismissed": { "alias": "ctaDismissed"; "required": false; "isSignal": true; }; }, { "ctaDismissed": "ctaDismissedChange"; }, never, ["*"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<HeaderComponent, "hra-header", never, { "cta": { "alias": "cta"; "required": false; "isSignal": true; }; "hubmapMenu": { "alias": "hubmapMenu"; "required": false; "isSignal": true; }; "menus": { "alias": "menus"; "required": false; "isSignal": true; }; "breadcrumbs": { "alias": "breadcrumbs"; "required": false; "isSignal": true; }; "navigationPosition": { "alias": "navigationPosition"; "required": false; "isSignal": true; }; "progress": { "alias": "progress"; "required": false; "isSignal": true; }; "ctaDismissed": { "alias": "ctaDismissed"; "required": false; "isSignal": true; }; }, { "ctaDismissed": "ctaDismissedChange"; }, never, ["[hraHeaderActions]", "*"], true, never>;
 }
 
 /** A hubmap menu item */

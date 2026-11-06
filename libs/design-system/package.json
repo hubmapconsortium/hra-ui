@@ -374,6 +374,10 @@
       "types": "./types/hra-ui-design-system-navigation.d.ts",
       "default": "./fesm2022/hra-ui-design-system-navigation.mjs"
     },
+    "./navigation-rail": {
+      "types": "./types/hra-ui-design-system-navigation-rail.d.ts",
+      "default": "./fesm2022/hra-ui-design-system-navigation-rail.mjs"
+    },
     "./navigation/back-button-bar": {
       "types": "./types/hra-ui-design-system-navigation-back-button-bar.d.ts",
       "default": "./fesm2022/hra-ui-design-system-navigation-back-button-bar.mjs"
@@ -490,6 +494,7 @@
   "sideEffects": false,
   "module": "fesm2022/hra-ui-design-system.mjs",
   "typings": "types/hra-ui-design-system.d.ts",
+  "type": "module",
   "dependencies": {
     "tslib": "^2.3.0"
   }

@@ -177,7 +177,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Directive } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Directive, input } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
 import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
@@ -199,7 +199,10 @@ export class InfoButtonActionsDirective {}
   styleUrl: &#x27;./info-button.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfoButtonComponent {}
+export class InfoButtonComponent {
+  /** Accessible name of the button, such as &quot;More information about Upload data&quot; */
+  readonly label &#x3D; input(&#x27;More information&#x27;);
+}
 </code></pre>
     </div>
 

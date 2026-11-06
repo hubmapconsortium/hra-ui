@@ -53,7 +53,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/CreateVisualizationPageComponent.html" data-type="entity-link" >CreateVisualizationPageComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ExampleListComponent.html" data-type="entity-link" >ExampleListComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/FileUploadComponent.html" data-type="entity-link" >FileUploadComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/LandingCardComponent.html" data-type="entity-link" >LandingCardComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/LandingPageComponent.html" data-type="entity-link" >LandingPageComponent</a>
@@ -66,9 +72,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/StudyPageComponent.html" data-type="entity-link" >StudyPageComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/VisualCardComponent.html" data-type="entity-link" >VisualCardComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/VisualizationPageComponent.html" data-type="entity-link" >VisualizationPageComponent</a>
@@ -110,6 +113,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
+                                    <a href="injectables/ThemeService.html" data-type="entity-link" >ThemeService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/VisualizationDataService.html" data-type="entity-link" >VisualizationDataService</a>
                                 </li>
                             </ul>
@@ -126,13 +132,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EmptyFileError.html" data-type="entity-link" >EmptyFileError</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ExampleItem.html" data-type="entity-link" >ExampleItem</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/FileParseError.html" data-type="entity-link" >FileParseError</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/FileTypeError.html" data-type="entity-link" >FileTypeError</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/HelpLink.html" data-type="entity-link" >HelpLink</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/JsonFileResolverOptions.html" data-type="entity-link" >JsonFileResolverOptions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/LandingCard.html" data-type="entity-link" >LandingCard</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/LandingCardLink.html" data-type="entity-link" >LandingCardLink</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/MissingKeyError.html" data-type="entity-link" >MissingKeyError</a>
@@ -141,7 +159,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/PublicationItem.html" data-type="entity-link" >PublicationItem</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/VisualCard.html" data-type="entity-link" >VisualCard</a>
+                                <a href="interfaces/ThemeOption.html" data-type="entity-link" >ThemeOption</a>
                             </li>
                         </ul>
                     </li>

@@ -3665,25 +3665,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-bottom-start)&#x27;,
-  },
-  {
-    offset: 0.98,
-    opacity: 1,
-  },
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-bottom-end)&#x27;,
-    opacity: 0,
-  },
-]</code>
+                        <i>Default value : </i><code>[{ opacity: 1 }, { offset: 0.98, opacity: 1 }, { opacity: 0 }]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Keyframes for the bottom gradient</p>
+                    <div class="io-description"><p>Keyframes for the bottom gradient: hidden at the end of the scroll range</p>
 </div>
                 </td>
             </tr>
@@ -3709,25 +3697,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-top-start)&#x27;,
-    opacity: 0,
-  },
-  {
-    offset: 0.02,
-    opacity: 1,
-  },
-  {
-    top: &#x27;var(--_hra-scroll-overflow-fade-gradient-top-end)&#x27;,
-  },
-]</code>
+                        <i>Default value : </i><code>[{ opacity: 0 }, { offset: 0.02, opacity: 1 }, { opacity: 1 }]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Keyframes for the top gradient</p>
+                    <div class="io-description"><p>Keyframes for the top gradient: hidden at the start of the scroll range</p>
 </div>
                 </td>
             </tr>

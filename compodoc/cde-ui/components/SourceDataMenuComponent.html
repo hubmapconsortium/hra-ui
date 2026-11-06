@@ -316,16 +316,13 @@ export class SourceDataMenuComponent {
     hraClickEvent
     hraLinkExternal
     hraFeature&#x3D;&quot;source-data&quot;
-    hraButtonSize&#x3D;&quot;medium&quot;
     [hraLink]&#x3D;&quot;item.url&quot;
     [hraPlainTooltip]&#x3D;&quot;item.label&quot;
   &gt;
     Source data
   &lt;/a&gt;
 } @else if (publications().length &gt; 1) {
-  &lt;button mat-button hraClickEvent hraFeature&#x3D;&quot;source-data&quot; hraButtonSize&#x3D;&quot;medium&quot; [matMenuTriggerFor]&#x3D;&quot;menu&quot;&gt;
-    Source data
-  &lt;/button&gt;
+  &lt;button mat-button hraClickEvent hraFeature&#x3D;&quot;source-data&quot; [matMenuTriggerFor]&#x3D;&quot;menu&quot;&gt;Source data&lt;/button&gt;
   &lt;mat-menu #menu&gt;
     @for (publication of publications(); track publication.label) {
       &lt;a
@@ -373,8 +370,8 @@ export class SourceDataMenuComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (publications().length === 1) {  @let item = publications()[0];  <a    mat-button    hraClickEvent    hraLinkExternal    hraFeature="source-data"    hraButtonSize="medium"    [hraLink]="item.url"    [hraPlainTooltip]="item.label"  >    Source data  </a>} @else if (publications().length > 1) {  <button mat-button hraClickEvent hraFeature="source-data" hraButtonSize="medium" [matMenuTriggerFor]="menu">    Source data  </button>  <mat-menu #menu>    @for (publication of publications(); track publication.label) {      <a        mat-menu-item        hraClickEvent        hraLinkExternal        class="publication-menu-item"        [hraFeature]="`source-data-${$index + 1}`"        [hraLink]="publication.url"      >        <mat-icon>open_in_new</mat-icon>        <div class="publication-label" [hraPlainTooltip]="publication.label">          {{ publication.label }}        </div>      </a>    }  </mat-menu>}</div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualCardComponent', 'selector': 'cde-visual-card'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
+        var COMPONENT_TEMPLATE = '<div>@if (publications().length === 1) {  @let item = publications()[0];  <a    mat-button    hraClickEvent    hraLinkExternal    hraFeature="source-data"    [hraLink]="item.url"    [hraPlainTooltip]="item.label"  >    Source data  </a>} @else if (publications().length > 1) {  <button mat-button hraClickEvent hraFeature="source-data" [matMenuTriggerFor]="menu">Source data</button>  <mat-menu #menu>    @for (publication of publications(); track publication.label) {      <a        mat-menu-item        hraClickEvent        hraLinkExternal        class="publication-menu-item"        [hraFeature]="`source-data-${$index + 1}`"        [hraLink]="publication.url"      >        <mat-icon>open_in_new</mat-icon>        <div class="publication-label" [hraPlainTooltip]="publication.label">          {{ publication.label }}        </div>      </a>    }  </mat-menu>}</div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'cde-ui'},{'name': 'CreateVisualizationPageComponent', 'selector': 'cde-create-visualization-page'},{'name': 'ExampleListComponent', 'selector': 'cde-example-list'},{'name': 'FileUploadComponent', 'selector': 'cde-file-upload'},{'name': 'LandingCardComponent', 'selector': 'cde-landing-card'},{'name': 'LandingPageComponent', 'selector': 'cde-landing-page'},{'name': 'SourceDataMenuComponent', 'selector': 'cde-source-data-menu'},{'name': 'StudiesGridComponent', 'selector': 'cde-studies-grid'},{'name': 'StudyPageComponent', 'selector': 'cde-study-page'},{'name': 'VisualizationPageComponent', 'selector': 'cde-visualization-page'}];
     var DIRECTIVES = [{'name': 'MarkEmptyFormControlDirective', 'selector': '[cdeMarkEmptyFormControl]'}];
     var ACTUAL_COMPONENT = {'name': 'SourceDataMenuComponent'};
 </script>

@@ -22,10 +22,10 @@ const ButtonSchema = ContentTemplateSchema.extend({
 
 /** Turns a mat-button into a call-to-action styled button */
 class CtaButtonDirective {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CtaButtonDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.1.5", type: CtaButtonDirective, isStandalone: true, selector: "button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]", host: { classAttribute: "hra-cta-button" }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: CtaButtonDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.2.25", type: CtaButtonDirective, isStandalone: true, selector: "button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]", host: { classAttribute: "hra-cta-button" }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: CtaButtonDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: CtaButtonDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]',
@@ -39,11 +39,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
 class ButtonSizeDirective {
     /** Size of button */
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    size = input.required({ ...(ngDevMode ? { debugName: "size" } : {}), alias: 'hraButtonSize' });
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ButtonSizeDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: ButtonSizeDirective, isStandalone: true, selector: "button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]", inputs: { size: { classPropertyName: "size", publicName: "hraButtonSize", isSignal: true, isRequired: true, transformFunction: null } }, host: { properties: { "class": "\"hra-button-size-\" + size()" } }, ngImport: i0 });
+    size = input.required({ ...(ngDevMode ? { debugName: "size" } : /* istanbul ignore next */ {}), alias: 'hraButtonSize' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ButtonSizeDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.25", type: ButtonSizeDirective, isStandalone: true, selector: "button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]", inputs: { size: { classPropertyName: "size", publicName: "hraButtonSize", isSignal: true, isRequired: true, transformFunction: null } }, host: { properties: { "class": "\"hra-button-size-\" + size()" } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ButtonSizeDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ButtonSizeDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]',
@@ -60,11 +60,11 @@ class BaseButtonVariantDirective {
         const { variant } = this;
         const variantValue = isSignal(variant) ? variant() : variant;
         return `hra-button-variant-${variantValue}`;
-    }, ...(ngDevMode ? [{ debugName: "variantClass" }] : []));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseButtonVariantDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.1.5", type: BaseButtonVariantDirective, isStandalone: true, host: { properties: { "class": "variantClass()" } }, ngImport: i0 });
+    }, ...(ngDevMode ? [{ debugName: "variantClass" }] : /* istanbul ignore next */ []));
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: BaseButtonVariantDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.2.25", type: BaseButtonVariantDirective, isStandalone: true, host: { properties: { "class": "variantClass()" } }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: BaseButtonVariantDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: BaseButtonVariantDirective, decorators: [{
             type: Directive,
             args: [{
                     host: {
@@ -76,11 +76,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
 class ButtonVariantDirective extends BaseButtonVariantDirective {
     /** Button variant */
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    variant = input.required({ ...(ngDevMode ? { debugName: "variant" } : {}), alias: 'hraButtonVariant' });
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ButtonVariantDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.5", type: ButtonVariantDirective, isStandalone: true, selector: "button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]", inputs: { variant: { classPropertyName: "variant", publicName: "hraButtonVariant", isSignal: true, isRequired: true, transformFunction: null } }, usesInheritance: true, ngImport: i0 });
+    variant = input.required({ ...(ngDevMode ? { debugName: "variant" } : /* istanbul ignore next */ {}), alias: 'hraButtonVariant' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ButtonVariantDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.25", type: ButtonVariantDirective, isStandalone: true, selector: "button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]", inputs: { variant: { classPropertyName: "variant", publicName: "hraButtonVariant", isSignal: true, isRequired: true, transformFunction: null } }, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ButtonVariantDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ButtonVariantDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]',
@@ -90,10 +90,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
 class PrimaryButtonVariantDirective extends BaseButtonVariantDirective {
     /** Button variant */
     variant = 'primary';
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PrimaryButtonVariantDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.1.5", type: PrimaryButtonVariantDirective, isStandalone: true, selector: "button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]", usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: PrimaryButtonVariantDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.2.25", type: PrimaryButtonVariantDirective, isStandalone: true, selector: "button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]", usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: PrimaryButtonVariantDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: PrimaryButtonVariantDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraPrimaryButton], a[mat-button][hraPrimaryButton]',
@@ -103,10 +103,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
 class SecondaryButtonVariantDirective extends BaseButtonVariantDirective {
     /** Button variant */
     variant = 'secondary';
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: SecondaryButtonVariantDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.1.5", type: SecondaryButtonVariantDirective, isStandalone: true, selector: "button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]", usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: SecondaryButtonVariantDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.2.25", type: SecondaryButtonVariantDirective, isStandalone: true, selector: "button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]", usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: SecondaryButtonVariantDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: SecondaryButtonVariantDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'button[mat-button][hraSecondaryButton], a[mat-button][hraSecondaryButton]',
@@ -118,23 +118,23 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImpor
  */
 class ButtonComponent {
     /** Button label */
-    label = input.required(...(ngDevMode ? [{ debugName: "label" }] : []));
+    label = input.required(...(ngDevMode ? [{ debugName: "label" }] : /* istanbul ignore next */ []));
     /** Button link */
-    href = input.required(...(ngDevMode ? [{ debugName: "href" }] : []));
+    href = input.required(...(ngDevMode ? [{ debugName: "href" }] : /* istanbul ignore next */ []));
     /** Button version */
-    type = input('default', ...(ngDevMode ? [{ debugName: "type" }] : []));
+    type = input('default', ...(ngDevMode ? [{ debugName: "type" }] : /* istanbul ignore next */ []));
     /** Button color variant */
-    variant = input('primary', ...(ngDevMode ? [{ debugName: "variant" }] : []));
+    variant = input('primary', ...(ngDevMode ? [{ debugName: "variant" }] : /* istanbul ignore next */ []));
     /** Button size */
-    size = input('medium', ...(ngDevMode ? [{ debugName: "size" }] : []));
+    size = input('medium', ...(ngDevMode ? [{ debugName: "size" }] : /* istanbul ignore next */ []));
     /** Whether button is disabled */
-    disabled = input(false, ...(ngDevMode ? [{ debugName: "disabled" }] : []));
+    disabled = input(false, ...(ngDevMode ? [{ debugName: "disabled" }] : /* istanbul ignore next */ []));
     /** Icon to use in the button (can't be changed for CTA button) */
-    icon = input(...(ngDevMode ? [undefined, { debugName: "icon" }] : []));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ButtonComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.5", type: ButtonComponent, isStandalone: true, selector: "hra-button", inputs: { label: { classPropertyName: "label", publicName: "label", isSignal: true, isRequired: true, transformFunction: null }, href: { classPropertyName: "href", publicName: "href", isSignal: true, isRequired: true, transformFunction: null }, type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, variant: { classPropertyName: "variant", publicName: "variant", isSignal: true, isRequired: false, transformFunction: null }, size: { classPropertyName: "size", publicName: "size", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null }, icon: { classPropertyName: "icon", publicName: "icon", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "@switch (type()) {\n  @case ('default') {\n    <a\n      mat-button\n      target=\"_blank\"\n      [hraButtonVariant]=\"variant()\"\n      [hraButtonSize]=\"size()\"\n      [disabled]=\"disabled()\"\n      [href]=\"href()\"\n    >\n      {{ label() }}\n      @if (size() !== 'small' && icon()) {\n        <mat-icon>{{ icon() }}</mat-icon>\n      }\n    </a>\n  }\n  @case ('flat') {\n    <a mat-flat-button target=\"_blank\" [disabled]=\"disabled()\" [href]=\"href()\">\n      {{ label() }}\n      <mat-icon>{{ icon() }}</mat-icon>\n    </a>\n  }\n  @case ('cta') {\n    <a mat-button hraCtaButton target=\"_blank\" [hraButtonVariant]=\"variant()\" [disabled]=\"disabled()\" [href]=\"href()\">\n      {{ label() }}\n      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>\n    </a>\n  }\n  @case ('fab') {\n    <a mat-fab extended target=\"_blank\" [disabled]=\"disabled()\" [href]=\"href()\">\n      <mat-icon>{{ icon() }}</mat-icon>\n      {{ label() }}\n    </a>\n  }\n}\n", styles: [":host{display:block}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "ngmodule", type: MatButtonModule }, { kind: "component", type: i1.MatButton, selector: "    button[matButton], a[matButton], button[mat-button], button[mat-raised-button],    button[mat-flat-button], button[mat-stroked-button], a[mat-button], a[mat-raised-button],    a[mat-flat-button], a[mat-stroked-button]  ", inputs: ["matButton"], exportAs: ["matButton", "matAnchor"] }, { kind: "component", type: i1.MatFabButton, selector: "button[mat-fab], a[mat-fab], button[matFab], a[matFab]", inputs: ["extended"], exportAs: ["matButton", "matAnchor"] }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i2.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: CtaButtonDirective, selector: "button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]" }, { kind: "directive", type: ButtonSizeDirective, selector: "button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]", inputs: ["hraButtonSize"] }, { kind: "directive", type: ButtonVariantDirective, selector: "button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]", inputs: ["hraButtonVariant"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    icon = input(...(ngDevMode ? [undefined, { debugName: "icon" }] : /* istanbul ignore next */ []));
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ButtonComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.25", type: ButtonComponent, isStandalone: true, selector: "hra-button", inputs: { label: { classPropertyName: "label", publicName: "label", isSignal: true, isRequired: true, transformFunction: null }, href: { classPropertyName: "href", publicName: "href", isSignal: true, isRequired: true, transformFunction: null }, type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, variant: { classPropertyName: "variant", publicName: "variant", isSignal: true, isRequired: false, transformFunction: null }, size: { classPropertyName: "size", publicName: "size", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null }, icon: { classPropertyName: "icon", publicName: "icon", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "@switch (type()) {\n  @case ('default') {\n    <a\n      mat-button\n      target=\"_blank\"\n      [hraButtonVariant]=\"variant()\"\n      [hraButtonSize]=\"size()\"\n      [disabled]=\"disabled()\"\n      [href]=\"href()\"\n    >\n      {{ label() }}\n      @if (size() !== 'small' && icon()) {\n        <mat-icon>{{ icon() }}</mat-icon>\n      }\n    </a>\n  }\n  @case ('flat') {\n    <a mat-flat-button target=\"_blank\" [disabled]=\"disabled()\" [href]=\"href()\">\n      {{ label() }}\n      <mat-icon>{{ icon() }}</mat-icon>\n    </a>\n  }\n  @case ('cta') {\n    <a mat-button hraCtaButton target=\"_blank\" [hraButtonVariant]=\"variant()\" [disabled]=\"disabled()\" [href]=\"href()\">\n      {{ label() }}\n      <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>\n    </a>\n  }\n  @case ('fab') {\n    <a mat-fab extended target=\"_blank\" [disabled]=\"disabled()\" [href]=\"href()\">\n      <mat-icon>{{ icon() }}</mat-icon>\n      {{ label() }}\n    </a>\n  }\n}\n", styles: [":host{display:block}\n"], dependencies: [{ kind: "ngmodule", type: HraCommonModule }, { kind: "ngmodule", type: MatButtonModule }, { kind: "component", type: i1.MatButton, selector: "    button[matButton], a[matButton], button[mat-button], button[mat-raised-button],    button[mat-flat-button], button[mat-stroked-button], a[mat-button], a[mat-raised-button],    a[mat-flat-button], a[mat-stroked-button]  ", inputs: ["matButton"], exportAs: ["matButton", "matAnchor"] }, { kind: "component", type: i1.MatFabButton, selector: "button[mat-fab], a[mat-fab], button[matFab], a[matFab]", inputs: ["extended"], exportAs: ["matButton", "matAnchor"] }, { kind: "ngmodule", type: MatIconModule }, { kind: "component", type: i2.MatIcon, selector: "mat-icon", inputs: ["color", "inline", "svgIcon", "fontSet", "fontIcon"], exportAs: ["matIcon"] }, { kind: "directive", type: CtaButtonDirective, selector: "button[mat-button][hraCtaButton], a[mat-button][hraCtaButton]" }, { kind: "directive", type: ButtonSizeDirective, selector: "button[mat-button][hraButtonSize], button[mat-flat-button][hraButtonSize], a[mat-button][hraButtonSize], button[mat-stroked-button][hraButtonSize], a[mat-stroked-button][hraButtonSize]", inputs: ["hraButtonSize"] }, { kind: "directive", type: ButtonVariantDirective, selector: "button[mat-button][hraButtonVariant], a[mat-button][hraButtonVariant]", inputs: ["hraButtonVariant"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.5", ngImport: i0, type: ButtonComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.25", ngImport: i0, type: ButtonComponent, decorators: [{
             type: Component,
             args: [{ selector: 'hra-button', imports: [
                         HraCommonModule,

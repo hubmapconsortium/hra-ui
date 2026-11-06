@@ -45,6 +45,12 @@ declare const INTERSECTION_OBSERVER: InjectionToken<{
  * @returns Height as a signal.
  */
 declare function monitorHeight(elementFn: () => Element | ElementRef<Element>): Signal<number>;
+/**
+ * Monitors the width of a given element.
+ * @param elementFn The element function that fetches the element to monitor.
+ * @returns Width as a signal.
+ */
+declare function monitorWidth(elementFn: () => Element | ElementRef<Element>): Signal<number>;
 
 /**
  * Fetches the custom data from the current route.
@@ -52,4 +58,4 @@ declare function monitorHeight(elementFn: () => Element | ElementRef<Element>): 
  */
 declare function routeData(): Signal<Data>;
 
-export { HraCommonModule, INTERSECTION_OBSERVER, SlugifyPipe, WINDOW, monitorHeight, routeData };
+export { HraCommonModule, INTERSECTION_OBSERVER, SlugifyPipe, WINDOW, monitorHeight, monitorWidth, routeData };

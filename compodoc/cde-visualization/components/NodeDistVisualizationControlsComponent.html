@@ -163,6 +163,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
 
 
 
@@ -212,6 +216,22 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#viewModes" >viewModes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
                 <tr>
@@ -223,7 +243,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#deleteDisabled" >deleteDisabled</a>
+                                <a href="#deleteAvailable" >deleteAvailable</a>
+                            </li>
+                            <li>
+                                <a href="#floating" >floating</a>
                             </li>
                             <li>
                                 <a href="#viewMode" >viewMode</a>
@@ -263,8 +286,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="deleteDisabled"></a>
-                        <b>deleteDisabled</b>
+                        <a name="deleteAvailable"></a>
+                        <b>deleteAvailable</b>
                     </td>
                 </tr>
                 <tr>
@@ -274,12 +297,38 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Whether delete button is disabled</p>
+                        <div class="io-description"><p>Whether cells are selected, which shows the delete button</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="floating"></a>
+                        <b>floating</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false, { transform: booleanAttribute }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the controls float over the visualization, each on its own raised surface</p>
 </div>
                     </td>
                 </tr>
@@ -306,7 +355,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:40</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -336,7 +385,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:49</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -363,7 +412,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:40</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -378,6 +427,51 @@
 
 
 
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewModes"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>viewModes</b></span>
+                        <a href="#viewModes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>VIEW_MODES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/components/node-dist-visualization/controls/node-dist-visualization-controls.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>View mode toggles</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
@@ -390,6 +484,23 @@ import { ButtonsModule } from &#x27;@hra-ui/design-system/buttons&#x27;;
 import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 import { ViewMode } from &#x27;@hra-ui/node-dist-vis/models&#x27;;
 
+/** A view mode toggle */
+interface ViewModeOption {
+  /** View mode the toggle picks */
+  value: ViewMode;
+  /** Label */
+  label: string;
+  /** What the mode does */
+  tooltip: string;
+}
+
+/** View mode toggles, in order */
+const VIEW_MODES: ViewModeOption[] &#x3D; [
+  { value: &#x27;select&#x27;, label: &#x27;Select&#x27;, tooltip: &#x27;Select cells to delete from this dataset&#x27; },
+  { value: &#x27;inspect&#x27;, label: &#x27;Inspect&#x27;, tooltip: &#x27;Get information about individual cell types&#x27; },
+  { value: &#x27;explore&#x27;, label: &#x27;Explore&#x27;, tooltip: &#x27;Zoom, pan, and rotate the view of this visualization&#x27; },
+];
+
 /**
  * Controls for node dist visualization
  */
@@ -399,66 +510,55 @@ import { ViewMode } from &#x27;@hra-ui/node-dist-vis/models&#x27;;
   templateUrl: &#x27;./node-dist-visualization-controls.component.html&#x27;,
   styleUrl: &#x27;./node-dist-visualization-controls.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    &#x27;[class.floating]&#x27;: &#x27;floating()&#x27;,
+  },
 })
 export class NodeDistVisualizationControlsComponent {
   /** Current view mode */
   readonly viewMode &#x3D; model&lt;ViewMode&gt;(&#x27;explore&#x27;);
 
-  /** Whether delete button is disabled */
-  readonly deleteDisabled &#x3D; input(false, { transform: booleanAttribute });
+  /** Whether cells are selected, which shows the delete button */
+  readonly deleteAvailable &#x3D; input(false, { transform: booleanAttribute });
+
+  /** Whether the controls float over the visualization, each on its own raised surface */
+  readonly floating &#x3D; input(false, { transform: booleanAttribute });
 
   /** Emits when delete button clicked */
   readonly deleteClick &#x3D; output&lt;void&gt;();
+
+  /** View mode toggles */
+  protected readonly viewModes &#x3D; VIEW_MODES;
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;button
-  mat-icon-button
-  class&#x3D;&quot;delete&quot;
-  aria-label&#x3D;&quot;Delete selected nodes&quot;
-  hraIconButtonSize&#x3D;&quot;large&quot;
-  hraPlainTooltip&#x3D;&quot;Select at least one cell to delete it from this dataset&quot;
-  hraFeature&#x3D;&quot;delete-selected-cells&quot;
-  hraClickEvent
-  [disabled]&#x3D;&quot;deleteDisabled()&quot;
-  (click)&#x3D;&quot;deleteClick.emit()&quot;
-&gt;
-  &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
-&lt;/button&gt;
+        <pre class="line-numbers"><code class="language-html">@if (deleteAvailable()) {
+  &lt;button
+    mat-icon-button
+    class&#x3D;&quot;delete&quot;
+    aria-label&#x3D;&quot;Delete selected cells&quot;
+    hraPlainTooltip&#x3D;&quot;Delete the selected cells from this dataset&quot;
+    hraFeature&#x3D;&quot;delete-selected-cells&quot;
+    hraClickEvent
+    (click)&#x3D;&quot;deleteClick.emit()&quot;
+  &gt;
+    &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+  &lt;/button&gt;
+}
 
 &lt;mat-button-toggle-group
   aria-label&#x3D;&quot;Visualization mode&quot;
-  hraButtonToggleSize&#x3D;&quot;medium&quot;
   hraFeature&#x3D;&quot;toggle&quot;
   [value]&#x3D;&quot;viewMode()&quot;
   (change)&#x3D;&quot;viewMode.set($event.value)&quot;
 &gt;
-  &lt;mat-button-toggle
-    value&#x3D;&quot;select&quot;
-    hraPlainTooltip&#x3D;&quot;Select cells to delete from this dataset&quot;
-    hraFeature&#x3D;&quot;select&quot;
-    hraClickEvent
-  &gt;
-    Select
-  &lt;/mat-button-toggle&gt;
-  &lt;mat-button-toggle
-    value&#x3D;&quot;inspect&quot;
-    hraPlainTooltip&#x3D;&quot;Get information about individual cell types&quot;
-    hraFeature&#x3D;&quot;inspect&quot;
-    hraClickEvent
-  &gt;
-    Inspect
-  &lt;/mat-button-toggle&gt;
-  &lt;mat-button-toggle
-    value&#x3D;&quot;explore&quot;
-    hraPlainTooltip&#x3D;&quot;Zoom, pan, and rotate the view of this visualization&quot;
-    hraFeature&#x3D;&quot;explore&quot;
-    hraClickEvent
-  &gt;
-    Explore
-  &lt;/mat-button-toggle&gt;
+  @for (mode of viewModes; track mode.value) {
+    &lt;mat-button-toggle hraClickEvent [value]&#x3D;&quot;mode.value&quot; [hraPlainTooltip]&#x3D;&quot;mode.tooltip&quot; [hraFeature]&#x3D;&quot;mode.value&quot;&gt;
+      {{ mode.label }}
+    &lt;/mat-button-toggle&gt;
+  }
 &lt;/mat-button-toggle-group&gt;
 </code></pre>
     </div>
@@ -489,8 +589,8 @@ export class NodeDistVisualizationControlsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button  mat-icon-button  class="delete"  aria-label="Delete selected nodes"  hraIconButtonSize="large"  hraPlainTooltip="Select at least one cell to delete it from this dataset"  hraFeature="delete-selected-cells"  hraClickEvent  [disabled]="deleteDisabled()"  (click)="deleteClick.emit()">  <mat-icon>delete</mat-icon></button><mat-button-toggle-group  aria-label="Visualization mode"  hraButtonToggleSize="medium"  hraFeature="toggle"  [value]="viewMode()"  (change)="viewMode.set($event.value)">  <mat-button-toggle    value="select"    hraPlainTooltip="Select cells to delete from this dataset"    hraFeature="select"    hraClickEvent  >    Select  </mat-button-toggle>  <mat-button-toggle    value="inspect"    hraPlainTooltip="Get information about individual cell types"    hraFeature="inspect"    hraClickEvent  >    Inspect  </mat-button-toggle>  <mat-button-toggle    value="explore"    hraPlainTooltip="Zoom, pan, and rotate the view of this visualization"    hraFeature="explore"    hraClickEvent  >    Explore  </mat-button-toggle></mat-button-toggle-group></div>'
-    var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
+        var COMPONENT_TEMPLATE = '<div>@if (deleteAvailable()) {  <button    mat-icon-button    class="delete"    aria-label="Delete selected cells"    hraPlainTooltip="Delete the selected cells from this dataset"    hraFeature="delete-selected-cells"    hraClickEvent    (click)="deleteClick.emit()"  >    <mat-icon>delete</mat-icon>  </button>}<mat-button-toggle-group  aria-label="Visualization mode"  hraFeature="toggle"  [value]="viewMode()"  (change)="viewMode.set($event.value)">  @for (mode of viewModes; track mode.value) {    <mat-button-toggle hraClickEvent [value]="mode.value" [hraPlainTooltip]="mode.tooltip" [hraFeature]="mode.value">      {{ mode.label }}    </mat-button-toggle>  }</mat-button-toggle-group></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'cde-about'},{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ChartSkeletonComponent', 'selector': 'cde-chart-skeleton'},{'name': 'ColorPickerComponent', 'selector': 'cde-color-picker'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'DownloadFileComponent', 'selector': 'cde-download-file'},{'name': 'DownloadsComponent', 'selector': 'cde-downloads'},{'name': 'EmptyStateComponent', 'selector': 'cde-empty-state'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'SkeletonComponent', 'selector': 'cde-skeleton'},{'name': 'ToolbarComponent', 'selector': 'cde-toolbar'},{'name': 'ViolinComponent', 'selector': 'cde-violin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NodeDistVisualizationControlsComponent'};
 </script>

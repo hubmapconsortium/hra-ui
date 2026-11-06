@@ -163,6 +163,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">host</td>
+                <td class="col-md-9"><code>{<br>}</code></td>
+            </tr>
 
 
 
@@ -178,9 +182,12 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
+                            <code>HraCommonModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatIconModule</code>
                             <code>OverlayModule</code>
+                            <code>PlainTooltipDirective</code>
                             <code>ExpansionPanelComponent</code>
-                            <code>ExpansionPanelActionsComponent</code>
                             <code>ExpansionPanelHeaderContentComponent</code>
                             <code>FullscreenActionsComponent</code>
                             <code>FullscreenPortalComponent</code>
@@ -188,6 +195,8 @@
                             <code>InfoModalComponent</code>
                                 <code><a href="../components/NodeDistVisualizationControlsComponent.html" target="_self" >NodeDistVisualizationControlsComponent</a></code>
                                 <code><a href="../components/NodeDistVisualizationMenuComponent.html" target="_self" >NodeDistVisualizationMenuComponent</a></code>
+                                <code><a href="../components/ChartSkeletonComponent.html" target="_self" >ChartSkeletonComponent</a></code>
+                                <code><a href="../components/EmptyStateComponent.html" target="_self" >EmptyStateComponent</a></code>
                 </td>
             </tr>
 
@@ -249,7 +258,12 @@
                             <li>
                                     <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#edgesDisabled" >edgesDisabled</a>
+                                <a href="#closeFullscreenRef" >closeFullscreenRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#hasDeletedCells" >hasDeletedCells</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -260,11 +274,6 @@
                                     <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#selection" >selection</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#viewMode" >viewMode</a>
                             </li>
                         </ul>
                     </td>
@@ -310,7 +319,25 @@
                                 <a href="#colorMap" >colorMap</a>
                             </li>
                             <li>
+                                <a href="#dockCellInfo" >dockCellInfo</a>
+                            </li>
+                            <li>
                                 <a href="#edges" >edges</a>
+                            </li>
+                            <li>
+                                <a href="#edgesDisabled" >edgesDisabled</a>
+                            </li>
+                            <li>
+                                <a href="#emptyState" >emptyState</a>
+                            </li>
+                            <li>
+                                <a href="#floatingControls" >floatingControls</a>
+                            </li>
+                            <li>
+                                <a href="#fullscreenAvailable" >fullscreenAvailable</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
                             </li>
                             <li>
                                 <a href="#maxEdgeDistance" >maxEdgeDistance</a>
@@ -320,6 +347,9 @@
                             </li>
                             <li>
                                 <a href="#nodes" >nodes</a>
+                            </li>
+                            <li>
+                                <a href="#viewMode" >viewMode</a>
                             </li>
                         </ul>
                     </td>
@@ -334,6 +364,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#edgesDisabled" >edgesDisabled</a>
+                            </li>
+                            <li>
+                                <a href="#emptyStateAction" >emptyStateAction</a>
+                            </li>
+                            <li>
+                                <a href="#fullscreenChange" >fullscreenChange</a>
+                            </li>
+                            <li>
                                 <a href="#nodeClick" >nodeClick</a>
                             </li>
                             <li>
@@ -341,6 +380,9 @@
                             </li>
                             <li>
                                 <a href="#nodeHover" >nodeHover</a>
+                            </li>
+                            <li>
+                                <a href="#viewMode" >viewMode</a>
                             </li>
                         </ul>
                     </td>
@@ -363,7 +405,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:165</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:221</a></div>
                             </td>
                         </tr>
 
@@ -400,12 +442,39 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:92</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Input for the color map data</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dockCellInfo"></a>
+                        <b>dockCellInfo</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:122</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether cell info docks at the bottom of the visualization instead of opening beside the cell.
+Compact screens dock it, since a card beside the cell can run off a phone screen.</p>
 </div>
                     </td>
                 </tr>
@@ -432,12 +501,144 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:89</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Input for edge data</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="edgesDisabled"></a>
+                        <b>edgesDisabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:134</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether cell links are hidden. Shared with the toolbar&#39;s Display menu.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emptyState"></a>
+                        <b>emptyState</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/EmptyStateContent.html" target="_self" >EmptyStateContent</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:104</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Empty state shown in place of the visualization, or undefined when there are cells to show</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="floatingControls"></a>
+                        <b>floatingControls</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:116</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the view mode controls float at the top of the visualization instead of sitting in the header.
+The tabbed layout floats them, so the header row&#39;s height goes to the visualization.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fullscreenAvailable"></a>
+                        <b>fullscreenAvailable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:110</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading"></a>
+                        <b>loading</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:101</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the data is loading, which shows a skeleton in place of the visualization</p>
 </div>
                     </td>
                 </tr>
@@ -464,7 +665,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:98</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -496,7 +697,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:95</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -528,7 +729,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:86</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -539,9 +740,116 @@
                 </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="viewMode"></a>
+                        <b>viewMode</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ViewMode</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;explore&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:140</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current view mode. The root sets it back to explore when everything is reset.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </section>
     <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="edgesDisabled"></a>
+                        <b>edgesDisabled</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:134</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether cell links are hidden. Shared with the toolbar&#39;s Display menu.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emptyStateAction"></a>
+                        <b>emptyStateAction</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:107</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when the empty state&#39;s action is clicked</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fullscreenChange"></a>
+                        <b>fullscreenChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:125</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits true when the panel opens in full screen and false when it closes</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -558,7 +866,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:128</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -585,7 +893,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:95</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -612,12 +920,39 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:131</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Output emitter for node hover events</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="viewMode"></a>
+                        <b>viewMode</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ViewMode</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:140</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Current view mode. The root sets it back to explore when everything is reset.</p>
 </div>
                     </td>
                 </tr>
@@ -651,8 +986,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="229"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:229</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="285"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -692,8 +1027,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="203"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:203</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="259"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:259</a></div>
                         </td>
                     </tr>
 
@@ -731,8 +1066,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="223"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:223</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="279"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:279</a></div>
                         </td>
                     </tr>
 
@@ -770,8 +1105,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="218"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:218</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="274"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:274</a></div>
                         </td>
                     </tr>
 
@@ -809,8 +1144,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="212"
-                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:212</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:268</a></div>
                         </td>
                     </tr>
 
@@ -855,18 +1190,21 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;NodeEvent | undefined&gt;(undefined)</code>
+                        <i>Default value : </i><code>linkedSignal&lt;ViewMode, NodeEvent | undefined&gt;({
+    source: this.viewMode,
+    computation: () &#x3D;&gt; undefined,
+  })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:151</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Signal containing node event</p>
+                    <div class="io-description"><p>Signal containing node event. Cleared when the view mode changes.</p>
 </div>
                 </td>
             </tr>
@@ -921,7 +1259,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:131</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:178</a></div>
                         </td>
                     </tr>
 
@@ -960,7 +1298,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:109</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -1016,7 +1354,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:111</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -1033,12 +1371,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="edgesDisabled"></a>
+                    <a name="closeFullscreenRef"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>edgesDisabled</b></span>
-                        <a href="#edgesDisabled"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>closeFullscreenRef</b></span>
+                        <a href="#closeFullscreenRef"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1050,18 +1388,61 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal(false)</code>
+                        <i>Default value : </i><code>afterRenderEffect(() &#x3D;&gt; {
+    if (!this.fullscreenAvailable()) {
+      untracked(() &#x3D;&gt; this.fullscreenPortal().close());
+    }
+  })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:209</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Flag to check cell links visibility</p>
+                    <div class="io-description"><p>Closes an open fullscreen view when full screen becomes unavailable</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasDeletedCells"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>hasDeletedCells</b></span>
+                        <a href="#hasDeletedCells"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; (this.nodeFilter().exclude?.length ?? 0) &gt; 0)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether any cells were deleted</p>
 </div>
                 </td>
             </tr>
@@ -1096,7 +1477,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:146</a></div>
                         </td>
                     </tr>
 
@@ -1130,57 +1511,18 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;NodeEvent[]&gt;([])</code>
+                        <i>Default value : </i><code>linkedSignal&lt;ViewMode, NodeEvent[]&gt;({ source: this.viewMode, computation: () &#x3D;&gt; [] })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:143</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Current node selection</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="viewMode"></a>
-                    <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>viewMode</b></span>
-                        <a href="#viewMode"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;ViewMode&gt;(&#x27;explore&#x27;)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/lib/components/node-dist-visualization/node-dist-visualization.component.ts:96</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Current view mode</p>
+                    <div class="io-description"><p>Current node selection. Cleared when the view mode changes, since the visualization drops it.</p>
 </div>
                 </td>
             </tr>
@@ -1201,27 +1543,29 @@ import {
   OutputEmitterRef,
   Signal,
   WritableSignal,
+  afterRenderEffect,
   computed,
   effect,
   inject,
   input,
   isSignal,
+  linkedSignal,
   model,
   output,
-  signal,
+  untracked,
   viewChild,
 } from &#x27;@angular/core&#x27;;
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { HraCommonModule } from &#x27;@hra-ui/common&#x27;;
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from &#x27;@hra-ui/design-system/expansion-panel&#x27;;
 import {
   FullscreenActionsComponent,
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from &#x27;@hra-ui/design-system/fullscreen&#x27;;
 import { DataItem, InfoModalComponent } from &#x27;@hra-ui/design-system/modal/info-modal&#x27;;
+import { PlainTooltipDirective } from &#x27;@hra-ui/design-system/tooltips/plain-tooltip&#x27;;
 import { NodeDistVisElement, NodeEvent } from &#x27;@hra-ui/node-dist-vis&#x27;;
 import {
   AnyDataEntry,
@@ -1232,6 +1576,9 @@ import {
   ViewMode,
 } from &#x27;@hra-ui/node-dist-vis/models&#x27;;
 import { FileSaverService } from &#x27;../../services/file-saver/file-saver.service&#x27;;
+import { ChartSkeletonComponent } from &#x27;../chart-skeleton/chart-skeleton.component&#x27;;
+import { EmptyStateComponent } from &#x27;../empty-state/empty-state.component&#x27;;
+import { EmptyStateContent } from &#x27;../empty-state/empty-state.content&#x27;;
 import { NodeDistVisualizationControlsComponent } from &#x27;./controls/node-dist-visualization-controls.component&#x27;;
 import { NodeDistVisualizationMenuComponent } from &#x27;./menu/node-dist-visualization-menu.component&#x27;;
 
@@ -1246,9 +1593,12 @@ const DISTANCE_FORMAT &#x3D; new Intl.NumberFormat(undefined, {
 @Component({
   selector: &#x27;cde-node-dist-visualization&#x27;,
   imports: [
+    HraCommonModule,
+    MatButtonModule,
+    MatIconModule,
     OverlayModule,
+    PlainTooltipDirective,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenActionsComponent,
     FullscreenPortalComponent,
@@ -1256,10 +1606,16 @@ const DISTANCE_FORMAT &#x3D; new Intl.NumberFormat(undefined, {
     InfoModalComponent,
     NodeDistVisualizationControlsComponent,
     NodeDistVisualizationMenuComponent,
+    ChartSkeletonComponent,
+    EmptyStateComponent,
   ],
   templateUrl: &#x27;./node-dist-visualization.component.html&#x27;,
   styleUrl: &#x27;./node-dist-visualization.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    &#x27;[attr.aria-busy]&#x27;: &#x27;loading() || null&#x27;,
+    &#x27;[class.floating-controls]&#x27;: &#x27;floatingControls()&#x27;,
+  },
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodeDistVisualizationComponent {
@@ -1278,28 +1634,61 @@ export class NodeDistVisualizationComponent {
   /** Input for the maximum edge distance */
   readonly maxEdgeDistance &#x3D; input.required&lt;number&gt;();
 
+  /** Whether the data is loading, which shows a skeleton in place of the visualization */
+  readonly loading &#x3D; input(false);
+
+  /** Empty state shown in place of the visualization, or undefined when there are cells to show */
+  readonly emptyState &#x3D; input&lt;EmptyStateContent&gt;();
+
+  /** Emits when the empty state&#x27;s action is clicked */
+  readonly emptyStateAction &#x3D; output&lt;void&gt;();
+
+  /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
+  readonly fullscreenAvailable &#x3D; input(true);
+
+  /**
+   * Whether the view mode controls float at the top of the visualization instead of sitting in the header.
+   * The tabbed layout floats them, so the header row&#x27;s height goes to the visualization.
+   */
+  readonly floatingControls &#x3D; input(false);
+
+  /**
+   * Whether cell info docks at the bottom of the visualization instead of opening beside the cell.
+   * Compact screens dock it, since a card beside the cell can run off a phone screen.
+   */
+  readonly dockCellInfo &#x3D; input(false);
+
+  /** Emits true when the panel opens in full screen and false when it closes */
+  readonly fullscreenChange &#x3D; output&lt;boolean&gt;();
+
   /** Output emitter for node click events */
   readonly nodeClick &#x3D; output&lt;NodeEvent&gt;();
 
   /** Output emitter for node hover events */
   readonly nodeHover &#x3D; output&lt;NodeEvent | undefined&gt;();
 
-  /** Flag to check cell links visibility */
-  protected readonly edgesDisabled &#x3D; signal(false);
+  /** Whether cell links are hidden. Shared with the toolbar&#x27;s Display menu. */
+  readonly edgesDisabled &#x3D; model(false);
 
-  /** Current view mode */
-  protected readonly viewMode &#x3D; signal&lt;ViewMode&gt;(&#x27;explore&#x27;);
+  /** Whether any cells were deleted */
+  protected readonly hasDeletedCells &#x3D; computed(() &#x3D;&gt; (this.nodeFilter().exclude?.length ?? 0) &gt; 0);
 
-  /** Current node selection */
-  protected readonly selection &#x3D; signal&lt;NodeEvent[]&gt;([]);
+  /** Current view mode. The root sets it back to explore when everything is reset. */
+  readonly viewMode &#x3D; model&lt;ViewMode&gt;(&#x27;explore&#x27;);
+
+  /** Current node selection. Cleared when the view mode changes, since the visualization drops it. */
+  protected readonly selection &#x3D; linkedSignal&lt;ViewMode, NodeEvent[]&gt;({ source: this.viewMode, computation: () &#x3D;&gt; [] });
 
   /** If there is a current node selection */
   protected readonly hasSelection &#x3D; computed(() &#x3D;&gt; {
     return this.viewMode() &#x3D;&#x3D;&#x3D; &#x27;select&#x27; &amp;&amp; this.selection().length &gt; 0;
   });
 
-  /** Signal containing node event */
-  protected readonly cellInfo &#x3D; signal&lt;NodeEvent | undefined&gt;(undefined);
+  /** Signal containing node event. Cleared when the view mode changes. */
+  protected readonly cellInfo &#x3D; linkedSignal&lt;ViewMode, NodeEvent | undefined&gt;({
+    source: this.viewMode,
+    computation: () &#x3D;&gt; undefined,
+  });
   /** Opens cell info panel */
   protected readonly cellInfoOpen &#x3D; computed(() &#x3D;&gt; this.viewMode() &#x3D;&#x3D;&#x3D; &#x27;inspect&#x27; &amp;&amp; !!this.cellInfo());
   /** Position of cell info panel */
@@ -1353,8 +1742,17 @@ export class NodeDistVisualizationComponent {
   /** Full screen portal element */
   private readonly fullscreenPortal &#x3D; viewChild.required(FullscreenPortalComponent);
 
-  /** Visualization element */
-  private readonly visEl &#x3D; computed(() &#x3D;&gt; this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+  /** Closes an open fullscreen view when full screen becomes unavailable */
+  protected readonly closeFullscreenRef &#x3D; afterRenderEffect(() &#x3D;&gt; {
+    if (!this.fullscreenAvailable()) {
+      untracked(() &#x3D;&gt; this.fullscreenPortal().close());
+    }
+  });
+
+  /** Visualization element, found by tag since the floating controls come before it */
+  private readonly visEl &#x3D; computed(
+    () &#x3D;&gt; (this.fullscreenPortal().rootNodes()[0] as Element).querySelector(&#x27;hra-node-dist-vis&#x27;) as NodeDistVisElement,
+  );
 
   /** Cell info overlay element */
   private readonly cellInfoOverlay &#x3D; viewChild.required&lt;CdkConnectedOverlay&gt;(&#x27;cellInfoOverlay&#x27;);
@@ -1475,46 +1873,87 @@ export class NodeDistVisualizationComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;hra-expansion-panel tagline&#x3D;&quot;Visualization&quot; disabled&gt;
-  &lt;hra-expansion-panel-actions&gt;
-    &lt;cde-node-dist-visualization-menu
-      [(edgesDisabled)]&#x3D;&quot;edgesDisabled&quot;
-      (fullscreenClick)&#x3D;&quot;fullscreen.open()&quot;
-      (downloadClick)&#x3D;&quot;download()&quot;
-      (resetViewClick)&#x3D;&quot;resetView()&quot;
-      (resetDeletedClick)&#x3D;&quot;resetDeletedNodes()&quot;
-    /&gt;
-  &lt;/hra-expansion-panel-actions&gt;
-
+        <pre class="line-numbers"><code class="language-html">&lt;hra-expansion-panel tagline&#x3D;&quot;Spatial view&quot; disabled&gt;
   &lt;hra-expansion-panel-header-content&gt;
-    &lt;cde-node-dist-visualization-controls
-      [deleteDisabled]&#x3D;&quot;!hasSelection()&quot;
-      [(viewMode)]&#x3D;&quot;viewMode&quot;
-      (deleteClick)&#x3D;&quot;deleteSelection()&quot;
-      (viewModeChange)&#x3D;&quot;cellInfo.set(undefined)&quot;
-    /&gt;
+    @if (!floatingControls()) {
+      &lt;cde-node-dist-visualization-controls
+        [deleteAvailable]&#x3D;&quot;hasSelection()&quot;
+        [(viewMode)]&#x3D;&quot;viewMode&quot;
+        (deleteClick)&#x3D;&quot;deleteSelection()&quot;
+      /&gt;
+    }
+    @if (fullscreenAvailable()) {
+      &lt;button
+        mat-icon-button
+        class&#x3D;&quot;fullscreen&quot;
+        aria-label&#x3D;&quot;Open the spatial view in full screen&quot;
+        hraPlainTooltip&#x3D;&quot;Full screen&quot;
+        hraFeature&#x3D;&quot;open-fullscreen&quot;
+        hraClickEvent
+        (click)&#x3D;&quot;fullscreen.open()&quot;
+      &gt;
+        &lt;mat-icon&gt;fullscreen&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    }
   &lt;/hra-expansion-panel-header-content&gt;
 
-  &lt;hra-fullscreen-portal tagline&#x3D;&quot;Visualization&quot; panelClass&#x3D;&quot;node-dist-vis-fullscreen-panel&quot; #fullscreen&gt;
+  &lt;hra-fullscreen-portal
+    tagline&#x3D;&quot;Spatial view&quot;
+    panelClass&#x3D;&quot;node-dist-vis-fullscreen-panel&quot;
+    (beforeOpened)&#x3D;&quot;fullscreenChange.emit(true)&quot;
+    (beforeClosed)&#x3D;&quot;fullscreenChange.emit(false)&quot;
+    #fullscreen
+  &gt;
     &lt;hra-fullscreen-actions&gt;
       &lt;cde-node-dist-visualization-menu
-        fullscreenMode
+        [hasDeletedCells]&#x3D;&quot;hasDeletedCells()&quot;
         [(edgesDisabled)]&#x3D;&quot;edgesDisabled&quot;
-        (downloadClick)&#x3D;&quot;download()&quot;
         (resetViewClick)&#x3D;&quot;resetView()&quot;
         (resetDeletedClick)&#x3D;&quot;resetDeletedNodes()&quot;
       /&gt;
 
       &lt;cde-node-dist-visualization-controls
-        [deleteDisabled]&#x3D;&quot;!hasSelection()&quot;
+        [deleteAvailable]&#x3D;&quot;hasSelection()&quot;
         [(viewMode)]&#x3D;&quot;viewMode&quot;
         (deleteClick)&#x3D;&quot;deleteSelection()&quot;
-        (viewModeChange)&#x3D;&quot;cellInfo.set(undefined)&quot;
       /&gt;
     &lt;/hra-fullscreen-actions&gt;
 
     &lt;hra-fullscreen-portal-content&gt;
-      &lt;hra-node-dist-vis cdkOverlayOrigin class&#x3D;&quot;vis&quot; data-testid&#x3D;&quot;node-dist-vis&quot; #cellInfoOrigin&#x3D;&quot;cdkOverlayOrigin&quot; /&gt;
+      &lt;!-- Before the visualization in the page, as on screen, so keyboard focus reaches the controls first.
+           Hidden while the skeleton or empty state covers the visualization, so focus never lands on hidden controls. --&gt;
+      @if (floatingControls() &amp;&amp; !loading() &amp;&amp; !emptyState()) {
+        &lt;div class&#x3D;&quot;floating-controls&quot;&gt;
+          &lt;cde-node-dist-visualization-controls
+            floating
+            [deleteAvailable]&#x3D;&quot;hasSelection()&quot;
+            [(viewMode)]&#x3D;&quot;viewMode&quot;
+            (deleteClick)&#x3D;&quot;deleteSelection()&quot;
+          /&gt;
+        &lt;/div&gt;
+      }
+      &lt;hra-node-dist-vis
+        cdkOverlayOrigin
+        class&#x3D;&quot;vis&quot;
+        data-testid&#x3D;&quot;node-dist-vis&quot;
+        [attr.inert]&#x3D;&quot;emptyState() ? &#x27;&#x27; : null&quot;
+        #cellInfoOrigin&#x3D;&quot;cdkOverlayOrigin&quot;
+      /&gt;
+      @if (loading()) {
+        &lt;cde-chart-skeleton /&gt;
+      } @else if (emptyState(); as content) {
+        &lt;cde-empty-state hraFeature&#x3D;&quot;empty-state&quot; [content]&#x3D;&quot;content&quot; (actionClick)&#x3D;&quot;emptyStateAction.emit()&quot; /&gt;
+      }
+      @if (cellInfoOpen() &amp;&amp; dockCellInfo()) {
+        &lt;hra-info-modal
+          class&#x3D;&quot;docked-cell-info&quot;
+          title&#x3D;&quot;Cell info&quot;
+          closeLabel&#x3D;&quot;Close cell info&quot;
+          data-testid&#x3D;&quot;cell-info&quot;
+          [data]&#x3D;&quot;cellInfoContent()&quot;
+          (close)&#x3D;&quot;cellInfo.set(undefined)&quot;
+        /&gt;
+      }
     &lt;/hra-fullscreen-portal-content&gt;
   &lt;/hra-fullscreen-portal&gt;
 &lt;/hra-expansion-panel&gt;
@@ -1523,8 +1962,7 @@ export class NodeDistVisualizationComponent {
   cdkConnectedOverlay
   [cdkConnectedOverlayDisposeOnNavigation]&#x3D;&quot;true&quot;
   [cdkConnectedOverlayHasBackdrop]&#x3D;&quot;false&quot;
-  [cdkConnectedOverlayMinWidth]&#x3D;&quot;540&quot;
-  [cdkConnectedOverlayOpen]&#x3D;&quot;cellInfoOpen()&quot;
+  [cdkConnectedOverlayOpen]&#x3D;&quot;cellInfoOpen() &amp;&amp; !dockCellInfo()&quot;
   [cdkConnectedOverlayOrigin]&#x3D;&quot;cellInfoOrigin&quot;
   [cdkConnectedOverlayPositions]&#x3D;&quot;cellInfoPosition()&quot;
   [cdkConnectedOverlayPush]&#x3D;&quot;true&quot;
@@ -1534,6 +1972,7 @@ export class NodeDistVisualizationComponent {
 &gt;
   &lt;hra-info-modal
     title&#x3D;&quot;Cell info&quot;
+    closeLabel&#x3D;&quot;Close cell info&quot;
     data-testid&#x3D;&quot;cell-info&quot;
     [data]&#x3D;&quot;cellInfoContent()&quot;
     (close)&#x3D;&quot;cellInfo.set(undefined)&quot;
@@ -1568,8 +2007,8 @@ export class NodeDistVisualizationComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Visualization" disabled>  <hra-expansion-panel-actions>    <cde-node-dist-visualization-menu      [(edgesDisabled)]="edgesDisabled"      (fullscreenClick)="fullscreen.open()"      (downloadClick)="download()"      (resetViewClick)="resetView()"      (resetDeletedClick)="resetDeletedNodes()"    />  </hra-expansion-panel-actions>  <hra-expansion-panel-header-content>    <cde-node-dist-visualization-controls      [deleteDisabled]="!hasSelection()"      [(viewMode)]="viewMode"      (deleteClick)="deleteSelection()"      (viewModeChange)="cellInfo.set(undefined)"    />  </hra-expansion-panel-header-content>  <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>    <hra-fullscreen-actions>      <cde-node-dist-visualization-menu        fullscreenMode        [(edgesDisabled)]="edgesDisabled"        (downloadClick)="download()"        (resetViewClick)="resetView()"        (resetDeletedClick)="resetDeletedNodes()"      />      <cde-node-dist-visualization-controls        [deleteDisabled]="!hasSelection()"        [(viewMode)]="viewMode"        (deleteClick)="deleteSelection()"        (viewModeChange)="cellInfo.set(undefined)"      />    </hra-fullscreen-actions>    <hra-fullscreen-portal-content>      <hra-node-dist-vis cdkOverlayOrigin class="vis" data-testid="node-dist-vis" #cellInfoOrigin="cdkOverlayOrigin" />    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayDisposeOnNavigation]="true"  [cdkConnectedOverlayHasBackdrop]="false"  [cdkConnectedOverlayMinWidth]="540"  [cdkConnectedOverlayOpen]="cellInfoOpen()"  [cdkConnectedOverlayOrigin]="cellInfoOrigin"  [cdkConnectedOverlayPositions]="cellInfoPosition()"  [cdkConnectedOverlayPush]="true"  [cdkConnectedOverlayViewportMargin]="16"  (overlayOutsideClick)="cellInfo.set(undefined)"  #cellInfoOverlay="cdkConnectedOverlay">  <hra-info-modal    title="Cell info"    data-testid="cell-info"    [data]="cellInfoContent()"    (close)="cellInfo.set(undefined)"  /></ng-template></div>'
-    var COMPONENTS = [{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'HistogramMenuComponent', 'selector': 'cde-histogram-menu'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'ViolinComponent', 'selector': 'cde-violin'},{'name': 'ViolinMenuComponent', 'selector': 'cde-violin-menu'}];
+        var COMPONENT_TEMPLATE = '<div><hra-expansion-panel tagline="Spatial view" disabled>  <hra-expansion-panel-header-content>    @if (!floatingControls()) {      <cde-node-dist-visualization-controls        [deleteAvailable]="hasSelection()"        [(viewMode)]="viewMode"        (deleteClick)="deleteSelection()"      />    }    @if (fullscreenAvailable()) {      <button        mat-icon-button        class="fullscreen"        aria-label="Open the spatial view in full screen"        hraPlainTooltip="Full screen"        hraFeature="open-fullscreen"        hraClickEvent        (click)="fullscreen.open()"      >        <mat-icon>fullscreen</mat-icon>      </button>    }  </hra-expansion-panel-header-content>  <hra-fullscreen-portal    tagline="Spatial view"    panelClass="node-dist-vis-fullscreen-panel"    (beforeOpened)="fullscreenChange.emit(true)"    (beforeClosed)="fullscreenChange.emit(false)"    #fullscreen  >    <hra-fullscreen-actions>      <cde-node-dist-visualization-menu        [hasDeletedCells]="hasDeletedCells()"        [(edgesDisabled)]="edgesDisabled"        (resetViewClick)="resetView()"        (resetDeletedClick)="resetDeletedNodes()"      />      <cde-node-dist-visualization-controls        [deleteAvailable]="hasSelection()"        [(viewMode)]="viewMode"        (deleteClick)="deleteSelection()"      />    </hra-fullscreen-actions>    <hra-fullscreen-portal-content>      <!-- Before the visualization in the page, as on screen, so keyboard focus reaches the controls first.           Hidden while the skeleton or empty state covers the visualization, so focus never lands on hidden controls. -->      @if (floatingControls() && !loading() && !emptyState()) {        <div class="floating-controls">          <cde-node-dist-visualization-controls            floating            [deleteAvailable]="hasSelection()"            [(viewMode)]="viewMode"            (deleteClick)="deleteSelection()"          />        </div>      }      <hra-node-dist-vis        cdkOverlayOrigin        class="vis"        data-testid="node-dist-vis"        [attr.inert]="emptyState() ? \'\' : null"        #cellInfoOrigin="cdkOverlayOrigin"      />      @if (loading()) {        <cde-chart-skeleton />      } @else if (emptyState(); as content) {        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />      }      @if (cellInfoOpen() && dockCellInfo()) {        <hra-info-modal          class="docked-cell-info"          title="Cell info"          closeLabel="Close cell info"          data-testid="cell-info"          [data]="cellInfoContent()"          (close)="cellInfo.set(undefined)"        />      }    </hra-fullscreen-portal-content>  </hra-fullscreen-portal></hra-expansion-panel><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayDisposeOnNavigation]="true"  [cdkConnectedOverlayHasBackdrop]="false"  [cdkConnectedOverlayOpen]="cellInfoOpen() && !dockCellInfo()"  [cdkConnectedOverlayOrigin]="cellInfoOrigin"  [cdkConnectedOverlayPositions]="cellInfoPosition()"  [cdkConnectedOverlayPush]="true"  [cdkConnectedOverlayViewportMargin]="16"  (overlayOutsideClick)="cellInfo.set(undefined)"  #cellInfoOverlay="cdkConnectedOverlay">  <hra-info-modal    title="Cell info"    closeLabel="Close cell info"    data-testid="cell-info"    [data]="cellInfoContent()"    (close)="cellInfo.set(undefined)"  /></ng-template></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'cde-about'},{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ChartSkeletonComponent', 'selector': 'cde-chart-skeleton'},{'name': 'ColorPickerComponent', 'selector': 'cde-color-picker'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'DownloadFileComponent', 'selector': 'cde-download-file'},{'name': 'DownloadsComponent', 'selector': 'cde-downloads'},{'name': 'EmptyStateComponent', 'selector': 'cde-empty-state'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'SkeletonComponent', 'selector': 'cde-skeleton'},{'name': 'ToolbarComponent', 'selector': 'cde-toolbar'},{'name': 'ViolinComponent', 'selector': 'cde-violin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NodeDistVisualizationComponent'};
 </script>
