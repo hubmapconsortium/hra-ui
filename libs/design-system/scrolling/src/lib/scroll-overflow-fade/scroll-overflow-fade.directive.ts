@@ -42,6 +42,7 @@ export class ScrollOverflowFadeStylesComponent {}
   selector: '[hraScrollOverflowFade]',
   host: {
     '[style.--hra-scroll-overflow-fade-offset.px]': 'scrollOverflowFadeOffset()',
+    '[style.--hra-scroll-overflow-fade-bottom-offset.px]': 'scrollOverflowFadeBottomOffset()',
   },
 })
 export class ScrollOverflowFadeDirective {
@@ -50,6 +51,12 @@ export class ScrollOverflowFadeDirective {
    * Primarily useful when there are sticky headers on a table, etc.
    */
   readonly scrollOverflowFadeOffset = input(0, { transform: numberAttribute });
+
+  /**
+   * Additional offset to the bottom gradient element.
+   * Primarily useful when there are sticky footers on a table, etc.
+   */
+  readonly scrollOverflowFadeBottomOffset = input(0, { transform: numberAttribute });
 
   /** Renderer instance */
   private readonly renderer = inject(Renderer2);

@@ -84,4 +84,17 @@ describe('ScrollOverflowFadeDirective', () => {
     expect(content.lastElementChild).toHaveClass('hra-scroll-overflow-fade-gradient-bottom');
     expect(content.querySelector(':scope > scrollbars')).not.toBeNull();
   });
+
+  it('sets the top and bottom offsets for sticky headers and footers', async () => {
+    const offsetTemplate = `
+      <ng-scrollbar hraScrollOverflowFade scrollOverflowFadeOffset="40" scrollOverflowFadeBottomOffset="36">
+        content
+      </ng-scrollbar>
+    `;
+    const context = await render(offsetTemplate, { ...getSharedOptions() });
+
+    const scrollbar = context.container.querySelector('ng-scrollbar') as HTMLElement;
+    expect(scrollbar.style.getPropertyValue('--hra-scroll-overflow-fade-offset')).toBe('40px');
+    expect(scrollbar.style.getPropertyValue('--hra-scroll-overflow-fade-bottom-offset')).toBe('36px');
+  });
 });

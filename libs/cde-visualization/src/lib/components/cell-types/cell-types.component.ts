@@ -28,6 +28,31 @@ import { map } from 'rxjs';
 
 import { CellTypeEntry } from '../../models/cell-type';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
+import { SkeletonComponent } from '../skeleton/skeleton.component';
+
+/** Name widths of the skeleton rows shown while the cell types load, varied like real names */
+const SKELETON_NAME_WIDTHS = [
+  '75%',
+  '55%',
+  '85%',
+  '45%',
+  '65%',
+  '35%',
+  '80%',
+  '50%',
+  '70%',
+  '40%',
+  '60%',
+  '75%',
+  '45%',
+  '85%',
+  '55%',
+  '65%',
+  '35%',
+  '70%',
+  '50%',
+  '80%',
+];
 
 /**
  * Cell Type Component
@@ -47,10 +72,14 @@ import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-la
     PlainTooltipDirective,
     ScrollingModule,
     ColorPickerLabelComponent,
+    SkeletonComponent,
   ],
   templateUrl: './cell-types.component.html',
   styleUrl: './cell-types.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.aria-busy]': 'loading() || null',
+  },
 })
 export class CellTypesComponent {
   /** List of cell types */
@@ -65,6 +94,12 @@ export class CellTypesComponent {
   /** Record of adjustments for cell type counts */
   readonly countAdjustments = input<Record<string, { count: number; outgoingEdgeCount: number }>>({});
 
+  /** Whether the cell types are loading, which shows skeleton rows in place of the table body and totals */
+  readonly loading = input(false);
+
+  /** Name widths of the skeleton rows */
+  protected readonly skeletonNameWidths = SKELETON_NAME_WIDTHS;
+
   /** Output event for reset color */
   readonly resetAllColors = output();
 
@@ -74,6 +109,14 @@ export class CellTypesComponent {
       return ['select', 'cellType', 'count'];
     }
     return ['select', 'cellType', 'count', 'links'];
+  });
+
+  /** Columns of the totals row, where the label spans the checkbox and cell type columns */
+  protected readonly footerColumns = computed(() => {
+    if (this.hideCellLinkData()) {
+      return ['total', 'count'];
+    }
+    return ['total', 'count', 'links'];
   });
 
   /** Reference to MatSort directive */

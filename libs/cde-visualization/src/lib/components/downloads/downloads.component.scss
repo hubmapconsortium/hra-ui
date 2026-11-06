@@ -103,4 +103,9 @@
       @include utils.use-font(body, medium);
     }
   }
+
+  // Leads the drawer body, so it's the first thing read and seen when files are disabled
+  .unavailable-notice {
+    margin: 0 0 1.5rem;
+  }
 }

@@ -18,6 +18,9 @@ export class DownloadFileComponent {
   /** File to show */
   readonly file = input.required<DownloadFileContent>();
 
+  /** Whether the file can't be downloaded, which disables its format buttons */
+  readonly disabled = input(false);
+
   /** Emits the format to download when a format button is clicked */
   readonly download = output<DownloadFormat>();
 }

@@ -11,10 +11,11 @@ import {
   NodeFilterView,
   NodesView,
 } from '@hra-ui/node-dist-vis/models';
-import { render, RenderComponentOptions, screen } from '@testing-library/angular';
+import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mock } from 'jest-mock-extended';
 import { NodeDistVisualizationComponent } from './node-dist-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { NO_CELL_TYPES_SELECTED_CONTENT } from '../empty-state/empty-state.content';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -96,6 +97,36 @@ describe('NodeDistVisualizationComponent', () => {
   it('should render', async () => {
     await setup();
     expect(screen.getByText('Distance visualization')).toBeInTheDocument();
+  });
+
+  describe('empty state', () => {
+    it('should not show by default', async () => {
+      await setup();
+
+      expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
+      expect(await getVisualizationEl()).not.toHaveAttribute('inert');
+    });
+
+    it('should show over an inert visualization and emit its action', async () => {
+      const emptyStateAction = jest.fn();
+      await setup({ inputs: { emptyState: NO_CELL_TYPES_SELECTED_CONTENT }, on: { emptyStateAction } });
+
+      expect(screen.getByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).toBeInTheDocument();
+      expect(await getVisualizationEl()).toHaveAttribute('inert');
+
+      fireEvent.click(screen.getByRole('button', { name: NO_CELL_TYPES_SELECTED_CONTENT.actionLabel }));
+      expect(emptyStateAction).toHaveBeenCalled();
+    });
+
+    it('should give way to a skeleton while loading', async () => {
+      const { container, fixture } = await setup({
+        inputs: { emptyState: NO_CELL_TYPES_SELECTED_CONTENT, loading: true },
+      });
+
+      expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
+      expect(container.querySelector('cde-chart-skeleton')).toBeInTheDocument();
+      expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
+    });
   });
 
   it('forwards node clicks from the visualization', async () => {

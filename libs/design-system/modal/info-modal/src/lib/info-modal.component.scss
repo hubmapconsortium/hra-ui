@@ -1,10 +1,9 @@
-@use '@angular/material' as mat;
+@use '../../../../styles/description-list';
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
 // A floating card like a rich tooltip: surface-container with level 2 elevation and medium corners.
-// A title small header over labels and values in two body medium columns, with a 16px inset.
-// Labels use on-surface and values on-surface-variant, so the two columns read apart.
+// A title small header over a description list of labels and values, with a 16px inset.
 :host {
   display: block;
   min-width: 23.625rem;
@@ -33,43 +32,8 @@
     }
   }
 
-  .table-container {
-    padding: 1rem;
-
-    table {
-      border: none;
-
-      @include mat.table-overrides(
-        (
-          background-color: transparent,
-          row-item-label-text-color: vars.$on-surface-variant,
-          row-item-label-text-font: vars.$body-medium-font,
-          row-item-label-text-line-height: vars.$body-medium-line-height,
-          row-item-label-text-size: vars.$body-medium-size,
-          row-item-label-text-weight: vars.$body-medium-weight,
-          row-item-label-text-tracking: vars.$body-medium-tracking,
-          row-item-outline-width: 0,
-          row-item-container-height: auto,
-        )
-      );
-
-      // Labels take their own width and values the rest, with rows 2px apart
-      .label,
-      .value {
-        padding: 0.0625rem 0;
-        vertical-align: top;
-      }
-
-      .label {
-        width: 1%;
-        padding-right: 1rem;
-        white-space: nowrap;
-        color: vars.$on-surface;
-      }
-
-      .value {
-        overflow-wrap: anywhere;
-      }
-    }
+  .details {
+    @include description-list.description-list();
+    margin: 1rem;
   }
 }

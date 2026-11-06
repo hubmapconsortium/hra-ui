@@ -11,9 +11,15 @@
     </hra-expansion-panel-actions>
 
     <hra-expansion-panel-header-content>
-      <button mat-icon-button mat-dialog-close hraFeature="close" hraClickEvent>
-        <mat-icon class="material-symbols-rounded"> close </mat-icon>
-      </button>
+      @if (viewTransition()) {
+        <button mat-icon-button hraFeature="close" hraClickEvent (click)="close()">
+          <mat-icon class="material-symbols-rounded"> close </mat-icon>
+        </button>
+      } @else {
+        <button mat-icon-button mat-dialog-close hraFeature="close" hraClickEvent>
+          <mat-icon class="material-symbols-rounded"> close </mat-icon>
+        </button>
+      }
     </hra-expansion-panel-header-content>
 
     <ng-template data-testid="fullscreen-outlet" [hraViewOutlet]="viewRef()" />

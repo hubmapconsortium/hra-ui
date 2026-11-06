@@ -60,6 +60,22 @@ export interface DownloadGroupContent {
   notice?: DownloadNoticeContent;
 }
 
+/** Files that can't be downloaded because they would be empty, and why */
+export interface UnavailableDownloads {
+  /** Files to disable */
+  files: DownloadFileId[];
+  /** Notice explaining why the files are disabled */
+  notice: string;
+}
+
+/** Notices for files that would be empty with the current cell type selection */
+export interface UnavailableDownloadsContent {
+  /** Shown when no cell types are selected, so every file would be empty */
+  noCellTypes: string;
+  /** Shown when only the anchor cell type is selected, so the charts would be empty */
+  noDistances: (anchorCellType: string) => string;
+}
+
 /** All text content for the downloads button and drawer */
 export interface DownloadsContent {
   /** Drawer title. Also used as the downloads button label and tooltip */
@@ -72,6 +88,8 @@ export interface DownloadsContent {
   noticeLabel: string;
   /** File groups */
   groups: DownloadGroupContent[];
+  /** Notices for files that would be empty */
+  unavailable: UnavailableDownloadsContent;
 }
 
 /** Text content for the downloads button and drawer */
@@ -141,4 +159,9 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
       },
     },
   ],
+  unavailable: {
+    noCellTypes: 'Select at least one cell type to download files.',
+    noDistances: (anchorCellType) =>
+      `Select a cell type other than ${anchorCellType} to download the violin graph and histogram.`,
+  },
 };

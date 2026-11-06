@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -14,7 +15,7 @@ import {
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HraCommonModule } from '@hra-ui/common';
 import { Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
@@ -45,10 +46,16 @@ import {
   toCsv,
   withDataViewDefaultGenerator,
 } from '@hra-ui/node-dist-vis/models';
+import { debounceTime, distinctUntilChanged, pairwise } from 'rxjs';
 
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
 import { DownloadsComponent } from '../components/downloads/downloads.component';
-import { DownloadRequest } from '../components/downloads/downloads.content';
+import { DOWNLOADS_CONTENT, DownloadRequest, UnavailableDownloads } from '../components/downloads/downloads.content';
+import {
+  EmptyStateContent,
+  NO_CELL_TYPES_SELECTED_CONTENT,
+  noDistancesContent,
+} from '../components/empty-state/empty-state.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
@@ -58,7 +65,7 @@ import { loadMetadata, MetadataInput } from '../models/metadata';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
-import { LoadingManager } from '../shared/loading-manager';
+import { loadingObserver } from '../shared/loading-observer';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
@@ -70,6 +77,12 @@ export interface DistanceEntry {
   distance: number;
 }
 
+/** Announced to screen readers once all data has loaded */
+const LOADED_ANNOUNCEMENT = 'Visualization loaded';
+
+/** Time in ms that loading must stay finished before the loaded announcement */
+const LOADED_ANNOUNCEMENT_DEBOUNCE = 250;
+
 /**
  * CDE Visualization Root Component
  */
@@ -77,7 +90,6 @@ export interface DistanceEntry {
   selector: 'cde-visualization-root',
   imports: [
     HraCommonModule,
-    MatProgressBarModule,
     MatSidenavModule,
     CellTypesComponent,
     DownloadsComponent,
@@ -201,8 +213,33 @@ export class CdeVisualizationComponent {
   /** View container. Do NOT change the name. It is used by ngx-color-picker! */
   readonly vcRef = inject(ViewContainerRef);
 
-  /** Whether there are loading resources, etc. */
-  protected loadingManager = new LoadingManager();
+  /** Whether the nodes are loading */
+  protected readonly nodesLoading = signal(false);
+
+  /** Whether the edges are loading */
+  private readonly edgesLoading = signal(false);
+
+  /** Whether the edges are being generated from the nodes */
+  private readonly edgesGenerating = signal(false);
+
+  /** Whether the color map is loading */
+  private readonly colorMapLoading = signal(false);
+
+  /** Whether the metadata is loading */
+  protected readonly metadataLoading = signal(false);
+
+  /** Whether the cell types are loading. They come from the nodes and the color map. */
+  protected readonly cellTypesLoading = computed(() => this.nodesLoading() || this.colorMapLoading());
+
+  /** Whether the distances are loading. They need the nodes and the loaded or generated edges. */
+  protected readonly distancesLoading = computed(
+    () => this.nodesLoading() || this.edgesLoading() || this.edgesGenerating(),
+  );
+
+  /** Whether any data is loading */
+  private readonly anyLoading = computed(
+    () => this.cellTypesLoading() || this.distancesLoading() || this.metadataLoading(),
+  );
 
   /** Sets the node target selector (uses default if not available) */
   protected readonly nodeTargetSelectorWithDefault = computed(() => {
@@ -214,18 +251,18 @@ export class CdeVisualizationComponent {
     this.nodes,
     this.nodeKeys,
     this.nodeTargetKey,
-    this.loadingManager.createObserver(),
+    loadingObserver(this.nodesLoading),
   );
 
   /** View of the edge data */
   protected readonly edgesView = withDataViewDefaultGenerator(
-    loadEdges(this.edges, this.edgeKeys, this.loadingManager.createObserver()),
+    loadEdges(this.edges, this.edgeKeys, loadingObserver(this.edgesLoading)),
     createEdgeGenerator(
       this.nodesView,
       this.edges,
       this.nodeTargetSelectorWithDefault,
       this.maxEdgeDistance,
-      this.loadingManager.createObserver(),
+      loadingObserver(this.edgesGenerating),
     ),
     EMPTY_EDGES_VIEW,
     false,
@@ -238,7 +275,7 @@ export class CdeVisualizationComponent {
       this.colorMapKeys,
       this.colorMapKey,
       this.colorMapValue,
-      this.loadingManager.createObserver(),
+      loadingObserver(this.colorMapLoading),
     ),
     createColorMapGenerator(this.nodesView, this.colorMap),
     EMPTY_COLOR_MAP_VIEW,
@@ -259,7 +296,7 @@ export class CdeVisualizationComponent {
       sourceFileName: this.sourceFileName,
       colorMapFileName: this.colorMapFileName,
     },
-    this.loadingManager.createObserver(),
+    loadingObserver(this.metadataLoading),
   );
 
   /** Filter for node data */
@@ -350,6 +387,48 @@ export class CdeVisualizationComponent {
     { equal: emptyArrayEquals },
   );
 
+  /** Whether the cell types have loaded and none of them are selected, so every panel is empty */
+  private readonly noCellTypesSelected = computed(
+    () => this.cellTypes().length > 0 && this.cellTypesSelection().length === 0,
+  );
+
+  /**
+   * Whether there are cell types besides the anchor type but none of them are selected.
+   * The charts leave the anchor type out, so they have no distances to show.
+   */
+  private readonly noDistancesSelected = computed(() => {
+    const anchor = this.nodeTargetSelectorWithDefault();
+    return this.cellTypes().some(({ name }) => name !== anchor) && this.filteredCellTypes().length === 0;
+  });
+
+  /** Empty state for the distance visualization */
+  protected readonly visualizationEmptyState = computed(() =>
+    this.noCellTypesSelected() ? NO_CELL_TYPES_SELECTED_CONTENT : undefined,
+  );
+
+  /** Empty state for the violin graph and histogram */
+  protected readonly chartsEmptyState = computed((): EmptyStateContent | undefined => {
+    if (this.noCellTypesSelected()) {
+      return NO_CELL_TYPES_SELECTED_CONTENT;
+    } else if (this.noDistancesSelected()) {
+      return noDistancesContent(this.nodeTargetSelectorWithDefault());
+    }
+    return undefined;
+  });
+
+  /** Files that would be empty with the current selection, so the downloads drawer disables them */
+  protected readonly unavailableDownloads = computed((): UnavailableDownloads | undefined => {
+    const { unavailable, groups } = DOWNLOADS_CONTENT;
+    if (this.noCellTypesSelected()) {
+      const files = groups.flatMap((group) => group.files.map((file) => file.id));
+      return { files, notice: unavailable.noCellTypes };
+    } else if (this.noDistancesSelected()) {
+      const notice = unavailable.noDistances(this.nodeTargetSelectorWithDefault());
+      return { files: ['violin-graph', 'histogram'], notice };
+    }
+    return undefined;
+  });
+
   /** Computed distances between nodes */
   protected readonly distances = computed(() => this.computeDistances(), { equal: emptyArrayEquals });
 
@@ -361,6 +440,9 @@ export class CdeVisualizationComponent {
 
   /** Injected file saver service */
   private readonly fileSaver = inject(FileSaverService);
+
+  /** Announces the charts' empty state to screen readers */
+  private readonly liveAnnouncer = inject(LiveAnnouncer);
 
   /** Whether the downloads drawer is open */
   protected readonly downloadsOpen = signal(false);
@@ -386,6 +468,24 @@ export class CdeVisualizationComponent {
       this.nodeFilterView.set(new NodeFilterView(selection, filter.exclude));
     });
 
+    // Announced once here, not by each panel's empty state
+    effect(() => {
+      const emptyState = this.chartsEmptyState();
+      if (emptyState) {
+        this.liveAnnouncer.announce(`${emptyState.heading}. ${emptyState.description}`);
+      }
+    });
+
+    // Announced once everything has loaded. The debounce skips the short gap between loading the nodes
+    // and generating the edges.
+    toObservable(this.anyLoading)
+      .pipe(debounceTime(LOADED_ANNOUNCEMENT_DEBOUNCE), distinctUntilChanged(), pairwise(), takeUntilDestroyed())
+      .subscribe(([wasLoading, isLoading]) => {
+        if (wasLoading && !isLoading) {
+          this.liveAnnouncer.announce(LOADED_ANNOUNCEMENT);
+        }
+      });
+
     // Connect outputs
     this.bindDataOutput(this.nodesView, this.nodesChange);
     this.bindDataOutput(this.edgesView, this.edgesChange);
@@ -395,6 +495,11 @@ export class CdeVisualizationComponent {
   /** Reset cell types */
   resetCellTypes(): void {
     this.cellTypesResetCounter.set(this.cellTypesResetCounter() + 1);
+  }
+
+  /** Selects every cell type, like the cell types table's select all checkbox */
+  selectAllCellTypes(): void {
+    this.cellTypesSelection.set(this.cellTypes().map((entry) => entry.name));
   }
 
   /** Update the color of a specific cell type entry */
@@ -409,6 +514,10 @@ export class CdeVisualizationComponent {
 
   /** Downloads the requested file */
   async handleDownload({ file, format }: DownloadRequest): Promise<void> {
+    if (this.unavailableDownloads()?.files.includes(file)) {
+      return;
+    }
+
     switch (file) {
       case 'cells':
         return this.downloadNodes();
