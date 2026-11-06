@@ -163,6 +163,51 @@ A `NodeEvent` is a plain object with the following properties:
 | _clientY_     | Pointer Y coordinate relative to the viewport | Number             |
 | _object_      | The associated data for the node              | Object             |
 
+## Theming
+
+The _CDE_ uses the HRA theme by default. Its colors, typography, and shapes come from Angular Material's system tokens (`--mat-sys-*` CSS custom properties), so you can restyle it by overriding those tokens.
+
+Set your overrides on `.hra-app` in a stylesheet loaded after `styles.css`. The `cde-visualization` element and the overlay that holds its menus and tooltips both have this class, so the overrides reach both.
+
+```html
+<link href="https://cdn.humanatlas.io/ui/cde-visualization-wc/styles.css" rel="stylesheet" />
+<style>
+  .hra-app {
+    --mat-sys-primary: #0b57d0;
+    --mat-sys-on-primary: #ffffff;
+    --mat-sys-surface-container-low: #f4f6fa;
+  }
+</style>
+```
+
+If your site is built with Angular Material, you can generate a complete set of tokens instead:
+
+```scss
+@use '@angular/material' as mat;
+
+.hra-app {
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: Inter,
+    )
+  );
+}
+```
+
+Typography tokens come as a shorthand (for example `--mat-sys-label-medium`) and its parts (`--mat-sys-label-medium-font`, `-size`, `-weight`, `-line-height`, and `-tracking`). Override both. The default theme's fonts, Metropolis and Nunito Sans, are included in `styles.css`; load any other fonts yourself.
+
+The histogram and violin charts read these tokens when they render:
+
+| Token                             | Used for                    |
+| --------------------------------- | --------------------------- |
+| `--mat-sys-surface-container-low` | Chart background            |
+| `--mat-sys-on-surface`            | Axis and legend titles      |
+| `--mat-sys-on-secondary-fixed`    | Axis and legend labels      |
+| `--mat-sys-label-medium-font`     | Axis and legend font family |
+
+The cell visualization keeps its black background. Set cell colors with the `color-map` input.
+
 ## Full example
 
 ```html

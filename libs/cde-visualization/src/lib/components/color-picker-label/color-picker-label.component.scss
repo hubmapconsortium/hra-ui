@@ -9,20 +9,20 @@
   .color-pick {
     height: 1.25rem;
     width: 1.25rem;
-    background-color: #201e3d;
+    background-color: vars.$secondary;
     display: inline-block;
     border-radius: 50%;
     vertical-align: middle;
     margin: 0.25rem 0.5rem 0.25rem 0.25rem;
     position: relative;
     cursor: pointer;
-    border: 1px solid #201e3d;
+    border: 1px solid vars.$secondary;
   }
 
   .anchor {
-    background-color: #201e3d;
+    background-color: vars.$secondary;
     border-radius: 50%;
-    color: white;
+    color: vars.$on-secondary;
     vertical-align: middle;
     height: 1.25rem;
     width: 1.25rem;
@@ -60,7 +60,7 @@
     div.color-picker {
       border-radius: 0.5rem;
       border: none;
-      box-shadow: 0px 0.3125rem 1rem 0 #201e3d3d;
+      box-shadow: 0px 0.3125rem 1rem 0 utils.with-alpha(vars.$shadow, 24%);
 
       .hex-text {
         display: flex !important;
@@ -79,10 +79,10 @@
             width: auto;
             div {
               font-size: 0.75rem;
-              font-family: 'Metropolis';
+              font-family: vars.$label-small-font;
               line-height: 1.375rem;
               letter-spacing: 0.005em;
-              color: #201e3d;
+              color: vars.$on-surface;
               font-weight: 500;
               text-transform: uppercase;
             }
@@ -95,7 +95,7 @@
 
           input {
             border: none;
-            box-shadow: 0px 5px 16px 0px #201e3d3d;
+            box-shadow: 0px 5px 16px 0px utils.with-alpha(vars.$shadow, 24%);
             border-radius: 1rem;
             padding: 0.5625rem 0;
             height: 2.5rem;
@@ -123,10 +123,10 @@
           font-size: 0.75rem;
           letter-spacing: 0.005em;
           line-height: 1.375rem;
-          font-family: 'Metropolis';
+          font-family: vars.$label-small-font;
           padding: 0.25rem 0.5rem;
           font-weight: 500;
-          color: #201e3d;
+          color: vars.$on-surface;
         }
       }
       .cursor {

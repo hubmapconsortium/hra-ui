@@ -39,6 +39,7 @@ import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { applyChartTheme, getChartTheme, ThemeableChartSpec } from '../../shared/chart-theme';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
@@ -81,8 +82,8 @@ interface ModifiableHistogramSpec {
   };
 }
 
-/** Fonts used in the histogram */
-const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
+/** Font sizes used in the histogram, in pixels */
+const HISTOGRAM_FONT_SIZES = [12, 14];
 
 /** Label for all cell types */
 const ALL_CELLS_TYPE = 'All cells';
@@ -104,10 +105,8 @@ const EXPORT_IMAGE_LEGEND_CONFIG = {
   labelFontSize: 14,
   titleFontSize: 14,
   titleLineHeight: 21,
-  titleColor: '#201E3D',
   titleFontWeight: 500,
   labelFontWeight: 500,
-  labelColor: '#4B4B5E',
 };
 
 /** Length of the dynamic color range */
@@ -213,9 +212,11 @@ export class HistogramComponent {
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(async (onCleanup) => {
     const el = this.histogramEl().rootNodes()[0];
-    await this.ensureFontsLoaded();
+    const theme = getChartTheme(el);
+    await this.ensureFontsLoaded(theme.font);
 
     const spec = produce(HISTOGRAM_SPEC, (draft) => {
+      applyChartTheme(draft, theme);
       draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
     });
     const { finalize, view } = await embed(el, spec as VisualizationSpec, {
@@ -240,14 +241,20 @@ export class HistogramComponent {
   /** Download the histogram as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
-    const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) => {
+    const theme = getChartTheme(this.histogramEl().rootNodes()[0]);
+    const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec & ThemeableChartSpec, (draft) => {
+      applyChartTheme(draft, theme);
       draft.width = EXPORT_IMAGE_WIDTH;
       draft.height = EXPORT_IMAGE_HEIGHT;
       draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
+      draft.encoding.color.legend = {
+        ...EXPORT_IMAGE_LEGEND_CONFIG,
+        titleColor: theme.titleColor,
+        labelColor: theme.labelColor,
+      };
       draft.data.values = this.data();
       draft.encoding.color.scale.range = this.allColors();
     });
@@ -262,9 +269,13 @@ export class HistogramComponent {
     finalize();
   }
 
-  /** Ensure required fonts are loaded for the histogram */
-  private async ensureFontsLoaded(): Promise<void> {
-    const loadPromises = HISTOGRAM_FONTS.map((font) => this.document.fonts.load(font));
+  /**
+   * Ensure required fonts are loaded for the histogram
+   *
+   * @param font Font family used by the histogram
+   */
+  private async ensureFontsLoaded(font: string): Promise<void> {
+    const loadPromises = HISTOGRAM_FONT_SIZES.map((size) => this.document.fonts.load(`${size}px ${font}`));
     await Promise.all(loadPromises);
   }
 

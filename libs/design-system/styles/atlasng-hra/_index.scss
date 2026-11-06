@@ -1,0 +1,16 @@
+@use 'sass:map';
+@use './palettes';
+@use './shape';
+@use './typography';
+
+// AtlasNG HRA theme, shaped for `theming.theme($theme, $overrides)`.
+$theme: (
+  color: (
+    theme-type: light,
+    primary: palettes.$primary-palette,
+    tertiary: palettes.$tertiary-palette,
+  ),
+  typography: typography.$typography,
+);
+
+$overrides: map.merge(typography.$typography-overrides, shape.$shape-overrides);

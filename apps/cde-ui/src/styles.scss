@@ -1,11 +1,11 @@
 @use '@angular/material' as mat;
 @use 'vars';
-@use 'light-theme';
+@use 'atlasng-hra';
 @use 'theming';
 @use 'utils';
 
 @include utils.global-styles() {
-  @include theming.theme(light-theme.$theme);
+  @include theming.theme(atlasng-hra.$theme, atlasng-hra.$overrides);
 
   input[type='number'] {
     -moz-appearance: textfield; /* Firefox */
