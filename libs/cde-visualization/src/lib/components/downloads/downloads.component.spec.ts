@@ -83,6 +83,29 @@ describe('DownloadsComponent', () => {
 
       expect(fixture.nativeElement.querySelector(`#${unavailableNoticeId}`)).toHaveTextContent(unavailable.notice);
       expect(fixture.componentInstance.describedBy()).toEqual(`${descriptionId} ${unavailableNoticeId}`);
+      expect(screen.queryByRole('button', { name: DOWNLOADS_CONTENT.unavailable.showAllPanels })).toBeNull();
+    });
+
+    it('should show all panels from the notice and focus the first file that became available', async () => {
+      const hidden: UnavailableDownloads = {
+        files: ['visualization', 'histogram'],
+        notice: 'Panels are hidden.',
+        showPanels: true,
+      };
+      const showAllPanelsClick = jest.fn();
+      const { fixture } = await render(DownloadsComponent, {
+        inputs: { unavailable: hidden },
+        on: { showAllPanelsClick },
+      });
+      showAllPanelsClick.mockImplementation(() => fixture.componentRef.setInput('unavailable', undefined));
+
+      fireEvent.click(screen.getByRole('button', { name: DOWNLOADS_CONTENT.unavailable.showAllPanels }));
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const [png] = files.find((file) => file.id === 'visualization')?.formats ?? [];
+      expect(showAllPanelsClick).toHaveBeenCalled();
+      expect(screen.getByRole('button', { name: png.ariaLabel })).toHaveFocus();
     });
 
     it('should not show the notice when every file is available', async () => {

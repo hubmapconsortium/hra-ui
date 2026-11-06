@@ -193,5 +193,16 @@ describe('NodeDistVisualizationComponent', () => {
       const el = await getVisualizationEl();
       expect((el.nodeFilter as NodeFilterView).exclude).toEqual([0]);
     });
+
+    it('clears the selection when the view mode changes, since the visualization drops it', async () => {
+      const { fixture } = await setup();
+      await setViewMode(fixture, /Select/);
+      await emitVisualizationEvent(fixture, 'nodeSelectionChange', [SAMPLE_NODE_EVENT]);
+      await setViewMode(fixture, /Explore/);
+      await setViewMode(fixture, /Select/);
+
+      const deleteButton = await getSelectionDeleteButton(fixture);
+      expect(await deleteButton.isDisabled()).toBeTruthy();
+    });
   });
 });

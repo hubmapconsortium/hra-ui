@@ -8,6 +8,7 @@ import {
   ElementRef,
   inject,
   input,
+  model,
   output,
   Renderer2,
   signal,
@@ -27,7 +28,6 @@ import { FullscreenPortalComponent, FullscreenPortalContentComponent } from '@hr
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { produce } from 'immer';
-import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
@@ -174,12 +174,6 @@ export class HistogramComponent {
   /** Toggles full screen mode */
   protected readonly fullscreen = signal(false);
 
-  /** Sets the color picker directive */
-  protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
-
-  /** State indicating whether overflow is visible */
-  protected readonly overflowVisible = computed(() => !!this.colorPicker());
-
   /** Label for the total cell type */
   protected readonly totalCellTypeLabel = ALL_CELLS_TYPE;
 
@@ -199,13 +193,12 @@ export class HistogramComponent {
   });
 
   /** Color picked for the total cell type, or undefined to use the theme's mark color */
-  protected readonly pickedTotalCellTypeColor = signal<Rgb | undefined>(undefined);
+  readonly allCellsColor = model<Rgb | undefined>(undefined);
 
   /** Color for the total cell type */
-  protected readonly totalCellTypeColor = computed(
-    () => this.pickedTotalCellTypeColor() ?? hexToRgb(this.theme().markColor),
-    { equal: colorEquals },
-  );
+  readonly totalCellTypeColor = computed(() => this.allCellsColor() ?? hexToRgb(this.theme().markColor), {
+    equal: colorEquals,
+  });
 
   /** Reference to the renderer for DOM manipulation */
   private readonly renderer = inject(Renderer2);
@@ -316,10 +309,5 @@ export class HistogramComponent {
   private async ensureFontsLoaded(font: string): Promise<void> {
     const loadPromises = HISTOGRAM_FONT_SIZES.map((size) => this.document.fonts.load(`${size}px ${font}`));
     await Promise.all(loadPromises);
-  }
-
-  /** Reset the color of the total cell type to the theme's mark color */
-  resetAllCellsColor(): void {
-    this.pickedTotalCellTypeColor.set(undefined);
   }
 }

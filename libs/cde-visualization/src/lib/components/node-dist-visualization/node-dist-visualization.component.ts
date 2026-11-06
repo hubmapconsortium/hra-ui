@@ -11,9 +11,9 @@ import {
   inject,
   input,
   isSignal,
+  linkedSignal,
   model,
   output,
-  signal,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -115,19 +115,22 @@ export class NodeDistVisualizationComponent {
   /** Whether any cells were deleted */
   protected readonly hasDeletedCells = computed(() => (this.nodeFilter().exclude?.length ?? 0) > 0);
 
-  /** Current view mode */
-  protected readonly viewMode = signal<ViewMode>('explore');
+  /** Current view mode. The root sets it back to explore when everything is reset. */
+  readonly viewMode = model<ViewMode>('explore');
 
-  /** Current node selection */
-  protected readonly selection = signal<NodeEvent[]>([]);
+  /** Current node selection. Cleared when the view mode changes, since the visualization drops it. */
+  protected readonly selection = linkedSignal<ViewMode, NodeEvent[]>({ source: this.viewMode, computation: () => [] });
 
   /** If there is a current node selection */
   protected readonly hasSelection = computed(() => {
     return this.viewMode() === 'select' && this.selection().length > 0;
   });
 
-  /** Signal containing node event */
-  protected readonly cellInfo = signal<NodeEvent | undefined>(undefined);
+  /** Signal containing node event. Cleared when the view mode changes. */
+  protected readonly cellInfo = linkedSignal<ViewMode, NodeEvent | undefined>({
+    source: this.viewMode,
+    computation: () => undefined,
+  });
   /** Opens cell info panel */
   protected readonly cellInfoOpen = computed(() => this.viewMode() === 'inspect' && !!this.cellInfo());
   /** Position of cell info panel */

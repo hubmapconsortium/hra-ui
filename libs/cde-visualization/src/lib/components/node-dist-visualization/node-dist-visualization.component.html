@@ -4,7 +4,6 @@
       [deleteDisabled]="!hasSelection()"
       [(viewMode)]="viewMode"
       (deleteClick)="deleteSelection()"
-      (viewModeChange)="cellInfo.set(undefined)"
     />
     <button
       mat-icon-button
@@ -32,7 +31,6 @@
         [deleteDisabled]="!hasSelection()"
         [(viewMode)]="viewMode"
         (deleteClick)="deleteSelection()"
-        (viewModeChange)="cellInfo.set(undefined)"
       />
     </hra-fullscreen-actions>
 

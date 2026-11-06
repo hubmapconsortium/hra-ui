@@ -1,10 +1,8 @@
-import { DOCUMENT } from '@angular/common';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { computed, DestroyRef, inject, Signal, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { computed, inject, Signal } from '@angular/core';
 import { rgbToHex } from '@hra-ui/design-system/color-picker';
-import { map } from 'rxjs';
 import { View } from 'vega';
+import { ThemeSwitchService } from '../services/theme-switch/theme-switch.service';
+import { watchPageColorScheme } from './color-scheme';
 
 /** Chart font, read from the theme's body medium type token */
 export interface ChartFont {
@@ -109,9 +107,6 @@ const CHART_THEME_PARAMS: Record<ChartThemeColor, string> = {
 
 /** Matches the `rgb()` and `rgba()` colors that `getComputedStyle` returns */
 const RGB_COLOR = /^rgba?\((\d+),\s*(\d+),\s*(\d+)/;
-
-/** Media query matching a system preference for dark colors */
-const PREFERS_DARK_QUERY = '(prefers-color-scheme: dark)';
 
 /**
  * Reads the chart theme from the CSS custom properties in effect on an element.
@@ -262,20 +257,14 @@ function getThemeColorKey(name: string): ChartThemeColor | undefined {
 
 /**
  * Watches what decides whether theme colors resolve to their light or dark values:
- * the system color scheme preference and the `color-scheme` of the document's root element.
+ * the system color scheme preference, the `color-scheme` of the document's root element,
+ * and the theme picked with the visualization's theme switch.
  * Must be called in an injection context.
  *
- * @returns A signal whose value changes when either one changes
+ * @returns A signal whose value changes when any of them changes
  */
 export function watchColorScheme(): Signal<string> {
-  const root = inject(DOCUMENT).documentElement;
-  const prefersDark$ = inject(BreakpointObserver).observe(PREFERS_DARK_QUERY);
-  const prefersDark = toSignal(prefersDark$.pipe(map((state) => state.matches)), { requireSync: true });
-  const readRootColorScheme = () => getComputedStyle(root).colorScheme ?? '';
-  const rootColorScheme = signal(readRootColorScheme());
-  const observer = new MutationObserver(() => rootColorScheme.set(readRootColorScheme()));
-
-  observer.observe(root, { attributes: true });
-  inject(DestroyRef).onDestroy(() => observer.disconnect());
-  return computed(() => `${rootColorScheme()} ${prefersDark() ? 'dark' : 'light'}`);
+  const pageColorScheme = watchPageColorScheme();
+  const themeSwitch = inject(ThemeSwitchService, { optional: true });
+  return computed(() => `${pageColorScheme()} ${themeSwitch?.theme() ?? ''}`);
 }

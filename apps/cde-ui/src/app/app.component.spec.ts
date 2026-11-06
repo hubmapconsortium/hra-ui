@@ -5,7 +5,7 @@ import { PrivacyPreferencesService } from '@hra-ui/design-system/privacy';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { Shallow } from 'shallow-render';
 import { AppComponent } from './app.component';
-import { Theme, ThemeService } from './services/theme-service/theme.service';
+import { ThemePreference, ThemeService } from './services/theme-service/theme.service';
 
 describe('AppComponent', () => {
   let shallow: Shallow<AppComponent>;
@@ -20,13 +20,21 @@ describe('AppComponent', () => {
     await expect(shallow.render()).resolves.toBeTruthy();
   });
 
-  it('switches themes with the theme toggle', async () => {
-    const toggle = jest.fn();
-    const { find } = await shallow.mock(ThemeService, { theme: signal<Theme>('light'), toggle }).render();
-    const button = find('[hraFeature="theme-toggle"]');
+  it('picks a theme from the theme menu', async () => {
+    const setPreference = jest.fn();
+    const { find } = await shallow
+      .mock(ThemeService, { preference: signal<ThemePreference>('dark'), setPreference })
+      .render();
 
-    expect(button.nativeElement.getAttribute('aria-label')).toEqual('Switch to dark theme');
-    button.triggerEventHandler('click', {});
-    expect(toggle).toHaveBeenCalled();
+    expect(find('[hraFeature="theme"] mat-icon').nativeElement.textContent.trim()).toEqual('dark_mode');
+    const options = find('[role="menuitemradio"]');
+    expect(options.map((option) => option.nativeElement.getAttribute('aria-checked'))).toEqual([
+      'false',
+      'false',
+      'true',
+    ]);
+
+    options[0].triggerEventHandler('click', {});
+    expect(setPreference).toHaveBeenCalledWith('system');
   });
 });

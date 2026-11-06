@@ -19,10 +19,24 @@
     @if (unavailable(); as unavailable) {
       <div class="notice unavailable-notice" hraFeature="unavailable-notice">
         <mat-icon class="notice-icon">info</mat-icon>
-        <p class="notice-body" [id]="unavailableNoticeId">
-          <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
-          {{ unavailable.notice }}
-        </p>
+        <div class="notice-content">
+          <p class="notice-body" [id]="unavailableNoticeId">
+            <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+            {{ unavailable.notice }}
+          </p>
+          @if (unavailable.showPanels) {
+            <button
+              matButton="outlined"
+              class="notice-action"
+              hraFeature="show-all-panels"
+              hraClickEvent
+              (click)="showAllPanels()"
+            >
+              <mat-icon>visibility</mat-icon>
+              {{ content.unavailable.showAllPanels }}
+            </button>
+          }
+        </div>
       </div>
     }
 
@@ -44,20 +58,26 @@
         @if (group.notice; as notice) {
           <div class="notice">
             <mat-icon class="notice-icon">info</mat-icon>
-            <p class="notice-body">
-              <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
-              {{ notice.text }}
+            <div class="notice-content">
+              <p class="notice-body">
+                <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+                {{ notice.text }}
+              </p>
               @if (notice.link; as link) {
                 <a
-                  hraHyperlink
-                  hraFeature="embedding-guide"
+                  matButton="outlined"
+                  class="notice-action"
                   target="_blank"
                   rel="noopener noreferrer"
+                  hraFeature="embedding-guide"
+                  hraClickEvent
                   [attr.href]="link.url"
-                  >{{ link.label }}</a
                 >
+                  <mat-icon>open_in_new</mat-icon>
+                  {{ link.label }}
+                </a>
               }
-            </p>
+            </div>
           </div>
         }
       </section>

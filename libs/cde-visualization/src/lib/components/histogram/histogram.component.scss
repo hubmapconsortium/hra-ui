@@ -15,10 +15,9 @@
   );
 
   ::ng-deep {
-    // The 8px left and right padding puts the collapse toggle's and the fullscreen button's icons on the panel's
-    // 16px inset
+    // 8px on the right puts the fullscreen button's icon on the 16px line
     .header {
-      padding: 0.5rem;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
       hra-expansion-panel-header-content {
         display: flex;
         align-items: center;
@@ -72,6 +71,24 @@
       .mat-expansion-panel-body {
         padding: 0 1rem 0.5rem 0.75rem;
       }
+    }
+  }
+}
+
+:host(.fill) {
+  height: 0;
+  flex-grow: 1;
+  max-height: none;
+
+  ::ng-deep hra-expansion-panel {
+    height: 100%;
+
+    .content {
+      height: calc(100% - 3.5rem);
+    }
+
+    .expansion-body {
+      height: 100%;
     }
   }
 }

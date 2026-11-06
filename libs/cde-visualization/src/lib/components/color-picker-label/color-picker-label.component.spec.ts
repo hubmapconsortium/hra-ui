@@ -1,4 +1,4 @@
-import { render } from '@testing-library/angular';
+import { fireEvent, render, screen } from '@testing-library/angular';
 
 import { ColorPickerLabelComponent } from './color-picker-label.component';
 
@@ -8,32 +8,20 @@ function hoverEvent(scrollWidth: number, clientWidth: number): MouseEvent {
 }
 
 describe('ColorPickerLabelComponent', () => {
-  it('should update color when selectColor is called', async () => {
-    const {
-      fixture: { componentInstance: instance },
-    } = await render(ColorPickerLabelComponent, {
+  it('opens a color picker named after the label from its swatch button', async () => {
+    await render(ColorPickerLabelComponent, {
       componentInputs: {
         color: [0, 0, 0],
-        label: 'Test Label',
+        label: 'B cells',
       },
     });
 
-    instance.selectColor('#ffffff');
-    expect(instance.color()).toEqual([255, 255, 255]);
-  });
+    const swatch = screen.getByRole('button', { name: 'B cells color' });
+    expect(swatch).toHaveAttribute('aria-expanded', 'false');
 
-  it('should not update color if same color picked', async () => {
-    const {
-      fixture: { componentInstance: instance },
-    } = await render(ColorPickerLabelComponent, {
-      componentInputs: {
-        color: [255, 255, 255],
-        label: 'Test Label',
-      },
-    });
-
-    instance.selectColor('#ffffff');
-    expect(instance.color()).toEqual([255, 255, 255]);
+    fireEvent.click(swatch);
+    expect(await screen.findByRole('dialog', { name: 'B cells color' })).toBeInTheDocument();
+    expect(swatch).toHaveAttribute('aria-expanded', 'true');
   });
 
   it('should open the tooltip when the hovered label is truncated', async () => {
