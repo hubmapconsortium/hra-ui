@@ -1,0 +1,53 @@
+@use '../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../libs/design-system/styles/vars';
+
+// A placeholder in theme roles: a surface-container-highest base with a low-alpha on-surface shimmer,
+// and corners from the shape scale. The --ang-skeleton-* token hooks restyle it.
+:host {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--ang-skeleton-container-color, #{vars.$surface-container-highest});
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--ang-skeleton-shimmer-color, #{utils.with-alpha(vars.$on-surface, 8%)}),
+      transparent
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  // The shimmer stays still when reduced motion is preferred
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      display: none;
+    }
+  }
+}
+
+// A bar centered in one line of the surrounding type, so it takes the same height as the text it stands in for
+:host([data-shape='text']) {
+  height: 0.75em;
+  margin-block: calc((1lh - 0.75em) / 2);
+  border-radius: var(--ang-skeleton-text-shape, #{vars.$corner-extra-small});
+}
+
+:host([data-shape='circle']) {
+  border-radius: var(--ang-skeleton-circle-shape, #{vars.$corner-full});
+}
+
+:host([data-shape='rect']) {
+  border-radius: var(--ang-skeleton-rect-shape, #{vars.$corner-medium});
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}

@@ -1,7 +1,7 @@
 <div class="filter-container">
   <div class="top-row">
     @if (showTooltip()) {
-      <hra-info-button>
+      <hra-info-button [label]="`More information about ${action()}`">
         <span hraInfoButtonTagline>{{ action() }}</span>
         <ng-content select="[tooltipContent]" />
         <div hraInfoButtonActions>

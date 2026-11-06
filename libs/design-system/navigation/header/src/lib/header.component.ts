@@ -22,6 +22,7 @@ import { BrandModule } from '@hra-ui/design-system/brand';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { CtaBarComponent } from '@hra-ui/design-system/navigation/cta-bar';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { explicitEffect } from 'ngxtension/explicit-effect';
 import { filter } from 'rxjs';
 import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
@@ -52,6 +53,8 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
 /**
  * Global navigation header.
  * Includes a call to action bar, navigation menus, breadcrumbs, and a progress bar.
+ * Content marked with the `hraHeaderActions` attribute shows in the main bar, before the menu button.
+ * Other content shows at the end of the breadcrumbs row.
  */
 @Component({
   selector: 'hra-header',
@@ -66,6 +69,7 @@ const DESKTOP_MENU_POSITIONS: ConnectedPosition[] = [
     CtaBarComponent,
     DesktopMenuComponent,
     MobileMenuComponent,
+    PlainTooltipDirective,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -81,6 +85,11 @@ export class HeaderComponent {
 
   /** Breadcrumb items */
   readonly breadcrumbs = input<BreadcrumbItem[]>();
+  /**
+   * Where the navigation categories sit on wide screens: at the end, by the menu button, or at the start,
+   * after the logo and a divider, like AtlasNG's header shell
+   */
+  readonly navigationPosition = input<'start' | 'end'>('end');
   /**
    * Progress bar progress.
    * Use `true` for an indeterminate bar and values between `0` and `100` for a determinate bar.

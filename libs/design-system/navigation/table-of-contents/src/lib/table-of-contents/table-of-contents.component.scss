@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @use '../../../../../styles/utils';
 @use '../../../../../styles/vars';
 
@@ -6,47 +7,113 @@
   border: 0.0625rem solid vars.$outline-variant;
   border-radius: 0.5rem;
 
+  // Colors and type read AtlasNG table of contents tokens (--ang-table-of-contents-*),
+  // and tagline padding reads --hra-table-of-contents-tagline-padding, when an app sets them
   .tagline {
-    @include utils.use-font(label, large);
+    font-family: var(--ang-table-of-contents-tagline-font, #{vars.$label-large-font});
+    font-size: var(--ang-table-of-contents-tagline-size, #{vars.$label-large-size});
+    font-weight: var(--ang-table-of-contents-tagline-weight, #{vars.$label-large-weight});
+    line-height: var(--ang-table-of-contents-tagline-line-height, #{vars.$label-large-line-height});
+    letter-spacing: var(--ang-table-of-contents-tagline-tracking, #{vars.$label-large-tracking});
     min-height: 3rem;
-    padding: 0.75rem 1.5rem;
+    padding: var(--hra-table-of-contents-tagline-padding, 0.75rem 1.5rem);
     border-bottom: 0.0625rem solid vars.$outline-variant;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    color: vars.$secondary;
+    color: var(--ang-table-of-contents-tagline-color, #{vars.$secondary});
     background-color: vars.$surface-container-low;
   }
 
   .links {
     display: flex;
     flex-direction: column;
-    @include utils.use-font(label, medium);
+    font-family: var(--ang-table-of-contents-item-font, #{vars.$label-medium-font});
+    font-size: var(--ang-table-of-contents-item-size, #{vars.$label-medium-size});
+    font-weight: var(--ang-table-of-contents-item-weight, #{vars.$label-medium-weight});
+    line-height: var(--ang-table-of-contents-item-line-height, #{vars.$label-medium-line-height});
+    letter-spacing: var(--ang-table-of-contents-item-tracking, #{vars.$label-medium-tracking});
     padding: 0.5rem;
 
+    // Link layout and states read --hra-table-of-contents-item-* and -indentation-* tokens when an app sets them
     .link {
-      min-height: 2rem;
-      border-radius: 0.5rem;
-      padding: 0.3438rem 1rem;
-      margin-left: calc((var(--indentation-level, 1) - 1) * 0.75rem);
-      color: vars.$primary;
+      min-height: var(--ang-table-of-contents-item-height, 2rem);
+      margin-block: var(--hra-table-of-contents-item-spacing, 0);
+      border-radius: var(--hra-table-of-contents-item-shape, 0.5rem);
+      padding: var(--hra-table-of-contents-item-padding, 0.3438rem 1rem);
+      margin-left: calc(
+        (var(--indentation-level, 1) - var(--hra-table-of-contents-indentation-start, 1)) *
+          var(--hra-table-of-contents-indentation-step, 0.75rem)
+      );
+      color: var(--ang-table-of-contents-item-color, #{vars.$primary});
       text-decoration: none;
 
       &:hover {
-        background-color: utils.with-alpha(vars.$secondary, 8%);
+        background-color: utils.with-alpha(var(--hra-table-of-contents-item-state-layer-color, #{vars.$secondary}), 8%);
       }
 
       &:focus-visible {
-        @include utils.inset-outline(vars.$primary);
+        @include utils.inset-outline(var(--hra-table-of-contents-item-focus-color, #{vars.$primary}));
       }
     }
   }
 
-  @media (min-width: 1100px) {
+  // The Material navigation list follows AtlasNG's table of contents: full-width items with on-surface
+  // state layers, and an active indicator only in the side column. Unlike AtlasNG's one-line items, titles wrap:
+  // rows grow from the item height, padded to center a single line.
+  .nav-list {
+    padding: 0;
+
+    .nav-list-item {
+      $indentation: calc(
+        (var(--indentation-level, 1) - var(--hra-table-of-contents-indentation-start, 1)) *
+          var(--hra-table-of-contents-indentation-step, 0.75rem)
+      );
+      $item-height: var(--ang-table-of-contents-item-height, 2.75rem);
+      $line-height: var(--ang-table-of-contents-item-line-height, #{vars.$body-medium-line-height});
+
+      width: calc(100% - #{$indentation});
+      height: auto;
+      min-height: $item-height;
+      margin-block: 0.25rem;
+      margin-left: $indentation;
+      padding-block: calc((#{$item-height} - #{$line-height}) / 2);
+
+      @include mat.list-overrides(
+        (
+          active-indicator-color: transparent,
+          list-item-container-color: transparent,
+          list-item-hover-state-layer-color: vars.$on-surface,
+          list-item-focus-state-layer-color: vars.$on-surface,
+          list-item-label-text-color: var(--ang-table-of-contents-item-color, #{vars.$on-surface-variant}),
+          list-item-label-text-font: var(--ang-table-of-contents-item-font, #{vars.$body-medium-font}),
+          list-item-label-text-size: var(--ang-table-of-contents-item-size, #{vars.$body-medium-size}),
+          list-item-label-text-weight: var(--ang-table-of-contents-item-weight, #{vars.$body-medium-weight}),
+          list-item-label-text-line-height: $line-height,
+          list-item-label-text-tracking: var(--ang-table-of-contents-item-tracking, #{vars.$body-medium-tracking}),
+        )
+      );
+
+      ::ng-deep .mdc-list-item__content,
+      .nav-list-item-title {
+        white-space: normal;
+      }
+    }
+  }
+
+  &.hra-table-of-contents-side-column {
     border: none;
+
+    .nav-list .nav-list-item {
+      @include mat.list-overrides(
+        (
+          active-indicator-color: var(--ang-table-of-contents-active-item-background-color, #{vars.$primary-container}),
+        )
+      );
+    }
 
     .tagline {
       min-height: 2.5rem;
-      padding: 0.5rem 1rem;
+      padding: var(--hra-table-of-contents-tagline-padding, 0.5rem 1rem);
       border-bottom: none;
       background-color: unset;
     }
@@ -55,8 +122,11 @@
       padding: 0;
 
       .link.active {
-        background-color: utils.with-alpha(vars.$tertiary, 20%);
-        color: vars.$secondary;
+        background-color: var(
+          --ang-table-of-contents-active-item-background-color,
+          #{utils.with-alpha(vars.$tertiary, 20%)}
+        );
+        color: var(--ang-table-of-contents-item-color, #{vars.$secondary});
       }
     }
   }

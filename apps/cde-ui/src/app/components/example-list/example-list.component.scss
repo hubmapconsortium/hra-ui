@@ -1,0 +1,116 @@
+@use 'utils';
+@use 'vars';
+@use 'cde-utils';
+
+:host {
+  display: block;
+  text-wrap: balance;
+
+  .examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
+    gap: 1rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    container-type: inline-size;
+  }
+
+  .example {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem;
+    color: inherit;
+    text-decoration: none;
+    @include cde-utils.card(vars.$corner-small);
+
+    &:hover,
+    &:focus-visible {
+      .thumbnail img {
+        transform: scale(1.1);
+      }
+    }
+
+    &:focus-visible {
+      @include cde-utils.focus-ring;
+    }
+  }
+
+  .thumbnail {
+    position: relative;
+    flex-shrink: 0;
+    width: min(6.5rem, 30%);
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: vars.$corner-small;
+    background-color: vars.$surface-container-high;
+
+    img {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      object-fit: cover;
+    }
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+  }
+
+  .title {
+    @include utils.use-font(title, medium);
+    color: vars.$on-surface;
+  }
+
+  .description {
+    @include utils.use-font(body, medium);
+    color: vars.$on-surface-variant;
+  }
+
+  .credit {
+    @include utils.use-font(body, medium);
+    color: vars.$on-surface-variant;
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    border-radius: vars.$corner-full;
+    background-color: utils.with-alpha(vars.$primary, 10%);
+    color: vars.$on-primary-container;
+  }
+
+  @container (max-width: 28rem) {
+    .example {
+      gap: 0.75rem;
+    }
+
+    .thumbnail {
+      width: 4.5rem;
+      aspect-ratio: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .thumbnail img {
+      transition: transform 0.3s ease-in-out;
+    }
+  }
+}

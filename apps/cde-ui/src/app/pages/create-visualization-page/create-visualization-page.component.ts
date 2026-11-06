@@ -16,6 +16,7 @@ import { HraCommonModule } from '@hra-ui/common';
 import { CsvFileLoaderOptions, CsvFileLoaderService } from '@hra-ui/common/fs';
 import { assetUrl, cssUrl } from '@hra-ui/common/url';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { ErrorIndicatorComponent } from '@hra-ui/design-system/indicators/error-indicator';
 import { StepIndicatorComponent } from '@hra-ui/design-system/indicators/step-indicator';
 import { NavigationModule } from '@hra-ui/design-system/navigation';
@@ -25,8 +26,10 @@ import { ColorMapView, NodesView } from '@hra-ui/node-dist-vis/models';
 import { ParseError } from 'papaparse';
 import { MarkEmptyFormControlDirective } from '../../components/empty-form-control/empty-form-control.directive';
 import { FileLoadError, FileUploadComponent } from '../../components/file-upload/file-upload.component';
+import { ThemeService } from '../../services/theme-service/theme.service';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { validateInteger } from '../../shared/form-validators/is-integer';
+import { validatePositive } from '../../shared/form-validators/is-positive';
 import { OrganEntry } from '../../shared/resolvers/organs.resolver';
 
 /** Error when missing required columns in uploaded csv */
@@ -78,21 +81,31 @@ function optionalValue<T>(): T | null {
   styleUrl: './create-visualization-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[style.background-image]': 'backgroundImageUrl()',
+    '[style.--page-background-image]': 'backgroundImageUrl()',
   },
 })
 export class CreateVisualizationPageComponent {
   /** Organ entries */
   readonly organs = input.required<OrganEntry[]>();
 
+  /** Breadcrumbs shown above the page title */
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
+
   /** Node data upload component */
   private readonly nodesFileUpload = viewChild.required<AnyFileUploadComponent>('nodesFileUpload');
   /** Color map upload component */
   private readonly customColorMapFileUpload = viewChild<AnyFileUploadComponent>('customColorMapFileUpload');
 
-  /** Resolved background image URL */
+  /** Light or dark theme, which picks the background image */
+  private readonly theme = inject(ThemeService).theme;
+
+  /** Resolved background image URL, in the current theme */
   protected readonly backgroundImageUrl = cssUrl(
-    assetUrl('assets/backgrounds/create-visualization-page-background.png'),
+    assetUrl(() =>
+      this.theme() === 'dark'
+        ? 'assets/backgrounds/create-visualization-page-background-dark.png'
+        : 'assets/backgrounds/create-visualization-page-background.png',
+    ),
   );
 
   /** Form builder */
@@ -139,10 +152,10 @@ export class CreateVisualizationPageComponent {
     }),
     parameters: this.fb.group({
       nodeTargetValue: [{ value: DEFAULT_NODE_TARGET_SELECTOR, disabled: true }],
-      distanceThreshold: [{ value: 1000, disabled: true }],
-      pixelSizeX: [{ value: 1, disabled: true }, Validators.min(1)],
-      pixelSizeY: [{ value: 1, disabled: true }, Validators.min(1)],
-      pixelSizeZ: [{ value: 1, disabled: true }, Validators.min(1)],
+      distanceThreshold: [{ value: 1000, disabled: true }, validatePositive()],
+      pixelSizeX: [{ value: 1, disabled: true }, validatePositive()],
+      pixelSizeY: [{ value: 1, disabled: true }, validatePositive()],
+      pixelSizeZ: [{ value: 1, disabled: true }, validatePositive()],
     }),
     metadata: this.fb.group({
       title: [optionalValue<string>()],
@@ -241,13 +254,13 @@ export class CreateVisualizationPageComponent {
       return undefined;
     }
     const { xAxis, yAxis, cellType } = this.visualizationForm.controls['headers'].value;
-    const xError = xAxis ? undefined : 'X Axis';
-    const yError = yAxis ? undefined : 'Y Axis';
-    const ctError = cellType ? undefined : 'Cell Type';
+    const xError = xAxis ? undefined : 'X';
+    const yError = yAxis ? undefined : 'Y';
+    const ctError = cellType ? undefined : 'cell type';
     const errorColumns = [xError, yError, ctError].filter((e) => !!e);
 
     return errorColumns.length > 0
-      ? `Please select the required column header${errorColumns.length === 1 ? '' : 's'}: ${[xError, yError, ctError].filter((e) => !!e).join(', ')}`
+      ? `Select the required column${errorColumns.length === 1 ? '' : 's'}: ${errorColumns.join(', ')}`
       : undefined;
   }
 
@@ -337,6 +350,14 @@ export class CreateVisualizationPageComponent {
   }
 
   /**
+   * Determines whether a dataset has been loaded, even if its columns aren't mapped yet
+   * @returns true if the dataset has at least one row
+   */
+  hasDataset(): boolean {
+    return !!this.nodes && this.nodes.length > 0;
+  }
+
+  /**
    * Determines whether all required fields have been provided
    * @returns true if all required data has been filled in
    */
@@ -352,7 +373,8 @@ export class CreateVisualizationPageComponent {
       !!pixelSizeX &&
       !!pixelSizeY &&
       !!pixelSizeZ &&
-      !!distanceThreshold
+      !!distanceThreshold &&
+      this.visualizationForm.controls['parameters'].valid
     );
   }
 
@@ -404,7 +426,7 @@ export class CreateVisualizationPageComponent {
   hasValidCustomColorMap(): boolean {
     const { customColorMap: colors, colorHeaders } = this;
     return !!(
-      (colors && colors.length > 0 && colorHeaders.length === 2)
+      colors && colors.length > 0 && colorHeaders.length === 2
       // DEFAULT_COLOR_MAP_KEY in colors[0] &&
       // DEFAULT_COLOR_MAP_VALUE_KEY in colors[0]
     );
@@ -419,10 +441,11 @@ export class CreateVisualizationPageComponent {
     }
 
     const { nodes, customColorMap, visualizationForm, colorHeaders } = this;
-    const { colorMapType, metadata } = visualizationForm.value;
+    const { colorMapType, metadata, parameters } = visualizationForm.value;
     const headers = visualizationForm.value.headers;
+    const pixelSizes = this.getPixelSizes();
 
-    const nodesView = new NodesView(nodes, {
+    const nodesView = new NodesView(this.scaleNodes(nodes, pixelSizes), {
       'Cell Type': headers?.cellType ?? '',
       'Cell Ontology ID': headers?.ontologyId ?? undefined,
       X: headers?.xAxis ?? '',
@@ -438,26 +461,78 @@ export class CreateVisualizationPageComponent {
           })
         : undefined;
 
-    const nodeTargetSelector = visualizationForm.value.parameters
-      ? visualizationForm.value.parameters.nodeTargetValue
-      : undefined;
     const normalizedMetadata = this.removeNullishValues({
       ...metadata,
       sourceFileName: this.nodesFileUpload().file?.name,
       colorMapFileName: this.customColorMapFileUpload()?.file?.name,
       organ: metadata?.organ?.label,
+      pixelSize: this.formatPixelSize(pixelSizes),
       creationTimestamp: Date.now(),
     });
 
     const nullishRemovedData = this.removeNullishValues({
       nodes: nodesView,
-      nodeTargetSelector,
+      nodeTargetSelector: parameters?.nodeTargetValue,
+      maxEdgeDistance: parameters?.distanceThreshold,
       colorMap: colorMapView,
       metadata: normalizedMetadata,
     });
 
     this.dataService.setData(nullishRemovedData);
     this.router.navigate(['/visualize']);
+  }
+
+  /**
+   * Gets the pixel size of each selected coordinate column
+   * @returns Column and pixel size pairs for the X, Y, and (if selected) Z axes
+   */
+  private getPixelSizes(): [string, number][] {
+    const { headers, parameters } = this.visualizationForm.value;
+    const pairs: [string | null | undefined, number | null | undefined][] = [
+      [headers?.xAxis, parameters?.pixelSizeX],
+      [headers?.yAxis, parameters?.pixelSizeY],
+      [headers?.zAxis, parameters?.pixelSizeZ],
+    ];
+
+    return pairs.filter((pair): pair is [string, number] => !!pair[0] && typeof pair[1] === 'number');
+  }
+
+  /**
+   * Converts node coordinates to micrometers by multiplying them by their axis' pixel size
+   * @param nodes Nodes to scale
+   * @param pixelSizes Column and pixel size pairs
+   * @returns Scaled copies of the nodes, or the nodes themselves if every pixel size is 1
+   */
+  private scaleNodes(nodes: Record<string, unknown>[], pixelSizes: [string, number][]): Record<string, unknown>[] {
+    const scaledAxes = pixelSizes.filter(([, size]) => size !== 1);
+    if (scaledAxes.length === 0) {
+      return nodes;
+    }
+
+    return nodes.map((node) => {
+      const scaledNode = { ...node };
+      for (const [column, size] of scaledAxes) {
+        const value = node[column];
+        if (typeof value === 'number') {
+          scaledNode[column] = value * size;
+        }
+      }
+      return scaledNode;
+    });
+  }
+
+  /**
+   * Formats pixel sizes for the sample metadata
+   * @param pixelSizes Column and pixel size pairs
+   * @returns The pixel size if every axis has the same size, otherwise the sizes as "X × Y × Z"
+   */
+  private formatPixelSize(pixelSizes: [string, number][]): number | string | undefined {
+    const sizes = pixelSizes.map(([, size]) => size);
+    if (sizes.length === 0) {
+      return undefined;
+    }
+
+    return sizes.every((size) => size === sizes[0]) ? sizes[0] : sizes.join(' × ');
   }
 
   /**
@@ -496,22 +571,22 @@ export class CreateVisualizationPageComponent {
   private formatErrorMessage(error: ExtendedFileLoadError): string {
     switch (error.type) {
       case 'missing-key-error':
-        return `Required column${error.keys.length === 1 ? '' : 's'} missing: ${error.keys.join(', ')}`;
+        return `Missing required column${error.keys.length === 1 ? '' : 's'}: ${error.keys.join(', ')}`;
 
       case 'empty-file-error':
-        return 'File is empty.';
+        return 'This file is empty.';
 
       case 'type-error':
-        return `Invalid file type: ${error.received}, expected csv`;
+        return `Unsupported file type: ${error.received}`;
 
       case 'parse-error': {
         if (Array.isArray(error.cause)) {
-          return `Invalid file: ${this.formatCsvErrors(error.cause)}`;
+          return `Couldn't read ${this.formatCsvErrors(error.cause)}`;
         } else if (error.cause instanceof Error) {
-          return `Required color format not detected. Please use #RRGGBB or [R, G, B].`;
+          return 'Colors must be #RRGGBB or [R, G, B].';
         }
 
-        return 'Invalid file: too many invalid rows.';
+        return "Too many rows couldn't be read.";
       }
 
       default:
@@ -529,13 +604,12 @@ export class CreateVisualizationPageComponent {
     const rows = errors
       .slice(0, ROW_SAMPLE_SIZE)
       .map((e) => e.row)
-      .filter((r) => r !== undefined)
-      .join(', ');
+      .filter((r) => r !== undefined);
     const additionalErrorsLength = errors.length - ROW_SAMPLE_SIZE;
-    let message = `errors on row${rows.length > 1 ? 's' : ''} ${rows}`;
+    let message = `row${rows.length + Math.max(additionalErrorsLength, 0) > 1 ? 's' : ''} ${rows.join(', ')}`;
 
     if (additionalErrorsLength > 0) {
-      message += ` and ${additionalErrorsLength} more rows`;
+      message += ` and ${additionalErrorsLength} more`;
     }
 
     return message;
@@ -552,11 +626,11 @@ export class CreateVisualizationPageComponent {
       case undefined:
         return '';
       case 'type-error':
-        return `Please upload a ${fileDescription} CSV file.`;
+        return `Upload a ${fileDescription} CSV file.`;
       case 'empty-file-error':
-        return `Please upload a non-empty ${fileDescription} CSV file.`;
+        return `Upload a ${fileDescription} CSV file with data.`;
       default:
-        return 'Please upload a file with the required columns.';
+        return 'Upload a file with the required columns.';
     }
   }
 }

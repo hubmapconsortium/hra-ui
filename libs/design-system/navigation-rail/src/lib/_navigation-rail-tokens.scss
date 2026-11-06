@@ -1,0 +1,37 @@
+@use 'sass:map';
+@use '../../../styles/vars';
+
+// Navigation rail tokens, set up like AtlasNG's component tokens (libs/design-system/src/sass/tokens),
+// so moving the rail to AtlasNG means renaming --hra-navigation-rail-* to --ang-navigation-rail-*.
+// Defaults follow the Material 3 Expressive navigation rail:
+// https://github.com/material-components/material-web/blob/86cb0d484d0cda1193f09bb3ee70b8e2ed8e6a79/labs/gb/components/navrail/_nav-rail-tokens.scss
+$tokens: (
+  container-color: vars.$surface,
+  container-width: 6rem,
+  indicator-color: vars.$secondary-container,
+  state-layer-color: vars.$on-secondary-container,
+  icon-color: vars.$on-surface-variant,
+  // Also used on focus and press
+  hover-icon-color: vars.$on-surface,
+  active-icon-color: vars.$on-secondary-container,
+  label-color: vars.$on-surface-variant,
+  // Also used on focus and press
+  hover-label-color: vars.$on-surface,
+  active-label-color: vars.$secondary,
+  focus-outline-color: vars.$on-surface,
+  label-font: vars.$label-medium-font,
+  label-font-size: vars.$label-medium-size,
+  label-font-weight: vars.$label-medium-weight,
+  label-line-height: vars.$label-medium-line-height,
+  label-letter-spacing: vars.$label-medium-tracking,
+);
+
+// Returns a CSS variable for a rail token that falls back to its default,
+// e.g. slot(icon-color) => var(--hra-navigation-rail-icon-color, var(--mat-sys-on-surface-variant))
+@function slot($token) {
+  @if not map.has-key($tokens, $token) {
+    @error "Navigation rail token '#{$token}' does not exist. Known tokens are: #{map.keys($tokens)}";
+  }
+
+  @return var(--hra-navigation-rail-#{$token}, #{map.get($tokens, $token)});
+}

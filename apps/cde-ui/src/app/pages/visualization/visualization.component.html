@@ -1,1 +1,10 @@
-<cde-visualization data-testid="visualization" hraFeature="visualization-page" [attr.home-link]="homeLink" #vis />
+<!-- The header's Theme and Help menus cover the whole app, so the visualization hides its own -->
+<cde-visualization
+  data-testid="visualization"
+  hraFeature="visualization-page"
+  hide-theme-menu
+  hide-help-menu
+  remember-panels
+  [attr.home-link]="homeLink"
+  #vis
+/>

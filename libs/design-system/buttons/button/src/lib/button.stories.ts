@@ -85,6 +85,21 @@ export const FlatRound: StoryObj<CommonButtonArgs & WithSize> = {
   }),
 };
 
+export const Outlined: StoryObj<CommonButtonArgs & WithSize> = {
+  argTypes: {
+    ...SIZE_ARG_TYPES,
+  },
+  args: {
+    size: 'medium',
+  },
+  render: (args) => ({
+    template: `<button mat-stroked-button hraButtonSize="${args.size}" disabled="${args.disabled}">
+      Click me!
+      ${args.size !== 'small' ? '<mat-icon iconPositionEnd>open_in_new</mat-icon>' : ''}
+    </button>`,
+  }),
+};
+
 export const CallToAction: StoryObj<CommonButtonArgs & WithVariant> = {
   argTypes: {
     ...VARIANT_ARG_TYPES,
