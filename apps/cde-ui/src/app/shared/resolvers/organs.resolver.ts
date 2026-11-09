@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { ErrorHandler, inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { map } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 import * as z from 'zod';
 
 /** Organ entry type */
@@ -26,10 +26,15 @@ const ORGANS_DEF = z
 export function organsResolver(endpoint = DEFAULT_ENDPOINT): ResolveFn<OrganEntry[]> {
   return () => {
     const http = inject(HttpClient);
-    const rawOrgans$ = http.get<z.input<typeof ORGANS_DEF>>(endpoint, { responseType: 'json' });
+    const errorHandler = inject(ErrorHandler);
+    const rawOrgans$ = http.get<z.input<typeof ORGANS_DEF>>(endpoint, { responseType: 'json', timeout: 3000 });
     return rawOrgans$.pipe(
       map((data) => ORGANS_DEF.parse(data)),
       map((organs) => dedupByLabel(organs)),
+      catchError((error) => {
+        errorHandler.handleError(error);
+        return of([]);
+      }),
     );
   };
 }

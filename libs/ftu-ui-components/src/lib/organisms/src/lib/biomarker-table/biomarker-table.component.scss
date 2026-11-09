@@ -7,7 +7,8 @@
   background-image: linear-gradient(
     to right,
     vars.$surface-container-low 283px,
-    vars.$outline 283px,
+    vars.$outline-variant 283px,
+    vars.$outline-variant 284px,
     vars.$on-primary 284px
   );
 
@@ -89,10 +90,6 @@
       &:nth-child(2) {
         background-color: color-mix(in srgb, white, vars.$secondary 8%);
       }
-    }
-
-    td.type {
-      text-transform: capitalize;
     }
 
     th {

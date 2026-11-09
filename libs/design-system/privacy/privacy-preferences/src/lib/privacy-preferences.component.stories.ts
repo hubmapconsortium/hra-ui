@@ -1,4 +1,4 @@
-import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
+import { applicationConfig, componentWrapperDecorator, type Meta, type StoryObj } from '@storybook/angular';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventCategory } from '@hra-ui/common/analytics/events';
 
@@ -14,6 +14,7 @@ const meta: Meta<PrivacyPreferencesComponent> = {
     },
   },
   decorators: [
+    componentWrapperDecorator((story) => `<div style="max-width: 46.75rem; margin-inline: auto;">${story}</div>`),
     applicationConfig({
       providers: [
         {

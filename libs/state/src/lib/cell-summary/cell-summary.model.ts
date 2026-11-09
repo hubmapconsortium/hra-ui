@@ -61,4 +61,8 @@ export const AGGREGATE = z.object({
   label: z.string(),
   columns: z.string().array(),
   rows: AGGREGATE_ROW.array(),
+  /** Smallest mean expression value across all cells */
+  minExpression: z.number().optional(),
+  /** Largest mean expression value across all cells */
+  maxExpression: z.number().optional(),
 });

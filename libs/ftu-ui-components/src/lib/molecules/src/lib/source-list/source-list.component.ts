@@ -54,6 +54,9 @@ export class SourceListComponent {
 
   datasource = new MatTableDataSource<SourceReference>([]);
 
+  /** Default sorting data accessor of the table data source */
+  private readonly defaultSortingDataAccessor = this.datasource.sortingDataAccessor;
+
   /** List of sources with titles and links displayed to the user */
   readonly sources = input<SourceReference[]>([]);
 
@@ -85,6 +88,8 @@ export class SourceListComponent {
 
   /** Sort data on load and set columns */
   constructor() {
+    this.datasource.sortingDataAccessor = this.sortingDataAccessor.bind(this);
+
     effect(() => {
       this.datasource.sort = this.sort();
     });
@@ -101,6 +106,19 @@ export class SourceListComponent {
         this.selectionChanged.emit(this.selection.selected as SourceReference[]);
       }
     });
+  }
+
+  /**
+   * Sorting data accessor that sorts string years/ages/BMIs among the numeric ones: ranges such as
+   * '60-69' by their lower bound, other strings such as 'unknown' or 'none' after all numbers
+   */
+  private sortingDataAccessor(data: SourceReference, column: string): string | number {
+    const value = column === 'year' || column === 'age' || column === 'bmi' ? data[column] : undefined;
+    if (typeof value === 'string') {
+      const number = parseFloat(value);
+      return isNaN(number) ? Number.MAX_SAFE_INTEGER : number;
+    }
+    return this.defaultSortingDataAccessor(data, column);
   }
 
   /** Opens the source list in fullscreen mode */

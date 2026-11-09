@@ -267,7 +267,7 @@ export class HistogramComponent {
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
       draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
       draft.data.values = this.data();
-      draft.encoding.color.scale.range = this.colors();
+      draft.encoding.color.scale.range = this.allColors();
     });
 
     const el = this.renderer.createElement('div');

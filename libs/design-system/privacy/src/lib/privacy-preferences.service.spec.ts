@@ -176,6 +176,7 @@ describe('PrivacyPreferencesService', () => {
         expect.any(Function),
         expect.objectContaining({
           id: 'privacyPreferencesDialog',
+          maxHeight: 'calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))',
           data: expect.objectContaining({
             tab: 'manage',
           }),

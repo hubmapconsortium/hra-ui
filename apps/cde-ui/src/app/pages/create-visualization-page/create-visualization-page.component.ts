@@ -37,8 +37,14 @@ export interface MissingKeyError {
   keys: string[];
 }
 
+/** Error when uploaded file is empty */
+export interface EmptyFileError {
+  /** Error type */
+  type: 'empty-file-error';
+}
+
 /** Type for all load errors */
-export type ExtendedFileLoadError = FileLoadError | MissingKeyError;
+export type ExtendedFileLoadError = FileLoadError | MissingKeyError | EmptyFileError;
 
 /** File upload component for any type */
 type AnyFileUploadComponent = FileUploadComponent<unknown, unknown>;
@@ -108,6 +114,18 @@ export class CreateVisualizationPageComponent {
     'cell ontology id',
     'ontology_id',
     'cell_ontology_id',
+  ];
+
+  /** Color headers to match */
+  private readonly acceptableColorHeaders = [
+    'cellcolor',
+    'cell color',
+    'cell_color',
+    'color',
+    'colour',
+    'hex',
+    'rgb',
+    'rgba',
   ];
 
   /** Component form controller */
@@ -184,6 +202,9 @@ export class CreateVisualizationPageComponent {
 
   /** Headers for node data */
   dataHeaders: string[] = [];
+
+  /** Headers for color map data */
+  colorHeaders: string[] = [];
 
   /** Node CSV load error */
   nodesLoadError?: ExtendedFileLoadError;
@@ -340,14 +361,30 @@ export class CreateVisualizationPageComponent {
    * @param colorMap Color map entries
    */
   setCustomColorMap(colorMap: ColorMapEntry[]): void {
-    this.customColorMapLoadError = this.checkRequiredKeys(colorMap, [
-      DEFAULT_COLOR_MAP_KEY,
-      DEFAULT_COLOR_MAP_VALUE_KEY,
-    ]);
-    if (this.customColorMapLoadError) {
+    if (colorMap.length === 0) {
+      this.customColorMapLoadError = { type: 'empty-file-error' };
       this.customColorMapFileUpload()?.reset();
       return;
     }
+
+    const keys = Object.keys(colorMap[0]);
+    const cellTypeKey = keys.find((k) => this.acceptableCellTypeHeaders.includes(k.toLowerCase()));
+    const colorValueKey = keys.find((k) => this.acceptableColorHeaders.includes(k.toLowerCase()));
+    if (!cellTypeKey || !colorValueKey) {
+      const missingKeys: string[] = [];
+      if (!cellTypeKey) {
+        missingKeys.push(DEFAULT_COLOR_MAP_KEY);
+      }
+      if (!colorValueKey) {
+        missingKeys.push(DEFAULT_COLOR_MAP_VALUE_KEY);
+      }
+
+      this.customColorMapLoadError = { type: 'missing-key-error', keys: missingKeys };
+      this.customColorMapFileUpload()?.reset();
+      return;
+    }
+
+    this.colorHeaders = [cellTypeKey, colorValueKey];
     this.customColorMap = colorMap;
   }
 
@@ -365,12 +402,11 @@ export class CreateVisualizationPageComponent {
    * @returns boolean
    */
   hasValidCustomColorMap(): boolean {
-    const { customColorMap: colors } = this;
+    const { customColorMap: colors, colorHeaders } = this;
     return !!(
-      colors &&
-      colors.length > 0 &&
-      DEFAULT_COLOR_MAP_KEY in colors[0] &&
-      DEFAULT_COLOR_MAP_VALUE_KEY in colors[0]
+      (colors && colors.length > 0 && colorHeaders.length === 2)
+      // DEFAULT_COLOR_MAP_KEY in colors[0] &&
+      // DEFAULT_COLOR_MAP_VALUE_KEY in colors[0]
     );
   }
 
@@ -382,7 +418,7 @@ export class CreateVisualizationPageComponent {
       return;
     }
 
-    const { nodes, customColorMap, visualizationForm } = this;
+    const { nodes, customColorMap, visualizationForm, colorHeaders } = this;
     const { colorMapType, metadata } = visualizationForm.value;
     const headers = visualizationForm.value.headers;
 
@@ -397,8 +433,8 @@ export class CreateVisualizationPageComponent {
     const colorMapView =
       colorMapType === 'custom' && this.hasValidCustomColorMap() && customColorMap
         ? new ColorMapView(customColorMap, {
-            'Cell Type': DEFAULT_COLOR_MAP_KEY,
-            'Cell Color': DEFAULT_COLOR_MAP_VALUE_KEY,
+            'Cell Type': colorHeaders[0],
+            'Cell Color': colorHeaders[1],
           })
         : undefined;
 
@@ -462,6 +498,9 @@ export class CreateVisualizationPageComponent {
       case 'missing-key-error':
         return `Required column${error.keys.length === 1 ? '' : 's'} missing: ${error.keys.join(', ')}`;
 
+      case 'empty-file-error':
+        return 'File is empty.';
+
       case 'type-error':
         return `Invalid file type: ${error.received}, expected csv`;
 
@@ -469,7 +508,7 @@ export class CreateVisualizationPageComponent {
         if (Array.isArray(error.cause)) {
           return `Invalid file: ${this.formatCsvErrors(error.cause)}`;
         } else if (error.cause instanceof Error) {
-          return `Required color format not detected. Please use [R, G, B].`;
+          return `Required color format not detected. Please use #RRGGBB or [R, G, B].`;
         }
 
         return 'Invalid file: too many invalid rows.';
@@ -514,6 +553,8 @@ export class CreateVisualizationPageComponent {
         return '';
       case 'type-error':
         return `Please upload a ${fileDescription} CSV file.`;
+      case 'empty-file-error':
+        return `Please upload a non-empty ${fileDescription} CSV file.`;
       default:
         return 'Please upload a file with the required columns.';
     }

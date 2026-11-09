@@ -19,6 +19,21 @@ const mockMetadataWithDuplicates: DigitalObjectMetadata = {
   ],
 };
 
+const mockMetadataWithUnsupportedFileType: DigitalObjectMetadata = {
+  ...mockMetadata,
+  distributions: [
+    ...mockMetadata.distributions,
+    {
+      id: 'an unsupported file type',
+      label: '',
+      title: 'Unsupported file',
+      downloadUrl: '',
+      accessUrl: '',
+      mediaType: 'application/unsupported',
+    },
+  ],
+};
+
 describe('DownloadService', () => {
   let service: DownloadService;
   beforeEach(() => {
@@ -35,5 +50,9 @@ describe('DownloadService', () => {
 
   it('handles duplicate file types', () => {
     expect(service.getDownloadOptions(mockMetadataWithDuplicates)[10].description).toEqual('Second JSON file');
+  });
+
+  it('excludes files with an undefined file type', () => {
+    expect(service.getDownloadOptions(mockMetadataWithUnsupportedFileType).length).toEqual(10);
   });
 });

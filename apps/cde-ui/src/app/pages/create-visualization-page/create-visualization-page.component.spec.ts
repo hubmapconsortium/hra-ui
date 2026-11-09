@@ -92,7 +92,7 @@ const csvColorMap = `cell_id,Cell Type,HEX
   0,cell1,"[0,0,0]"
   1,cell2,"[1,1,1]"`;
 
-const csvColorMapWrongKeys = `BADKEY,cell_type,cell_color
+const csvColorMapWrongKeys = `cell_id,bad_celltype_key,bad_cell_color
   0,cell1,"[0,0,0]"
   1,cell2,"[1,1,1]"`;
 
@@ -197,7 +197,7 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.upload(colorMapEl, data);
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.colorErrorMessage).toMatch(/Required columns missing/);
+      expect(instance.colorErrorMessage).toMatch(/Required columns? missing/);
     });
   });
 
@@ -294,7 +294,7 @@ describe('CreateVisualizationPageComponent', () => {
         cause: new Error(),
       };
       expect(priedInstance.formatErrorMessage(testError)).toMatch(
-        'Required color format not detected. Please use [R, G, B].',
+        'Required color format not detected. Please use #RRGGBB or [R, G, B].',
       );
     });
 

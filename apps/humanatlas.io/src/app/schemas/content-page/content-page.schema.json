@@ -3,7 +3,6 @@
   "$ref": "#/$defs/ContentPageData",
   "$defs": {
     "ContentPageData": {
-      "id": "ContentPageData",
       "type": "object",
       "properties": {
         "$schema": {
@@ -50,7 +49,6 @@
       "additionalProperties": false
     },
     "IconList": {
-      "id": "IconList",
       "anyOf": [
         {
           "anyOf": [
@@ -78,7 +76,6 @@
       ]
     },
     "IconData": {
-      "id": "IconData",
       "type": "object",
       "properties": {
         "svgIcon": {
@@ -97,7 +94,6 @@
       "additionalProperties": false
     },
     "ProjectedContentTemplate": {
-      "id": "ProjectedContentTemplate",
       "anyOf": [
         {
           "$ref": "#/$defs/AnyContentTemplate"
@@ -111,7 +107,6 @@
       ]
     },
     "AnyContentTemplate": {
-      "id": "AnyContentTemplate",
       "oneOf": [
         {
           "$ref": "#/$defs/ActionCard"
@@ -170,7 +165,6 @@
       ]
     },
     "ActionCard": {
-      "id": "ActionCard",
       "type": "object",
       "properties": {
         "component": {
@@ -225,7 +219,6 @@
       "additionalProperties": false
     },
     "Classes": {
-      "id": "Classes",
       "anyOf": [
         {
           "type": "string"
@@ -246,7 +239,6 @@
       ]
     },
     "Styles": {
-      "id": "Styles",
       "anyOf": [
         {
           "type": "string"
@@ -261,7 +253,6 @@
       ]
     },
     "Controller": {
-      "id": "Controller",
       "type": "object",
       "properties": {
         "id": {
@@ -274,7 +265,6 @@
       "additionalProperties": {}
     },
     "ActionCardVariant": {
-      "id": "ActionCardVariant",
       "type": "string",
       "enum": [
         "elevated",
@@ -284,7 +274,6 @@
       ]
     },
     "ApiCommand": {
-      "id": "ApiCommand",
       "type": "object",
       "properties": {
         "component": {
@@ -326,7 +315,6 @@
       "additionalProperties": false
     },
     "ApiCommandButton": {
-      "id": "ApiCommandButton",
       "type": "object",
       "properties": {
         "label": {
@@ -346,7 +334,6 @@
       "additionalProperties": false
     },
     "Button": {
-      "id": "Button",
       "type": "object",
       "properties": {
         "component": {
@@ -409,7 +396,6 @@
       "additionalProperties": false
     },
     "DataViewer": {
-      "id": "DataViewer",
       "type": "object",
       "properties": {
         "component": {
@@ -450,7 +436,6 @@
       "additionalProperties": false
     },
     "DataViewerVariant": {
-      "id": "DataViewerVariant",
       "type": "string",
       "enum": [
         "ftu",
@@ -458,7 +443,6 @@
       ]
     },
     "ReleaseVersionData": {
-      "id": "ReleaseVersionData",
       "type": "object",
       "properties": {
         "version": {
@@ -498,7 +482,6 @@
       "additionalProperties": false
     },
     "DataViewerOrgan": {
-      "id": "DataViewerOrgan",
       "type": "object",
       "properties": {
         "label": {
@@ -522,7 +505,6 @@
       "additionalProperties": false
     },
     "DataViewerCard": {
-      "id": "DataViewerCard",
       "type": "object",
       "properties": {
         "label": {
@@ -563,7 +545,6 @@
       "additionalProperties": false
     },
     "DataViewerFile": {
-      "id": "DataViewerFile",
       "type": "object",
       "properties": {
         "label": {
@@ -581,7 +562,6 @@
       "additionalProperties": false
     },
     "DataViewWithQueryParams": {
-      "id": "DataViewWithQueryParams",
       "type": "object",
       "properties": {
         "component": {
@@ -622,7 +602,6 @@
       "additionalProperties": false
     },
     "FlexContainer": {
-      "id": "FlexContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -661,7 +640,6 @@
       "additionalProperties": false
     },
     "GridContainer": {
-      "id": "GridContainer",
       "type": "object",
       "properties": {
         "component": {
@@ -697,7 +675,6 @@
       "additionalProperties": false
     },
     "Icon": {
-      "id": "Icon",
       "type": "object",
       "properties": {
         "component": {
@@ -735,7 +712,6 @@
       "additionalProperties": false
     },
     "Image": {
-      "id": "Image",
       "type": "object",
       "properties": {
         "component": {
@@ -768,7 +744,6 @@
       "additionalProperties": false
     },
     "Markdown": {
-      "id": "Markdown",
       "type": "object",
       "properties": {
         "component": {
@@ -800,7 +775,6 @@
       "additionalProperties": false
     },
     "PageSection": {
-      "id": "PageSection",
       "type": "object",
       "properties": {
         "component": {
@@ -845,7 +819,6 @@
       "additionalProperties": false
     },
     "Table": {
-      "id": "Table",
       "type": "object",
       "properties": {
         "component": {
@@ -879,7 +852,7 @@
             "$ref": "#/$defs/TableRow"
           }
         },
-        "style": {
+        "variant": {
           "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
@@ -898,7 +871,6 @@
       "additionalProperties": false
     },
     "TableColumn": {
-      "id": "TableColumn",
       "type": "object",
       "properties": {
         "column": {
@@ -931,6 +903,10 @@
                 {
                   "type": "string",
                   "const": "menu"
+                },
+                {
+                  "type": "string",
+                  "const": "dataExploration"
                 }
               ]
             },
@@ -953,6 +929,9 @@
                 },
                 {
                   "$ref": "#/$defs/MenuButtonColumnType"
+                },
+                {
+                  "$ref": "#/$defs/DataExplorationColumnType"
                 }
               ]
             }
@@ -967,7 +946,6 @@
       "additionalProperties": false
     },
     "TextColumnType": {
-      "id": "TextColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -981,7 +959,6 @@
       "additionalProperties": false
     },
     "NumericColumnType": {
-      "id": "NumericColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -998,7 +975,6 @@
       "additionalProperties": false
     },
     "MarkdownColumnType": {
-      "id": "MarkdownColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -1012,7 +988,6 @@
       "additionalProperties": false
     },
     "LinkColumnType": {
-      "id": "LinkColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -1033,7 +1008,6 @@
       "additionalProperties": false
     },
     "IconColumnType": {
-      "id": "IconColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -1054,7 +1028,6 @@
       "additionalProperties": false
     },
     "MenuButtonColumnType": {
-      "id": "MenuButtonColumnType",
       "type": "object",
       "properties": {
         "type": {
@@ -1078,8 +1051,35 @@
       ],
       "additionalProperties": false
     },
+    "DataExplorationColumnType": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "dataExploration"
+        },
+        "label": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "titleColumn": {
+          "type": "string"
+        },
+        "imageUrlColumn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
     "TableRow": {
-      "id": "TableRow",
       "type": "object",
       "propertyNames": {
         "type": "string"
@@ -1103,7 +1103,6 @@
       }
     },
     "TableVariant": {
-      "id": "TableVariant",
       "type": "string",
       "enum": [
         "alternating",
@@ -1112,7 +1111,6 @@
       ]
     },
     "ProfileCard": {
-      "id": "ProfileCard",
       "type": "object",
       "properties": {
         "component": {
@@ -1156,7 +1154,6 @@
       "additionalProperties": false
     },
     "ReleaseNotesVersionSelector": {
-      "id": "ReleaseNotesVersionSelector",
       "type": "object",
       "properties": {
         "component": {
@@ -1182,7 +1179,6 @@
       "additionalProperties": false
     },
     "SummaryStatisticsTable": {
-      "id": "SummaryStatisticsTable",
       "type": "object",
       "properties": {
         "component": {
@@ -1220,7 +1216,6 @@
       "additionalProperties": false
     },
     "TextHyperlink": {
-      "id": "TextHyperlink",
       "type": "object",
       "properties": {
         "component": {
@@ -1250,6 +1245,12 @@
         },
         "external": {
           "type": "boolean"
+        },
+        "download": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [
@@ -1260,7 +1261,6 @@
       "additionalProperties": false
     },
     "VersionedDataTable": {
-      "id": "VersionedDataTable",
       "type": "object",
       "properties": {
         "component": {
@@ -1285,7 +1285,7 @@
             "$ref": "#/$defs/TableColumn"
           }
         },
-        "style": {
+        "variant": {
           "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
@@ -1315,7 +1315,6 @@
       "additionalProperties": false
     },
     "VersionedData": {
-      "id": "VersionedData",
       "type": "object",
       "properties": {
         "csvUrl": {
@@ -1333,7 +1332,7 @@
             "$ref": "#/$defs/TableRow"
           }
         },
-        "style": {
+        "variant": {
           "$ref": "#/$defs/TableVariant"
         },
         "enableSort": {
@@ -1356,7 +1355,6 @@
       "additionalProperties": false
     },
     "YouTubePlayer": {
-      "id": "YouTubePlayer",
       "type": "object",
       "properties": {
         "component": {

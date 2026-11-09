@@ -21,6 +21,12 @@ export class GradientLegendComponent {
   /** Gradient colors along with their stop points */
   @Input() gradient: GradientPoint[] = [];
 
+  /** Smallest mean expression value in the current view, shown at the start of the bar */
+  @Input() minExpression?: number;
+
+  /** Largest mean expression value in the current view, shown at the end of the bar */
+  @Input() maxExpression?: number;
+
   /** Computes the css linear-gradient function for the gradient bar */
   get gradientCss(): string {
     const stops = this.gradient.map(({ color, percentage }) => `${color} ${percentage}%`).join(',');

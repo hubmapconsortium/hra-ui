@@ -99,14 +99,17 @@ export const DATA_FILE_REFERENCE = z.object({
 export const SOURCE_REFERENCE = z.object({
   title: z.string().optional(),
   doi: z.string().optional(),
-  year: z.number(),
+  /** Publication year, or a string such as 'none' */
+  year: z.union([z.number(), z.string()]),
   datasetTitle: z.string(),
   datasetId: z.string(),
   cellType: z.string().optional(),
   healthStatus: z.string().optional(),
   sex: z.string().optional(),
-  age: z.number().optional(),
-  bmi: z.number().optional(),
+  /** Age in years, or a string such as an age range ('60-69') or 'unknown' */
+  age: z.union([z.number(), z.string()]).optional(),
+  /** BMI, or a string such as 'unknown' */
+  bmi: z.union([z.number(), z.string()]).optional(),
   ethnicity: z.string().optional(),
 });
 
@@ -162,9 +165,15 @@ export const RAW_DATASETS = z.object({
           label: z.string(),
           description: z.string(),
           authors: z.string().array().optional(),
-          year: z.number().optional(),
+          year: z.union([z.number(), z.string()]).optional(),
           doi: z.string().optional(),
           link: z.string(),
+          cell_type_annotation_tool: z.string().optional(),
+          health_status: z.string().optional(),
+          sex: z.string().optional(),
+          age: z.union([z.number(), z.string()]).optional(),
+          bmi: z.union([z.number(), z.string()]).optional(),
+          ethnicity: z.string().optional(),
         })
         .array(),
     })

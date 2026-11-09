@@ -40,7 +40,7 @@ content:
               <title>RUI Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link href="https://cdn.humanatlas.io/ui/ccf-rui/styles.css" rel="stylesheet" />
-              <script src="https://cdn.humanatlas.io/ui/ccf-rui/wc.js" defer></script>
+              <script src="https://cdn.humanatlas.io/ui/ccf-rui/wc.js" type="module"></script>
             </head>
             <body style="margin: 0">
               <ccf-rui
@@ -84,7 +84,7 @@ content:
               <title>EUI Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link href="https://cdn.humanatlas.io/ui/ccf-eui/styles.css" rel="stylesheet" />
-              <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" defer></script>
+              <script src="https://cdn.humanatlas.io/ui/ccf-eui/wc.js" type="module"></script>
             </head>
             <body style="margin: 0">
               <ccf-eui
@@ -130,7 +130,7 @@ content:
               <title>EUI Organ Info Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link href="https://cdn.humanatlas.io/ui/ccf-organ-info/styles.css" rel="stylesheet" />
-              <script src="https://cdn.humanatlas.io/ui/ccf-organ-info/wc.js" defer></script>
+              <script src="https://cdn.humanatlas.io/ui/ccf-organ-info/wc.js" type="module"></script>
             </head>
             <body style="margin: 0">
               <ccf-organ-info
@@ -169,7 +169,7 @@ content:
               <title>EUI 3D Organ Viewer Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link href="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/styles.css" rel="stylesheet" />
-              <script src="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/wc.js" defer></script>
+              <script src="https://cdn.humanatlas.io/ui/ccf-body-ui-wc/wc.js" type="module"></script>
             </head>
             <body style="margin: 0">
               <!-- TODO inputs -->
@@ -232,8 +232,8 @@ content:
               <base href="https://cdn.humanatlas.io/ui/ftu-ui/" />
               <link rel="preconnect" href="https://fonts.gstatic.com" />
               <link href="https://cdn.humanatlas.io/ui/ftu-ui/styles.css" rel="stylesheet" />
-              <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" defer></script>
-              <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" defer></script>
+              <script src="https://cdn.humanatlas.io/ui/ftu-ui/polyfills.js" type="module"></script>
+              <script src="https://cdn.humanatlas.io/ui/ftu-ui/main.js" type="module"></script>
             </head>
             <body>
                 <hra-ftu-ui
@@ -323,7 +323,7 @@ content:
               <title>Medical Illustration Web Component</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link href="https://cdn.humanatlas.io/ui/medical-illustration/styles.css" rel="stylesheet" />
-              <script src="https://cdn.humanatlas.io/ui/medical-illustration/wc.js" defer></script>
+              <script src="https://cdn.humanatlas.io/ui/medical-illustration/wc.js" type="module"></script>
             </head>
             <body style="margin: 0">
               <hra-medical-illustration

@@ -1,26 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "Organs",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "organs": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/Organ"
-      }
-    }
-  },
-  "required": [
-    "$schema",
-    "organs"
-  ],
-  "additionalProperties": false,
+  "$ref": "#/$defs/Organs",
   "$defs": {
+    "Organs": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "organs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Organ"
+          }
+        }
+      },
+      "required": [
+        "$schema",
+        "organs"
+      ],
+      "additionalProperties": false
+    },
     "Organ": {
-      "id": "Organ",
       "type": "object",
       "properties": {
         "id": {
@@ -47,11 +48,9 @@
       "additionalProperties": false
     },
     "ComponentDefId": {
-      "id": "ComponentDefId",
       "type": "string"
     },
     "OrganAppData": {
-      "id": "OrganAppData",
       "type": "object",
       "propertyNames": {
         "type": "string"

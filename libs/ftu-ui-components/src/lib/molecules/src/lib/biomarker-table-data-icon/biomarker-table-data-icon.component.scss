@@ -1,6 +1,7 @@
 :host {
   display: block;
   border-radius: 50%;
+  border: 1px solid #201e3d;
   --radius: 0.625rem;
   width: var(--radius);
   height: var(--radius);

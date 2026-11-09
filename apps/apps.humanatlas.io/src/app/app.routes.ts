@@ -157,6 +157,10 @@ export const appRoutes: Route[] = [
     ...createExternalRedirectRoute('https://apps.humanatlas.io/ftu-explorer'),
   },
   {
+    path: 'ftu-explorer',
+    ...createExternalRedirectRoute('https://apps.humanatlas.io/ftu-explorer'),
+  },
+  {
     path: 'kg',
     ...createExternalRedirectRoute('https://apps.humanatlas.io/kg-explorer'),
   },

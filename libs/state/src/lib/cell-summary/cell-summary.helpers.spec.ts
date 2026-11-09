@@ -332,6 +332,18 @@ describe('Cell Summary Helpers', () => {
       expect(rows).toEqual([[cell1, 100]]);
     });
 
+    it('computes the min and max mean expression', () => {
+      const { minExpression, maxExpression } = computeAggregate(summaryWithMultipleGenes);
+      expect(minExpression).toBeCloseTo(0.5);
+      expect(maxExpression).toBeCloseTo(0.9);
+    });
+
+    it('leaves the expression range undefined when there are no entries', () => {
+      const { minExpression, maxExpression } = computeAggregate({ ...summary1, summary: [] });
+      expect(minExpression).toBeUndefined();
+      expect(maxExpression).toBeUndefined();
+    });
+
     it('includes correct label with biomarker type', () => {
       const aggregate = computeAggregate(summary1);
       expect(aggregate.label).toBe('Gene Biomarkers');
