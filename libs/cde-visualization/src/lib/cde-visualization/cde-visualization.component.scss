@@ -97,6 +97,7 @@ $toolbar-width: calc(6rem + 1px);
   .layout.tabbed .panels {
     grid-area: panels;
     display: flex;
+    position: relative;
     min-width: 0;
     min-height: 0;
 
@@ -104,6 +105,24 @@ $toolbar-width: calc(6rem + 1px);
     .visualizations {
       flex-grow: 1;
       min-width: 0;
+    }
+
+    // The spatial view stays laid out at full size behind the other tabs. Hidden with display: none, its canvas
+    // would resize to nothing and back on every tab switch, and the cells would visibly zoom as it redraws.
+    // Its hidden containers give up their boxes instead, so it can still lay out.
+    .visualizations.panel-hidden,
+    .top.panel-hidden {
+      display: contents !important;
+    }
+
+    cde-node-dist-visualization {
+      position: absolute;
+      inset: 0;
+
+      &.panel-hidden {
+        display: block !important;
+        visibility: hidden;
+      }
     }
 
     // The metadata panel is alone on its tab, so it scrolls and drops the divider above the cell types
