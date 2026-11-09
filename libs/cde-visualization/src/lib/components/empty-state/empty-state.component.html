@@ -1,0 +1,5 @@
+<p class="heading">{{ content().heading }}</p>
+<p class="description">{{ content().description }}</p>
+<button matButton="outlined" class="action" hraFeature="action" hraClickEvent (click)="actionClick.emit()">
+  {{ content().actionLabel }}
+</button>

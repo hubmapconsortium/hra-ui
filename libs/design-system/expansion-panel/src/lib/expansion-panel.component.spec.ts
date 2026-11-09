@@ -29,6 +29,19 @@ describe('ExpansionPanelComponent', () => {
     expect(title).toBeInTheDocument();
   });
 
+  it('should not be a tab stop or have an expanded state when disabled', async () => {
+    const { container, rerender } = await setup();
+    const item = container.querySelector('cdk-accordion-item');
+    expect(item).toHaveAttribute('tabindex', '0');
+    expect(item).toHaveAttribute('aria-expanded', 'true');
+
+    await rerender({ inputs: { tagline: 'Test Title', disabled: true } });
+    expect(item).not.toHaveAttribute('tabindex');
+    expect(item).not.toHaveAttribute('aria-expanded');
+    expect(item).not.toHaveAttribute('aria-controls');
+    expect(screen.getByRole('region', { name: 'Test Title' })).toBeInTheDocument();
+  });
+
   it('should set inert attribute on body element when animation starts', async () => {
     await setup();
 

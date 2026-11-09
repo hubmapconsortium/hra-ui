@@ -1,4 +1,8 @@
+import { hasModifierKey } from '@angular/cdk/keycodes';
+import { DOCUMENT } from '@angular/common';
 import {
+  ApplicationRef,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -7,6 +11,7 @@ import {
   effect,
   inject,
   input,
+  NgZone,
   output,
   TemplateRef,
   viewChild,
@@ -19,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { ExpansionPanelModule } from '@hra-ui/design-system/expansion-panel';
-import { filter, MonoTypeOperatorFunction, pipe } from 'rxjs';
+import { filter, firstValueFrom, MonoTypeOperatorFunction, Observable, pipe, take } from 'rxjs';
 
 /** View outlet directive */
 @Directive({
@@ -100,6 +105,13 @@ export class FullscreenPortalComponent {
   /** Classes to apply to the dialog panel in fullscreen mode */
   readonly panelClass = input<string | string[]>();
 
+  /**
+   * Whether opening and closing cross-fade between the page and the fullscreen view in a view transition,
+   * where the browser supports them. The old view stays on screen until the app is stable after the change,
+   * so content that resizes itself for the new view can finish first by marking that work with `PendingTasks`.
+   */
+  readonly viewTransition = input(false, { transform: booleanAttribute });
+
   /** Event for before the dialog is opened */
   readonly beforeOpened = output<void>();
   /** Event for when the dialog is opened */
@@ -108,6 +120,11 @@ export class FullscreenPortalComponent {
   readonly beforeClosed = output<void>();
   /** Event for when the dialog is closed */
   readonly closed = output<void>();
+  /**
+   * Event for when opening or closing has finished, including its view transition. Content can wait for it to
+   * start slow work, so the work doesn't hold up the transition.
+   */
+  readonly transitionEnded = output<void>();
 
   /** Creates embedded view using template */
   readonly viewRef = computed(() => {
@@ -126,6 +143,15 @@ export class FullscreenPortalComponent {
   /** Reference to the destroy ref */
   private readonly destroyRef = inject(DestroyRef);
 
+  /** Reference to the document, used to start view transitions */
+  private readonly document = inject(DOCUMENT);
+
+  /** Reference to the application, used to wait until the content settles in a view transition */
+  private readonly appRef = inject(ApplicationRef);
+
+  /** Reference to the zone, used to open and close the dialog in it from a view transition */
+  private readonly ngZone = inject(NgZone);
+
   /** Reference to the view outlet directive */
   private readonly viewOutlet = viewChild.required(ViewOutletDirective);
 
@@ -138,9 +164,16 @@ export class FullscreenPortalComponent {
   /** Reference to the mat dialog */
   private dialogRef?: MatDialogRef<void>;
 
+  /** Whether a view transition is opening or closing the dialog */
+  private transitioning = false;
+
+  /** Whether the component was destroyed, so a view transition that finishes later doesn't emit */
+  private destroyed = false;
+
   /** Destroys the view */
   constructor() {
     this.destroyRef.onDestroy(() => {
+      this.destroyed = true;
       const dialogRef = this.dialogRef;
       this.dialogRef = undefined;
       dialogRef?.close();
@@ -150,18 +183,54 @@ export class FullscreenPortalComponent {
 
   /** Detaches the view from histogram module and attaches it to the view in the dialog */
   open(): void {
-    if (this.dialogRef !== undefined) {
+    if (this.dialogRef !== undefined || this.transitioning) {
       return;
     }
 
+    this.runTransition(() => this.openDialog().afterOpened());
+  }
+
+  /** Closes the dialog */
+  close(): void {
+    const dialogRef = this.dialogRef;
+    if (dialogRef === undefined || this.transitioning) {
+      return;
+    }
+
+    this.runTransition(() => {
+      dialogRef.close();
+      return dialogRef.afterClosed();
+    });
+  }
+
+  /**
+   * Opens the dialog
+   *
+   * @returns Reference to the opened dialog
+   */
+  private openDialog(): MatDialogRef<void> {
     const { dialogService, dialogTemplateRef } = this;
     const panelClass = this.panelClass() ?? [];
     const normalizedPanelClass = typeof panelClass === 'string' ? panelClass.split(' ') : panelClass;
 
     this.beforeOpened.emit();
+    const useViewTransition = this.useViewTransition();
     const dialogRef = (this.dialogRef = dialogService.open(dialogTemplateRef(), {
       panelClass: [...normalizedPanelClass, 'fullscreen-panel'],
+      // The view transition fades the dialog in and out, so the dialog's own animations are off
+      ...(useViewTransition && { disableClose: true, enterAnimationDuration: 0, exitAnimationDuration: 0 }),
     }));
+
+    if (useViewTransition) {
+      // Escape closes the dialog through close(), so closing runs in a view transition too
+      dialogRef
+        .keydownEvents()
+        .pipe(
+          this.filterDialogEvents(dialogRef),
+          filter((event) => event.key === 'Escape' && !hasModifierKey(event)),
+        )
+        .subscribe(() => this.close());
+    }
 
     dialogRef
       .afterOpened()
@@ -185,11 +254,44 @@ export class FullscreenPortalComponent {
         this.dialogRef = undefined;
         this.closed.emit();
       });
+
+    return dialogRef;
   }
 
-  /** Closes the dialog */
-  close(): void {
-    this.dialogRef?.close();
+  /**
+   * Opens or closes the dialog, in a view transition when enabled and supported
+   *
+   * @param change Opens or closes the dialog and returns an observable that emits once it has
+   */
+  private runTransition(change: () => Observable<unknown>): void {
+    const ended = () => {
+      if (!this.destroyed) {
+        this.transitionEnded.emit();
+      }
+    };
+
+    if (!this.useViewTransition()) {
+      change().pipe(take(1), takeUntilDestroyed(this.destroyRef)).subscribe(ended);
+      return;
+    }
+
+    const done = () => (this.transitioning = false);
+    this.transitioning = true;
+    const transition = this.document.startViewTransition(async () => {
+      await firstValueFrom(this.ngZone.run(change));
+      await this.appRef.whenStable();
+    });
+    transition.updateCallbackDone.then(done, done);
+    transition.finished.then(ended, ended);
+  }
+
+  /**
+   * Whether opening and closing run in view transitions
+   *
+   * @returns True if view transitions are enabled and the browser supports them
+   */
+  private useViewTransition(): boolean {
+    return this.viewTransition() && typeof this.document.startViewTransition === 'function';
   }
 
   /** Filters the dialog event based on provided dialog reference */

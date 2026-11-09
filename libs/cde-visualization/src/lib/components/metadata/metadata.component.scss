@@ -1,14 +1,9 @@
 @use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../libs/design-system/styles/description-list';
 
 :host {
   display: block;
-  @include mat.button-overrides(
-    (
-      text-hover-state-layer-opacity: 0,
-      text-pressed-state-layer-opacity: 0,
-    )
-  );
 
   @include mat.expansion-overrides(
     (
@@ -34,62 +29,24 @@
       }
     }
 
+    // Panel headers stay 56px without buttons
     ::ng-deep .header {
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 1rem;
+      min-height: 3.5rem;
     }
 
+    // Labels and values in a description list, like the cell types table: on-surface labels and
+    // on-surface-variant values in striped rows. Links stay on one line and truncate, to keep the panel short.
     .metadata-details {
-      display: flex;
-      flex-direction: column;
-      margin: 0 0.5rem 1rem 1rem;
+      @include description-list.description-list();
+      margin: 0 1rem 1rem;
 
-      > div {
-        display: inline-flex;
-        margin: 1px 0;
-
-        span {
-          font: vars.$label-small;
-
-          a {
-            color: vars.$tertiary;
-          }
-        }
-      }
-
-      span {
+      a {
         display: block;
-      }
-    }
-
-    .metadata-row {
-      display: flex;
-      gap: 0.25rem;
-    }
-
-    .metadata-row-label {
-      color: vars.$secondary;
-      min-width: 7.25rem;
-    }
-
-    .metadata-row-value {
-      color: vars.$primary;
-      overflow: hidden;
-      text-wrap: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .show-hide {
-      height: 21px;
-      line-height: 21px;
-
-      .mdc-button {
-        @include mat.button-overrides(
-          (
-            text-label-text-color: vars.$on-tertiary-fixed,
-          )
-        );
-        height: 100%;
-        padding: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: vars.$on-surface-variant;
       }
     }
   }

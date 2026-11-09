@@ -18,7 +18,7 @@
 
     p {
       margin: 0.75rem 0;
-      line-height: 1.6875rem;
+      line-height: var(--hra-markdown-paragraph-line-height, 1.6875rem);
     }
 
     *:first-child {

@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use '../../../../../../../libs/design-system/styles/vars';
 
 :host {
   display: flex;
@@ -10,12 +10,19 @@
   }
 }
 
-::ng-deep {
+// Over the visualization, each control sits on its own raised surface, so it reads over any cell colors
+:host(.floating) {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+
+  .delete {
+    margin-right: 0;
+  }
+
+  .delete,
   mat-button-toggle-group {
-    @include mat.button-toggle-overrides(
-      (
-        height: 1.3125rem,
-      )
-    );
+    background-color: vars.$surface-container;
+    box-shadow: var(--mat-sys-level3);
   }
 }

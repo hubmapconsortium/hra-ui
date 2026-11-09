@@ -1,3 +1,5 @@
+import { Location } from '@angular/common';
+import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { CdeVisualizationElementProps } from '@hra-ui/cde-visualization';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
@@ -25,23 +27,6 @@ export function getStudyCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] 
     {
       name: `${study.organName}, ${study.technology}`,
       route: `/gallery/${study.slug}`,
-    },
-  ];
-}
-
-/**
- * Gets the study dataset breadcrumbs from the route
- * @param route Activated route snapshot
- * @returns Breadcrumb items for the study dataset
- */
-export function getStudyDatasetCrumbs(route: ActivatedRouteSnapshot): BreadcrumbItem[] {
-  const datasetId = getRequiredRouteParam(route, DATASET_ID_PARAM);
-  const [studyCrumb] = getStudyCrumbs(route);
-  return [
-    studyCrumb,
-    {
-      name: datasetId,
-      route: `${studyCrumb.route}/${datasetId}`,
     },
   ];
 }
@@ -86,6 +71,8 @@ export function createStudyDatasetVisualizationResolver(): ResolveFn<Partial<Cde
       nodeTargetSelector: dataset['node-target-value'],
       maxEdgeDistance: dataset['max-edge-distance'],
       metadata: {
+        study: study.tagline,
+        studyUrl: inject(Location).prepareExternalUrl(`/gallery/${study.slug}`),
         organ: study.organName,
         technology: study.technology,
       },

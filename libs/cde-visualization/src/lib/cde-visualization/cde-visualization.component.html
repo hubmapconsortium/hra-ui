@@ -1,48 +1,156 @@
 <ng-container hraFeature="cde-visualization">
-  @if (loadingManager.isLoading$ | async) {
-    <mat-progress-bar class="progress" mode="indeterminate" hraFeature="loading-progress" />
-  }
+  <mat-drawer-container class="drawer-container">
+    <mat-drawer
+      position="end"
+      mode="over"
+      role="region"
+      [hraFeature]="sheet() === 'downloads' ? 'downloads-drawer' : 'about-drawer'"
+      [attr.aria-labelledby]="sheetLabelledBy()"
+      [attr.aria-describedby]="sheetDescribedBy()"
+      [opened]="openSheet() !== undefined"
+      (closedStart)="openSheet.set(undefined)"
+    >
+      @if (sheet() === 'downloads') {
+        <cde-downloads
+          [unavailable]="unavailableDownloads()"
+          (closeClick)="openSheet.set(undefined)"
+          (download)="handleDownload($event)"
+          (showAllPanelsClick)="showAllPanels()"
+        />
+      } @else {
+        <cde-about (closeClick)="openSheet.set(undefined)" />
+      }
+    </mat-drawer>
 
-  <div class="metadata">
-    <cde-metadata hraFeature="metadata" [metadata]="metadataView()" />
-    <cde-cell-types
-      hraFeature="cell-types"
-      [selectedCellType]="nodeTargetSelectorWithDefault()"
-      [countAdjustments]="countAdjustments()"
-      [(cellTypes)]="cellTypes"
-      [(cellTypesSelection)]="cellTypesSelection"
-      (downloadNodes)="downloadNodes()"
-      (downloadEdges)="downloadEdges()"
-      (downloadColorMap)="downloadColorMap()"
-      (resetAllColors)="histogram.resetAllCellsColor(); resetCellTypes()"
-      #cellTypesTable
-    />
-  </div>
-
-  <div class="visualizations">
-    <div class="top">
-      <cde-node-dist-visualization
-        hraFeature="visualization"
-        [nodes]="nodesView()"
-        [edges]="edgesView()"
-        [maxEdgeDistance]="maxEdgeDistance()"
-        [colorMap]="cellTypesAsColorMap()"
-        [(nodeFilter)]="nodeFilterView"
-        (nodeClick)="nodeClick.emit($event)"
-        (nodeHover)="nodeHover.emit($event)"
-        (resetAllCells)="resetCellTypes()"
+    <mat-drawer-content
+      class="layout"
+      [class.tabbed]="tabbed()"
+      [class.compact]="compact()"
+      [class.visualizations-hidden]="!layout().visualizations"
+    >
+      <cde-toolbar
+        class="toolbar"
+        hraFeature="toolbar"
+        [hiddenPanels]="panelsHidden()"
+        [cellLinks]="!edgesDisabled()"
+        [hasHiddenMetadata]="hasHiddenMetadata()"
+        [hasDeletedCells]="hasDeletedCells()"
+        [showThemeMenu]="!hideThemeMenu()"
+        [showHelpMenu]="!hideHelpMenu()"
+        [showPanelsMenu]="!tabbed()"
+        [compact]="compact()"
+        [themePreference]="themeSwitch.preference()"
+        [(openSheet)]="openSheet"
+        [(cellLinkData)]="showCellLinkData"
+        [(allMetadata)]="showAllMetadata"
+        (hiddenPanelsChange)="setHiddenPanels($event)"
+        (cellLinksChange)="edgesDisabled.set(!$event)"
+        (resetViewClick)="resetView()"
+        (restoreDeletedCellsClick)="restoreDeletedCells()"
+        (resetColorsClick)="resetColors()"
+        (resetEverythingClick)="resetEverything()"
+        (themePreferenceChange)="themeSwitch.setPreference($event)"
       />
 
-      <cde-violin hraFeature="violin-graph" [colors]="filteredColors()" [data]="filteredDistances()" />
-    </div>
+      @if (tabbed()) {
+        <nav mat-tab-nav-bar class="tabs" hraFeature="tabs" [tabPanel]="tabPanel" [attr.aria-label]="tabsLabel">
+          @for (tab of tabs(); track tab) {
+            <button
+              mat-tab-link
+              hraClickEvent
+              [id]="tabLinkId(tab)"
+              [active]="activeTab() === tab"
+              [hraFeature]="`${tab}-tab`"
+              (click)="selectedTab.set(tab)"
+            >
+              {{ tabLabels[tab] }}
+            </button>
+          }
+        </nav>
+      }
 
-    <cde-histogram
-      hraFeature="histogram"
-      [colors]="filteredColors()"
-      [data]="filteredDistances()"
-      [filteredCellTypes]="filteredCellTypes()"
-      (updateColor)="updateColor($event.entry, $event.color)"
-      #histogram
-    />
-  </div>
+      <!-- One tab panel holds every panel, so switching layouts or tabs never moves or re-creates them -->
+      <mat-tab-nav-panel
+        class="panels"
+        [attr.role]="tabbed() ? 'tabpanel' : null"
+        [attr.aria-labelledby]="tabbed() ? tabLinkId(activeTab()) : null"
+        #tabPanel
+      >
+        <!-- Hidden panels stay rendered, so they keep their views and state -->
+        <div class="metadata" [class.panel-hidden]="!layout().sidebar" [class.fill]="!layout().visualizations">
+          <cde-metadata
+            hraFeature="metadata"
+            [class.panel-hidden]="!layout().metadata"
+            [metadata]="metadataView()"
+            [loading]="metadataLoading()"
+            [showEmptyFields]="showAllMetadata()"
+          />
+          <cde-cell-types
+            hraFeature="cell-types"
+            [class.panel-hidden]="!layout().cellTypes"
+            [selectedCellType]="nodeTargetSelectorWithDefault()"
+            [countAdjustments]="countAdjustments()"
+            [loading]="cellTypesLoading()"
+            [hideCellLinkData]="!showCellLinkData()"
+            [(cellTypes)]="cellTypes"
+            [(cellTypesSelection)]="cellTypesSelection"
+          />
+        </div>
+
+        <div class="visualizations" [class.panel-hidden]="!layout().visualizations">
+          <div class="top" [class.panel-hidden]="!layout().topRow" [class.fill]="!layout().histogram">
+            <cde-node-dist-visualization
+              hraFeature="visualization"
+              [class.panel-hidden]="!layout().distanceVisualization"
+              [nodes]="nodesView()"
+              [edges]="edgesView()"
+              [maxEdgeDistance]="maxEdgeDistance()"
+              [colorMap]="cellTypesAsColorMap()"
+              [loading]="nodesLoading()"
+              [emptyState]="visualizationEmptyState()"
+              [fullscreenAvailable]="!tabbed()"
+              [floatingControls]="tabbed()"
+              [dockCellInfo]="compact()"
+              [(nodeFilter)]="nodeFilterView"
+              [(edgesDisabled)]="edgesDisabled"
+              [(viewMode)]="viewMode"
+              (fullscreenChange)="fullscreenPanel.set($event ? 'distance-visualization' : undefined)"
+              (nodeClick)="nodeClick.emit($event)"
+              (nodeHover)="nodeHover.emit($event)"
+              (emptyStateAction)="selectAllCellTypes()"
+            />
+
+            <cde-violin
+              hraFeature="violin-graph"
+              [class.panel-hidden]="!layout().violinGraph"
+              [class.fill]="!layout().distanceVisualization"
+              [colors]="filteredColors()"
+              [data]="filteredDistances()"
+              [loading]="distancesLoading()"
+              [emptyState]="chartsEmptyState()"
+              [fullscreenAvailable]="!tabbed()"
+              (fullscreenChange)="fullscreenPanel.set($event ? 'violin-graph' : undefined)"
+              (emptyStateAction)="selectAllCellTypes()"
+            />
+          </div>
+
+          <cde-histogram
+            hraFeature="histogram"
+            [class.panel-hidden]="!layout().histogram"
+            [class.fill]="!layout().topRow"
+            [colors]="filteredColors()"
+            [data]="filteredDistances()"
+            [filteredCellTypes]="filteredCellTypes()"
+            [loading]="distancesLoading()"
+            [emptyState]="chartsEmptyState()"
+            [fullscreenAvailable]="!tabbed()"
+            [(allCellsColor)]="allCellsColor"
+            (fullscreenChange)="fullscreenPanel.set($event ? 'histogram' : undefined)"
+            (updateColor)="updateColor($event.entry, $event.color)"
+            (emptyStateAction)="selectAllCellTypes()"
+          />
+        </div>
+      </mat-tab-nav-panel>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </ng-container>
