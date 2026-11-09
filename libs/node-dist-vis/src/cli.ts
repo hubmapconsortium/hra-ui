@@ -98,7 +98,7 @@ async function loadNodes(file: string, mappings: string[]): Promise<NodesView> {
     data.push(row);
   }
   const mapping = createKeyMapping(data[0], mappings);
-  return new NodesView(data, mapping, 1);
+  return new NodesView(data, mapping);
 }
 
 const progressTimeFormat = new Intl.DateTimeFormat(undefined, {
