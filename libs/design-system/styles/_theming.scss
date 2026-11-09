@@ -5,6 +5,7 @@
 @use './icons';
 @use './overrides/index' as overrides;
 @use './resets';
+@use './text-selection';
 @use './typography';
 
 // Component overrides included by `theme`, in the order they are applied
@@ -41,4 +42,5 @@ $_component-overrides: (
       @include meta.apply(meta.get-mixin('#{$name}-overrides', overrides));
     }
   }
+  @include text-selection.styles();
 }

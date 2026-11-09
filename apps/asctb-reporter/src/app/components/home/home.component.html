@@ -33,40 +33,7 @@
 <div class="demonstration-video-section" hraFeature="demo-video">
   <div class="section-title">Demonstration video</div>
   <div class="section-description">Learn about the features and functionality of this application.</div>
-  <div class="split-sections">
-    <div class="youtube-video-container">
-      <hra-youtube-player
-        hraFeature="player"
-        videoId="pzUFmDhQEO8"
-        label="ASCT+B Reporter demonstration"
-        #youtubePlayer
-      />
-    </div>
-    <div class="section-selector-container">
-      <div class="chapters">Chapters</div>
-      <ng-scrollbar hraScrollOverflowFade>
-        <div class="section-selectors">
-          @for (section of videoSections; track section) {
-            <button
-              mat-button
-              class="section-selector"
-              hraButtonVariant="primary"
-              hraClickEvent
-              [class.section-selected]="$index === selectedVideoSection()"
-              [hraFeature]="section.header | slugify"
-              [disableRipple]="true"
-              (click)="seekVideo(section.sec, $index)"
-            >
-              <div class="ss-header">{{ section.header }}</div>
-              <div class="ss-desc">
-                {{ section.desc }}
-              </div>
-            </button>
-          }
-        </div>
-      </ng-scrollbar>
-    </div>
-  </div>
+  <hra-youtube-player class="video" hraFeature="player" videoId="pzUFmDhQEO8" label="ASCT+B Reporter demonstration" />
 </div>
 <div class="contributors-section" hraFeature="contributors">
   <div class="section-title">Contributors</div>
