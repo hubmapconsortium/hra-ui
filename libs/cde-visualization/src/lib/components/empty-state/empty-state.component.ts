@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { HraCommonModule } from '@hra-ui/common';
-import { EmptyStateContent } from './empty-state.content';
+import { EmptyStateAction, EmptyStateContent } from './empty-state.content';
 
 /**
- * Covers a chart that has nothing to show, with a heading, supporting text, and an action.
+ * Covers a chart that has nothing to show, with a heading, supporting text, and buttons that fix it.
  * Place it in a positioned container next to the chart.
  */
 @Component({
@@ -18,6 +18,6 @@ export class EmptyStateComponent {
   /** Text content */
   readonly content = input.required<EmptyStateContent>();
 
-  /** Emits when the action button is clicked */
-  readonly actionClick = output<void>();
+  /** Emits the action of the button that was clicked */
+  readonly actionClick = output<EmptyStateAction>();
 }

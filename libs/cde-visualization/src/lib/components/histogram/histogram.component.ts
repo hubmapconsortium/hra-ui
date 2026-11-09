@@ -45,7 +45,7 @@ import { setUpChartTooltips } from '../../shared/chart-tooltip';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
 import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
-import { EmptyStateContent } from '../empty-state/empty-state.content';
+import { EmptyStateAction, EmptyStateContent } from '../empty-state/empty-state.content';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
 /** Interface for updated color data */
@@ -169,8 +169,8 @@ export class HistogramComponent {
   /** Empty state shown in place of the histogram, or undefined when there are distances to show */
   readonly emptyState = input<EmptyStateContent>();
 
-  /** Emits when the empty state's action is clicked */
-  readonly emptyStateAction = output<void>();
+  /** Emits the action of the empty state button that was clicked */
+  readonly emptyStateAction = output<EmptyStateAction>();
 
   /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
   readonly fullscreenAvailable = input(true);
