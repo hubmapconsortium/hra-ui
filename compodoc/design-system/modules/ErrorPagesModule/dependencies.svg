@@ -24,13 +24,13 @@
 <title>cluster_ErrorPagesModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="59,-70 59,-268 437,-268 437,-70 59,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_ErrorPagesModule_imports</title>
-<polygon fill="none" stroke="black" points="70,-78 70,-130 426,-130 426,-78 70,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_ErrorPagesModule_exports</title>
 <polygon fill="none" stroke="black" points="67,-208 67,-260 429,-260 429,-208 67,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ErrorPagesModule_imports</title>
+<polygon fill="none" stroke="black" points="70,-78 70,-130 426,-130 426,-78 70,-78"/>
 </g>
 <!-- NotFoundPageComponent -->
 <g id="node1" class="node">

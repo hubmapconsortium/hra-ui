@@ -3,6 +3,7 @@
 @use './icons';
 @use './overrides/index' as overrides;
 @use './resets';
+@use './text-selection';
 @use './typography';
 
 @mixin theme($theme, $overrides: typography.$overrides) {
@@ -22,4 +23,5 @@
   @include overrides.select-overrides();
   @include overrides.slide-toggle-overrides();
   @include overrides.tabs-overrides();
+  @include text-selection.styles();
 }
