@@ -27,6 +27,7 @@ async function bundleCliAction(script, dir, options) {
     logLevel: options.verbose ? 'debug' : 'silent',
     minify: false,
     outfile,
+    platform: 'node',
   });
 
   await chmod(outfile, 0o755);
