@@ -274,6 +274,9 @@ export class NodeDistVisComponent {
   /** Whether to call `zoomToFit` on resize events */
   private readonly zoomToFitOnResize = signal(true);
 
+  /** Whether a `zoomToFit` call came while the canvas was hidden, so the next resize fits the nodes in full */
+  private zoomToFitPending = false;
+
   /** Currently hovered node entry */
   private activeHover: AnyDataEntry | undefined = undefined;
 
@@ -313,11 +316,20 @@ export class NodeDistVisComponent {
 
   /**
    * Zooms the visualization to fit all nodes on screen.
-   * Has no effect until the nodes have been loaded.
+   * Has no effect until the nodes have been loaded. While the canvas is hidden, the nodes are fit
+   * once it shows again, if zoom to fit on resize is still on.
    */
   zoomToFit(options: ZoomToFitOptions = {}): void {
     const view = this.nodesView();
     if (view.length === 0) {
+      return;
+    }
+
+    // A hidden canvas, such as one in an inactive tab, has no size. deckgl then falls back to the canvas'
+    // drawing buffer size, which is larger by the device pixel ratio, so fitting to it would zoom in.
+    const { clientWidth: width, clientHeight: height } = this.canvas();
+    if (width === 0 || height === 0) {
+      this.zoomToFitPending = true;
       return;
     }
 
@@ -327,7 +339,6 @@ export class NodeDistVisComponent {
       resetTarget = true,
       transitionDuration = 0,
     } = options;
-    const { width, height } = this.deck();
     const pixelRatio = window.devicePixelRatio;
     const target = scalePosition(view.getCenter(), view.getDimensions());
     const scale = view.getScale();
@@ -489,9 +500,19 @@ export class NodeDistVisComponent {
   }
 
   /**
-   * Handle canvas resizing
+   * Handle canvas resizing. Resizes from hiding the canvas are skipped, so a tab that hides and shows it
+   * keeps the same zoom. A fit that was skipped while hidden happens in full, without a transition.
    */
   private onResize(): void {
+    const { clientWidth, clientHeight } = this.canvas();
+    if (clientWidth === 0 || clientHeight === 0) {
+      return;
+    } else if (this.zoomToFitPending) {
+      this.zoomToFitPending = false;
+      this.zoomToFit();
+      return;
+    }
+
     this.zoomToFit({
       resetRotation: false,
       resetTarget: false,
