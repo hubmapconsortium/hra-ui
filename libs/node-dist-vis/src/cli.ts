@@ -13,7 +13,7 @@ import {
 import { Command } from 'commander';
 import { createReadStream, createWriteStream } from 'node:fs';
 import { createGunzip } from 'node:zlib';
-import { parse } from 'papaparse';
+import { NODE_STREAM_INPUT, parse } from 'papaparse';
 
 const VERSION = '0.0.1';
 
@@ -24,49 +24,13 @@ interface GenerateEdgesOptions {
   output: string;
 }
 
-async function* readLines(inputFile: string): AsyncGenerator<string> {
+function readCsv(input: string): AsyncIterable<Record<string, unknown>> {
   let inputStream: NodeJS.ReadableStream =
-    !inputFile || inputFile === '-' ? process.stdin : createReadStream(inputFile, { autoClose: true });
-  if (inputFile?.endsWith('.gz')) {
+    !input || input === '-' ? process.stdin : createReadStream(input, { autoClose: true });
+  if (input?.endsWith('.gz')) {
     inputStream = inputStream.pipe(createGunzip());
   }
-  const decoder = new TextDecoder('utf-8');
-  let buffer = '';
-  for await (const chunk of inputStream) {
-    buffer += decoder.decode(chunk as Buffer, { stream: true });
-    const lines = buffer.split('\n');
-    buffer = lines.pop() || '';
-    for (const line of lines) {
-      yield line;
-    }
-  }
-  if (buffer.length > 0) {
-    yield buffer;
-  }
-}
-
-async function* readCsv(input: string): AsyncGenerator<Record<string, string>> {
-  let header: string[] | undefined;
-  const options = { skipEmptyLines: true, header: false };
-
-  for await (const line of readLines(input)) {
-    const parsed = parse<string[]>(line, options);
-    const row = parsed.data?.[0];
-
-    if (!row) {
-      continue;
-    }
-
-    if (!header) {
-      header = row;
-    } else {
-      const result: Record<string, string> = {};
-      for (let i = 0; i < header.length; i++) {
-        result[header[i]] = row[i];
-      }
-      yield result;
-    }
-  }
+  return inputStream.pipe(parse(NODE_STREAM_INPUT, { header: true, dynamicTyping: true, skipEmptyLines: 'greedy' }));
 }
 
 function createBaseKeyMapping(mappings: string[]): Partial<KeyMapping<NodeEntry>> {
@@ -93,7 +57,7 @@ function createKeyMapping(entry: AnyDataEntry, mappings: string[]): KeyMapping<N
 }
 
 async function loadNodes(file: string, mappings: string[]): Promise<NodesView> {
-  const data: Record<string, string>[] = [];
+  const data: Record<string, unknown>[] = [];
   for await (const row of readCsv(file)) {
     data.push(row);
   }
