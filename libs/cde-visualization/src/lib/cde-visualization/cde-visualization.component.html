@@ -83,7 +83,7 @@
             [class.panel-hidden]="!layout().metadata"
             [metadata]="metadataView()"
             [loading]="metadataLoading()"
-            [showEmptyFields]="showAllMetadata()"
+            [showEmptyFields]="metadataShowsEmptyFields()"
           />
           <cde-cell-types
             hraFeature="cell-types"
