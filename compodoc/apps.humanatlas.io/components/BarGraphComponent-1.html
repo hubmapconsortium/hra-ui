@@ -134,7 +134,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/pages/hra-pop-visualizer/components/bar-graph/bar-graph.component.ts</code>
+    <code>src/app/pages/cell-population-graph/components/bar-graph/bar-graph.component.ts</code>
 </p>
 
 
@@ -180,7 +180,7 @@ It takes a Vega-Lite specification as input and renders it in the view.</p>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
-                            <code>NgScrollbarModule</code>
+                            <code>ScrollingModule</code>
                 </td>
             </tr>
 
@@ -231,23 +231,6 @@ It takes a Vega-Lite specification as input and renders it in the view.</p>
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#loading" >loading</a>
-                                </li>
-                                <li>
-                                    <a href="#error" >error</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
@@ -263,7 +246,7 @@ It takes a Vega-Lite specification as input and renders it in the view.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/bar-graph/bar-graph.component.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/pages/cell-population-graph/components/bar-graph/bar-graph.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -300,7 +283,7 @@ It takes a Vega-Lite specification as input and renders it in the view.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/bar-graph/bar-graph.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/cell-population-graph/components/bar-graph/bar-graph.component.ts:32</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -317,69 +300,6 @@ It takes a Vega-Lite specification as input and renders it in the view.</p>
 
 
 
-    <section data-compodoc="block-accessors">
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="loading"></a>
-                        <span class="name"><b>loading</b><a href="#loading"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>loading()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/bar-graph/bar-graph.component.ts:137</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Get loading state from resource</p>
-</div>
-
-                        </td>
-                    </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="error"></a>
-                        <span class="name"><b>error</b><a href="#error"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>error()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/pages/hra-pop-visualizer/components/bar-graph/bar-graph.component.ts:142</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Get error state from resource</p>
-</div>
-
-                        </td>
-                    </tr>
-
-            </tbody>
-        </table>
-</section>
 </div>
 
 
@@ -398,7 +318,7 @@ import {
 } from &#x27;@angular/core&#x27;;
 import { injectLogEvent } from &#x27;@hra-ui/common/analytics&#x27;;
 import { CoreEvents } from &#x27;@hra-ui/common/analytics/events&#x27;;
-import { NgScrollbarModule } from &#x27;ngx-scrollbar&#x27;;
+import { ScrollingModule } from &#x27;@hra-ui/design-system/scrolling&#x27;;
 import { View } from &#x27;vega&#x27;;
 import embed, { VisualizationSpec } from &#x27;vega-embed&#x27;;
 
@@ -408,7 +328,7 @@ import embed, { VisualizationSpec } from &#x27;vega-embed&#x27;;
  */
 @Component({
   selector: &#x27;hra-bar-graph&#x27;,
-  imports: [CommonModule, NgScrollbarModule],
+  imports: [CommonModule, ScrollingModule],
   templateUrl: &#x27;./bar-graph.component.html&#x27;,
   styleUrl: &#x27;./bar-graph.component.scss&#x27;,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -423,59 +343,40 @@ export class BarGraphComponent {
   /** ViewChild reference to the vega container element */
   private readonly container &#x3D; viewChild.required&lt;ElementRef&lt;HTMLDivElement&gt;&gt;(&#x27;vegaContainer&#x27;);
 
-  /** Renderer for safe DOM manipulation */
+  /**
+   * Renderer  of bar graph component
+   */
   private readonly renderer &#x3D; inject(Renderer2);
 
-  /** Vega resource for handling async visualization rendering */
+  /**
+   * Vega resource of bar graph component
+   */
   private readonly vega &#x3D; resource({
     params: () &#x3D;&gt; this.spec(),
     loader: async (params) &#x3D;&gt; {
       const { abortSignal, params: spec } &#x3D; params;
-
-      // Clear any existing content
       this.clearContainer();
-
-      // If no spec provided, return null
       if (!spec) {
         return null;
       }
 
-      // Create a new div element for this visualization
       const root &#x3D; this.createVisualizationRootElement();
-
-      // Track if the operation was cancelled
       let finalized &#x3D; false;
       abortSignal.addEventListener(&#x27;abort&#x27;, () &#x3D;&gt; (finalized &#x3D; true));
 
-      try {
-        // Embed the Vega-Lite specification
-        const result &#x3D; await embed(root, spec, {
-          actions: true,
-          renderer: &#x27;svg&#x27;,
-          tooltip: true,
-        });
-
-        // Check if operation was cancelled during async operation
-        if (finalized) {
-          result.finalize();
-          return null;
-        }
-        this.attachVegaEventTracking(result.view);
-
-        return result;
-      } catch (error) {
-        // If cancelled or error occurs, clean up and return null
-        if (finalized) {
-          return null;
-        }
-        throw error;
+      const result &#x3D; await embed(root, spec);
+      if (finalized) {
+        result.finalize();
+        return null;
       }
+      this.attachVegaEventTracking(result.view);
+
+      return result;
     },
   });
 
   /** Constructor to initialize the component and set up effects */
   constructor() {
-    // Effect to handle cleanup of Vega views
     effect((onCleanup) &#x3D;&gt; {
       const result &#x3D; this.vega.value();
       if (result) {
@@ -501,32 +402,22 @@ export class BarGraphComponent {
     );
   }
 
-  /** Clears the container element safely */
+  /** Clears container element */
   private clearContainer(): void {
     const containerEl &#x3D; this.container().nativeElement;
     while (containerEl.firstChild) {
-      this.renderer.removeChild(containerEl, containerEl.firstChild);
+      containerEl.removeChild(containerEl.firstChild);
     }
   }
 
   /**
-   * Creates a new div element for the visualization using Renderer2
-   * @returns HTMLElement for the visualization
+   * Creates visualization root element
+   * @returns HTML element
    */
   private createVisualizationRootElement(): HTMLElement {
     const element &#x3D; this.renderer.createElement(&#x27;div&#x27;);
     this.renderer.appendChild(this.container().nativeElement, element);
     return element;
-  }
-
-  /** Get loading state from resource */
-  get loading() {
-    return this.vega.isLoading();
-  }
-
-  /** Get error state from resource */
-  get error() {
-    return this.vega.error();
   }
 }
 </code></pre>
@@ -534,9 +425,7 @@ export class BarGraphComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-scrollbar&gt;
-  &lt;div class&#x3D;&quot;bar-graph-container&quot;&gt;
-    &lt;div class&#x3D;&quot;vega-container&quot; #vegaContainer&gt;&lt;/div&gt;
-  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;vega-container&quot; #vegaContainer&gt;&lt;/div&gt;
 &lt;/ng-scrollbar&gt;
 </code></pre>
     </div>
@@ -567,7 +456,7 @@ export class BarGraphComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-scrollbar>  <div class="bar-graph-container">    <div class="vega-container" #vegaContainer></div>  </div></ng-scrollbar></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-scrollbar>  <div class="vega-container" #vegaContainer></div></ng-scrollbar></div>'
     var COMPONENTS = [{'name': 'ApiComponent', 'selector': 'hra-api'},{'name': 'AppComponent', 'selector': 'hra-root'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'BarGraphComponent', 'selector': 'hra-bar-graph'},{'name': 'CellPopulationGraphComponent', 'selector': 'hra-cell-population-graph'},{'name': 'CellPopulationPredictionsComponent', 'selector': 'hra-cell-population-predictions'},{'name': 'CellPopulationPredictorComponent', 'selector': 'hra-cell-population-predictor'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'ConfigSelectorComponent', 'selector': 'hra-config-selector'},{'name': 'EmbeddedRuiComponent', 'selector': 'hra-embedded-rui'},{'name': 'EmbedSidenavContentComponent', 'selector': 'hra-embed-sidenav-content'},{'name': 'HraPopVisualizerComponent', 'selector': 'hra-pop-visualizer'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'ServerSelectorComponent', 'selector': 'hra-server-selector'},{'name': 'SimilarAnatomicalStructuresTableComponent', 'selector': 'hra-similar-anatomical-structures-table'},{'name': 'SimilarDatasetsTableComponent', 'selector': 'hra-similar-datasets-table'},{'name': 'TissueOriginPredictionsComponent', 'selector': 'hra-tissue-origin-predictions'},{'name': 'TissueOriginPredictorComponent', 'selector': 'hra-tissue-origin-predictor'},{'name': 'WebComponentsComponent', 'selector': 'hra-web-components'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BarGraphComponent-1'};
