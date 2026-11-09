@@ -140,13 +140,16 @@ declare class NodeDistVisComponent {
     private readonly resizeObserver;
     /** Whether to call `zoomToFit` on resize events */
     private readonly zoomToFitOnResize;
+    /** Whether a `zoomToFit` call came while the canvas was hidden, so the next resize fits the nodes in full */
+    private zoomToFitPending;
     /** Currently hovered node entry */
     private activeHover;
     /** Initialize the visualization */
     constructor();
     /**
      * Zooms the visualization to fit all nodes on screen.
-     * Has no effect until the nodes have been loaded.
+     * Has no effect until the nodes have been loaded. While the canvas is hidden, the nodes are fit
+     * once it shows again, if zoom to fit on resize is still on.
      */
     zoomToFit(options?: ZoomToFitOptions): void;
     /**
@@ -215,7 +218,8 @@ declare class NodeDistVisComponent {
      */
     private setViewState;
     /**
-     * Handle canvas resizing
+     * Handle canvas resizing. Resizes from hiding the canvas are skipped, so a tab that hides and shows it
+     * keeps the same zoom. A fit that was skipped while hidden happens in full, without a transition.
      */
     private onResize;
     /**

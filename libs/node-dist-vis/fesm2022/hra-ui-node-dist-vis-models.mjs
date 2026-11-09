@@ -1016,14 +1016,18 @@ function truthy() {
 function falsy() {
     return false;
 }
+/**
+ * Combines two lists of filter entries, leaving out repeats so each node is counted once
+ *
+ * @param array1 First entries
+ * @param array2 Entries to add
+ * @returns The combined entries, or undefined when both lists are undefined
+ */
 function concatEntries(array1, array2) {
-    if (array1 !== undefined) {
-        if (array2 !== undefined) {
-            return [...array1, ...array2];
-        }
-        return array1;
+    if (array1 === undefined && array2 === undefined) {
+        return undefined;
     }
-    return array2;
+    return Array.from(new Set([...(array1 ?? []), ...(array2 ?? [])]));
 }
 /** Node filter view */
 class NodeFilterView {

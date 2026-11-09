@@ -406,7 +406,7 @@ class SelectionLayer extends CompositeLayer {
     }
     async getSelection() {
         const MAX_ROUNDS = 20;
-        const { deck } = this.context;
+        const { deck, layerManager } = this.context;
         const { nodesLayer } = this.props;
         const { boundingBox } = this.state;
         if (!deck || !nodesLayer || !boundingBox) {
@@ -420,13 +420,20 @@ class SelectionLayer extends CompositeLayer {
         const width = Math.abs(x2 - x1);
         const height = Math.abs(y2 - y1);
         const { id: maskId } = this.getSubLayerProps({ id: SelectionSubLayerId.MaskLayer });
-        const pickingOpts = { x, y, width, height, layerIds: [this.id] };
+        const { id: nodesId } = this.getSubLayerProps({ id: nodesLayer.id });
+        // Picks only cells and the mask. The lasso's own polygon would otherwise be picked as a cell in every round,
+        // so the rounds would never run out of cells to pick.
+        const pickingOpts = { x, y, width, height, layerIds: [nodesId, maskId] };
         const result = [];
+        const pickedIndices = new Set();
         let selection = [];
         for (let round = 0; round < MAX_ROUNDS; round++) {
+            // Hides the cells picked so far, so this round picks the cells behind them. The layers update now
+            // rather than on deckgl's next frame, which can come too late on slow devices and pick the same cells again.
             this.setState({ selection });
-            deck.redraw();
-            await new Promise((res) => setTimeout(res, 16));
+            layerManager.updateLayers();
+            // Lets the page respond between rounds
+            await new Promise((res) => setTimeout(res));
             const infos = deck.pickObjects(pickingOpts);
             const maskInfo = infos.find((info) => info.sourceLayer?.id === maskId);
             if (infos.length <= 1) {
@@ -437,7 +444,8 @@ class SelectionLayer extends CompositeLayer {
             }
             selection = [...selection];
             for (const info of infos) {
-                if (info.sourceLayer?.id !== maskId) {
+                if (info.sourceLayer?.id !== maskId && !pickedIndices.has(info.index)) {
+                    pickedIndices.add(info.index);
                     result.push(info);
                     selection.push(info.object);
                 }
@@ -694,6 +702,8 @@ class NodeDistVisComponent {
     resizeObserver = new ResizeObserver(this.onResize.bind(this));
     /** Whether to call `zoomToFit` on resize events */
     zoomToFitOnResize = signal(true, ...(ngDevMode ? [{ debugName: "zoomToFitOnResize" }] : /* istanbul ignore next */ []));
+    /** Whether a `zoomToFit` call came while the canvas was hidden, so the next resize fits the nodes in full */
+    zoomToFitPending = false;
     /** Currently hovered node entry */
     activeHover = undefined;
     /** Initialize the visualization */
@@ -727,15 +737,22 @@ class NodeDistVisComponent {
     }
     /**
      * Zooms the visualization to fit all nodes on screen.
-     * Has no effect until the nodes have been loaded.
+     * Has no effect until the nodes have been loaded. While the canvas is hidden, the nodes are fit
+     * once it shows again, if zoom to fit on resize is still on.
      */
     zoomToFit(options = {}) {
         const view = this.nodesView();
         if (view.length === 0) {
             return;
         }
+        // A hidden canvas, such as one in an inactive tab, has no size. deckgl then falls back to the canvas'
+        // drawing buffer size, which is larger by the device pixel ratio, so fitting to it would zoom in.
+        const { clientWidth: width, clientHeight: height } = this.canvas();
+        if (width === 0 || height === 0) {
+            this.zoomToFitPending = true;
+            return;
+        }
         const { margin: { x: marginX, y: marginY } = DEFAULT_ZOOM_TO_FIT_MARGIN, resetRotation = true, resetTarget = true, transitionDuration = 0, } = options;
-        const { width, height } = this.deck();
         const pixelRatio = window.devicePixelRatio;
         const target = scalePosition(view.getCenter(), view.getDimensions());
         const scale = view.getScale();
@@ -887,9 +904,19 @@ class NodeDistVisComponent {
         this.deck().setProps({ initialViewState: viewState });
     }
     /**
-     * Handle canvas resizing
+     * Handle canvas resizing. Resizes from hiding the canvas are skipped, so a tab that hides and shows it
+     * keeps the same zoom. A fit that was skipped while hidden happens in full, without a transition.
      */
     onResize() {
+        const { clientWidth, clientHeight } = this.canvas();
+        if (clientWidth === 0 || clientHeight === 0) {
+            return;
+        }
+        else if (this.zoomToFitPending) {
+            this.zoomToFitPending = false;
+            this.zoomToFit();
+            return;
+        }
         this.zoomToFit({
             resetRotation: false,
             resetTarget: false,

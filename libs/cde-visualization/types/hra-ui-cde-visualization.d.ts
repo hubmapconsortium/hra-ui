@@ -477,7 +477,7 @@ declare class CdeVisualizationComponent {
      */
     protected tabLinkId(tab: TabId): string;
     /**
-     * Shows a panel's tab before its image downloads. Panels in other tabs aren't laid out, so they have no size
+     * Shows a panel's tab before its image downloads. The charts in other tabs aren't laid out, so they have no size
      * to draw at.
      *
      * @param tab Tab of the panel
