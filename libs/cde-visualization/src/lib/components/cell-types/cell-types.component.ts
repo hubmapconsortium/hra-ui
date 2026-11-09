@@ -49,6 +49,17 @@ const SKELETON_NAME_WIDTHS = [
 ];
 
 /**
+ * Placeholder rows shown in the table while the cell types load. Their cells show skeletons in the table's own
+ * columns, so the skeletons line up with the column headers.
+ */
+const SKELETON_ROWS: CellTypeEntry[] = SKELETON_NAME_WIDTHS.map((_width, index) => ({
+  name: `skeleton-${index}`,
+  count: 0,
+  outgoingEdgeCount: 0,
+  color: [0, 0, 0],
+}));
+
+/**
  * Cell Type Component
  */
 @Component({
@@ -83,7 +94,7 @@ export class CellTypesComponent {
   /** Record of adjustments for cell type counts */
   readonly countAdjustments = input<Record<string, { count: number; outgoingEdgeCount: number }>>({});
 
-  /** Whether the cell types are loading, which shows skeleton rows in place of the table body and totals */
+  /** Whether the cell types are loading, which shows skeleton rows and totals in the table */
   readonly loading = input(false);
 
   /** Name widths of the skeleton rows */
@@ -120,9 +131,9 @@ export class CellTypesComponent {
   /** Data source for the table */
   protected readonly dataSource = new MatTableDataSource<CellTypeEntry>();
 
-  /** Bind data source to cell types */
+  /** Bind data source to cell types, or to the skeleton rows while they load */
   protected readonly dataSourceBindRef = effect(() => {
-    this.dataSource.data = this.cellTypes();
+    this.dataSource.data = this.loading() ? SKELETON_ROWS : this.cellTypes();
     this.cdr.markForCheck();
   });
 

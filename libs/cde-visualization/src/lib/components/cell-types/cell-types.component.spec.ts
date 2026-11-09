@@ -48,8 +48,13 @@ describe('CellTypesComponent', () => {
     });
 
     expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
-    expect(container.querySelectorAll('.skeleton-row')).toHaveLength(20);
-    expect(container.querySelectorAll('.skeleton .totals cde-skeleton')).toHaveLength(3);
+    const rows = container.querySelectorAll('tr.mat-mdc-row');
+    expect(rows).toHaveLength(20);
+    // Each skeleton row has a checkbox, a swatch and name, and two counts, in the table's own columns
+    expect(rows[0].querySelectorAll('td cde-skeleton')).toHaveLength(5);
+    expect(rows[0]).toHaveAttribute('aria-hidden', 'true');
+    expect(container.querySelectorAll('tr.mat-mdc-row mat-checkbox')).toHaveLength(0);
+    expect(container.querySelectorAll('tr.mat-mdc-footer-row cde-skeleton')).toHaveLength(3);
   });
 
   it('should leave out the links column from the skeleton when cell link data is hidden', async () => {
@@ -57,7 +62,8 @@ describe('CellTypesComponent', () => {
       componentInputs: { cellTypes: [], cellTypesSelection: [], loading: true, hideCellLinkData: true },
     });
 
-    expect(container.querySelectorAll('.skeleton .totals cde-skeleton')).toHaveLength(2);
+    expect(container.querySelectorAll('tr.mat-mdc-row')[0].querySelectorAll('td cde-skeleton')).toHaveLength(4);
+    expect(container.querySelectorAll('tr.mat-mdc-footer-row cde-skeleton')).toHaveLength(2);
   });
 
   it('should label a single selected cell type in the singular', async () => {
