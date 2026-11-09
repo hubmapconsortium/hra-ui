@@ -1613,7 +1613,7 @@
     noCellTypes: &#x27;Select at least one cell type to download files.&#x27;,
     noDistances: (anchorCellType) &#x3D;&gt;
       &#x60;Select a cell type other than ${anchorCellType} to download the violin graph and histogram.&#x60;,
-    hiddenPanels: &#x27;Show a hidden panel from the Panels menu to download its image.&#x27;,
+    hiddenPanels: &#x27;Show a hidden panel from the Layout menu to download its image.&#x27;,
     hiddenPanelsInTabs: &quot;Images aren&#x27;t available for hidden panels.&quot;,
     showAllPanels: &#x27;Show all panels&#x27;,
   },
@@ -2181,7 +2181,7 @@ The chart is fitted to its container after it renders (see fitViolinView).</p>
                         <i>Default value : </i><code>{
   label: &#x27;Visualization actions&#x27;,
   panels: {
-    label: &#x27;Panels&#x27;,
+    label: &#x27;Layout&#x27;,
     tooltip: &#x27;Show or hide panels&#x27;,
     options: [
       { id: &#x27;metadata&#x27;, label: &#x27;Metadata&#x27; },
@@ -2194,6 +2194,7 @@ The chart is fitted to its container after it renders (see fitViolinView).</p>
   display: {
     label: &#x27;Display&#x27;,
     tooltip: &#x27;Show or hide cell links and metadata&#x27;,
+    compactTooltip: &#x27;Show or hide cell links&#x27;,
     cellLinks: { label: &#x27;Cell links&#x27;, description: &#x27;Lines from each cell to its nearest anchor cell&#x27; },
     cellLinkData: { label: &#x27;Cell link data&#x27;, description: &#x27;Link counts in the Cell types table&#x27; },
     allMetadata: { label: &#x27;All metadata&#x27;, description: &#x27;Include fields with no value&#x27; },
@@ -2505,7 +2506,7 @@ The chart is fitted to its container after it renders (see fitViolinView).</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Panels that the toolbar&#39;s Panels menu shows and hides, in layout order. The cell types panel always shows.</p>
+                    <div class="io-description"><p>Panels that the toolbar&#39;s Layout menu shows and hides, in layout order. The cell types panel always shows.</p>
 </div>
                 </td>
             </tr>

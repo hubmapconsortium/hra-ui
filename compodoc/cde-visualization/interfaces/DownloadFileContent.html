@@ -443,7 +443,7 @@ export interface UnavailableDownloadsContent {
   noDistances: (anchorCellType: string) &#x3D;&gt; string;
   /** Shown when panels with images are hidden */
   hiddenPanels: string;
-  /** Shown in the tabbed layout when panels with images are hidden. The tabs have no Panels menu. */
+  /** Shown in the tabbed layout when panels with images are hidden. The tabs have no Layout menu. */
   hiddenPanelsInTabs: string;
   /** Label of the notice button that shows all panels */
   showAllPanels: string;
@@ -536,7 +536,7 @@ export const DOWNLOADS_CONTENT: DownloadsContent &#x3D; {
     noCellTypes: &#x27;Select at least one cell type to download files.&#x27;,
     noDistances: (anchorCellType) &#x3D;&gt;
       &#x60;Select a cell type other than ${anchorCellType} to download the violin graph and histogram.&#x60;,
-    hiddenPanels: &#x27;Show a hidden panel from the Panels menu to download its image.&#x27;,
+    hiddenPanels: &#x27;Show a hidden panel from the Layout menu to download its image.&#x27;,
     hiddenPanelsInTabs: &quot;Images aren&#x27;t available for hidden panels.&quot;,
     showAllPanels: &#x27;Show all panels&#x27;,
   },

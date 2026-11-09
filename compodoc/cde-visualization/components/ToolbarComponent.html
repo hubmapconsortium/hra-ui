@@ -144,8 +144,8 @@
     <p class="comment">
         <p>Vertical toolbar with the visualization&#39;s app-wide actions: panels, display options, resets, downloads,
 the embedding guide, the theme menu, the About sheet and help links.
-On compact screens it&#39;s a bar along the bottom, with Embed, Theme, Info and Help in a More menu.
-The tabbed layout hides the Panels menu.</p>
+On compact screens it&#39;s a bar along the bottom, with Embed, Theme and Help in a More menu, and the Display menu
+leaves out All metadata, since the metadata panel shows every field there. The tabbed layout hides the Layout menu.</p>
 
     </p>
 
@@ -546,7 +546,7 @@ The tabbed layout hides the Panels menu.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Panels hidden from the Panels menu</p>
+                        <div class="io-description"><p>Panels hidden from the Layout menu</p>
 </div>
                     </td>
                 </tr>
@@ -625,7 +625,7 @@ The tabbed layout hides the Panels menu.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Whether the toolbar shows the Panels menu. The tabbed layout hides it, since the tabs reach every panel.</p>
+                        <div class="io-description"><p>Whether the toolbar shows the Layout menu. The tabbed layout hides it, since the tabs reach every panel.</p>
 </div>
                     </td>
                 </tr>
@@ -776,7 +776,7 @@ The tabbed layout hides the Panels menu.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Panels hidden from the Panels menu</p>
+                        <div class="io-description"><p>Panels hidden from the Layout menu</p>
 </div>
                     </td>
                 </tr>
@@ -1212,8 +1212,8 @@ let idCounter &#x3D; 0;
 /**
  * Vertical toolbar with the visualization&#x27;s app-wide actions: panels, display options, resets, downloads,
  * the embedding guide, the theme menu, the About sheet and help links.
- * On compact screens it&#x27;s a bar along the bottom, with Embed, Theme, Info and Help in a More menu.
- * The tabbed layout hides the Panels menu.
+ * On compact screens it&#x27;s a bar along the bottom, with Embed, Theme and Help in a More menu, and the Display menu
+ * leaves out All metadata, since the metadata panel shows every field there. The tabbed layout hides the Layout menu.
  */
 @Component({
   selector: &#x27;cde-toolbar&#x27;,
@@ -1230,7 +1230,7 @@ let idCounter &#x3D; 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent {
-  /** Panels hidden from the Panels menu */
+  /** Panels hidden from the Layout menu */
   readonly hiddenPanels &#x3D; model&lt;PanelId[]&gt;([]);
 
   /** Whether the distance visualization shows cell links */
@@ -1257,7 +1257,7 @@ export class ToolbarComponent {
   /** Whether the toolbar shows the Help menu */
   readonly showHelpMenu &#x3D; input(true);
 
-  /** Whether the toolbar shows the Panels menu. The tabbed layout hides it, since the tabs reach every panel. */
+  /** Whether the toolbar shows the Layout menu. The tabbed layout hides it, since the tabs reach every panel. */
   readonly showPanelsMenu &#x3D; input(true);
 
   /** Whether the toolbar is a bar along the bottom of a compact screen */
@@ -1326,7 +1326,7 @@ export class ToolbarComponent {
     icon&#x3D;&quot;layers&quot;
     hraFeature&#x3D;&quot;display&quot;
     hraClickEvent
-    [hraPlainTooltip]&#x3D;&quot;content.display.tooltip&quot;
+    [hraPlainTooltip]&#x3D;&quot;compact() ? content.display.compactTooltip : content.display.tooltip&quot;
     [matMenuTriggerFor]&#x3D;&quot;displayMenu&quot;
   &gt;
     {{ content.display.label }}
@@ -1386,20 +1386,18 @@ export class ToolbarComponent {
       {{ content.theme.label }}
     &lt;/button&gt;
   }
-  @if (!compact()) {
-    &lt;button
-      hraNavigationRailItem
-      hraNavigationRailBottom
-      icon&#x3D;&quot;info&quot;
-      hraFeature&#x3D;&quot;info&quot;
-      hraClickEvent
-      [active]&#x3D;&quot;openSheet() &#x3D;&#x3D;&#x3D; &#x27;about&#x27;&quot;
-      [hraPlainTooltip]&#x3D;&quot;content.info.tooltip&quot;
-      (click)&#x3D;&quot;openSheet.set(&#x27;about&#x27;)&quot;
-    &gt;
-      {{ content.info.label }}
-    &lt;/button&gt;
-  }
+  &lt;button
+    hraNavigationRailItem
+    hraNavigationRailBottom
+    icon&#x3D;&quot;info&quot;
+    hraFeature&#x3D;&quot;info&quot;
+    hraClickEvent
+    [active]&#x3D;&quot;openSheet() &#x3D;&#x3D;&#x3D; &#x27;about&#x27;&quot;
+    [hraPlainTooltip]&#x3D;&quot;content.info.tooltip&quot;
+    (click)&#x3D;&quot;openSheet.set(&#x27;about&#x27;)&quot;
+  &gt;
+    {{ content.info.label }}
+  &lt;/button&gt;
   &lt;!-- Each block holds one element, so the rail can project it into its bottom group --&gt;
   @if (showHelpMenu() &amp;&amp; !compact()) {
     &lt;button
@@ -1414,13 +1412,14 @@ export class ToolbarComponent {
       {{ content.help.label }}
     &lt;/button&gt;
   }
+  &lt;!-- In the bottom group, after Info. On compact screens that group follows the other items along the bar. --&gt;
   @if (compact()) {
     &lt;button
       hraNavigationRailItem
+      hraNavigationRailBottom
       icon&#x3D;&quot;more_horiz&quot;
       hraFeature&#x3D;&quot;more&quot;
       hraClickEvent
-      [active]&#x3D;&quot;openSheet() &#x3D;&#x3D;&#x3D; &#x27;about&#x27;&quot;
       [hraPlainTooltip]&#x3D;&quot;content.more.tooltip&quot;
       [matMenuTriggerFor]&#x3D;&quot;moreMenu&quot;
     &gt;
@@ -1510,25 +1509,28 @@ export class ToolbarComponent {
       &quot;
     /&gt;
   &lt;/button&gt;
-  &lt;button
-    mat-menu-item
-    role&#x3D;&quot;menuitemcheckbox&quot;
-    hraFeature&#x3D;&quot;all-metadata&quot;
-    hraClickEvent
-    [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-all-metadata&#x60;&quot;
-    [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-all-metadata-description&#x60;&quot;
-    [attr.aria-checked]&#x3D;&quot;allMetadata()&quot;
-    [disabled]&#x3D;&quot;!hasHiddenMetadata()&quot;
-    (click)&#x3D;&quot;$event.stopPropagation(); allMetadata.set(!allMetadata())&quot;
-  &gt;
-    &lt;mat-icon&gt;{{ allMetadata() ? &#x27;check_box&#x27; : &#x27;check_box_outline_blank&#x27; }}&lt;/mat-icon&gt;
-    &lt;ng-container
-      *ngTemplateOutlet&#x3D;&quot;
-        menuItemText;
-        context: { $implicit: content.display.allMetadata, id: &#x60;${idPrefix}-all-metadata&#x60; }
-      &quot;
-    /&gt;
-  &lt;/button&gt;
+  &lt;!-- Compact screens always show every metadata field --&gt;
+  @if (!compact()) {
+    &lt;button
+      mat-menu-item
+      role&#x3D;&quot;menuitemcheckbox&quot;
+      hraFeature&#x3D;&quot;all-metadata&quot;
+      hraClickEvent
+      [attr.aria-labelledby]&#x3D;&quot;&#x60;${idPrefix}-all-metadata&#x60;&quot;
+      [attr.aria-describedby]&#x3D;&quot;&#x60;${idPrefix}-all-metadata-description&#x60;&quot;
+      [attr.aria-checked]&#x3D;&quot;allMetadata()&quot;
+      [disabled]&#x3D;&quot;!hasHiddenMetadata()&quot;
+      (click)&#x3D;&quot;$event.stopPropagation(); allMetadata.set(!allMetadata())&quot;
+    &gt;
+      &lt;mat-icon&gt;{{ allMetadata() ? &#x27;check_box&#x27; : &#x27;check_box_outline_blank&#x27; }}&lt;/mat-icon&gt;
+      &lt;ng-container
+        *ngTemplateOutlet&#x3D;&quot;
+          menuItemText;
+          context: { $implicit: content.display.allMetadata, id: &#x60;${idPrefix}-all-metadata&#x60; }
+        &quot;
+      /&gt;
+    &lt;/button&gt;
+  }
 &lt;/mat-menu&gt;
 
 &lt;mat-menu
@@ -1643,7 +1645,7 @@ export class ToolbarComponent {
   }
 &lt;/mat-menu&gt;
 
-&lt;!-- On compact screens, Embed, Theme, Info and Help move here. Theme and Help open as submenus. --&gt;
+&lt;!-- On compact screens, Embed, Theme and Help move here. Theme and Help open as submenus. --&gt;
 &lt;mat-menu
   hraNavigationRailMenu
   hraFeature&#x3D;&quot;more-menu&quot;
@@ -1667,10 +1669,6 @@ export class ToolbarComponent {
       {{ content.theme.label }}
     &lt;/button&gt;
   }
-  &lt;button mat-menu-item hraFeature&#x3D;&quot;info&quot; hraClickEvent (click)&#x3D;&quot;openSheet.set(&#x27;about&#x27;)&quot;&gt;
-    &lt;mat-icon&gt;info&lt;/mat-icon&gt;
-    {{ content.info.label }}
-  &lt;/button&gt;
   @if (showHelpMenu()) {
     &lt;button mat-menu-item hraFeature&#x3D;&quot;help&quot; hraClickEvent [matMenuTriggerFor]&#x3D;&quot;helpMenu&quot;&gt;
       &lt;mat-icon&gt;help&lt;/mat-icon&gt;
@@ -1707,7 +1705,7 @@ export class ToolbarComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><hra-navigation-rail [attr.aria-label]="content.label" [orientation]="orientation()">  @if (showPanelsMenu()) {    <button      hraNavigationRailItem      icon="space_dashboard"      hraFeature="panels"      hraClickEvent      [hraPlainTooltip]="content.panels.tooltip"      [matMenuTriggerFor]="panelsMenu"    >      {{ content.panels.label }}    </button>  }  <button    hraNavigationRailItem    icon="layers"    hraFeature="display"    hraClickEvent    [hraPlainTooltip]="content.display.tooltip"    [matMenuTriggerFor]="displayMenu"  >    {{ content.display.label }}  </button>  <button    hraNavigationRailItem    icon="restart_alt"    hraFeature="reset"    hraClickEvent    [hraPlainTooltip]="content.reset.tooltip"    [matMenuTriggerFor]="resetMenu"  >    {{ content.reset.label }}  </button>  @if (!compact()) {    <mat-divider />  }  <button    hraNavigationRailItem    icon="download"    hraFeature="downloads"    hraClickEvent    [active]="openSheet() === \'downloads\'"    [hraPlainTooltip]="content.downloads.tooltip"    (click)="openSheet.set(\'downloads\')"  >    {{ content.downloads.label }}  </button>  <!-- One item per block, so each block projects by its item\'s selector (the bottom items pin to the bottom) -->  @if (!compact()) {    <a      hraNavigationRailItem      icon="code"      target="_blank"      rel="noopener noreferrer"      hraFeature="embed"      hraClickEvent      [attr.href]="content.embed.url"      [hraPlainTooltip]="content.embed.tooltip"    >      {{ content.embed.label }}    </a>  }  @if (showThemeMenu() && !compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      hraFeature="theme"      hraClickEvent      [icon]="themeIcon()"      [hraPlainTooltip]="content.theme.tooltip"      [matMenuTriggerFor]="themeMenu"    >      {{ content.theme.label }}    </button>  }  @if (!compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      icon="info"      hraFeature="info"      hraClickEvent      [active]="openSheet() === \'about\'"      [hraPlainTooltip]="content.info.tooltip"      (click)="openSheet.set(\'about\')"    >      {{ content.info.label }}    </button>  }  <!-- Each block holds one element, so the rail can project it into its bottom group -->  @if (showHelpMenu() && !compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      icon="help"      hraFeature="help"      hraClickEvent      [hraPlainTooltip]="content.help.tooltip"      [matMenuTriggerFor]="helpMenu"    >      {{ content.help.label }}    </button>  }  @if (compact()) {    <button      hraNavigationRailItem      icon="more_horiz"      hraFeature="more"      hraClickEvent      [active]="openSheet() === \'about\'"      [hraPlainTooltip]="content.more.tooltip"      [matMenuTriggerFor]="moreMenu"    >      {{ content.more.label }}    </button>  }</hra-navigation-rail><!-- Menu items: the label names the item and the supporting text under it describes it --><ng-template let-item let-id="id" #menuItemText>  <span class="menu-item-text">    <span [id]="id">{{ item.label }}</span>    <span class="menu-item-description" [id]="`${id}-description`">{{ item.description }}</span>  </span></ng-template><!-- Panel clicks stop propagating so the menu stays open while panels are shown and hidden --><mat-menu  hraNavigationRailMenu  hraFeature="panels-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #panelsMenu="matMenu">  @for (panel of content.panels.options; track panel.id) {    <button      mat-menu-item      role="menuitemcheckbox"      hraClickEvent      [hraFeature]="panel.id"      [attr.aria-checked]="!hiddenPanels().includes(panel.id)"      (click)="$event.stopPropagation(); togglePanel(panel.id)"    >      <mat-icon>{{ hiddenPanels().includes(panel.id) ? \'check_box_outline_blank\' : \'check_box\' }}</mat-icon>      {{ panel.label }}    </button>  }  <mat-divider />  <button    mat-menu-item    hraFeature="show-all-panels"    hraClickEvent    [disabled]="hiddenPanels().length === 0"    (click)="hiddenPanels.set([])"  >    <mat-icon>visibility</mat-icon>    {{ content.panels.showAll }}  </button></mat-menu><!-- Clicks stop propagating so the menu stays open while options are toggled --><mat-menu  hraNavigationRailMenu  hraFeature="display-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #displayMenu="matMenu">  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="cell-links"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-cell-links`"    [attr.aria-describedby]="`${idPrefix}-cell-links-description`"    [attr.aria-checked]="cellLinks()"    (click)="$event.stopPropagation(); cellLinks.set(!cellLinks())"  >    <mat-icon>{{ cellLinks() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.display.cellLinks, id: `${idPrefix}-cell-links` }"    />  </button>  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="cell-link-data"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-cell-link-data`"    [attr.aria-describedby]="`${idPrefix}-cell-link-data-description`"    [attr.aria-checked]="cellLinkData()"    (click)="$event.stopPropagation(); cellLinkData.set(!cellLinkData())"  >    <mat-icon>{{ cellLinkData() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.display.cellLinkData, id: `${idPrefix}-cell-link-data` }      "    />  </button>  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="all-metadata"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-all-metadata`"    [attr.aria-describedby]="`${idPrefix}-all-metadata-description`"    [attr.aria-checked]="allMetadata()"    [disabled]="!hasHiddenMetadata()"    (click)="$event.stopPropagation(); allMetadata.set(!allMetadata())"  >    <mat-icon>{{ allMetadata() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.display.allMetadata, id: `${idPrefix}-all-metadata` }      "    />  </button></mat-menu><mat-menu  hraNavigationRailMenu  hraFeature="reset-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #resetMenu="matMenu">  <button    mat-menu-item    hraFeature="reset-view"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-view`"    [attr.aria-describedby]="`${idPrefix}-reset-view-description`"    (click)="resetViewClick.emit()"  >    <mat-icon>fit_screen</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.reset.view, id: `${idPrefix}-reset-view` }"    />  </button>  <button    mat-menu-item    hraFeature="restore-deleted-cells"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-restore-deleted-cells`"    [attr.aria-describedby]="`${idPrefix}-restore-deleted-cells-description`"    [disabled]="!hasDeletedCells()"    (click)="restoreDeletedCellsClick.emit()"  >    <mat-icon>restore_from_trash</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.reset.deletedCells, id: `${idPrefix}-restore-deleted-cells` }      "    />  </button>  <button    mat-menu-item    hraFeature="reset-colors"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-colors`"    [attr.aria-describedby]="`${idPrefix}-reset-colors-description`"    (click)="resetColorsClick.emit()"  >    <mat-icon>settings_backup_restore</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.reset.colors, id: `${idPrefix}-reset-colors` }"    />  </button>  <mat-divider />  <button    mat-menu-item    hraFeature="reset-everything"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-everything`"    [attr.aria-describedby]="`${idPrefix}-reset-everything-description`"    (click)="resetEverythingClick.emit()"  >    <mat-icon>restart_alt</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.reset.everything, id: `${idPrefix}-reset-everything` }      "    />  </button></mat-menu><mat-menu  hraNavigationRailMenu  yPosition="above"  hraFeature="theme-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #themeMenu="matMenu">  @for (option of content.theme.options; track option.id) {    <button      mat-menu-item      role="menuitemradio"      hraClickEvent      [hraFeature]="option.id"      [attr.aria-checked]="themePreference() === option.id"      (click)="themePreference.set(option.id)"    >      <mat-icon>{{ themePreference() === option.id ? \'radio_button_checked\' : \'radio_button_unchecked\' }}</mat-icon>      {{ option.label }}    </button>  }</mat-menu><mat-menu  hraNavigationRailMenu  yPosition="above"  hraFeature="help-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #helpMenu="matMenu">  @for (link of content.help.links; track link.id) {    <a      mat-menu-item      target="_blank"      rel="noopener noreferrer"      hraClickEvent      [hraFeature]="link.id"      [attr.href]="link.url"    >      <mat-icon>open_in_new</mat-icon>      {{ link.label }}    </a>  }</mat-menu><!-- On compact screens, Embed, Theme, Info and Help move here. Theme and Help open as submenus. --><mat-menu  hraNavigationRailMenu  hraFeature="more-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #moreMenu="matMenu">  <a    mat-menu-item    target="_blank"    rel="noopener noreferrer"    hraFeature="embed"    hraClickEvent    [attr.href]="content.embed.url"  >    <mat-icon>open_in_new</mat-icon>    {{ content.embed.label }}  </a>  @if (showThemeMenu()) {    <button mat-menu-item hraFeature="theme" hraClickEvent [matMenuTriggerFor]="themeMenu">      <mat-icon>{{ themeIcon() }}</mat-icon>      {{ content.theme.label }}    </button>  }  <button mat-menu-item hraFeature="info" hraClickEvent (click)="openSheet.set(\'about\')">    <mat-icon>info</mat-icon>    {{ content.info.label }}  </button>  @if (showHelpMenu()) {    <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">      <mat-icon>help</mat-icon>      {{ content.help.label }}    </button>  }</mat-menu></div>'
+        var COMPONENT_TEMPLATE = '<div><hra-navigation-rail [attr.aria-label]="content.label" [orientation]="orientation()">  @if (showPanelsMenu()) {    <button      hraNavigationRailItem      icon="space_dashboard"      hraFeature="panels"      hraClickEvent      [hraPlainTooltip]="content.panels.tooltip"      [matMenuTriggerFor]="panelsMenu"    >      {{ content.panels.label }}    </button>  }  <button    hraNavigationRailItem    icon="layers"    hraFeature="display"    hraClickEvent    [hraPlainTooltip]="compact() ? content.display.compactTooltip : content.display.tooltip"    [matMenuTriggerFor]="displayMenu"  >    {{ content.display.label }}  </button>  <button    hraNavigationRailItem    icon="restart_alt"    hraFeature="reset"    hraClickEvent    [hraPlainTooltip]="content.reset.tooltip"    [matMenuTriggerFor]="resetMenu"  >    {{ content.reset.label }}  </button>  @if (!compact()) {    <mat-divider />  }  <button    hraNavigationRailItem    icon="download"    hraFeature="downloads"    hraClickEvent    [active]="openSheet() === \'downloads\'"    [hraPlainTooltip]="content.downloads.tooltip"    (click)="openSheet.set(\'downloads\')"  >    {{ content.downloads.label }}  </button>  <!-- One item per block, so each block projects by its item\'s selector (the bottom items pin to the bottom) -->  @if (!compact()) {    <a      hraNavigationRailItem      icon="code"      target="_blank"      rel="noopener noreferrer"      hraFeature="embed"      hraClickEvent      [attr.href]="content.embed.url"      [hraPlainTooltip]="content.embed.tooltip"    >      {{ content.embed.label }}    </a>  }  @if (showThemeMenu() && !compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      hraFeature="theme"      hraClickEvent      [icon]="themeIcon()"      [hraPlainTooltip]="content.theme.tooltip"      [matMenuTriggerFor]="themeMenu"    >      {{ content.theme.label }}    </button>  }  <button    hraNavigationRailItem    hraNavigationRailBottom    icon="info"    hraFeature="info"    hraClickEvent    [active]="openSheet() === \'about\'"    [hraPlainTooltip]="content.info.tooltip"    (click)="openSheet.set(\'about\')"  >    {{ content.info.label }}  </button>  <!-- Each block holds one element, so the rail can project it into its bottom group -->  @if (showHelpMenu() && !compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      icon="help"      hraFeature="help"      hraClickEvent      [hraPlainTooltip]="content.help.tooltip"      [matMenuTriggerFor]="helpMenu"    >      {{ content.help.label }}    </button>  }  <!-- In the bottom group, after Info. On compact screens that group follows the other items along the bar. -->  @if (compact()) {    <button      hraNavigationRailItem      hraNavigationRailBottom      icon="more_horiz"      hraFeature="more"      hraClickEvent      [hraPlainTooltip]="content.more.tooltip"      [matMenuTriggerFor]="moreMenu"    >      {{ content.more.label }}    </button>  }</hra-navigation-rail><!-- Menu items: the label names the item and the supporting text under it describes it --><ng-template let-item let-id="id" #menuItemText>  <span class="menu-item-text">    <span [id]="id">{{ item.label }}</span>    <span class="menu-item-description" [id]="`${id}-description`">{{ item.description }}</span>  </span></ng-template><!-- Panel clicks stop propagating so the menu stays open while panels are shown and hidden --><mat-menu  hraNavigationRailMenu  hraFeature="panels-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #panelsMenu="matMenu">  @for (panel of content.panels.options; track panel.id) {    <button      mat-menu-item      role="menuitemcheckbox"      hraClickEvent      [hraFeature]="panel.id"      [attr.aria-checked]="!hiddenPanels().includes(panel.id)"      (click)="$event.stopPropagation(); togglePanel(panel.id)"    >      <mat-icon>{{ hiddenPanels().includes(panel.id) ? \'check_box_outline_blank\' : \'check_box\' }}</mat-icon>      {{ panel.label }}    </button>  }  <mat-divider />  <button    mat-menu-item    hraFeature="show-all-panels"    hraClickEvent    [disabled]="hiddenPanels().length === 0"    (click)="hiddenPanels.set([])"  >    <mat-icon>visibility</mat-icon>    {{ content.panels.showAll }}  </button></mat-menu><!-- Clicks stop propagating so the menu stays open while options are toggled --><mat-menu  hraNavigationRailMenu  hraFeature="display-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #displayMenu="matMenu">  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="cell-links"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-cell-links`"    [attr.aria-describedby]="`${idPrefix}-cell-links-description`"    [attr.aria-checked]="cellLinks()"    (click)="$event.stopPropagation(); cellLinks.set(!cellLinks())"  >    <mat-icon>{{ cellLinks() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.display.cellLinks, id: `${idPrefix}-cell-links` }"    />  </button>  <button    mat-menu-item    role="menuitemcheckbox"    hraFeature="cell-link-data"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-cell-link-data`"    [attr.aria-describedby]="`${idPrefix}-cell-link-data-description`"    [attr.aria-checked]="cellLinkData()"    (click)="$event.stopPropagation(); cellLinkData.set(!cellLinkData())"  >    <mat-icon>{{ cellLinkData() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.display.cellLinkData, id: `${idPrefix}-cell-link-data` }      "    />  </button>  <!-- Compact screens always show every metadata field -->  @if (!compact()) {    <button      mat-menu-item      role="menuitemcheckbox"      hraFeature="all-metadata"      hraClickEvent      [attr.aria-labelledby]="`${idPrefix}-all-metadata`"      [attr.aria-describedby]="`${idPrefix}-all-metadata-description`"      [attr.aria-checked]="allMetadata()"      [disabled]="!hasHiddenMetadata()"      (click)="$event.stopPropagation(); allMetadata.set(!allMetadata())"    >      <mat-icon>{{ allMetadata() ? \'check_box\' : \'check_box_outline_blank\' }}</mat-icon>      <ng-container        *ngTemplateOutlet="          menuItemText;          context: { $implicit: content.display.allMetadata, id: `${idPrefix}-all-metadata` }        "      />    </button>  }</mat-menu><mat-menu  hraNavigationRailMenu  hraFeature="reset-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #resetMenu="matMenu">  <button    mat-menu-item    hraFeature="reset-view"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-view`"    [attr.aria-describedby]="`${idPrefix}-reset-view-description`"    (click)="resetViewClick.emit()"  >    <mat-icon>fit_screen</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.reset.view, id: `${idPrefix}-reset-view` }"    />  </button>  <button    mat-menu-item    hraFeature="restore-deleted-cells"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-restore-deleted-cells`"    [attr.aria-describedby]="`${idPrefix}-restore-deleted-cells-description`"    [disabled]="!hasDeletedCells()"    (click)="restoreDeletedCellsClick.emit()"  >    <mat-icon>restore_from_trash</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.reset.deletedCells, id: `${idPrefix}-restore-deleted-cells` }      "    />  </button>  <button    mat-menu-item    hraFeature="reset-colors"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-colors`"    [attr.aria-describedby]="`${idPrefix}-reset-colors-description`"    (click)="resetColorsClick.emit()"  >    <mat-icon>settings_backup_restore</mat-icon>    <ng-container      *ngTemplateOutlet="menuItemText; context: { $implicit: content.reset.colors, id: `${idPrefix}-reset-colors` }"    />  </button>  <mat-divider />  <button    mat-menu-item    hraFeature="reset-everything"    hraClickEvent    [attr.aria-labelledby]="`${idPrefix}-reset-everything`"    [attr.aria-describedby]="`${idPrefix}-reset-everything-description`"    (click)="resetEverythingClick.emit()"  >    <mat-icon>restart_alt</mat-icon>    <ng-container      *ngTemplateOutlet="        menuItemText;        context: { $implicit: content.reset.everything, id: `${idPrefix}-reset-everything` }      "    />  </button></mat-menu><mat-menu  hraNavigationRailMenu  yPosition="above"  hraFeature="theme-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #themeMenu="matMenu">  @for (option of content.theme.options; track option.id) {    <button      mat-menu-item      role="menuitemradio"      hraClickEvent      [hraFeature]="option.id"      [attr.aria-checked]="themePreference() === option.id"      (click)="themePreference.set(option.id)"    >      <mat-icon>{{ themePreference() === option.id ? \'radio_button_checked\' : \'radio_button_unchecked\' }}</mat-icon>      {{ option.label }}    </button>  }</mat-menu><mat-menu  hraNavigationRailMenu  yPosition="above"  hraFeature="help-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #helpMenu="matMenu">  @for (link of content.help.links; track link.id) {    <a      mat-menu-item      target="_blank"      rel="noopener noreferrer"      hraClickEvent      [hraFeature]="link.id"      [attr.href]="link.url"    >      <mat-icon>open_in_new</mat-icon>      {{ link.label }}    </a>  }</mat-menu><!-- On compact screens, Embed, Theme and Help move here. Theme and Help open as submenus. --><mat-menu  hraNavigationRailMenu  hraFeature="more-menu"  [hraNavigationRailMenuOrientation]="orientation()"  #moreMenu="matMenu">  <a    mat-menu-item    target="_blank"    rel="noopener noreferrer"    hraFeature="embed"    hraClickEvent    [attr.href]="content.embed.url"  >    <mat-icon>open_in_new</mat-icon>    {{ content.embed.label }}  </a>  @if (showThemeMenu()) {    <button mat-menu-item hraFeature="theme" hraClickEvent [matMenuTriggerFor]="themeMenu">      <mat-icon>{{ themeIcon() }}</mat-icon>      {{ content.theme.label }}    </button>  }  @if (showHelpMenu()) {    <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">      <mat-icon>help</mat-icon>      {{ content.help.label }}    </button>  }</mat-menu></div>'
     var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'cde-about'},{'name': 'CdeVisualizationComponent', 'selector': 'cde-visualization-root'},{'name': 'CellTypesComponent', 'selector': 'cde-cell-types'},{'name': 'ChartSkeletonComponent', 'selector': 'cde-chart-skeleton'},{'name': 'ColorPickerComponent', 'selector': 'cde-color-picker'},{'name': 'ColorPickerLabelComponent', 'selector': 'cde-color-picker-label'},{'name': 'DownloadFileComponent', 'selector': 'cde-download-file'},{'name': 'DownloadsComponent', 'selector': 'cde-downloads'},{'name': 'EmptyStateComponent', 'selector': 'cde-empty-state'},{'name': 'HistogramComponent', 'selector': 'cde-histogram'},{'name': 'MetadataComponent', 'selector': 'cde-metadata'},{'name': 'NodeDistVisualizationComponent', 'selector': 'cde-node-dist-visualization'},{'name': 'NodeDistVisualizationControlsComponent', 'selector': 'cde-node-dist-visualization-controls'},{'name': 'NodeDistVisualizationMenuComponent', 'selector': 'cde-node-dist-visualization-menu'},{'name': 'SkeletonComponent', 'selector': 'cde-skeleton'},{'name': 'ToolbarComponent', 'selector': 'cde-toolbar'},{'name': 'ViolinComponent', 'selector': 'cde-violin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ToolbarComponent'};

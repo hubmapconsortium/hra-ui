@@ -43,7 +43,7 @@ interface EmptyStateContent {
     actionLabel: string;
 }
 
-/** Panels that the toolbar's Panels menu shows and hides, in layout order. The cell types panel always shows. */
+/** Panels that the toolbar's Layout menu shows and hides, in layout order. The cell types panel always shows. */
 declare const PANEL_IDS: readonly ["metadata", "distance-visualization", "violin-graph", "histogram"];
 /** Id of a panel */
 type PanelId = (typeof PANEL_IDS)[number];
@@ -374,7 +374,7 @@ declare class CdeVisualizationComponent {
     /** Whether the visualization is phone-sized: the toolbar runs along the bottom and the controls get compact */
     protected readonly compact: Signal<boolean>;
     /**
-     * Panels hidden in the current layout. The tabs have no Panels menu, so they follow only the hiddenPanels input,
+     * Panels hidden in the current layout. The tabs have no Layout menu, so they follow only the hiddenPanels input,
      * and panels hidden from the toolbar apply to the panel layout.
      */
     protected readonly layoutHiddenPanels: Signal<("metadata" | "distance-visualization" | "violin-graph" | "histogram")[]>;
@@ -406,6 +406,11 @@ declare class CdeVisualizationComponent {
         topRow: boolean;
         visualizations: boolean;
     }>;
+    /**
+     * Whether the metadata panel shows every field, including empty ones. Compact screens always do, since the
+     * Metadata tab has room for them, so their Display menu leaves out All metadata.
+     */
+    protected readonly metadataShowsEmptyFields: Signal<boolean>;
     /** Whether the metadata has fields that only show with all metadata */
     protected readonly hasHiddenMetadata: Signal<boolean>;
     /** Whether any cells were deleted from the distance visualization */
