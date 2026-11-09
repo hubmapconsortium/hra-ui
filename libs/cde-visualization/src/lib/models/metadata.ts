@@ -10,6 +10,10 @@ export type MetadataMixins = { [P in keyof Metadata]: Signal<Metadata[P] | undef
 
 /** Metadata */
 export interface Metadata {
+  /** Name of the study the data comes from. Shows first, and only when set. */
+  study?: string;
+  /** Url of the study's page, which the study name links to */
+  studyUrl?: string;
   /** Title of the visualization */
   title?: string;
   /** Name of the organ */

@@ -1,43 +1,84 @@
-<hra-expansion-panel tagline="Visualization" disabled>
-  <hra-expansion-panel-actions>
-    <cde-node-dist-visualization-menu
-      [(edgesDisabled)]="edgesDisabled"
-      (fullscreenClick)="fullscreen.open()"
-      (downloadClick)="download()"
-      (resetViewClick)="resetView()"
-      (resetDeletedClick)="resetDeletedNodes()"
-    />
-  </hra-expansion-panel-actions>
-
+<hra-expansion-panel tagline="Spatial view" disabled>
   <hra-expansion-panel-header-content>
-    <cde-node-dist-visualization-controls
-      [deleteDisabled]="!hasSelection()"
-      [(viewMode)]="viewMode"
-      (deleteClick)="deleteSelection()"
-      (viewModeChange)="cellInfo.set(undefined)"
-    />
+    @if (!floatingControls()) {
+      <cde-node-dist-visualization-controls
+        [deleteAvailable]="hasSelection()"
+        [(viewMode)]="viewMode"
+        (deleteClick)="deleteSelection()"
+      />
+    }
+    @if (fullscreenAvailable()) {
+      <button
+        mat-icon-button
+        class="fullscreen"
+        aria-label="Open the spatial view in full screen"
+        hraPlainTooltip="Full screen"
+        hraFeature="open-fullscreen"
+        hraClickEvent
+        (click)="fullscreen.open()"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
   </hra-expansion-panel-header-content>
 
-  <hra-fullscreen-portal tagline="Visualization" panelClass="node-dist-vis-fullscreen-panel" #fullscreen>
+  <hra-fullscreen-portal
+    tagline="Spatial view"
+    panelClass="node-dist-vis-fullscreen-panel"
+    (beforeOpened)="fullscreenChange.emit(true)"
+    (beforeClosed)="fullscreenChange.emit(false)"
+    #fullscreen
+  >
     <hra-fullscreen-actions>
       <cde-node-dist-visualization-menu
-        fullscreenMode
+        [hasDeletedCells]="hasDeletedCells()"
         [(edgesDisabled)]="edgesDisabled"
-        (downloadClick)="download()"
         (resetViewClick)="resetView()"
         (resetDeletedClick)="resetDeletedNodes()"
       />
 
       <cde-node-dist-visualization-controls
-        [deleteDisabled]="!hasSelection()"
+        [deleteAvailable]="hasSelection()"
         [(viewMode)]="viewMode"
         (deleteClick)="deleteSelection()"
-        (viewModeChange)="cellInfo.set(undefined)"
       />
     </hra-fullscreen-actions>
 
     <hra-fullscreen-portal-content>
-      <hra-node-dist-vis cdkOverlayOrigin class="vis" data-testid="node-dist-vis" #cellInfoOrigin="cdkOverlayOrigin" />
+      <!-- Before the visualization in the page, as on screen, so keyboard focus reaches the controls first.
+           Hidden while the skeleton or empty state covers the visualization, so focus never lands on hidden controls. -->
+      @if (floatingControls() && !loading() && !emptyState()) {
+        <div class="floating-controls">
+          <cde-node-dist-visualization-controls
+            floating
+            [deleteAvailable]="hasSelection()"
+            [(viewMode)]="viewMode"
+            (deleteClick)="deleteSelection()"
+          />
+        </div>
+      }
+      <hra-node-dist-vis
+        cdkOverlayOrigin
+        class="vis"
+        data-testid="node-dist-vis"
+        [attr.inert]="emptyState() ? '' : null"
+        #cellInfoOrigin="cdkOverlayOrigin"
+      />
+      @if (loading()) {
+        <cde-chart-skeleton />
+      } @else if (emptyState(); as content) {
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+      }
+      @if (cellInfoOpen() && dockCellInfo()) {
+        <hra-info-modal
+          class="docked-cell-info"
+          title="Cell info"
+          closeLabel="Close cell info"
+          data-testid="cell-info"
+          [data]="cellInfoContent()"
+          (close)="cellInfo.set(undefined)"
+        />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>
@@ -46,8 +87,7 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayDisposeOnNavigation]="true"
   [cdkConnectedOverlayHasBackdrop]="false"
-  [cdkConnectedOverlayMinWidth]="540"
-  [cdkConnectedOverlayOpen]="cellInfoOpen()"
+  [cdkConnectedOverlayOpen]="cellInfoOpen() && !dockCellInfo()"
   [cdkConnectedOverlayOrigin]="cellInfoOrigin"
   [cdkConnectedOverlayPositions]="cellInfoPosition()"
   [cdkConnectedOverlayPush]="true"
@@ -57,6 +97,7 @@
 >
   <hra-info-modal
     title="Cell info"
+    closeLabel="Close cell info"
     data-testid="cell-info"
     [data]="cellInfoContent()"
     (close)="cellInfo.set(undefined)"

@@ -61,9 +61,18 @@
       <ng-container matColumnDef="doi">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>DOI</th>
         <td *matCellDef="let element" mat-cell>
-          <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.doi">
-            {{ element.doi }}
-          </a>
+          @if (element.doi) {
+            <a
+              hraHyperlink
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.href]="element.doi"
+              [attr.title]="element.doi"
+            >
+              Link
+            </a>
+          }
         </td>
       </ng-container>
 
@@ -80,9 +89,18 @@
       <ng-container matColumnDef="datasetId">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>ID</th>
         <td *matCellDef="let element" mat-cell>
-          <a hraHyperlink class="link" target="_blank" rel="noopener noreferrer" [attr.href]="element.datasetId">
-            {{ element.datasetId }}
-          </a>
+          @if (element.datasetId) {
+            <a
+              hraHyperlink
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.href]="element.datasetId"
+              [attr.title]="element.datasetId"
+            >
+              Link
+            </a>
+          }
         </td></ng-container
       >
 

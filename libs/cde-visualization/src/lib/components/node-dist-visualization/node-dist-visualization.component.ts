@@ -6,27 +6,29 @@ import {
   OutputEmitterRef,
   Signal,
   WritableSignal,
+  afterRenderEffect,
   computed,
   effect,
   inject,
   input,
   isSignal,
+  linkedSignal,
   model,
   output,
-  signal,
+  untracked,
   viewChild,
 } from '@angular/core';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { HraCommonModule } from '@hra-ui/common';
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
 import {
   FullscreenActionsComponent,
   FullscreenPortalComponent,
   FullscreenPortalContentComponent,
 } from '@hra-ui/design-system/fullscreen';
 import { DataItem, InfoModalComponent } from '@hra-ui/design-system/modal/info-modal';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { NodeDistVisElement, NodeEvent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -37,6 +39,9 @@ import {
   ViewMode,
 } from '@hra-ui/node-dist-vis/models';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
+import { EmptyStateComponent } from '../empty-state/empty-state.component';
+import { EmptyStateContent } from '../empty-state/empty-state.content';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
 
@@ -51,9 +56,12 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
 @Component({
   selector: 'cde-node-dist-visualization',
   imports: [
+    HraCommonModule,
+    MatButtonModule,
+    MatIconModule,
     OverlayModule,
+    PlainTooltipDirective,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenActionsComponent,
     FullscreenPortalComponent,
@@ -61,10 +69,16 @@ const DISTANCE_FORMAT = new Intl.NumberFormat(undefined, {
     InfoModalComponent,
     NodeDistVisualizationControlsComponent,
     NodeDistVisualizationMenuComponent,
+    ChartSkeletonComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './node-dist-visualization.component.html',
   styleUrl: './node-dist-visualization.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.aria-busy]': 'loading() || null',
+    '[class.floating-controls]': 'floatingControls()',
+  },
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodeDistVisualizationComponent {
@@ -83,28 +97,61 @@ export class NodeDistVisualizationComponent {
   /** Input for the maximum edge distance */
   readonly maxEdgeDistance = input.required<number>();
 
+  /** Whether the data is loading, which shows a skeleton in place of the visualization */
+  readonly loading = input(false);
+
+  /** Empty state shown in place of the visualization, or undefined when there are cells to show */
+  readonly emptyState = input<EmptyStateContent>();
+
+  /** Emits when the empty state's action is clicked */
+  readonly emptyStateAction = output<void>();
+
+  /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
+  readonly fullscreenAvailable = input(true);
+
+  /**
+   * Whether the view mode controls float at the top of the visualization instead of sitting in the header.
+   * The tabbed layout floats them, so the header row's height goes to the visualization.
+   */
+  readonly floatingControls = input(false);
+
+  /**
+   * Whether cell info docks at the bottom of the visualization instead of opening beside the cell.
+   * Compact screens dock it, since a card beside the cell can run off a phone screen.
+   */
+  readonly dockCellInfo = input(false);
+
+  /** Emits true when the panel opens in full screen and false when it closes */
+  readonly fullscreenChange = output<boolean>();
+
   /** Output emitter for node click events */
   readonly nodeClick = output<NodeEvent>();
 
   /** Output emitter for node hover events */
   readonly nodeHover = output<NodeEvent | undefined>();
 
-  /** Flag to check cell links visibility */
-  protected readonly edgesDisabled = signal(false);
+  /** Whether cell links are hidden. Shared with the toolbar's Display menu. */
+  readonly edgesDisabled = model(false);
 
-  /** Current view mode */
-  protected readonly viewMode = signal<ViewMode>('explore');
+  /** Whether any cells were deleted */
+  protected readonly hasDeletedCells = computed(() => (this.nodeFilter().exclude?.length ?? 0) > 0);
 
-  /** Current node selection */
-  protected readonly selection = signal<NodeEvent[]>([]);
+  /** Current view mode. The root sets it back to explore when everything is reset. */
+  readonly viewMode = model<ViewMode>('explore');
+
+  /** Current node selection. Cleared when the view mode changes, since the visualization drops it. */
+  protected readonly selection = linkedSignal<ViewMode, NodeEvent[]>({ source: this.viewMode, computation: () => [] });
 
   /** If there is a current node selection */
   protected readonly hasSelection = computed(() => {
     return this.viewMode() === 'select' && this.selection().length > 0;
   });
 
-  /** Signal containing node event */
-  protected readonly cellInfo = signal<NodeEvent | undefined>(undefined);
+  /** Signal containing node event. Cleared when the view mode changes. */
+  protected readonly cellInfo = linkedSignal<ViewMode, NodeEvent | undefined>({
+    source: this.viewMode,
+    computation: () => undefined,
+  });
   /** Opens cell info panel */
   protected readonly cellInfoOpen = computed(() => this.viewMode() === 'inspect' && !!this.cellInfo());
   /** Position of cell info panel */
@@ -158,8 +205,17 @@ export class NodeDistVisualizationComponent {
   /** Full screen portal element */
   private readonly fullscreenPortal = viewChild.required(FullscreenPortalComponent);
 
-  /** Visualization element */
-  private readonly visEl = computed(() => this.fullscreenPortal().rootNodes()[0].childNodes[0] as NodeDistVisElement);
+  /** Closes an open fullscreen view when full screen becomes unavailable */
+  protected readonly closeFullscreenRef = afterRenderEffect(() => {
+    if (!this.fullscreenAvailable()) {
+      untracked(() => this.fullscreenPortal().close());
+    }
+  });
+
+  /** Visualization element, found by tag since the floating controls come before it */
+  private readonly visEl = computed(
+    () => (this.fullscreenPortal().rootNodes()[0] as Element).querySelector('hra-node-dist-vis') as NodeDistVisElement,
+  );
 
   /** Cell info overlay element */
   private readonly cellInfoOverlay = viewChild.required<CdkConnectedOverlay>('cellInfoOverlay');

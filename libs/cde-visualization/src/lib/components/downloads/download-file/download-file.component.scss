@@ -1,0 +1,26 @@
+@use '../../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../../libs/design-system/styles/vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  .name {
+    color: vars.$on-surface;
+    @include utils.use-font(title, small);
+  }
+
+  .description {
+    margin: 0;
+    color: vars.$on-surface-variant;
+    @include utils.use-font(body, medium);
+  }
+
+  .formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}

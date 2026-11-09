@@ -53,6 +53,18 @@ describe('FileUploadComponent', () => {
     expect(screen.getByText(/Upload CSV/i)).toBeInTheDocument();
   });
 
+  it('should show projected buttons beside the upload button', async () => {
+    await render(
+      `<cde-file-upload accept="csv" [loader]="loader" [options]="{}"><a href="/template">Open template</a></cde-file-upload>`,
+      { imports: [FileUploadComponent], componentProperties: { loader: PendingLoader } },
+    );
+
+    const upload = screen.getByRole('button', { name: /Upload CSV/i });
+    const template = screen.getByRole('link', { name: 'Open template' });
+    expect(template.parentElement).toBe(upload.parentElement);
+    expect(upload.compareDocumentPosition(template)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
   it('should use the provided accessible name for the upload button', async () => {
     await render(FileUploadComponent, {
       componentInputs: {
@@ -95,7 +107,7 @@ describe('FileUploadComponent', () => {
     screen.getByRole('button', { name: 'Upload CSV' }).focus();
     instance.load({ files: mockFiles } as HTMLInputElement);
     await rerender(fixture);
-    expect(screen.getByRole('button', { name: 'Delete file' })).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Delete nodes.csv' })).toHaveFocus();
 
     instance.cancelLoad();
     await rerender(fixture);
@@ -113,7 +125,7 @@ describe('FileUploadComponent', () => {
 
     fixture.componentInstance.load({ files: mockFiles } as HTMLInputElement);
     await rerender(fixture);
-    expect(screen.getByRole('button', { name: 'Delete file' })).not.toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Delete nodes.csv' })).not.toHaveFocus();
   });
 
   it('should cancel load', async () => {

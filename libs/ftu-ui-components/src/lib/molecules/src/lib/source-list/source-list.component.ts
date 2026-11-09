@@ -109,11 +109,11 @@ export class SourceListComponent {
   }
 
   /**
-   * Sorting data accessor that sorts string ages/BMIs among the numeric ones: ranges such as
-   * '60-69' by their lower bound, other strings such as 'unknown' after all numbers
+   * Sorting data accessor that sorts string years/ages/BMIs among the numeric ones: ranges such as
+   * '60-69' by their lower bound, other strings such as 'unknown' or 'none' after all numbers
    */
   private sortingDataAccessor(data: SourceReference, column: string): string | number {
-    const value = column === 'age' || column === 'bmi' ? data[column] : undefined;
+    const value = column === 'year' || column === 'age' || column === 'bmi' ? data[column] : undefined;
     if (typeof value === 'string') {
       const number = parseFloat(value);
       return isNaN(number) ? Number.MAX_SAFE_INTEGER : number;

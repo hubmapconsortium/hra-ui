@@ -1,15 +1,19 @@
 import { DOCUMENT } from '@angular/common';
 import { HraCommonModule } from '@hra-ui/common';
 import {
+  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
+  model,
   output,
   Renderer2,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,28 +23,29 @@ import {
   MatExpansionPanelDefaultOptions,
 } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { colorEquals, Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
-import {
-  ExpansionPanelActionsComponent,
-  ExpansionPanelComponent,
-  ExpansionPanelHeaderContentComponent,
-} from '@hra-ui/design-system/expansion-panel';
-import {
-  FullscreenActionsComponent,
-  FullscreenPortalComponent,
-  FullscreenPortalContentComponent,
-} from '@hra-ui/design-system/fullscreen';
+import { colorEquals, hexToRgb, Rgb, rgbToHex } from '@hra-ui/design-system/color-picker';
+import { ExpansionPanelComponent, ExpansionPanelHeaderContentComponent } from '@hra-ui/design-system/expansion-panel';
+import { FullscreenPortalComponent, FullscreenPortalContentComponent } from '@hra-ui/design-system/fullscreen';
 import { ScrollingModule } from '@hra-ui/design-system/scrolling';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { produce } from 'immer';
-import { ColorPickerDirective } from 'ngx-color-picker';
 import { View } from 'vega';
 import embed, { VisualizationSpec } from 'vega-embed';
 import { DistanceEntry } from '../../cde-visualization/cde-visualization.component';
 import { CellTypeEntry } from '../../models/cell-type';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import {
+  applyChartTheme,
+  getChartTheme,
+  ThemeableChartSpec,
+  updateChartTheme,
+  watchColorScheme,
+} from '../../shared/chart-theme';
+import { setUpChartTooltips } from '../../shared/chart-tooltip';
 import { ColorPickerLabelComponent } from '../color-picker-label/color-picker-label.component';
-import { HistogramMenuComponent } from './histogram-menu/histogram-menu.component';
+import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
+import { EmptyStateComponent } from '../empty-state/empty-state.component';
+import { EmptyStateContent } from '../empty-state/empty-state.content';
 import * as HISTOGRAM_SPEC from './histogram.vl.json';
 
 /** Interface for updated color data */
@@ -81,8 +86,8 @@ interface ModifiableHistogramSpec {
   };
 }
 
-/** Fonts used in the histogram */
-const HISTOGRAM_FONTS = ['12px Metropolis', '14px Metropolis'];
+/** Font sizes used in the histogram, in pixels */
+const HISTOGRAM_FONT_SIZES = [12, 14];
 
 /** Label for all cell types */
 const ALL_CELLS_TYPE = 'All cells';
@@ -96,18 +101,11 @@ const EXPORT_IMAGE_HEIGHT = 500;
 /** Padding for the exported image */
 const EXPORT_IMAGE_PADDING = 16;
 
-/** Configuration for the legend in the exported image */
+/** Configuration for the legend in the exported image. Its text uses the chart theme's type (see applyChartTheme). */
 const EXPORT_IMAGE_LEGEND_CONFIG = {
   title: null,
   symbolType: 'circle',
   symbolStrokeWidth: 10,
-  labelFontSize: 14,
-  titleFontSize: 14,
-  titleLineHeight: 21,
-  titleColor: '#201E3D',
-  titleFontWeight: 500,
-  labelFontWeight: 500,
-  labelColor: '#4B4B5E',
 };
 
 /** Length of the dynamic color range */
@@ -116,7 +114,7 @@ const DYNAMIC_COLOR_RANGE_LENGTH = 2000;
 /** Dynamic color range for the histogram */
 const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
   .fill(0)
-  .map((_value, index) => ({ expr: `colors[${index}] || '#000'` }));
+  .map((_value, index) => ({ expr: `colors[${index}] || themeMarkColor` }));
 
 /**
  * Histogram Component
@@ -130,14 +128,13 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     MatExpansionModule,
     ColorPickerLabelComponent,
     ScrollingModule,
-    MatMenuModule,
+    PlainTooltipDirective,
     FullscreenPortalComponent,
     ExpansionPanelComponent,
-    ExpansionPanelActionsComponent,
     ExpansionPanelHeaderContentComponent,
     FullscreenPortalContentComponent,
-    FullscreenActionsComponent,
-    HistogramMenuComponent,
+    ChartSkeletonComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './histogram.component.html',
   styleUrl: './histogram.component.scss',
@@ -152,6 +149,9 @@ const DYNAMIC_COLOR_RANGE = Array(DYNAMIC_COLOR_RANGE_LENGTH)
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.aria-busy]': 'loading() || null',
+  },
 })
 export class HistogramComponent {
   /** Data for the visualization */
@@ -163,23 +163,49 @@ export class HistogramComponent {
   /** Cell types to use for the visualization */
   readonly filteredCellTypes = input.required<CellTypeEntry[]>();
 
+  /** Whether the data is loading, which shows a skeleton in place of the histogram */
+  readonly loading = input(false);
+
+  /** Empty state shown in place of the histogram, or undefined when there are distances to show */
+  readonly emptyState = input<EmptyStateContent>();
+
+  /** Emits when the empty state's action is clicked */
+  readonly emptyStateAction = output<void>();
+
+  /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
+  readonly fullscreenAvailable = input(true);
+
+  /** Emits true when the panel opens in full screen and false when it closes */
+  readonly fullscreenChange = output<boolean>();
+
   /** Toggles full screen mode */
   protected readonly fullscreen = signal(false);
-
-  /** Sets the color picker directive */
-  protected readonly colorPicker = signal<ColorPickerDirective | null>(null);
-
-  /** State indicating whether overflow is visible */
-  protected readonly overflowVisible = computed(() => !!this.colorPicker());
 
   /** Label for the total cell type */
   protected readonly totalCellTypeLabel = ALL_CELLS_TYPE;
 
-  /** Color for the total cell type */
-  protected readonly totalCellTypeColor = signal<Rgb>([0, 0, 0], { equal: colorEquals });
-
   /** Reference to the document object */
   private readonly document = inject(DOCUMENT);
+
+  /** Host element, where the theme colors are read */
+  private readonly el: HTMLElement = inject(ElementRef).nativeElement;
+
+  /** Changes when the color scheme changes */
+  private readonly colorScheme = watchColorScheme();
+
+  /** Chart theme, read again when the color scheme changes */
+  private readonly theme = computed(() => {
+    this.colorScheme();
+    return getChartTheme(this.el);
+  });
+
+  /** Color picked for the total cell type, or undefined to use the theme's mark color */
+  readonly allCellsColor = model<Rgb | undefined>(undefined);
+
+  /** Color for the total cell type */
+  readonly totalCellTypeColor = computed(() => this.allCellsColor() ?? hexToRgb(this.theme().markColor), {
+    equal: colorEquals,
+  });
 
   /** Reference to the renderer for DOM manipulation */
   private readonly renderer = inject(Renderer2);
@@ -189,6 +215,13 @@ export class HistogramComponent {
 
   /** Element reference for the histogram container */
   protected readonly histogramEl = viewChild.required(FullscreenPortalComponent);
+
+  /** Closes an open fullscreen view when full screen becomes unavailable */
+  protected readonly closeFullscreenRef = afterRenderEffect(() => {
+    if (!this.fullscreenAvailable()) {
+      untracked(() => this.histogramEl().close());
+    }
+  });
 
   /** Vega view instance for the histogram */
   protected readonly view = signal<View | undefined>(undefined);
@@ -210,18 +243,32 @@ export class HistogramComponent {
   /** Effect for updating view colors */
   protected readonly viewColorsRef = effect(() => this.view()?.signal('colors', this.allColors()).run());
 
+  /** Effect for updating the view's theme colors in place, without redrawing the histogram */
+  protected readonly viewThemeRef = effect(() => {
+    const theme = this.theme();
+    const view = this.view();
+    if (view) {
+      updateChartTheme(view, theme);
+    }
+  });
+
   /** Effect for creating the Vega view */
   protected readonly viewCreateRef = effect(async (onCleanup) => {
-    const el = this.histogramEl().rootNodes()[0];
-    await this.ensureFontsLoaded();
+    // vega-embed clears the element it embeds into, so it gets the chart's own element and leaves the empty state alone
+    const container: HTMLElement = this.histogramEl().rootNodes()[0];
+    const el = container.querySelector('.histogram') as HTMLElement;
+    const theme = untracked(this.theme);
+    await this.ensureFontsLoaded(theme.font);
 
     const spec = produce(HISTOGRAM_SPEC, (draft) => {
+      applyChartTheme(draft, theme);
       draft.encoding.color.scale.range = DYNAMIC_COLOR_RANGE;
     });
     const { finalize, view } = await embed(el, spec as VisualizationSpec, {
       actions: false,
     });
 
+    setUpChartTooltips(view);
     onCleanup(finalize);
     this.view.set(view);
   });
@@ -240,14 +287,20 @@ export class HistogramComponent {
   /** Download the histogram as an image in the specified format */
   /* istanbul ignore next */
   async download(format: string): Promise<void> {
-    const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec, (draft) => {
+    const theme = this.theme();
+    const spec = produce(HISTOGRAM_SPEC as ModifiableHistogramSpec & ThemeableChartSpec, (draft) => {
+      applyChartTheme(draft, theme);
       draft.width = EXPORT_IMAGE_WIDTH;
       draft.height = EXPORT_IMAGE_HEIGHT;
       draft.config.padding.bottom = EXPORT_IMAGE_PADDING;
       draft.config.padding.top = EXPORT_IMAGE_PADDING;
       draft.config.padding.right = EXPORT_IMAGE_PADDING;
       draft.config.padding.left = EXPORT_IMAGE_PADDING;
-      draft.encoding.color.legend = EXPORT_IMAGE_LEGEND_CONFIG;
+      draft.encoding.color.legend = {
+        ...EXPORT_IMAGE_LEGEND_CONFIG,
+        titleColor: theme.titleColor,
+        labelColor: theme.labelColor,
+      };
       draft.data.values = this.data();
       draft.encoding.color.scale.range = this.allColors();
     });
@@ -262,14 +315,13 @@ export class HistogramComponent {
     finalize();
   }
 
-  /** Ensure required fonts are loaded for the histogram */
-  private async ensureFontsLoaded(): Promise<void> {
-    const loadPromises = HISTOGRAM_FONTS.map((font) => this.document.fonts.load(font));
+  /**
+   * Ensure required fonts are loaded for the histogram
+   *
+   * @param font Font family used by the histogram
+   */
+  private async ensureFontsLoaded(font: string): Promise<void> {
+    const loadPromises = HISTOGRAM_FONT_SIZES.map((size) => this.document.fonts.load(`${size}px ${font}`));
     await Promise.all(loadPromises);
-  }
-
-  /** Reset the color of the total cell type */
-  resetAllCellsColor(): void {
-    this.totalCellTypeColor.set([0, 0, 0]);
   }
 }
