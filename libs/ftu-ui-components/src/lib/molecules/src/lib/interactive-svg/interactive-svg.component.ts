@@ -274,31 +274,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   }
 
   /**
-   * Returns entry from mapping if target, parent, or grandparent id matches the node name
+   * Returns entry from mapping if target id matches the node name
    * @param event Event
    * @returns Node entry that matches the target id
    */
   private getNode(event: Event): T | undefined {
     const targetId = (event.target as Element).id;
-    const parentId = (event.target as Element).parentElement?.id ?? '';
-    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';
-    const idCollection = [grandparentId, parentId, targetId];
-    for (const id of idCollection) {
-      const decodedID = this.decodeId(id);
-      const cellMatch = this.mapping().find(
-        (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry
-      );
-      if (cellMatch) {
-        return cellMatch;
-      }
-      const groupMatch = this.mapping().find(
-        (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry
-      );
-      if (groupMatch) {
-        return groupMatch;
-      }
-    }
-    return undefined;
+    const decodedID = this.decodeId(targetId);
+    return this.mapping().find(
+      (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry
+    );
   }
 
   /**

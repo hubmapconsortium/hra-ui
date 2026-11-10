@@ -656,7 +656,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Connecting_Tubule_AS_1",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0005097",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000768",
           "svg_group_id": "Connecting_Tubule",
           "svg_id": "Connecting_Tubule_AS_1",
           "label": "renal connecting tubule"
@@ -664,7 +664,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Connecting_Tubule_AS_2",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0005097",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000768",
           "svg_group_id": "Connecting_Tubule",
           "svg_id": "Connecting_Tubule_AS_2",
           "label": "renal connecting tubule"
@@ -1088,7 +1088,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_AS_1",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000849",
           "svg_group_id": "Distal_Convoluted_Tubule",
           "svg_id": "Distal_Convoluted_Tubule_AS_1",
           "label": "distal convoluted tubule"
@@ -1096,7 +1096,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Distal_Convoluted_Tubule_AS_2",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001292",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1000849",
           "svg_group_id": "Distal_Convoluted_Tubule",
           "svg_id": "Distal_Convoluted_Tubule_AS_2",
           "label": "distal convoluted tubule"
@@ -1384,7 +1384,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Of_Loop_Of_Henle_AS_1",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001291",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001106",
           "svg_group_id": "Thick_Ascending_Limb_Of_Loop_Of_Henle",
           "svg_id": "Thick_Ascending_Limb_Of_Loop_Of_Henle_AS_1",
           "label": "thick ascending limb of loop of Henle"
@@ -1392,7 +1392,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Thick_Ascending_Limb_Of_Loop_Of_Henle_AS_2",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0001291",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_1001106",
           "svg_group_id": "Thick_Ascending_Limb_Of_Loop_Of_Henle",
           "svg_id": "Thick_Ascending_Limb_Of_Loop_Of_Henle_AS_2",
           "label": "thick ascending limb of loop of Henle"
@@ -1656,7 +1656,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_S1_AS_1",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004196",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030009",
           "svg_group_id": "Proximal_Tubule_S1",
           "svg_id": "Proximal_Tubule_S1_AS_1",
           "label": "proximal convoluted tubule segment 1"
@@ -1664,7 +1664,7 @@
         {
           "@id": "https://purl.humanatlas.io/2d-ftu/kidney-nephron#Proximal_Tubule_S1_AS_2",
           "@type": "FtuIllustrationNode",
-          "representation_of": "http://purl.obolibrary.org/obo/UBERON_0004196",
+          "representation_of": "http://purl.obolibrary.org/obo/CL_4030009",
           "svg_group_id": "Proximal_Tubule_S1",
           "svg_id": "Proximal_Tubule_S1_AS_2",
           "label": "proximal convoluted tubule segment 1"

@@ -99,10 +99,16 @@ describe('InteractiveSvgComponent', () => {
       const handler = renderer.listen.mock.calls.find((args) => args[1] === 'mouseover')?.[2];
       handler?.(event);
       expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[0]);
+    });
+
+    it('should only match on the target element id, not its ancestors', async () => {
+      const { instance, outputs } = await shallow.render({ bind: { mapping: testMapping } });
+      instance.setSvgElement(svg);
+
+      const handler = renderer.listen.mock.calls.find((args) => args[1] === 'mouseover')?.[2];
       handler?.(event2);
-      expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[1]);
       handler?.(event3);
-      expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[2]);
+      expect(outputs.nodeHover.emit).not.toHaveBeenCalled();
     });
 
     it('should not emit anything if node not found in mapping', async () => {
@@ -131,6 +137,15 @@ describe('InteractiveSvgComponent', () => {
       const handler = renderer.listen.mock.calls.find((args) => args[1] === 'click')?.[2];
       handler?.(event);
       expect(outputs.nodeClick.emit).toHaveBeenCalledWith(testMapping[0]);
+    });
+
+    it('should not emit nodeClick when the clicked node is not in the mapping', async () => {
+      const { instance, outputs } = await shallow.render({ bind: { mapping: [] } });
+      instance.setSvgElement(svg);
+
+      const handler = renderer.listen.mock.calls.find((args) => args[1] === 'click')?.[2];
+      handler?.(event);
+      expect(outputs.nodeClick.emit).not.toHaveBeenCalled();
     });
   });
 
