@@ -1,38 +1,200 @@
 @use '@angular/material' as mat;
+@use '../../../../../libs/design-system/styles/utils';
 @use '../../../../../libs/design-system/styles/vars' as vars;
 
+// Background of every panel, chart, and scroll fade
+$panel-background: vars.$background;
+
+$drawer-background: light-dark(#{vars.$surface-container-low}, #{vars.$surface-container});
+
+// Width of the toolbar: the navigation rail's default 96px plus its 1px divider
+$toolbar-width: calc(6rem + 1px);
+
 :host {
+  display: block;
   width: 100%;
   height: 100%;
-  display: grid;
   position: relative;
-  grid-template-columns: 22.75rem minmax(64.1875rem, calc(100% - 22.75rem));
-  grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
-  grid-template-areas:
-    'metadata visualization'
-    'metadata visualization';
-  color: vars.$secondary;
-  background: vars.$surface-container-low;
+  // Scroll fades blend into the panel background
+  --hra-scroll-overflow-fade-color: #{$panel-background};
+  // Text links match AtlasNG's, as in cde-ui: underlined on-surface at a weight of 600.
+  // Set here so the web component, which has no app styles for links, matches too.
+  --ang-text-link-color: #{vars.$on-surface};
 
-  .progress {
-    position: absolute;
-    inset: 0 0 auto 0;
-    @include mat.progress-bar-overrides(
-      (
-        active-indicator-color: vars.$tertiary,
-      )
-    );
+  ::ng-deep a.hra-text-hyperlink {
+    font-weight: 600;
   }
 
+  @include mat.sidenav-overrides(
+    (
+      content-text-color: vars.$on-surface,
+      content-background-color: $panel-background,
+      container-text-color: vars.$on-surface,
+      container-background-color: $drawer-background,
+      container-elevation-shadow: var(--mat-sys-level1),
+      container-shape: vars.$corner-large,
+      container-width: 28rem,
+      scrim-color: utils.with-alpha(vars.$scrim, 0.24),
+    )
+  );
+
+  .drawer-container {
+    height: 100%;
+  }
+
+  mat-drawer {
+    max-width: 100%;
+    border-left: 2px solid vars.$outline;
+    --hra-scroll-overflow-fade-color: #{$drawer-background};
+  }
+
+  .layout {
+    display: grid;
+    position: relative;
+    grid-template-columns: $toolbar-width clamp(21rem, 26%, 26rem) minmax(0, 1fr);
+    grid-template-rows: 3.5rem minmax(548px, calc(100% - 3.5rem));
+    grid-template-areas:
+      'toolbar metadata visualization'
+      'toolbar metadata visualization';
+
+    &.visualizations-hidden {
+      grid-template-columns: $toolbar-width 1fr 0;
+    }
+
+    &.tabbed {
+      grid-template-columns: $toolbar-width minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
+      grid-template-areas:
+        'toolbar tabs'
+        'toolbar panels';
+    }
+
+    &.compact {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      grid-template-areas:
+        'tabs'
+        'panels'
+        'toolbar';
+
+      .toolbar {
+        height: auto;
+        border-right: none;
+        border-top: 1px solid vars.$outline;
+      }
+    }
+  }
+
+  .tabs {
+    grid-area: tabs;
+  }
+
+  // In the panel layout the tab panel adds no box, so the two columns stay grid items
+  .panels {
+    display: contents;
+  }
+
+  .layout.tabbed .panels {
+    grid-area: panels;
+    display: flex;
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+
+    .metadata,
+    .visualizations {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    // The spatial view stays laid out at full size behind the other tabs. Hidden with display: none, its canvas
+    // would resize to nothing and back on every tab switch, and the cells would visibly zoom as it redraws.
+    // Its hidden containers give up their boxes instead, so it can still lay out.
+    .visualizations.panel-hidden,
+    .top.panel-hidden {
+      display: contents !important;
+    }
+
+    cde-node-dist-visualization {
+      position: absolute;
+      inset: 0;
+
+      &.panel-hidden {
+        display: block !important;
+        visibility: hidden;
+      }
+    }
+
+    // The metadata panel is alone on its tab, so it scrolls and drops the divider above the cell types
+    cde-metadata {
+      height: auto;
+      min-height: 0;
+      overflow-y: auto;
+      border-bottom: none;
+    }
+  }
+
+  // The active tab already names its panel, so the panel titles are hidden visually. Screen readers still get
+  // them, since they name the panels' regions. Headers left with only a title collapse.
+  .layout.tabbed ::ng-deep {
+    hra-expansion-panel .title {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    :is(cde-cell-types, cde-metadata, cde-violin) hra-expansion-panel {
+      .header {
+        min-height: 0;
+        padding: 0;
+      }
+
+      .content {
+        height: 100%;
+      }
+    }
+
+    :is(cde-cell-types, cde-violin) hra-expansion-panel .content {
+      padding-top: 1rem;
+    }
+
+    cde-metadata .metadata-details {
+      margin-top: 1rem;
+    }
+
+    // Without the fullscreen button, the histogram's header controls sit on the 16px inset too.
+    // Its header stays 56px, which its chart height accounts for.
+    cde-histogram hra-expansion-panel .header {
+      padding: 1rem 1rem 0.5rem;
+    }
+  }
+
+  // The rail fills with surface-container, and the outline divider matches the panel dividers
+  .toolbar {
+    grid-area: toolbar;
+    border-right: 1px solid vars.$outline;
+    --hra-navigation-rail-container-color: #{vars.$surface-container};
+  }
+
+  // Panel dividers sit on the layout containers, so they run the full length of each panel.
+  // They use outline, so the panels read as separate regions.
   .metadata {
     display: flex;
     flex-direction: column;
     grid-area: metadata;
+    border-right: 1px solid vars.$outline;
+
+    &.fill {
+      border-right: none;
+    }
 
     cde-metadata {
       width: 100%;
       height: fit-content;
-      border-bottom: 2px solid vars.$outline-variant;
+      border-bottom: 1px solid vars.$outline;
     }
   }
 
@@ -46,97 +208,82 @@
       display: flex;
       height: 0;
       flex-grow: 1;
-    }
+      border-bottom: 1px solid vars.$outline;
 
-    cde-node-dist-visualization {
-      height: 100%;
-      min-width: 32.75rem;
-      flex-grow: 1;
-
-      ::ng-deep .header {
-        border-left: 2px solid vars.$outline-variant;
-        border-right: 2px solid vars.$outline-variant;
+      &.fill {
+        border-bottom: none;
       }
     }
 
-    cde-histogram {
-      border-left: 2px solid vars.$outline-variant;
+    // Clip the cell visualization so its canvas can't paint over the dividers.
+    // Below 1028px the violin graph shrinks twice as fast, so the spatial view's header controls fit at 1280px.
+    cde-node-dist-visualization {
+      height: 100%;
+      flex: 1 1 32.75rem;
+      min-width: 0;
+      overflow: hidden;
     }
 
     cde-violin {
       height: 100%;
-      width: 31.5rem;
-      border-bottom: 2px solid vars.$outline-variant;
-    }
-  }
-}
+      flex: 0 2 31.5rem;
+      min-width: 0;
+      border-left: 1px solid vars.$outline;
 
-::ng-deep {
-  .metadata-overlay,
-  .histogram-overlay,
-  .vis-overlay,
-  .violin-overlay {
-    .mat-mdc-menu-content {
-      background-color: vars.$on-primary;
-      color: vars.$secondary;
-      .mat-mdc-menu-item {
-        @include mat.menu-overrides(
-          (
-            item-leading-spacing: 1rem,
-            item-trailing-spacing: 1rem,
-          )
-        );
-        .mat-mdc-menu-item-text {
-          font: vars.$label-medium;
-        }
+      &.fill {
+        flex-grow: 1;
+        border-left: none;
       }
     }
   }
 
-  div.mat-mdc-menu-panel {
-    max-width: 260px;
-    min-width: 208px;
-    &.info-sub-menu .mat-mdc-menu-content {
-      padding: 0.75rem 1rem;
-      background-color: vars.$on-primary;
-      font: vars.$label-medium;
-    }
+  .panel-hidden {
+    display: none !important;
+  }
+}
 
-    &.download-sub-menu .mat-mdc-menu-content {
-      background-color: vars.$on-primary;
-      font: vars.$label-medium;
+// ThemeSwitchService adds this class to <html> while it switches themes
+::ng-deep html.cde-visualization-theme-switch {
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    animation-duration: 150ms;
+  }
 
-      .mat-mdc-menu-item-text {
-        font: vars.$label-medium;
-      }
+  @media (prefers-reduced-motion: reduce) {
+    &::view-transition-old(root),
+    &::view-transition-new(root) {
+      animation: none;
     }
   }
 }
 
-::ng-deep .download-snackbar-panel {
-  translate: 0 -2rem;
-  text-align: center;
-  @include mat.snack-bar-overrides(
-    (
-      container-color: vars.$inverse-surface,
-      supporting-text-color: vars.$surface,
-    )
-  );
-
-  .mdc-snackbar__surface {
-    border-radius: 0.5rem !important;
-    min-width: 13rem !important;
+// Panel titles use title small and the rest of the panel text uses body medium, docked or fullscreen
+::ng-deep .hra-app hra-expansion-panel {
+  .title {
+    @include utils.use-font(title, small);
+    white-space: nowrap;
   }
 
-  button[mat-button][matSnackBarAction] {
-    color: vars.$inverse-primary;
+  .expansion-body {
+    @include utils.use-font(body, medium);
+  }
+}
+
+// Fullscreen views keep the panel background, so the charts and the surrounding UI match.
+// The cell visualization keeps its black background.
+::ng-deep .hra-app .fullscreen-panel:not(.node-dist-vis-fullscreen-panel) {
+  --mat-dialog-container-color: #{$panel-background};
+  --hra-scroll-overflow-fade-color: #{$panel-background};
+}
+
+// Fullscreen views use the panels' 16px inset: the title on the 16px line, the close button's icon on the 16px line
+// at the right, 8px above and below the 56px header, and 16px of space below the content
+::ng-deep .hra-app .fullscreen-panel {
+  .header {
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
   }
 
-  button[mat-icon-button] {
-    @include mat.icon-button-overrides(
-      (
-        icon-color: vars.$surface,
-      )
-    );
+  .content {
+    height: calc(100vh - 4.5rem);
   }
 }

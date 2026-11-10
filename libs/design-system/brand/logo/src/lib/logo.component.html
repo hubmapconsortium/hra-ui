@@ -7,7 +7,8 @@
   target="_self"
   [inlineSVG]="data().src | assetUrl"
   [evalScripts]="NEVER_EVAL_SCRIPTS"
-  [style.width.px]="data().width"
-  [style.height.px]="data().height"
+  [hraPlainTooltip]="tooltip()"
+  [style.height]="`var(--hra-brand-logo-height, ${data().height}px)`"
+  [style.width]="`calc(var(--hra-brand-logo-height, ${data().height}px) * ${data().width} / ${data().height})`"
 >
 </a>

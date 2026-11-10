@@ -1,5 +1,6 @@
 @use 'sass:map';
-@use '../../../../styles/utils';
+@use '@angular/material' as mat;
+@use '../../../../styles/vars';
 
 $level-configs: (
   1: (
@@ -78,9 +79,24 @@ $level-configs: (
     }
   }
 
+  // Heading type and underline color read AtlasNG content header tokens (--ang-content-header-*) when an app sets them
+  mat-divider {
+    @include mat.divider-overrides(
+      (
+        color: var(--ang-content-header-underline-color, #{vars.$outline-variant}),
+      )
+    );
+  }
+
   @each $level, $config in $level-configs {
     &h#{$level} {
-      @include utils.use-font(map.get($config, font-variant), map.get($config, font-size));
+      $role: '#{map.get($config, font-variant)}-#{map.get($config, font-size)}';
+
+      font-family: var(--ang-content-header-level-#{$level}-font, var(--mat-sys-#{$role}-font));
+      font-size: var(--ang-content-header-level-#{$level}-size, var(--mat-sys-#{$role}-size));
+      font-weight: var(--ang-content-header-level-#{$level}-weight, var(--mat-sys-#{$role}-weight));
+      line-height: var(--ang-content-header-level-#{$level}-line-height, var(--mat-sys-#{$role}-line-height));
+      letter-spacing: var(--ang-content-header-level-#{$level}-tracking, var(--mat-sys-#{$role}-tracking));
 
       .link-container .link {
         top: map.get($config, link-offset);

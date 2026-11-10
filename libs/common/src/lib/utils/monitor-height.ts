@@ -22,3 +22,25 @@ export function monitorHeight(elementFn: () => Element | ElementRef<Element>): S
 
   return height;
 }
+
+/**
+ * Monitors the width of a given element.
+ * @param elementFn The element function that fetches the element to monitor.
+ * @returns Width as a signal.
+ */
+export function monitorWidth(elementFn: () => Element | ElementRef<Element>): Signal<number> {
+  const width = signal(0);
+  const observer = new ResizeObserver((entries) => {
+    const value = entries[0].contentRect.width;
+    width.set(value);
+  });
+
+  effect((onCleanup) => {
+    const element = coerceElement(elementFn());
+    width.set(element.getBoundingClientRect().width);
+    observer.observe(element);
+    onCleanup(() => observer.unobserve(element));
+  });
+
+  return width;
+}

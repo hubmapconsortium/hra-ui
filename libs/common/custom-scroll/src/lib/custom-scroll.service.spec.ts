@@ -47,7 +47,16 @@ describe('CustomScrollService', () => {
     jest.useRealTimers();
   });
 
+  it('should take over history scroll restoration', () => {
+    expect(scroller.setHistoryScrollRestoration).toHaveBeenCalledWith('manual');
+  });
+
   it('should not scroll on the initial navigation', () => {
+    expect(scroller.scrollToPosition).not.toHaveBeenCalled();
+  });
+
+  it('should not scroll when navigating to the same url', async () => {
+    await navigate('/a');
     expect(scroller.scrollToPosition).not.toHaveBeenCalled();
   });
 

@@ -1,6 +1,12 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { MATERIAL_ANIMATIONS } from '@angular/material/core';
+import { MatDrawer } from '@angular/material/sidenav';
+import { MatSnackBarRef } from '@angular/material/snack-bar';
+import { By } from '@angular/platform-browser';
+import { SnackbarComponent, SnackbarService } from '@hra-ui/design-system/snackbar';
 import { NodeDistVisComponent } from '@hra-ui/node-dist-vis';
 import {
   AnyDataEntry,
@@ -11,10 +17,20 @@ import {
   EMPTY_NODES_VIEW,
   NodesView,
 } from '@hra-ui/node-dist-vis/models';
-import { render, RenderComponentOptions } from '@testing-library/angular';
+import { fireEvent, render, RenderComponentOptions, screen, waitFor, within } from '@testing-library/angular';
 import { mock, mockDeep } from 'jest-mock-extended';
-import { EMPTY } from 'rxjs';
+import { EMPTY, Subject } from 'rxjs';
 import embed, { Result } from 'vega-embed';
+import { ABOUT_CONTENT } from '../components/about/about.content';
+import { DOWNLOADS_CONTENT, DownloadRequest } from '../components/downloads/downloads.content';
+import { NO_CELL_TYPES_SELECTED_CONTENT, noDistancesContent } from '../components/empty-state/empty-state.content';
+import { HistogramComponent } from '../components/histogram/histogram.component';
+import { MetadataComponent } from '../components/metadata/metadata.component';
+import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
+import { ToolbarComponent } from '../components/toolbar/toolbar.component';
+import { TOOLBAR_CONTENT } from '../components/toolbar/toolbar.content';
+import { ViolinComponent } from '../components/violin/violin.component';
+import { HIDDEN_PANELS_STORAGE_KEY, loadHiddenPanels } from '../models/panels';
 import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { CdeVisualizationComponent } from './cde-visualization.component';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
@@ -30,6 +46,25 @@ jest.mock('libs/node-dist-vis/models/src/lib/edges/generator.ts', () => ({
 
 const TIMEOUT = 10000; // In ms
 const embedResult = mockDeep<Result>();
+
+/** Resize callbacks of the observed elements, since jsdom has no ResizeObserver */
+const resizeCallbacks = new Map<Element, ResizeObserverCallback>();
+
+class MockResizeObserver {
+  constructor(private readonly callback: ResizeObserverCallback) {}
+
+  observe(element: Element): void {
+    resizeCallbacks.set(element, this.callback);
+  }
+
+  unobserve(element: Element): void {
+    resizeCallbacks.delete(element);
+  }
+
+  disconnect(): void {
+    // Nothing to disconnect
+  }
+}
 
 describe('CdeVisualizationComponent', () => {
   const SAMPLE_NODE: AnyDataEntry = ['epithelial', 100, 200];
@@ -61,6 +96,7 @@ describe('CdeVisualizationComponent', () => {
           provide: AnimationDriver,
           useClass: MockAnimationDriver,
         },
+        { provide: MATERIAL_ANIMATIONS, useValue: { animationsDisabled: true } },
         ...(options?.providers ?? []),
       ],
       imports: [MatIconTestingModule],
@@ -71,6 +107,8 @@ describe('CdeVisualizationComponent', () => {
   }
 
   beforeAll(() => {
+    globalThis.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver;
+
     if (!URL.createObjectURL) {
       URL.createObjectURL = jest.fn().mockReturnValue('blob:fakeblob');
       URL.revokeObjectURL = jest.fn();
@@ -98,6 +136,7 @@ describe('CdeVisualizationComponent', () => {
     jest.mocked(embed).mockReturnValue(Promise.resolve(embedResult));
     embedResult.view.data.mockReturnThis();
     embedResult.view.signal.mockReturnThis();
+    embedResult.view.resize.mockReturnThis();
   });
 
   it(
@@ -183,6 +222,767 @@ describe('CdeVisualizationComponent', () => {
 
         await fixture.componentInstance.downloadColorMap();
         expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'color-map.csv');
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('metadata', () => {
+    it(
+      'shows the study from the study and study-url attributes first in the metadata panel',
+      async () => {
+        const { container } = await setup({
+          inputs: { study: 'Bone marrow, CODEX', studyUrl: '/gallery/bone-marrow' },
+        });
+
+        expect(container.querySelector('cde-metadata dt')).toHaveTextContent('Study');
+        expect(container.querySelector('cde-metadata dd a')).toHaveAttribute('href', '/gallery/bone-marrow');
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('loading', () => {
+    /** Waits longer than the loaded announcement's debounce */
+    const waitForDebounce = () => new Promise((resolve) => setTimeout(resolve, 300));
+
+    it(
+      'shows skeletons in the panels whose data is loading',
+      async () => {
+        const { fixture, container } = await setup();
+        fixture.componentInstance['nodesLoading'].set(true);
+        fixture.componentInstance['metadataLoading'].set(true);
+        fixture.detectChanges();
+
+        expect(container.querySelectorAll('cde-chart-skeleton')).toHaveLength(3);
+        expect(container.querySelector('cde-cell-types')).toHaveAttribute('aria-busy', 'true');
+        expect(container.querySelector('cde-metadata .metadata-details')).toHaveAttribute('aria-busy', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'announces once everything has loaded',
+      async () => {
+        const { fixture } = await setup();
+        const announce = jest.spyOn(TestBed.inject(LiveAnnouncer), 'announce');
+        const nodesLoading = fixture.componentInstance['nodesLoading'];
+
+        nodesLoading.set(true);
+        fixture.detectChanges();
+        await waitForDebounce();
+        nodesLoading.set(false);
+        fixture.detectChanges();
+        await waitForDebounce();
+
+        expect(announce).toHaveBeenCalledTimes(1);
+        expect(announce).toHaveBeenCalledWith('Visualization loaded');
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('empty states', () => {
+    const { heading, description, actionLabel } = NO_CELL_TYPES_SELECTED_CONTENT;
+
+    it(
+      'shows no empty states while cell types are selected',
+      async () => {
+        await setup();
+
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows an empty state in every visualization panel when no cell types are selected',
+      async () => {
+        const { fixture } = await setup();
+        const announce = jest.spyOn(TestBed.inject(LiveAnnouncer), 'announce');
+        fixture.componentInstance.cellTypesSelection.set([]);
+        fixture.detectChanges();
+
+        expect(screen.getAllByText(heading)).toHaveLength(3);
+        expect(announce).toHaveBeenCalledTimes(1);
+        expect(announce).toHaveBeenCalledWith(`${heading}. ${description}`);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'selects every cell type from an empty state',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        instance.cellTypesSelection.set([]);
+        fixture.detectChanges();
+
+        fireEvent.click(screen.getAllByRole('button', { name: actionLabel })[0]);
+        fixture.detectChanges();
+
+        expect(instance.cellTypesSelection()).toEqual(instance.cellTypes().map(({ name }) => name));
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows an empty state in the charts only when just the anchor cell type is selected',
+      async () => {
+        const { fixture } = await setup({ inputs: { nodeTargetSelector: 'epithelial' } });
+        fixture.componentInstance.cellTypesSelection.set(['epithelial']);
+        fixture.detectChanges();
+
+        expect(screen.getAllByText(noDistancesContent('epithelial').heading)).toHaveLength(2);
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables every download when no cell types are selected',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const downloadNodes = jest.spyOn(instance, 'downloadNodes').mockResolvedValue();
+        instance.cellTypesSelection.set([]);
+        fixture.detectChanges();
+
+        const files = DOWNLOADS_CONTENT.groups.flatMap((group) => group.files).map(({ id }) => id);
+        expect(instance['unavailableDownloads']()).toEqual({
+          files,
+          notice: DOWNLOADS_CONTENT.unavailable.noCellTypes,
+        });
+
+        await instance.handleDownload({ file: 'cells', format: 'csv' });
+        expect(downloadNodes).not.toHaveBeenCalled();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the chart downloads when just the anchor cell type is selected',
+      async () => {
+        const { fixture } = await setup({ inputs: { nodeTargetSelector: 'epithelial' } });
+        const instance = fixture.componentInstance;
+        instance.cellTypesSelection.set(['epithelial']);
+        fixture.detectChanges();
+
+        expect(instance['unavailableDownloads']()).toEqual({
+          files: ['violin-graph', 'histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.noDistances('epithelial'),
+          showPanels: false,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the images of hidden panels',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization histogram' } });
+
+        expect(fixture.componentInstance['unavailableDownloads']()).toEqual({
+          files: ['visualization', 'histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.hiddenPanels,
+          showPanels: true,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'combines the notices when the charts are empty and panels are hidden',
+      async () => {
+        const { fixture } = await setup({
+          inputs: { nodeTargetSelector: 'epithelial', hiddenPanels: 'distance-visualization violin-graph' },
+        });
+        const instance = fixture.componentInstance;
+        instance.cellTypesSelection.set(['epithelial']);
+        fixture.detectChanges();
+
+        const { noDistances, hiddenPanels } = DOWNLOADS_CONTENT.unavailable;
+        expect(instance['unavailableDownloads']()).toEqual({
+          files: ['violin-graph', 'histogram', 'visualization'],
+          notice: `${noDistances('epithelial')} ${hiddenPanels}`,
+          showPanels: true,
+        });
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('toolbar actions', () => {
+    function getToolbar(fixture: Awaited<ReturnType<typeof setup>>['fixture']): ToolbarComponent {
+      return fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
+    }
+
+    it(
+      'shares the display options with the panels',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const toolbar = getToolbar(fixture);
+
+        toolbar.cellLinks.set(false);
+        toolbar.cellLinkData.set(false);
+        toolbar.allMetadata.set(true);
+        fixture.detectChanges();
+
+        expect(instance['edgesDisabled']()).toBe(true);
+        expect(instance['showCellLinkData']()).toBe(false);
+        expect(instance['showAllMetadata']()).toBe(true);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'resets the view',
+      async () => {
+        const { fixture } = await setup();
+        const panel = fixture.debugElement.query(By.directive(NodeDistVisualizationComponent)).componentInstance;
+        const resetView = jest.spyOn(panel, 'resetView').mockImplementation(() => undefined);
+
+        getToolbar(fixture).resetViewClick.emit();
+        expect(resetView).toHaveBeenCalled();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'restores deleted cells',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        instance.nodeFilterView.update((prev) => prev.addEntries(undefined, [0]));
+        expect(instance['hasDeletedCells']()).toBe(true);
+
+        getToolbar(fixture).restoreDeletedCellsClick.emit();
+        expect(instance['hasDeletedCells']()).toBe(false);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'resets colors, keeps the cell type selection, and undoes the reset from the snackbar',
+      async () => {
+        const { fixture } = await setup();
+        const undo$ = new Subject<void>();
+        const snackbarRef = mock<MatSnackBarRef<SnackbarComponent>>();
+        snackbarRef.onAction.mockReturnValue(undo$);
+        const snackbarOpen = jest.spyOn(TestBed.inject(SnackbarService), 'open').mockReturnValue(snackbarRef);
+        const instance = fixture.componentInstance;
+        const histogram = fixture.debugElement.query(By.directive(HistogramComponent)).componentInstance;
+        const originalTypes = instance.cellTypes();
+        instance.updateColor(originalTypes[0], [1, 2, 3]);
+        const changedTypes = instance.cellTypes();
+        instance['allCellsColor'].set([4, 5, 6]);
+        instance.cellTypesSelection.set(['t-cell']);
+        fixture.detectChanges();
+        expect(histogram.allCellsColor()).toEqual([4, 5, 6]);
+
+        getToolbar(fixture).resetColorsClick.emit();
+        fixture.detectChanges();
+        expect(instance.cellTypes()).toEqual(originalTypes);
+        expect(histogram.allCellsColor()).toBeUndefined();
+        expect(instance.cellTypesSelection()).toEqual(['t-cell']);
+        expect(snackbarOpen).toHaveBeenCalledWith('Colors reset', 'Undo', false, 'end', expect.anything());
+
+        undo$.next();
+        fixture.detectChanges();
+        expect(instance.cellTypes()).toEqual(changedTypes);
+        expect(histogram.allCellsColor()).toEqual([4, 5, 6]);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'resets everything and undoes all but the view from the snackbar',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'histogram' } });
+        const undo$ = new Subject<void>();
+        const snackbarRef = mock<MatSnackBarRef<SnackbarComponent>>();
+        snackbarRef.onAction.mockReturnValue(undo$);
+        const snackbarOpen = jest.spyOn(TestBed.inject(SnackbarService), 'open').mockReturnValue(snackbarRef);
+        const instance = fixture.componentInstance;
+        const panel = fixture.debugElement.query(By.directive(NodeDistVisualizationComponent)).componentInstance;
+        const resetView = jest.spyOn(panel, 'resetView').mockImplementation(() => undefined);
+        const originalTypes = instance.cellTypes();
+        const allCellTypes = instance.cellTypesSelection();
+        instance.updateColor(originalTypes[0], [1, 2, 3]);
+        const changedTypes = instance.cellTypes();
+        instance['allCellsColor'].set([4, 5, 6]);
+        instance.cellTypesSelection.set(['t-cell']);
+        instance.nodeFilterView.update((prev) => prev.addEntries(undefined, [0]));
+        instance['edgesDisabled'].set(true);
+        instance['showCellLinkData'].set(false);
+        instance['showAllMetadata'].set(true);
+        instance['viewMode'].set('select');
+        getToolbar(fixture).hiddenPanels.set(['violin-graph']);
+        fixture.detectChanges();
+        expect(panel.viewMode()).toBe('select');
+
+        getToolbar(fixture).resetEverythingClick.emit();
+        fixture.detectChanges();
+        expect(resetView).toHaveBeenCalledTimes(1);
+        expect(instance.cellTypes()).toEqual(originalTypes);
+        expect(instance['allCellsColor']()).toBeUndefined();
+        expect(instance.cellTypesSelection()).toEqual(allCellTypes);
+        expect(instance['hasDeletedCells']()).toBe(false);
+        expect(instance['edgesDisabled']()).toBe(false);
+        expect(instance['showCellLinkData']()).toBe(true);
+        expect(instance['showAllMetadata']()).toBe(false);
+        expect(panel.viewMode()).toBe('explore');
+        expect(instance['panelsHidden']()).toEqual(['histogram']);
+        expect(snackbarOpen).toHaveBeenCalledWith('Visualization reset', 'Undo', false, 'end', expect.anything());
+
+        undo$.next();
+        fixture.detectChanges();
+        expect(resetView).toHaveBeenCalledTimes(1);
+        expect(instance.cellTypes()).toEqual(changedTypes);
+        expect(instance['allCellsColor']()).toEqual([4, 5, 6]);
+        expect(instance.cellTypesSelection()).toEqual(['t-cell']);
+        expect(instance['hasDeletedCells']()).toBe(true);
+        expect(instance['edgesDisabled']()).toBe(true);
+        expect(instance['showCellLinkData']()).toBe(false);
+        expect(instance['showAllMetadata']()).toBe(true);
+        expect(panel.viewMode()).toBe('select');
+        expect(instance['panelsHidden']()).toEqual(['violin-graph']);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'switches the theme with the Theme menu',
+      async () => {
+        const { fixture } = await setup();
+        const toolbar = getToolbar(fixture);
+        expect(toolbar.showThemeMenu()).toBe(true);
+
+        toolbar.themePreference.set('dark');
+        fixture.detectChanges();
+        expect(fixture.componentInstance['themeSwitch'].theme()).toEqual('dark');
+        expect(fixture.nativeElement.style.colorScheme).toEqual('dark');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'hides the Theme menu',
+      async () => {
+        const { fixture } = await setup({ inputs: { hideThemeMenu: '' } });
+
+        expect(getToolbar(fixture).showThemeMenu()).toBe(false);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows the Help menu unless hideHelpMenu is set',
+      async () => {
+        const { fixture } = await setup();
+        expect(getToolbar(fixture).showHelpMenu()).toBe(true);
+
+        fixture.componentRef.setInput('hideHelpMenu', '');
+        fixture.detectChanges();
+        expect(getToolbar(fixture).showHelpMenu()).toBe(false);
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('panels', () => {
+    function getToolbar(fixture: Awaited<ReturnType<typeof setup>>['fixture']): ToolbarComponent {
+      return fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
+    }
+
+    function getElement(fixture: Awaited<ReturnType<typeof setup>>['fixture'], selector: string): HTMLElement {
+      return fixture.nativeElement.querySelector(selector);
+    }
+
+    afterEach(() => localStorage.clear());
+
+    it(
+      'hides panels from the hiddenPanels input and the toolbar, and lets the others fill the space',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'violin-graph, histogram' } });
+        const toolbar = getToolbar(fixture);
+        expect(toolbar.hiddenPanels()).toEqual(['violin-graph', 'histogram']);
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-histogram')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.top')).toHaveClass('fill');
+
+        toolbar.hiddenPanels.set(['metadata', 'distance-visualization', 'violin-graph', 'histogram']);
+        fixture.detectChanges();
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.visualizations')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.layout')).toHaveClass('visualizations-hidden');
+        expect(getElement(fixture, '.metadata')).toHaveClass('fill');
+        expect(getElement(fixture, 'cde-cell-types')).not.toHaveClass('panel-hidden');
+        expect(localStorage.getItem(HIDDEN_PANELS_STORAGE_KEY)).toBeNull();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'starts from and remembers the hidden panels in local storage when rememberPanels is set',
+      async () => {
+        localStorage.setItem(HIDDEN_PANELS_STORAGE_KEY, JSON.stringify(['histogram']));
+        const { fixture } = await setup({ inputs: { rememberPanels: true } });
+        const toolbar = getToolbar(fixture);
+        expect(toolbar.hiddenPanels()).toEqual(['histogram']);
+
+        toolbar.hiddenPanels.set(['violin-graph']);
+        fixture.detectChanges();
+        expect(loadHiddenPanels()).toEqual(['violin-graph']);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows all panels from the downloads notice without closing the drawer',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization' } });
+        const announce = jest.spyOn(TestBed.inject(LiveAnnouncer), 'announce');
+        const drawer = fixture.debugElement.query(By.directive(MatDrawer)).injector.get(MatDrawer);
+        fireEvent.click(screen.getByRole('button', { name: TOOLBAR_CONTENT.downloads.label }));
+        const region = await screen.findByRole('region', { name: DOWNLOADS_CONTENT.title });
+        await waitFor(() => expect(drawer.opened).toBe(true));
+
+        const { showAllPanels } = DOWNLOADS_CONTENT.unavailable;
+        fireEvent.click(within(region).getByRole('button', { name: showAllPanels }));
+
+        const files = DOWNLOADS_CONTENT.groups.flatMap((group) => group.files);
+        const [png] = files.find((file) => file.id === 'visualization')?.formats ?? [];
+        await waitFor(() => expect(within(region).getByRole('button', { name: png.ariaLabel })).toHaveFocus());
+        expect(fixture.componentInstance['panelsHidden']()).toEqual([]);
+        expect(drawer.opened).toBe(true);
+        expect(announce).toHaveBeenCalledWith('All panels shown');
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('tabbed layout', () => {
+    type Fixture = Awaited<ReturnType<typeof setup>>['fixture'];
+
+    function resize(fixture: Fixture, width: number): void {
+      const callback = resizeCallbacks.get(fixture.nativeElement);
+      callback?.([{ contentRect: { width } } as ResizeObserverEntry], {} as ResizeObserver);
+      fixture.detectChanges();
+    }
+
+    function getElement(fixture: Fixture, selector: string): HTMLElement {
+      return fixture.nativeElement.querySelector(selector);
+    }
+
+    function getTabNames(): (string | undefined)[] {
+      const tablist = screen.getByRole('tablist', { name: 'Panels' });
+      return within(tablist)
+        .getAllByRole('tab')
+        .map((tab) => tab.textContent?.trim());
+    }
+
+    function selectTab(fixture: Fixture, name: string): void {
+      fireEvent.click(screen.getByRole('tab', { name }));
+      fixture.detectChanges();
+    }
+
+    it(
+      'keeps the panel layout at 1280px and wider',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1280);
+
+        expect(screen.queryByRole('tablist')).not.toBeInTheDocument();
+        expect(getElement(fixture, '.panels')).not.toHaveAttribute('role');
+        expect(getElement(fixture, '.layout')).not.toHaveClass('tabbed');
+        expect(getElement(fixture, 'cde-node-dist-visualization')).not.toHaveClass('floating-controls');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'floats the spatial view controls in tabs',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1000);
+
+        expect(getElement(fixture, 'cde-node-dist-visualization')).toHaveClass('floating-controls');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows the panels as tabs below 1280px, starting on the spatial view',
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1000);
+
+        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram', 'Metadata']);
+        expect(screen.getByRole('tab', { name: 'Spatial view' })).toHaveAttribute('aria-selected', 'true');
+        expect(screen.getByRole('tabpanel', { name: 'Spatial view' })).toBeInTheDocument();
+        expect(getElement(fixture, '.metadata')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-histogram')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-node-dist-visualization')).not.toHaveClass('panel-hidden');
+
+        selectTab(fixture, 'Violin graph');
+        expect(getElement(fixture, 'cde-violin')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('fill');
+        expect(getElement(fixture, 'cde-node-dist-visualization')).toHaveClass('panel-hidden');
+
+        selectTab(fixture, 'Cell types');
+        expect(getElement(fixture, '.metadata')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.visualizations')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-cell-types')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+
+        selectTab(fixture, 'Metadata');
+        expect(getElement(fixture, 'cde-metadata')).not.toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-cell-types')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, '.metadata')).toHaveClass('fill');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'moves the toolbar to the bottom below 600px, where the metadata shows every field',
+      async () => {
+        const { fixture } = await setup();
+        const metadata: MetadataComponent = fixture.debugElement.query(
+          By.directive(MetadataComponent),
+        ).componentInstance;
+        resize(fixture, 1000);
+        expect(metadata.showEmptyFields()).toBe(false);
+
+        resize(fixture, 500);
+        expect(metadata.showEmptyFields()).toBe(true);
+
+        expect(getElement(fixture, '.layout')).toHaveClass('compact');
+        expect(screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label })).toHaveAttribute(
+          'aria-orientation',
+          'horizontal',
+        );
+        expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.more.label })).toBeInTheDocument();
+
+        const spatialView = fixture.debugElement.query(By.directive(NodeDistVisualizationComponent)).componentInstance;
+        expect(spatialView.dockCellInfo()).toBe(true);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'drops the tabs of panels in the hiddenPanels input and falls back when the active tab hides',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'distance-visualization' } });
+        resize(fixture, 800);
+        expect(getTabNames()).toEqual(['Cell types', 'Violin graph', 'Histogram', 'Metadata']);
+        expect(screen.getByRole('tab', { name: 'Cell types' })).toHaveAttribute('aria-selected', 'true');
+
+        selectTab(fixture, 'Histogram');
+        fixture.componentRef.setInput('hiddenPanels', 'distance-visualization histogram');
+        fixture.detectChanges();
+
+        expect(getTabNames()).toEqual(['Cell types', 'Violin graph', 'Metadata']);
+        expect(screen.getByRole('tab', { name: 'Cell types' })).toHaveAttribute('aria-selected', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'hides the Layout menu and shows the panels hidden from it as tabs',
+      async () => {
+        const { fixture } = await setup();
+        const toolbar: ToolbarComponent = fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
+        toolbar.hiddenPanels.set(['violin-graph', 'metadata']);
+        fixture.detectChanges();
+
+        resize(fixture, 800);
+        expect(toolbar.showPanelsMenu()).toBe(false);
+        expect(getTabNames()).toEqual(['Cell types', 'Spatial view', 'Violin graph', 'Histogram', 'Metadata']);
+        expect(fixture.componentInstance['unavailableDownloads']()).toBeUndefined();
+
+        resize(fixture, 1280);
+        expect(toolbar.showPanelsMenu()).toBe(true);
+        expect(getElement(fixture, 'cde-violin')).toHaveClass('panel-hidden');
+        expect(getElement(fixture, 'cde-metadata')).toHaveClass('panel-hidden');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the images of hidden panels without pointing to the Layout menu',
+      async () => {
+        const { fixture } = await setup({ inputs: { hiddenPanels: 'histogram' } });
+        resize(fixture, 1000);
+
+        expect(fixture.componentInstance['unavailableDownloads']()).toEqual({
+          files: ['histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.hiddenPanelsInTabs,
+          showPanels: false,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'turns off full screen and shows the tab of a panel that was in full screen',
+      async () => {
+        const { fixture } = await setup();
+        const violin: ViolinComponent = fixture.debugElement.query(By.directive(ViolinComponent)).componentInstance;
+        violin.fullscreenChange.emit(true);
+        resize(fixture, 1000);
+
+        expect(violin.fullscreenAvailable()).toBe(false);
+        expect(screen.getByRole('tab', { name: 'Violin graph' })).toHaveAttribute('aria-selected', 'true');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      "shows a panel's tab before downloading its image",
+      async () => {
+        const { fixture } = await setup();
+        resize(fixture, 1000);
+        const histogram: HistogramComponent = fixture.debugElement.query(
+          By.directive(HistogramComponent),
+        ).componentInstance;
+        const download = jest.spyOn(histogram, 'download').mockResolvedValue();
+
+        await fixture.componentInstance.handleDownload({ file: 'histogram', format: 'png' });
+        fixture.detectChanges();
+
+        expect(screen.getByRole('tab', { name: 'Histogram' })).toHaveAttribute('aria-selected', 'true');
+        expect(download).toHaveBeenCalledWith('png');
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('drawer', () => {
+    async function openDrawer(itemName = TOOLBAR_CONTENT.downloads.label, regionName = DOWNLOADS_CONTENT.title) {
+      const result = await setup();
+      const trigger = screen.getByRole('button', { name: itemName });
+      const drawer = result.fixture.debugElement.query(By.directive(MatDrawer)).injector.get(MatDrawer);
+
+      // Browsers focus a button when it's clicked, and the drawer returns focus to it on close
+      trigger.focus();
+      fireEvent.click(trigger);
+      const region = await screen.findByRole('region', { name: regionName });
+      await waitFor(() => expect(drawer.opened).toBe(true));
+      await waitFor(() => expect(region).toContainElement(document.activeElement as HTMLElement));
+      return { ...result, trigger, drawer, region };
+    }
+
+    async function expectClosed(drawer: MatDrawer, trigger: HTMLElement) {
+      await waitFor(() => expect(drawer.opened).toBe(false));
+      expect(trigger).toHaveFocus();
+      await waitFor(() => expect(trigger).not.toHaveClass('hra-navigation-rail-item--active'));
+    }
+
+    it(
+      'opens downloads as a labelled region from the toolbar',
+      async () => {
+        const { trigger, region } = await openDrawer();
+
+        expect(region).not.toHaveAttribute('aria-modal');
+        expect(trigger).toHaveClass('hra-navigation-rail-item--active');
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'opens the about sheet from the toolbar and returns focus to it',
+      async () => {
+        const { trigger, drawer, region } = await openDrawer(TOOLBAR_CONTENT.info.label, ABOUT_CONTENT.title);
+
+        expect(within(region).getByRole('heading', { name: 'Spatial view' })).toBeInTheDocument();
+        fireEvent.click(within(region).getByRole('button', { name: ABOUT_CONTENT.closeLabel }));
+        await expectClosed(drawer, trigger);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'closes from the close button',
+      async () => {
+        const { trigger, drawer, region } = await openDrawer();
+
+        fireEvent.click(within(region).getByRole('button', { name: DOWNLOADS_CONTENT.closeLabel }));
+        await expectClosed(drawer, trigger);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'closes on escape',
+      async () => {
+        const { trigger, drawer, region } = await openDrawer();
+
+        fireEvent.keyDown(region, { key: 'Escape', keyCode: 27 });
+        await expectClosed(drawer, trigger);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'closes when clicking outside the drawer',
+      async () => {
+        const { trigger, drawer, container } = await openDrawer();
+
+        fireEvent.click(container.querySelector('.mat-drawer-backdrop') as HTMLElement);
+        await expectClosed(drawer, trigger);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'downloads files from the drawer',
+      async () => {
+        const { drawer, region } = await openDrawer();
+        const fileSaver = TestBed.inject(FileSaverService);
+        const fileSaveSpy = jest.spyOn(fileSaver, 'saveData');
+
+        fireEvent.click(within(region).getByRole('button', { name: 'Download cells CSV' }));
+        await waitFor(() => expect(fileSaveSpy).toHaveBeenCalledWith(expect.any(Blob), 'nodes.csv'));
+        expect(drawer.opened).toBe(true);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'dispatches each download request to the matching handler',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const getPanel = <T>(type: new (...args: never[]) => T) =>
+          fixture.debugElement.query(By.directive(type)).componentInstance as T;
+
+        const downloadNodes = jest.spyOn(instance, 'downloadNodes').mockResolvedValue();
+        const downloadEdges = jest.spyOn(instance, 'downloadEdges').mockResolvedValue();
+        const downloadColorMap = jest.spyOn(instance, 'downloadColorMap').mockResolvedValue();
+        const visDownload = jest.spyOn(getPanel(NodeDistVisualizationComponent), 'download').mockResolvedValue();
+        const violinDownload = jest.spyOn(getPanel(ViolinComponent), 'download').mockResolvedValue();
+        const histogramDownload = jest.spyOn(getPanel(HistogramComponent), 'download').mockResolvedValue();
+
+        const requests: [DownloadRequest, jest.SpyInstance, unknown[]][] = [
+          [{ file: 'cells', format: 'csv' }, downloadNodes, []],
+          [{ file: 'cell-links', format: 'csv' }, downloadEdges, []],
+          [{ file: 'color-map', format: 'csv' }, downloadColorMap, []],
+          [{ file: 'visualization', format: 'png' }, visDownload, []],
+          [{ file: 'violin-graph', format: 'png' }, violinDownload, ['png']],
+          [{ file: 'violin-graph', format: 'svg' }, violinDownload, ['svg']],
+          [{ file: 'histogram', format: 'png' }, histogramDownload, ['png']],
+          [{ file: 'histogram', format: 'svg' }, histogramDownload, ['svg']],
+        ];
+
+        for (const [request, handler, args] of requests) {
+          handler.mockClear();
+          await instance.handleDownload(request);
+          expect(handler).toHaveBeenCalledWith(...args);
+        }
       },
       TIMEOUT,
     );

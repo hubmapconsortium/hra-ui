@@ -11,8 +11,8 @@
       item-with-icon-leading-spacing: 1rem,
       item-with-icon-trailing-spacing: 1rem,
 
-      item-label-text-color: vars.$secondary,
-      item-icon-color: vars.$secondary,
+      item-label-text-color: vars.$on-surface,
+      item-icon-color: vars.$on-surface,
 
       container-color: vars.$surface-container-low,
       item-hover-state-layer-color: rgb(from vars.$secondary r g b / 0.08),
@@ -67,7 +67,7 @@
     }
     .option-description {
       font: vars.$label-small;
-      color: vars.$primary;
+      color: vars.$on-surface-variant;
     }
   }
 

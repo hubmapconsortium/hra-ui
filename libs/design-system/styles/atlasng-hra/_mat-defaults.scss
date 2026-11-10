@@ -1,0 +1,30 @@
+// Mirrors cns-iu/AtlasNG at 4d0b064: libs/design-system/src/sass/_mat-defaults.scss
+// AtlasNG's defaults for Angular Material components, written with hra-ui's vars and utils.
+// AtlasNG token changes are not picked up automatically; compare the file again to update it.
+@use '@angular/material' as mat;
+@use '../utils';
+@use '../vars';
+
+$button-defaults: (
+  outlined-label-text-color: vars.$on-surface-variant,
+  outlined-ripple-color: utils.with-alpha(vars.$on-surface-variant, var(--mat-sys-pressed-state-layer-opacity)),
+  outlined-state-layer-color: vars.$on-surface-variant,
+  text-label-text-color: vars.$on-primary-container,
+  text-ripple-color: utils.with-alpha(vars.$on-primary-container, var(--mat-sys-pressed-state-layer-opacity)),
+  text-state-layer-color: vars.$on-primary-container,
+);
+
+@mixin button-defaults {
+  @include mat.button-overrides($button-defaults);
+}
+
+@mixin form-field-defaults {
+  mat-hint {
+    color: vars.$on-surface-variant;
+  }
+}
+
+@mixin all-defaults {
+  @include button-defaults;
+  @include form-field-defaults;
+}

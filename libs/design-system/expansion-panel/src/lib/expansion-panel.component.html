@@ -1,8 +1,9 @@
 <cdk-accordion hraFeature="expansion-panel">
+  <!-- A disabled panel can't collapse, so it isn't a tab stop and has no expanded state -->
   <cdk-accordion-item
-    tabindex="0"
-    [attr.aria-expanded]="accordionItem.expanded"
-    [attr.aria-controls]="bodyId"
+    [attr.tabindex]="disabled() ? null : 0"
+    [attr.aria-expanded]="disabled() ? null : accordionItem.expanded"
+    [attr.aria-controls]="disabled() ? null : bodyId"
     [expanded]="expanded()"
     #accordionItem="cdkAccordionItem"
   >
