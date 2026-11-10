@@ -1,78 +1,127 @@
-import { ViewportScroller } from '@angular/common';
-import { Provider } from '@angular/core';
+import { Location, ViewportScroller } from '@angular/common';
+import { provideLocationMocks } from '@angular/common/testing';
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Event, NavigationEnd, NavigationSkipped, NavigationSkippedCode, Router, Scroll } from '@angular/router';
-import { mock, MockProxy } from 'jest-mock-extended';
-import { Subject } from 'rxjs';
-import { CustomScrollService, provideCustomScrollOptions } from './custom-scroll.service';
+import { provideRouter, Router } from '@angular/router';
+import { CustomScrollService } from './custom-scroll.service';
+
+@Component({ selector: 'hra-test-page', template: '' })
+class TestPageComponent {}
 
 describe('CustomScrollService', () => {
-  let events: Subject<Event>;
-  let scroller: MockProxy<ViewportScroller>;
+  let router: Router;
+  let scroller: jest.Mocked<ViewportScroller>;
 
-  function setup(providers: Provider[] = []): void {
-    events = new Subject<Event>();
-    scroller = mock<ViewportScroller>();
+  async function navigate(url: string): Promise<void> {
+    await router.navigateByUrl(url);
+    jest.runAllTimers();
+  }
+
+  beforeEach(async () => {
+    jest.useFakeTimers();
+    scroller = {
+      setHistoryScrollRestoration: jest.fn(),
+      getScrollPosition: jest.fn().mockReturnValue([0, 0]),
+      scrollToPosition: jest.fn(),
+      scrollToAnchor: jest.fn(),
+    } as unknown as jest.Mocked<ViewportScroller>;
+
     TestBed.configureTestingModule({
       providers: [
-        { provide: Router, useValue: { events } },
+        provideRouter([
+          { path: 'a', component: TestPageComponent },
+          { path: 'b', component: TestPageComponent },
+        ]),
+        provideLocationMocks(),
         { provide: ViewportScroller, useValue: scroller },
-        ...providers,
       ],
     });
-    TestBed.inject(CustomScrollService);
-  }
 
-  function navigate(url: string, position: [number, number] | null = null, anchor: string | null = null): void {
-    events.next(new Scroll(new NavigationEnd(1, url, url), position, anchor));
-  }
+    TestBed.inject(CustomScrollService);
+    router = TestBed.inject(Router);
+    router.setUpLocationChangeListener();
+    await navigate('/a');
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
 
   it('should take over history scroll restoration', () => {
-    setup();
     expect(scroller.setHistoryScrollRestoration).toHaveBeenCalledWith('manual');
   });
 
-  it('should scroll to the top when the route changes', () => {
-    setup();
-    navigate('/gallery');
-    navigate('/gallery/study');
-    expect(scroller.scrollToPosition).toHaveBeenCalledWith([0, 0], undefined);
-  });
-
-  it('should not scroll when only the query parameters change', () => {
-    setup();
-    navigate('/gallery?page=1');
-    navigate('/gallery?page=2');
+  it('should not scroll on the initial navigation', () => {
     expect(scroller.scrollToPosition).not.toHaveBeenCalled();
   });
 
-  it('should restore saved positions', () => {
-    setup();
-    navigate('/gallery', [0, 120]);
-    expect(scroller.scrollToPosition).toHaveBeenCalledWith([0, 120], undefined);
-  });
-
-  it('should scroll to anchors', () => {
-    setup();
-    navigate('/gallery', null, 'featured-studies');
-    expect(scroller.scrollToAnchor).toHaveBeenCalledWith('featured-studies');
-  });
-
-  it('should compare skipped navigations by url', () => {
-    setup();
-    navigate('/gallery');
-    events.next(
-      new Scroll(new NavigationSkipped(2, '/gallery', '', NavigationSkippedCode.IgnoredSameUrlNavigation), null, null),
-    );
+  it('should not scroll when navigating to the same url', async () => {
+    await navigate('/a');
     expect(scroller.scrollToPosition).not.toHaveBeenCalled();
   });
 
-  it('should jump instantly when instant navigation is enabled', () => {
-    setup([provideCustomScrollOptions({ instantNavigation: true })]);
-    navigate('/gallery');
-    navigate('/gallery/study');
-    navigate('/gallery', [0, 120]);
+  it('should scroll to the top instantly when the route changes', async () => {
+    await navigate('/b');
     expect(scroller.scrollToPosition).toHaveBeenCalledWith([0, 0], { behavior: 'instant' });
-    expect(scroller.scrollToPosition).toHaveBeenCalledWith([0, 120], { behavior: 'instant' });
+  });
+
+  it('should not scroll when only query params change', async () => {
+    await navigate('/a?x=1');
+    expect(scroller.scrollToPosition).not.toHaveBeenCalled();
+  });
+
+  it('should scroll to the anchor when the url has a fragment', async () => {
+    await navigate('/b#section');
+    expect(scroller.scrollToAnchor).toHaveBeenCalledWith('section');
+  });
+
+  it('should restore the previous position on back navigation', async () => {
+    scroller.getScrollPosition.mockReturnValue([0, 500]);
+    await navigate('/b');
+    scroller.scrollToPosition.mockClear();
+
+    TestBed.inject(Location).back();
+    await jest.runAllTimersAsync();
+    expect(scroller.scrollToPosition).toHaveBeenCalledWith([0, 500], { behavior: 'instant' });
+  });
+
+  describe('when the page is too short to restore yet', () => {
+    const originalResizeObserver = globalThis.ResizeObserver;
+    let resize: () => void;
+    let disconnect: jest.Mock;
+
+    beforeEach(async () => {
+      disconnect = jest.fn();
+      globalThis.ResizeObserver = jest.fn().mockImplementation((callback: () => void) => {
+        resize = callback;
+        return { observe: jest.fn(), disconnect };
+      }) as unknown as typeof ResizeObserver;
+
+      scroller.getScrollPosition.mockReturnValue([0, 500]);
+      await navigate('/b');
+      scroller.getScrollPosition.mockReturnValue([0, 200]);
+      scroller.scrollToPosition.mockClear();
+
+      TestBed.inject(Location).back();
+      await jest.advanceTimersByTimeAsync(100);
+    });
+
+    afterEach(() => {
+      globalThis.ResizeObserver = originalResizeObserver;
+    });
+
+    it('should reapply the position as the page grows', () => {
+      scroller.getScrollPosition.mockReturnValue([0, 500]);
+      resize();
+
+      expect(scroller.scrollToPosition).toHaveBeenCalledTimes(2);
+      expect(disconnect).toHaveBeenCalled();
+    });
+
+    it('should stop restoring once the user scrolls', () => {
+      window.dispatchEvent(new Event('wheel'));
+
+      expect(disconnect).toHaveBeenCalled();
+    });
   });
 });
