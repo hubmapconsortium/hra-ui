@@ -1,32 +1,34 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "tagline": {
-      "type": "string"
-    },
-    "bannerUrl": {
-      "type": "string"
-    },
-    "cards": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/ActionCard"
-      }
-    }
-  },
-  "required": [
-    "$schema",
-    "tagline",
-    "bannerUrl",
-    "cards"
-  ],
-  "additionalProperties": false,
-  "id": "LandingPageData",
+  "$ref": "#/$defs/LandingPageData",
   "$defs": {
+    "LandingPageData": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "bannerUrl": {
+          "type": "string"
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActionCard"
+          }
+        }
+      },
+      "required": [
+        "$schema",
+        "tagline",
+        "bannerUrl",
+        "cards"
+      ],
+      "additionalProperties": false
+    },
     "ActionCard": {
       "type": "object",
       "properties": {
@@ -79,8 +81,7 @@
         "variant",
         "tagline"
       ],
-      "additionalProperties": false,
-      "id": "ActionCard"
+      "additionalProperties": false
     },
     "Classes": {
       "anyOf": [
@@ -100,8 +101,7 @@
           },
           "additionalProperties": {}
         }
-      ],
-      "id": "Classes"
+      ]
     },
     "Styles": {
       "anyOf": [
@@ -115,8 +115,7 @@
           },
           "additionalProperties": {}
         }
-      ],
-      "id": "Styles"
+      ]
     },
     "Controller": {
       "type": "object",
@@ -128,8 +127,7 @@
       "required": [
         "id"
       ],
-      "additionalProperties": {},
-      "id": "Controller"
+      "additionalProperties": {}
     },
     "ActionCardVariant": {
       "type": "string",
@@ -138,8 +136,7 @@
         "flat",
         "outlined",
         "outlined-with-icons"
-      ],
-      "id": "ActionCardVariant"
+      ]
     },
     "IconList": {
       "anyOf": [
@@ -166,8 +163,7 @@
             ]
           }
         }
-      ],
-      "id": "IconList"
+      ]
     },
     "IconData": {
       "type": "object",
@@ -185,8 +181,7 @@
           "type": "boolean"
         }
       },
-      "additionalProperties": false,
-      "id": "IconData"
+      "additionalProperties": false
     },
     "ProjectedContentTemplate": {
       "anyOf": [
@@ -199,11 +194,9 @@
             "$ref": "#/$defs/AnyContentTemplate"
           }
         }
-      ],
-      "id": "ProjectedContentTemplate"
+      ]
     },
     "AnyContentTemplate": {
-      "id": "AnyContentTemplate",
       "$ref": "#/$defs/ContentTemplateWithProps"
     },
     "ContentTemplateWithProps": {
@@ -228,8 +221,7 @@
       "required": [
         "component"
       ],
-      "additionalProperties": {},
-      "id": "ContentTemplateWithProps"
+      "additionalProperties": {}
     }
   }
 }

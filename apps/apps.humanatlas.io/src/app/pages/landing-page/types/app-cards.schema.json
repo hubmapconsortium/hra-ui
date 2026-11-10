@@ -1,26 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "AppCards",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "tabs": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/AppCardsTab"
-      }
-    }
-  },
-  "required": [
-    "$schema",
-    "tabs"
-  ],
-  "additionalProperties": false,
+  "$ref": "#/$defs/AppCards",
   "$defs": {
+    "AppCards": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "tabs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AppCardsTab"
+          }
+        }
+      },
+      "required": [
+        "$schema",
+        "tabs"
+      ],
+      "additionalProperties": false
+    },
     "AppCardsTab": {
-      "id": "AppCardsTab",
       "type": "object",
       "properties": {
         "name": {
@@ -40,7 +41,6 @@
       "additionalProperties": false
     },
     "AppCardsSection": {
-      "id": "AppCardsSection",
       "type": "object",
       "properties": {
         "tagline": {
@@ -60,7 +60,6 @@
       "additionalProperties": false
     },
     "AppCard": {
-      "id": "AppCard",
       "type": "object",
       "properties": {
         "tagline": {

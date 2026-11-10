@@ -1,5 +1,6 @@
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
+import { MatTooltip } from '@angular/material/tooltip';
+import { fireEvent, render, RenderComponentOptions, screen, within } from '@testing-library/angular';
 import { ToolbarComponent } from './toolbar.component';
 import { EMBEDDING_GUIDE_URL, TOOLBAR_CONTENT } from './toolbar.content';
 
@@ -53,7 +54,7 @@ describe('ToolbarComponent', () => {
     expect(fixture.componentInstance.hiddenPanels()).toEqual([]);
   });
 
-  it('hides the Panels menu when showPanelsMenu is off', async () => {
+  it('hides the Layout menu when showPanelsMenu is off', async () => {
     await setup({ inputs: { showPanelsMenu: false } });
 
     expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.panels.label })).not.toBeInTheDocument();
@@ -169,24 +170,48 @@ describe('ToolbarComponent', () => {
     expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.theme.label })).toHaveTextContent(dark.icon);
   });
 
-  it('is a bar along the bottom on compact screens, with Embed, Info and Help in the More menu', async () => {
+  it('is a bar along the bottom on compact screens: Display, Reset, Downloads, Info and More', async () => {
     const openSheetChange = jest.fn();
-    await setup({ inputs: { compact: true }, on: { openSheet: openSheetChange } });
+    // Compact screens always show tabs, which hide the Layout menu
+    await setup({ inputs: { compact: true, showPanelsMenu: false }, on: { openSheet: openSheetChange } });
 
     const toolbar = screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label });
     expect(toolbar).toHaveAttribute('aria-orientation', 'horizontal');
     expect(screen.queryByRole('link', { name: TOOLBAR_CONTENT.embed.label })).not.toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.info.label })).not.toBeInTheDocument();
 
+    const { display, reset, downloads, info, more } = TOOLBAR_CONTENT;
+    const items = [display, reset, downloads, info, more].map(({ label }) =>
+      screen.getByRole('button', { name: label }),
+    );
+    expect(within(toolbar).getAllByRole('button')).toEqual(items);
+
+    fireEvent.click(screen.getByRole('button', { name: info.label }));
+    expect(openSheetChange).toHaveBeenLastCalledWith('about');
+  });
+
+  it('holds Embed and Help in the More menu on compact screens', async () => {
+    await setup({ inputs: { compact: true } });
     await openMenu(TOOLBAR_CONTENT.more.label);
+
     expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.embed.label) })).toHaveAttribute(
       'href',
       EMBEDDING_GUIDE_URL,
     );
     expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.help.label) })).toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.info.label) })).not.toBeInTheDocument();
+  });
 
-    fireEvent.click(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.info.label) }));
-    expect(openSheetChange).toHaveBeenLastCalledWith('about');
+  it('leaves All metadata out of the Display menu on compact screens', async () => {
+    const { fixture } = await setup({ inputs: { compact: true, hasHiddenMetadata: true } });
+    const display = screen.getByRole('button', { name: TOOLBAR_CONTENT.display.label });
+    const tooltip = fixture.debugElement.query((el) => el.nativeElement === display).injector.get(MatTooltip);
+    expect(tooltip.message).toBe(TOOLBAR_CONTENT.display.compactTooltip);
+
+    await openMenu(TOOLBAR_CONTENT.display.label);
+    expect(screen.getAllByRole('menuitemcheckbox')).toHaveLength(2);
+    expect(
+      screen.queryByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata.label }),
+    ).not.toBeInTheDocument();
   });
 
   it('links to the help resources', async () => {
@@ -216,7 +241,7 @@ describe('ToolbarComponent', () => {
     await setup({ inputs: { compact: true, showHelpMenu: false } });
     await openMenu(TOOLBAR_CONTENT.more.label);
 
-    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.info.label) })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.embed.label) })).toBeInTheDocument();
     expect(screen.queryByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.help.label) })).not.toBeInTheDocument();
   });
 });

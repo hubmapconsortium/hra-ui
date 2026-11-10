@@ -24,7 +24,7 @@ export interface ToolbarMenuItemContent {
   description: string;
 }
 
-/** A panel in the Panels menu */
+/** A panel in the Layout menu */
 export interface ToolbarPanelOption {
   /** Panel id */
   id: PanelId;
@@ -56,10 +56,12 @@ export interface ToolbarThemeOption {
 export interface ToolbarContent {
   /** Accessible name of the toolbar */
   label: string;
-  /** Panels menu, its panels and the item that shows them all */
+  /** Layout menu, which shows and hides the panels, and its item that shows them all */
   panels: ToolbarItemContent & { options: ToolbarPanelOption[]; showAll: string };
   /** Display menu and its options */
   display: ToolbarItemContent & {
+    /** Tooltip on compact screens, where the metadata panel always shows every field */
+    compactTooltip: string;
     cellLinks: ToolbarMenuItemContent;
     cellLinkData: ToolbarMenuItemContent;
     allMetadata: ToolbarMenuItemContent;
@@ -81,7 +83,7 @@ export interface ToolbarContent {
   info: ToolbarItemContent;
   /** Help menu and its links */
   help: ToolbarItemContent & { links: ToolbarHelpLink[] };
-  /** More menu, which holds Embed, Theme, Info and Help on compact screens */
+  /** More menu, which holds Embed, Theme and Help on compact screens */
   more: ToolbarItemContent;
 }
 
@@ -89,7 +91,7 @@ export interface ToolbarContent {
 export const TOOLBAR_CONTENT: ToolbarContent = {
   label: 'Visualization actions',
   panels: {
-    label: 'Panels',
+    label: 'Layout',
     tooltip: 'Show or hide panels',
     options: [
       { id: 'metadata', label: 'Metadata' },
@@ -102,6 +104,7 @@ export const TOOLBAR_CONTENT: ToolbarContent = {
   display: {
     label: 'Display',
     tooltip: 'Show or hide cell links and metadata',
+    compactTooltip: 'Show or hide cell links',
     cellLinks: { label: 'Cell links', description: 'Lines from each cell to its nearest anchor cell' },
     cellLinkData: { label: 'Cell link data', description: 'Link counts in the Cell types table' },
     allMetadata: { label: 'All metadata', description: 'Include fields with no value' },
