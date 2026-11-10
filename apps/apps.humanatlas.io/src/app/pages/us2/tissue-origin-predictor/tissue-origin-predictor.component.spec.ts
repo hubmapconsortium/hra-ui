@@ -63,9 +63,9 @@ describe('TissueOriginPredictorComponent', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Use example' }));
     appRef.tick();
-    expect(screen.getByRole('button', { name: 'Delete file' })).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Delete example.csv' })).toHaveFocus();
 
-    await userEvent.click(screen.getByRole('button', { name: 'Delete file' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Delete example.csv' }));
     appRef.tick();
     expect(screen.getByRole('button', { name: 'Use example' })).toHaveFocus();
   });
