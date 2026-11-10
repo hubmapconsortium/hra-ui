@@ -282,7 +282,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     const targetId = (event.target as Element).id;
     const parentId = (event.target as Element).parentElement?.id ?? '';
     const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';
-    const idCollection = [targetId, parentId, grandparentId];
+    const idCollection = [grandparentId, parentId, targetId];
     for (const id of idCollection) {
       const decodedID = this.decodeId(id);
       const cellMatch = this.mapping().find(
