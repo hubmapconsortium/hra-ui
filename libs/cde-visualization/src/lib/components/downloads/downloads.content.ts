@@ -84,7 +84,7 @@ export interface UnavailableDownloadsContent {
   distancesDeleted: string;
   /** Shown when panels with images are hidden */
   hiddenPanels: string;
-  /** Shown in the tabbed layout when panels with images are hidden. The tabs have no Panels menu. */
+  /** Shown in the tabbed layout when panels with images are hidden. The tabs have no Layout menu. */
   hiddenPanelsInTabs: string;
   /** Label of the notice button that shows all panels */
   showAllPanels: string;
@@ -179,7 +179,7 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
       `Select a cell type other than ${anchorCellType} to download the violin graph and histogram.`,
     allCellsDeleted: 'Restore deleted cells to download the images, cells and cell links.',
     distancesDeleted: 'Restore deleted cells to download the violin graph and histogram.',
-    hiddenPanels: 'Show a hidden panel from the Panels menu to download its image.',
+    hiddenPanels: 'Show a hidden panel from the Layout menu to download its image.',
     hiddenPanelsInTabs: "Images aren't available for hidden panels.",
     showAllPanels: 'Show all panels',
   },

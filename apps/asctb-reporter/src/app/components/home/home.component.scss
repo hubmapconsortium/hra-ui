@@ -1,6 +1,5 @@
 @use 'utils';
 @use 'vars';
-@use '@angular/material' as mat;
 
 :host {
   display: block;
@@ -69,87 +68,9 @@
     padding: 6rem 2.5rem;
     background: linear-gradient(vars.$surface-container, vars.$surface-container-lowest);
 
-    .split-sections {
-      display: flex;
-      gap: 4rem;
-      justify-content: center;
-      flex-wrap: wrap;
-
-      .youtube-video-container {
-        flex: 1;
-        ::ng-deep youtube-player {
-          iframe,
-          youtube-player-placeholder {
-            height: 25.625rem !important;
-            min-width: 32rem;
-            width: 100% !important;
-          }
-        }
-      }
-
-      .section-selector-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        height: 25.625rem;
-        flex: 1;
-        min-width: 20rem;
-
-        .section-selectors {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          margin-right: 1rem;
-        }
-
-        .chapters {
-          @include utils.use-font(title, large);
-        }
-
-        .ss-header {
-          @include utils.use-font(title, medium);
-          padding-bottom: 0.3125rem;
-          color: vars.$secondary;
-        }
-
-        .ss-desc {
-          @include utils.use-font(body, large);
-          color: vars.$primary;
-        }
-
-        .section-selector {
-          background-color: white;
-          border: 0.0625rem solid vars.$surface-dim;
-          border-left-width: 1rem;
-          outline: none;
-          border-radius: 0.5rem;
-          height: unset;
-          padding: 1rem 2rem 1rem 1rem;
-          justify-content: start;
-          text-align: left;
-          transition: all 0.2s;
-          width: 100%;
-          @include mat.button-overrides(
-            (
-              text-state-layer-color: vars.$surface-container-lowest,
-            )
-          );
-        }
-
-        .section-selector:not(.section-selected):hover {
-          border-color: vars.$outline-variant;
-        }
-
-        .section-selector:active {
-          transform: scale(0.99);
-          border-color: vars.$outline !important;
-        }
-
-        .section-selected,
-        .section-selected:focus {
-          border-color: vars.$tertiary;
-        }
-      }
+    .video {
+      max-width: 62.5rem;
+      margin: 0 auto;
     }
   }
 
@@ -191,27 +112,6 @@
 
     .demonstration-video-section {
       padding: 6rem 1.5rem;
-      .split-sections {
-        flex-direction: column;
-        height: unset;
-        flex-wrap: nowrap;
-
-        .youtube-video-container {
-          ::ng-deep youtube-player {
-            iframe,
-            youtube-player-placeholder {
-              min-width: unset;
-              min-height: 13.4375rem;
-              height: unset !important;
-            }
-          }
-        }
-
-        .section-selector-container {
-          min-height: 9.5569rem;
-          max-height: 19.6875rem;
-        }
-      }
     }
 
     .contributors-section {

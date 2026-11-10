@@ -1,23 +1,24 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "DocsNavigationMenu",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "menuItems": {
-      "$ref": "#/$defs/DocsMenuItems"
-    }
-  },
-  "required": [
-    "$schema",
-    "menuItems"
-  ],
-  "additionalProperties": false,
+  "$ref": "#/$defs/DocsNavigationMenu",
   "$defs": {
+    "DocsNavigationMenu": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "menuItems": {
+          "$ref": "#/$defs/DocsMenuItems"
+        }
+      },
+      "required": [
+        "$schema",
+        "menuItems"
+      ],
+      "additionalProperties": false
+    },
     "DocsMenuItems": {
-      "id": "DocsMenuItems",
       "type": "array",
       "items": {
         "anyOf": [
@@ -31,7 +32,6 @@
       }
     },
     "DocsNavigationCategory": {
-      "id": "DocsNavigationCategory",
       "type": "object",
       "properties": {
         "type": {
@@ -59,7 +59,6 @@
       "additionalProperties": false
     },
     "DocsNavigationItem": {
-      "id": "DocsNavigationItem",
       "type": "object",
       "properties": {
         "type": {

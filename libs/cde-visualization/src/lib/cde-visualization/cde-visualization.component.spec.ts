@@ -31,6 +31,7 @@ import {
   noDistancesContent,
 } from '../components/empty-state/empty-state.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
+import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
 import { ToolbarComponent } from '../components/toolbar/toolbar.component';
 import { TOOLBAR_CONTENT } from '../components/toolbar/toolbar.content';
@@ -921,10 +922,17 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
-      'moves the toolbar to the bottom below 600px',
+      'moves the toolbar to the bottom below 600px, where the metadata shows every field',
       async () => {
         const { fixture } = await setup();
+        const metadata: MetadataComponent = fixture.debugElement.query(
+          By.directive(MetadataComponent),
+        ).componentInstance;
+        resize(fixture, 1000);
+        expect(metadata.showEmptyFields()).toBe(false);
+
         resize(fixture, 500);
+        expect(metadata.showEmptyFields()).toBe(true);
 
         expect(getElement(fixture, '.layout')).toHaveClass('compact');
         expect(screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label })).toHaveAttribute(
@@ -958,7 +966,7 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
-      'hides the Panels menu and shows the panels hidden from it as tabs',
+      'hides the Layout menu and shows the panels hidden from it as tabs',
       async () => {
         const { fixture } = await setup();
         const toolbar: ToolbarComponent = fixture.debugElement.query(By.directive(ToolbarComponent)).componentInstance;
@@ -979,7 +987,7 @@ describe('CdeVisualizationComponent', () => {
     );
 
     it(
-      'disables the images of hidden panels without pointing to the Panels menu',
+      'disables the images of hidden panels without pointing to the Layout menu',
       async () => {
         const { fixture } = await setup({ inputs: { hiddenPanels: 'histogram' } });
         resize(fixture, 1000);

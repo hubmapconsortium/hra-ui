@@ -617,7 +617,7 @@ export class CdeVisualizationComponent {
       notices.push(unavailable.distancesDeleted);
     }
 
-    // The tabs have no Panels menu, so their notice doesn't point to it or offer to show the panels
+    // The tabs have no Layout menu, so their notice doesn't point to it or offer to show the panels
     const tabbed = this.tabbed();
     const hiddenImages = this.layoutHiddenPanels()
       .map((panel) => PANEL_IMAGE_DOWNLOADS[panel])
@@ -670,7 +670,7 @@ export class CdeVisualizationComponent {
   protected readonly compact = computed(() => this.width() > 0 && this.width() < COMPACT_LAYOUT_BREAKPOINT);
 
   /**
-   * Panels hidden in the current layout. The tabs have no Panels menu, so they follow only the hiddenPanels input,
+   * Panels hidden in the current layout. The tabs have no Layout menu, so they follow only the hiddenPanels input,
    * and panels hidden from the toolbar apply to the panel layout.
    */
   protected readonly layoutHiddenPanels = computed(() => (this.tabbed() ? this.hiddenPanels() : this.panelsHidden()));
@@ -731,6 +731,12 @@ export class CdeVisualizationComponent {
       visualizations: topRow || histogram,
     };
   });
+
+  /**
+   * Whether the metadata panel shows every field, including empty ones. Compact screens always do, since the
+   * Metadata tab has room for them, so their Display menu leaves out All metadata.
+   */
+  protected readonly metadataShowsEmptyFields = computed(() => this.compact() || this.showAllMetadata());
 
   /** Whether the metadata has fields that only show with all metadata */
   protected readonly hasHiddenMetadata = computed(() => hasHiddenFields(this.metadataView()));
@@ -1096,7 +1102,7 @@ export class CdeVisualizationComponent {
   }
 
   /**
-   * Shows a panel's tab before its image downloads. Panels in other tabs aren't laid out, so they have no size
+   * Shows a panel's tab before its image downloads. The charts in other tabs aren't laid out, so they have no size
    * to draw at.
    *
    * @param tab Tab of the panel
