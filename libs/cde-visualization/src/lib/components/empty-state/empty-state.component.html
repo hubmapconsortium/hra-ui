@@ -1,5 +1,9 @@
 <p class="heading">{{ content().heading }}</p>
 <p class="description">{{ content().description }}</p>
-<button matButton="outlined" class="action" hraFeature="action" hraClickEvent (click)="actionClick.emit()">
-  {{ content().actionLabel }}
-</button>
+<div class="actions">
+  @for (button of content().actions; track button.action) {
+    <button matButton="outlined" hraClickEvent [hraFeature]="button.action" (click)="actionClick.emit(button.action)">
+      {{ button.label }}
+    </button>
+  }
+</div>

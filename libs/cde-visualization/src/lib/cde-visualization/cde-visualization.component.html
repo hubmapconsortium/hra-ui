@@ -111,13 +111,17 @@
               [fullscreenAvailable]="!tabbed()"
               [floatingControls]="tabbed()"
               [dockCellInfo]="compact()"
+              [undoAvailable]="canUndo()"
+              [redoAvailable]="canRedo()"
               [(nodeFilter)]="nodeFilterView"
               [(edgesDisabled)]="edgesDisabled"
               [(viewMode)]="viewMode"
               (fullscreenChange)="fullscreenPanel.set($event ? 'distance-visualization' : undefined)"
               (nodeClick)="nodeClick.emit($event)"
               (nodeHover)="nodeHover.emit($event)"
-              (emptyStateAction)="selectAllCellTypes()"
+              (undoClick)="undo()"
+              (redoClick)="redo()"
+              (emptyStateAction)="handleEmptyStateAction($event)"
             />
 
             <cde-violin
@@ -130,7 +134,7 @@
               [emptyState]="chartsEmptyState()"
               [fullscreenAvailable]="!tabbed()"
               (fullscreenChange)="fullscreenPanel.set($event ? 'violin-graph' : undefined)"
-              (emptyStateAction)="selectAllCellTypes()"
+              (emptyStateAction)="handleEmptyStateAction($event)"
             />
           </div>
 
@@ -147,7 +151,7 @@
             [(allCellsColor)]="allCellsColor"
             (fullscreenChange)="fullscreenPanel.set($event ? 'histogram' : undefined)"
             (updateColor)="updateColor($event.entry, $event.color)"
-            (emptyStateAction)="selectAllCellTypes()"
+            (emptyStateAction)="handleEmptyStateAction($event)"
           />
         </div>
       </mat-tab-nav-panel>

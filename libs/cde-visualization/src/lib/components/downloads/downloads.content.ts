@@ -78,6 +78,10 @@ export interface UnavailableDownloadsContent {
   noCellTypes: string;
   /** Shown when only the anchor cell type is selected, so the charts would be empty */
   noDistances: (anchorCellType: string) => string;
+  /** Shown when every cell of the selected cell types was deleted, so only the color map has data */
+  allCellsDeleted: string;
+  /** Shown when every selected cell other than the anchor cells was deleted, so the charts would be empty */
+  distancesDeleted: string;
   /** Shown when panels with images are hidden */
   hiddenPanels: string;
   /** Shown in the tabbed layout when panels with images are hidden. The tabs have no Layout menu. */
@@ -173,6 +177,8 @@ export const DOWNLOADS_CONTENT: DownloadsContent = {
     noCellTypes: 'Select at least one cell type to download files.',
     noDistances: (anchorCellType) =>
       `Select a cell type other than ${anchorCellType} to download the violin graph and histogram.`,
+    allCellsDeleted: 'Restore deleted cells to download the images, cells and cell links.',
+    distancesDeleted: 'Restore deleted cells to download the violin graph and histogram.',
     hiddenPanels: 'Show a hidden panel from the Layout menu to download its image.',
     hiddenPanelsInTabs: "Images aren't available for hidden panels.",
     showAllPanels: 'Show all panels',
