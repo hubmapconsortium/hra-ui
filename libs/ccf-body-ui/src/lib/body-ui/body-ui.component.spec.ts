@@ -130,4 +130,14 @@ describe('BodyUiComponent', () => {
     nodeClick$.next(event);
     expect(nodeClick).toHaveBeenCalledWith(event);
   });
+
+  it('should prevent the browser context menu on the canvas', async () => {
+    const { fixture } = await render(BodyUiComponent, { providers });
+    const canvas = (fixture.nativeElement as HTMLElement).shadowRoot?.querySelector('canvas');
+    expect(canvas).toBeTruthy();
+
+    const event = new MouseEvent('contextmenu', { bubbles: true, cancelable: true });
+    canvas?.dispatchEvent(event);
+    expect(event.defaultPrevented).toBe(true);
+  });
 });

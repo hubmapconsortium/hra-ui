@@ -15,6 +15,14 @@
     height: unset !important;
   }
 
+  // The YouTube API sizes the iframe to a fixed 640x390
+  ::ng-deep youtube-player iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
   .thumbnail-image {
     height: 100%;
     aspect-ratio: 16 / 9;

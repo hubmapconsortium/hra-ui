@@ -1,60 +1,61 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "id": "LandingPageData",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "carouselItems": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/CarouselItem"
-      }
-    },
-    "countInfo": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "count": {
-            "type": "number"
-          },
-          "label": {
-            "type": "string"
-          },
-          "suffix": {
-            "type": "string"
-          },
-          "icon": {
-            "type": "string"
+  "$ref": "#/$defs/LandingPageData",
+  "$defs": {
+    "LandingPageData": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "carouselItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CarouselItem"
           }
         },
-        "required": [
-          "count",
-          "label",
-          "icon"
-        ],
-        "additionalProperties": false
-      }
+        "countInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "number"
+              },
+              "label": {
+                "type": "string"
+              },
+              "suffix": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "count",
+              "label",
+              "icon"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "sectionCardInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SectionCardItem"
+          }
+        }
+      },
+      "required": [
+        "$schema",
+        "carouselItems",
+        "countInfo",
+        "sectionCardInfo"
+      ],
+      "additionalProperties": false
     },
-    "sectionCardInfo": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/SectionCardItem"
-      }
-    }
-  },
-  "required": [
-    "$schema",
-    "carouselItems",
-    "countInfo",
-    "sectionCardInfo"
-  ],
-  "additionalProperties": false,
-  "$defs": {
     "CarouselItem": {
-      "id": "CarouselItem",
       "type": "object",
       "properties": {
         "tagline": {
@@ -109,7 +110,6 @@
       "additionalProperties": false
     },
     "SectionCardItem": {
-      "id": "SectionCardItem",
       "type": "object",
       "properties": {
         "tagline": {

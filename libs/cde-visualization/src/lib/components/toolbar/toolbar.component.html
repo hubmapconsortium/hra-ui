@@ -16,7 +16,7 @@
     icon="layers"
     hraFeature="display"
     hraClickEvent
-    [hraPlainTooltip]="content.display.tooltip"
+    [hraPlainTooltip]="compact() ? content.display.compactTooltip : content.display.tooltip"
     [matMenuTriggerFor]="displayMenu"
   >
     {{ content.display.label }}
@@ -76,20 +76,18 @@
       {{ content.theme.label }}
     </button>
   }
-  @if (!compact()) {
-    <button
-      hraNavigationRailItem
-      hraNavigationRailBottom
-      icon="info"
-      hraFeature="info"
-      hraClickEvent
-      [active]="openSheet() === 'about'"
-      [hraPlainTooltip]="content.info.tooltip"
-      (click)="openSheet.set('about')"
-    >
-      {{ content.info.label }}
-    </button>
-  }
+  <button
+    hraNavigationRailItem
+    hraNavigationRailBottom
+    icon="info"
+    hraFeature="info"
+    hraClickEvent
+    [active]="openSheet() === 'about'"
+    [hraPlainTooltip]="content.info.tooltip"
+    (click)="openSheet.set('about')"
+  >
+    {{ content.info.label }}
+  </button>
   <!-- Each block holds one element, so the rail can project it into its bottom group -->
   @if (showHelpMenu() && !compact()) {
     <button
@@ -104,13 +102,14 @@
       {{ content.help.label }}
     </button>
   }
+  <!-- In the bottom group, after Info. On compact screens that group follows the other items along the bar. -->
   @if (compact()) {
     <button
       hraNavigationRailItem
+      hraNavigationRailBottom
       icon="more_horiz"
       hraFeature="more"
       hraClickEvent
-      [active]="openSheet() === 'about'"
       [hraPlainTooltip]="content.more.tooltip"
       [matMenuTriggerFor]="moreMenu"
     >
@@ -200,25 +199,28 @@
       "
     />
   </button>
-  <button
-    mat-menu-item
-    role="menuitemcheckbox"
-    hraFeature="all-metadata"
-    hraClickEvent
-    [attr.aria-labelledby]="`${idPrefix}-all-metadata`"
-    [attr.aria-describedby]="`${idPrefix}-all-metadata-description`"
-    [attr.aria-checked]="allMetadata()"
-    [disabled]="!hasHiddenMetadata()"
-    (click)="$event.stopPropagation(); allMetadata.set(!allMetadata())"
-  >
-    <mat-icon>{{ allMetadata() ? 'check_box' : 'check_box_outline_blank' }}</mat-icon>
-    <ng-container
-      *ngTemplateOutlet="
-        menuItemText;
-        context: { $implicit: content.display.allMetadata, id: `${idPrefix}-all-metadata` }
-      "
-    />
-  </button>
+  <!-- Compact screens always show every metadata field -->
+  @if (!compact()) {
+    <button
+      mat-menu-item
+      role="menuitemcheckbox"
+      hraFeature="all-metadata"
+      hraClickEvent
+      [attr.aria-labelledby]="`${idPrefix}-all-metadata`"
+      [attr.aria-describedby]="`${idPrefix}-all-metadata-description`"
+      [attr.aria-checked]="allMetadata()"
+      [disabled]="!hasHiddenMetadata()"
+      (click)="$event.stopPropagation(); allMetadata.set(!allMetadata())"
+    >
+      <mat-icon>{{ allMetadata() ? 'check_box' : 'check_box_outline_blank' }}</mat-icon>
+      <ng-container
+        *ngTemplateOutlet="
+          menuItemText;
+          context: { $implicit: content.display.allMetadata, id: `${idPrefix}-all-metadata` }
+        "
+      />
+    </button>
+  }
 </mat-menu>
 
 <mat-menu
@@ -333,7 +335,7 @@
   }
 </mat-menu>
 
-<!-- On compact screens, Embed, Theme, Info and Help move here. Theme and Help open as submenus. -->
+<!-- On compact screens, Embed, Theme and Help move here. Theme and Help open as submenus. -->
 <mat-menu
   hraNavigationRailMenu
   hraFeature="more-menu"
@@ -357,10 +359,6 @@
       {{ content.theme.label }}
     </button>
   }
-  <button mat-menu-item hraFeature="info" hraClickEvent (click)="openSheet.set('about')">
-    <mat-icon>info</mat-icon>
-    {{ content.info.label }}
-  </button>
   @if (showHelpMenu()) {
     <button mat-menu-item hraFeature="help" hraClickEvent [matMenuTriggerFor]="helpMenu">
       <mat-icon>help</mat-icon>
