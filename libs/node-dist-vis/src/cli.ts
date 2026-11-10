@@ -56,11 +56,15 @@ function createKeyMapping(entry: AnyDataEntry, mappings: string[]): KeyMapping<N
   return result as KeyMapping<NodeEntry>;
 }
 
-async function loadNodes(file: string, mappings: string[]): Promise<NodesView> {
+async function loadNodes(file: string, mappings: string[]): Promise<NodesView | undefined> {
   const data: Record<string, unknown>[] = [];
   for await (const row of readCsv(file)) {
     data.push(row);
   }
+  if (data.length === 0) {
+    return undefined;
+  }
+
   const mapping = createKeyMapping(data[0], mappings);
   return new NodesView(data, mapping);
 }
@@ -85,30 +89,35 @@ function edgeToRow(edge: EdgeEntry): string {
 }
 
 async function streamEdgesToCsv(
-  nodes: NodesView,
+  nodes: NodesView | undefined,
   target: string,
   maxDistance: number,
   outputFile: string,
 ): Promise<void> {
-  const { length } = nodes;
+  const length = nodes?.length ?? 0;
   const reportStep = Math.max(1, Math.floor(length / 20));
   const writeStream = createWriteStream(outputFile, { encoding: 'utf-8' });
 
   writeStream.write('Cell ID,Target ID,X1,Y1,Z1,X2,Y2,Z2\n');
 
-  let edgeCount = 0;
-  reportProgress(0, length);
+  if (nodes) {
+    let edgeCount = 0;
+    reportProgress(0, length);
 
-  for (const edge of generateEdges(nodes, target, maxDistance)) {
-    writeStream.write(edgeToRow(edge));
-    edgeCount++;
+    for (const edge of generateEdges(nodes, target, maxDistance)) {
+      writeStream.write(edgeToRow(edge));
+      edgeCount++;
 
-    if (edgeCount % reportStep === 0) {
-      reportProgress(edgeCount, length);
+      if (edgeCount % reportStep === 0) {
+        reportProgress(edgeCount, length);
+      }
     }
-  }
 
-  reportProgress(length, length);
+    reportProgress(length, length);
+  } else {
+    // eslint-disable-next-line no-console
+    console.warn('No nodes found in input');
+  }
 
   return new Promise((resolve, reject) => {
     writeStream.end(() => resolve());
