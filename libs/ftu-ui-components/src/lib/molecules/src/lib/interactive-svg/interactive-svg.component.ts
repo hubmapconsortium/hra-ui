@@ -156,18 +156,34 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       }
 
       const elementId = entry.groupId || entry.id;
-      const element = crosswalkEl.querySelector(`#${elementId}, #${this.encodeId(elementId)}`);
+      const element = this.findElementById(crosswalkEl, elementId);
       if (!element) {
         continue;
       }
 
       const gElement = element.nodeName === 'g' ? element : (element.parentElement as Element);
-      const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
+      const elements = gElement.querySelectorAll(':is(path, polygon, polyline)');
       elements.forEach((el) => el.classList.add('click-active'));
       elements.forEach((el) => result.push(el));
     }
 
     this.highlightedElements = result;
+  }
+
+  /**
+   * Finds a descendant element whose (decoded) id matches the given id, ignoring case
+   * @param root Element to search within
+   * @param id Id to search for
+   * @returns The matching element, if any
+   */
+  private findElementById(root: Element, id: string): Element | undefined {
+    const target = id.toLowerCase();
+    for (const el of Array.from(root.querySelectorAll('[id]'))) {
+      if (el.id.toLowerCase() === target || this.decodeId(el.id).toLowerCase() === target) {
+        return el;
+      }
+    }
+    return undefined;
   }
 
   /**
@@ -274,16 +290,31 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   }
 
   /**
-   * Returns entry from mapping if target id matches the node name
+   * Returns entry from mapping if target, parent, or grandparent id matches the node name
    * @param event Event
    * @returns Node entry that matches the target id
    */
   private getNode(event: Event): T | undefined {
     const targetId = (event.target as Element).id;
-    const decodedID = this.decodeId(targetId);
-    return this.mapping().find(
-      (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry
-    );
+    const parentId = (event.target as Element).parentElement?.id ?? '';
+    const grandparentId = (event.target as Element).parentElement?.parentElement?.id ?? '';
+    const idCollection = [targetId, parentId, grandparentId];
+    for (const id of idCollection) {
+      const decodedID = this.decodeId(id);
+      const cellMatch = this.mapping().find(
+        (item) => item.id?.toLowerCase() === decodedID.toLowerCase(), //search mapping by cell name for matching node entry
+      );
+      if (cellMatch) {
+        return cellMatch;
+      }
+      const groupMatch = this.mapping().find(
+        (item) => item.groupId?.toLowerCase() === decodedID.toLowerCase(), //search mapping by group name for matching node entry
+      );
+      if (groupMatch) {
+        return groupMatch;
+      }
+    }
+    return undefined;
   }
 
   /**
@@ -294,16 +325,6 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   private decodeId(id: string): string {
     const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));
     return id.replace(/_x([\da-f]+)_/gi, replacer);
-  }
-
-  /**
-   * Turns normal string into decoded SVG id
-   * @param id id
-   * @returns Encoded id
-   */
-  private encodeId(id: string): string {
-    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;
-    return id.replace(/[^a-z0-9-]/gi, replacer);
   }
 
   /**

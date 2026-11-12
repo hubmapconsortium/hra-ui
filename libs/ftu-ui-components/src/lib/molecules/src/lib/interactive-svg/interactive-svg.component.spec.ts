@@ -1,5 +1,5 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { inject, Renderer2, SimpleChanges } from '@angular/core';
+import { inject, Renderer2 } from '@angular/core';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { Shallow } from 'shallow-render';
 
@@ -22,10 +22,6 @@ describe('InteractiveSvgComponent', () => {
   const crosswalk = mock<SVGGElement>();
   const nodeList = mock<NodeListOf<Element>>({ 0: { nodeName: 'g' } });
 
-  const svg2 = mock<SVGSVGElement>();
-  const crosswalk2 = mock<SVGGElement>();
-  const nodeList2 = mock<NodeListOf<Element>>({ 0: { nodeName: 'path' } });
-
   let renderer: MockProxy<Renderer2>;
   let shallow: Shallow<InteractiveSvgComponent<NodeMapEntry>>;
 
@@ -38,10 +34,6 @@ describe('InteractiveSvgComponent', () => {
     svg.querySelector.mockReturnValue(crosswalk);
     crosswalk.querySelector.mockReturnValue(nodeList[0]);
     crosswalk.querySelectorAll.mockReturnValue(nodeList);
-
-    svg2.querySelector.mockReturnValue(crosswalk2);
-    crosswalk2.querySelector.mockReturnValue(nodeList2[0]);
-    crosswalk2.querySelectorAll.mockReturnValue(nodeList2);
   });
 
   it('should create', async () => {
@@ -101,14 +93,15 @@ describe('InteractiveSvgComponent', () => {
       expect(outputs.nodeHover.emit).toHaveBeenCalledWith(testMapping[0]);
     });
 
-    it('should only match on the target element id, not its ancestors', async () => {
+    it('should match on the parent or grandparent element id', async () => {
       const { instance, outputs } = await shallow.render({ bind: { mapping: testMapping } });
       instance.setSvgElement(svg);
 
       const handler = renderer.listen.mock.calls.find((args) => args[1] === 'mouseover')?.[2];
       handler?.(event2);
+      expect(outputs.nodeHover.emit).toHaveBeenLastCalledWith(testMapping[1]);
       handler?.(event3);
-      expect(outputs.nodeHover.emit).not.toHaveBeenCalled();
+      expect(outputs.nodeHover.emit).toHaveBeenLastCalledWith(testMapping[2]);
     });
 
     it('should not emit anything if node not found in mapping', async () => {
@@ -155,33 +148,64 @@ describe('InteractiveSvgComponent', () => {
     expect(instance.formatNodeName('test_node')).toEqual('test node');
   });
 
-  it('highlights elements based on highlightId', async () => {
+  describe('highlight', () => {
+    const SVG_NS = 'http://www.w3.org/2000/svg';
     const testNode: NodeMapEntry = {
       id: 'Cortical_Collecting_Duct_Principal_Cell_1',
       groupId: 'Cortical_Collecting_Duct_Principal_Cell',
       label: 'kidney cortex collecting duct principal cell',
       ontologyId: 'CL_1000714',
     };
-    const testMapping: NodeMapEntry[] = [
-      testNode,
-      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_2' },
-      { ...testNode, id: 'Cortical_Collecting_Duct_Principal_Cell_3' },
-    ];
-    const testChanges: SimpleChanges = {
-      highlightId: {
-        currentValue: 'CL_1000714',
-        firstChange: false,
-        previousValue: undefined,
-        isFirstChange: () => {
-          return false;
-        },
-      },
-    };
 
-    const { instance } = await shallow.render({ bind: { mapping: testMapping, highlightId: 'CL_1000714' } });
-    instance.setSvgElement(svg);
-    instance.ngOnChanges(testChanges);
-    instance.setSvgElement(svg2);
-    instance.ngOnChanges(testChanges);
+    function createSvg(groupId: string): { root: SVGSVGElement; paths: Element[] } {
+      const root = document.createElementNS(SVG_NS, 'svg');
+      const crosswalkGroup = document.createElementNS(SVG_NS, 'g');
+      crosswalkGroup.id = 'Crosswalk';
+      const group = document.createElementNS(SVG_NS, 'g');
+      group.id = groupId;
+      const paths = [document.createElementNS(SVG_NS, 'path'), document.createElementNS(SVG_NS, 'polygon')];
+      paths.forEach((path) => group.appendChild(path));
+      crosswalkGroup.appendChild(group);
+      root.appendChild(crosswalkGroup);
+      return { root, paths };
+    }
+
+    it('highlights elements whose group id matches the mapping', async () => {
+      const { root, paths } = createSvg('Cortical_Collecting_Duct_Principal_Cell');
+      const { instance } = await shallow.render({ bind: { mapping: [testNode], highlightId: 'CL_1000714' } });
+      instance.setSvgElement(root);
+      paths.forEach((path) => expect(path.classList).toContain('click-active'));
+    });
+
+    it('matches group ids case-insensitively', async () => {
+      const { root, paths } = createSvg('cortical_collecting_duct_PRINCIPAL_cell');
+      const { instance } = await shallow.render({ bind: { mapping: [testNode], highlightId: 'CL_1000714' } });
+      instance.setSvgElement(root);
+      paths.forEach((path) => expect(path.classList).toContain('click-active'));
+    });
+
+    it('matches encoded group ids', async () => {
+      const { root, paths } = createSvg('Cortical_x2C_Cell');
+      const mapping = [{ ...testNode, groupId: 'Cortical,Cell' }];
+      const { instance } = await shallow.render({ bind: { mapping, highlightId: 'CL_1000714' } });
+      instance.setSvgElement(root);
+      paths.forEach((path) => expect(path.classList).toContain('click-active'));
+    });
+
+    it('highlights the parent group when the matched element is not a group', async () => {
+      const { root, paths } = createSvg('Group');
+      paths[0].id = 'Cortical_Collecting_Duct_Principal_Cell_1';
+      const mapping = [{ ...testNode, groupId: '' }];
+      const { instance } = await shallow.render({ bind: { mapping, highlightId: 'CL_1000714' } });
+      instance.setSvgElement(root);
+      paths.forEach((path) => expect(path.classList).toContain('click-active'));
+    });
+
+    it('does not highlight anything when no element matches', async () => {
+      const { root, paths } = createSvg('Other_Group');
+      const { instance } = await shallow.render({ bind: { mapping: [testNode], highlightId: 'CL_1000714' } });
+      instance.setSvgElement(root);
+      paths.forEach((path) => expect(path.classList).not.toContain('click-active'));
+    });
   });
 });
