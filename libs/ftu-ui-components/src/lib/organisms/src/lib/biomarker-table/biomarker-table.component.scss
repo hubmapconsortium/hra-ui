@@ -85,7 +85,7 @@
     height: 100%;
     table-layout: auto;
 
-    .highlight {
+    .highlight > td {
       &:first-child,
       &:nth-child(2) {
         background-color: color-mix(in srgb, white, vars.$secondary 8%);
