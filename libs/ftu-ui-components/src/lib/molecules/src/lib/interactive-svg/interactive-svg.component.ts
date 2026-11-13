@@ -141,7 +141,10 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   }
 
   /**
-   * Highlights cells that match highlightId
+   * Highlights cells that match highlightId.
+   * The mapping's group id (or node id if there is no group) is matched case-insensitively
+   * against svg element ids, both as-is and in decoded form (e.g. `_x2C_` -> `,`).
+   * If the matched element is not a group, all shapes in its parent group are highlighted.
    */
   private setHighlight() {
     const { crosswalkEl } = this;
@@ -156,7 +159,7 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       }
 
       const elementId = entry.groupId || entry.id;
-      const element = this.findElementById(crosswalkEl, elementId);
+      const element = crosswalkEl.querySelector(`[id="${elementId}" i], [id="${this.encodeId(elementId)}" i]`);
       if (!element) {
         continue;
       }
@@ -168,22 +171,6 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
     }
 
     this.highlightedElements = result;
-  }
-
-  /**
-   * Finds a descendant element whose (decoded) id matches the given id, ignoring case
-   * @param root Element to search within
-   * @param id Id to search for
-   * @returns The matching element, if any
-   */
-  private findElementById(root: Element, id: string): Element | undefined {
-    const target = id.toLowerCase();
-    for (const el of Array.from(root.querySelectorAll('[id]'))) {
-      if (el.id.toLowerCase() === target || this.decodeId(el.id).toLowerCase() === target) {
-        return el;
-      }
-    }
-    return undefined;
   }
 
   /**
@@ -315,6 +302,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       }
     }
     return undefined;
+  }
+
+  /**
+   * Turns normal string into decoded SVG id
+   * @param id id
+   * @returns Encoded id
+   */
+  private encodeId(id: string): string {
+    const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;
+    return id.replace(/[^a-z0-9-]/gi, replacer);
   }
 
   /**

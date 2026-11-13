@@ -1,5 +1,6 @@
 // import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -9,7 +10,6 @@ import {
   inject,
   Input,
   OnChanges,
-  OnInit,
   Output,
   Renderer2,
   SimpleChanges,
@@ -108,7 +108,7 @@ export type DataRow<T> = [string, number | undefined, ...(T | undefined)[]];
   styleUrl: './biomarker-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BiomarkerTableComponent<T extends DataCell> implements OnChanges, OnInit {
+export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /**
    * Input: TissueInfo carrying the details of the tissue open
    */
@@ -178,6 +178,29 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges, O
   private lastRowHoverId?: string;
 
   /**
+   * Attaches a single delegated hover listener to the table.
+   * The listeners are attached through the renderer instead of the template so that
+   * mouse movement does not run change detection over the whole table.
+   */
+  constructor() {
+    afterNextRender({
+      write: () => {
+        const table = this.table.nativeElement as HTMLElement;
+        const unlistenOver = this.renderer.listen(table, 'mouseover', (event: MouseEvent) => {
+          const row = (event.target as Element | null)?.closest(`tr[${HOVER_ID_ATTR}]`);
+          this.setHoverId(row?.getAttribute(HOVER_ID_ATTR) ?? undefined);
+        });
+        const unlistenLeave = this.renderer.listen(table, 'mouseleave', () => this.setHoverId(undefined));
+
+        this.destroyRef.onDestroy(() => {
+          unlistenOver();
+          unlistenLeave();
+        });
+      },
+    });
+  }
+
+  /**
    * Sets the data source for the table on every change
    * Sorts the biomarker table on illustrationIds change
    * @param changes object consisting of change in the Input
@@ -187,25 +210,6 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges, O
       this.dataSource.data = this.sortTableData(this.data);
       this.updateColumns();
     }
-  }
-
-  /**
-   * Attaches a single delegated hover listener to the table.
-   * The listeners are attached through the renderer instead of the template so that
-   * mouse movement does not run change detection over the whole table.
-   */
-  ngOnInit(): void {
-    const table = this.table.nativeElement as HTMLElement;
-    const unlistenOver = this.renderer.listen(table, 'mouseover', (event: MouseEvent) => {
-      const row = (event.target as Element | null)?.closest(`tr[${HOVER_ID_ATTR}]`);
-      this.setHoverId(row?.getAttribute(HOVER_ID_ATTR) ?? undefined);
-    });
-    const unlistenLeave = this.renderer.listen(table, 'mouseleave', () => this.setHoverId(undefined));
-
-    this.destroyRef.onDestroy(() => {
-      unlistenOver();
-      unlistenLeave();
-    });
   }
 
   /**
