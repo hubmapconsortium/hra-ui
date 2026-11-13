@@ -17,16 +17,21 @@ async function bundleCliAction(script, dir, options) {
   await build({
     allowOverwrite: true,
     banner: {
-      js: '#!/usr/bin/env node',
+      js: [
+        '#!/usr/bin/env node',
+        "import { createRequire } from 'node:module';",
+        'const require = createRequire(import.meta.url);',
+      ].join('\n'),
     },
     bundle: true,
     entryPoints: [resolve(script)],
     external: ['node:*'],
-    format: 'iife',
+    format: 'esm',
     legalComments: 'eof',
     logLevel: options.verbose ? 'debug' : 'silent',
     minify: false,
     outfile,
+    platform: 'node',
   });
 
   await chmod(outfile, 0o755);
