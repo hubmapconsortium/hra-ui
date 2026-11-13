@@ -1,4 +1,4 @@
-/** Panels that the toolbar's Panels menu shows and hides, in layout order. The cell types panel always shows. */
+/** Panels that the toolbar's Layout menu shows and hides, in layout order. The cell types panel always shows. */
 export const PANEL_IDS = ['metadata', 'distance-visualization', 'violin-graph', 'histogram'] as const;
 
 /** Id of a panel */

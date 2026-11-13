@@ -144,21 +144,21 @@ The _Metadata_ panel lists the study first, but only when `study` is set. With `
 
 ### Panels
 
-The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comma or space separated list of `metadata`, `distance-visualization` (the Spatial view), `violin-graph`, and `histogram`. The Cell types panel always shows. The toolbar's Panels menu can still show hidden panels, and Reset everything hides them again.
+The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comma or space separated list of `metadata`, `distance-visualization` (the Spatial view), `violin-graph`, and `histogram`. The Cell types panel always shows. The toolbar's Layout menu can still show hidden panels, and Reset everything hides them again.
 
 ```html
 <cde-visualization hidden-panels="violin-graph, histogram" nodes="https://..."></cde-visualization>
 ```
 
-With `remember-panels`, the panels shown and hidden from the Panels menu are stored in the browser's local storage and stay that way after a reload. The Panels menu shows at 1280px and wider (see [Layout](#layout)).
+With `remember-panels`, the panels shown and hidden from the Layout menu are stored in the browser's local storage and stay that way after a reload. The Layout menu shows at 1280px and wider (see [Layout](#layout)).
 
 ## Layout
 
 The _CDE_ fits its layout to its own width, so it adapts to its container as well as the screen. The breakpoints are Angular Material's:
 
 - **1280px and wider:** the panels show side by side.
-- **Below 1280px:** the panels show as tabs, one at a time, with Metadata last. The tabs replace the Panels menu, so only `hidden-panels` removes a tab. Panels hidden from the Panels menu at a wider size come back as tabs. Full screen is off.
-- **Below 600px:** the toolbar becomes a bar along the bottom, and Embed, Theme, Info and Help move into its More menu.
+- **Below 1280px:** the panels show as tabs, one at a time, with Metadata last. The tabs replace the Layout menu, so only `hidden-panels` removes a tab. Panels hidden from the Layout menu at a wider size come back as tabs. Full screen is off.
+- **Below 600px:** the toolbar becomes a bar along the bottom with Display, Reset, Downloads, Info and More. Embed, Theme and Help move into More. The Metadata panel shows every field, including empty ones, so the Display menu leaves out All metadata.
 
 ## Outputs
 
