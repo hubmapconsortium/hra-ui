@@ -23,12 +23,11 @@ svg {
   :is(path, polygon, polyline) {
     fill: transparent;
     stroke: transparent;
-    mix-blend-mode: saturation;
   }
 
   .hover-active & g:hover:not([id^='Inset' i]) :is(path, polygon, polyline),
   .click-active {
-    fill: hsl(0deg 100% 50%);
+    fill: rgb(0 0 0 / 30%);
   }
 }
 
