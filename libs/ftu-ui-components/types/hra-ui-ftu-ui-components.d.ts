@@ -194,7 +194,10 @@ declare class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChang
      */
     ngOnChanges(changes: SimpleChanges): void;
     /**
-     * Highlights cells that match highlightId
+     * Highlights cells that match highlightId.
+     * The mapping's group id (or node id if there is no group) is matched case-insensitively
+     * against svg element ids, both as-is and in decoded form (e.g. `_x2C_` -> `,`).
+     * If the matched element is not a group, all shapes in its parent group are highlighted.
      */
     private setHighlight;
     /**
@@ -242,17 +245,17 @@ declare class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChang
      */
     private getNode;
     /**
-     * Decodes id into a normal string
-     * @param id Undecoded ID
-     * @returns id
-     */
-    private decodeId;
-    /**
      * Turns normal string into decoded SVG id
      * @param id id
      * @returns Encoded id
      */
     private encodeId;
+    /**
+     * Decodes id into a normal string
+     * @param id Undecoded ID
+     * @returns id
+     */
+    private decodeId;
     /**
      * Attaches an event listener
      * @template K
@@ -514,6 +517,13 @@ interface MinMaxResult<T> {
     /** Value of the upper entry */
     maxValue: T;
 }
+/** Precomputed icon style for a table cell */
+interface CellStyle {
+    /** Icon color */
+    color: string;
+    /** Icon size */
+    size: number;
+}
 /**
  * An interface representing a single cell of the table.
  */
@@ -581,6 +591,22 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
     readonly dataSource: MatTableDataSource<DataRow<T>, node_modules__angular_material_types__paginator_chunk.MatPaginator>;
     /** Change detection */
     private readonly cdr;
+    /** Renderer used to attach hover listeners without triggering change detection */
+    private readonly renderer;
+    /** Destroy ref */
+    private readonly destroyRef;
+    /** Cached icon styles for each cell */
+    private readonly cellStyleCache;
+    /** Cached cell type ids for each row */
+    private readonly rowHoverIdCache;
+    /** Last cell type id emitted from a row hover */
+    private lastRowHoverId?;
+    /**
+     * Attaches a single delegated hover listener to the table.
+     * The listeners are attached through the renderer instead of the template so that
+     * mouse movement does not run change detection over the whole table.
+     */
+    constructor();
     /**
      * Sets the data source for the table on every change
      * Sorts the biomarker table on illustrationIds change
@@ -605,6 +631,18 @@ declare class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
      * @param row Highlighted row
      */
     isHighlighted(row: DataRow<T>): boolean;
+    /**
+     * Gets the cached cell type id of a row
+     * @param row Table row
+     * @returns cell type id
+     */
+    getRowHoverId(row: DataRow<T>): string | undefined;
+    /**
+     * Gets the cached icon style of a cell
+     * @param cell Table cell
+     * @returns The icon color and size, or undefined if the cell is empty
+     */
+    getCellStyle(cell: T | undefined): CellStyle | undefined;
     /**
      * Gets hover id from row
      * @param data row data
