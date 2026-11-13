@@ -1,14 +1,17 @@
 // import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   ElementRef,
   EventEmitter,
   inject,
   Input,
   OnChanges,
   Output,
+  Renderer2,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -44,6 +47,17 @@ interface MinMaxResult<T> {
   /** Value of the upper entry */
   maxValue: T;
 }
+
+/** Precomputed icon style for a table cell */
+interface CellStyle {
+  /** Icon color */
+  color: string;
+  /** Icon size */
+  size: number;
+}
+
+/** Attribute set on each data row containing the row's cell type id */
+const HOVER_ID_ATTR = 'data-hover-id';
 
 /**
  * An interface representing a single cell of the table.
@@ -148,6 +162,44 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
   /** Change detection */
   private readonly cdr = inject(ChangeDetectorRef);
 
+  /** Renderer used to attach hover listeners without triggering change detection */
+  private readonly renderer = inject(Renderer2);
+
+  /** Destroy ref */
+  private readonly destroyRef = inject(DestroyRef);
+
+  /** Cached icon styles for each cell */
+  private readonly cellStyleCache = new WeakMap<T, CellStyle>();
+
+  /** Cached cell type ids for each row */
+  private readonly rowHoverIdCache = new WeakMap<DataRow<T>, string | undefined>();
+
+  /** Last cell type id emitted from a row hover */
+  private lastRowHoverId?: string;
+
+  /**
+   * Attaches a single delegated hover listener to the table.
+   * The listeners are attached through the renderer instead of the template so that
+   * mouse movement does not run change detection over the whole table.
+   */
+  constructor() {
+    afterNextRender({
+      write: () => {
+        const table = this.table.nativeElement as HTMLElement;
+        const unlistenOver = this.renderer.listen(table, 'mouseover', (event: MouseEvent) => {
+          const row = (event.target as Element | null)?.closest(`tr[${HOVER_ID_ATTR}]`);
+          this.setHoverId(row?.getAttribute(HOVER_ID_ATTR) ?? undefined);
+        });
+        const unlistenLeave = this.renderer.listen(table, 'mouseleave', () => this.setHoverId(undefined));
+
+        this.destroyRef.onDestroy(() => {
+          unlistenOver();
+          unlistenLeave();
+        });
+      },
+    });
+  }
+
   /**
    * Sets the data source for the table on every change
    * Sorts the biomarker table on illustrationIds change
@@ -233,7 +285,38 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @param row Highlighted row
    */
   isHighlighted(row: DataRow<T>): boolean {
-    return this.getHoverId(row) === this.highlightedCellId;
+    return this.getRowHoverId(row) === this.highlightedCellId;
+  }
+
+  /**
+   * Gets the cached cell type id of a row
+   * @param row Table row
+   * @returns cell type id
+   */
+  getRowHoverId(row: DataRow<T>): string | undefined {
+    const cache = this.rowHoverIdCache;
+    if (!cache.has(row)) {
+      cache.set(row, this.getHoverId(row));
+    }
+    return cache.get(row);
+  }
+
+  /**
+   * Gets the cached icon style of a cell
+   * @param cell Table cell
+   * @returns The icon color and size, or undefined if the cell is empty
+   */
+  getCellStyle(cell: T | undefined): CellStyle | undefined {
+    if (cell === undefined) {
+      return undefined;
+    }
+
+    let style = this.cellStyleCache.get(cell);
+    if (!style) {
+      style = { color: this.getColor(Number(cell.color)), size: this.getSize(cell.size) };
+      this.cellStyleCache.set(cell, style);
+    }
+    return style;
   }
 
   /**
@@ -392,7 +475,13 @@ export class BiomarkerTableComponent<T extends DataCell> implements OnChanges {
    * @param hoverId cell type id
    */
   setHoverId(hoverId?: string): void {
+    if (hoverId === this.lastRowHoverId) {
+      return;
+    }
+
+    this.lastRowHoverId = hoverId;
     this.highlightedCellId = hoverId ?? '';
+    this.cdr.markForCheck();
     this.rowHover.emit(hoverId);
   }
 

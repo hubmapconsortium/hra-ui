@@ -141,7 +141,10 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   }
 
   /**
-   * Highlights cells that match highlightId
+   * Highlights cells that match highlightId.
+   * The mapping's group id (or node id if there is no group) is matched case-insensitively
+   * against svg element ids, both as-is and in decoded form (e.g. `_x2C_` -> `,`).
+   * If the matched element is not a group, all shapes in its parent group are highlighted.
    */
   private setHighlight() {
     const { crosswalkEl } = this;
@@ -156,13 +159,13 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
       }
 
       const elementId = entry.groupId || entry.id;
-      const element = crosswalkEl.querySelector(`#${elementId}, #${this.encodeId(elementId)}`);
+      const element = crosswalkEl.querySelector(`[id="${elementId}" i], [id="${this.encodeId(elementId)}" i]`);
       if (!element) {
         continue;
       }
 
       const gElement = element.nodeName === 'g' ? element : (element.parentElement as Element);
-      const elements = crosswalkEl.querySelectorAll(`#${gElement.id} :is(path, polygon, polyline)`);
+      const elements = gElement.querySelectorAll(':is(path, polygon, polyline)');
       elements.forEach((el) => el.classList.add('click-active'));
       elements.forEach((el) => result.push(el));
     }
@@ -302,16 +305,6 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   }
 
   /**
-   * Decodes id into a normal string
-   * @param id Undecoded ID
-   * @returns id
-   */
-  private decodeId(id: string): string {
-    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));
-    return id.replace(/_x([\da-f]+)_/gi, replacer);
-  }
-
-  /**
    * Turns normal string into decoded SVG id
    * @param id id
    * @returns Encoded id
@@ -319,6 +312,16 @@ export class InteractiveSvgComponent<T extends NodeMapEntry> implements OnChange
   private encodeId(id: string): string {
     const replacer = (match: string) => `_x${match.charCodeAt(0).toString(16).toUpperCase()}_`;
     return id.replace(/[^a-z0-9-]/gi, replacer);
+  }
+
+  /**
+   * Decodes id into a normal string
+   * @param id Undecoded ID
+   * @returns id
+   */
+  private decodeId(id: string): string {
+    const replacer = (_match: string, hex: string) => String.fromCharCode(Number.parseInt(hex, 16));
+    return id.replace(/_x([\da-f]+)_/gi, replacer);
   }
 
   /**

@@ -261,4 +261,42 @@ describe('BiomarkerTableComponent', () => {
     instance.setHoverId(undefined);
     expect(instance.highlightedCellId).toEqual('');
   });
+
+  it('emits row hovers only when the hovered cell type changes', async () => {
+    const { find, outputs } = await shallow.render({
+      bind: { columns: columns, data: data, gradient, sizes, tissueInfo },
+    });
+    const table = find('table').nativeElement as HTMLElement;
+    const rows = Array.from(table.querySelectorAll<HTMLElement>('tr[data-hover-id]'));
+    expect(rows.length).toBeGreaterThan(0);
+
+    const cells = rows[0].querySelectorAll('td');
+    cells[0].dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+    cells[1].dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+    expect(outputs.rowHover.emit).toHaveBeenCalledTimes(1);
+    expect(outputs.rowHover.emit).toHaveBeenCalledWith('cellName');
+
+    table.dispatchEvent(new MouseEvent('mouseleave'));
+    expect(outputs.rowHover.emit).toHaveBeenCalledTimes(2);
+    expect(outputs.rowHover.emit).toHaveBeenLastCalledWith(undefined);
+  });
+
+  it('highlights rows matching the highlighted cell id', async () => {
+    const { find } = await shallow.render({
+      bind: { columns: columns, data: data, gradient, sizes, tissueInfo, highlightedCellId: 'cellName' },
+    });
+    const table = find('table').nativeElement as HTMLElement;
+    expect(table.querySelectorAll('tr.highlight').length).toBe(2);
+  });
+
+  it('caches cell styles', async () => {
+    const { instance } = await shallow.render({
+      bind: { columns: columns, data: data, gradient, sizes, tissueInfo },
+    });
+    const cell = data[2][2] as DataCell;
+    const style = instance.getCellStyle(cell);
+    expect(style).toBeDefined();
+    expect(instance.getCellStyle(cell)).toBe(style);
+    expect(instance.getCellStyle(undefined)).toBeUndefined();
+  });
 });
