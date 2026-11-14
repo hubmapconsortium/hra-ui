@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Directive } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
@@ -20,4 +20,7 @@ export class InfoButtonActionsDirective {}
   styleUrl: './info-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfoButtonComponent {}
+export class InfoButtonComponent {
+  /** Accessible name of the button, such as "More information about Upload data" */
+  readonly label = input('More information');
+}

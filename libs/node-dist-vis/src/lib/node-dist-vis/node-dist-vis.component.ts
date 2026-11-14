@@ -274,6 +274,9 @@ export class NodeDistVisComponent {
   /** Whether to call `zoomToFit` on resize events */
   private readonly zoomToFitOnResize = signal(true);
 
+  /** Whether a `zoomToFit` call came while the canvas was hidden, so the next resize fits the nodes in full */
+  private zoomToFitPending = false;
+
   /** Currently hovered node entry */
   private activeHover: AnyDataEntry | undefined = undefined;
 
@@ -313,11 +316,20 @@ export class NodeDistVisComponent {
 
   /**
    * Zooms the visualization to fit all nodes on screen.
-   * Has no effect until the nodes have been loaded.
+   * Has no effect until the nodes have been loaded. While the canvas is hidden, the nodes are fit
+   * once it shows again, if zoom to fit on resize is still on.
    */
   zoomToFit(options: ZoomToFitOptions = {}): void {
     const view = this.nodesView();
     if (view.length === 0) {
+      return;
+    }
+
+    // A hidden canvas, such as one in an inactive tab, has no size. deckgl then falls back to the canvas'
+    // drawing buffer size, which is larger by the device pixel ratio, so fitting to it would zoom in.
+    const { clientWidth: width, clientHeight: height } = this.canvas();
+    if (width === 0 || height === 0) {
+      this.zoomToFitPending = true;
       return;
     }
 
@@ -327,7 +339,6 @@ export class NodeDistVisComponent {
       resetTarget = true,
       transitionDuration = 0,
     } = options;
-    const { width, height } = this.deck();
     const pixelRatio = window.devicePixelRatio;
     const target = scalePosition(view.getCenter(), view.getDimensions());
     const scale = view.getScale();
@@ -336,15 +347,13 @@ export class NodeDistVisComponent {
     const zoomY = Math.log2((scale * (height - 2 * marginY)) / (pixelRatio * scaleY));
     const zoom = Math.min(zoomX, zoomY);
 
-    this.deck().setProps({
-      initialViewState: {
-        ...this.viewState(),
-        transitionDuration,
-        zoom,
-        ...(resetTarget ? { target } : {}),
-        ...(resetRotation ? { rotationX: 0, rotationOrbit: 0 } : {}),
-        version: ++this.viewStateVersion,
-      },
+    this.setViewState({
+      ...untracked(this.viewState),
+      transitionDuration,
+      zoom,
+      ...(resetTarget ? { target } : {}),
+      ...(resetRotation ? { rotationX: 0, rotationOrbit: 0 } : {}),
+      version: ++this.viewStateVersion,
     });
   }
 
@@ -357,25 +366,30 @@ export class NodeDistVisComponent {
     this.zoomToFitOnResize.set(enable);
   }
 
-  /** Resets the view to the original location and rotation */
+  /**
+   * Resets the view to the fitted zoom, location, and rotation the nodes first load with,
+   * and fits the nodes again on resize until the next interaction
+   */
   resetView(): void {
-    this.deck().setProps({
-      initialViewState: {
+    if (this.nodesView().length === 0) {
+      this.setViewState({
         ...INITIAL_VIEW_STATE,
         version: ++this.viewStateVersion,
-      },
-    });
+      });
+      return;
+    }
+
+    this.setZoomToFitOnResize(true);
+    this.zoomToFit();
   }
 
   /** Resets the rotation of the orbit view */
   resetOrbit(): void {
-    this.deck().setProps({
-      initialViewState: {
-        ...this.viewState(),
-        rotationX: 0,
-        rotationOrbit: 0,
-        version: ++this.viewStateVersion,
-      },
+    this.setViewState({
+      ...untracked(this.viewState),
+      rotationX: 0,
+      rotationOrbit: 0,
+      version: ++this.viewStateVersion,
     });
   }
 
@@ -471,9 +485,34 @@ export class NodeDistVisComponent {
   }
 
   /**
-   * Handle canvas resizing
+   * Sets a new view state. deckgl only reports view state changes from interactions and transitions,
+   * so the `viewState` signal is updated here too. Otherwise later updates that build on it,
+   * like the zoom to fit on resize, would bring back the previous rotation and location.
+   * Methods that build on the current view state read it untracked: they can be called from effects
+   * (the CDE resets the orbit when entering select mode), and a tracked read followed by this write
+   * would rerun those effects in an endless loop.
+   *
+   * @param viewState New view state
+   */
+  private setViewState(viewState: object): void {
+    this.viewState.set(viewState);
+    this.deck().setProps({ initialViewState: viewState });
+  }
+
+  /**
+   * Handle canvas resizing. Resizes from hiding the canvas are skipped, so a tab that hides and shows it
+   * keeps the same zoom. A fit that was skipped while hidden happens in full, without a transition.
    */
   private onResize(): void {
+    const { clientWidth, clientHeight } = this.canvas();
+    if (clientWidth === 0 || clientHeight === 0) {
+      return;
+    } else if (this.zoomToFitPending) {
+      this.zoomToFitPending = false;
+      this.zoomToFit();
+      return;
+    }
+
     this.zoomToFit({
       resetRotation: false,
       resetTarget: false,

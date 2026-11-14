@@ -17,16 +17,18 @@
     border-radius: 0.5rem;
     text-decoration: none;
 
+    $state-layer-color: var(--hra-app-nav-button-state-layer-color, #{vars.$secondary});
+
     &:hover {
-      background: utils.with-alpha(vars.$secondary, 8%);
+      background: utils.with-alpha($state-layer-color, 8%);
     }
 
     &:active {
-      background: utils.with-alpha(vars.$secondary, 16%);
+      background: utils.with-alpha($state-layer-color, 16%);
     }
 
     &:focus-visible {
-      @include utils.inset-outline(vars.$tertiary);
+      @include utils.inset-outline(var(--hra-app-nav-button-focus-color, #{vars.$tertiary}));
     }
 
     .icon {
@@ -37,14 +39,16 @@
 
     .tagline {
       grid-area: tagline;
-      color: vars.$secondary;
-      @include utils.use-font('label', 'large');
+      color: var(--hra-app-nav-button-tagline-color, #{vars.$secondary});
+      font: var(--hra-app-nav-button-tagline-font, #{vars.$label-large});
+      letter-spacing: var(--hra-app-nav-button-tagline-tracking, #{vars.$label-large-tracking});
     }
 
     .description {
       grid-area: description;
-      color: vars.$inverse-surface;
-      @include utils.use-font('label', 'medium');
+      color: var(--hra-app-nav-button-description-color, #{vars.$inverse-surface});
+      font: var(--hra-app-nav-button-description-font, #{vars.$label-medium});
+      letter-spacing: var(--hra-app-nav-button-description-tracking, #{vars.$label-medium-tracking});
     }
   }
 }

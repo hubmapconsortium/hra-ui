@@ -57,6 +57,8 @@ cde.colorMap = {
 | _color-map_            | Custom color map                               | A csv file url or an array of objects | None          |
 | _color-map-keys_       | Color map csv column configuration             | A json file url or a mapping object   | None          |
 | _metadata_             | Metadata object                                | An object                             | None          |
+| _study_                | Study the dataset comes from                   | A string                              | None          |
+| _study-url_            | Url of the study's page                        | An url                                | None          |
 | _title_                | Dataset title                                  | A string                              | None          |
 | _organ_                | Dataset organ                                  | A string                              | None          |
 | _technology_           | Dataset imaging technology                     | A string                              | None          |
@@ -67,6 +69,10 @@ cde.colorMap = {
 | _creation-timestamp_   | The number of milliseconds since 1/1/1970 UTC  | A positive integer                    | None          |
 | _source-file-name_     | Dataset nodes file name                        | A string                              | None          |
 | _color-map-file-name_  | Dataset color map file name                    | A string                              | None          |
+| _hide-theme-menu_      | Hides the toolbar's Theme menu                 | A boolean attribute                   | Shown         |
+| _hide-help-menu_       | Hides the toolbar's Help menu                  | A boolean attribute                   | Shown         |
+| _hidden-panels_        | Panels hidden at first, see [Panels](#panels)  | A list of panel ids                   | None          |
+| _remember-panels_      | Remembers hidden panels in local storage       | A boolean attribute                   | Off           |
 
 ### Nodes, edges, and color maps
 
@@ -134,6 +140,26 @@ Any columns not specified will be inferred as usual. The default column names an
 
 Metadata can be set either as an object or as individual metadata attributes. Using an object is particularly useful when setting the metadata from javascript or a json file url. If both an metadata object and individual attributes are set at the same time the value from the attributes takes priority. The available metadata attributes are described the [inputs table](#available-inputs).
 
+The _Metadata_ panel lists the study first, but only when `study` is set. With `study-url`, the study name links to that page in the same tab.
+
+### Panels
+
+The `hidden-panels` attribute hides panels when the _CDE_ loads. It takes a comma or space separated list of `metadata`, `distance-visualization` (the Spatial view), `violin-graph`, and `histogram`. The Cell types panel always shows. The toolbar's Layout menu can still show hidden panels, and Reset everything hides them again.
+
+```html
+<cde-visualization hidden-panels="violin-graph, histogram" nodes="https://..."></cde-visualization>
+```
+
+With `remember-panels`, the panels shown and hidden from the Layout menu are stored in the browser's local storage and stay that way after a reload. The Layout menu shows at 1280px and wider (see [Layout](#layout)).
+
+## Layout
+
+The _CDE_ fits its layout to its own width, so it adapts to its container as well as the screen. The breakpoints are Angular Material's:
+
+- **1280px and wider:** the panels show side by side.
+- **Below 1280px:** the panels show as tabs, one at a time, with Metadata last. The tabs replace the Layout menu, so only `hidden-panels` removes a tab. Panels hidden from the Layout menu at a wider size come back as tabs. Full screen is off.
+- **Below 600px:** the toolbar becomes a bar along the bottom with Display, Reset, Downloads, Info and More. Embed, Theme and Help move into More. The Metadata panel shows every field, including empty ones, so the Display menu leaves out All metadata.
+
 ## Outputs
 
 Outputs can be listened to using javascript.
@@ -162,6 +188,80 @@ A `NodeEvent` is a plain object with the following properties:
 | _clientX_     | Pointer X coordinate relative to the viewport | Number             |
 | _clientY_     | Pointer Y coordinate relative to the viewport | Number             |
 | _object_      | The associated data for the node              | Object             |
+
+## Theming
+
+The _CDE_ uses the HRA theme by default. Its colors, typography, and shapes come from Angular Material's system tokens (`--mat-sys-*` CSS custom properties), so you can restyle it by overriding those tokens.
+
+Set your overrides on `.hra-app` in a stylesheet loaded after `styles.css`. The `cde-visualization` element and the overlay that holds its menus and tooltips both have this class, so the overrides reach both.
+
+```html
+<link href="https://cdn.humanatlas.io/ui/cde-visualization-wc/styles.css" rel="stylesheet" />
+<style>
+  .hra-app {
+    --mat-sys-primary: #0b57d0;
+    --mat-sys-on-primary: #ffffff;
+    --mat-sys-background: #f4f6fa;
+  }
+</style>
+```
+
+If your site is built with Angular Material, you can generate a complete set of tokens instead:
+
+```scss
+@use '@angular/material' as mat;
+
+.hra-app {
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: Inter,
+    )
+  );
+}
+```
+
+Typography tokens come as a shorthand (for example `--mat-sys-label-medium`) and its parts (`--mat-sys-label-medium-font`, `-size`, `-weight`, `-line-height`, and `-tracking`). Override both. The default theme's fonts, Metropolis and Nunito Sans, are included in `styles.css`; load any other fonts yourself.
+
+### Light and dark
+
+Each default color token holds a light and a dark value, and the _CDE_ follows the page's [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme). It stays light unless the page opts in:
+
+```css
+/* Follow the system setting */
+html {
+  color-scheme: light dark;
+}
+
+/* Or always use dark colors */
+html {
+  color-scheme: dark;
+}
+```
+
+A color override with a single value applies to both. To set each, use `light-dark()`, for example `--mat-sys-primary: light-dark(#0b57d0, #a8c7fa);`.
+
+The toolbar's Theme menu starts on System settings, which follows the page's theme. Light theme and Dark theme switch only the _CDE_, not the page, until the page reloads. If your page has its own theme switch, hide the _CDE_'s menu with the `hide-theme-menu` attribute:
+
+```html
+<cde-visualization hide-theme-menu nodes="https://..."></cde-visualization>
+```
+
+### Charts
+
+The histogram and violin charts read these tokens, and update their colors when the system setting, the `color-scheme` of the `html` element, or the Theme menu changes the theme:
+
+| Token                          | Used for                                                   |
+| ------------------------------ | ---------------------------------------------------------- |
+| `--mat-sys-background`         | Chart background                                           |
+| `--mat-sys-on-surface`         | Titles, violin outlines, and the default "All cells" color |
+| `--mat-sys-on-surface-variant` | Axis and cell type labels                                  |
+| `--mat-sys-outline-variant`    | Grid lines                                                 |
+| `--mat-sys-body-medium`        | All chart text: font family, size, weight, and line height |
+
+The violin box plots stay black in every theme, so they read against the violin colors.
+
+The cell visualization keeps its black background. Set cell colors with the `color-map` input.
 
 ## Full example
 

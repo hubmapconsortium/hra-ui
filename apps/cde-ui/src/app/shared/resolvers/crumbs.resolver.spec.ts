@@ -1,6 +1,12 @@
 import { ActivatedRouteSnapshot, convertToParamMap, RouterStateSnapshot } from '@angular/router';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
-import { createCrumbsResolver, CRUMBS_DATA_KEY, removeLastCrumbRoute, ROOT_CRUMBS } from './crumbs.resolver';
+import {
+  createBreadcrumbsResolver,
+  createCrumbsResolver,
+  CRUMBS_DATA_KEY,
+  removeLastCrumbRoute,
+  ROOT_CRUMBS,
+} from './crumbs.resolver';
 
 describe('CRUMBS_DATA_KEY', () => {
   it('should be a string', () => {
@@ -18,12 +24,15 @@ describe('ROOT_CRUMBS', () => {
     expect(ROOT_CRUMBS.length).toBeGreaterThan(0);
   });
 
-  it('should have Apps as first item', () => {
-    expect(ROOT_CRUMBS[0].name).toBe('Apps');
+  it('should start at the Human Reference Atlas home page, shown as a house icon', () => {
+    expect(ROOT_CRUMBS[0]).toEqual({ name: 'Home', route: 'https://humanatlas.io', icon: 'home' });
   });
 
-  it('should have Cell Distance Explorer as second item', () => {
-    expect(ROOT_CRUMBS[1].name).toBe('Cell Distance Explorer');
+  it('should go through the HRA apps to Cell Distance Explorer', () => {
+    expect(ROOT_CRUMBS.slice(1)).toEqual([
+      { name: 'Apps', route: 'https://apps.humanatlas.io' },
+      { name: 'Cell Distance Explorer', route: '/' },
+    ]);
   });
 });
 
@@ -224,5 +233,31 @@ describe('removeLastCrumbRoute', () => {
     expect(result[0]).toBe(firstCrumb);
     expect(result[1].name).toBe(secondCrumb.name);
     expect(result[1].route).toBeUndefined();
+  });
+});
+
+describe('createBreadcrumbsResolver', () => {
+  const mockRouterState = { url: '/' } as unknown as RouterStateSnapshot;
+
+  function createMockRoute(
+    data: Record<string, unknown> = {},
+    parent?: ActivatedRouteSnapshot,
+  ): ActivatedRouteSnapshot {
+    return { paramMap: convertToParamMap({}), data, parent } as unknown as ActivatedRouteSnapshot;
+  }
+
+  it('should end with the page itself, unlinked', () => {
+    const resolver = createBreadcrumbsResolver([{ name: 'Create', route: '/create' }]);
+    const result = resolver(createMockRoute(), mockRouterState);
+
+    expect(result).toEqual([...ROOT_CRUMBS, { name: 'Create' }]);
+  });
+
+  it("should unlink the parent's last crumb when there are no additional crumbs", () => {
+    const parent = createMockRoute({ [CRUMBS_DATA_KEY]: [...ROOT_CRUMBS, { name: 'Gallery', route: '/gallery' }] });
+    const resolver = createBreadcrumbsResolver();
+    const result = resolver(createMockRoute({}, parent), mockRouterState);
+
+    expect(result).toEqual([...ROOT_CRUMBS, { name: 'Gallery' }]);
   });
 });

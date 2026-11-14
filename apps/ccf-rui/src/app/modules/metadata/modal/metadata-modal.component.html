@@ -20,7 +20,7 @@
           step="1"
         >
           @if (fileErrors) {
-            <hra-error-indicator class="errors" [errors]="fileErrors" />
+            <hra-error-indicator class="errors" announce [errors]="fileErrors" />
           }
 
           <ccf-file-upload

@@ -1,6 +1,6 @@
 <h3 class="title" hraFeature="title-card">
   {{ spec().title }}
-  <hra-info-button>
+  <hra-info-button [label]="`More information about ${spec().title}`">
     {{ spec().tooltip }}
   </hra-info-button>
 </h3>

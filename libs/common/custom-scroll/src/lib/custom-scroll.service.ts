@@ -1,7 +1,32 @@
 import { ViewportScroller } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { Event, NavigationEnd, NavigationSkipped, Router, RouterEvent, Scroll } from '@angular/router';
 import { filter, pairwise, startWith } from 'rxjs/operators';
+
+/** Custom scroll options */
+export interface CustomScrollOptions {
+  /**
+   * Whether route changes and restored positions jump instantly, skipping the document's smooth scroll-behavior,
+   * so a new page starts at the top right away. Anchor links still scroll smoothly.
+   */
+  instantNavigation: boolean;
+}
+
+/** Injection token for custom scroll options */
+export const CUSTOM_SCROLL_OPTIONS = new InjectionToken<CustomScrollOptions>('CustomScrollOptions', {
+  providedIn: 'root',
+  factory: () => ({ instantNavigation: false }),
+});
+
+/**
+ * Provides custom scroll options
+ *
+ * @param options Custom scroll options
+ * @returns A provider for the options
+ */
+export function provideCustomScrollOptions(options: CustomScrollOptions): Provider {
+  return { provide: CUSTOM_SCROLL_OPTIONS, useValue: options };
+}
 
 /**
  * Custom scroll service to handle scroll restoration on navigation events
@@ -16,6 +41,12 @@ export class CustomScrollService {
    * Injects the ViewportScroller.
    */
   private viewportScroller = inject(ViewportScroller);
+  /**
+   * Scroll options for route changes and restored positions
+   */
+  private navigationScrollOptions: ScrollOptions | undefined = inject(CUSTOM_SCROLL_OPTIONS).instantNavigation
+    ? { behavior: 'instant' }
+    : undefined;
 
   /**
    * CustomScrollService constructor
@@ -46,7 +77,7 @@ export class CustomScrollService {
         const current = e[1];
 
         if (current.position) {
-          this.viewportScroller.scrollToPosition(current.position);
+          this.viewportScroller.scrollToPosition(current.position, this.navigationScrollOptions);
         } else if (current.anchor) {
           this.viewportScroller.scrollToAnchor(current.anchor);
         } else {
@@ -54,7 +85,7 @@ export class CustomScrollService {
           const currentUrl = this.getUrlFromRouterEvent(current.routerEvent);
 
           if (previousUrl && currentUrl && this.getBaseRoute(previousUrl) !== this.getBaseRoute(currentUrl)) {
-            this.viewportScroller.scrollToPosition([0, 0]);
+            this.viewportScroller.scrollToPosition([0, 0], this.navigationScrollOptions);
           }
         }
       });

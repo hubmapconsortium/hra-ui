@@ -37,6 +37,12 @@ export const Short: Story = {
   },
 };
 
+export const WithHomeIcon: Story = {
+  args: {
+    crumbs: [{ name: 'Home', route: 'https://humanatlas.io', icon: 'home' }, SAMPLE_CRUMB, { name: 'Current Page' }],
+  },
+};
+
 export const Long: Story = {
   args: {
     crumbs: [SAMPLE_CRUMB, SAMPLE_CRUMB, SAMPLE_CRUMB, { name: 'Current Page' }],

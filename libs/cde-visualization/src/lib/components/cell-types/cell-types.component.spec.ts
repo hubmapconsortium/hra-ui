@@ -1,6 +1,5 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
-import { MatMenuHarness } from '@angular/material/menu/testing';
 import { RenderComponentOptions, render, screen } from '@testing-library/angular';
 import { CellTypeEntry } from '../../models/cell-type';
 import { CellTypesComponent } from './cell-types.component';
@@ -32,61 +31,47 @@ describe('CellTypesComponent', () => {
     });
   }
 
-  it('should update nodes when downloadNodes is called', async () => {
-    const emitFn = jest.fn();
-    const { fixture } = await setup({
-      inputs: { cellTypes, cellTypesSelection },
-      on: {
-        downloadNodes: emitFn,
-      },
-    });
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-
-    await menu.clickItem({ text: /Download/ }, { text: /Cells CSV/ });
-    expect(emitFn).toHaveBeenCalled();
-  });
-
-  it('should update edges when downloadEdges is called', async () => {
-    const emitFn = jest.fn();
-    const { fixture } = await setup({
-      inputs: { cellTypes, cellTypesSelection },
-      on: {
-        downloadEdges: emitFn,
-      },
-    });
-
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-
-    await menu.clickItem({ text: /Download/ }, { text: /Cell Links CSV/ });
-    expect(emitFn).toHaveBeenCalled();
-  });
-
-  it('should update color map when downloadColorMap is called', async () => {
-    const emitFn = jest.fn();
-    const { fixture } = await setup({
-      inputs: { cellTypes, cellTypesSelection },
-      on: {
-        downloadColorMap: emitFn,
-      },
-    });
-
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-
-    await menu.clickItem({ text: /Download/ }, { text: /Cell Color Map CSV/ });
-    expect(emitFn).toHaveBeenCalled();
-  });
-
   it('should render the component', async () => {
     await setup({
       componentInputs: { cellTypes, cellTypesSelection },
     });
 
-    expect(screen.getByText('Cell Types')).toBeInTheDocument();
-    expect(screen.getByText('Total Cell Types')).toBeInTheDocument();
-    expect(screen.getByText('Total Cells')).toBeInTheDocument();
+    expect(screen.getByText('Cell types')).toBeInTheDocument();
+    expect(screen.getByText(`Total (${cellTypesSelection.length} cell types)`)).toBeInTheDocument();
+    expect(screen.getByText('total cells')).toBeInTheDocument();
+    expect(screen.getByText('total cell links')).toBeInTheDocument();
+  });
+
+  it('should show skeleton rows and totals while loading', async () => {
+    const { container, fixture } = await setup({
+      componentInputs: { cellTypes: [], cellTypesSelection: [], loading: true },
+    });
+
+    expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
+    const rows = container.querySelectorAll('tr.mat-mdc-row');
+    expect(rows).toHaveLength(20);
+    // Each skeleton row has a checkbox, a swatch and name, and two counts, in the table's own columns
+    expect(rows[0].querySelectorAll('td cde-skeleton')).toHaveLength(5);
+    expect(rows[0]).toHaveAttribute('aria-hidden', 'true');
+    expect(container.querySelectorAll('tr.mat-mdc-row mat-checkbox')).toHaveLength(0);
+    expect(container.querySelectorAll('tr.mat-mdc-footer-row cde-skeleton')).toHaveLength(3);
+  });
+
+  it('should leave out the links column from the skeleton when cell link data is hidden', async () => {
+    const { container } = await setup({
+      componentInputs: { cellTypes: [], cellTypesSelection: [], loading: true, hideCellLinkData: true },
+    });
+
+    expect(container.querySelectorAll('tr.mat-mdc-row')[0].querySelectorAll('td cde-skeleton')).toHaveLength(4);
+    expect(container.querySelectorAll('tr.mat-mdc-footer-row cde-skeleton')).toHaveLength(2);
+  });
+
+  it('should label a single selected cell type in the singular', async () => {
+    await setup({
+      componentInputs: { cellTypes, cellTypesSelection: ['Cell Type 1'] },
+    });
+
+    expect(screen.getByText('Total (1 cell type)')).toBeInTheDocument();
   });
 
   it('should toggle row selection', async () => {
