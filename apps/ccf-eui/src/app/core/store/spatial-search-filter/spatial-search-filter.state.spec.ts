@@ -23,7 +23,6 @@ import { SpatialSearchFilterState } from './spatial-search-filter.state';
 
     <ul>
       @for (item of items$ | async; track item.id) {
-        <!-- eslint-disable-next-line @angular-eslint/template/prefer-template-literal -->
         <li [attr.data-testid]="'item-' + item.id">{{ item.description }} | selected: {{ item.selected }}</li>
       }
     </ul>
