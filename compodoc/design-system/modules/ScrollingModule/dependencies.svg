@@ -24,13 +24,13 @@
 <title>cluster_ScrollingModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="80,-70 80,-268 416,-268 416,-70 80,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_ScrollingModule_imports</title>
-<polygon fill="none" stroke="black" points="92,-78 92,-130 404,-130 404,-78 92,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_ScrollingModule_exports</title>
 <polygon fill="none" stroke="black" points="88,-208 88,-260 408,-260 408,-208 88,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ScrollingModule_imports</title>
+<polygon fill="none" stroke="black" points="92,-78 92,-130 404,-130 404,-78 92,-78"/>
 </g>
 <!-- CdkScrollable -->
 <g id="node1" class="node">

@@ -615,6 +615,43 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/NavigationRailModule.html" data-type="entity-link" >NavigationRailModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                            'data-bs-target="#components-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' : 'data-bs-target="#xs-components-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' }>
+                                            <span class="icon ion-md-cog"></span>
+                                            <span>Components</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' :
+                                            'id="xs-components-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' }>
+                                            <li class="link">
+                                                <a href="components/NavigationRailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavigationRailComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/NavigationRailItemComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavigationRailItemComponent</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#directives-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' : 'data-bs-target="#xs-directives-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' }>
+                                        <span class="icon ion-md-code-working"></span>
+                                        <span>Directives</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' :
+                                        'id="xs-directives-links-module-NavigationRailModule-67bc51f28aead409559935b2d16ba10b59cb088fea9c0c987384166797b5b32b59e9408709e761de84a58c8bf8bc7405b760d7781dfc698f83dcb9baa0b60b94"' }>
+                                        <li class="link">
+                                            <a href="directives/NavigationRailBottomDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavigationRailBottomDirective</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="directives/NavigationRailMenuDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavigationRailMenuDirective</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/RichTooltipModule.html" data-type="entity-link" >RichTooltipModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -938,6 +975,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/NavigationItemComponent.html" data-type="entity-link" >NavigationItemComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/NavigationRailComponent.html" data-type="entity-link" >NavigationRailComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavigationRailItemComponent.html" data-type="entity-link" >NavigationRailItemComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavigationRailMenuStylesComponent.html" data-type="entity-link" >NavigationRailMenuStylesComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/NoResultsIndicatorComponent.html" data-type="entity-link" >NoResultsIndicatorComponent</a>
                             </li>
                             <li class="link">
@@ -1161,6 +1207,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/NavigationIconDirective.html" data-type="entity-link" >NavigationIconDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/NavigationRailBottomDirective.html" data-type="entity-link" >NavigationRailBottomDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/NavigationRailMenuDirective.html" data-type="entity-link" >NavigationRailMenuDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/NumericRowElementDirective.html" data-type="entity-link" >NumericRowElementDirective</a>
                                 </li>
                                 <li class="link">
@@ -1316,6 +1368,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/PageSectionInstance.html" data-type="entity-link" >PageSectionInstance</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/PlainTooltipOptions.html" data-type="entity-link" >PlainTooltipOptions</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/PrivacyPreferencesData.html" data-type="entity-link" >PrivacyPreferencesData</a>
                             </li>
                             <li class="link">
@@ -1338,6 +1393,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/TableBottomSheetData.html" data-type="entity-link" >TableBottomSheetData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TableOfContentsLayoutOptions.html" data-type="entity-link" >TableOfContentsLayoutOptions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TableOfContentsOptions.html" data-type="entity-link" >TableOfContentsOptions</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TooltipContent.html" data-type="entity-link" >TooltipContent</a>
