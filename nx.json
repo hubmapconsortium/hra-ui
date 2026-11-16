@@ -217,7 +217,7 @@
     },
     "bundle-cli": {
       "cache": true,
-      "inputs": ["production", "^production"],
+      "inputs": ["production", "^production", "{workspaceRoot}/tools/scripts/bundle-cli.mjs"],
       "outputs": ["{workspaceRoot}/dist/{projectRoot}/cli.js"]
     },
     "@nx/js:tsc": {
