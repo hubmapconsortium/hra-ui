@@ -46,6 +46,15 @@ describe('LandingPageComponent', () => {
     expect(intro.length).toBeGreaterThan(0);
   });
 
+  it('should render the page title as the only level 1 heading', async () => {
+    await render(LandingPageComponent, {
+      inputs: { data: mockLandingPageData },
+      providers,
+    });
+
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Human Reference Atlas');
+  });
+
   it('should render count cards', async () => {
     await render(LandingPageComponent, {
       inputs: { data: mockLandingPageData },

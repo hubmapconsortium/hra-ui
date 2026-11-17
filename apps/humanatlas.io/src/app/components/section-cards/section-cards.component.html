@@ -1,4 +1,4 @@
-<span class="section-title">Explore the Human Reference Atlas</span>
+<h2 class="section-title">Explore the Human Reference Atlas</h2>
 
 <hra-grid-container class="cards" hraFeature="section-cards">
   @for (card of cardInfo(); track card) {
@@ -10,7 +10,9 @@
         [hraFeature]="card.tagline | slugify"
       >
         <hra-action-card-action>
-          <a hraHyperlink target="_blank" [attr.href]="card.url">{{ card.action }}</a>
+          <a hraHyperlink target="_blank" [attr.href]="card.url"
+            >{{ card.action }}<span class="cdk-visually-hidden"> ({{ card.tagline }}, opens in a new tab)</span></a
+          >
         </hra-action-card-action>
       </hra-action-card>
     } @else {
@@ -21,7 +23,9 @@
         [hraFeature]="card.tagline | slugify"
       >
         <hra-action-card-action>
-          <a hraHyperlink [routerLink]="card.route">{{ card.action }}</a>
+          <a hraHyperlink [routerLink]="card.route"
+            >{{ card.action }}<span class="cdk-visually-hidden"> ({{ card.tagline }})</span></a
+          >
         </hra-action-card-action>
       </hra-action-card>
     }
