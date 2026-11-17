@@ -38,6 +38,16 @@ describe('SocialMediaButtonComponent', () => {
     }
   });
 
+  it('should say that web links open in a new tab', async () => {
+    await render(SocialMediaButtonComponent, { providers, inputs: { id: 'linkedin' as SocialMediaId } });
+    expect(screen.getByRole('link')).toHaveAccessibleName('Connect with CNS on LinkedIn (opens in a new tab)');
+  });
+
+  it('should not say that email links open in a new tab', async () => {
+    await render(SocialMediaButtonComponent, { providers, inputs: { id: 'email' as SocialMediaId } });
+    expect(screen.getByRole('link')).toHaveAccessibleName('Email us');
+  });
+
   it('should error when passed an invalid id', async () => {
     const result = render(SocialMediaButtonComponent, {
       providers,
