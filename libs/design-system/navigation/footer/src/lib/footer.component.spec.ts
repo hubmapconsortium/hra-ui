@@ -12,6 +12,10 @@ describe('FooterComponent', () => {
     await render(FooterComponent, { providers: globalProviders, imports });
   });
 
+  it('should be a contentinfo landmark', async () => {
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+  });
+
   it('should render the Human Reference Atlas logo', async () => {
     const logo = screen.getByLabelText(/Human Reference Atlas/);
     expect(logo).toBeInTheDocument();

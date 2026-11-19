@@ -11,6 +11,7 @@ describe('FundingComponent', () => {
     expect(links.length).toEqual(FUNDER_IDS.length);
     links.forEach((link) => {
       expect(link.querySelector('img')).toBeInTheDocument();
+      expect(link).toHaveAccessibleName(expect.stringMatching(/\(opens in a new tab\)$/));
     });
   });
 });

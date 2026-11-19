@@ -27,4 +27,10 @@ export class SocialMediaButtonComponent {
 
   /** Social media button data */
   protected readonly data = computed(() => findOrThrow(SOCIALS, ({ id }) => id === this.id()));
+
+  /** Accessible name; email links open a mail app rather than a tab */
+  protected readonly label = computed(() => {
+    const { label, link } = this.data();
+    return link.startsWith('mailto:') ? label : `${label} (opens in a new tab)`;
+  });
 }

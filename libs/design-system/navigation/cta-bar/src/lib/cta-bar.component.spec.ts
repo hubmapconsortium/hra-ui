@@ -16,10 +16,10 @@ describe('CtaBarComponent', () => {
 
     expect(screen.queryByText(description)).toBeInTheDocument();
 
-    const link = screen.queryByRole('link');
-    expect(link).toBeInTheDocument();
+    const link = screen.getByRole('link', { name: `${action} (opens in a new tab)` });
     expect(link).toHaveTextContent(action);
     expect(link).toHaveAttribute('href', url);
+    expect(link).toHaveAccessibleDescription(description);
 
     const button = screen.queryByRole('button');
     expect(button).toBeInTheDocument();
