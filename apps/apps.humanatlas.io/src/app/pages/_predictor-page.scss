@@ -1,0 +1,175 @@
+@use '@angular/material' as mat;
+@use 'utils';
+@use 'vars';
+
+/// Layout shared by the US1 and US2 predictor pages, modeled on the CDE create page
+@mixin styles() {
+  :host {
+    // AtlasNG HRA colors by role. This app's theme doesn't match them yet (its tertiary is red), so they
+    // stand in until the theme moves to AtlasNG, when each becomes var(--mat-sys-<role>).
+    --_surface-container-low: light-dark(#f6f7fc, #1a1c1e);
+    --_primary-container: light-dark(#ffdad9, #95001e);
+    --_on-primary-container: light-dark(#95001e, #ffdad9);
+    --_secondary-container: light-dark(#e3dfff, #171533);
+    --_tertiary-container: light-dark(#e2e0f8, #3d3d50);
+    --_tertiary: light-dark(#4b4b5e, #c6c4db);
+    --_on-tertiary: light-dark(#ffffff, #2f2f41);
+
+    display: block;
+    background:
+      radial-gradient(
+        ellipse 60% 40% at 0% 0%,
+        color-mix(in srgb, var(--_tertiary-container) 90%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 35% at 100% 20%,
+        color-mix(in srgb, var(--_primary-container) 45%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 40% at 100% 85%,
+        color-mix(in srgb, var(--_tertiary-container) 60%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 70% 45% at 20% 100%,
+        color-mix(in srgb, var(--_secondary-container) 80%, transparent),
+        transparent
+      ),
+      var(--_surface-container-low);
+
+    // Unsetting the shape and spacing tokens falls back to Material's defaults. This app's theme
+    // makes Material's default primary color dark gray, so the HRA colors stay. The label size is
+    // AtlasNG's label-large size, and the font family still comes from the theme.
+    @include mat.button-overrides(
+      (
+        text-container-shape: initial,
+        text-horizontal-padding: initial,
+        text-icon-offset: initial,
+        text-label-text-size: 0.875rem,
+        filled-container-shape: initial,
+        filled-horizontal-padding: initial,
+        filled-icon-offset: initial,
+        filled-label-text-size: 0.875rem,
+        outlined-label-text-color: vars.$on-tertiary-fixed,
+        outlined-state-layer-color: vars.$on-tertiary-fixed,
+        outlined-label-text-size: 0.875rem,
+      )
+    );
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      width: 100%;
+      // 42rem for the cards, title and description, plus the side padding
+      max-width: 47rem;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+
+      @media (max-width: 599.98px) {
+        padding-inline: 1.25rem;
+      }
+    }
+
+    // With the cards' gap, 2.5rem below the title and description
+    .page-header {
+      margin-bottom: 1rem;
+
+      .logo {
+        width: 4rem;
+        height: 4rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .title {
+        margin: 0;
+        @include utils.use-font(display, small);
+      }
+
+      .description {
+        margin: 0.75rem 0 0;
+        color: vars.$on-surface-variant;
+        @include utils.use-font(body, large);
+      }
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+      padding: 2rem;
+      background-color: vars.$surface-container-low;
+      border: 1px solid vars.$outline-variant;
+      border-radius: vars.$corner-large;
+      box-shadow: var(--mat-sys-level1);
+
+      @media (max-width: 599.98px) {
+        padding: 1.5rem;
+      }
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .heading {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin: 0;
+
+        &:has(.eyebrow) {
+          gap: 0.25rem;
+        }
+      }
+
+      // Interim eyebrow until AtlasNG specifies one for every brand (cns-iu/AtlasNG#256)
+      .eyebrow {
+        font-family: vars.$body-medium-font;
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 1rem;
+        text-transform: uppercase;
+        color: var(--_on-primary-container);
+      }
+
+      .step-number ::ng-deep .step-number {
+        @include utils.use-font(title, small);
+        background-color: var(--_tertiary);
+        color: var(--_on-tertiary);
+      }
+
+      .card-title {
+        @include utils.use-font(title, large);
+      }
+
+      .description {
+        margin: 0;
+        color: vars.$on-surface-variant;
+        @include utils.use-font(body, large);
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+}

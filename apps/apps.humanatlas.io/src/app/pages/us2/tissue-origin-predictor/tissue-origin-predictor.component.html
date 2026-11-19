@@ -1,116 +1,123 @@
-<ng-container hraFeature="tissue-origin-predictor">
-  <!-- HEADING -->
-  <hra-app-label logo="product:tissue-origin-predictor" tagline="Tissue Origin Predictor" />
+<div class="page" hraFeature="tissue-origin-predictor">
+  <div class="page-header">
+    <hra-icon class="logo" svgIcon="product:tissue-origin-predictor" aria-hidden="true" />
+    <h1 class="title">Tissue Origin Predictor</h1>
+    <p class="description">
+      Upload a cell type population file and use the Human Reference Atlas application programming interface (API) to
+      predict 3D tissue origin.
+    </p>
+  </div>
 
-  <!-- INFO -->
-  <p class="info-text">
-    Upload a cell type population file and use the Human Reference Atlas API to predict 3D tissue origin.
-  </p>
+  <section class="card" hraFeature="upload-cell-population" aria-labelledby="upload-heading">
+    <div class="header">
+      <h2 class="heading" id="upload-heading">
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="1" />
+        <span class="visually-hidden">Step 1 of 3: </span>
+        <span class="card-title">Upload cell population</span>
+      </h2>
+      <p class="description">
+        Upload a cell population file in the comma-separated values (CSV) format or use the example file.
+      </p>
+    </div>
 
-  <!-- CARDS -->
-  <div class="cards">
-    <!-- CARD 1 -->
-    <hra-workflow-card
-      hraFeature="upload-cell-population"
-      tagline="Upload Cell Population"
-      step="1"
-      class="card card-1"
-    >
-      <hra-workflow-card-extra>
-        <a target="_blank" rel="noopener noreferrer" [attr.href]="sampleLinkWithDefault()">
-          <button hraClickEvent hraFeature="view-sample" mat-button hraButtonSize="medium">View sample</button>
+    <ul class="requirements">
+      <li>Required columns: Cell ID, percentage</li>
+      <li>Supported format: CSV</li>
+    </ul>
+
+    <div class="actions">
+      @if (file; as f) {
+        <hra-delete-file-button [fileName]="f.name" (cancelLoad)="clearFile()" />
+      } @else {
+        <button mat-flat-button hraFeature="use-sample" hraClickEvent (click)="onUseSampleClicked()" #useExampleButton>
+          Use example
+        </button>
+        <input
+          type="file"
+          accept=".csv"
+          style="display: none"
+          data-testid="file-input"
+          (change)="onFileSelected($event)"
+          #fileInput
+        />
+        <button mat-stroked-button hraFeature="upload-file" hraClickEvent (click)="fileInput.click()">
+          <mat-icon>upload</mat-icon>
+          Upload CSV
+        </button>
+        <a
+          mat-button
+          hraFeature="view-sample"
+          hraClickEvent
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View template for cell populations, opens in a new tab"
+          [href]="sampleLinkWithDefault()"
+        >
+          View template
+          <mat-icon iconPositionEnd>open_in_new</mat-icon>
         </a>
-      </hra-workflow-card-extra>
-
-      <p class="card-info-text">Upload a cell population CSV file or use the sample file.</p>
-
-      <div class="file-format-info">
-        <div>
-          <span>Required Columns</span>
-          <ul>
-            <li>Cell ID</li>
-            <li>Percentage</li>
-          </ul>
-        </div>
-        <div>
-          <span>Supported Format</span>
-          <ul>
-            <li>CSV</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="buttons">
-        @if (file; as f) {
-          <hra-delete-file-button [fileName]="f.name" (cancelLoad)="file = undefined" />
-        } @else {
-          <button
-            hraClickEvent
-            hraFeature="use-sample"
-            mat-button
-            hraButtonSize="medium"
-            (click)="onUseSampleClicked()"
-          >
-            Use sample
-          </button>
-          <input
-            type="file"
-            accept=".csv"
-            style="display: none"
-            data-testid="file-input"
-            (change)="onFileSelected($event)"
-            #fileInput
-          />
-          <button hraClickEvent hraFeature="upload-file" mat-button hraButtonSize="medium" (click)="fileInput.click()">
-            Upload file
-          </button>
-        }
-      </div>
-    </hra-workflow-card>
-
-    <!-- CARD 2 -->
-    <hra-workflow-card hraFeature="filter-data" tagline="Optional: Filter Data" step="2" class="card card-2">
-      <p class="card-info-text">Pick one tool to avoid double counting of predicted cell types.</p>
-
-      <div class="data-filters">
-        <mat-form-field hraFeature="organ" class="filters">
-          <mat-label>Organ</mat-label>
-          <mat-select hraModelChangeEvent hraPlainTooltip="Organs that have cell type populations." [(ngModel)]="organ">
-            @for (organ of supportedOrgans.value(); track $index) {
-              <mat-option [value]="organ.id">{{ organ.label | titlecase }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field hraFeature="annotation-tool" class="filters">
-          <mat-label>Annotation Tool</mat-label>
-          <mat-select
-            hraModelChangeEvent
-            hraPlainTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
-            [(ngModel)]="tool"
-          >
-            @for (tool of supportedTools.value(); track $index) {
-              <mat-option [value]="tool.id">{{ tool.label | titlecase }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </hra-workflow-card>
-
-    <!-- CARD 3 -->
-    <hra-workflow-card hraFeature="predict-tissue-origin" tagline="Predict Tissue Origin" step="3" class="card card-3">
-      @if (file === undefined) {
-        <hra-error-indicator class="error-message" [errors]="['Please upload a dataset.']" />
       }
+    </div>
+  </section>
+
+  <section class="card" hraFeature="filter-data" aria-labelledby="filter-heading">
+    <div class="header">
+      <h2 class="heading" id="filter-heading">
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="2" />
+        <span class="visually-hidden">Step 2 of 3: </span>
+        <span class="card-title">Optional: filter data</span>
+      </h2>
+      <p class="description">Pick one tool to avoid double counting of predicted cell types.</p>
+    </div>
+
+    <div class="filters">
+      <mat-form-field hraFeature="organ" subscriptSizing="dynamic">
+        <mat-label>Organ</mat-label>
+        <mat-select hraModelChangeEvent hraPlainTooltip="Organs that have cell type populations." [(ngModel)]="organ">
+          @for (organ of supportedOrgans.value(); track $index) {
+            <mat-option [value]="organ.id">{{ organ.label | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field hraFeature="annotation-tool" subscriptSizing="dynamic">
+        <mat-label>Annotation tool</mat-label>
+        <mat-select
+          hraModelChangeEvent
+          hraPlainTooltip="Cell type annotation tool used for assigning cell types based on biomarker information."
+          [(ngModel)]="tool"
+        >
+          @for (tool of supportedTools.value(); track $index) {
+            <mat-option [value]="tool.id">{{ tool.label | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <section class="card" hraFeature="predict-tissue-origin" aria-labelledby="predict-heading">
+    <div class="header">
+      <h2 class="heading" id="predict-heading">
+        <hra-step-indicator class="step-number" aria-hidden="true" [value]="3" />
+        <span class="visually-hidden">Step 3 of 3: </span>
+        <span class="card-title">Predict tissue origin</span>
+      </h2>
+    </div>
+
+    @if (file === undefined) {
+      <hra-error-indicator [errors]="['Please upload a dataset.']" />
+    }
+
+    <div class="actions">
       <button
-        hraClickEvent
-        hraFeature="predict"
         mat-flat-button
+        hraFeature="predict"
+        hraClickEvent
         [disabled]="file === undefined || isNavigating()"
         (click)="onPredictClicked()"
       >
         Predict
       </button>
-    </hra-workflow-card>
-  </div>
-</ng-container>
+    </div>
+  </section>
+</div>

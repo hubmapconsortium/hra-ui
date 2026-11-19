@@ -1,12 +1,20 @@
 @use 'vars';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
   background: linear-gradient(to bottom, vars.$surface-container-high, vars.$surface-container-lowest);
 
   .content {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+
+    // The routed page fills the space down to the footer, so its own background reaches the footer
+    ::ng-deep > :not(router-outlet) {
+      flex-grow: 1;
+    }
 
     &.cta-active {
       --hra-table-of-contents-layout-top-offset: 10rem;
