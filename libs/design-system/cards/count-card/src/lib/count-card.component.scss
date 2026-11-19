@@ -1,3 +1,4 @@
+@use '@angular/cdk';
 @use '../../../../styles/utils';
 @use '../../../../styles/vars';
 
@@ -24,6 +25,7 @@
     display: flex;
     @include utils.use-font(headline, large);
     color: vars.$secondary;
+    font-variant-numeric: tabular-nums;
   }
 
   .label-text {
@@ -33,3 +35,5 @@
     text-align: center;
   }
 }
+
+@include cdk.a11y-visually-hidden();
