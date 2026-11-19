@@ -114,8 +114,9 @@ describe('NodeDistVisualizationComponent', () => {
       expect(screen.getByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).toBeInTheDocument();
       expect(await getVisualizationEl()).toHaveAttribute('inert');
 
-      fireEvent.click(screen.getByRole('button', { name: NO_CELL_TYPES_SELECTED_CONTENT.actionLabel }));
-      expect(emptyStateAction).toHaveBeenCalled();
+      const [{ action, label }] = NO_CELL_TYPES_SELECTED_CONTENT.actions;
+      fireEvent.click(screen.getByRole('button', { name: label }));
+      expect(emptyStateAction).toHaveBeenCalledWith(action);
     });
 
     it('should give way to a skeleton while loading', async () => {
@@ -208,6 +209,17 @@ describe('NodeDistVisualizationComponent', () => {
       expect((el.nodeFilter as NodeFilterView).exclude).toEqual([0]);
     });
 
+    it('deletes each selected cell once, even if the selection lists it twice', async () => {
+      const { fixture } = await setup();
+      await setViewMode(fixture, /Select/);
+      await emitVisualizationEvent(fixture, 'nodeSelectionChange', [SAMPLE_NODE_EVENT, SAMPLE_NODE_EVENT]);
+
+      fixture.componentInstance.deleteSelection();
+      fixture.detectChanges();
+      const el = await getVisualizationEl();
+      expect((el.nodeFilter as NodeFilterView).exclude).toEqual([0]);
+    });
+
     it('clears the selection when the view mode changes, since the visualization drops it', async () => {
       const { fixture } = await setup();
       await setViewMode(fixture, /Select/);
@@ -253,6 +265,50 @@ describe('NodeDistVisualizationComponent', () => {
 
       await rerender({ inputs: { loading: false, emptyState: NO_CELL_TYPES_SELECTED_CONTENT }, partialUpdate: true });
       expect(container.querySelector('.floating-controls')).toBeNull();
+    });
+  });
+
+  describe('undo and redo', () => {
+    it('shows no Undo or Redo until there is a change to undo or redo', async () => {
+      await setup();
+
+      expect(screen.queryByRole('button', { name: 'Undo' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: 'Redo' })).not.toBeInTheDocument();
+    });
+
+    it('floats Undo and Redo in the top left corner, before the visualization in focus order', async () => {
+      const undoClick = jest.fn();
+      const { container } = await setup({ inputs: { undoAvailable: true }, on: { undoClick } });
+
+      const undo = screen.getByRole('button', { name: 'Undo' });
+      const redo = screen.getByRole('button', { name: 'Redo' });
+      expect(undo.closest('.corner-controls')).not.toBeNull();
+      expect(undo).toHaveAttribute('aria-keyshortcuts', 'Control+Z Meta+Z');
+      expect(redo).toHaveAttribute('aria-disabled', 'true');
+      expect(undo.compareDocumentPosition(await getVisualizationEl())).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+      expect(container.querySelector('hra-expansion-panel-header-content .history-controls')).toBeNull();
+
+      fireEvent.click(undo);
+      expect(undoClick).toHaveBeenCalled();
+    });
+
+    it('puts Undo and Redo in the floating controls on tabs', async () => {
+      const redoClick = jest.fn();
+      const { container } = await setup({ inputs: { floatingControls: true, redoAvailable: true }, on: { redoClick } });
+
+      expect(container.querySelector('.corner-controls')).toBeNull();
+      expect(screen.getByRole('button', { name: 'Redo' }).closest('.floating-controls')).not.toBeNull();
+
+      fireEvent.click(screen.getByRole('button', { name: 'Redo' }));
+      expect(redoClick).toHaveBeenCalled();
+    });
+
+    it('hides Undo and Redo while the skeleton or empty state covers the visualization', async () => {
+      const { rerender } = await setup({ inputs: { undoAvailable: true, loading: true } });
+      expect(screen.queryByRole('button', { name: 'Undo' })).not.toBeInTheDocument();
+
+      await rerender({ inputs: { loading: false, emptyState: NO_CELL_TYPES_SELECTED_CONTENT }, partialUpdate: true });
+      expect(screen.queryByRole('button', { name: 'Undo' })).not.toBeInTheDocument();
     });
   });
 });

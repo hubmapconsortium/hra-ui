@@ -37,7 +37,7 @@
       @if (loading() || fullscreenLoading()) {
         <cde-chart-skeleton />
       } @else if (emptyState(); as content) {
-        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit($event)" />
       }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>

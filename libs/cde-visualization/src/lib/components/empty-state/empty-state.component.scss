@@ -27,7 +27,11 @@
     @include utils.use-font(body, medium);
   }
 
-  .action {
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
     margin-top: 0.75rem;
   }
 }

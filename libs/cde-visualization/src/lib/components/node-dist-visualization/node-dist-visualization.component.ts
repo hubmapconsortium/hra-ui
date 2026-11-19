@@ -39,9 +39,10 @@ import {
   ViewMode,
 } from '@hra-ui/node-dist-vis/models';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { getHistoryShortcutLabels, HISTORY_SHORTCUT_KEYS } from '../../shared/history-shortcuts';
 import { ChartSkeletonComponent } from '../chart-skeleton/chart-skeleton.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
-import { EmptyStateContent } from '../empty-state/empty-state.content';
+import { EmptyStateAction, EmptyStateContent } from '../empty-state/empty-state.content';
 import { NodeDistVisualizationControlsComponent } from './controls/node-dist-visualization-controls.component';
 import { NodeDistVisualizationMenuComponent } from './menu/node-dist-visualization-menu.component';
 
@@ -103,8 +104,8 @@ export class NodeDistVisualizationComponent {
   /** Empty state shown in place of the visualization, or undefined when there are cells to show */
   readonly emptyState = input<EmptyStateContent>();
 
-  /** Emits when the empty state's action is clicked */
-  readonly emptyStateAction = output<void>();
+  /** Emits the action of the empty state button that was clicked */
+  readonly emptyStateAction = output<EmptyStateAction>();
 
   /** Whether the panel can open in full screen. The tabbed layout turns it off, which also closes an open view. */
   readonly fullscreenAvailable = input(true);
@@ -123,6 +124,33 @@ export class NodeDistVisualizationComponent {
 
   /** Emits true when the panel opens in full screen and false when it closes */
   readonly fullscreenChange = output<boolean>();
+
+  /** Whether the last change to the deleted cells can be undone */
+  readonly undoAvailable = input(false);
+
+  /** Whether an undone change to the deleted cells can be redone */
+  readonly redoAvailable = input(false);
+
+  /** Emits when Undo is clicked */
+  readonly undoClick = output<void>();
+
+  /** Emits when Redo is clicked */
+  readonly redoClick = output<void>();
+
+  /** Whether Undo and Redo show. They show once there's a change to the deleted cells to undo or redo. */
+  protected readonly historyAvailable = computed(() => this.undoAvailable() || this.redoAvailable());
+
+  /** Labels of the Undo and Redo shortcuts for the platform */
+  private readonly shortcutLabels = getHistoryShortcutLabels();
+
+  /** Tooltips of Undo and Redo, with their shortcuts */
+  protected readonly historyTooltips = {
+    undo: `Undo (${this.shortcutLabels.undo})`,
+    redo: `Redo (${this.shortcutLabels.redo})`,
+  };
+
+  /** Keys of the Undo and Redo shortcuts */
+  protected readonly historyKeys = HISTORY_SHORTCUT_KEYS;
 
   /** Output emitter for node click events */
   readonly nodeClick = output<NodeEvent>();
@@ -285,7 +313,8 @@ export class NodeDistVisualizationComponent {
   deleteSelection(): void {
     const selection = this.selection();
     if (selection.length > 0) {
-      const indices = selection.map((event) => event.index);
+      // Each cell is deleted once, even if the selection lists it twice
+      const indices = Array.from(new Set(selection.map((event) => event.index)));
       const newFilter = this.nodeFilter().addEntries(undefined, indices);
 
       this.visEl().instance?.clearSelection();

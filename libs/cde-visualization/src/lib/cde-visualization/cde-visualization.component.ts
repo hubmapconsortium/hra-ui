@@ -1,4 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { DOCUMENT } from '@angular/common';
 import {
   afterRenderEffect,
   ApplicationRef,
@@ -45,6 +46,7 @@ import {
   loadColorMap,
   loadEdges,
   loadNodes,
+  NodeFilterEntry,
   NodeFilterView,
   NodeKeysInput,
   NodesInput,
@@ -52,7 +54,7 @@ import {
   ViewMode,
   withDataViewDefaultGenerator,
 } from '@hra-ui/node-dist-vis/models';
-import { debounceTime, distinctUntilChanged, pairwise } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, merge, pairwise } from 'rxjs';
 
 import { AboutComponent } from '../components/about/about.component';
 import { CellTypesComponent } from '../components/cell-types/cell-types.component';
@@ -64,6 +66,9 @@ import {
   UnavailableDownloads,
 } from '../components/downloads/downloads.content';
 import {
+  allCellsDeletedContent,
+  distancesDeletedContent,
+  EmptyStateAction,
   EmptyStateContent,
   NO_CELL_TYPES_SELECTED_CONTENT,
   noDistancesContent,
@@ -81,7 +86,9 @@ import { FileSaverService } from '../services/file-saver/file-saver.service';
 import { ThemeSwitchService } from '../services/theme-switch/theme-switch.service';
 import { numberAttribute } from '../shared/attribute-transform';
 import { emptyArrayEquals } from '../shared/empty-array-equals';
+import { getHistoryShortcut } from '../shared/history-shortcuts';
 import { loadingObserver } from '../shared/loading-observer';
+import { UndoHistory } from '../shared/undo-history';
 
 /** Interface for representing the distance entry */
 export interface DistanceEntry {
@@ -113,6 +120,33 @@ const UNDO_SNACKBAR_DURATION = 10000;
 
 /** Announced after the downloads notice shows all panels */
 const ALL_PANELS_SHOWN_ANNOUNCEMENT = 'All panels shown';
+
+/** Class of the spatial view's full screen dialog, which sits outside the visualization */
+const SPATIAL_VIEW_FULLSCREEN_CLASS = 'node-dist-vis-fullscreen-panel';
+
+/**
+ * Announced after undo or redo
+ *
+ * @param change How many more cells are deleted than before, or fewer when negative
+ * @returns How many cells were deleted or restored
+ */
+function deletedCellsChangeAnnouncement(change: number): string {
+  const count = Math.abs(change);
+  const cells = count === 1 ? 'cell' : 'cells';
+  return `${count.toLocaleString()} ${cells} ${change > 0 ? 'deleted' : 'restored'}`;
+}
+
+/**
+ * Checks whether keys typed into an element edit its text, so undo and redo shortcuts belong to it
+ *
+ * @param target Element the keys were typed into
+ * @returns Whether the element is a text field or editable
+ */
+function isEditable(target: EventTarget | null): boolean {
+  return (
+    target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))
+  );
+}
 
 /** Image downloads of the panels that can be hidden */
 const PANEL_IMAGE_DOWNLOADS: Partial<Record<PanelId, DownloadFileId>> = {
@@ -440,7 +474,8 @@ export class CdeVisualizationComponent {
     const nodes = this.nodesView();
     const edgesCounts = this.edgeCountsBySourceNode();
     const { exclude = [] } = this.nodeFilterView();
-    const indices = exclude.filter((entry) => typeof entry === 'number');
+    // Each deleted cell counts once, even if it was excluded twice
+    const indices = new Set(exclude.filter((entry) => typeof entry === 'number'));
     const result: Record<string, { count: number; outgoingEdgeCount: number }> = {};
 
     for (const index of indices) {
@@ -487,10 +522,62 @@ export class CdeVisualizationComponent {
     return this.cellTypes().some(({ name }) => name !== anchor) && this.filteredCellTypes().length === 0;
   });
 
+  /**
+   * Cells of the selected cell types and how many are left after deletions, overall and for the cell types
+   * other than the anchor type, which the charts show
+   */
+  private readonly selectedCellCounts = computed(() => {
+    const selection = new Set(this.cellTypesSelection());
+    const anchor = this.nodeTargetSelectorWithDefault();
+    const adjustments = this.countAdjustments();
+    const counts = { cells: 0, cellsLeft: 0, distanceCells: 0, distanceCellsLeft: 0 };
+    for (const { name, count } of this.cellTypes()) {
+      if (selection.has(name)) {
+        const left = count - (adjustments[name]?.count ?? 0);
+        counts.cells += count;
+        counts.cellsLeft += left;
+        if (name !== anchor) {
+          counts.distanceCells += count;
+          counts.distanceCellsLeft += left;
+        }
+      }
+    }
+    return counts;
+  });
+
+  /** Whether every cell of the selected cell types was deleted, so every panel is empty */
+  private readonly allCellsDeleted = computed(() => {
+    const { cells, cellsLeft } = this.selectedCellCounts();
+    return cells > 0 && cellsLeft === 0;
+  });
+
+  /** Whether every selected cell other than the anchor cells was deleted, so the charts are empty */
+  private readonly distanceCellsDeleted = computed(() => {
+    const { distanceCells, distanceCellsLeft } = this.selectedCellCounts();
+    return distanceCells > 0 && distanceCellsLeft === 0;
+  });
+
+  /** Excluded entries of the node filter, which change only when cells are deleted or restored */
+  private readonly deletedCells = computed(() => this.nodeFilterView().exclude);
+
+  /** Undo and redo history of the deleted cells */
+  private readonly deletedCellsHistory = new UndoHistory<NodeFilterEntry[] | undefined>(undefined);
+
+  /** Whether the last change to the deleted cells can be undone */
+  protected readonly canUndo = this.deletedCellsHistory.canUndo;
+
+  /** Whether an undone change to the deleted cells can be redone */
+  protected readonly canRedo = this.deletedCellsHistory.canRedo;
+
   /** Empty state for the distance visualization */
-  protected readonly visualizationEmptyState = computed(() =>
-    this.noCellTypesSelected() ? NO_CELL_TYPES_SELECTED_CONTENT : undefined,
-  );
+  protected readonly visualizationEmptyState = computed((): EmptyStateContent | undefined => {
+    if (this.noCellTypesSelected()) {
+      return NO_CELL_TYPES_SELECTED_CONTENT;
+    } else if (this.allCellsDeleted()) {
+      return allCellsDeletedContent(this.canUndo());
+    }
+    return undefined;
+  });
 
   /** Empty state for the violin graph and histogram */
   protected readonly chartsEmptyState = computed((): EmptyStateContent | undefined => {
@@ -498,6 +585,10 @@ export class CdeVisualizationComponent {
       return NO_CELL_TYPES_SELECTED_CONTENT;
     } else if (this.noDistancesSelected()) {
       return noDistancesContent(this.nodeTargetSelectorWithDefault());
+    } else if (this.allCellsDeleted()) {
+      return allCellsDeletedContent(this.canUndo());
+    } else if (this.distanceCellsDeleted()) {
+      return distancesDeletedContent(this.nodeTargetSelectorWithDefault(), this.canUndo());
     }
     return undefined;
   });
@@ -518,6 +609,12 @@ export class CdeVisualizationComponent {
     if (this.noDistancesSelected()) {
       files.push('violin-graph', 'histogram');
       notices.push(unavailable.noDistances(this.nodeTargetSelectorWithDefault()));
+    } else if (this.allCellsDeleted()) {
+      files.push('visualization', 'violin-graph', 'histogram', 'cells', 'cell-links');
+      notices.push(unavailable.allCellsDeleted);
+    } else if (this.distanceCellsDeleted()) {
+      files.push('violin-graph', 'histogram');
+      notices.push(unavailable.distancesDeleted);
     }
 
     // The tabs have no Layout menu, so their notice doesn't point to it or offer to show the panels
@@ -696,6 +793,12 @@ export class CdeVisualizationComponent {
   /** Application, used to wait for a tab to render before downloading its image */
   private readonly appRef = inject(ApplicationRef);
 
+  /** Document, where the undo and redo shortcuts are heard */
+  private readonly document = inject(DOCUMENT);
+
+  /** Whether the last click or focus was in the visualization, so its shortcuts work after focus moves to the page */
+  private lastInteractionInside = false;
+
   /** Setup component */
   constructor() {
     effect(() => {
@@ -746,6 +849,28 @@ export class CdeVisualizationComponent {
       }
     });
 
+    // Records each change to the deleted cells, from deleting, restoring, and resetting everything. Undo and redo
+    // record nothing, since they go to a value the history already holds.
+    effect(() => {
+      const deleted = this.deletedCells();
+      untracked(() => this.deletedCellsHistory.record(deleted));
+    });
+
+    // Deleted cells are stored by index, so a new dataset starts a new history
+    effect(() => {
+      this.nodesView();
+      untracked(() => this.deletedCellsHistory.reset(this.deletedCells()));
+    });
+
+    // Undo and redo shortcuts work while the visualization was the last thing clicked or focused. Clicks are
+    // heard while capturing, since the spatial view's canvas may stop them.
+    merge(fromEvent<Event>(this.document, 'pointerdown', { capture: true }), fromEvent<Event>(this.document, 'focusin'))
+      .pipe(takeUntilDestroyed())
+      .subscribe((event) => (this.lastInteractionInside = this.isInside(event.target)));
+    fromEvent<KeyboardEvent>(this.document, 'keydown')
+      .pipe(takeUntilDestroyed())
+      .subscribe((event) => this.handleShortcut(event));
+
     // Connect outputs
     this.bindDataOutput(this.nodesView, this.nodesChange);
     this.bindDataOutput(this.edgesView, this.edgesChange);
@@ -775,6 +900,83 @@ export class CdeVisualizationComponent {
   /** Restores the cells deleted from the distance visualization */
   restoreDeletedCells(): void {
     this.nodeFilterView.set(this.nodeFilterView().clear(false, true));
+  }
+
+  /** Undoes the last change to the deleted cells: a delete, a restore, or Reset everything */
+  undo(): void {
+    this.moveInDeletedCellsHistory(() => this.deletedCellsHistory.undo());
+  }
+
+  /** Redoes the last undone change to the deleted cells */
+  redo(): void {
+    this.moveInDeletedCellsHistory(() => this.deletedCellsHistory.redo());
+  }
+
+  /**
+   * Does what an empty state's button asks
+   *
+   * @param action Action of the button
+   */
+  protected handleEmptyStateAction(action: EmptyStateAction): void {
+    switch (action) {
+      case 'select-all-cell-types':
+        return this.selectAllCellTypes();
+      case 'undo':
+        return this.undo();
+      case 'restore-deleted-cells':
+        return this.restoreDeletedCells();
+    }
+  }
+
+  /**
+   * Moves through the deleted cells history, applies its value, and announces how many cells were deleted or restored
+   *
+   * @param move Moves the history and returns whether there was a step to move to
+   */
+  private moveInDeletedCellsHistory(move: () => boolean): void {
+    const before = this.deletedCells()?.length ?? 0;
+    if (move()) {
+      const deleted = this.deletedCellsHistory.value;
+      this.nodeFilterView.set(new NodeFilterView(this.nodeFilterView().include, deleted));
+      this.liveAnnouncer.announce(deletedCellsChangeAnnouncement((deleted?.length ?? 0) - before));
+    }
+  }
+
+  /**
+   * Undoes or redoes on a shortcut, while the visualization or its spatial view's full screen dialog has focus,
+   * or focus fell back to the page after an interaction in the visualization. Text fields keep their own undo.
+   *
+   * @param event Key press
+   */
+  private handleShortcut(event: KeyboardEvent): void {
+    const shortcut = getHistoryShortcut(event);
+    const { target } = event;
+    const onPage = target === this.document.body || target === this.document.documentElement;
+    const inside = this.isInside(target) || (onPage && this.lastInteractionInside);
+    if (shortcut === undefined || event.defaultPrevented || !inside || isEditable(target)) {
+      return;
+    }
+
+    event.preventDefault();
+    if (shortcut === 'undo') {
+      this.undo();
+    } else {
+      this.redo();
+    }
+  }
+
+  /**
+   * Checks whether an event happened in the visualization or its spatial view's full screen dialog
+   *
+   * @param target Event target
+   * @returns Whether the target is inside
+   */
+  private isInside(target: EventTarget | null): boolean {
+    if (!(target instanceof Element)) {
+      return false;
+    }
+    const host: HTMLElement = this.elementRef.nativeElement;
+    return host.contains(target) || target.closest(`.${SPATIAL_VIEW_FULLSCREEN_CLASS}`) !== null;
   }
 
   /**

@@ -116,8 +116,9 @@ describe('HistogramComponent', () => {
     expect(screen.getByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).toBeInTheDocument();
     expect(screen.getByTestId('histogram')).toHaveAttribute('inert');
 
-    fireEvent.click(screen.getByRole('button', { name: NO_CELL_TYPES_SELECTED_CONTENT.actionLabel }));
-    expect(emptyStateAction).toHaveBeenCalled();
+    const [{ action, label }] = NO_CELL_TYPES_SELECTED_CONTENT.actions;
+    fireEvent.click(screen.getByRole('button', { name: label }));
+    expect(emptyStateAction).toHaveBeenCalledWith(action);
   });
 
   it('should show a skeleton in place of the empty state while loading', async () => {

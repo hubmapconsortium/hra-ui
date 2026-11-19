@@ -55,6 +55,14 @@
             [(viewMode)]="viewMode"
             (deleteClick)="deleteSelection()"
           />
+          @if (historyAvailable()) {
+            <ng-container *ngTemplateOutlet="historyControls" />
+          }
+        </div>
+      } @else if (!floatingControls() && historyAvailable() && !loading() && !emptyState()) {
+        <!-- In the panel layout and full screen, Undo and Redo float in the top left corner, so the header keeps its width -->
+        <div class="corner-controls">
+          <ng-container *ngTemplateOutlet="historyControls" />
         </div>
       }
       <hra-node-dist-vis
@@ -67,7 +75,7 @@
       @if (loading()) {
         <cde-chart-skeleton />
       } @else if (emptyState(); as content) {
-        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit($event)" />
       }
       @if (cellInfoOpen() && dockCellInfo()) {
         <hra-info-modal
@@ -102,4 +110,37 @@
     [data]="cellInfoContent()"
     (close)="cellInfo.set(undefined)"
   />
+</ng-template>
+
+<!-- Undo and Redo of the deleted cells, on one raised surface. A button stays focusable and keeps its tooltip
+     while it has nothing to undo or redo. -->
+<ng-template #historyControls>
+  <div class="history-controls" role="group" aria-label="Undo and redo">
+    <button
+      mat-icon-button
+      disabledInteractive
+      hraFeature="undo"
+      hraClickEvent
+      aria-label="Undo"
+      [attr.aria-keyshortcuts]="historyKeys.undo"
+      [disabled]="!undoAvailable()"
+      [hraPlainTooltip]="historyTooltips.undo"
+      (click)="undoClick.emit()"
+    >
+      <mat-icon>undo</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      disabledInteractive
+      hraFeature="redo"
+      hraClickEvent
+      aria-label="Redo"
+      [attr.aria-keyshortcuts]="historyKeys.redo"
+      [disabled]="!redoAvailable()"
+      [hraPlainTooltip]="historyTooltips.redo"
+      (click)="redoClick.emit()"
+    >
+      <mat-icon>redo</mat-icon>
+    </button>
+  </div>
 </ng-template>

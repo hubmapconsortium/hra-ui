@@ -15,6 +15,7 @@ import {
   EMPTY_COLOR_MAP_VIEW,
   EMPTY_EDGES_VIEW,
   EMPTY_NODES_VIEW,
+  NodeFilterView,
   NodesView,
 } from '@hra-ui/node-dist-vis/models';
 import { fireEvent, render, RenderComponentOptions, screen, waitFor, within } from '@testing-library/angular';
@@ -23,7 +24,12 @@ import { EMPTY, Subject } from 'rxjs';
 import embed, { Result } from 'vega-embed';
 import { ABOUT_CONTENT } from '../components/about/about.content';
 import { DOWNLOADS_CONTENT, DownloadRequest } from '../components/downloads/downloads.content';
-import { NO_CELL_TYPES_SELECTED_CONTENT, noDistancesContent } from '../components/empty-state/empty-state.content';
+import {
+  allCellsDeletedContent,
+  distancesDeletedContent,
+  NO_CELL_TYPES_SELECTED_CONTENT,
+  noDistancesContent,
+} from '../components/empty-state/empty-state.content';
 import { HistogramComponent } from '../components/histogram/histogram.component';
 import { MetadataComponent } from '../components/metadata/metadata.component';
 import { NodeDistVisualizationComponent } from '../components/node-dist-visualization/node-dist-visualization.component';
@@ -164,6 +170,174 @@ describe('CdeVisualizationComponent', () => {
       },
       TIMEOUT,
     );
+
+    it(
+      'counts each deleted cell once, even if it was excluded twice',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        instance.nodeFilterView.set(new NodeFilterView(undefined, [0, 0]));
+
+        expect(instance.countAdjustments()['epithelial'].count).toBe(1);
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('deleted cells', () => {
+    type Fixture = Awaited<ReturnType<typeof setup>>['fixture'];
+
+    async function deleteCells(fixture: Fixture, indices: number[]): Promise<void> {
+      fixture.componentInstance.nodeFilterView.update((prev) => prev.addEntries(undefined, indices));
+      fixture.detectChanges();
+      await fixture.whenStable();
+    }
+
+    function getDeleted(fixture: Fixture) {
+      return fixture.componentInstance.nodeFilterView().exclude;
+    }
+
+    it(
+      'undoes and redoes deletes and restores, and announces how many cells changed',
+      async () => {
+        const { fixture } = await setup();
+        const instance = fixture.componentInstance;
+        const announce = jest.spyOn(TestBed.inject(LiveAnnouncer), 'announce');
+        expect(instance['canUndo']()).toBe(false);
+
+        await deleteCells(fixture, [0, 1]);
+        instance.restoreDeletedCells();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        instance.undo();
+        expect(getDeleted(fixture)).toEqual([0, 1]);
+        expect(announce).toHaveBeenLastCalledWith('2 cells deleted');
+
+        instance.undo();
+        expect(getDeleted(fixture)).toBeUndefined();
+        expect(announce).toHaveBeenLastCalledWith('2 cells restored');
+        expect(instance['canUndo']()).toBe(false);
+
+        instance.redo();
+        expect(getDeleted(fixture)).toEqual([0, 1]);
+        expect(instance['canRedo']()).toBe(true);
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'undoes and redoes on keyboard shortcuts in the visualization, except in text fields',
+      async () => {
+        const { fixture } = await setup();
+        const host: HTMLElement = fixture.nativeElement;
+        await deleteCells(fixture, [0]);
+
+        fireEvent.keyDown(host, { key: 'z', ctrlKey: true });
+        expect(getDeleted(fixture)).toBeUndefined();
+
+        fireEvent.keyDown(host, { key: 'y', ctrlKey: true });
+        expect(getDeleted(fixture)).toEqual([0]);
+
+        const input = document.createElement('input');
+        host.appendChild(input);
+        fireEvent.keyDown(input, { key: 'z', ctrlKey: true });
+        expect(getDeleted(fixture)).toEqual([0]);
+        input.remove();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'keeps its shortcuts after focus falls back to the page, until something outside is clicked',
+      async () => {
+        const { fixture } = await setup();
+        await deleteCells(fixture, [0]);
+
+        fireEvent.pointerDown(fixture.nativeElement);
+        fireEvent.keyDown(document.body, { key: 'z', ctrlKey: true });
+        expect(getDeleted(fixture)).toBeUndefined();
+
+        const outside = document.createElement('button');
+        document.body.appendChild(outside);
+        fireEvent.pointerDown(outside);
+        fireEvent.keyDown(document.body, { key: 'z', metaKey: true, shiftKey: true });
+        expect(getDeleted(fixture)).toBeUndefined();
+        outside.remove();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows an all cells deleted state in every panel, which brings the cells back',
+      async () => {
+        const { fixture } = await setup();
+        const { heading } = allCellsDeletedContent(true);
+        await deleteCells(fixture, [0, 1, 2]);
+
+        expect(screen.getAllByText(heading)).toHaveLength(3);
+        fireEvent.click(screen.getAllByRole('button', { name: 'Undo' })[0]);
+        fixture.detectChanges();
+        await fixture.whenStable();
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+
+        fixture.componentInstance.redo();
+        fixture.detectChanges();
+        fireEvent.click(screen.getAllByRole('button', { name: 'Restore deleted cells' })[0]);
+        fixture.detectChanges();
+        expect(getDeleted(fixture)).toBeUndefined();
+        expect(screen.queryByText(heading)).not.toBeInTheDocument();
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'disables the downloads that would be empty once every cell is deleted',
+      async () => {
+        const { fixture } = await setup();
+        await deleteCells(fixture, [0, 1, 2]);
+
+        expect(fixture.componentInstance['unavailableDownloads']()).toEqual({
+          files: ['visualization', 'violin-graph', 'histogram', 'cells', 'cell-links'],
+          notice: DOWNLOADS_CONTENT.unavailable.allCellsDeleted,
+          showPanels: false,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'shows an empty state in the charts only when just anchor cells are left',
+      async () => {
+        const { fixture } = await setup({ inputs: { nodeTargetSelector: 'epithelial' } });
+        await deleteCells(fixture, [1, 2]);
+
+        expect(screen.getAllByText(distancesDeletedContent('epithelial', true).heading)).toHaveLength(2);
+        expect(screen.queryByText(allCellsDeletedContent(true).heading)).not.toBeInTheDocument();
+        expect(fixture.componentInstance['unavailableDownloads']()).toEqual({
+          files: ['violin-graph', 'histogram'],
+          notice: DOWNLOADS_CONTENT.unavailable.distancesDeleted,
+          showPanels: false,
+        });
+      },
+      TIMEOUT,
+    );
+
+    it(
+      'starts a new history for a new dataset',
+      async () => {
+        const { fixture } = await setup();
+        await deleteCells(fixture, [0]);
+        expect(fixture.componentInstance['canUndo']()).toBe(true);
+
+        fixture.componentRef.setInput('nodes', new NodesView([SAMPLE_NODE], EMPTY_NODES_VIEW.keyMapping));
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(fixture.componentInstance['canUndo']()).toBe(false);
+      },
+      TIMEOUT,
+    );
   });
 
   describe('updateColor()', () => {
@@ -283,7 +457,7 @@ describe('CdeVisualizationComponent', () => {
   });
 
   describe('empty states', () => {
-    const { heading, description, actionLabel } = NO_CELL_TYPES_SELECTED_CONTENT;
+    const { heading, description, actions } = NO_CELL_TYPES_SELECTED_CONTENT;
 
     it(
       'shows no empty states while cell types are selected',
@@ -318,7 +492,7 @@ describe('CdeVisualizationComponent', () => {
         instance.cellTypesSelection.set([]);
         fixture.detectChanges();
 
-        fireEvent.click(screen.getAllByRole('button', { name: actionLabel })[0]);
+        fireEvent.click(screen.getAllByRole('button', { name: actions[0].label })[0]);
         fixture.detectChanges();
 
         expect(instance.cellTypesSelection()).toEqual(instance.cellTypes().map(({ name }) => name));
