@@ -1,94 +1,164 @@
-import { ViewportScroller } from '@angular/common';
-import { inject, Injectable, InjectionToken, Provider } from '@angular/core';
-import { Event, NavigationEnd, NavigationSkipped, Router, RouterEvent, Scroll } from '@angular/router';
-import { filter, pairwise, startWith } from 'rxjs/operators';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
+import { inject, Injectable } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  Event,
+  NavigationEnd,
+  NavigationSkipped,
+  NavigationSkippedCode,
+  NavigationStart,
+  Router,
+} from '@angular/router';
 
-/** Custom scroll options */
-export interface CustomScrollOptions {
-  /**
-   * Whether route changes and restored positions jump instantly, skipping the document's smooth scroll-behavior,
-   * so a new page starts at the top right away. Anchor links still scroll smoothly.
-   */
-  instantNavigation: boolean;
-}
-
-/** Injection token for custom scroll options */
-export const CUSTOM_SCROLL_OPTIONS = new InjectionToken<CustomScrollOptions>('CustomScrollOptions', {
-  providedIn: 'root',
-  factory: () => ({ instantNavigation: false }),
-});
+/** Jumps even when the page or a site embedding the app sets `scroll-behavior: smooth` */
+const INSTANT_SCROLL: ScrollOptions = { behavior: 'instant' };
+/** How long to keep retrying a back/forward restore while the page is still growing */
+const RESTORE_TIMEOUT_MS = 3000;
+/** User input that cancels a pending restore so it never fights the user */
+const USER_SCROLL_EVENTS = ['wheel', 'touchstart', 'keydown', 'mousedown'] as const;
 
 /**
- * Provides custom scroll options
+ * Custom scroll service to handle scroll restoration on navigation events.
  *
- * @param options Custom scroll options
- * @returns A provider for the options
- */
-export function provideCustomScrollOptions(options: CustomScrollOptions): Provider {
-  return { provide: CUSTOM_SCROLL_OPTIONS, useValue: options };
-}
-
-/**
- * Custom scroll service to handle scroll restoration on navigation events
+ * Listens to navigation events directly instead of the router's `Scroll` events.
+ * The router only emits those after `ApplicationRef.bootstrap`, which never runs
+ * for apps started with `createCustomElement` (e.g. apps.humanatlas.io, dashboard).
  */
 @Injectable({ providedIn: 'root' })
 export class CustomScrollService {
   /**
    * Injects the Angular Router.
    */
-  private router = inject(Router);
+  private readonly router = inject(Router);
   /**
    * Injects the ViewportScroller.
    */
-  private viewportScroller = inject(ViewportScroller);
-  /**
-   * Scroll options for route changes and restored positions
-   */
-  private navigationScrollOptions: ScrollOptions | undefined = inject(CUSTOM_SCROLL_OPTIONS).instantNavigation
-    ? { behavior: 'instant' }
-    : undefined;
+  private readonly viewportScroller = inject(ViewportScroller);
+  /** Document reference */
+  private readonly document = inject(DOCUMENT);
+
+  /** Cancels the in-progress back/forward restore, if any */
+  private restoreController?: AbortController;
+  /** Scroll position saved when leaving each navigation, keyed by navigation id */
+  private readonly positions = new Map<number, [number, number]>();
+  /** Id of the most recently completed navigation */
+  private lastId = 0;
+  /** What triggered the current navigation */
+  private lastTrigger: NavigationStart['navigationTrigger'];
+  /** Id of the navigation being restored by a back/forward navigation */
+  private restoredId = 0;
+  /** Base route of the previously completed navigation */
+  private previousBaseRoute?: string;
 
   /**
    * CustomScrollService constructor
-   * @param router The Angular Router instance to listen for navigation events
-   * @param viewportScroller The ViewportScroller instance to manage scroll positions
    */
   constructor() {
     this.viewportScroller.setHistoryScrollRestoration('manual');
-    this.handleScrollOnNavigation();
+    this.router.events.pipe(takeUntilDestroyed()).subscribe((event) => this.handleRouterEvent(event));
   }
 
   /**
-   * Handles scroll restoration on navigation events.
-   * It listens for scroll events and manages the scroll position based on the navigation type.
+   * Tracks navigation state and schedules a scroll when a navigation completes.
+   * @param event Router event
+   */
+  private handleRouterEvent(event: Event): void {
+    if (event instanceof NavigationStart) {
+      this.restoreController?.abort();
+      this.positions.set(this.lastId, this.viewportScroller.getScrollPosition());
+      this.lastTrigger = event.navigationTrigger;
+      this.restoredId = event.restoredState?.navigationId ?? 0;
+    } else if (event instanceof NavigationEnd) {
+      this.lastId = event.id;
+      const position = this.lastTrigger === 'popstate' ? this.positions.get(this.restoredId) : undefined;
+      this.scheduleScroll(event.urlAfterRedirects, position);
+    } else if (event instanceof NavigationSkipped && event.code === NavigationSkippedCode.IgnoredSameUrlNavigation) {
+      this.lastTrigger = undefined;
+      this.restoredId = 0;
+      this.scheduleScroll(event.url);
+    }
+  }
+
+  /**
+   * Scrolls once the new page has rendered, using the same delay as the router.
    * - If the navigation is backward, it restores the previous scroll position.
    * - If the navigation is to an anchor, it scrolls to that anchor.
    * - If the navigation is forward (i.e., route change), it scrolls to the top.
+   * @param url Url navigated to
+   * @param position Scroll position to restore, if any
    */
-  private handleScrollOnNavigation(): void {
-    this.router.events
-      .pipe(
-        filter((e: Event): e is Scroll => e instanceof Scroll),
-        startWith(new Scroll(new NavigationEnd(-1, '', ''), null, null)),
-        pairwise(),
-      )
-      .subscribe((e: Scroll[]) => {
-        const previous = e[0];
-        const current = e[1];
+  private scheduleScroll(url: string, position?: [number, number]): void {
+    const anchor = this.router.parseUrl(url).fragment;
+    const baseRoute = this.getBaseRoute(url);
+    const previousBaseRoute = this.previousBaseRoute;
+    this.previousBaseRoute = baseRoute;
 
-        if (current.position) {
-          this.viewportScroller.scrollToPosition(current.position, this.navigationScrollOptions);
-        } else if (current.anchor) {
-          this.viewportScroller.scrollToAnchor(current.anchor);
-        } else {
-          const previousUrl = this.getUrlFromRouterEvent(previous.routerEvent);
-          const currentUrl = this.getUrlFromRouterEvent(current.routerEvent);
+    this.afterRender(() => {
+      if (position) {
+        this.restorePosition(position);
+      } else if (anchor) {
+        this.viewportScroller.scrollToAnchor(anchor);
+      } else if (previousBaseRoute !== undefined && previousBaseRoute !== baseRoute) {
+        this.viewportScroller.scrollToPosition([0, 0], INSTANT_SCROLL);
+      }
+    });
+  }
 
-          if (previousUrl && currentUrl && this.getBaseRoute(previousUrl) !== this.getBaseRoute(currentUrl)) {
-            this.viewportScroller.scrollToPosition([0, 0], this.navigationScrollOptions);
-          }
-        }
-      });
+  /**
+   * Restores a saved scroll position. Content that loads after render (web components,
+   * images, data) can leave the page too short to reach it, so the restore is reapplied
+   * as the page grows until it lands, times out, or the user scrolls.
+   * @param position Scroll position to restore
+   */
+  private restorePosition(position: [number, number]): void {
+    const restore = (): boolean => {
+      this.viewportScroller.scrollToPosition(position, INSTANT_SCROLL);
+      return Math.abs(this.viewportScroller.getScrollPosition()[1] - position[1]) < 1;
+    };
+
+    const window = this.document.defaultView;
+    if (restore() || !window || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+
+    const controller = new AbortController();
+    const { signal } = controller;
+    const observer = new ResizeObserver(() => {
+      if (restore()) {
+        controller.abort();
+      }
+    });
+    const timeout = setTimeout(() => controller.abort(), RESTORE_TIMEOUT_MS);
+
+    signal.addEventListener('abort', () => {
+      observer.disconnect();
+      clearTimeout(timeout);
+    });
+    for (const type of USER_SCROLL_EVENTS) {
+      window.addEventListener(type, () => controller.abort(), { passive: true, signal });
+    }
+
+    observer.observe(this.document.documentElement);
+    this.restoreController = controller;
+  }
+
+  /**
+   * Runs a callback after the next timeout or animation frame, whichever comes first.
+   * @param callback Function to run
+   */
+  private afterRender(callback: () => void): void {
+    let done = false;
+    const run = () => {
+      if (!done) {
+        done = true;
+        callback();
+      }
+    };
+
+    setTimeout(run);
+    if (typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(run);
+    }
   }
 
   /**
@@ -98,19 +168,5 @@ export class CustomScrollService {
    */
   private getBaseRoute(url: string): string {
     return url.split('?')[0];
-  }
-
-  /**
-   * Extracts the URL from a RouterEvent.
-   * @param event The RouterEvent to extract the URL from
-   * @returns The URL as a string, or null if the event does not contain a URL
-   * */
-  private getUrlFromRouterEvent(event: RouterEvent): string | null {
-    if (event instanceof NavigationEnd) {
-      return event.urlAfterRedirects;
-    } else if (event instanceof NavigationSkipped) {
-      return event.url;
-    }
-    return null;
   }
 }

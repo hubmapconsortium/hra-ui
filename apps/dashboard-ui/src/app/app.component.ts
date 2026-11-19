@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { BaseApplicationComponent } from '@hra-ui/application';
 import { HraCommonModule } from '@hra-ui/common';
+import { CustomScrollService } from '@hra-ui/common/custom-scroll';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { IconsModule } from '@hra-ui/design-system/icons';
@@ -32,6 +33,7 @@ export class AppComponent extends BaseApplicationComponent {
   /** Initialize app */
   constructor() {
     super({ screenSizeNotice: { width: 1280, height: 832 } });
+    inject(CustomScrollService);
     inject(Router).initialNavigation();
   }
 }
