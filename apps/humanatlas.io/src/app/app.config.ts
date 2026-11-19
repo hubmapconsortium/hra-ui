@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, TitleStrategy, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideContentTemplateControllers, provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
@@ -28,6 +28,7 @@ import { ReleaseNotesVersionSelectorDef } from './components/release-notes-versi
 import { SummaryStatisticsTableDef } from './components/summary-statistics-table/summary-statistics-table.definition';
 import { DataViewerParamSyncControllerService } from './controllers/data-viewer-param-sync/data-viewer-param-sync.service';
 import { VersionedTableParamSyncControllerService } from './controllers/versioned-table-param-sync/versioned-table-param-sync.service';
+import { PageMetadataStrategy } from './utils/page-metadata-strategy';
 
 /** Application configuration */
 export const appConfig: ApplicationConfig = {
@@ -68,5 +69,6 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ anchorScrolling: 'disabled', scrollPositionRestoration: 'disabled' }),
     ),
     provideRouterExt(),
+    { provide: TitleStrategy, useClass: PageMetadataStrategy },
   ],
 };
