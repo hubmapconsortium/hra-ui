@@ -2,10 +2,12 @@
 @use '../../../../../../libs/design-system/styles/utils' as utils;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
 
+$_fluid-space: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);
+
 :host {
   display: flex;
   flex-direction: column;
-  padding: 2.5rem;
+  padding: $_fluid-space 2.5rem;
   background-color: vars.$surface-bright;
   align-items: center;
 
@@ -19,10 +21,10 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 2.5rem;
+    gap: $_fluid-space;
     font: vars.$label-medium;
     letter-spacing: vars.$label-medium-tracking;
-    margin-bottom: 2.5rem;
+    margin-bottom: $_fluid-space;
 
     hra-brand-logo,
     hra-funding {
@@ -42,8 +44,8 @@
     flex-wrap: wrap;
     align-items: center;
     font: vars.$label-medium;
-    margin-top: 2.5rem;
-    gap: 2.5rem;
+    margin-top: $_fluid-space;
+    gap: $_fluid-space;
 
     .socials {
       display: flex;
@@ -71,11 +73,14 @@
   @media (min-width: 1024px) {
     .content-container {
       flex-wrap: nowrap;
-      justify-content: flex-start;
+
+      .disclaimer {
+        flex-grow: 0;
+      }
     }
   }
 
   @media (max-width: 639px) {
-    padding: 2.5rem 1.25rem;
+    padding-inline: 1.25rem;
   }
 }
