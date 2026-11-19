@@ -1,18 +1,17 @@
 import { AnimationDriver } from '@angular/animations/browser';
 import { MockAnimationDriver } from '@angular/animations/browser/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { WritableSignal } from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { TestBed } from '@angular/core/testing';
-import { MatMenuHarness } from '@angular/material/menu/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAssetHref } from '@hra-ui/common/url';
-import { Rgb } from '@hra-ui/design-system/color-picker';
-import { render, RenderComponentOptions, screen } from '@testing-library/angular';
+import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mockClear, mockDeep } from 'jest-mock-extended';
+import { BehaviorSubject } from 'rxjs';
 import embed, { Result } from 'vega-embed';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
 import { HistogramComponent } from './histogram.component';
 import { CellTypeEntry } from '../../models/cell-type';
+import { NO_CELL_TYPES_SELECTED_CONTENT } from '../empty-state/empty-state.content';
 
 jest.mock('vega-embed', () => jest.fn());
 
@@ -88,8 +87,53 @@ describe('HistogramComponent', () => {
     });
     await fixture.whenStable();
 
-    const container = screen.getByTestId('portal-content');
+    const container = screen.getByTestId('histogram');
     expect(embed).toHaveBeenCalledWith(container, expect.anything(), expect.anything());
+  });
+
+  it('hides the fullscreen button when full screen is unavailable', async () => {
+    await setup({
+      inputs: { data: sampleData, colors: [], filteredCellTypes: sampleCellTypes, fullscreenAvailable: false },
+    });
+
+    expect(screen.queryByRole('button', { name: 'Open the histogram in full screen' })).not.toBeInTheDocument();
+  });
+
+  it('should not show an empty state by default', async () => {
+    await setup({ inputs: { data: sampleData, colors: [], filteredCellTypes: sampleCellTypes } });
+
+    expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
+    expect(screen.getByTestId('histogram')).not.toHaveAttribute('inert');
+  });
+
+  it('should show the empty state over an inert chart and emit its action', async () => {
+    const emptyStateAction = jest.fn();
+    await setup({
+      inputs: { data: [], colors: [], filteredCellTypes: [], emptyState: NO_CELL_TYPES_SELECTED_CONTENT },
+      on: { emptyStateAction },
+    });
+
+    expect(screen.getByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).toBeInTheDocument();
+    expect(screen.getByTestId('histogram')).toHaveAttribute('inert');
+
+    fireEvent.click(screen.getByRole('button', { name: NO_CELL_TYPES_SELECTED_CONTENT.actionLabel }));
+    expect(emptyStateAction).toHaveBeenCalled();
+  });
+
+  it('should show a skeleton in place of the empty state while loading', async () => {
+    const { container, fixture } = await setup({
+      inputs: {
+        data: [],
+        colors: [],
+        filteredCellTypes: [],
+        emptyState: NO_CELL_TYPES_SELECTED_CONTENT,
+        loading: true,
+      },
+    });
+
+    expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
+    expect(container.querySelector('cde-chart-skeleton')).toBeInTheDocument();
+    expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
   });
 
   it('should set empty data when input data is empty', async () => {
@@ -120,14 +164,12 @@ describe('HistogramComponent', () => {
     const imageUrl = 'data:foo';
     embedResult.view.toImageURL.mockReturnValue(Promise.resolve(imageUrl));
 
-    const loader = TestbedHarnessEnvironment.loader(fixture);
-    const menu = await loader.getHarness(MatMenuHarness);
-    await menu.clickItem({ text: /Downloads/i }, { text: /svg/i });
+    await fixture.componentInstance.download('svg');
 
     expect(fileSaveSpy).toHaveBeenCalledWith(imageUrl, 'cde-histogram.svg');
   });
 
-  it('should reset all cell colors', async () => {
+  it('uses the picked all cells color, or the theme color without one', async () => {
     const {
       fixture: { componentInstance: instance },
     } = await setup({
@@ -138,9 +180,34 @@ describe('HistogramComponent', () => {
       },
     });
 
-    const priedInstance = instance as unknown as { totalCellTypeColor: WritableSignal<Rgb> };
-    priedInstance.totalCellTypeColor.set([1, 2, 3]);
-    instance.resetAllCellsColor();
-    expect(priedInstance.totalCellTypeColor()).toEqual([0, 0, 0]);
+    instance.allCellsColor.set([1, 2, 3]);
+    expect(instance.totalCellTypeColor()).toEqual([1, 2, 3]);
+
+    instance.allCellsColor.set(undefined);
+    // jsdom doesn't resolve theme tokens, so the theme's mark color is the on-surface fallback (#1a1c1e)
+    expect(instance.totalCellTypeColor()).toEqual([26, 28, 30]);
+  });
+
+  it('should update the theme colors in place when the color scheme changes', async () => {
+    const prefersDark$ = new BehaviorSubject<BreakpointState>({ matches: false, breakpoints: {} });
+    const { fixture } = await setup({
+      inputs: {
+        data: sampleData,
+        colors: [],
+        filteredCellTypes: sampleCellTypes,
+      },
+      providers: [{ provide: BreakpointObserver, useValue: { observe: () => prefersDark$ } }],
+    });
+    await fixture.whenStable();
+    embedResult.view.signal.mockClear();
+    jest.mocked(embed).mockClear();
+
+    prefersDark$.next({ matches: true, breakpoints: {} });
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(embedResult.view.signal).toHaveBeenCalledWith('themeBackground', '#fcfbfd');
+    expect(embedResult.view.signal).toHaveBeenCalledWith('themeMarkColor', '#1a1c1e');
+    expect(embed).not.toHaveBeenCalled();
   });
 });

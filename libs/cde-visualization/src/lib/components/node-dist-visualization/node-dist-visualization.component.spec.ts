@@ -11,10 +11,11 @@ import {
   NodeFilterView,
   NodesView,
 } from '@hra-ui/node-dist-vis/models';
-import { render, RenderComponentOptions, screen } from '@testing-library/angular';
+import { fireEvent, render, RenderComponentOptions, screen } from '@testing-library/angular';
 import { mock } from 'jest-mock-extended';
 import { NodeDistVisualizationComponent } from './node-dist-visualization.component';
 import { FileSaverService } from '../../services/file-saver/file-saver.service';
+import { NO_CELL_TYPES_SELECTED_CONTENT } from '../empty-state/empty-state.content';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -68,7 +69,7 @@ describe('NodeDistVisualizationComponent', () => {
 
   async function getSelectionDeleteButton(fixture: ComponentFixture<NodeDistVisualizationComponent>) {
     const loader = TestbedHarnessEnvironment.loader(fixture);
-    return loader.getHarness(MatButtonHarness.with({ selector: '.delete' }));
+    return loader.getHarnessOrNull(MatButtonHarness.with({ selector: '.delete' }));
   }
 
   async function emitVisualizationEvent(
@@ -95,7 +96,37 @@ describe('NodeDistVisualizationComponent', () => {
 
   it('should render', async () => {
     await setup();
-    expect(screen.getByText('Visualization')).toBeInTheDocument();
+    expect(screen.getByText('Spatial view')).toBeInTheDocument();
+  });
+
+  describe('empty state', () => {
+    it('should not show by default', async () => {
+      await setup();
+
+      expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
+      expect(await getVisualizationEl()).not.toHaveAttribute('inert');
+    });
+
+    it('should show over an inert visualization and emit its action', async () => {
+      const emptyStateAction = jest.fn();
+      await setup({ inputs: { emptyState: NO_CELL_TYPES_SELECTED_CONTENT }, on: { emptyStateAction } });
+
+      expect(screen.getByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).toBeInTheDocument();
+      expect(await getVisualizationEl()).toHaveAttribute('inert');
+
+      fireEvent.click(screen.getByRole('button', { name: NO_CELL_TYPES_SELECTED_CONTENT.actionLabel }));
+      expect(emptyStateAction).toHaveBeenCalled();
+    });
+
+    it('should give way to a skeleton while loading', async () => {
+      const { container, fixture } = await setup({
+        inputs: { emptyState: NO_CELL_TYPES_SELECTED_CONTENT, loading: true },
+      });
+
+      expect(fixture.nativeElement).toHaveAttribute('aria-busy', 'true');
+      expect(container.querySelector('cde-chart-skeleton')).toBeInTheDocument();
+      expect(screen.queryByText(NO_CELL_TYPES_SELECTED_CONTENT.heading)).not.toBeInTheDocument();
+    });
   });
 
   it('forwards node clicks from the visualization', async () => {
@@ -122,6 +153,21 @@ describe('NodeDistVisualizationComponent', () => {
       await emitVisualizationEvent(fixture, 'nodeClick', SAMPLE_NODE_EVENT);
 
       expect(screen.queryByTestId('cell-info')).toBeInTheDocument();
+    });
+
+    it('docks cell info at the bottom of the visualization on compact screens, until it closes', async () => {
+      const { container, fixture } = await setup({ inputs: { dockCellInfo: true } });
+      await setViewMode(fixture, /Inspect/);
+      await emitVisualizationEvent(fixture, 'nodeClick', SAMPLE_NODE_EVENT);
+
+      const cards = screen.getAllByTestId('cell-info');
+      expect(cards).toHaveLength(1);
+      expect(cards[0]).toHaveClass('docked-cell-info');
+      expect(container.querySelector('hra-fullscreen-portal-content')).toContainElement(cards[0]);
+
+      fireEvent.click(screen.getByRole('button', { name: 'Close cell info' }));
+      fixture.detectChanges();
+      expect(screen.queryByTestId('cell-info')).not.toBeInTheDocument();
     });
   });
 
@@ -154,13 +200,59 @@ describe('NodeDistVisualizationComponent', () => {
       await setViewMode(fixture, /Select/);
       await emitVisualizationEvent(fixture, 'nodeSelectionChange', [SAMPLE_NODE_EVENT]);
 
-      const deleteButton = await getSelectionDeleteButton(fixture);
-      expect(await deleteButton.isDisabled()).toBeFalsy();
+      expect(await getSelectionDeleteButton(fixture)).not.toBeNull();
 
       fixture.componentInstance.deleteSelection();
       fixture.detectChanges();
       const el = await getVisualizationEl();
       expect((el.nodeFilter as NodeFilterView).exclude).toEqual([0]);
+    });
+
+    it('clears the selection when the view mode changes, since the visualization drops it', async () => {
+      const { fixture } = await setup();
+      await setViewMode(fixture, /Select/);
+      await emitVisualizationEvent(fixture, 'nodeSelectionChange', [SAMPLE_NODE_EVENT]);
+      await setViewMode(fixture, /Explore/);
+      await setViewMode(fixture, /Select/);
+
+      expect(await getSelectionDeleteButton(fixture)).toBeNull();
+    });
+  });
+
+  it('hides the fullscreen button when full screen is unavailable', async () => {
+    await setup({ inputs: { fullscreenAvailable: false } });
+
+    expect(screen.queryByRole('button', { name: 'Open the spatial view in full screen' })).not.toBeInTheDocument();
+  });
+
+  describe('floating controls', () => {
+    it('keeps the view mode controls in the header by default', async () => {
+      const { container } = await setup();
+
+      expect(
+        container.querySelector('hra-expansion-panel-header-content cde-node-dist-visualization-controls'),
+      ).not.toBeNull();
+      expect(container.querySelector('.floating-controls')).toBeNull();
+    });
+
+    it('floats the controls over the visualization, before it in focus order, and collapses the header', async () => {
+      const { container, fixture } = await setup({ inputs: { floatingControls: true } });
+
+      const controls = container.querySelector('.floating-controls cde-node-dist-visualization-controls');
+      expect(fixture.nativeElement).toHaveClass('floating-controls');
+      expect(controls).toHaveClass('floating');
+      expect(controls?.compareDocumentPosition(await getVisualizationEl())).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+      expect(
+        container.querySelector('hra-expansion-panel-header-content cde-node-dist-visualization-controls'),
+      ).toBeNull();
+    });
+
+    it('hides the floating controls while the skeleton or empty state covers the visualization', async () => {
+      const { container, rerender } = await setup({ inputs: { floatingControls: true, loading: true } });
+      expect(container.querySelector('.floating-controls')).toBeNull();
+
+      await rerender({ inputs: { loading: false, emptyState: NO_CELL_TYPES_SELECTED_CONTENT }, partialUpdate: true });
+      expect(container.querySelector('.floating-controls')).toBeNull();
     });
   });
 });

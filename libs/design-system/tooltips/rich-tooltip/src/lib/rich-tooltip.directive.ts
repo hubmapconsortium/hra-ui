@@ -1,7 +1,20 @@
+import { hasModifierKey } from '@angular/cdk/keycodes';
 import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { computed, Directive, effect, ElementRef, inject, input, output, ViewContainerRef } from '@angular/core';
+import {
+  computed,
+  Directive,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  output,
+  signal,
+  ViewContainerRef,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatTooltip } from '@angular/material/tooltip';
+import { filter } from 'rxjs';
 
 import { RichTooltipContainerComponent } from './content/rich-tooltip-content.component';
 import { RichTooltipController } from './rich-tooltip.types';
@@ -59,6 +72,7 @@ const POSITIONS: ConnectedPosition[] = [
 @Directive({
   selector: '[hraRichTooltip]',
   host: {
+    '[attr.aria-expanded]': 'isOpen()',
     '(click)': 'toggle()',
   },
 })
@@ -114,6 +128,12 @@ export class RichTooltipDirective implements RichTooltipController {
   private readonly overlay = inject(Overlay);
 
   /**
+   * Plain tooltip on the same element, such as the "Info" label on info buttons,
+   * which is disabled while the rich tooltip is open so the two don't overlap
+   */
+  private readonly plainTooltip = inject(MatTooltip, { optional: true, self: true });
+
+  /**
    * Position strategy for the rich tooltip
    */
   private readonly positionStrategy = computed(() => {
@@ -137,10 +157,9 @@ export class RichTooltipDirective implements RichTooltipController {
   });
 
   /**
-   * Boolean flag indicating whether the
-   * rich tooltip is currently visible
+   * Whether the rich tooltip is currently visible
    */
-  private isOpen = false;
+  protected readonly isOpen = signal(false);
 
   /**
    * Container element variable for the rich tooltip
@@ -174,15 +193,29 @@ export class RichTooltipDirective implements RichTooltipController {
           this.close();
         }
       });
+
+    this.overlayRef
+      .keydownEvents()
+      .pipe(
+        filter((event) => event.key === 'Escape' && !hasModifierKey(event)),
+        takeUntilDestroyed(),
+      )
+      .subscribe((event) => {
+        event.preventDefault();
+        this.close();
+      });
   }
 
   /**
    * Function to open the rich tooltip.
    */
   open(): void {
-    if (!this.isOpen) {
+    if (!this.isOpen()) {
       this.attach();
-      this.isOpen = true;
+      this.isOpen.set(true);
+      if (this.plainTooltip) {
+        this.plainTooltip.disabled = true;
+      }
     }
   }
 
@@ -190,9 +223,12 @@ export class RichTooltipDirective implements RichTooltipController {
    * Function to close the rich tooltip.
    */
   close(): void {
-    if (this.isOpen) {
+    if (this.isOpen()) {
       this.detach();
-      this.isOpen = false;
+      this.isOpen.set(false);
+      if (this.plainTooltip) {
+        this.plainTooltip.disabled = false;
+      }
     }
   }
 
@@ -200,7 +236,7 @@ export class RichTooltipDirective implements RichTooltipController {
    * Function to toggles the rich tooltip.
    */
   toggle(): void {
-    if (this.isOpen) {
+    if (this.isOpen()) {
       this.close();
     } else {
       this.open();

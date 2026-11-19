@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject, Injector, input, output, Type } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  Injector,
+  input,
+  output,
+  Type,
+  viewChild,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { FileLoader, FileLoaderEvent } from '@hra-ui/common/fs';
@@ -45,6 +56,8 @@ export class FileUploadComponent<T, OptionsT> {
   readonly errorMessage = input<string>('');
   /** Upload error action message */
   readonly errorActionMessage = input<string>('');
+  /** Accessible name for the upload button. Should start with the visible "Upload CSV" text */
+  readonly uploadAriaLabel = input<string>();
 
   /** Accepted file types */
   readonly accept = input.required<string>();
@@ -70,6 +83,13 @@ export class FileUploadComponent<T, OptionsT> {
 
   /** Reference to injector */
   private readonly injector = inject(Injector);
+  /** Host element */
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
+  /** Upload button, shown while no file is loaded */
+  private readonly uploadButton = viewChild('uploadButton', { read: ElementRef<HTMLButtonElement> });
+  /** Delete button, shown while a file is loaded */
+  private readonly deleteButton = viewChild(DeleteFileButtonComponent, { read: ElementRef<HTMLElement> });
 
   /** Subscription for data observable */
   private subscription?: Subscription;
@@ -106,6 +126,7 @@ export class FileUploadComponent<T, OptionsT> {
       return;
     }
 
+    this.moveFocusAfterRender('delete');
     const loaderInstance = injector.get(loader());
     const event$ = loaderInstance.load(file, options());
     const data$ = event$.pipe(reduce((acc, event) => this.handleLoadEvent(acc, event), [] as T[]));
@@ -125,11 +146,37 @@ export class FileUploadComponent<T, OptionsT> {
    */
   cancelLoad(error?: FileLoadError): void {
     this.reset();
+    this.moveFocusAfterRender('upload');
     if (error) {
       this.loadErrored.emit(error);
     } else {
       this.loadCancelled.emit();
     }
+  }
+
+  /**
+   * Moves focus to the upload or delete button once the view swaps them,
+   * so keyboard focus isn't lost when the focused button is removed.
+   * Does nothing when focus is outside this component.
+   *
+   * @param target Button that should receive focus
+   */
+  private moveFocusAfterRender(target: 'upload' | 'delete'): void {
+    const host = this.elementRef.nativeElement;
+    if (!host.contains(host.ownerDocument.activeElement)) {
+      return;
+    }
+
+    afterNextRender(
+      () => {
+        const button =
+          target === 'upload'
+            ? this.uploadButton()?.nativeElement
+            : this.deleteButton()?.nativeElement.querySelector('button');
+        button?.focus();
+      },
+      { injector: this.injector },
+    );
   }
 
   /**

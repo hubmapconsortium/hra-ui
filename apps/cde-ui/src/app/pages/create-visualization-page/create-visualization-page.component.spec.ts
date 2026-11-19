@@ -1,15 +1,20 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { ChangeDetectorRef, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonToggleHarness } from '@angular/material/button-toggle/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { provideAssetHref } from '@hra-ui/common/url';
 import { ColorMapEntry, DEFAULT_COLOR_MAP_KEY, DEFAULT_COLOR_MAP_VALUE_KEY, Metadata } from '@hra-ui/cde-visualization';
+import { DialogService } from '@hra-ui/design-system/dialog';
 import { DEFAULT_NODE_TARGET_SELECTOR } from '@hra-ui/node-dist-vis';
-import { render, screen } from '@testing-library/angular';
+import { render, screen, within } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { mock } from 'jest-mock-extended';
+import { NEVER, of } from 'rxjs';
+import { Theme, ThemeService } from '../../services/theme-service/theme.service';
 import { VisualizationDataService } from '../../services/visualization-data-service/visualization-data.service';
 import { CreateVisualizationPageComponent, ExtendedFileLoadError } from './create-visualization-page.component';
 
@@ -19,7 +24,12 @@ jest.mock('@hra-ui/node-dist-vis', () => ({
 }));
 jest.mock('@hra-ui/node-dist-vis/models', () => ({
   ColorMapView: class MockColorMapView {},
-  NodesView: class MockNodesView {},
+  NodesView: class MockNodesView {
+    constructor(
+      readonly data: Record<string, unknown>[],
+      readonly keyMapping: Record<string, unknown>,
+    ) {}
+  },
 }));
 jest.mock('@hra-ui/cde-visualization', () => ({
   ...jest.requireActual('@hra-ui/cde-visualization'),
@@ -97,13 +107,20 @@ const csvColorMapWrongKeys = `cell_id,bad_celltype_key,bad_cell_color
   1,cell2,"[1,1,1]"`;
 
 describe('CreateVisualizationPageComponent', () => {
-  const providers = [provideAssetHref('http://localhost/'), provideHttpClient(), provideHttpClientTesting()];
+  const theme = signal<Theme>('light');
+  const providers = [
+    provideAssetHref('http://localhost/'),
+    provideHttpClient(),
+    provideHttpClientTesting(),
+    { provide: ThemeService, useValue: { theme } },
+  ];
 
   let instance: CreateVisualizationPageComponent;
   let fixture: ComponentFixture<CreateVisualizationPageComponent>;
 
   beforeEach(async () => {
     jest.spyOn(Date, 'now').mockReturnValue(0);
+    theme.set('light');
 
     const context = await render(CreateVisualizationPageComponent, {
       providers,
@@ -118,6 +135,207 @@ describe('CreateVisualizationPageComponent', () => {
     await fixture.whenStable();
   });
 
+  it('passes the background image to the page styles', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.style.getPropertyValue('--page-background-image')).toContain(
+      'create-visualization-page-background.png',
+    );
+  });
+
+  it('shows breadcrumbs above the title', () => {
+    fixture.componentRef.setInput('breadcrumbs', [
+      { name: 'Home', route: 'https://humanatlas.io' },
+      { name: 'Create a distance visualization' },
+    ]);
+    fixture.detectChanges();
+
+    const crumbs = fixture.nativeElement.querySelector('hra-breadcrumbs');
+    const title = screen.getByRole('heading', { level: 1 });
+    expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
+    expect(crumbs.compareDocumentPosition(title)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  it('describes the page under its title', () => {
+    const title = screen.getByRole('heading', { level: 1 });
+    const description = fixture.nativeElement.querySelector('.page-nav .description');
+    expect(description).toHaveTextContent(/anchor cell/);
+    expect(title.compareDocumentPosition(description)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  it('passes the dark background image in the dark theme', () => {
+    theme.set('dark');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.style.getPropertyValue('--page-background-image')).toContain(
+      'create-visualization-page-background-dark.png',
+    );
+  });
+
+  describe('template links', () => {
+    const dataTemplateName = 'Open template for cell data, opens in a new tab';
+    const colorTemplateName = 'Open template for color maps, opens in a new tab';
+
+    it('renders outlined links beside the upload buttons that open the templates in a new tab', async () => {
+      expect(screen.queryByRole('link', { name: colorTemplateName })).not.toBeInTheDocument();
+
+      instance.visualizationForm.controls.colorMapType.setValue('custom');
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const dataTemplate = screen.getByRole('link', { name: dataTemplateName });
+      const colorTemplate = screen.getByRole('link', { name: colorTemplateName });
+      for (const link of [dataTemplate, colorTemplate]) {
+        expect(link).toHaveTextContent(/^\s*Open template/);
+        expect(link).toHaveAttribute('mat-stroked-button');
+        expect(link).toHaveAttribute('target', '_blank');
+        expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+        expect(link.closest('cde-file-upload .actions')?.querySelector('.upload')).toBeInTheDocument();
+      }
+      expect(dataTemplate).toHaveAttribute(
+        'href',
+        expect.stringContaining('1EUf7CUZb0NprgxBeX3nS3GXyUM89edIRH6NSeUsR3nY'),
+      );
+      expect(colorTemplate).toHaveAttribute(
+        'href',
+        expect.stringContaining('1sjaGTCs3J9CjrkowxkyJrIfHk64w_nDyYrgprbMbdqE'),
+      );
+    });
+  });
+
+  describe('card descriptions', () => {
+    it('describe each step below its heading, with no info buttons', () => {
+      const headers = Array.from(fixture.nativeElement.querySelectorAll('hra-workflow-card .header')) as HTMLElement[];
+
+      expect(headers).toHaveLength(6);
+      for (const header of headers) {
+        expect(header.querySelector('h2 + .description')?.textContent?.trim()).toBeTruthy();
+      }
+      expect(fixture.nativeElement.querySelector('hra-info-button')).toBeNull();
+    });
+  });
+
+  describe('card headings', () => {
+    it('only contain the step number and title', () => {
+      const headings = screen.getAllByRole('heading', { level: 2 });
+
+      const titles = [
+        'Upload data',
+        'Organize data',
+        'Configure parameters',
+        'Optional: Add metadata',
+        'Optional: Configure colors',
+        'Visualize cell distance data',
+      ];
+
+      expect(headings.map((heading) => heading.querySelector('.card-title')?.textContent)).toEqual(titles);
+      titles.forEach((title, index) => {
+        expect(screen.getByRole('heading', { level: 2, name: `Step ${index + 1} of 6: ${title}` })).toBeInTheDocument();
+      });
+      for (const heading of headings) {
+        expect(within(heading).queryByRole('button')).toBeNull();
+        expect(within(heading).queryByRole('link')).toBeNull();
+      }
+    });
+  });
+
+  describe('required column headers', () => {
+    it('marks the required selects as required for assistive technology', () => {
+      for (const name of ['X column', 'Y column', 'Cell type column']) {
+        expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'true');
+      }
+      for (const name of ['Z column', 'Cell Ontology (CL) ID column']) {
+        expect(screen.getByRole('combobox', { name })).toHaveAttribute('aria-required', 'false');
+      }
+    });
+  });
+
+  describe('requirements', () => {
+    function requirements(group: HTMLElement): Record<string, string | undefined> {
+      const rows = group.querySelectorAll('dl > .requirement');
+      return Object.fromEntries(
+        Array.from(rows).map((row) => [
+          row.querySelector('dt')?.textContent?.trim(),
+          row.querySelector('dd')?.textContent?.trim(),
+        ]),
+      );
+    }
+
+    it('lists the data upload requirements as label and value pairs', () => {
+      const group = screen.getByRole('group', { name: 'Data upload requirements' });
+
+      expect(within(group).queryByRole('table')).toBeNull();
+      expect(requirements(group)).toEqual({
+        'Required columns': 'X, Y, cell type',
+        'Optional columns': 'Z, Cell Ontology (CL) ID',
+        'Supported format': 'Comma-separated values (CSV)',
+      });
+    });
+
+    it('lists the color map requirements when uploading a color map', async () => {
+      await userEvent.click(screen.getByText('Upload color map'));
+      fixture.detectChanges();
+      const group = await screen.findByRole('group', { name: 'Custom color map requirements' });
+
+      expect(within(group).queryByRole('table')).toBeNull();
+      expect(requirements(group)).toEqual({
+        'Required columns': 'Cell type, cell color',
+        'Supported format': 'CSV',
+      });
+    });
+  });
+
+  describe('upload buttons', () => {
+    it('have distinct accessible names', async () => {
+      expect(screen.getByRole('button', { name: 'Upload CSV for cell data' })).toBeInTheDocument();
+
+      await userEvent.click(screen.getByText('Upload color map'));
+      fixture.detectChanges();
+      expect(await screen.findByRole('button', { name: 'Upload CSV for color map' })).toBeInTheDocument();
+    });
+  });
+
+  describe('metadata errors', () => {
+    it('explains invalid age and thickness values', async () => {
+      await userEvent.type(screen.getByRole('spinbutton', { name: 'Age' }), '150');
+      await userEvent.type(screen.getByRole('spinbutton', { name: 'Thickness (µm)' }), '-1');
+      await userEvent.tab();
+
+      expect(await screen.findByText('Enter a whole number, 0–120')).toBeInTheDocument();
+      expect(screen.getByText('Enter 0 or more')).toBeInTheDocument();
+    });
+  });
+
+  describe('visualize button', () => {
+    const getVisualizeButton = () => screen.getByRole('button', { name: 'Visualize' });
+
+    it('stays focusable and explains why it is unavailable before an upload', async () => {
+      const button = getVisualizeButton();
+      expect(button).not.toHaveAttribute('disabled');
+      expect(button).toHaveAttribute('aria-disabled', 'true');
+      expect(button).toHaveAccessibleDescription('Upload a dataset first.');
+
+      const submitSpy = jest.spyOn(instance, 'submit');
+      await userEvent.click(button);
+      expect(submitSpy).not.toHaveBeenCalled();
+    });
+
+    it('asks for the remaining required fields once a dataset is uploaded', () => {
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.headers.patchValue({ cellType: '' });
+      fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
+      fixture.detectChanges();
+
+      expect(getVisualizeButton()).toHaveAccessibleDescription('Fill in the required fields above.');
+    });
+  });
+
+  describe('color map toggle', () => {
+    it('has a descriptive accessible name', () => {
+      expect(screen.getByLabelText('Color map')).toHaveClass('mat-button-toggle-group');
+    });
+  });
+
   describe('setNodes()', () => {
     it('checks for required keys, if missing tell the user the missing columns', async () => {
       const nodeDataEl = screen.getAllByTestId(testId)[0];
@@ -127,7 +345,8 @@ describe('CreateVisualizationPageComponent', () => {
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(instance.columnErrorActionMessage).toMatch(/Please select the required column header: Cell Type/);
+      expect(instance.columnErrorActionMessage).toMatch(/Select the required column: cell type/);
+      expect(screen.getByText(/Select the required column/).closest('[role="alert"]')).not.toBeNull();
     });
 
     it('sets nodes', async () => {
@@ -184,7 +403,7 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.upload(colorMapEl, data, { applyAccept: false });
       fixture.autoDetectChanges();
 
-      expect(instance.colorErrorMessage).toMatch(/Invalid file type/);
+      expect(instance.colorErrorMessage).toMatch(/Unsupported file type/);
     });
     it('shows error if invalid color map keys', async () => {
       const loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
@@ -197,7 +416,7 @@ describe('CreateVisualizationPageComponent', () => {
       await userEvent.upload(colorMapEl, data);
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.colorErrorMessage).toMatch(/Required columns? missing/);
+      expect(instance.colorErrorMessage).toMatch(/Missing required columns?/);
     });
   });
 
@@ -274,6 +493,82 @@ describe('CreateVisualizationPageComponent', () => {
 
       expect(setDataSpy).toHaveBeenCalled();
     });
+
+    it('passes the distance threshold to the visualization', () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ distanceThreshold: 50 });
+      instance.submit();
+
+      expect(setDataSpy).toHaveBeenCalledWith(expect.objectContaining({ maxEdgeDistance: 50 }));
+    });
+
+    it('converts coordinates to micrometers using the pixel sizes', () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+      const nodes = [createNodeEntry(nodeTargetKey, 'a', 1, 2), createNodeEntry(nodeTargetKey, 'b', 3, 4)];
+
+      instance.setNodes(nodes);
+      instance.visualizationForm.controls.parameters.patchValue({ pixelSizeX: 2, pixelSizeY: 0.5, pixelSizeZ: 3 });
+      instance.submit();
+
+      const { nodes: nodesView, metadata } = setDataSpy.mock.calls[0][0] as {
+        nodes: { data: Record<string, unknown>[] };
+        metadata: Metadata;
+      };
+      expect(nodesView.data).toEqual([
+        { [nodeTargetKey]: 'a', x: 2, y: 1 },
+        { [nodeTargetKey]: 'b', x: 6, y: 2 },
+      ]);
+      expect(nodes[0]).toEqual({ [nodeTargetKey]: 'a', x: 1, y: 2 });
+      expect(metadata.pixelSize).toEqual('2 × 0.5');
+    });
+
+    it('shows a single pixel size when every axis has the same size', () => {
+      const dataService = TestBed.inject(VisualizationDataService);
+      const setDataSpy = jest.spyOn(dataService, 'setData');
+
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ pixelSizeX: 0.65, pixelSizeY: 0.65 });
+      instance.submit();
+
+      expect(setDataSpy).toHaveBeenCalledWith(
+        expect.objectContaining({ metadata: expect.objectContaining({ pixelSize: 0.65 }) }),
+      );
+    });
+  });
+
+  describe('parameters', () => {
+    it('accepts pixel sizes below 1', () => {
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ pixelSizeX: 0.65 });
+
+      expect(instance.hasValidData()).toBe(true);
+    });
+
+    it('requires a distance threshold and pixel sizes greater than 0', () => {
+      instance.setNodes(sampleNodes);
+      instance.visualizationForm.controls.parameters.patchValue({ distanceThreshold: -5 });
+      expect(instance.hasValidData()).toBe(false);
+
+      instance.visualizationForm.controls.parameters.patchValue({ distanceThreshold: 50, pixelSizeY: -1 });
+      expect(instance.hasValidData()).toBe(false);
+    });
+
+    it('explains invalid distance threshold and pixel size values', async () => {
+      instance.setNodes(sampleNodes);
+      fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
+      fixture.detectChanges();
+
+      const threshold = screen.getByRole('spinbutton', { name: 'Distance threshold (µm)' });
+      await userEvent.clear(threshold);
+      await userEvent.type(threshold, '0');
+      await userEvent.tab();
+
+      expect(await screen.findByText('Enter more than 0')).toBeInTheDocument();
+    });
   });
 
   describe('parse errors', () => {
@@ -284,7 +579,7 @@ describe('CreateVisualizationPageComponent', () => {
       instance.clearCustomColorMap();
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.nodesErrorMessage).toMatch(/Invalid file/);
+      expect(instance.nodesErrorMessage).toMatch(/Couldn't read rows?/);
     });
 
     it('shows parse error (cause is Error type)', async () => {
@@ -293,9 +588,7 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: new Error(),
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(
-        'Required color format not detected. Please use #RRGGBB or [R, G, B].',
-      );
+      expect(priedInstance.formatErrorMessage(testError)).toMatch('Colors must be #RRGGBB or [R, G, B].');
     });
 
     it('shows parse errors (cause is some other type)', async () => {
@@ -304,7 +597,13 @@ describe('CreateVisualizationPageComponent', () => {
         type: 'parse-error',
         cause: 'whatever',
       };
-      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Invalid file: too many invalid rows/);
+      expect(priedInstance.formatErrorMessage(testError)).toMatch(/Too many rows couldn't be read/);
+    });
+
+    it('says row for a single row, even with a multi-digit row number', () => {
+      const priedInstance = instance as unknown as { formatErrorMessage: (error: ExtendedFileLoadError) => string };
+      const testError = { type: 'parse-error', cause: [{ row: 12 }] } as unknown as ExtendedFileLoadError;
+      expect(priedInstance.formatErrorMessage(testError)).toBe("Couldn't read row 12");
     });
 
     it('returns empty string if no error type', async () => {
@@ -331,7 +630,36 @@ describe('CreateVisualizationPageComponent', () => {
       instance.clearCustomColorMap();
       fixture.autoDetectChanges();
       await new Promise((resolve) => setTimeout(resolve, 50));
-      expect(instance.nodesErrorMessage).toMatch(/and 1 more rows/);
+      expect(instance.nodesErrorMessage).toMatch(/and 1 more$/);
     });
+  });
+});
+
+describe('CreateVisualizationPageComponent on small screens', () => {
+  const observe = jest.fn();
+  const openNotice = jest.fn();
+
+  beforeEach(() => {
+    localStorage.clear();
+    observe.mockReset().mockReturnValue(of({ matches: true, breakpoints: { '(width < 600px)': true } }));
+    openNotice.mockReset().mockReturnValue({ afterClosed: () => NEVER, close: jest.fn() });
+  });
+
+  it('works below 600px wide without a screen size notice', async () => {
+    const { fixture } = await render(CreateVisualizationPageComponent, {
+      providers: [
+        provideAssetHref('http://localhost/'),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: ThemeService, useValue: { theme: signal<Theme>('light') } },
+        { provide: BreakpointObserver, useValue: { observe } },
+        { provide: DialogService, useValue: { openNotice } },
+      ],
+      imports: [MatIconTestingModule],
+      componentInputs: { organs: [] },
+    });
+    await fixture.whenStable();
+
+    expect(openNotice).not.toHaveBeenCalled();
   });
 });

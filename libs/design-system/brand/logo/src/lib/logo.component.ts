@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { HraCommonModule } from '@hra-ui/common';
 import { findOrThrow } from '@hra-ui/common/array-util';
 import { InlineSVGModule, type SVGScriptEvalMode } from 'ng-inline-svg-2';
+import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 
 /** Brand logo */
@@ -9,7 +10,7 @@ import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 /** Brand Logo Component */
 @Component({
   selector: 'hra-brand-logo',
-  imports: [HraCommonModule, InlineSVGModule],
+  imports: [HraCommonModule, InlineSVGModule, PlainTooltipDirective],
   templateUrl: './logo.component.html',
   styleUrl: './logo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +21,9 @@ import { BrandLogoSize, injectBrandLogos } from './brand-logos';
 export class BrandLogoComponent {
   /** Size of the logo */
   readonly size = input<BrandLogoSize>('regular');
+
+  /** Tooltip shown on hover and focus. None by default. */
+  readonly tooltip = input<string>();
 
   /** Logos from injection token */
   readonly logos = input(injectBrandLogos());

@@ -1,0 +1,50 @@
+@use './utils';
+@use './vars';
+
+/// Label and value pairs in two columns, like AtlasNG's striped table without a header: on-surface labels and
+/// on-surface-variant values in body medium, striped with surface-container-low, with outline-variant borders.
+/// Use it on a `<dl>` whose rows are `<div>`s holding a `<dt>` and a `<dd>`. Labels take their own width up to
+/// `$label-max-width` and then wrap, and values wrap anywhere, so nothing is cut off.
+/// @param {Number} $label-max-width The widest the label column grows
+@mixin description-list($label-max-width: 50%) {
+  display: grid;
+  grid-template-columns: fit-content($label-max-width) minmax(0, 1fr);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid vars.$outline-variant;
+  border-radius: vars.$corner-small;
+  color: vars.$on-surface-variant;
+  @include utils.use-font(body, medium);
+
+  // Each row spans both columns on a subgrid, so it can carry the stripe and the line under it.
+  // With no header row above it, the striping starts on the first row.
+  > div {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+
+    &:nth-child(odd) {
+      background-color: vars.$surface-container-low;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid vars.$outline-variant;
+    }
+  }
+
+  // 28px rows keep the list compact
+  dt,
+  dd {
+    min-width: 0;
+    margin: 0;
+    padding: 0.25rem 1rem;
+  }
+
+  dt {
+    color: vars.$on-surface;
+  }
+
+  dd {
+    overflow-wrap: anywhere;
+  }
+}

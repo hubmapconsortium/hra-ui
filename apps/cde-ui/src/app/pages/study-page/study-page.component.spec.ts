@@ -99,6 +99,20 @@ describe('StudyPageComponent', () => {
       expect(screen.getByText('Heart, CODEX')).toBeInTheDocument();
     });
 
+    it('should render breadcrumbs above the study title', async () => {
+      const { fixture } = await setup();
+      fixture.componentRef.setInput('breadcrumbs', [
+        { name: 'Home', route: 'https://humanatlas.io' },
+        { name: 'Heart, CODEX' },
+      ]);
+      fixture.detectChanges();
+
+      const crumbs = fixture.nativeElement.querySelector('hra-breadcrumbs');
+      const title = screen.getByRole('heading', { level: 1 });
+      expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
+      expect(crumbs.compareDocumentPosition(title)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    });
+
     it('should render authors and affiliations as chips', async () => {
       await setup();
 

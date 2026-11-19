@@ -11,7 +11,8 @@
       window.addEventListener('DOMContentLoaded', () => {
         const cde = document.querySelector('#cde');
 
-        // Set data from javascript
+        // Set data from javascript. Matches cde-ui's CRC01002 example: sampleExtra adds the source links and
+        // hides the placeholder creation date and time.
         cde.metadata = {
           title: 'colon-cycif-sorgerlab / CRC01002',
           organ: 'Large Intestine',
@@ -20,6 +21,13 @@
           pixelSize: 0.65,
           creationTimestamp: 1710399803000,
           sourceFileName: '2D Large Intestine Sample',
+          sampleExtra: {
+            type: '2D',
+            organ: 'Large Intestine',
+            sampleUrl: 'https://doi.org/10.1016/j.cell.2022.12.028',
+            sourceDataUrl:
+              'https://docs.google.com/spreadsheets/d/1oy8U8ot7DX8ZZ2M8tz07EUHEbgzy5i2rmr09g5BrRmg/edit?gid=631939841#gid=631939841',
+          },
         };
 
         // Listen to events

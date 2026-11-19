@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   padding: 1rem 4rem;
-  height: calc(100vh - 4.5rem);
+  height: calc(100vh - var(--hra-header-height, 4.5rem));
   background-color: vars.$secondary-container;
 
   .url {

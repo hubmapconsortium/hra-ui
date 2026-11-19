@@ -1,16 +1,11 @@
 @use '@angular/material' as mat;
 @use '../../../../../../libs/design-system/styles/vars' as vars;
+@use '../../../../../../libs/design-system/styles/utils' as utils;
 
 :host {
   height: fit-content;
   position: sticky;
-  max-height: 22.5rem;
-
-  @include mat.button-overrides(
-    (
-      filled-container-height: 2rem,
-    )
-  );
+  max-height: 19.5rem;
 
   @include mat.expansion-overrides(
     (
@@ -20,10 +15,15 @@
   );
 
   ::ng-deep {
+    // 8px on the right puts the fullscreen button's icon on the 16px line.
+    // The header stays 56px when the tabbed layout hides the button.
     .header {
-      padding: 0.5rem 1rem 0.25rem 0.5rem;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
+      min-height: 3.5rem;
       hra-expansion-panel-header-content {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
 
         .label {
           max-width: unset;
@@ -32,7 +32,7 @@
     }
 
     .expansion-body {
-      height: 11.25rem;
+      height: 12rem;
       display: flex;
       gap: 1rem;
 
@@ -41,7 +41,6 @@
       }
 
       .legend {
-        --hra-scroll-overflow-fade-color: #{vars.$surface-container-low};
         overflow-y: auto;
         flex-grow: 1;
         margin-left: 0.125rem;
@@ -63,7 +62,7 @@
       hra-expansion-panel-header-content {
         cde-color-picker-label {
           .label {
-            font: vars.$label-small;
+            @include utils.use-font(body, medium);
             display: flex;
             white-space: unset;
             max-width: unset;
@@ -76,6 +75,29 @@
       }
     }
   }
+}
+
+:host(.fill) {
+  height: 0;
+  flex-grow: 1;
+  max-height: none;
+
+  ::ng-deep hra-expansion-panel {
+    height: 100%;
+
+    .content {
+      height: calc(100% - 3.5rem);
+    }
+
+    .expansion-body {
+      height: 100%;
+    }
+  }
+}
+
+// Positions the empty state over the histogram, docked and fullscreen
+hra-fullscreen-portal-content {
+  position: relative;
 }
 
 ::ng-deep .mat-content-hide-toggle {

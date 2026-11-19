@@ -11,13 +11,7 @@
     >
       <hra-collection-card-action>
         <div class="left-actions">
-          <a
-            mat-flat-button
-            hraClickEvent
-            hraFeature="view-datasets"
-            hraButtonSize="medium"
-            [hraLink]="`/gallery/${study.slug}`"
-          >
+          <a mat-flat-button hraClickEvent hraFeature="view-datasets" [hraLink]="`/gallery/${study.slug}`">
             View dataset{{ study.datasets.length === 1 ? '' : 's' }}
           </a>
           @if (study.euiUrl) {
@@ -25,8 +19,6 @@
               hraFeature="more-options"
               hraClickEvent
               mat-icon-button
-              hraIconButtonSize="large"
-              hraIconButtonVariant="dark"
               hraPlainTooltip="More"
               aria-label="More options"
               [matMenuTriggerFor]="moreMenu"

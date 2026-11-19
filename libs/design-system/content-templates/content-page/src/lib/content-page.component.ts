@@ -5,6 +5,7 @@ import { LinkDirective } from '@hra-ui/common/router-ext';
 import { ContentTemplateOutletDirective } from '@hra-ui/cdk/content-template';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
 import { TableOfContentsLayoutModule } from '@hra-ui/design-system/layouts/table-of-contents';
@@ -35,6 +36,9 @@ import { ContentPageData } from './types/content-page.schema';
 export class ContentPageComponent {
   /** input data for content page */
   readonly data = input.required<ContentPageData>();
+
+  /** Breadcrumbs shown above the page title. None by default. */
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
 
   /** header content data */
   protected readonly headerContent = computed(() => coerceArray(this.data().headerContent ?? []));

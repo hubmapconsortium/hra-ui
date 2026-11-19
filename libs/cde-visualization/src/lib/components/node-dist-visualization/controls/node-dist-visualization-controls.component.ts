@@ -5,6 +5,23 @@ import { ButtonsModule } from '@hra-ui/design-system/buttons';
 import { PlainTooltipDirective } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { ViewMode } from '@hra-ui/node-dist-vis/models';
 
+/** A view mode toggle */
+interface ViewModeOption {
+  /** View mode the toggle picks */
+  value: ViewMode;
+  /** Label */
+  label: string;
+  /** What the mode does */
+  tooltip: string;
+}
+
+/** View mode toggles, in order */
+const VIEW_MODES: ViewModeOption[] = [
+  { value: 'select', label: 'Select', tooltip: 'Select cells to delete from this dataset' },
+  { value: 'inspect', label: 'Inspect', tooltip: 'Get information about individual cell types' },
+  { value: 'explore', label: 'Explore', tooltip: 'Zoom, pan, and rotate the view of this visualization' },
+];
+
 /**
  * Controls for node dist visualization
  */
@@ -14,14 +31,23 @@ import { ViewMode } from '@hra-ui/node-dist-vis/models';
   templateUrl: './node-dist-visualization-controls.component.html',
   styleUrl: './node-dist-visualization-controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.floating]': 'floating()',
+  },
 })
 export class NodeDistVisualizationControlsComponent {
   /** Current view mode */
   readonly viewMode = model<ViewMode>('explore');
 
-  /** Whether delete button is disabled */
-  readonly deleteDisabled = input(false, { transform: booleanAttribute });
+  /** Whether cells are selected, which shows the delete button */
+  readonly deleteAvailable = input(false, { transform: booleanAttribute });
+
+  /** Whether the controls float over the visualization, each on its own raised surface */
+  readonly floating = input(false, { transform: booleanAttribute });
 
   /** Emits when delete button clicked */
   readonly deleteClick = output<void>();
+
+  /** View mode toggles */
+  protected readonly viewModes = VIEW_MODES;
 }

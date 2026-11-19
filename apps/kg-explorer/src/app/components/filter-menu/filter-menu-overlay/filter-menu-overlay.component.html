@@ -2,7 +2,7 @@
 
 <ng-container hraFeature="filter-overlay">
   <div class="top-row">
-    <hra-info-button hraFeature="info" hraClickEvent>
+    <hra-info-button hraFeature="info" hraClickEvent [label]="`More information about ${filterOptionCategory().label}`">
       <span hraInfoButtonTagline>{{ filterOptionCategory().label }}</span>
       {{ tooltip?.description ?? '' }}
 
@@ -58,7 +58,7 @@
             >
               @let tooltip = option.tooltip;
               @if (tooltip) {
-                <hra-info-button hraFeature="info" hraClickEvent>
+                <hra-info-button hraFeature="info" hraClickEvent [label]="`More information about ${option.label}`">
                   {{ tooltip.description }}
 
                   @if (tooltip.actionUrl) {

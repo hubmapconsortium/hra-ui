@@ -112,7 +112,7 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
 
   async getSelection(): Promise<PickingInfo[]> {
     const MAX_ROUNDS = 20;
-    const { deck } = this.context;
+    const { deck, layerManager } = this.context;
     const { nodesLayer } = this.props;
     const { boundingBox } = this.state as SelectionLayerState;
     if (!deck || !nodesLayer || !boundingBox) {
@@ -127,14 +127,21 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
     const width = Math.abs(x2 - x1);
     const height = Math.abs(y2 - y1);
     const { id: maskId } = this.getSubLayerProps({ id: SelectionSubLayerId.MaskLayer });
-    const pickingOpts = { x, y, width, height, layerIds: [this.id] };
+    const { id: nodesId } = this.getSubLayerProps({ id: nodesLayer.id });
+    // Picks only cells and the mask. The lasso's own polygon would otherwise be picked as a cell in every round,
+    // so the rounds would never run out of cells to pick.
+    const pickingOpts = { x, y, width, height, layerIds: [nodesId, maskId] };
     const result: PickingInfo[] = [];
+    const pickedIndices = new Set<number>();
     let selection: AnyDataEntry[] = [];
 
     for (let round = 0; round < MAX_ROUNDS; round++) {
+      // Hides the cells picked so far, so this round picks the cells behind them. The layers update now
+      // rather than on deckgl's next frame, which can come too late on slow devices and pick the same cells again.
       this.setState({ selection } as SelectionLayerState);
-      deck.redraw();
-      await new Promise((res) => setTimeout(res, 16));
+      layerManager.updateLayers();
+      // Lets the page respond between rounds
+      await new Promise((res) => setTimeout(res));
 
       const infos = deck.pickObjects(pickingOpts);
       const maskInfo = infos.find((info) => info.sourceLayer?.id === maskId);
@@ -146,7 +153,8 @@ export class SelectionLayer<ExtraPropsT = object> extends CompositeLayer<Require
 
       selection = [...selection];
       for (const info of infos) {
-        if (info.sourceLayer?.id !== maskId) {
+        if (info.sourceLayer?.id !== maskId && !pickedIndices.has(info.index)) {
+          pickedIndices.add(info.index);
           result.push(info);
           selection.push(info.object);
         }

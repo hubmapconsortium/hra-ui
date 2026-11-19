@@ -10,6 +10,10 @@ export type MetadataMixins = { [P in keyof Metadata]: Signal<Metadata[P] | undef
 
 /** Metadata */
 export interface Metadata {
+  /** Name of the study the data comes from. Shows first, and only when set. */
+  study?: string;
+  /** Url of the study's page, which the study name links to */
+  studyUrl?: string;
   /** Title of the visualization */
   title?: string;
   /** Name of the organ */
@@ -22,8 +26,8 @@ export interface Metadata {
   age?: number;
   /** Thickness */
   thickness?: number;
-  /** Pixel size */
-  pixelSize?: number;
+  /** Pixel size, or the size of each axis when they differ (for example "0.65 × 0.65 × 2") */
+  pixelSize?: number | string;
   /** Creation timestamp (ms since 1/1/1970 UTC) */
   creationTimestamp?: number;
   /** Name of the source file */

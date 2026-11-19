@@ -1,0 +1,86 @@
+<div class="header">
+  <h2 class="title" [id]="titleId">{{ content.title }}</h2>
+  <button
+    mat-icon-button
+    class="close"
+    hraFeature="close"
+    hraClickEvent
+    [attr.aria-label]="content.closeLabel"
+    [hraPlainTooltip]="content.closeLabel"
+    (click)="closeClick.emit()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <p class="description" [id]="descriptionId">{{ content.description }}</p>
+</div>
+
+<ng-scrollbar class="body" orientation="vertical" hraScrollOverflowFade>
+  <div class="groups">
+    @if (unavailable(); as unavailable) {
+      <div class="notice unavailable-notice" hraFeature="unavailable-notice">
+        <mat-icon class="notice-icon">info</mat-icon>
+        <div class="notice-content">
+          <p class="notice-body" [id]="unavailableNoticeId">
+            <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+            {{ unavailable.notice }}
+          </p>
+          @if (unavailable.showPanels) {
+            <button
+              matButton="outlined"
+              class="notice-action"
+              hraFeature="show-all-panels"
+              hraClickEvent
+              (click)="showAllPanels()"
+            >
+              <mat-icon>visibility</mat-icon>
+              {{ content.unavailable.showAllPanels }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    @for (group of content.groups; track group.heading) {
+      <section class="group">
+        <h3 class="group-heading">{{ group.heading }}</h3>
+        <ul class="files">
+          @for (file of group.files; track file.id) {
+            <li [hraFeature]="file.id">
+              <cde-download-file
+                [file]="file"
+                [disabled]="disabledFiles().has(file.id)"
+                (download)="download.emit({ file: file.id, format: $event })"
+              />
+            </li>
+          }
+        </ul>
+
+        @if (group.notice; as notice) {
+          <div class="notice">
+            <mat-icon class="notice-icon">info</mat-icon>
+            <div class="notice-content">
+              <p class="notice-body">
+                <span class="cdk-visually-hidden">{{ content.noticeLabel }}:</span>
+                {{ notice.text }}
+              </p>
+              @if (notice.link; as link) {
+                <a
+                  matButton="outlined"
+                  class="notice-action"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  hraFeature="embedding-guide"
+                  hraClickEvent
+                  [attr.href]="link.url"
+                >
+                  <mat-icon>open_in_new</mat-icon>
+                  {{ link.label }}
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </section>
+    }
+  </div>
+</ng-scrollbar>
