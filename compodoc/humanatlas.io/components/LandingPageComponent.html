@@ -311,16 +311,14 @@ export class LandingPageComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-container hraFeature&#x3D;&quot;landing-page&quot;&gt;
   &lt;div class&#x3D;&quot;intro&quot;&gt;
-    &lt;span class&#x3D;&quot;header&quot;&gt;Human Reference Atlas&lt;/span&gt;
-    &lt;span class&#x3D;&quot;subheader&quot;&gt;
-      3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage
-    &lt;/span&gt;
+    &lt;h1 class&#x3D;&quot;header&quot;&gt;Human Reference Atlas&lt;/h1&gt;
+    &lt;p class&#x3D;&quot;subheader&quot;&gt;3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage&lt;/p&gt;
 
-    &lt;span class&#x3D;&quot;description&quot;&gt;
+    &lt;p class&#x3D;&quot;description&quot;&gt;
       The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures
       and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing
       specimens, biological structures, and spatial positions linked to existing ontologies.
-    &lt;/span&gt;
+    &lt;/p&gt;
   &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;carousel-container&quot;&gt;
@@ -367,7 +365,7 @@ export class LandingPageComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <div class="intro">    <span class="header">Human Reference Atlas</span>    <span class="subheader">      3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage    </span>    <span class="description">      The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures      and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing      specimens, biological structures, and spatial positions linked to existing ontologies.    </span>  </div>  <div class="carousel-container">    <hra-carousel [items]="data().carouselItems" />  </div>  <div class="count-cards">    <div class="cards-container">      @for (card of data().countInfo; track card) {        <hra-count-card [count]="card.count" [label]="card.label" [suffix]="card.suffix" [icon]="card.icon" />      }    </div>  </div>  <hra-section-cards [cardInfo]="data().sectionCardInfo" />  <hra-footer /></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container hraFeature="landing-page">  <div class="intro">    <h1 class="header">Human Reference Atlas</h1>    <p class="subheader">3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage</p>    <p class="description">      The Human Reference Atlas (HRA) is a multiscale, multimodal, three-dimensional atlas of the anatomical structures      and cells in the healthy human body. The HRA provides standard terminologies and data structures for describing      specimens, biological structures, and spatial positions linked to existing ontologies.    </p>  </div>  <div class="carousel-container">    <hra-carousel [items]="data().carouselItems" />  </div>  <div class="count-cards">    <div class="cards-container">      @for (card of data().countInfo; track card) {        <hra-count-card [count]="card.count" [label]="card.label" [suffix]="card.suffix" [icon]="card.icon" />      }    </div>  </div>  <hra-section-cards [cardInfo]="data().sectionCardInfo" />  <hra-footer /></ng-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LandingPageComponent'};

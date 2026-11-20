@@ -316,7 +316,7 @@ export class SectionCardsComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;span class&#x3D;&quot;section-title&quot;&gt;Explore the Human Reference Atlas&lt;/span&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;h2 class&#x3D;&quot;section-title&quot;&gt;Explore the Human Reference Atlas&lt;/h2&gt;
 
 &lt;hra-grid-container class&#x3D;&quot;cards&quot; hraFeature&#x3D;&quot;section-cards&quot;&gt;
   @for (card of cardInfo(); track card) {
@@ -328,7 +328,9 @@ export class SectionCardsComponent {
         [hraFeature]&#x3D;&quot;card.tagline | slugify&quot;
       &gt;
         &lt;hra-action-card-action&gt;
-          &lt;a hraHyperlink target&#x3D;&quot;_blank&quot; [attr.href]&#x3D;&quot;card.url&quot;&gt;{{ card.action }}&lt;/a&gt;
+          &lt;a hraHyperlink target&#x3D;&quot;_blank&quot; [attr.href]&#x3D;&quot;card.url&quot;
+            &gt;{{ card.action }}&lt;span class&#x3D;&quot;cdk-visually-hidden&quot;&gt; ({{ card.tagline }}, opens in a new tab)&lt;/span&gt;&lt;/a
+          &gt;
         &lt;/hra-action-card-action&gt;
       &lt;/hra-action-card&gt;
     } @else {
@@ -339,7 +341,9 @@ export class SectionCardsComponent {
         [hraFeature]&#x3D;&quot;card.tagline | slugify&quot;
       &gt;
         &lt;hra-action-card-action&gt;
-          &lt;a hraHyperlink [routerLink]&#x3D;&quot;card.route&quot;&gt;{{ card.action }}&lt;/a&gt;
+          &lt;a hraHyperlink [routerLink]&#x3D;&quot;card.route&quot;
+            &gt;{{ card.action }}&lt;span class&#x3D;&quot;cdk-visually-hidden&quot;&gt; ({{ card.tagline }})&lt;/span&gt;&lt;/a
+          &gt;
         &lt;/hra-action-card-action&gt;
       &lt;/hra-action-card&gt;
     }
@@ -374,7 +378,7 @@ export class SectionCardsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><span class="section-title">Explore the Human Reference Atlas</span><hra-grid-container class="cards" hraFeature="section-cards">  @for (card of cardInfo(); track card) {    @if (card.url; as url) {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink target="_blank" [attr.href]="card.url">{{ card.action }}</a>        </hra-action-card-action>      </hra-action-card>    } @else {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink [routerLink]="card.route">{{ card.action }}</a>        </hra-action-card-action>      </hra-action-card>    }  }</hra-grid-container></div>'
+        var COMPONENT_TEMPLATE = '<div><h2 class="section-title">Explore the Human Reference Atlas</h2><hra-grid-container class="cards" hraFeature="section-cards">  @for (card of cardInfo(); track card) {    @if (card.url; as url) {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink target="_blank" [attr.href]="card.url"            >{{ card.action }}<span class="cdk-visually-hidden"> ({{ card.tagline }}, opens in a new tab)</span></a          >        </hra-action-card-action>      </hra-action-card>    } @else {      <hra-action-card        variant="outlined-with-icons"        [tagline]="card.tagline"        [icons]="[card.icon]"        [hraFeature]="card.tagline | slugify"      >        <hra-action-card-action>          <a hraHyperlink [routerLink]="card.route"            >{{ card.action }}<span class="cdk-visually-hidden"> ({{ card.tagline }})</span></a          >        </hra-action-card-action>      </hra-action-card>    }  }</hra-grid-container></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'hra-portal'},{'name': 'CarouselComponent', 'selector': 'hra-carousel'},{'name': 'ContentComponent', 'selector': 'hra-carousel-content'},{'name': 'ControlsComponent', 'selector': 'hra-carousel-controls'},{'name': 'CountInfoComponent', 'selector': 'hra-count-info'},{'name': 'DataViewerWithQueryParamsComponent', 'selector': 'hra-data-viewer-with-query-params'},{'name': 'LandingPageComponent', 'selector': 'hra-landing-page'},{'name': 'PublicationsPageComponent', 'selector': 'hra-publications-page'},{'name': 'ReleaseNotesVersionSelectorComponent', 'selector': 'hra-release-notes-version-selector'},{'name': 'SectionCardsComponent', 'selector': 'hra-section-cards'},{'name': 'SummaryStatisticsTableComponent', 'selector': 'hra-summary-statistics-table'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SectionCardsComponent'};
