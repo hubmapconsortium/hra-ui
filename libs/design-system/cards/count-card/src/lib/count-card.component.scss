@@ -10,8 +10,8 @@
   gap: 1rem;
 
   .logo {
-    width: 3.375rem;
-    height: 3.375rem;
+    width: 3rem;
+    height: 3rem;
     background-color: vars.$on-secondary-fixed;
   }
 
@@ -22,14 +22,15 @@
   }
   .count {
     display: flex;
-    @include utils.use-font(headline, large);
+    @include utils.use-font(headline, small);
     color: vars.$secondary;
   }
 
   .label-text {
     margin: 0;
-    @include utils.use-font(body, xl);
+    @include utils.use-font(body, large);
     color: vars.$primary;
     text-align: center;
+    text-wrap: balance;
   }
 }
