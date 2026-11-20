@@ -15,17 +15,19 @@
     .header {
       @include utils.use-font(display, large);
       color: vars.$secondary;
+      margin: 0;
     }
 
     .subheader {
       @include utils.use-font(title, large);
       color: vars.$primary;
-      margin-bottom: 1rem;
+      margin: 0 0 1rem;
     }
 
     .description {
       @include utils.use-font(body, xl);
       color: vars.$primary;
+      margin: 0;
     }
   }
 

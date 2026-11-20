@@ -86,4 +86,18 @@ describe('ContentComponent', () => {
     const tagline = screen.getByText('Route Tagline');
     expect(tagline).toBeInTheDocument();
   });
+
+  it('should name the external link with its description and new tab text', async () => {
+    await setup(mockItemWithUrl);
+    const link = screen.getByRole('link', { name: 'Learn More Test Description (opens in a new tab)' });
+    expect(link).toHaveAttribute('href', 'https://example.com');
+    expect(link).toHaveAttribute('target', '_blank');
+  });
+
+  it('should link to the route in the same tab for route type', async () => {
+    await setup(mockItemWithRoute);
+    const link = screen.getByRole('link', { name: 'View Details Route Description' });
+    expect(link).toHaveAttribute('href', '/test-route');
+    expect(link).not.toHaveAttribute('target');
+  });
 });

@@ -14,13 +14,12 @@
       hraClickEvent
       [href]="getLink(item())"
     >
-      {{ item().action }}
+      {{ item().action }}<span class="cdk-visually-hidden"> {{ item().description }} (opens in a new tab)</span>
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   } @else {
-    <!-- <a mat-stroked-button class="get-button" [routerLink]="['', item().route]">{{ item().buttonText }}</a> -->
-    <a mat-button hraCtaButton class="action" hraFeature="action" hraClickEvent target="_blank">
-      {{ item().action }}
+    <a mat-button hraCtaButton class="action" hraFeature="action" hraClickEvent [routerLink]="getLink(item())">
+      {{ item().action }}<span class="cdk-visually-hidden"> {{ item().description }}</span>
       <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
     </a>
   }
