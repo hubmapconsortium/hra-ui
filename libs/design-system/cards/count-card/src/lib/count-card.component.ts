@@ -1,6 +1,19 @@
-import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
-import { HraCommonModule } from '@hra-ui/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  linkedSignal,
+  signal,
+} from '@angular/core';
+import { HraCommonModule, INTERSECTION_OBSERVER, WINDOW } from '@hra-ui/common';
 import { IconsModule } from '@hra-ui/design-system/icons';
+
+/** Fraction of the card that must be in view before the count starts */
+const VISIBLE_THRESHOLD = 0.5;
 
 /**
  * Component representing a count card.
@@ -26,18 +39,54 @@ export class CountCardComponent {
   /** Icon */
   readonly icon = input.required<string>();
 
+  /** Whether the card has come into view */
+  private readonly visible = signal(false);
+
+  /** Whether the count animates up from zero once the card is in view */
+  private readonly animated = this.observeVisibility();
+
   /** Number currently displayed in count */
-  protected readonly currentCount = signal(0);
+  protected readonly currentCount = linkedSignal(() => (this.animated ? 0 : this.count()));
 
   /**
    * Constructor that initializes the count card component.
-   * Starts the count up animation.
+   * Starts the count up animation once the card is in view.
    */
   constructor() {
     effect((onCleanup) => {
-      const cleanup = this.startCountUp(this.count(), 100);
-      onCleanup(cleanup);
+      if (this.visible()) {
+        const cleanup = this.startCountUp(this.count(), 100);
+        onCleanup(cleanup);
+      }
     });
+  }
+
+  /**
+   * Watches for the card to come into view.
+   * Skipped when the user prefers reduced motion or IntersectionObserver is unavailable.
+   *
+   * @returns Whether the card is being watched
+   */
+  private observeVisibility(): boolean {
+    const IntersectionObserver = inject(INTERSECTION_OBSERVER);
+    const reducedMotion = inject(WINDOW)?.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (!IntersectionObserver || reducedMotion) {
+      return false;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.intersectionRatio >= VISIBLE_THRESHOLD)) {
+          this.visible.set(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: VISIBLE_THRESHOLD },
+    );
+
+    observer.observe(inject(ElementRef).nativeElement);
+    inject(DestroyRef).onDestroy(() => observer.disconnect());
+    return true;
   }
 
   /**
