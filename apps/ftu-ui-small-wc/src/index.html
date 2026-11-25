@@ -1,29 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>FTU Small Web Component</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <style>
-      .wc-content {
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div class="wc-content">
-      <hra-ftu-ui-small
-        id="ftu"
-        selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct"
-        datasets="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/update-iftu-data/docs/iftu-testing/assets/ftu-datasets.jsonld"
-        summaries="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/update-iftu-data/docs/iftu-testing/assets/ftu-cell-summaries.jsonld"
-        illustrations="assets/TEMP/data.jsonld"
-      ></hra-ftu-ui-small>
-    </div>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>FTU Small Web Component</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <style>
+    .wc-content {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wc-content">
+    <hra-ftu-ui-small id="ftu" selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-cortical-collecting-duct"
+      datasets="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/main/docs/iftu-testing/assets/ftu-datasets.jsonld"
+      summaries="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/main/docs/iftu-testing/assets/ftu-cell-summaries.jsonld"
+      illustrations="assets/TEMP/data.jsonld"></hra-ftu-ui-small>
+  </div>
+</body>
+
 </html>
