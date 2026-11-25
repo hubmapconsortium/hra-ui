@@ -1,32 +1,31 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>FTU Explorer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const ftu = document.getElementById('ftu');
-        const selectOrgan = (activeIri) => {
-          console.log('selected organ', activeIri);
-        };
-        const selectNode = (selectedNode) => {
-          console.log('selected node', selectedNode);
-        };
-        ftu.addEventListener('organSelected', selectOrgan);
-        ftu.addEventListener('nodeClicked', selectNode);
-      });
-    </script>
-  </head>
 
-  <body>
-    <hra-ftu-ui
-      id="ftu"
-      selected-illustration="https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn"
-      datasets="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/update-iftu-data/docs/iftu-testing/assets/ftu-datasets.jsonld"
-      summaries="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/update-iftu-data/docs/iftu-testing/assets/ftu-cell-summaries.jsonld"
-      illustrations="assets/TEMP/data.jsonld"
-    ></hra-ftu-ui>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>FTU Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const ftu = document.getElementById('ftu');
+      const selectOrgan = (activeIri) => {
+        console.log('selected organ', activeIri);
+      };
+      const selectNode = (selectedNode) => {
+        console.log('selected node', selectedNode);
+      };
+      ftu.addEventListener('organSelected', selectOrgan);
+      ftu.addEventListener('nodeClicked', selectNode);
+    });
+  </script>
+</head>
+
+<body>
+  <hra-ftu-ui id="ftu" selected-illustration="https://purl.humanatlas.io/2d-ftu/large-intestine-crypt-lieberkuhn"
+    datasets="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/main/docs/iftu-testing/assets/ftu-datasets.jsonld"
+    summaries="https://raw.githubusercontent.com/cns-iu/hra-ftu-explorer-supporting-information/refs/heads/main/docs/iftu-testing/assets/ftu-cell-summaries.jsonld"
+    illustrations="assets/TEMP/data.jsonld"></hra-ftu-ui>
+</body>
+
 </html>
