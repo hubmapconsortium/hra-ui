@@ -5,7 +5,8 @@ import { ContentPageComponent, ContentPageDataSchema } from '@hra-ui/design-syst
 import { createYamlSpecResolver } from '@hra-ui/design-system/content-templates/resolvers';
 import { NotFoundPageComponent } from '@hra-ui/design-system/error-pages/not-found-page';
 import { ServerErrorPageComponent } from '@hra-ui/design-system/error-pages/server-error-page';
-import { VisualCard } from './components/visual-card/visual-card.component';
+import { ExampleItem } from './components/example-list/example-list.component';
+import { LandingCard } from './components/landing-card/landing-card.component';
 import { CreateVisualizationPageComponent } from './pages/create-visualization-page/create-visualization-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { StudyPageComponent } from './pages/study-page/study-page.component';
@@ -15,13 +16,13 @@ import {
   visualizationDataCanActivate,
   visualizationDataResolver,
 } from './services/visualization-data-service/visualization-data.service';
-import { createCrumbsResolver, CRUMBS_DATA_KEY } from './shared/resolvers/crumbs.resolver';
 import {
-  createExampleResolver,
-  EXAMPLE_INDEX_PARAM,
-  EXAMPLES_DATA_KEY,
-  getExampleCrumbs,
-} from './shared/resolvers/example.resolver';
+  BREADCRUMBS_DATA_KEY,
+  createBreadcrumbsResolver,
+  createCrumbsResolver,
+  CRUMBS_DATA_KEY,
+} from './shared/resolvers/crumbs.resolver';
+import { createExampleResolver, EXAMPLE_INDEX_PARAM, EXAMPLES_DATA_KEY } from './shared/resolvers/example.resolver';
 import { jsonFileResolver } from './shared/resolvers/json-file/json-file.resolver';
 import { organsResolver } from './shared/resolvers/organs.resolver';
 import {
@@ -29,16 +30,21 @@ import {
   createStudyResolver,
   DATASET_ID_PARAM,
   getStudyCrumbs,
-  getStudyDatasetCrumbs,
   STUDIES_DATA_KEY,
   STUDY_DATA_KEY,
   STUDY_ID_PARAM,
 } from './shared/resolvers/study.resolver';
 
-/** Landing page cards json file url token */
-const LANDING_PAGE_CARDS_URL = new InjectionToken('LANDING_PAGE_CARDS_URL', {
+/** Landing page example cards json file url token */
+const LANDING_PAGE_EXAMPLES_URL = new InjectionToken('LANDING_PAGE_EXAMPLES_URL', {
   providedIn: 'root',
-  factory: () => assetUrl('assets/data/landing-page/cards.json')(),
+  factory: () => assetUrl('assets/data/landing-page/examples.json')(),
+});
+
+/** Landing page developer tools cards json file url token */
+const LANDING_PAGE_DEVELOPER_TOOLS_URL = new InjectionToken('LANDING_PAGE_DEVELOPER_TOOLS_URL', {
+  providedIn: 'root',
+  factory: () => assetUrl('assets/data/landing-page/developer-tools.json')(),
 });
 
 /** Example data index json file url token */
@@ -56,15 +62,18 @@ export const ROUTES: Routes = [
     pathMatch: 'full',
     component: LandingPageComponent,
     resolve: {
-      [CRUMBS_DATA_KEY]: createCrumbsResolver(),
-      cards: jsonFileResolver<VisualCard[]>(LANDING_PAGE_CARDS_URL, { cache: true }),
+      [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver(),
+      examples: jsonFileResolver<ExampleItem[]>(LANDING_PAGE_EXAMPLES_URL, { cache: true }),
+      developerTools: jsonFileResolver<LandingCard[]>(LANDING_PAGE_DEVELOPER_TOOLS_URL, { cache: true }),
     },
   },
   {
     path: 'create',
     component: CreateVisualizationPageComponent,
     resolve: {
-      [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Create Visualization', route: '/create' }]),
+      [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver([
+        { name: 'Create a distance visualization', route: '/create' },
+      ]),
       organs: organsResolver(),
     },
   },
@@ -80,6 +89,7 @@ export const ROUTES: Routes = [
         pathMatch: 'full',
         component: ContentPageComponent,
         resolve: {
+          [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver(),
           data: createYamlSpecResolver('assets/content/gallery/data.yaml', ContentPageDataSchema),
         },
       },
@@ -94,14 +104,13 @@ export const ROUTES: Routes = [
             pathMatch: 'full',
             component: StudyPageComponent,
             resolve: {
-              [CRUMBS_DATA_KEY]: createCrumbsResolver(getStudyCrumbs),
+              [BREADCRUMBS_DATA_KEY]: createBreadcrumbsResolver(getStudyCrumbs),
             },
           },
           {
             path: `:${DATASET_ID_PARAM}`,
             component: VisualizationPageComponent,
             resolve: {
-              [CRUMBS_DATA_KEY]: createCrumbsResolver(getStudyDatasetCrumbs),
               data: createStudyDatasetVisualizationResolver(),
             },
           },
@@ -119,7 +128,6 @@ export const ROUTES: Routes = [
         path: `:${EXAMPLE_INDEX_PARAM}`,
         component: VisualizationPageComponent,
         resolve: {
-          [CRUMBS_DATA_KEY]: createCrumbsResolver(getExampleCrumbs),
           data: createExampleResolver(),
         },
       },
@@ -133,7 +141,6 @@ export const ROUTES: Routes = [
       isCustomVisualization: true,
     },
     resolve: {
-      [CRUMBS_DATA_KEY]: createCrumbsResolver([{ name: 'Custom Visualization', route: '/visualize' }]),
       data: visualizationDataResolver(),
     },
   },
@@ -144,6 +151,7 @@ export const ROUTES: Routes = [
     component: ServerErrorPageComponent,
     data: {
       isErrorPage: true,
+      reportIssueLink: 'https://github.com/hubmapconsortium/hra-ui/issues/new',
     },
   },
   {

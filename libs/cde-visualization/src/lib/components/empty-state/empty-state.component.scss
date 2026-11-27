@@ -1,0 +1,33 @@
+@use '../../../../../../libs/design-system/styles/utils';
+@use '../../../../../../libs/design-system/styles/vars';
+
+// Covers the chart on the panel background, so the panel reads as empty instead of blank
+:host {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  text-align: center;
+  background-color: vars.$background;
+
+  .heading {
+    margin: 0;
+    color: vars.$on-surface;
+    @include utils.use-font(title, small);
+  }
+
+  .description {
+    margin: 0;
+    color: vars.$on-surface-variant;
+    @include utils.use-font(body, medium);
+  }
+
+  .action {
+    margin-top: 0.75rem;
+  }
+}

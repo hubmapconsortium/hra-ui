@@ -23,4 +23,17 @@ describe('BreadcrumbsComponent', () => {
     expect(getByText('Home')).toBeTruthy();
     expect(getByText('About')).toBeTruthy();
   });
+
+  it('should render an icon crumb as an icon button named by the crumb', async () => {
+    const { getByRole, queryByText } = await render(BreadcrumbsComponent, {
+      inputs: {
+        crumbs: [{ name: 'Home', route: 'https://humanatlas.io', icon: 'home' }, { name: 'About' }],
+      },
+    });
+
+    const home = getByRole('link', { name: 'Home' });
+    expect(home).toHaveClass('mat-mdc-icon-button');
+    expect(home).toHaveTextContent('home');
+    expect(queryByText('Home')).toBeNull();
+  });
 });

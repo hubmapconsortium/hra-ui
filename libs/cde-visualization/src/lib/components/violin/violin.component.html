@@ -1,20 +1,44 @@
-<hra-expansion-panel tagline="Violin Graph" disabled hraHoverEvent hraHoverEventTriggerOn="mouseenter">
-  <hra-expansion-panel-actions>
-    <cde-violin-menu hraFeature="menu" (open)="violinEl().open()" (download)="download($event)" />
-  </hra-expansion-panel-actions>
+<hra-expansion-panel tagline="Violin graph" disabled hraHoverEvent hraHoverEventTriggerOn="mouseenter">
+  <hra-expansion-panel-header-content>
+    @if (fullscreenAvailable()) {
+      <button
+        mat-icon-button
+        aria-label="Open the violin graph in full screen"
+        hraPlainTooltip="Full screen"
+        hraFeature="open-fullscreen"
+        hraClickEvent
+        (click)="violinEl().open()"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
+  </hra-expansion-panel-header-content>
   <hra-fullscreen-portal
-    tagline="Violin Graph"
+    tagline="Violin graph"
     hraFeature="fullscreen-violin"
+    viewTransition
+    (beforeOpened)="fullscreen.set(true); fullscreenChange.emit(true)"
     (opened)="resizeAndSyncView()"
+    (transitionEnded)="fullscreenReady.set(fullscreen())"
+    (beforeClosed)="closeFullscreen(); fullscreenChange.emit(false)"
     (closed)="resizeAndSyncView()"
   >
-    <hra-fullscreen-actions>
-      <cde-violin-menu dialogOpen hraFeature="fullscreen-violin-menu" (download)="download($event)" />
-    </hra-fullscreen-actions>
     <hra-fullscreen-portal-content class="violin-fullscreen-portal" [class.enableScroll]="enableScroll()">
-      <ng-scrollbar class="violin" hraScrollOverflowFade hraFeature="violin-scrollbar">
-        <div class="violin-container" data-testid="violin" #violin></div>
+      <ng-scrollbar
+        class="violin"
+        orientation="vertical"
+        hraScrollOverflowFade
+        hraFeature="violin-scrollbar"
+        [attr.inert]="emptyState() ? '' : null"
+      >
+        <div class="violin-container violin-docked-chart" data-testid="violin" [class.hidden]="fullscreen()"></div>
+        <div class="violin-container violin-fullscreen-chart" [class.hidden]="!fullscreen()"></div>
       </ng-scrollbar>
+      @if (loading() || fullscreenLoading()) {
+        <cde-chart-skeleton />
+      } @else if (emptyState(); as content) {
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>

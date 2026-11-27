@@ -1,6 +1,8 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { MatTooltip } from '@angular/material/tooltip';
+import { By } from '@angular/platform-browser';
 import { render, screen } from '@testing-library/angular';
 import { userEvent } from '@testing-library/user-event';
 import { of } from 'rxjs';
@@ -59,6 +61,60 @@ describe('HeaderComponent', () => {
     const button = screen.getByRole('button', { name: /main navigation/i });
     await userEvent.click(button);
     expect(screen.queryAllByText(menu.label).length).toBeGreaterThan(0);
+  });
+
+  it('should show actions in the main bar, even without breadcrumbs', async () => {
+    await render(
+      `<hra-header>
+        <button hraHeaderActions>Upload</button>
+        <span>Breadcrumbs row content</span>
+      </hra-header>`,
+      { imports: [HeaderComponent], providers },
+    );
+
+    const action = screen.getByRole('button', { name: 'Upload' });
+    const menuButton = screen.getByRole('button', { name: /main navigation/i });
+    expect(action.closest('.menus')).toBe(menuButton.closest('.menus'));
+    expect(action.compareDocumentPosition(menuButton) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.queryByText('Breadcrumbs row content')).toBeNull();
+  });
+
+  it('should name the apps button HuBMAP apps in its tooltip', async () => {
+    const { fixture } = await render(HeaderComponent, { providers });
+
+    const button = fixture.debugElement.query(By.css('[hraFeature="menu-toggle"]'));
+    expect(button.injector.get(MatTooltip).message).toBe('HuBMAP apps');
+  });
+
+  it('should name the consolidated menu button Menu in its tooltip on small screens', async () => {
+    const { fixture } = await render(HeaderComponent, { providers: [...providers, mobileBreakpointsProvider] });
+
+    const button = fixture.debugElement.query(By.css('[hraFeature="menu-toggle"]'));
+    expect(button.injector.get(MatTooltip).message).toBe('Menu');
+  });
+
+  it('should name the logo Homepage in its tooltip', async () => {
+    const { fixture } = await render(HeaderComponent, { providers });
+
+    const logo = fixture.debugElement.query(By.css('hra-brand-logo a'));
+    expect(logo.injector.get(MatTooltip).message).toBe('Homepage');
+  });
+
+  it('should show the navigation categories after the logo and a divider when navigationPosition is start', async () => {
+    const { container } = await render(HeaderComponent, { providers, inputs: { navigationPosition: 'start' } });
+
+    const children = Array.from(container.querySelector('.menus')?.children ?? []).map((child) =>
+      child.classList.contains('filler') ? 'filler' : child.tagName.toLowerCase(),
+    );
+    expect(children.slice(0, 3)).toEqual(['hra-brand-logo', 'mat-divider', 'hra-navigation-category-toggle']);
+    expect(children.indexOf('filler')).toBeGreaterThan(children.lastIndexOf('hra-navigation-category-toggle'));
+  });
+
+  it('should keep the navigation categories at the end by default', async () => {
+    const { container } = await render(HeaderComponent, { providers });
+
+    expect(container.querySelector('.logo-divider')).toBeNull();
+    expect(container.querySelector('.menus > :nth-child(2)')).toHaveClass('filler');
   });
 
   it('should show an indeterminate progress bar when `progress === true`', async () => {

@@ -1,0 +1,247 @@
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { MatTooltip } from '@angular/material/tooltip';
+import { fireEvent, render, RenderComponentOptions, screen, within } from '@testing-library/angular';
+import { ToolbarComponent } from './toolbar.component';
+import { EMBEDDING_GUIDE_URL, TOOLBAR_CONTENT } from './toolbar.content';
+
+describe('ToolbarComponent', () => {
+  async function setup(options?: RenderComponentOptions<ToolbarComponent>) {
+    return render(ToolbarComponent, { ...options, providers: [provideNoopAnimations()] });
+  }
+
+  async function openMenu(label: string) {
+    fireEvent.click(screen.getByRole('button', { name: label }));
+    return screen.findByRole('menu');
+  }
+
+  it('is a vertical toolbar of the visualization actions', async () => {
+    await setup();
+
+    const toolbar = screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label });
+    expect(toolbar).toHaveAttribute('aria-orientation', 'vertical');
+    expect(screen.getByRole('link', { name: TOOLBAR_CONTENT.embed.label })).toHaveAttribute(
+      'href',
+      EMBEDDING_GUIDE_URL,
+    );
+  });
+
+  it('shows and hides every panel but cell types, and keeps the menu open', async () => {
+    const { fixture } = await setup({ inputs: { hiddenPanels: ['metadata'] } });
+    const instance = fixture.componentInstance;
+    await openMenu(TOOLBAR_CONTENT.panels.label);
+
+    expect(screen.getAllByRole('menuitemcheckbox')).toHaveLength(4);
+    expect(screen.queryByRole('menuitemcheckbox', { name: 'Cell types' })).not.toBeInTheDocument();
+
+    const histogram = screen.getByRole('menuitemcheckbox', { name: 'Histogram' });
+    expect(histogram).toHaveAttribute('aria-checked', 'true');
+    fireEvent.click(histogram);
+    fixture.detectChanges();
+    expect(instance.hiddenPanels()).toEqual(['metadata', 'histogram']);
+    expect(histogram).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByRole('menu')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: 'Metadata' }));
+    fixture.detectChanges();
+    expect(instance.hiddenPanels()).toEqual(['histogram']);
+  });
+
+  it('shows all panels', async () => {
+    const { fixture } = await setup({ inputs: { hiddenPanels: ['histogram'] } });
+    await openMenu(TOOLBAR_CONTENT.panels.label);
+
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.panels.showAll }));
+    expect(fixture.componentInstance.hiddenPanels()).toEqual([]);
+  });
+
+  it('hides the Layout menu when showPanelsMenu is off', async () => {
+    await setup({ inputs: { showPanelsMenu: false } });
+
+    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.panels.label })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.display.label })).toBeInTheDocument();
+  });
+
+  it('toggles display options and keeps the menu open', async () => {
+    const { fixture } = await setup({ inputs: { hasHiddenMetadata: true } });
+    const instance = fixture.componentInstance;
+    await openMenu(TOOLBAR_CONTENT.display.label);
+
+    const cellLinks = screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.cellLinks.label });
+    expect(cellLinks).toHaveAttribute('aria-checked', 'true');
+
+    fireEvent.click(cellLinks);
+    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.cellLinkData.label }));
+    fireEvent.click(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata.label }));
+    fixture.detectChanges();
+
+    expect(instance.cellLinks()).toBe(false);
+    expect(instance.cellLinkData()).toBe(false);
+    expect(instance.allMetadata()).toBe(true);
+    expect(cellLinks).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByRole('menu')).toBeInTheDocument();
+  });
+
+  it('names menu items by their label and describes them with their supporting text', async () => {
+    await setup();
+    await openMenu(TOOLBAR_CONTENT.display.label);
+
+    const { label, description } = TOOLBAR_CONTENT.display.cellLinks;
+    expect(screen.getByRole('menuitemcheckbox', { name: label })).toHaveAccessibleDescription(description);
+  });
+
+  it('disables all metadata when no fields are hidden', async () => {
+    await setup();
+    await openMenu(TOOLBAR_CONTENT.display.label);
+
+    expect(screen.getByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata.label })).toBeDisabled();
+  });
+
+  it('emits the reset actions', async () => {
+    const resetViewClick = jest.fn();
+    const restoreDeletedCellsClick = jest.fn();
+    const resetColorsClick = jest.fn();
+    const resetEverythingClick = jest.fn();
+    await setup({
+      inputs: { hasDeletedCells: true },
+      on: { resetViewClick, restoreDeletedCellsClick, resetColorsClick, resetEverythingClick },
+    });
+
+    await openMenu(TOOLBAR_CONTENT.reset.label);
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.view.label }));
+    await openMenu(TOOLBAR_CONTENT.reset.label);
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.deletedCells.label }));
+    await openMenu(TOOLBAR_CONTENT.reset.label);
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.colors.label }));
+    await openMenu(TOOLBAR_CONTENT.reset.label);
+    fireEvent.click(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.everything.label }));
+
+    expect(resetViewClick).toHaveBeenCalled();
+    expect(restoreDeletedCellsClick).toHaveBeenCalled();
+    expect(resetColorsClick).toHaveBeenCalled();
+    expect(resetEverythingClick).toHaveBeenCalled();
+  });
+
+  it('disables restoring cells when none were deleted', async () => {
+    await setup();
+    await openMenu(TOOLBAR_CONTENT.reset.label);
+
+    expect(screen.getByRole('menuitem', { name: TOOLBAR_CONTENT.reset.deletedCells.label })).toBeDisabled();
+  });
+
+  it('opens sheets and shows the open one as active', async () => {
+    const openSheetChange = jest.fn();
+    await setup({ on: { openSheet: openSheetChange } });
+    const downloads = screen.getByRole('button', { name: TOOLBAR_CONTENT.downloads.label });
+    const info = screen.getByRole('button', { name: TOOLBAR_CONTENT.info.label });
+
+    fireEvent.click(downloads);
+    expect(openSheetChange).toHaveBeenLastCalledWith('downloads');
+    expect(downloads).toHaveClass('hra-navigation-rail-item--active');
+
+    fireEvent.click(info);
+    expect(openSheetChange).toHaveBeenLastCalledWith('about');
+    expect(info).toHaveClass('hra-navigation-rail-item--active');
+    expect(downloads).not.toHaveClass('hra-navigation-rail-item--active');
+  });
+
+  it('hides the Theme menu by default', async () => {
+    await setup();
+
+    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.theme.label })).not.toBeInTheDocument();
+  });
+
+  it('picks a theme from the Theme menu', async () => {
+    const themePreferenceChange = jest.fn();
+    const { fixture } = await setup({
+      inputs: { showThemeMenu: true },
+      on: { themePreference: themePreferenceChange },
+    });
+    await openMenu(TOOLBAR_CONTENT.theme.label);
+
+    const [system, , dark] = TOOLBAR_CONTENT.theme.options;
+    expect(screen.getByRole('menuitemradio', { name: new RegExp(system.label) })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+
+    fireEvent.click(screen.getByRole('menuitemradio', { name: new RegExp(dark.label) }));
+    fixture.detectChanges();
+    expect(themePreferenceChange).toHaveBeenCalledWith('dark');
+    expect(screen.getByRole('button', { name: TOOLBAR_CONTENT.theme.label })).toHaveTextContent(dark.icon);
+  });
+
+  it('is a bar along the bottom on compact screens: Display, Reset, Downloads, Info and More', async () => {
+    const openSheetChange = jest.fn();
+    // Compact screens always show tabs, which hide the Layout menu
+    await setup({ inputs: { compact: true, showPanelsMenu: false }, on: { openSheet: openSheetChange } });
+
+    const toolbar = screen.getByRole('toolbar', { name: TOOLBAR_CONTENT.label });
+    expect(toolbar).toHaveAttribute('aria-orientation', 'horizontal');
+    expect(screen.queryByRole('link', { name: TOOLBAR_CONTENT.embed.label })).not.toBeInTheDocument();
+
+    const { display, reset, downloads, info, more } = TOOLBAR_CONTENT;
+    const items = [display, reset, downloads, info, more].map(({ label }) =>
+      screen.getByRole('button', { name: label }),
+    );
+    expect(within(toolbar).getAllByRole('button')).toEqual(items);
+
+    fireEvent.click(screen.getByRole('button', { name: info.label }));
+    expect(openSheetChange).toHaveBeenLastCalledWith('about');
+  });
+
+  it('holds Embed and Help in the More menu on compact screens', async () => {
+    await setup({ inputs: { compact: true } });
+    await openMenu(TOOLBAR_CONTENT.more.label);
+
+    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.embed.label) })).toHaveAttribute(
+      'href',
+      EMBEDDING_GUIDE_URL,
+    );
+    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.help.label) })).toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.info.label) })).not.toBeInTheDocument();
+  });
+
+  it('leaves All metadata out of the Display menu on compact screens', async () => {
+    const { fixture } = await setup({ inputs: { compact: true, hasHiddenMetadata: true } });
+    const display = screen.getByRole('button', { name: TOOLBAR_CONTENT.display.label });
+    const tooltip = fixture.debugElement.query((el) => el.nativeElement === display).injector.get(MatTooltip);
+    expect(tooltip.message).toBe(TOOLBAR_CONTENT.display.compactTooltip);
+
+    await openMenu(TOOLBAR_CONTENT.display.label);
+    expect(screen.getAllByRole('menuitemcheckbox')).toHaveLength(2);
+    expect(
+      screen.queryByRole('menuitemcheckbox', { name: TOOLBAR_CONTENT.display.allMetadata.label }),
+    ).not.toBeInTheDocument();
+  });
+
+  it('links to the help resources', async () => {
+    await setup();
+    await openMenu(TOOLBAR_CONTENT.help.label);
+
+    for (const link of TOOLBAR_CONTENT.help.links) {
+      expect(screen.getByRole('menuitem', { name: new RegExp(link.label) })).toHaveAttribute('href', link.url);
+    }
+  });
+
+  it('keeps Theme, Info and Help in the bottom group', async () => {
+    await setup({ inputs: { showThemeMenu: true } });
+
+    for (const label of [TOOLBAR_CONTENT.theme.label, TOOLBAR_CONTENT.info.label, TOOLBAR_CONTENT.help.label]) {
+      expect(screen.getByRole('button', { name: label }).closest('.hra-navigation-rail--bottom')).not.toBeNull();
+    }
+  });
+
+  it('hides the Help menu', async () => {
+    await setup({ inputs: { showHelpMenu: false } });
+
+    expect(screen.queryByRole('button', { name: TOOLBAR_CONTENT.help.label })).not.toBeInTheDocument();
+  });
+
+  it('hides the Help item in the More menu on compact screens', async () => {
+    await setup({ inputs: { compact: true, showHelpMenu: false } });
+    await openMenu(TOOLBAR_CONTENT.more.label);
+
+    expect(screen.getByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.embed.label) })).toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: new RegExp(TOOLBAR_CONTENT.help.label) })).not.toBeInTheDocument();
+  });
+});

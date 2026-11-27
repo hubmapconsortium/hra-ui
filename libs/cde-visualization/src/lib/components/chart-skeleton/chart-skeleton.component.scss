@@ -1,0 +1,15 @@
+@use '../../../../../../libs/design-system/styles/vars';
+
+// A rectangle on the panel background, inside the chart's 16px inset
+:host {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  padding: 0 1rem 1rem;
+  background-color: vars.$background;
+
+  cde-skeleton {
+    flex-grow: 1;
+  }
+}

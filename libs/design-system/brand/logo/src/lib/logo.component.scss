@@ -4,8 +4,15 @@
   display: block;
   color: var(--hra-brand-logo-text-color, vars.$on-surface);
 
+  // The logo keeps its own height unless --hra-brand-logo-height sets another, and its width scales with it
   .logo {
     display: block;
     color: inherit;
+
+    ::ng-deep svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 }

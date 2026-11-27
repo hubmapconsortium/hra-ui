@@ -6,16 +6,13 @@
     hraClickEvent
     hraLinkExternal
     hraFeature="source-data"
-    hraButtonSize="medium"
     [hraLink]="item.url"
     [hraPlainTooltip]="item.label"
   >
     Source data
   </a>
 } @else if (publications().length > 1) {
-  <button mat-button hraClickEvent hraFeature="source-data" hraButtonSize="medium" [matMenuTriggerFor]="menu">
-    Source data
-  </button>
+  <button mat-button hraClickEvent hraFeature="source-data" [matMenuTriggerFor]="menu">Source data</button>
   <mat-menu #menu>
     @for (publication of publications(); track publication.label) {
       <a

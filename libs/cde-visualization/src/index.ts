@@ -2,6 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnalytics, withErrorHandler } from '@hra-ui/common/analytics';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideDesignSystem } from '@hra-ui/design-system';
+import { providePlainTooltipOptions } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { InputProps, createCustomElement } from '@hra-ui/webcomponents';
 import { CdeVisualizationComponent } from './lib/cde-visualization/cde-visualization.component';
 
@@ -29,5 +30,6 @@ export const CdeVisualizationElement = createCustomElement('cde-visualization', 
     provideAnalytics(withErrorHandler()),
     provideDesignSystem(),
     provideHttpClient(),
+    providePlainTooltipOptions({ hraStyles: false }),
   ],
 });

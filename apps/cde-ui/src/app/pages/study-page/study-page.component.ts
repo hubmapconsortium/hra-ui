@@ -3,6 +3,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { HraCommonModule } from '@hra-ui/common';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
+import { BreadcrumbItem } from '@hra-ui/design-system/buttons/breadcrumbs';
 import { TextHyperlinkComponent } from '@hra-ui/design-system/buttons/text-hyperlink';
 import { MarkdownComponent } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionComponent } from '@hra-ui/design-system/content-templates/page-section';
@@ -61,6 +62,9 @@ const CSV_COLUMNS = TABLE_COLUMNS.slice(1).map((col) => col.column);
 export class StudyPageComponent {
   /** Study data input */
   readonly study = input.required<Study>();
+
+  /** Breadcrumbs shown above the study title */
+  readonly breadcrumbs = input<BreadcrumbItem[]>();
 
   /** Search query for filtering datasets */
   readonly searchQuery = signal('');

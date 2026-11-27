@@ -1,0 +1,136 @@
+@use '../../../styles/utils';
+@use './navigation-rail-tokens' as tokens;
+
+// Material 3 Expressive motion: short4 duration, emphasized easing
+$motion: 200ms cubic-bezier(0.2, 0, 0, 1);
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  align-self: stretch;
+  box-sizing: border-box;
+  min-height: 4rem;
+  margin: 0;
+  padding: 0.25rem;
+  border: none;
+  background: none;
+  color: tokens.slot(label-color);
+  font-family: tokens.slot(label-font);
+  font-size: tokens.slot(label-font-size);
+  font-weight: tokens.slot(label-font-weight);
+  line-height: tokens.slot(label-line-height);
+  letter-spacing: tokens.slot(label-letter-spacing);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+
+  .hra-navigation-rail-item--indicator {
+    --mat-ripple-color: color-mix(
+      in srgb,
+      #{tokens.slot(state-layer-color)} calc(var(--mat-sys-pressed-state-layer-opacity, 0.1) * 100%),
+      transparent
+    );
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 2rem;
+    border-radius: var(--mat-sys-corner-full);
+    color: tokens.slot(icon-color);
+    isolation: isolate;
+
+    // Active indicator
+    &::before,
+    // Hover, focus and open menu state layer
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0;
+    }
+
+    &::before {
+      z-index: -2;
+      background-color: tokens.slot(indicator-color);
+      transform: scaleX(0.5);
+      transition:
+        opacity $motion,
+        transform $motion;
+    }
+
+    &::after {
+      z-index: -1;
+      background-color: tokens.slot(state-layer-color);
+    }
+  }
+
+  // Long labels wrap to a second line
+  .hra-navigation-rail-item--label {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+    @include utils.line-clamp(2);
+  }
+}
+
+:host(:hover),
+:host(:focus-visible),
+:host(:active),
+:host([aria-expanded='true']) {
+  color: tokens.slot(hover-label-color);
+
+  .hra-navigation-rail-item--indicator {
+    color: tokens.slot(hover-icon-color);
+  }
+}
+
+:host(:hover) .hra-navigation-rail-item--indicator::after,
+// An open menu gets a light highlight. The active indicator is for drawers, toggles and the current page.
+:host([aria-expanded='true']) .hra-navigation-rail-item--indicator::after {
+  opacity: var(--mat-sys-hover-state-layer-opacity, 0.08);
+}
+
+:host(:focus-visible) .hra-navigation-rail-item--indicator {
+  outline: solid 0.125rem tokens.slot(focus-outline-color);
+  outline-offset: 0.125rem;
+
+  &::after {
+    opacity: var(--mat-sys-focus-state-layer-opacity, 0.1);
+  }
+}
+
+:host(.hra-navigation-rail-item--active),
+:host([aria-pressed='true']),
+:host([aria-current]:not([aria-current='false'])) {
+  color: tokens.slot(active-label-color);
+
+  .hra-navigation-rail-item--indicator {
+    color: tokens.slot(active-icon-color);
+
+    &::before {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+}
+
+:host(:disabled),
+:host([aria-disabled='true']) {
+  cursor: default;
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host .hra-navigation-rail-item--indicator::before {
+    transition: none;
+  }
+}

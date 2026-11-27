@@ -135,6 +135,7 @@ export const appRoutes: Route[] = [
   {
     path: '500',
     component: ServerErrorPageComponent,
+    data: { reportIssueLink: 'https://github.com/hubmapconsortium/hra-ui/issues/new' },
   },
   {
     path: '**',

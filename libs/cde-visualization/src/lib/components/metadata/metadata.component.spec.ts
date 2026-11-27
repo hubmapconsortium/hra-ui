@@ -2,7 +2,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { render, screen } from '@testing-library/angular';
 
 import { Metadata } from '../../models/metadata';
-import { MetadataComponent } from './metadata.component';
+import { hasHiddenFields, MetadataComponent } from './metadata.component';
 
 describe('MetadataComponent', () => {
   const metadata: Metadata = {
@@ -38,22 +38,25 @@ describe('MetadataComponent', () => {
     expect(screen.getByText('3:24:00 AM')).toBeInTheDocument();
   });
 
-  it('should toggle the empty fields signal', async () => {
-    const { fixture } = await render(MetadataComponent, {
-      componentInputs: {
-        metadata,
-      },
+  it('should show skeleton rows in place of the fields while loading', async () => {
+    const { container } = await render(MetadataComponent, {
+      componentInputs: { metadata, loading: true },
       providers: [provideNoopAnimations()],
     });
-    const component = fixture.componentInstance;
-    component.toggleEmptyFields();
-    expect(component.showEmptyFields()).toBe(true);
-    component.toggleEmptyFields();
-    expect(component.showEmptyFields()).toBe(false);
+    const details = container.querySelector('.metadata-details');
+
+    expect(details).toHaveAttribute('aria-busy', 'true');
+    expect(details?.querySelectorAll('cde-skeleton')).toHaveLength(12);
+    expect(screen.queryByText(metadata.organ ?? '')).not.toBeInTheDocument();
+  });
+
+  it('should report whether any fields only show with all metadata', () => {
+    expect(hasHiddenFields(metadata)).toBe(false);
+    expect(hasHiddenFields({ ...metadata, organ: undefined })).toBe(true);
   });
 
   it('should hide empty metadata fields', async () => {
-    const { fixture } = await render(MetadataComponent, {
+    const { rerender } = await render(MetadataComponent, {
       componentInputs: {
         metadata: {
           ...metadata,
@@ -64,8 +67,95 @@ describe('MetadataComponent', () => {
     });
 
     expect(screen.queryByText('Creation date')).toBeNull();
-    fixture.componentInstance.toggleEmptyFields();
-    fixture.detectChanges();
+    await rerender({ componentInputs: { showEmptyFields: true }, partialUpdate: true });
     expect(screen.getByText('Creation date')).toBeInTheDocument();
+  });
+
+  it('should show the placeholder creation date and time of example datasets only with all metadata', async () => {
+    const exampleMetadata: Metadata = {
+      ...metadata,
+      sampleExtra: {
+        type: '2D',
+        organ: 'Brain',
+        sampleUrl: 'https://example.com',
+        sourceDataUrl: 'https://example.com',
+      },
+    };
+    const { rerender } = await render(MetadataComponent, {
+      componentInputs: { metadata: exampleMetadata },
+      providers: [provideNoopAnimations()],
+    });
+
+    expect(hasHiddenFields(exampleMetadata)).toBe(true);
+    expect(screen.queryByText('Creation date')).toBeNull();
+    expect(screen.queryByText('Creation time')).toBeNull();
+    await rerender({ componentInputs: { showEmptyFields: true }, partialUpdate: true });
+    expect(screen.getByText('Creation date')).toBeInTheDocument();
+    expect(screen.getByText('December 17, 1995')).toBeInTheDocument();
+  });
+
+  it('should render the panel title', async () => {
+    await render(MetadataComponent, {
+      componentInputs: { metadata },
+      providers: [provideNoopAnimations()],
+    });
+
+    expect(screen.getByText('Metadata')).toBeInTheDocument();
+  });
+
+  it('should show the source publication link without its protocol', async () => {
+    const sampleUrl = 'https://doi.org/10.1016/j.cell.2022.12.028';
+    await render(MetadataComponent, {
+      componentInputs: {
+        metadata: {
+          ...metadata,
+          sampleExtra: { type: '2D', organ: 'Brain', sampleUrl, sourceDataUrl: 'https://example.com/data.csv' },
+        },
+      },
+      providers: [provideNoopAnimations()],
+    });
+
+    const link = screen.getByRole('link', { name: 'doi.org/10.1016/j.cell.2022.12.028' });
+    expect(link).toHaveAttribute('href', sampleUrl);
+  });
+
+  describe('study', () => {
+    async function setup(study: Partial<Metadata>, showEmptyFields = false) {
+      return render(MetadataComponent, {
+        componentInputs: { metadata: { ...metadata, ...study }, showEmptyFields },
+        providers: [provideNoopAnimations()],
+      });
+    }
+
+    it('should show the study first, linked to its page in the same tab', async () => {
+      const { container } = await setup({ study: 'Bone marrow, CODEX', studyUrl: '/gallery/bonemarrow-codex-chop' });
+
+      expect(container.querySelector('dt')).toHaveTextContent('Study');
+      const link = screen.getByRole('link', { name: 'Bone marrow, CODEX' });
+      expect(link).toHaveAttribute('href', '/gallery/bonemarrow-codex-chop');
+      expect(link).not.toHaveAttribute('target');
+    });
+
+    it('should show the study as text when it has no url', async () => {
+      await setup({ study: 'Bone marrow, CODEX' });
+
+      expect(screen.getByText('Bone marrow, CODEX')).toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Bone marrow, CODEX' })).not.toBeInTheDocument();
+    });
+
+    it('should leave out the study row when there is no study, even with all metadata', async () => {
+      await setup({}, true);
+
+      expect(screen.queryByText('Study')).not.toBeInTheDocument();
+    });
+
+    it('should hide the study while loading', async () => {
+      await render(MetadataComponent, {
+        componentInputs: { metadata: { ...metadata, study: 'Bone marrow, CODEX' }, loading: true },
+        providers: [provideNoopAnimations()],
+      });
+
+      expect(screen.queryByText('Bone marrow, CODEX')).not.toBeInTheDocument();
+    });
   });
 });

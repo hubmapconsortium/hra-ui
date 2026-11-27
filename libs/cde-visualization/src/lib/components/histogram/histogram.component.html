@@ -1,34 +1,47 @@
-<hra-expansion-panel tagline="Histogram" hraHoverEvent hraHoverEventTriggerOn="mouseenter">
-  <hra-expansion-panel-actions>
-    <cde-histogram-menu hraFeature="menu" (open)="histogramEl().open()" (download)="download($event)" />
-  </hra-expansion-panel-actions>
+<hra-expansion-panel tagline="Histogram" disabled hraHoverEvent hraHoverEventTriggerOn="mouseenter">
   <hra-expansion-panel-header-content>
     <cde-color-picker-label
       hraFeature="color-picker"
       hraClickEvent
       [label]="totalCellTypeLabel"
-      [(color)]="totalCellTypeColor"
-      (colorPickerOpen)="colorPicker.set($event)"
+      [color]="totalCellTypeColor()"
+      (colorChange)="allCellsColor.set($event)"
     />
+    @if (fullscreenAvailable()) {
+      <button
+        mat-icon-button
+        aria-label="Open the histogram in full screen"
+        hraPlainTooltip="Full screen"
+        hraFeature="open-fullscreen"
+        hraClickEvent
+        (click)="histogramEl().open()"
+      >
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+    }
   </hra-expansion-panel-header-content>
   <hra-fullscreen-portal
     tagline="Histogram"
     hraFeature="fullscreen"
+    (beforeOpened)="fullscreenChange.emit(true)"
+    (beforeClosed)="fullscreenChange.emit(false)"
     (opened)="resizeAndSyncView()"
     (closed)="resizeAndSyncView()"
   >
-    <hra-fullscreen-actions>
-      <cde-histogram-menu dialogOpen="true" hraFeature="menu" (download)="download($event)" />
-    </hra-fullscreen-actions>
-
     <hra-fullscreen-portal-content data-testid="portal-content">
       <div
         class="histogram"
         style="height: 100%; width: 100%"
         data-testid="histogram"
         hraFeature="histogram-chart"
+        [attr.inert]="emptyState() ? '' : null"
         #histogram
       ></div>
+      @if (loading()) {
+        <cde-chart-skeleton />
+      } @else if (emptyState(); as content) {
+        <cde-empty-state hraFeature="empty-state" [content]="content" (actionClick)="emptyStateAction.emit()" />
+      }
     </hra-fullscreen-portal-content>
   </hra-fullscreen-portal>
 </hra-expansion-panel>

@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, inject, provideEnvironmentInitializer } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -9,6 +9,7 @@ import {
 import { provideContentTemplateDefs } from '@hra-ui/cdk/content-template';
 import { provideNothrowPlatformLocation } from '@hra-ui/cdk/platform-location';
 import { provideAnalytics, withErrorHandler, withRouterEvents } from '@hra-ui/common/analytics';
+import { provideCustomScrollOptions } from '@hra-ui/common/custom-scroll';
 import { provideAppConfiguration } from '@hra-ui/common/injectors';
 import { provideRouterExt } from '@hra-ui/common/router-ext';
 import { provideDesignSystem } from '@hra-ui/design-system';
@@ -20,12 +21,25 @@ import { GridContainerDef } from '@hra-ui/design-system/content-templates/grid-c
 import { ImageDef } from '@hra-ui/design-system/content-templates/image';
 import { MarkdownDef } from '@hra-ui/design-system/content-templates/markdown';
 import { PageSectionDef } from '@hra-ui/design-system/content-templates/page-section';
-import { IconDef, provideIcons } from '@hra-ui/design-system/icons';
+import { IconConfig, IconConfigRegistryService, IconDef, provideIcons } from '@hra-ui/design-system/icons';
+import { provideTableOfContentsLayoutOptions } from '@hra-ui/design-system/layouts/table-of-contents';
+import { provideTableOfContentsOptions } from '@hra-ui/design-system/navigation/table-of-contents';
 import { PageTableDef } from '@hra-ui/design-system/table';
+import { providePlainTooltipOptions } from '@hra-ui/design-system/tooltips/plain-tooltip';
 import { provideMarkdown } from 'ngx-markdown';
 import { ROUTES } from './app.routes';
 import { StudiesGridDef } from './components/studies-grid/types/studies-grid.definition';
 import { handleNavigationError } from './shared/utils/navigation-error-handler';
+
+/**
+ * CDE logo in theme colors, so it follows the light and dark themes wherever it appears,
+ * such as the landing page hero and the Spatial Omics Gallery header.
+ * Takes precedence over the fixed colors the design system gives every product logo.
+ */
+const CDE_LOGO_CONFIG: IconConfig = {
+  color: 'var(--mat-sys-on-secondary)',
+  backgroundColor: 'var(--mat-sys-secondary)',
+};
 
 /**
  * Set of config options available during the application bootstrap operation.
@@ -51,11 +65,18 @@ export const appConfig: ApplicationConfig = {
       CopyEmailButtonDef,
       StudiesGridDef,
     ]),
+    // Page changes jump to the top instead of animating with the design system's smooth scrolling.
+    // hubmapconsortium/hra-ui#2361 tracks the fix for every HRA app.
+    provideCustomScrollOptions({ instantNavigation: true }),
     provideDesignSystem(),
+    provideEnvironmentInitializer(() => {
+      inject(IconConfigRegistryService).setIconConfig('cde', 'product', CDE_LOGO_CONFIG);
+    }),
     provideHttpClient(),
     provideIcons(),
     provideMarkdown(),
     provideNothrowPlatformLocation(),
+    providePlainTooltipOptions({ hraStyles: false }),
     provideRouter(
       ROUTES,
       withComponentInputBinding(),
@@ -63,5 +84,9 @@ export const appConfig: ApplicationConfig = {
       withNavigationErrorHandler(handleNavigationError),
     ),
     provideRouterExt(),
+    // The table of contents follows AtlasNG's: a Material navigation list, in a side column from AtlasNG's
+    // medium breakpoint (960px)
+    provideTableOfContentsLayoutOptions({ sideColumnQuery: '(min-width: 960px)' }),
+    provideTableOfContentsOptions({ navList: true }),
   ],
 };
