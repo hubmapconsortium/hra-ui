@@ -217,6 +217,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'publications',
+    title: 'Publications',
     component: PublicationsPageComponent,
     resolve: {
       publications: createJsonSpecResolver(HRA_PUBLICATIONS_URL, PublicationDataSchema),
@@ -238,6 +239,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'release-notes/:version',
+    title: (route) => `Release Notes ${route.params['version']}`,
     component: ContentPageComponent,
     resolve: {
       versions: createYamlSpecResolver('assets/content/release-notes-page/versions.yaml', ReleaseNotesVersionsSchema),
@@ -329,9 +331,11 @@ export const appRoutes: Route[] = [
   // Error pages and redirects
   {
     path: '**',
+    title: 'Page Not Found',
     component: NotFoundPageComponent,
     data: {
       siteNavigation: false,
+      robots: 'noindex',
     },
   },
 ];
