@@ -47,6 +47,14 @@
 
     .socials {
       display: flex;
+
+      @media (max-width: 359px) {
+        @include mat.icon-button-overrides(
+          (
+            state-layer-size: 2.1875rem,
+          )
+        );
+      }
     }
   }
 
@@ -69,9 +77,5 @@
 
   @media (max-width: 639px) {
     padding: 2.5rem 1.25rem;
-
-    > * {
-      min-width: 20rem;
-    }
   }
 }
