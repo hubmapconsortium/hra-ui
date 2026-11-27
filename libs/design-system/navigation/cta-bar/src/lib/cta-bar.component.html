@@ -1,6 +1,14 @@
 <div class="content">
-  <span class="description">{{ description() }}</span>
-  <a hraHyperlink class="action" target="_blank" rel="noopener noreferrer" [attr.href]="url()">
+  <span class="description" [id]="descriptionId">{{ description() }}</span>
+  <a
+    hraHyperlink
+    class="action"
+    target="_blank"
+    rel="noopener noreferrer"
+    [attr.href]="url()"
+    [attr.aria-label]="`${action()} (opens in a new tab)`"
+    [attr.aria-describedby]="descriptionId"
+  >
     {{ action() }}
     <mat-icon>arrow_right_alt</mat-icon>
   </a>

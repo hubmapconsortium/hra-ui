@@ -3,6 +3,9 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonsModule } from '@hra-ui/design-system/buttons';
 
+/** Counter for unique description ids */
+let nextId = 0;
+
 /** A call to action bar that can be displayed at top of the page */
 @Component({
   selector: 'hra-cta-bar',
@@ -20,4 +23,7 @@ export class CtaBarComponent {
   readonly url = input.required<string>();
   /** Emits when the close button is clicked */
   readonly closeClick = output();
+
+  /** Id of the description, which describes the action link */
+  protected readonly descriptionId = `hra-cta-bar-description-${nextId++}`;
 }
